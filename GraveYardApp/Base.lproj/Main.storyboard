@@ -215,10 +215,10 @@
             </objects>
             <point key="canvasLocation" x="1941.5999999999999" y="864.91754122938539"/>
         </scene>
-        <!--View Controller-->
+        <!--Sign In View Controller-->
         <scene sceneID="ZCq-dQ-7de">
             <objects>
-                <viewController id="V5b-2F-cuQ" sceneMemberID="viewController">
+                <viewController id="V5b-2F-cuQ" customClass="SignInViewController" customModule="GraveYardApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="C3D-kb-1gM">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

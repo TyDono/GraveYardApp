@@ -15,6 +15,9 @@
 		CB3A30CD2357936D00CF2CBB /* EditProfileUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3A30CC2357936D00CF2CBB /* EditProfileUIView.swift */; };
 		CB3A30CF235793A900CF2CBB /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3A30CE235793A900CF2CBB /* ProfileTableViewCell.swift */; };
 		CB3A30D1235793B500CF2CBB /* EditProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3A30D0235793B500CF2CBB /* EditProfileTableViewCell.swift */; };
+		CB3A30D3235904AA00CF2CBB /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3A30D2235904AA00CF2CBB /* SignInViewController.swift */; };
+		CB3A30D52359098700CF2CBB /* GIDSignInExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3A30D42359098700CF2CBB /* GIDSignInExtension.swift */; };
+		CB3A30D72359099C00CF2CBB /* MyFirebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3A30D62359099C00CF2CBB /* MyFirebase.swift */; };
 		CB5AE18723512B14001BCCCE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5AE18623512B14001BCCCE /* AppDelegate.swift */; };
 		CB5AE18923512B14001BCCCE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5AE18823512B14001BCCCE /* SceneDelegate.swift */; };
 		CB5AE18B23512B14001BCCCE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5AE18A23512B14001BCCCE /* ViewController.swift */; };
@@ -34,6 +37,9 @@
 		CB3A30CC2357936D00CF2CBB /* EditProfileUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileUIView.swift; sourceTree = "<group>"; };
 		CB3A30CE235793A900CF2CBB /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
 		CB3A30D0235793B500CF2CBB /* EditProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileTableViewCell.swift; sourceTree = "<group>"; };
+		CB3A30D2235904AA00CF2CBB /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		CB3A30D42359098700CF2CBB /* GIDSignInExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GIDSignInExtension.swift; sourceTree = "<group>"; };
+		CB3A30D62359099C00CF2CBB /* MyFirebase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFirebase.swift; sourceTree = "<group>"; };
 		CB5AE18323512B14001BCCCE /* GraveYardApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GraveYardApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB5AE18623512B14001BCCCE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CB5AE18823512B14001BCCCE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -95,6 +101,9 @@
 			isa = PBXGroup;
 			children = (
 				CB5AE18623512B14001BCCCE /* AppDelegate.swift */,
+				CB3A30D42359098700CF2CBB /* GIDSignInExtension.swift */,
+				CB3A30D62359099C00CF2CBB /* MyFirebase.swift */,
+				CB3A30D2235904AA00CF2CBB /* SignInViewController.swift */,
 				CB5AE18823512B14001BCCCE /* SceneDelegate.swift */,
 				CB5AE18A23512B14001BCCCE /* ViewController.swift */,
 				CB3A30C22357910700CF2CBB /* ProfileViewController.swift */,
@@ -276,10 +285,13 @@
 				CB3A30D1235793B500CF2CBB /* EditProfileTableViewCell.swift in Sources */,
 				CB3A30CF235793A900CF2CBB /* ProfileTableViewCell.swift in Sources */,
 				CB5AE18B23512B14001BCCCE /* ViewController.swift in Sources */,
+				CB3A30D52359098700CF2CBB /* GIDSignInExtension.swift in Sources */,
 				CB5AE18723512B14001BCCCE /* AppDelegate.swift in Sources */,
+				CB3A30D72359099C00CF2CBB /* MyFirebase.swift in Sources */,
 				CB3A30C32357910700CF2CBB /* ProfileViewController.swift in Sources */,
 				CB3A30C5235791D300CF2CBB /* EditProfileViewController.swift in Sources */,
 				CB5AE18923512B14001BCCCE /* SceneDelegate.swift in Sources */,
+				CB3A30D3235904AA00CF2CBB /* SignInViewController.swift in Sources */,
 				CB3A30CD2357936D00CF2CBB /* EditProfileUIView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
