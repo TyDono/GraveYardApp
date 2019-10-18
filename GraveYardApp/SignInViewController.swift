@@ -39,5 +39,9 @@ class SignInViewController: UIViewController, GIDSignInUIDelegate {
     @IBAction func googleSignIn(_ sender: Any) {
         
     }
-
+    @IBAction func logout(_ sender: UIBarButtonItem) {
+        self.userId = ""
+        try! Auth.auth().signOut()
+    }
+    
 }

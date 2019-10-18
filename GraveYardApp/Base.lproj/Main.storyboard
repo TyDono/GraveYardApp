@@ -249,6 +249,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                             </button>
+                            <connections>
+                                <action selector="logout:" destination="V5b-2F-cuQ" id="K89-dW-zGG"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                 </viewController>

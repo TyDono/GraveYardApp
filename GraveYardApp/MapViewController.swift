@@ -21,6 +21,7 @@ class MapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         checkForUserId()
+        print(currentAuthID)
     }
     
     func checkForUserId() {
