@@ -35,9 +35,20 @@ class MapViewController: UIViewController {
         if currentAuthID == nil {
             performSegue(withIdentifier: "segueToSignUp", sender: self)
         } else {
-            self.currentUser = nil
-            self.userId = ""
-            try! Auth.auth().signOut()
+            let locationAlert = UIAlertController(title: "Log Out", message: "Are you sure you want to log out?", preferredStyle: .actionSheet)
+            
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            locationAlert.addAction(cancelAction)
+            
+            let goToSettingsAction = UIAlertAction(title: "Log Out", style: .default, handler: { _ in      self.currentUser = nil
+                self.userId = ""
+                try! Auth.auth().signOut()
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    
+                }
+            })
+                locationAlert.addAction(goToSettingsAction)
+            present(locationAlert, animated: true, completion: nil)
         }
     }
     

@@ -22,6 +22,14 @@ class SignInViewController: UIViewController, GIDSignInUIDelegate {
         
         GIDSignIn.sharedInstance()?.uiDelegate = self
         db = Firestore.firestore()
+        changeBackground()
+    }
+    
+    func changeBackground() {
+        let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
+        backgroundImage.image = UIImage(named: "GradientPlaceHolder")
+        backgroundImage.contentMode = UIView.ContentMode.scaleToFill
+        self.view.insertSubview(backgroundImage, at: 0)
     }
     
         func whiteStatusBar() -> UIStatusBarStyle{
