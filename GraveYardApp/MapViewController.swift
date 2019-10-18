@@ -24,6 +24,10 @@ class MapViewController: UIViewController {
         print(currentAuthID)
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        checkForUserId()
+    }
+    
     func checkForUserId() {
         if currentAuthID == nil {
             signUp.title = "Sign Up"
@@ -44,9 +48,8 @@ class MapViewController: UIViewController {
             let goToSettingsAction = UIAlertAction(title: "Log Out", style: .default, handler: { _ in      self.currentUser = nil
                 self.userId = ""
                 try! Auth.auth().signOut()
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                    
-                }
+                self.currentAuthID = nil
+                self.checkForUserId()
             })
                 locationAlert.addAction(goToSettingsAction)
             present(locationAlert, animated: true, completion: nil)
