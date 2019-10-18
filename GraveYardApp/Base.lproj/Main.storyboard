@@ -7,31 +7,38 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Map View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="GraveYardApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="MapViewController" customModule="GraveYardApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="5HP-f9-7HN">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="5HP-f9-7HN">
                                 <rect key="frame" x="0.0" y="44" width="375" height="623"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="5HP-f9-7HN" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="AOh-cx-CQU"/>
+                            <constraint firstItem="5HP-f9-7HN" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="ZsB-4u-fnf"/>
+                            <constraint firstItem="5HP-f9-7HN" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="c9h-Jp-fK3"/>
+                            <constraint firstItem="5HP-f9-7HN" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="lmc-9Y-VRB"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="LOm-oG-hfJ">
                         <barButtonItem key="rightBarButtonItem" title="Log in/sign up" id="bDe-is-SXm">
                             <connections>
-                                <segue destination="V5b-2F-cuQ" kind="show" id="Vbh-AP-Ndf"/>
+                                <action selector="SignInTapped:" destination="BYZ-38-t0r" id="PbY-qA-kBm"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="signUp" destination="bDe-is-SXm" id="QX5-4k-Sxv"/>
                         <segue destination="Ghw-k8-f3X" kind="show" id="CPT-Ja-Mg2"/>
+                        <segue destination="V5b-2F-cuQ" kind="show" identifier="segueToSignUp" id="Z4Z-rO-tpT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -248,12 +255,20 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="sign up with google!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WkR-zf-fc5">
-                                <rect key="frame" x="110" y="212" width="154" height="21"/>
+                                <rect key="frame" x="110" y="212" width="155" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AFk-5g-DzK" customClass="GIDSignInButton">
+                                <rect key="frame" x="110" y="241" width="155" height="62"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <action selector="googleSignIn:" destination="V5b-2F-cuQ" eventType="valueChanged" id="uab-Md-GV9"/>
+                                </connections>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="ZO0-Me-3MF"/>
