@@ -9,9 +9,19 @@
 /* Begin PBXBuildFile section */
 		089C78F06529CBB6A01DF009 /* Pods_GraveYardApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C36EBF0010026AAFD2A3FE0A /* Pods_GraveYardApp.framework */; };
 		CB3A30C1235636FB00CF2CBB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CB3A30C0235636FA00CF2CBB /* GoogleService-Info.plist */; };
+		CB3A30C32357910700CF2CBB /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3A30C22357910700CF2CBB /* ProfileViewController.swift */; };
+		CB3A30C5235791D300CF2CBB /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3A30C4235791D300CF2CBB /* EditProfileViewController.swift */; };
+		CB3A30CB235792A700CF2CBB /* ProfileUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3A30CA235792A700CF2CBB /* ProfileUIView.swift */; };
+		CB3A30CD2357936D00CF2CBB /* EditProfileUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3A30CC2357936D00CF2CBB /* EditProfileUIView.swift */; };
+		CB3A30CF235793A900CF2CBB /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3A30CE235793A900CF2CBB /* ProfileTableViewCell.swift */; };
+		CB3A30D1235793B500CF2CBB /* EditProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3A30D0235793B500CF2CBB /* EditProfileTableViewCell.swift */; };
+		CB3A30D3235904AA00CF2CBB /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3A30D2235904AA00CF2CBB /* SignInViewController.swift */; };
+		CB3A30D52359098700CF2CBB /* GIDSignInExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3A30D42359098700CF2CBB /* GIDSignInExtension.swift */; };
+		CB3A30D72359099C00CF2CBB /* MyFirebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3A30D62359099C00CF2CBB /* MyFirebase.swift */; };
+		CB3A30D923590EBA00CF2CBB /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3A30D823590EBA00CF2CBB /* MapViewController.swift */; };
+		CB3A30DD23594FCA00CF2CBB /* AliveUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3A30DC23594FCA00CF2CBB /* AliveUser.swift */; };
 		CB5AE18723512B14001BCCCE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5AE18623512B14001BCCCE /* AppDelegate.swift */; };
 		CB5AE18923512B14001BCCCE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5AE18823512B14001BCCCE /* SceneDelegate.swift */; };
-		CB5AE18B23512B14001BCCCE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5AE18A23512B14001BCCCE /* ViewController.swift */; };
 		CB5AE18E23512B14001BCCCE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB5AE18C23512B14001BCCCE /* Main.storyboard */; };
 		CB5AE19023512B16001BCCCE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB5AE18F23512B16001BCCCE /* Assets.xcassets */; };
 		CB5AE19323512B16001BCCCE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB5AE19123512B16001BCCCE /* LaunchScreen.storyboard */; };
@@ -22,10 +32,20 @@
 		214B82DFB9B7E85A336EA377 /* Pods-GraveYardApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GraveYardApp.debug.xcconfig"; path = "Target Support Files/Pods-GraveYardApp/Pods-GraveYardApp.debug.xcconfig"; sourceTree = "<group>"; };
 		C36EBF0010026AAFD2A3FE0A /* Pods_GraveYardApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GraveYardApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB3A30C0235636FA00CF2CBB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		CB3A30C22357910700CF2CBB /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		CB3A30C4235791D300CF2CBB /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
+		CB3A30CA235792A700CF2CBB /* ProfileUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileUIView.swift; sourceTree = "<group>"; };
+		CB3A30CC2357936D00CF2CBB /* EditProfileUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileUIView.swift; sourceTree = "<group>"; };
+		CB3A30CE235793A900CF2CBB /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
+		CB3A30D0235793B500CF2CBB /* EditProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileTableViewCell.swift; sourceTree = "<group>"; };
+		CB3A30D2235904AA00CF2CBB /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		CB3A30D42359098700CF2CBB /* GIDSignInExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GIDSignInExtension.swift; sourceTree = "<group>"; };
+		CB3A30D62359099C00CF2CBB /* MyFirebase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFirebase.swift; sourceTree = "<group>"; };
+		CB3A30D823590EBA00CF2CBB /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		CB3A30DC23594FCA00CF2CBB /* AliveUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AliveUser.swift; sourceTree = "<group>"; };
 		CB5AE18323512B14001BCCCE /* GraveYardApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GraveYardApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB5AE18623512B14001BCCCE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CB5AE18823512B14001BCCCE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		CB5AE18A23512B14001BCCCE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		CB5AE18D23512B14001BCCCE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CB5AE18F23512B16001BCCCE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CB5AE19223512B16001BCCCE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -50,7 +70,6 @@
 				214B82DFB9B7E85A336EA377 /* Pods-GraveYardApp.debug.xcconfig */,
 				0B8646E963D28C71EEC8E46B /* Pods-GraveYardApp.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -84,9 +103,19 @@
 			isa = PBXGroup;
 			children = (
 				CB5AE18623512B14001BCCCE /* AppDelegate.swift */,
+				CB3A30D42359098700CF2CBB /* GIDSignInExtension.swift */,
+				CB3A30D62359099C00CF2CBB /* MyFirebase.swift */,
+				CB3A30D2235904AA00CF2CBB /* SignInViewController.swift */,
+				CB3A30D823590EBA00CF2CBB /* MapViewController.swift */,
+				CB3A30DC23594FCA00CF2CBB /* AliveUser.swift */,
 				CB5AE18823512B14001BCCCE /* SceneDelegate.swift */,
-				CB5AE18A23512B14001BCCCE /* ViewController.swift */,
+				CB3A30C22357910700CF2CBB /* ProfileViewController.swift */,
+				CB3A30C4235791D300CF2CBB /* EditProfileViewController.swift */,
 				CB5AE18C23512B14001BCCCE /* Main.storyboard */,
+				CB3A30CE235793A900CF2CBB /* ProfileTableViewCell.swift */,
+				CB3A30D0235793B500CF2CBB /* EditProfileTableViewCell.swift */,
+				CB3A30CC2357936D00CF2CBB /* EditProfileUIView.swift */,
+				CB3A30CA235792A700CF2CBB /* ProfileUIView.swift */,
 				CB5AE18F23512B16001BCCCE /* Assets.xcassets */,
 				CB5AE19123512B16001BCCCE /* LaunchScreen.storyboard */,
 				CB5AE19423512B16001BCCCE /* Info.plist */,
@@ -255,9 +284,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CB5AE18B23512B14001BCCCE /* ViewController.swift in Sources */,
+				CB3A30CB235792A700CF2CBB /* ProfileUIView.swift in Sources */,
+				CB3A30D1235793B500CF2CBB /* EditProfileTableViewCell.swift in Sources */,
+				CB3A30CF235793A900CF2CBB /* ProfileTableViewCell.swift in Sources */,
+				CB3A30D52359098700CF2CBB /* GIDSignInExtension.swift in Sources */,
 				CB5AE18723512B14001BCCCE /* AppDelegate.swift in Sources */,
+				CB3A30D923590EBA00CF2CBB /* MapViewController.swift in Sources */,
+				CB3A30D72359099C00CF2CBB /* MyFirebase.swift in Sources */,
+				CB3A30DD23594FCA00CF2CBB /* AliveUser.swift in Sources */,
+				CB3A30C32357910700CF2CBB /* ProfileViewController.swift in Sources */,
+				CB3A30C5235791D300CF2CBB /* EditProfileViewController.swift in Sources */,
 				CB5AE18923512B14001BCCCE /* SceneDelegate.swift in Sources */,
+				CB3A30D3235904AA00CF2CBB /* SignInViewController.swift in Sources */,
+				CB3A30CD2357936D00CF2CBB /* EditProfileUIView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
