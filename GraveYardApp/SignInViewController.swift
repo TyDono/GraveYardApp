@@ -32,13 +32,12 @@ class SignInViewController: UIViewController, GIDSignInUIDelegate {
         self.view.insertSubview(backgroundImage, at: 0)
     }
     
-        func whiteStatusBar() -> UIStatusBarStyle{
-            return UIStatusBarStyle.lightContent
-        }
-    
-    @IBAction func googleSignIn(_ sender: Any) {
-        
+    func whiteStatusBar() -> UIStatusBarStyle{
+        return UIStatusBarStyle.lightContent
     }
+    
+    @IBAction func googleSignIn(_ sender: Any) {}
+    
     @IBAction func logout(_ sender: UIBarButtonItem) {
         self.userId = ""
         try! Auth.auth().signOut()

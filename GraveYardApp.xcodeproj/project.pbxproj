@@ -20,6 +20,8 @@
 		CB3A30D72359099C00CF2CBB /* MyFirebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3A30D62359099C00CF2CBB /* MyFirebase.swift */; };
 		CB3A30D923590EBA00CF2CBB /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3A30D823590EBA00CF2CBB /* MapViewController.swift */; };
 		CB3A30DD23594FCA00CF2CBB /* AliveUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3A30DC23594FCA00CF2CBB /* AliveUser.swift */; };
+		CB3A30DF235F9E1100CF2CBB /* SignIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB3A30DE235F9E1000CF2CBB /* SignIn.storyboard */; };
+		CB3A30E1235F9E4B00CF2CBB /* Grave.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB3A30E0235F9E4B00CF2CBB /* Grave.storyboard */; };
 		CB5AE18723512B14001BCCCE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5AE18623512B14001BCCCE /* AppDelegate.swift */; };
 		CB5AE18923512B14001BCCCE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5AE18823512B14001BCCCE /* SceneDelegate.swift */; };
 		CB5AE18E23512B14001BCCCE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB5AE18C23512B14001BCCCE /* Main.storyboard */; };
@@ -43,6 +45,8 @@
 		CB3A30D62359099C00CF2CBB /* MyFirebase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFirebase.swift; sourceTree = "<group>"; };
 		CB3A30D823590EBA00CF2CBB /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		CB3A30DC23594FCA00CF2CBB /* AliveUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AliveUser.swift; sourceTree = "<group>"; };
+		CB3A30DE235F9E1000CF2CBB /* SignIn.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignIn.storyboard; sourceTree = "<group>"; };
+		CB3A30E0235F9E4B00CF2CBB /* Grave.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Grave.storyboard; sourceTree = "<group>"; };
 		CB5AE18323512B14001BCCCE /* GraveYardApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GraveYardApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB5AE18623512B14001BCCCE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CB5AE18823512B14001BCCCE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -112,6 +116,8 @@
 				CB3A30C22357910700CF2CBB /* ProfileViewController.swift */,
 				CB3A30C4235791D300CF2CBB /* EditProfileViewController.swift */,
 				CB5AE18C23512B14001BCCCE /* Main.storyboard */,
+				CB3A30DE235F9E1000CF2CBB /* SignIn.storyboard */,
+				CB3A30E0235F9E4B00CF2CBB /* Grave.storyboard */,
 				CB3A30CE235793A900CF2CBB /* ProfileTableViewCell.swift */,
 				CB3A30D0235793B500CF2CBB /* EditProfileTableViewCell.swift */,
 				CB3A30CC2357936D00CF2CBB /* EditProfileUIView.swift */,
@@ -186,6 +192,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				CB5AE19323512B16001BCCCE /* LaunchScreen.storyboard in Resources */,
+				CB3A30DF235F9E1100CF2CBB /* SignIn.storyboard in Resources */,
+				CB3A30E1235F9E4B00CF2CBB /* Grave.storyboard in Resources */,
 				CB5AE19023512B16001BCCCE /* Assets.xcassets in Resources */,
 				CB5AE18E23512B14001BCCCE /* Main.storyboard in Resources */,
 				CB3A30C1235636FB00CF2CBB /* GoogleService-Info.plist in Resources */,
