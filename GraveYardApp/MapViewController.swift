@@ -17,7 +17,7 @@ class MapViewController: UIViewController {
     var currentAuthID = Auth.auth().currentUser?.uid
     var userId: String = ""
     var currentUser: User?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         checkForUserId()
@@ -56,8 +56,6 @@ class MapViewController: UIViewController {
         }
     }
     
-    @IBAction func unwindToMap(_ sender: UIStoryboardSegue) {
-        
-    }
+    @IBAction func unwindToMap(_ sender: UIStoryboardSegue) {}
 
 }
