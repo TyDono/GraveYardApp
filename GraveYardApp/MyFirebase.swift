@@ -34,6 +34,30 @@ class MyFirebase {
         
     }
     
+    func createData() {
+        
+        let id = currentAuthID!
+        let name: String = ""
+        let birth: String = ""
+        let death: String = ""
+        let bio: String = ""
+        
+        let grave = Grave(id: id,
+                          name: name,
+                          birth: birth,
+                          death: death,
+                          bio: bio)
+        
+        let userRef = self.db.collection("grave")
+        userRef.document(String(grave.id)).setData(grave.dictionary) { err in
+            if let err = err {
+                print(err)
+            } else {
+                print("Added Data")
+            }
+        }
+    }
+    
     func removeUserListener() {
         guard listenHandler != nil else {
             return
@@ -56,6 +80,7 @@ class MyFirebase {
             print("Credential linked")
         }
     }
+    
     func logOut() {
         try! Auth.auth().signOut()
         GIDSignIn.sharedInstance()?.signIn()
