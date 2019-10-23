@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EditProfileUIView: UITableView {
+class EditGraveUIView: UITableView {
 
     /*
     // Only override draw() if you perform custom drawing.

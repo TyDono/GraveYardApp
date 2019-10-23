@@ -7,10 +7,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Grave Table View Controller-->
         <scene sceneID="aQc-F8-wG4">
             <objects>
-                <viewController id="oc4-t4-JWg" sceneMemberID="viewController">
+                <viewController id="oc4-t4-JWg" customClass="GraveTableViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="SvA-k4-3I7">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -19,7 +19,7 @@
                                 <rect key="frame" x="0.0" y="418" width="414" height="478"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="8Ih-sd-u0c" customClass="ProfileTableViewCell" customModule="GraveYardApp" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="8Ih-sd-u0c" customClass="GraveTableViewCell" customModule="GraveYardApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8Ih-sd-u0c" id="EFg-mQ-lza">
@@ -83,10 +83,10 @@
             </objects>
             <point key="canvasLocation" x="697.10144927536237" y="44.836956521739133"/>
         </scene>
-        <!--View Controller-->
+        <!--Edit Grave Table View Controller-->
         <scene sceneID="kkQ-9b-OuL">
             <objects>
-                <viewController id="OfB-UR-nSg" sceneMemberID="viewController">
+                <viewController id="OfB-UR-nSg" customClass="EditGraveTableViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ZX5-pd-kxN">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -100,7 +100,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="Kym-5Y-qeU" customClass="ProfileTableViewCell" customModule="GraveYardApp" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="Kym-5Y-qeU" customClass="GraveTableViewCell" customModule="GraveYardApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Kym-5Y-qeU" id="cT3-o7-dYg">

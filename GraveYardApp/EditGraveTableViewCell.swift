@@ -1,5 +1,5 @@
 //
-//  ProfileTableViewCell.swift
+//  EditProfileTableViewCell.swift
 //  GraveYardApp
 //
 //  Created by Tyler Donohue on 10/16/19.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ProfileTableViewCell: UITableViewCell {
+class EditGraveTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()

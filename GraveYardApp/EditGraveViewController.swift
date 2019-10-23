@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EditProfileViewController: UIViewController {
+class EditGraveViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
