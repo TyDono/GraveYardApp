@@ -37,13 +37,23 @@
                     </navigationItem>
                     <connections>
                         <outlet property="signUp" destination="bDe-is-SXm" id="QX5-4k-Sxv"/>
-                        <segue destination="Ghw-k8-f3X" kind="show" id="CPT-Ja-Mg2"/>
                         <segue destination="7wD-UE-Lcl" kind="show" identifier="segueToSignUp" id="UyO-oK-Hsq"/>
+                        <segue destination="swz-Op-vTs" kind="show" id="oY5-ju-XPb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1076" y="111.99400299850076"/>
+        </scene>
+        <!--Grave-->
+        <scene sceneID="bv4-lX-hd9">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Grave" id="swz-Op-vTs" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="hiv-vx-OQ2"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="APU-ie-XRS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="238" y="682"/>
         </scene>
         <!--person-->
         <scene sceneID="xWO-GW-AsB">
@@ -136,14 +146,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YHh-Sr-RVO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1076" y="864.91754122938539"/>
+            <point key="canvasLocation" x="1025" y="969"/>
         </scene>
         <!--Edit Profile View Controller-->
         <scene sceneID="axk-Y5-WLv">
             <objects>
                 <viewController id="Vas-ea-rbp" customClass="EditProfileViewController" customModule="GraveYardApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Jwj-Yx-8YX">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SRv-HI-1LD">
