@@ -38,7 +38,7 @@
                     <connections>
                         <outlet property="signUp" destination="bDe-is-SXm" id="QX5-4k-Sxv"/>
                         <segue destination="Ghw-k8-f3X" kind="show" id="CPT-Ja-Mg2"/>
-                        <segue destination="V5b-2F-cuQ" kind="show" identifier="segueToSignUp" id="Z4Z-rO-tpT"/>
+                        <segue destination="7wD-UE-Lcl" kind="show" identifier="segueToSignUp" id="UyO-oK-Hsq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -222,42 +222,15 @@
             </objects>
             <point key="canvasLocation" x="1941.5999999999999" y="864.91754122938539"/>
         </scene>
-        <!--Sign In View Controller-->
-        <scene sceneID="ZCq-dQ-7de">
+        <!--SignIn-->
+        <scene sceneID="BAi-E4-MD9">
             <objects>
-                <viewController id="V5b-2F-cuQ" customClass="SignInViewController" customModule="GraveYardApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="C3D-kb-1gM">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AFk-5g-DzK" customClass="GIDSignInButton">
-                                <rect key="frame" x="75" y="588" width="225" height="59"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <connections>
-                                    <action selector="googleSignIn:" destination="V5b-2F-cuQ" eventType="valueChanged" id="uab-Md-GV9"/>
-                                </connections>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="ZO0-Me-3MF"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="qwz-kv-dmk">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="FXA-U1-RTl">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="bB4-1R-iCd">
-                                <rect key="frame" x="276" y="7" width="83" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                            </button>
-                            <connections>
-                                <action selector="logout:" destination="V5b-2F-cuQ" id="K89-dW-zGG"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="tqQ-6d-tPV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardName="SignIn" id="7wD-UE-Lcl" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="xYP-Ca-pJ7"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AoR-TV-sFV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1871" y="92"/>
+            <point key="canvasLocation" x="1822" y="-368"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="2e6-xP-hN0">
