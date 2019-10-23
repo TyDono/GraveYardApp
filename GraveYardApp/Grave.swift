@@ -19,7 +19,7 @@ protocol DocumentUserSerializable {
 }
 
 struct Grave {
-    var id: String
+    var id: String // this is the googleSign in userId
     var name: String
     var birth: String
     var death: String

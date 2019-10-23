@@ -166,7 +166,13 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="PqQ-KF-f4A"/>
                     </view>
-                    <navigationItem key="navigationItem" id="Iy1-LG-tmU"/>
+                    <navigationItem key="navigationItem" id="Iy1-LG-tmU">
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="F0x-8E-vb3">
+                            <connections>
+                                <action selector="saveGraveInfoTapped:" destination="OfB-UR-nSg" id="ztx-dI-U1N"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CXQ-g6-wz3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
