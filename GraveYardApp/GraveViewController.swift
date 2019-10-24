@@ -16,7 +16,7 @@ class GraveViewController: UIViewController {
     var db: Firestore!
     var currentAuthID = Auth.auth().currentUser?.uid
     var currentUser: Grave?
-    var userId: String?
+  //  var userId: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,7 +39,7 @@ class GraveViewController: UIViewController {
                         let death = document.data()["death"] as? String,
                         let bio = document.data()["bio"] as? String {
                         
-                        self.nameTLabel.text = name
+                        self.nameLabel.text = name
                         self.birthLabel.text = birth
                         self.deathLabel.text = death
                         self.bioLabel.text = bio
