@@ -12,11 +12,18 @@ import FirebaseFirestore
 import GoogleSignIn
 
 class EditGraveViewController: UIViewController {
+    @IBOutlet weak var graveMainImage: UIImageView!
+    @IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet weak var birthTextField: UITextField!
+    @IBOutlet weak var deathTextField: UITextField!
+    @IBOutlet weak var marriageStatusTextField: UITextField!
+    @IBOutlet weak var bioTextView: UITextView!
     
     var db: Firestore!
     var currentAuthID = Auth.auth().currentUser?.uid
     var currentUser: Grave?
     var userId: String?
+    let formatter = DateFormatter()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,7 +48,7 @@ class EditGraveViewController: UIViewController {
                         self.nameTextField.text = name
                         self.birthTextField.text = birth
                         self.deathTextField.text = death
-                        self.bioTextField.text = bio
+                        self.marriageStatusTextField.text = bio
                     }
                 }
             }
@@ -49,16 +56,19 @@ class EditGraveViewController: UIViewController {
     }
     
     @IBAction func saveGraveInfoTapped(_ sender: UIBarButtonItem) {
-        guard let id = currentAuthID!
+        formatter.dateFormat = "yyyy-MM-dd"
+        let id = currentAuthID!
         guard let name = nameTextField.text else { return }
         guard let birth = birthTextField.text else { return }
-        guard let death = deathSizeTextField.text else  { return }
-        guard let bio = bioTextField.text else  { return }
+        guard let death = deathTextField.text else  { return }
+        guard let marriageStatus = marriageStatusTextField.text else { return }
+        guard let bio = bioTextView.text else { return }
         
         let grave = Grave(id: id,
                           name: name,
                           birth: birth,
                           death: death,
+                          marriageStatus: marriageStatus,
                           bio: bio)
         let graveRef = self.db.collection("grave")
         graveRef.document(String(grave.id)).updateData(grave.dictionary){ err in
