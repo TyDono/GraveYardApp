@@ -140,12 +140,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7o7-wZ-3DI">
-                                <rect key="frame" x="217" y="199" width="177" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Scy-3X-TXI">
                                 <rect key="frame" x="20" y="272" width="374" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -163,12 +157,14 @@
                                 <viewLayoutGuide key="contentLayoutGuide" id="tga-s4-Nzp"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="nyj-hH-bKX"/>
                             </scrollView>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3qS-r2-zcM">
-                                <rect key="frame" x="217" y="157" width="177" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
+                            <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="ep4-x1-3xt">
+                                <rect key="frame" x="217" y="146" width="177" height="55"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            </datePicker>
+                            <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="NFX-8m-CaZ">
+                                <rect key="frame" x="217" y="209" width="177" height="55"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            </datePicker>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="PqQ-KF-f4A"/>
@@ -182,10 +178,10 @@
                     </navigationItem>
                     <connections>
                         <outlet property="bioTextView" destination="vpS-KN-7FO" id="4yl-jA-o9R"/>
-                        <outlet property="birthTextField" destination="p2d-v3-vm5" id="ymS-Iv-oeb"/>
-                        <outlet property="deathTextField" destination="3qS-r2-zcM" id="Q27-AL-OhH"/>
+                        <outlet property="birthDatePicker" destination="ep4-x1-3xt" id="zCz-2f-okw"/>
+                        <outlet property="deathDatePicker" destination="NFX-8m-CaZ" id="rSf-PV-XN7"/>
                         <outlet property="graveMainImage" destination="Auf-HL-Kjz" id="x3q-EK-Rxk"/>
-                        <outlet property="marriageStatusTextField" destination="7o7-wZ-3DI" id="4xN-ml-hXq"/>
+                        <outlet property="marriageStatusTextField" destination="p2d-v3-vm5" id="xe3-58-Nfn"/>
                         <outlet property="nameTextField" destination="XRj-Nj-KfI" id="OXy-Im-hoc"/>
                     </connections>
                 </viewController>

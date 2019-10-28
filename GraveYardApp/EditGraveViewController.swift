@@ -14,9 +14,9 @@ import GoogleSignIn
 class EditGraveViewController: UIViewController {
     @IBOutlet weak var graveMainImage: UIImageView!
     @IBOutlet weak var nameTextField: UITextField!
-    @IBOutlet weak var birthTextField: UITextField!
-    @IBOutlet weak var deathTextField: UITextField!
     @IBOutlet weak var marriageStatusTextField: UITextField!
+    @IBOutlet weak var birthDatePicker: UIDatePicker!
+    @IBOutlet weak var deathDatePicker: UIDatePicker!
     @IBOutlet weak var bioTextView: UITextView!
     
     var db: Firestore!
@@ -41,13 +41,13 @@ class EditGraveViewController: UIViewController {
             } else {
                 for document in (snapshot?.documents)! {
                     if let name = document.data()["name"] as? String,
-                        let birth = document.data()["birth"] as? String,
-                        let death = document.data()["death"] as? String,
+                        let birth = document.data()["birth"] as? Date,
+                        let death = document.data()["death"] as? Date,
                         let bio = document.data()["bio"] as? String {
                         
                         self.nameTextField.text = name
-                        self.birthTextField.text = birth
-                        self.deathTextField.text = death
+                        self.birthDatePicker.date = birth
+                        self.deathDatePicker.date = death
                         self.marriageStatusTextField.text = bio
                     }
                 }
@@ -56,11 +56,10 @@ class EditGraveViewController: UIViewController {
     }
     
     @IBAction func saveGraveInfoTapped(_ sender: UIBarButtonItem) {
-        formatter.dateFormat = "yyyy-MM-dd"
         let id = currentAuthID!
         guard let name = nameTextField.text else { return }
-        guard let birth = birthTextField.text else { return }
-        guard let death = deathTextField.text else  { return }
+        let birth = birthDatePicker.date
+        let death = deathDatePicker.date
         guard let marriageStatus = marriageStatusTextField.text else { return }
         guard let bio = bioTextView.text else { return }
         
