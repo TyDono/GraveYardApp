@@ -7,21 +7,32 @@
 //
 
 import UIKit
+import MapKit
 import FirebaseAuth
 import FirebaseFirestore
 import GoogleSignIn
 
-class MapViewController: UIViewController {
+class MapViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var signUp: UIBarButtonItem!
+    @IBOutlet weak var mapView: MKMapView!
     
     var currentAuthID = Auth.auth().currentUser?.uid
     var userId: String = ""
     var currentUser: User?
-    
+    var locationManager = CLLocationManager()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         checkForUserId()
         print(currentAuthID)
+        self.locationManager.requestWhenInUseAuthorization()
+        
+        if CLLocationManager.locationServicesEnabled() {
+            
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            locationManager.startUpdatingLocation()
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -34,6 +45,15 @@ class MapViewController: UIViewController {
         } else {
             signUp.title = "Log Out"
         }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+        let locValue: CLLocationCoordinate2D = manager.location!.coordinate
+        print("Location coordinates = \(locValue.latitude) \(locValue.longitude)")
+        let userLocation = locations.last
+        let viewRegion = MKCoordinateRegion(center: (userLocation?.coordinate)!, latitudinalMeters: 600, longitudinalMeters: 600)
+        mapView.setRegion(viewRegion, animated: true)
     }
     
     @IBAction func SignInTapped(_ sender: UIBarButtonItem) {
