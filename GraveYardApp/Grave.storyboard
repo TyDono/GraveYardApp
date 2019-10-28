@@ -157,13 +157,12 @@
                                 <viewLayoutGuide key="contentLayoutGuide" id="tga-s4-Nzp"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="nyj-hH-bKX"/>
                             </scrollView>
-                            <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="ep4-x1-3xt">
-                                <rect key="frame" x="217" y="146" width="177" height="55"/>
+                            <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wvr-5C-lYw">
+                                <rect key="frame" x="0.0" y="104" width="414" height="216"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            </datePicker>
-                            <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="NFX-8m-CaZ">
-                                <rect key="frame" x="217" y="209" width="177" height="55"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <date key="date" timeIntervalSinceReferenceDate="-233729396.31305504">
+                                    <!--1993-08-05 19:10:03 +0000-->
+                                </date>
                             </datePicker>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -178,8 +177,6 @@
                     </navigationItem>
                     <connections>
                         <outlet property="bioTextView" destination="vpS-KN-7FO" id="4yl-jA-o9R"/>
-                        <outlet property="birthDatePicker" destination="ep4-x1-3xt" id="zCz-2f-okw"/>
-                        <outlet property="deathDatePicker" destination="NFX-8m-CaZ" id="rSf-PV-XN7"/>
                         <outlet property="graveMainImage" destination="Auf-HL-Kjz" id="x3q-EK-Rxk"/>
                         <outlet property="marriageStatusTextField" destination="p2d-v3-vm5" id="xe3-58-Nfn"/>
                         <outlet property="nameTextField" destination="XRj-Nj-KfI" id="OXy-Im-hoc"/>

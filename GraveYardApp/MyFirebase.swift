@@ -40,8 +40,8 @@ class MyFirebase {
         let myString = formatter.string(from: Date())
         let id = currentAuthID!
         let name: String = ""
-        let birth: Date = formatter.date(from: myString)!
-        let death: Date = formatter.date(from: myString)!
+        let birth: String = ""
+        let death: String = ""
         let bio: String = ""
         
         let grave = Grave(id: id,

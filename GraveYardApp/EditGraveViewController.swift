@@ -58,8 +58,10 @@ class EditGraveViewController: UIViewController {
     @IBAction func saveGraveInfoTapped(_ sender: UIBarButtonItem) {
         let id = currentAuthID!
         guard let name = nameTextField.text else { return }
-        let birth = birthDatePicker.date
-        let death = deathDatePicker.date
+        let birthDate = birthDatePicker.date
+        let birth = formatter.string(from: birthDate)
+        let deathDate = deathDatePicker.date
+        let death = formatter.string(from: deathDate)
         guard let marriageStatus = marriageStatusTextField.text else { return }
         guard let bio = bioTextView.text else { return }
         
