@@ -14,9 +14,9 @@ import GoogleSignIn
 class GraveViewController: UIViewController {
     @IBOutlet weak var graveMainImage: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var marriageStatusLabel: UILabel!
     @IBOutlet weak var birthLabel: UILabel!
     @IBOutlet weak var deathLabel: UILabel!
-    @IBOutlet weak var marriageStatusLabel: UILabel!
     @IBOutlet weak var bioLabel: UILabel!
     
     var db: Firestore!
@@ -46,8 +46,8 @@ class GraveViewController: UIViewController {
                         let bio = document.data()["bio"] as? String {
                         
                         self.nameLabel.text = name
-                        self.birthLabel.text = birth
-                        self.deathLabel.text = death
+                        self.marriageStatusLabel.text = birth
+                        self.birthLabel.text = death
                         self.marriageStatusLabel.text = marriageStatus
                         self.bioLabel.text = bio
                     }

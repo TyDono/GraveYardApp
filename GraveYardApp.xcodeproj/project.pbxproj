@@ -28,6 +28,8 @@
 		CB5AE18E23512B14001BCCCE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB5AE18C23512B14001BCCCE /* Main.storyboard */; };
 		CB5AE19023512B16001BCCCE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB5AE18F23512B16001BCCCE /* Assets.xcassets */; };
 		CB5AE19323512B16001BCCCE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB5AE19123512B16001BCCCE /* LaunchScreen.storyboard */; };
+		CB881F982367B41300615F2F /* GraveTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB881F972367B41300615F2F /* GraveTableViewController.swift */; };
+		CB881F9A2367B41E00615F2F /* EditGraveTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB881F992367B41E00615F2F /* EditGraveTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +58,8 @@
 		CB5AE18F23512B16001BCCCE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CB5AE19223512B16001BCCCE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CB5AE19423512B16001BCCCE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CB881F972367B41300615F2F /* GraveTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraveTableViewController.swift; sourceTree = "<group>"; };
+		CB881F992367B41E00615F2F /* EditGraveTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditGraveTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,7 +123,9 @@
 				CB3A30DE235F9E1000CF2CBB /* SignIn.storyboard */,
 				CB3A30E0235F9E4B00CF2CBB /* Grave.storyboard */,
 				CB4F2BFE2360EF7B00584D12 /* Grave.swift */,
+				CB881F992367B41E00615F2F /* EditGraveTableViewController.swift */,
 				CB3A30C4235791D300CF2CBB /* EditGraveViewController.swift */,
+				CB881F972367B41300615F2F /* GraveTableViewController.swift */,
 				CB3A30C22357910700CF2CBB /* GraveViewController.swift */,
 				CB3A30CE235793A900CF2CBB /* GraveTableViewCell.swift */,
 				CB3A30D0235793B500CF2CBB /* EditGraveTableViewCell.swift */,
@@ -306,8 +312,10 @@
 				CB3A30DD23594FCA00CF2CBB /* AliveUser.swift in Sources */,
 				CB3A30C32357910700CF2CBB /* GraveViewController.swift in Sources */,
 				CB3A30C5235791D300CF2CBB /* EditGraveViewController.swift in Sources */,
+				CB881F9A2367B41E00615F2F /* EditGraveTableViewController.swift in Sources */,
 				CB5AE18923512B14001BCCCE /* SceneDelegate.swift in Sources */,
 				CB3A30D3235904AA00CF2CBB /* SignInViewController.swift in Sources */,
+				CB881F982367B41300615F2F /* GraveTableViewController.swift in Sources */,
 				CB3A30CD2357936D00CF2CBB /* EditGraveUIView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

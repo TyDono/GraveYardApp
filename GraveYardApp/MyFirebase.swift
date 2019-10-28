@@ -37,7 +37,6 @@ class MyFirebase {
     
     func createData() {
         
-        let myString = formatter.string(from: Date())
         let id = currentAuthID!
         let name: String = ""
         let birth: String = ""
