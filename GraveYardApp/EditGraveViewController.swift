@@ -24,7 +24,7 @@ class EditGraveViewController: UIViewController {
     var currentUser: Grave?
     var userId: String?
     let formatter = DateFormatter()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         db = Firestore.firestore()
