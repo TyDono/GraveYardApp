@@ -466,7 +466,11 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="5l7-Vp-38m">
                         <barButtonItem key="leftBarButtonItem" title="Back" id="2eW-ym-fzd"/>
-                        <barButtonItem key="rightBarButtonItem" title="Edit" id="V6v-v6-hou"/>
+                        <barButtonItem key="rightBarButtonItem" title="Edit" id="V6v-v6-hou">
+                            <connections>
+                                <action selector="editGraveBarButtonTapped:" destination="df1-gm-beU" id="BWt-XP-cFi"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="bioLabel" destination="cjM-YW-G4y" id="UNz-nd-dnd"/>
@@ -476,7 +480,7 @@
                         <outlet property="deathLocationLabel" destination="uln-qo-fEY" id="0au-1n-MMz"/>
                         <outlet property="graveMainImage" destination="rzf-gV-0fs" id="0Xk-HW-kaV"/>
                         <outlet property="nameLabel" destination="YJQ-Nb-FpB" id="J4e-N0-3sf"/>
-                        <segue destination="akf-23-k3a" kind="show" id="B64-6H-H8t"/>
+                        <segue destination="akf-23-k3a" kind="show" identifier="editGraveSegue" id="B64-6H-H8t"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eSG-v4-EBi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
