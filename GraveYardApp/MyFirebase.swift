@@ -38,23 +38,27 @@ class MyFirebase {
     func createData() {
         
         let id = currentAuthID!
+        let graveId = String(arc4random_uniform(99999999)) + "id"
         let name: String = ""
         let birthDate: String = ""
         let birthLocation: String = ""
         let deathDate: String = ""
         let deathLocation: String = ""
+        let marriageStatus: String = ""
         let bio: String = ""
         
-        let grave = Grave(id: id,
+        let grave = Grave(creatorId: id,
+                          graveId: graveId,
                           name: name,
                           birthDate: birthDate,
                           birthLocation: birthLocation,
                           deathDate: deathDate,
                           deathLocation: deathLocation,
+                          marriageStatus: marriageStatus,
                           bio: bio)
         
         let userRef = self.db.collection("grave")
-        userRef.document(String(grave.id)).setData(grave.dictionary) { err in
+        userRef.document(String(grave.creatorId)).setData(grave.dictionary) { err in
             if let err = err {
                 print(err)
             } else {

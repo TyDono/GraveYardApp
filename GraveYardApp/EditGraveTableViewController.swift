@@ -16,7 +16,9 @@ class EditGraveTableViewController: UITableViewController {
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var marriageStatusTextField: UITextField!
     @IBOutlet weak var birthDatePicker: UIDatePicker!
+    @IBOutlet weak var birthLocationTextField: UITextField!
     @IBOutlet weak var deathDatePicker: UIDatePicker!
+    @IBOutlet weak var deadLocationTextField: UITextField!
     @IBOutlet weak var bioTextView: UITextView!
     
     var db: Firestore!
@@ -62,24 +64,28 @@ class EditGraveTableViewController: UITableViewController {
         }    
     }
     */
-
+    
    func getGraveData() {
         guard let uId: String = self.currentAuthID else { return }
         print("this is my uid i really like my uid \(uId)")
-        let graveRef = self.db.collection("grave").whereField("id", isEqualTo: uId)
+        let graveRef = self.db.collection("grave").whereField("id", isEqualTo: uId) // this should ne th grave id thsat was tapped on
         graveRef.getDocuments { (snapshot, error) in
             if error != nil {
                 print(error as Any)
             } else {
                 for document in (snapshot?.documents)! {
                     if let name = document.data()["name"] as? String,
-                        let birth = document.data()["birth"] as? Date,
-                        let death = document.data()["death"] as? Date,
+                        let birthDate = document.data()["birthDate"] as? Date,
+                        let birthLocation = document.data()["birthLocation"] as? String,
+                        let deathDate = document.data()["deathDate"] as? Date,
+                        let deathLocation = document.data()["deathLocation"] as? String,
                         let bio = document.data()["bio"] as? String {
                         
                         self.nameTextField.text = name
-                        self.birthDatePicker.date = birth
-                        self.deathDatePicker.date = death
+                        self.birthDatePicker.date = birthDate
+                        self.birthLocationTextField.text = birthLocation
+                        self.deathDatePicker.date = deathDate
+                        self.deadLocationTextField.text = deathLocation
                         self.marriageStatusTextField.text = bio
                     }
                 }
@@ -89,24 +95,29 @@ class EditGraveTableViewController: UITableViewController {
     
     @IBAction func saveGraveInfoTapped(_ sender: UIBarButtonItem) {
         let id = currentAuthID!
+        let graveId = "" // this is the grave id that was tapped on
         guard let name = nameTextField.text else { return }
-        let birthDate = birthDatePicker.date
-        let birth = formatter.string(from: birthDate)
-        let deathDate = deathDatePicker.date
-        let death = formatter.string(from: deathDate)
+        let birth = birthDatePicker.date
+        let birthDate = formatter.string(from: birth)
+        let birthLocation = ""
+        let death = deathDatePicker.date
+        let deathDate = formatter.string(from: death)
+        let deathLocation = ""
         guard let marriageStatus = marriageStatusTextField.text else { return }
         guard let bio = bioTextView.text else { return }
         
-        let grave = Grave(id: id,
+        let grave = Grave(creatorId: id,
+                          graveId: graveId,
                           name: name,
                           birthDate: birthDate,
                           birthLocation: birthLocation,
                           deathDate: deathDate,
                           deathLocation: deathLocation,
+                          marriageStatus: marriageStatus,
                           bio: bio)
-
+        
         let graveRef = self.db.collection("grave")
-        graveRef.document(String(grave.id)).updateData(grave.dictionary){ err in
+        graveRef.document(String(grave.creatorId)).updateData(grave.dictionary){ err in
             if let err = err {
                 let alert1 = UIAlertController(title: "Not Saved", message: "Sorry, there was an error while trying to save your Grave. Please try again.", preferredStyle: .alert)
                 alert1.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in

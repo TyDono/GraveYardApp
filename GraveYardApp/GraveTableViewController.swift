@@ -15,8 +15,10 @@ class GraveTableViewController: UITableViewController {
     @IBOutlet weak var graveMainImage: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var marriageStatusLabel: UILabel!
-    @IBOutlet weak var birthLabel: UILabel!
-    @IBOutlet weak var deathLabel: UILabel!
+    @IBOutlet weak var birthDateLabel: UILabel!
+    @IBOutlet weak var birthLocationLabel: UILabel!
+    @IBOutlet weak var deathDateLabel: UILabel!
+    @IBOutlet weak var deathLocationLabel: UILabel!
     @IBOutlet weak var bioLabel: UILabel!
     
     var db: Firestore!
@@ -62,29 +64,34 @@ class GraveTableViewController: UITableViewController {
     */
 
      func getGraveData() {
-           guard let uId: String = self.currentAuthID else { return }
-           print("this is my uid i really like my uid \(uId)")
-           let graveRef = self.db.collection("grave").whereField("id", isEqualTo: uId) //change this to the id that was tapped
-           graveRef.getDocuments { (snapshot, error) in
-               if error != nil {
-                   print(error as Any)
-               } else {
-                   for document in (snapshot?.documents)! {
-                       if let name = document.data()["name"] as? String,
-                           let birth = document.data()["birth"] as? String,
-                           let death = document.data()["death"] as? String,
-                           let marriageStatus = document.data()["marriageStatus"] as? String,
-                           let bio = document.data()["bio"] as? String {
-                           
-                           self.nameLabel.text = name
-                           self.marriageStatusLabel.text = birth
-                           self.birthLabel.text = death
-                           self.marriageStatusLabel.text = marriageStatus
-                           self.bioLabel.text = bio
-                       }
-                   }
-               }
-           }
-       }
+             guard let uId: String = self.currentAuthID else { return }
+             print("this is my uid i really like my uid \(uId)")
+             let graveRef = self.db.collection("grave").whereField("id", isEqualTo: uId) //change this to the grave id that was tapped, NOT THE USER ID. THE USER ID IS FOR DIF STUFF. use String(arc4random_uniform(99999999)) to generate the grave Id when created
+             graveRef.getDocuments { (snapshot, error) in
+                 if error != nil {
+                     print(error as Any)
+                 } else {
+                     for document in (snapshot?.documents)! {
+                         if let name = document.data()["name"] as? String,
+                             let birthDate = document.data()["birthDate"] as? String,
+                             let birthLocation = document.data()["birthLocation"] as? String,
+                             let deathDate = document.data()["deathDate"] as? String,
+                             let deathLocation = document.data()["deathLocation"] as? String,
+                             let marriageStatus = document.data()["marriageStatus"] as? String,
+                             let bio = document.data()["bio"] as? String {
+     
+                             self.nameLabel.text = name
+                             self.marriageStatusLabel.text = marriageStatus
+                             self.birthDateLabel.text = birthDate
+                             self.birthLocationLabel.text = birthLocation
+                             self.deathDateLabel.text = deathDate
+                             self.deathLocationLabel.text = deathLocation
+                             self.marriageStatusLabel.text = marriageStatus
+                             self.bioLabel.text = bio
+                         }
+                     }
+                 }
+             }
+         }
 
 }

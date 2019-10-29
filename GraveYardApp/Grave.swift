@@ -19,7 +19,8 @@ protocol DocumentUserSerializable {
 }
 
 struct Grave {
-    var id: String // this is the googleSign in userId
+    var creatorId: String // this is the googleSign in userId
+    var graveId: String // the grave specifict Id that is generated when the grave is created. each grave should have its own unique Id
     var name: String //name of dead person
     var birthDate: String
     var birthLocation: String
@@ -30,7 +31,8 @@ struct Grave {
     
     var dictionary: [String: Any] {
         return [
-            "id": id,
+            "creatorId": creatorId,
+            "graveId": graveId,
             "name": name,
             "birth": birthDate,
             "birthLocation": birthLocation,
@@ -44,7 +46,8 @@ struct Grave {
 
 extension Grave: DocumentUserSerializable {
     init?(dictionary: [String: Any]) {
-        guard let id = dictionary["id"] as? String,
+        guard let creatorId = dictionary["creatorId"] as? String,
+            let graveId = dictionary["graveId"] as? String,
             let name = dictionary["name"] as? String,
             let birthDate = dictionary["birthDate"] as? String,
             let birthLocation = dictionary["birthLocation"] as? String,
@@ -52,7 +55,7 @@ extension Grave: DocumentUserSerializable {
             let deathLocation = dictionary["deathLocation"] as? String,
             let marriageStatus = dictionary["marriageStatus"] as? String?,
             let bio = dictionary["bio"] as? String else {return nil}
-        self.init(id: id, name: name, birthDate: birthDate, birthLocation: birthLocation, deathDate: deathDate, deathLocation: deathLocation, marriageStatus: marriageStatus, bio: bio)
+        self.init(creatorId: creatorId, graveId: graveId, name: name, birthDate: birthDate, birthLocation: birthLocation, deathDate: deathDate, deathLocation: deathLocation, marriageStatus: marriageStatus, bio: bio)
     }
     
 }
