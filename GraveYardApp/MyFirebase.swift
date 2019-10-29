@@ -39,14 +39,18 @@ class MyFirebase {
         
         let id = currentAuthID!
         let name: String = ""
-        let birth: String = ""
-        let death: String = ""
+        let birthDate: String = ""
+        let birthLocation: String = ""
+        let deathDate: String = ""
+        let deathLocation: String = ""
         let bio: String = ""
         
         let grave = Grave(id: id,
                           name: name,
-                          birth: birth,
-                          death: death,
+                          birthDate: birthDate,
+                          birthLocation: birthLocation,
+                          deathDate: deathDate,
+                          deathLocation: deathLocation,
                           bio: bio)
         
         let userRef = self.db.collection("grave")

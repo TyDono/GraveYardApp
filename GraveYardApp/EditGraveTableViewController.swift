@@ -99,10 +99,12 @@ class EditGraveTableViewController: UITableViewController {
         
         let grave = Grave(id: id,
                           name: name,
-                          birth: birth,
-                          death: death,
-                          marriageStatus: marriageStatus,
+                          birthDate: birthDate,
+                          birthLocation: birthLocation,
+                          deathDate: deathDate,
+                          deathLocation: deathLocation,
                           bio: bio)
+
         let graveRef = self.db.collection("grave")
         graveRef.document(String(grave.id)).updateData(grave.dictionary){ err in
             if let err = err {

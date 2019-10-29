@@ -15,8 +15,10 @@ class GraveViewController: UIViewController {
     @IBOutlet weak var graveMainImage: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var marriageStatusLabel: UILabel!
-    @IBOutlet weak var birthLabel: UILabel!
-    @IBOutlet weak var deathLabel: UILabel!
+    @IBOutlet weak var birthDateLabel: UILabel!
+    @IBOutlet weak var birthLocationLabel: UILabel!
+    @IBOutlet weak var deathDateLabel: UILabel!
+        @IBOutlet weak var deathLocationLabel: UILabel!
     @IBOutlet weak var bioLabel: UILabel!
     
     var db: Firestore!
@@ -40,14 +42,19 @@ class GraveViewController: UIViewController {
             } else {
                 for document in (snapshot?.documents)! {
                     if let name = document.data()["name"] as? String,
-                        let birth = document.data()["birth"] as? String,
-                        let death = document.data()["death"] as? String,
+                        let birthDate = document.data()["birthDate"] as? String,
+                        let birthLocation = document.data()["birthLocation"] as? String,
+                        let deathDate = document.data()["deathDate"] as? String,
+                        let deathLocation = document.data()["deathLocation"] as? String,
                         let marriageStatus = document.data()["marriageStatus"] as? String,
                         let bio = document.data()["bio"] as? String {
                         
                         self.nameLabel.text = name
-                        self.marriageStatusLabel.text = birth
-                        self.birthLabel.text = death
+                        self.marriageStatusLabel.text = marriageStatus
+                        self.birthDateLabel.text = birthDate
+                        self.birthLocationLabel.text = birthLocation
+                        self.deathDateLabel.text = deathDate
+                        self.deathLocationLabel.text = deathLocation
                         self.marriageStatusLabel.text = marriageStatus
                         self.bioLabel.text = bio
                     }
