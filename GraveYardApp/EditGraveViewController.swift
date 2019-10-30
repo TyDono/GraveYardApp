@@ -1,8 +1,8 @@
 //
-//  EditGraveTableViewController.swift
+//  EditGraveViewController.swift
 //  GraveYardApp
 //
-//  Created by Tyler Donohue on 10/28/19.
+//  Created by Tyler Donohue on 10/30/19.
 //  Copyright © 2019 Tyler Donohue. All rights reserved.
 //
 
@@ -11,12 +11,14 @@ import FirebaseAuth
 import FirebaseFirestore
 import GoogleSignIn
 
-class EditGraveTableViewController: UITableViewController {
+class EditGraveViewController: UIViewController {
     @IBOutlet weak var graveMainImage: UIImageView!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var marriageStatusTextField: UITextField!
+
     @IBOutlet weak var birthDatePicker: UIDatePicker!
     @IBOutlet weak var birthLocationTextField: UITextField!
+
     @IBOutlet weak var deathDatePicker: UIDatePicker!
     @IBOutlet weak var deadLocationTextField: UITextField!
     @IBOutlet weak var bioTextView: UITextView!
@@ -34,38 +36,6 @@ class EditGraveTableViewController: UITableViewController {
         getGraveData()
     }
 
-    // MARK: - Table view data source
-
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
-    }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-    
     func changeBackground() {
         let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
         backgroundImage.image = UIImage(named: "GradientPlaceHolder")
@@ -147,3 +117,4 @@ class EditGraveTableViewController: UITableViewController {
     }
 
 }
+

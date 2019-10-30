@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="aS2-dw-OlG">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="lLr-db-fub">
     <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
@@ -18,27 +18,6 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3im-Pv-iPA">
                                 <rect key="frame" x="11" y="43.999999999999986" width="392" height="249.66666666666663"/>
                             </imageView>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gUB-2N-noo">
-                                <rect key="frame" x="11" y="460" width="392" height="162"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bio" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B8c-m1-c1u">
-                                        <rect key="frame" x="0.0" y="0.0" width="392" height="162"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstItem="B8c-m1-c1u" firstAttribute="centerX" secondItem="gUB-2N-noo" secondAttribute="centerX" id="EtB-kL-3p1"/>
-                                    <constraint firstAttribute="trailing" secondItem="B8c-m1-c1u" secondAttribute="trailing" id="ZVC-VP-cXv"/>
-                                    <constraint firstAttribute="bottom" secondItem="B8c-m1-c1u" secondAttribute="bottom" id="Zec-dc-hh5"/>
-                                    <constraint firstItem="B8c-m1-c1u" firstAttribute="leading" secondItem="Gqj-ZQ-oRe" secondAttribute="leading" id="jnu-Qa-peT"/>
-                                    <constraint firstItem="B8c-m1-c1u" firstAttribute="top" secondItem="Gqj-ZQ-oRe" secondAttribute="top" id="y7V-8H-FDx"/>
-                                    <constraint firstItem="B8c-m1-c1u" firstAttribute="bottom" secondItem="Gqj-ZQ-oRe" secondAttribute="bottom" id="ysq-CV-b7c"/>
-                                </constraints>
-                                <viewLayoutGuide key="contentLayoutGuide" id="PnZ-sC-XME"/>
-                                <viewLayoutGuide key="frameLayoutGuide" id="Gqj-ZQ-oRe"/>
-                            </scrollView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cIO-5X-efk">
                                 <rect key="frame" x="11" y="301.66666666666669" width="392" height="48"/>
                                 <constraints>
@@ -48,23 +27,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="bj4-7z-fM0" customClass="ProfileUIView" customModule="GraveYardApp" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="630" width="414" height="400"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="400" id="Fcn-DU-9lB"/>
-                                </constraints>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="8Ih-sd-u0c" customClass="GraveTableViewCell" customModule="GraveYardApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="43.666667938232422"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8Ih-sd-u0c" id="EFg-mQ-lza">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.666667938232422"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Birth" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E1r-PC-Ie1">
                                 <rect key="frame" x="11" y="357.66666666666669" width="192" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -104,6 +66,45 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gUB-2N-noo">
+                                <rect key="frame" x="11" y="460" width="392" height="162"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bio" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B8c-m1-c1u">
+                                        <rect key="frame" x="0.0" y="0.0" width="392" height="162"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="B8c-m1-c1u" firstAttribute="centerX" secondItem="gUB-2N-noo" secondAttribute="centerX" id="EtB-kL-3p1"/>
+                                    <constraint firstAttribute="trailing" secondItem="B8c-m1-c1u" secondAttribute="trailing" id="ZVC-VP-cXv"/>
+                                    <constraint firstAttribute="bottom" secondItem="B8c-m1-c1u" secondAttribute="bottom" id="Zec-dc-hh5"/>
+                                    <constraint firstItem="B8c-m1-c1u" firstAttribute="leading" secondItem="Gqj-ZQ-oRe" secondAttribute="leading" id="jnu-Qa-peT"/>
+                                    <constraint firstItem="B8c-m1-c1u" firstAttribute="top" secondItem="Gqj-ZQ-oRe" secondAttribute="top" id="y7V-8H-FDx"/>
+                                    <constraint firstItem="B8c-m1-c1u" firstAttribute="bottom" secondItem="Gqj-ZQ-oRe" secondAttribute="bottom" id="ysq-CV-b7c"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="PnZ-sC-XME"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="Gqj-ZQ-oRe"/>
+                            </scrollView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="bj4-7z-fM0" customClass="ProfileUIView" customModule="GraveYardApp" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="630" width="414" height="400"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="400" id="Fcn-DU-9lB"/>
+                                </constraints>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="8Ih-sd-u0c" customClass="GraveTableViewCell" customModule="GraveYardApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="43.666667938232422"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8Ih-sd-u0c" id="EFg-mQ-lza">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <sections/>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -146,23 +147,23 @@
                     <navigationItem key="navigationItem" id="vaf-d2-xzN">
                         <barButtonItem key="rightBarButtonItem" title="edit grave" id="sOk-kM-Wv0">
                             <connections>
-                                <segue destination="OfB-UR-nSg" kind="show" id="JtJ-61-5yo"/>
+                                <segue destination="OfB-UR-nSg" kind="show" identifier="editGraveSegue" id="83Y-mf-qRC"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="bioLabel" destination="B8c-m1-c1u" id="oqw-8Y-Nj0"/>
-                        <outlet property="birthDateLabel" destination="1fU-Es-OOu" id="IcS-rY-rLt"/>
-                        <outlet property="birthLocationLabel" destination="JWz-yt-laX" id="kM6-uy-L5M"/>
-                        <outlet property="deathDateLabel" destination="Atj-6G-A76" id="qV8-8a-3zG"/>
-                        <outlet property="deathLocationLabel" destination="krW-Yh-3o5" id="V9J-ia-dQf"/>
-                        <outlet property="graveMainImage" destination="3im-Pv-iPA" id="BnD-S8-2SF"/>
-                        <outlet property="nameLabel" destination="cIO-5X-efk" id="LCS-ZK-GEx"/>
+                        <outlet property="bioLabel" destination="B8c-m1-c1u" id="k12-xN-xfe"/>
+                        <outlet property="birthDateLabel" destination="1fU-Es-OOu" id="sHv-Oa-O2G"/>
+                        <outlet property="birthLocationLabel" destination="JWz-yt-laX" id="QPi-eq-sBk"/>
+                        <outlet property="deathDateLabel" destination="Atj-6G-A76" id="EhA-1c-Xf6"/>
+                        <outlet property="deathLocationLabel" destination="krW-Yh-3o5" id="r9z-ZJ-Q3L"/>
+                        <outlet property="graveMainImage" destination="3im-Pv-iPA" id="v0U-lK-KHa"/>
+                        <outlet property="nameLabel" destination="cIO-5X-efk" id="Lpy-fp-jNY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K2f-j3-Rqn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="756.52173913043487" y="-51.358695652173914"/>
+            <point key="canvasLocation" x="1732" y="-86"/>
         </scene>
         <!--Edit Grave View Controller-->
         <scene sceneID="kkQ-9b-OuL">
@@ -172,46 +173,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ifw-0i-nzh" customClass="ProfileUIView" customModule="GraveYardApp" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="606" width="414" height="400"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="400" id="c5Q-xC-4CT"/>
-                                </constraints>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="Kym-5Y-qeU" customClass="GraveTableViewCell" customModule="GraveYardApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="43.666667938232422"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Kym-5Y-qeU" id="cT3-o7-dYg">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.666667938232422"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Scy-3X-TXI">
-                                <rect key="frame" x="20" y="514" width="374" height="84"/>
-                                <subviews>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="vpS-KN-7FO">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="84"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                        <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                    </textView>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="vpS-KN-7FO" secondAttribute="bottom" id="4wg-uA-FHv"/>
-                                    <constraint firstItem="vpS-KN-7FO" firstAttribute="leading" secondItem="nyj-hH-bKX" secondAttribute="leading" id="CHC-YL-wg8"/>
-                                    <constraint firstItem="vpS-KN-7FO" firstAttribute="top" secondItem="tga-s4-Nzp" secondAttribute="top" id="Cbj-Eb-3fQ"/>
-                                    <constraint firstItem="vpS-KN-7FO" firstAttribute="bottom" secondItem="nyj-hH-bKX" secondAttribute="bottom" id="Ok0-pJ-gDA"/>
-                                    <constraint firstItem="vpS-KN-7FO" firstAttribute="centerX" secondItem="Scy-3X-TXI" secondAttribute="centerX" id="akB-ZQ-sbk"/>
-                                    <constraint firstAttribute="trailing" secondItem="vpS-KN-7FO" secondAttribute="trailing" id="iar-TX-bCe"/>
-                                </constraints>
-                                <viewLayoutGuide key="contentLayoutGuide" id="tga-s4-Nzp"/>
-                                <viewLayoutGuide key="frameLayoutGuide" id="nyj-hH-bKX"/>
-                            </scrollView>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wvr-5C-lYw">
                                 <rect key="frame" x="0.0" y="405" width="414" height="48"/>
                                 <constraints>
@@ -241,6 +202,46 @@
                                     <constraint firstAttribute="height" constant="250" id="tzQ-Gw-4Ne"/>
                                 </constraints>
                             </imageView>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Scy-3X-TXI">
+                                <rect key="frame" x="20" y="514" width="374" height="84"/>
+                                <subviews>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="vpS-KN-7FO">
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="84"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                        <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="vpS-KN-7FO" secondAttribute="bottom" id="4wg-uA-FHv"/>
+                                    <constraint firstItem="vpS-KN-7FO" firstAttribute="leading" secondItem="nyj-hH-bKX" secondAttribute="leading" id="CHC-YL-wg8"/>
+                                    <constraint firstItem="vpS-KN-7FO" firstAttribute="top" secondItem="tga-s4-Nzp" secondAttribute="top" id="Cbj-Eb-3fQ"/>
+                                    <constraint firstItem="vpS-KN-7FO" firstAttribute="bottom" secondItem="nyj-hH-bKX" secondAttribute="bottom" id="Ok0-pJ-gDA"/>
+                                    <constraint firstItem="vpS-KN-7FO" firstAttribute="centerX" secondItem="Scy-3X-TXI" secondAttribute="centerX" id="akB-ZQ-sbk"/>
+                                    <constraint firstAttribute="trailing" secondItem="vpS-KN-7FO" secondAttribute="trailing" id="iar-TX-bCe"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="tga-s4-Nzp"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="nyj-hH-bKX"/>
+                            </scrollView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ifw-0i-nzh">
+                                <rect key="frame" x="0.0" y="606" width="414" height="400"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="400" id="c5Q-xC-4CT"/>
+                                </constraints>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="Kym-5Y-qeU" customClass="GraveTableViewCell" customModule="GraveYardApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="43.666667938232422"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Kym-5Y-qeU" id="cT3-o7-dYg">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -274,31 +275,16 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="bioTextView" destination="vpS-KN-7FO" id="4yl-jA-o9R"/>
-                        <outlet property="graveMainImage" destination="Auf-HL-Kjz" id="x3q-EK-Rxk"/>
+                        <outlet property="bioTextView" destination="vpS-KN-7FO" id="vQb-xN-nR4"/>
+                        <outlet property="birthDatePicker" destination="wvr-5C-lYw" id="q8L-Kk-Fgn"/>
+                        <outlet property="deadDatePicker" destination="ebt-93-Ixs" id="rNQ-s9-dae"/>
+                        <outlet property="graveMainImage" destination="Auf-HL-Kjz" id="oM3-wh-vbh"/>
+                        <outlet property="nameTextField" destination="hZr-SX-4k9" id="3xc-jv-j58"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CXQ-g6-wz3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1574" y="-86"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="QNj-ST-o7l">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Mx1-l6-4AM" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Y2N-fe-ahW">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="oc4-t4-JWg" kind="relationship" relationship="rootViewController" id="IyV-3i-WcX"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="VmA-u3-BEX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-210.1449275362319" y="44.836956521739133"/>
+            <point key="canvasLocation" x="2481.1594202898555" y="-86.413043478260875"/>
         </scene>
         <!--Grave Table View Controller-->
         <scene sceneID="7jP-VP-8HO">
@@ -308,6 +294,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <tableView key="tableFooterView" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Zbc-RG-cjr">
+                            <rect key="frame" x="0.0" y="670" width="414" height="362"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            <prototypes>
+                                <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="Clg-n0-stk" customClass="GraveTableViewCell" customModule="GraveYardApp" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="28" width="414" height="43.666667938232422"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Clg-n0-stk" id="I98-Hw-4Ch">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="43.666667938232422"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                    </tableViewCellContentView>
+                                </tableViewCell>
+                            </prototypes>
+                        </tableView>
                         <sections>
                             <tableViewSection id="HiP-wF-47q">
                                 <cells>
@@ -472,20 +473,10 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <connections>
-                        <outlet property="bioLabel" destination="cjM-YW-G4y" id="UNz-nd-dnd"/>
-                        <outlet property="birthDateLabel" destination="RGP-RJ-ISL" id="t59-xF-dyF"/>
-                        <outlet property="birthLocationLabel" destination="R6X-Nc-CWD" id="DJE-ex-6bc"/>
-                        <outlet property="deathDateLabel" destination="UCv-uP-WB3" id="Rtp-aV-G8M"/>
-                        <outlet property="deathLocationLabel" destination="uln-qo-fEY" id="0au-1n-MMz"/>
-                        <outlet property="graveMainImage" destination="rzf-gV-0fs" id="0Xk-HW-kaV"/>
-                        <outlet property="nameLabel" destination="YJQ-Nb-FpB" id="J4e-N0-3sf"/>
-                        <segue destination="akf-23-k3a" kind="show" identifier="editGraveSegue" id="B64-6H-H8t"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eSG-v4-EBi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1663.7681159420292" y="671.73913043478262"/>
+            <point key="canvasLocation" x="1732" y="615"/>
         </scene>
         <!--Edit Grave Table View Controller-->
         <scene sceneID="R9d-cl-TEQ">
@@ -657,7 +648,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="czz-gx-WDl">
-                                                    <rect key="frame" x="-2" y="-1" width="415" height="45"/>
+                                                    <rect key="frame" x="-3" y="-1" width="415" height="45"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                     <date key="date" timeIntervalSinceReferenceDate="-233726387.67283797">
                                                         <!--1993-08-05 20:00:12 +0000-->
@@ -703,7 +694,7 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                     <prototypes>
-                                                        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="K2Y-V9-fEH">
+                                                        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="K2Y-V9-fEH" customClass="EditGraveTableViewCell" customModule="GraveYardApp" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="28" width="414" height="43.666667938232422"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="K2Y-V9-fEH" id="8iX-Ei-bCV">
@@ -719,10 +710,6 @@
                                 </cells>
                             </tableViewSection>
                         </sections>
-                        <connections>
-                            <outlet property="dataSource" destination="akf-23-k3a" id="6Ya-Jy-hEB"/>
-                            <outlet property="delegate" destination="akf-23-k3a" id="ioV-8j-3sb"/>
-                        </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="O7Q-Wd-KZA">
                         <barButtonItem key="rightBarButtonItem" title="Save" id="XDK-og-Pdi">
@@ -731,16 +718,6 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <connections>
-                        <outlet property="bioTextView" destination="uJa-vq-QGj" id="B4w-3M-WpU"/>
-                        <outlet property="birthDatePicker" destination="G4W-NT-Qpq" id="8iq-4D-cJE"/>
-                        <outlet property="birthLocationTextField" destination="1z7-YR-Rng" id="EaR-ej-eUl"/>
-                        <outlet property="deadLocationTextField" destination="PZL-I9-hHk" id="FKi-V8-7mB"/>
-                        <outlet property="deathDatePicker" destination="czz-gx-WDl" id="pWT-E4-UVp"/>
-                        <outlet property="graveMainImage" destination="A0e-uE-pgk" id="G6X-LG-ggk"/>
-                        <outlet property="marriageStatusTextField" destination="h1a-OZ-vBQ" id="hnw-yW-wf2"/>
-                        <outlet property="nameTextField" destination="LBe-W8-wbt" id="fJ9-lJ-XIw"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="twe-qP-4gI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -763,6 +740,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N36-Ju-Zkb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="756.52173913043487" y="671.73913043478262"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="7Zx-iH-uTv">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="lLr-db-fub" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="fgh-wa-jZR">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="oc4-t4-JWg" kind="relationship" relationship="rootViewController" id="GEi-zN-h3U"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dxU-V2-0KE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="756.52173913043487" y="-51.358695652173914"/>
         </scene>
     </scenes>
 </document>

@@ -24,10 +24,12 @@ class GraveTableViewController: UITableViewController {
     var db: Firestore!
     var currentAuthID = Auth.auth().currentUser?.uid
     var currentUser: Grave?
+    var grave: [Grave]?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         db = Firestore.firestore()
+       // changeBackground()
         getGraveData()
     }
 
@@ -62,6 +64,13 @@ class GraveTableViewController: UITableViewController {
         }    
     }
     */
+    
+    func changeBackground() {
+        let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
+        backgroundImage.image = UIImage(named: "GradientPlaceHolder")
+        backgroundImage.contentMode = UIView.ContentMode.scaleToFill
+        self.view.insertSubview(backgroundImage, at: 0)
+    }
 
      func getGraveData() {
              guard let uId: String = self.currentAuthID else { return }
