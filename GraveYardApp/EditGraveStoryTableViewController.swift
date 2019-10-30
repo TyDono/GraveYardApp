@@ -1,14 +1,14 @@
 //
-//  EditGraveStoriesTableViewController.swift
+//  EditGraveStoryTableViewController.swift
 //  GraveYardApp
 //
-//  Created by Tyler Donohue on 10/29/19.
+//  Created by Tyler Donohue on 10/30/19.
 //  Copyright © 2019 Tyler Donohue. All rights reserved.
 //
 
 import UIKit
 
-class EditGraveStoriesTableViewController: UITableViewController {
+class EditGraveStoryTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
