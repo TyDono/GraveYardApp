@@ -14,7 +14,7 @@ protocol Identifiable {
     var id: String? { get set }
 }
 
-protocol DocumentUserSerializable {
+protocol DocumentGraveSerializable {
     init?(dictionary: [String: Any])
 }
 
@@ -44,7 +44,7 @@ struct Grave {
     }
 }
 
-extension Grave: DocumentUserSerializable {
+extension Grave: DocumentGraveSerializable {
     init?(dictionary: [String: Any]) {
         guard let creatorId = dictionary["creatorId"] as? String,
             let graveId = dictionary["graveId"] as? String,

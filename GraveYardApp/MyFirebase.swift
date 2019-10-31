@@ -39,6 +39,7 @@ class MyFirebase {
         
         let id = currentAuthID!
         let graveId = String(arc4random_uniform(99999999)) + "id"
+        let storyId = graveId + String(arc4random_uniform(99999999))
         let name: String = ""
         let birthDate: String = ""
         let birthLocation: String = ""

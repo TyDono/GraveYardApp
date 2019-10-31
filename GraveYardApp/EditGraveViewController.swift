@@ -15,10 +15,8 @@ class EditGraveViewController: UIViewController {
     @IBOutlet weak var graveMainImage: UIImageView!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var marriageStatusTextField: UITextField!
-
     @IBOutlet weak var birthDatePicker: UIDatePicker!
     @IBOutlet weak var birthLocationTextField: UITextField!
-
     @IBOutlet weak var deathDatePicker: UIDatePicker!
     @IBOutlet weak var deadLocationTextField: UITextField!
     @IBOutlet weak var bioTextView: UITextView!

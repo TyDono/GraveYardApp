@@ -25,6 +25,7 @@ class GraveTableViewController: UITableViewController {
     var currentAuthID = Auth.auth().currentUser?.uid
     var currentUser: Grave?
     var grave: [Grave]?
+    var graveId: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,6 +65,15 @@ class GraveTableViewController: UITableViewController {
         }    
     }
     */
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "graveStoriesSegue", let GraveStoriesTVC = segue.destination as? GraveStoriesTableViewController {
+            
+            GraveStoriesTVC.graveStories = graveId
+        }
+        print("prepare for segueSearch called")
+    }
     
     func changeBackground() {
         let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
