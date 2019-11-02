@@ -28,6 +28,11 @@ struct Grave {
     var deathLocation: String
     var marriageStatus: String?
     var bio: String
+    // BURIAL LOCATION
+    // coordanates = jim
+    // coodinates
+    
+    //jim = annoatation.coodiante
     
     var dictionary: [String: Any] {
         return [

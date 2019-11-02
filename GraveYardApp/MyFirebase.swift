@@ -27,19 +27,26 @@ class MyFirebase {
     var userId: String? = ""
     var storage = Storage.storage().reference()
     let formatter = DateFormatter()
+    var nId: Int = 0
     
     private var listenHandler: AuthStateDidChangeListenerHandle?
     var currentUpload:StorageUploadTask?
     
-    func addUserListender(loggedIn: Bool) {
-        
+    func addUserListender(loggedIn: Bool) {}
+    
+    func idCreator() {
+        nId += 1
     }
     
     func createData() {
         
+        // IDEA, image of a folder, image that tells them what it is. is is a text doc is it pics? is ait a video? is it multiple? when u make a story ONE VC.
+        // when the id are made, a check to search for ids of the same must be made. if they are the same, rinse and repeat.
+        
         let id = currentAuthID!
-        let graveId = String(arc4random_uniform(99999999)) + "id"
-        let storyId = graveId + String(arc4random_uniform(99999999))
+        let graveId = String(arc4random_uniform(999999999)) + "id" //try UUID()
+        let newGraveId = String(arc4random_uniform(999999999)) + "id"
+        let storyId = graveId + String(arc4random_uniform(999999999))
         let name: String = ""
         let birthDate: String = ""
         let birthLocation: String = ""
@@ -48,7 +55,7 @@ class MyFirebase {
         let marriageStatus: String = ""
         let bio: String = ""
         
-        let grave = Grave(creatorId: id,
+        var grave = Grave(creatorId: id,
                           graveId: graveId,
                           name: name,
                           birthDate: birthDate,
@@ -58,8 +65,19 @@ class MyFirebase {
                           marriageStatus: marriageStatus,
                           bio: bio)
         
-        let userRef = self.db.collection("grave")
-        userRef.document(String(grave.creatorId)).setData(grave.dictionary) { err in
+        let graveRef = self.db.collection("grave")
+        graveRef.whereField("graveId", isEqualTo: grave.graveId).getDocuments { (snapshot, error) in
+            if error != nil {
+                print(Error.self)
+            } else {
+                if snapshot?.description == grave.graveId {
+                    grave.graveId = newGraveId
+                } else {
+                    print("no dupli")
+                }
+            }
+        }
+        graveRef.document(String(grave.graveId)).setData(grave.dictionary) { err in
             if let err = err {
                 print(err)
             } else {

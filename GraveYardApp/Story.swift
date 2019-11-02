@@ -20,12 +20,16 @@ protocol DocumentSerializableStory {
 
 struct Story {
     
+    var graveId: String
+    var storyId: String
     var story: String
     var storyTitle: String
     var storyImage: String
     
     var dictionary: [String: Any] {
         return [
+            "graveId": graveId,
+            "storyId": storyId,
             "story": story,
             "storyTitle": storyTitle,
             "storyImage": storyImage
@@ -35,10 +39,12 @@ struct Story {
 
 extension Story: DocumentSerializableStory {
     init?(dictionary: [String: Any]) {
-        guard let story = dictionary["story"] as? String,
+        guard let graveId = dictionary["graveId"] as? String,
+            let storyId = dictionary["storyId"] as? String,
+            let story = dictionary["story"] as? String,
             let storyTitle = dictionary["storyTitle"] as? String,
             let storyImage = dictionary["storyImage"] as? String else {return nil}
-        self.init(story: story, storyTitle: storyTitle, storyImage: storyImage)
+        self.init(graveId: graveId, storyId: storyId, story: story, storyTitle: storyTitle, storyImage: storyImage)
     }
     
 }
