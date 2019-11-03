@@ -12,27 +12,28 @@ import FirebaseAuth
 import FirebaseFirestore
 import GoogleSignIn
 
-class MapViewController: UIViewController, CLLocationManagerDelegate {
+class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
     @IBOutlet weak var signUp: UIBarButtonItem!
     @IBOutlet weak var mapView: MKMapView!
+ 
+    //==================================================
+    // MARK: - Propeties
+    //==================================================
     
     var currentAuthID = Auth.auth().currentUser?.uid
     var userId: String = ""
     var currentUser: User?
     var locationManager = CLLocationManager()
 
+    //==================================================
+    // MARK: - View Lifecycle
+    //==================================================
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         checkForUserId()
         print(currentAuthID)
-        self.locationManager.requestWhenInUseAuthorization()
-        
-        if CLLocationManager.locationServicesEnabled() {
-            
-            locationManager.delegate = self
-            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-            locationManager.startUpdatingLocation()
-        }
+        setMapViewLocationAndUser()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -47,6 +48,26 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         }
     }
     
+    //==================================================
+    // MARK: - Functions
+    //==================================================
+    
+    func setMapViewLocationAndUser() {
+        if CLLocationManager.locationServicesEnabled() {
+            self.locationManager.requestWhenInUseAuthorization()
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            locationManager.startUpdatingLocation()
+            self.mapView.showsUserLocation = true
+        }
+        mapView.showsScale = true
+        mapView.mapType = .standard
+        mapView.isZoomEnabled = true
+        mapView.isScrollEnabled = true
+        mapView.userTrackingMode = .followWithHeading
+        mapView.isUserInteractionEnabled = true
+    }
+    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
         let locValue: CLLocationCoordinate2D = manager.location!.coordinate
@@ -54,6 +75,47 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         let userLocation = locations.last
         let viewRegion = MKCoordinateRegion(center: (userLocation?.coordinate)!, latitudinalMeters: 600, longitudinalMeters: 600)
         mapView.setRegion(viewRegion, animated: true)
+    }
+    
+    func presentAlertController() {
+        let newGraveAlert = UIAlertController(title: "New grave sight entry.", message: "Would you like to make a new entry at this location?", preferredStyle: .actionSheet)
+        newGraveAlert.addAction(UIAlertAction(title: "Create new entry.", style: .default, handler: { action in
+            print("Default Button Pressed")
+            
+            //TYLER'S prepareForSegue
+            
+        }))
+        newGraveAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { action in
+            print("Cancel Button Pressed")
+            
+            for annotation in self.mapView.annotations {
+                if annotation.title == "New Entry" {
+                    self.mapView.removeAnnotation(annotation)
+                }
+            }
+            
+        }))
+        self.present(newGraveAlert, animated: true)
+    }
+    
+    
+    //==================================================
+    // MARK: - Actions
+    //==================================================
+    
+    
+    @IBAction func userDidLongPress(_ sender: UILongPressGestureRecognizer) {
+        let location = sender.location(in: self.mapView)
+        let locationCoordinate = self.mapView.convert(location, toCoordinateFrom: self.mapView)
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = locationCoordinate
+        annotation.title = "New Entry"
+        self.mapView.addAnnotation(annotation)
+        let annotationCoordinates = annotation.coordinate
+        
+        presentAlertController()
+        
+        
     }
     
     @IBAction func SignInTapped(_ sender: UIBarButtonItem) {
