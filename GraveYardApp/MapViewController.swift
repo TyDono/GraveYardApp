@@ -24,6 +24,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     var userId: String = ""
     var currentUser: User?
     var locationManager = CLLocationManager()
+    var db = Firestore.firestore()
 
     //==================================================
     // MARK: - View Lifecycle
@@ -51,6 +52,58 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     //==================================================
     // MARK: - Functions
     //==================================================
+    
+    func createData() {
+        
+        // IDEA, image of a folder, image that tells them what it is. is is a text doc is it pics? is ait a video? is it multiple? when u make a story ONE VC.
+        // when the id are made, a check to search for ids of the same must be made. if they are the same, rinse and repeat.
+        
+        let id = currentAuthID!
+        let graveId = String(arc4random_uniform(999999999)) + "id" //try UUID()
+        let newGraveId = String(arc4random_uniform(999999999)) + "id"
+        let name: String = ""
+        let birthDate: String = ""
+        let birthLocation: String = ""
+        let deathDate: String = ""
+        let deathLocation: String = ""
+        let marriageStatus: String = ""
+        let bio: String = ""
+        
+        var grave = Grave(creatorId: id,
+                          graveId: graveId,
+                          name: name,
+                          birthDate: birthDate,
+                          birthLocation: birthLocation,
+                          deathDate: deathDate,
+                          deathLocation: deathLocation,
+                          marriageStatus: marriageStatus,
+                          bio: bio)
+        
+        let graveRef = self.db.collection("grave")
+        graveRef.whereField("graveId", isEqualTo: grave.graveId).getDocuments { (snapshot, error) in
+            if error != nil {
+                print(Error.self)
+            } else {
+                if snapshot?.description == grave.graveId {
+                    grave.graveId = newGraveId
+                } else {
+                    print("no dupli")
+                }
+            }
+        }
+        graveRef.document(String(grave.graveId)).setData(grave.dictionary) { err in
+            if let err = err {
+                let graveCreationFailAert = UIAlertController(title: "Failed to create a Grave", message: "Your device failed to properly create a Grave on your desired destination, Please check your wifi and try again", preferredStyle: .alert)
+                let dismiss = UIAlertAction(title: "OK", style: .default, handler: nil)
+                graveCreationFailAert.addAction(dismiss)
+                self.present(graveCreationFailAert, animated: true, completion: nil)
+                print(err)
+            } else {
+                self.performSegue(withIdentifier: "segueToGrave", sender: nil)
+                print("Added Data")
+            }
+        }
+    }
     
     func setMapViewLocationAndUser() {
         if CLLocationManager.locationServicesEnabled() {
@@ -83,6 +136,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             print("Default Button Pressed")
             
             //TYLER'S prepareForSegue
+            self.createData()
             
         }))
         newGraveAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { action in
@@ -98,6 +152,12 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         self.present(newGraveAlert, animated: true)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+          if segue.identifier == "segueToGrave", let graveTVC = segue.destination as? GraveTableViewController {
+                  
+                 // graveTVC.graveLocation = searchGame.text
+              }
+    }
     
     //==================================================
     // MARK: - Actions
@@ -114,7 +174,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         let annotationCoordinates = annotation.coordinate
         
         presentAlertController()
-        
         
     }
     

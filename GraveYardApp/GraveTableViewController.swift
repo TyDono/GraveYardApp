@@ -26,6 +26,7 @@ class GraveTableViewController: UITableViewController {
     var currentUser: Grave?
     var grave: [Grave]?
     var graveId: String?
+    var graveLocation: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
