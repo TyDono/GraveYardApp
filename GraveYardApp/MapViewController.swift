@@ -57,7 +57,12 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         
         // IDEA, image of a folder, image that tells them what it is. is is a text doc is it pics? is ait a video? is it multiple? when u make a story ONE VC.
         // when the id are made, a check to search for ids of the same must be made. if they are the same, rinse and repeat.
-        
+        if currentAuthID == nil {
+            let notSignInAlert = UIAlertController(title: "You are not signed in", message: "You must sign in to create a grave location", preferredStyle: .alert)
+            let dismiss = UIAlertAction(title: "OK", style: .default, handler: nil)
+            notSignInAlert.addAction(dismiss)
+            self.present(notSignInAlert, animated: true, completion: nil)
+        } else {
         let id = currentAuthID!
         let graveId = String(arc4random_uniform(999999999)) + "id" //try UUID()
         let newGraveId = String(arc4random_uniform(999999999)) + "id"
@@ -102,6 +107,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                 self.performSegue(withIdentifier: "segueToGrave", sender: nil)
                 print("Added Data")
             }
+        }
         }
     }
     
