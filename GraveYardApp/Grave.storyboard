@@ -642,6 +642,16 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="bioTextView" destination="uJa-vq-QGj" id="zut-4p-UQw"/>
+                        <outlet property="birthDatePicker" destination="G4W-NT-Qpq" id="gob-ML-mrl"/>
+                        <outlet property="birthLocationTextField" destination="1z7-YR-Rng" id="wAx-L9-llU"/>
+                        <outlet property="deadLocationTextField" destination="PZL-I9-hHk" id="sjv-P0-2pF"/>
+                        <outlet property="deathDatePicker" destination="czz-gx-WDl" id="6ez-De-htM"/>
+                        <outlet property="graveMainImage" destination="A0e-uE-pgk" id="Hn6-4M-vFW"/>
+                        <outlet property="marriageStatusTextField" destination="h1a-OZ-vBQ" id="MrQ-Kh-TzA"/>
+                        <outlet property="nameTextField" destination="LBe-W8-wbt" id="6Jd-4K-KvD"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="twe-qP-4gI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
