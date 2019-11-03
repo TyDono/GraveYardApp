@@ -64,8 +64,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             self.present(notSignInAlert, animated: true, completion: nil)
         } else {
         let id = currentAuthID!
-        let graveId = String(arc4random_uniform(999999999)) + "id" //try UUID()
-        let newGraveId = String(arc4random_uniform(999999999)) + "id"
+        let graveId = UUID().uuidString
+        let newGraveId = UUID().uuidString
         let name: String = ""
         let birthDate: String = ""
         let birthLocation: String = ""
