@@ -1,14 +1,14 @@
 //
-//  ProfileTableViewCell.swift
+//  StoryTableViewCell.swift
 //  GraveYardApp
 //
-//  Created by Tyler Donohue on 10/16/19.
+//  Created by Tyler Donohue on 11/4/19.
 //  Copyright © 2019 Tyler Donohue. All rights reserved.
 //
 
 import UIKit
 
-class GraveTableViewCell: UITableViewCell {
+class StoryTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
