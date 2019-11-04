@@ -589,7 +589,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="czz-gx-WDl">
-                                                    <rect key="frame" x="-4" y="-1" width="415" height="45"/>
+                                                    <rect key="frame" x="-3" y="-1" width="415" height="45"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                     <date key="date" timeIntervalSinceReferenceDate="-233726387.67283797">
                                                         <!--1993-08-05 20:00:12 +0000-->

@@ -81,7 +81,7 @@ class GraveTableViewController: UITableViewController {
     }
     
     func getGraveData() {
-        let graveRef = self.db.collection("grave").whereField("graveId", isEqualTo: MapViewController.currentGraveId) //change this to the grave id that was tapped, NOT THE USER ID. THE USER ID IS FOR DIF STUFF. use String(arc4random_uniform(99999999)) to generate the grave Id when created
+        let graveRef = self.db.collection("grave").whereField("graveId", isEqualTo: MapViewController.shared.currentGraveId) //change this to the grave id that was tapped, NOT THE USER ID. THE USER ID IS FOR DIF STUFF. use String(arc4random_uniform(99999999)) to generate the grave Id when created
         graveRef.getDocuments { (snapshot, error) in
             if error != nil {
                 print(error as Any)

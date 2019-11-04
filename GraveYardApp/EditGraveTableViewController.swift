@@ -36,7 +36,8 @@ class EditGraveTableViewController: UITableViewController {
     
     func getGraveData() { // mak srue to change the sting back to a date here
         dateFormatter.dateFormat = "yyyy-MM-dd"
-        let graveRef = self.db.collection("grave").whereField("graveId", isEqualTo: MapViewController.currentGraveId) // this should be the grave id that was tapped on
+        let defaultDate: Date? = self.dateFormatter.date(from: "1993-08-05")
+        let graveRef = self.db.collection("grave").whereField("graveId", isEqualTo: MapViewController.shared.currentGraveId) // this should be the grave id that was tapped on
         graveRef.getDocuments { (snapshot, error) in
             if error != nil {
                 print(error as Any)
@@ -49,10 +50,9 @@ class EditGraveTableViewController: UITableViewController {
                         let deathLocation = document.data()["deathLocation"] as? String,
                         let marriageStatus = document.data()["marriageStatus"] as? String,
                         let bio = document.data()["bio"] as? String {
-                        print(birthDate)
-                        print(self.dateFormatter.date(from:birthDate))
-                        guard let birthDate = self.dateFormatter.date(from:birthDate) else { return } // this fails atm
-                        guard let deathDate = self.dateFormatter.date(from:deathDate) else { return }
+
+                        guard let birthDate = self.dateFormatter.date(from:birthDate) ?? defaultDate else { return } // this fails atm
+                        guard let deathDate = self.dateFormatter.date(from:deathDate) ?? defaultDate else { return }
                         self.nameTextField.text = name
                         self.birthDatePicker.date = birthDate
                         self.birthLocationTextField.text = birthLocation
@@ -68,7 +68,7 @@ class EditGraveTableViewController: UITableViewController {
     
     @IBAction func saveGraveInfoTapped(_ sender: UIBarButtonItem) {
         let id = currentAuthID!
-        guard let graveId = MapViewController.currentGraveId  else { return }// this is the grave id that was tapped on
+        guard let graveId = MapViewController.shared.currentGraveId  else { return }// this is the grave id that was tapped on
         guard let name = nameTextField.text else { return }
         let birth = birthDatePicker.date
         let birthDate = dateFormatter.string(from: birth)

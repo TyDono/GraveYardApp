@@ -20,13 +20,14 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     // MARK: - Propeties
     //==================================================
     
+    static let shared = MapViewController()
     var currentAuthID = Auth.auth().currentUser?.uid
     var userId: String = ""
     var currentUser: User?
     var locationManager = CLLocationManager()
     var db = Firestore.firestore()
     var currentGraveLocation: String?
-    static var currentGraveId: String?
+    var currentGraveId: String?
     
     //==================================================
     // MARK: - View Lifecycle
@@ -188,7 +189,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                 self.present(notSignInAlert, animated: true, completion: nil)
             } else {
                 let id = self.currentAuthID!
-                MapViewController.currentGraveId = UUID().uuidString
+                MapViewController.shared.currentGraveId = UUID().uuidString
                 let newGraveId = UUID().uuidString
                 let name: String = "jimmy"
                 let birthDate: String = ""
@@ -198,7 +199,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                 let marriageStatus: String = ""
                 let bio: String = ""
                 guard let graveLocation = self.currentGraveLocation else { return }
-                guard let graveId: String = MapViewController.currentGraveId else { return }
+                guard let graveId: String = MapViewController.shared.currentGraveId else { return }
                 
                 var grave = Grave(creatorId: id,
                                   graveId: graveId,

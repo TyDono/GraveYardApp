@@ -20,23 +20,17 @@ class MyFirebase {
     // Variables
     static let shared = MyFirebase()
     
-    //var dataBse = Database.database().reference().child("messages")
     var db = Firestore.firestore()
     var currentAuthID = Auth.auth().currentUser?.uid
     var currentUser: User?
     var userId: String? = ""
     var storage = Storage.storage().reference()
     let formatter = DateFormatter()
-    var nId: Int = 0
     
     private var listenHandler: AuthStateDidChangeListenerHandle?
     var currentUpload:StorageUploadTask?
     
     func addUserListender(loggedIn: Bool) {}
-    
-    func idCreator() {
-        nId += 1
-    }
     
 //    func createData() {
 //        
