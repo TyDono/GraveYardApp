@@ -81,7 +81,7 @@ class GraveTableViewController: UITableViewController {
     }
     
     func getGraveData() {
-        let graveRef = self.db.collection("grave").whereField("graveLocation", isEqualTo: currentGraveLocation) //change this to the grave id that was tapped, NOT THE USER ID. THE USER ID IS FOR DIF STUFF. use String(arc4random_uniform(99999999)) to generate the grave Id when created
+        let graveRef = self.db.collection("grave").whereField("graveId", isEqualTo: MapViewController.currentGraveId) //change this to the grave id that was tapped, NOT THE USER ID. THE USER ID IS FOR DIF STUFF. use String(arc4random_uniform(99999999)) to generate the grave Id when created
         graveRef.getDocuments { (snapshot, error) in
             if error != nil {
                 print(error as Any)
@@ -94,14 +94,13 @@ class GraveTableViewController: UITableViewController {
                         let deathLocation = document.data()["deathLocation"] as? String,
                         let marriageStatus = document.data()["marriageStatus"] as? String,
                         let bio = document.data()["bio"] as? String {
-                        
+                        print(name)
                         self.nameLabel.text = name
-                        self.marriageStatusLabel.text = marriageStatus
                         self.birthDateLabel.text = birthDate
                         self.birthLocationLabel.text = birthLocation
                         self.deathDateLabel.text = deathDate
                         self.deathLocationLabel.text = deathLocation
-                        self.marriageStatusLabel.text = marriageStatus
+//                        self.marriageStatusLabel.text = marriageStatus
                         self.bioLabel.text = bio
                     }
                 }

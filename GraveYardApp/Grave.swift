@@ -40,9 +40,9 @@ struct Grave {
             "creatorId": creatorId,
             "graveId": graveId,
             "name": name,
-            "birth": birthDate,
+            "birthDate": birthDate,
             "birthLocation": birthLocation,
-            "death": deathDate,
+            "deathDate": deathDate,
             "deathLocation": deathLocation,
             "marriageStatus": marriageStatus ?? "", //when, where, who
             "bio": bio,

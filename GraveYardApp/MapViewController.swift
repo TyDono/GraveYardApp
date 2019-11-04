@@ -15,7 +15,7 @@ import GoogleSignIn
 class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
     @IBOutlet weak var signUp: UIBarButtonItem!
     @IBOutlet weak var mapView: MKMapView!
- 
+    
     //==================================================
     // MARK: - Propeties
     //==================================================
@@ -26,7 +26,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     var locationManager = CLLocationManager()
     var db = Firestore.firestore()
     var currentGraveLocation: String?
-
+    static var currentGraveId: String?
+    
     //==================================================
     // MARK: - View Lifecycle
     //==================================================
@@ -54,63 +55,63 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     // MARK: - Functions
     //==================================================
     
-//    func createData() {
-//
-//        // IDEA, image of a folder, image that tells them what it is. is is a text doc is it pics? is ait a video? is it multiple? when u make a story ONE VC.
-//        // when the id are made, a check to search for ids of the same must be made. if they are the same, rinse and repeat.
-//        if currentAuthID == nil {
-//            let notSignInAlert = UIAlertController(title: "You are not signed in", message: "You must sign in to create a grave location", preferredStyle: .alert)
-//            let dismiss = UIAlertAction(title: "OK", style: .default, handler: nil)
-//            notSignInAlert.addAction(dismiss)
-//            self.present(notSignInAlert, animated: true, completion: nil)
-//        } else {
-//        let id = currentAuthID!
-//        let graveId = UUID().uuidString
-//        let newGraveId = UUID().uuidString
-//        let name: String = ""
-//        let birthDate: String = ""
-//        let birthLocation: String = ""
-//        let deathDate: String = ""
-//        let deathLocation: String = ""
-//        let marriageStatus: String = ""
-//        let bio: String = ""
-//
-//        var grave = Grave(creatorId: id,
-//                          graveId: graveId,
-//                          name: name,
-//                          birthDate: birthDate,
-//                          birthLocation: birthLocation,
-//                          deathDate: deathDate,
-//                          deathLocation: deathLocation,
-//                          marriageStatus: marriageStatus,
-//                          bio: bio)
-//
-//        let graveRef = self.db.collection("grave")
-//        graveRef.whereField("graveId", isEqualTo: grave.graveId).getDocuments { (snapshot, error) in
-//            if error != nil {
-//                print(Error.self)
-//            } else {
-//                if snapshot?.description == grave.graveId {
-//                    grave.graveId = newGraveId
-//                } else {
-//                    print("no dupli")
-//                }
-//            }
-//        }
-//        graveRef.document(String(grave.graveId)).setData(grave.dictionary) { err in
-//            if let err = err {
-//                let graveCreationFailAert = UIAlertController(title: "Failed to create a Grave", message: "Your device failed to properly create a Grave on your desired destination, Please check your wifi and try again", preferredStyle: .alert)
-//                let dismiss = UIAlertAction(title: "OK", style: .default, handler: nil)
-//                graveCreationFailAert.addAction(dismiss)
-//                self.present(graveCreationFailAert, animated: true, completion: nil)
-//                print(err)
-//            } else {
-//                self.performSegue(withIdentifier: "segueToGrave", sender: nil)
-//                print("Added Data")
-//            }
-//        }
-//        }
-//    }
+    //    func createData() {
+    //
+    //        // IDEA, image of a folder, image that tells them what it is. is is a text doc is it pics? is ait a video? is it multiple? when u make a story ONE VC.
+    //        // when the id are made, a check to search for ids of the same must be made. if they are the same, rinse and repeat.
+    //        if currentAuthID == nil {
+    //            let notSignInAlert = UIAlertController(title: "You are not signed in", message: "You must sign in to create a grave location", preferredStyle: .alert)
+    //            let dismiss = UIAlertAction(title: "OK", style: .default, handler: nil)
+    //            notSignInAlert.addAction(dismiss)
+    //            self.present(notSignInAlert, animated: true, completion: nil)
+    //        } else {
+    //        let id = currentAuthID!
+    //        let graveId = UUID().uuidString
+    //        let newGraveId = UUID().uuidString
+    //        let name: String = ""
+    //        let birthDate: String = ""
+    //        let birthLocation: String = ""
+    //        let deathDate: String = ""
+    //        let deathLocation: String = ""
+    //        let marriageStatus: String = ""
+    //        let bio: String = ""
+    //
+    //        var grave = Grave(creatorId: id,
+    //                          graveId: graveId,
+    //                          name: name,
+    //                          birthDate: birthDate,
+    //                          birthLocation: birthLocation,
+    //                          deathDate: deathDate,
+    //                          deathLocation: deathLocation,
+    //                          marriageStatus: marriageStatus,
+    //                          bio: bio)
+    //
+    //        let graveRef = self.db.collection("grave")
+    //        graveRef.whereField("graveId", isEqualTo: grave.graveId).getDocuments { (snapshot, error) in
+    //            if error != nil {
+    //                print(Error.self)
+    //            } else {
+    //                if snapshot?.description == grave.graveId {
+    //                    grave.graveId = newGraveId
+    //                } else {
+    //                    print("no dupli")
+    //                }
+    //            }
+    //        }
+    //        graveRef.document(String(grave.graveId)).setData(grave.dictionary) { err in
+    //            if let err = err {
+    //                let graveCreationFailAert = UIAlertController(title: "Failed to create a Grave", message: "Your device failed to properly create a Grave on your desired destination, Please check your wifi and try again", preferredStyle: .alert)
+    //                let dismiss = UIAlertAction(title: "OK", style: .default, handler: nil)
+    //                graveCreationFailAert.addAction(dismiss)
+    //                self.present(graveCreationFailAert, animated: true, completion: nil)
+    //                print(err)
+    //            } else {
+    //                self.performSegue(withIdentifier: "segueToGrave", sender: nil)
+    //                print("Added Data")
+    //            }
+    //        }
+    //        }
+    //    }
     
     func setMapViewLocationAndUser() {
         if CLLocationManager.locationServicesEnabled() {
@@ -137,27 +138,27 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         mapView.setRegion(viewRegion, animated: true)
     }
     
-//    func presentAlertController() {
-//        let newGraveAlert = UIAlertController(title: "New grave sight entry.", message: "Would you like to make a new entry at this location?", preferredStyle: .actionSheet)
-//        newGraveAlert.addAction(UIAlertAction(title: "Create new entry.", style: .default, handler: { action in
-//            print("Default Button Pressed")
-//
-//            //TYLER'S prepareForSegue
-//            self.createData()
-//
-//        }))
-//        newGraveAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { action in
-//            print("Cancel Button Pressed")
-//
-//            for annotation in self.mapView.annotations {
-//                if annotation.title == "New Entry" {
-//                    self.mapView.removeAnnotation(annotation)
-//                }
-//            }
-//
-//        }))
-//        self.present(newGraveAlert, animated: true)
-//    }
+    //    func presentAlertController() {
+    //        let newGraveAlert = UIAlertController(title: "New grave sight entry.", message: "Would you like to make a new entry at this location?", preferredStyle: .actionSheet)
+    //        newGraveAlert.addAction(UIAlertAction(title: "Create new entry.", style: .default, handler: { action in
+    //            print("Default Button Pressed")
+    //
+    //            //TYLER'S prepareForSegue
+    //            self.createData()
+    //
+    //        }))
+    //        newGraveAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { action in
+    //            print("Cancel Button Pressed")
+    //
+    //            for annotation in self.mapView.annotations {
+    //                if annotation.title == "New Entry" {
+    //                    self.mapView.removeAnnotation(annotation)
+    //                }
+    //            }
+    //
+    //        }))
+    //        self.present(newGraveAlert, animated: true)
+    //    }
     
     
     //==================================================
@@ -187,52 +188,53 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                 self.present(notSignInAlert, animated: true, completion: nil)
             } else {
                 let id = self.currentAuthID!
-            let graveId = UUID().uuidString
-            let newGraveId = UUID().uuidString
-            let name: String = ""
-            let birthDate: String = ""
-            let birthLocation: String = ""
-            let deathDate: String = ""
-            let deathLocation: String = ""
-            let marriageStatus: String = ""
-            let bio: String = ""
-            guard let graveLocation = self.currentGraveLocation else { return }
-            
-            var grave = Grave(creatorId: id,
-                              graveId: graveId,
-                              name: name,
-                              birthDate: birthDate,
-                              birthLocation: birthLocation,
-                              deathDate: deathDate,
-                              deathLocation: deathLocation,
-                              marriageStatus: marriageStatus,
-                              bio: bio,
-                              graveLocation: graveLocation)
-            
-            let graveRef = self.db.collection("grave")
-            graveRef.whereField("graveId", isEqualTo: grave.graveId).getDocuments { (snapshot, error) in
-                if error != nil {
-                    print(Error.self)
-                } else {
-                    if snapshot?.description == grave.graveId {
-                        grave.graveId = newGraveId
+                MapViewController.currentGraveId = UUID().uuidString
+                let newGraveId = UUID().uuidString
+                let name: String = "jimmy"
+                let birthDate: String = ""
+                let birthLocation: String = ""
+                let deathDate: String = ""
+                let deathLocation: String = ""
+                let marriageStatus: String = ""
+                let bio: String = ""
+                guard let graveLocation = self.currentGraveLocation else { return }
+                guard let graveId: String = MapViewController.currentGraveId else { return }
+                
+                var grave = Grave(creatorId: id,
+                                  graveId: graveId,
+                                  name: name,
+                                  birthDate: birthDate,
+                                  birthLocation: birthLocation,
+                                  deathDate: deathDate,
+                                  deathLocation: deathLocation,
+                                  marriageStatus: marriageStatus,
+                                  bio: bio,
+                                  graveLocation: graveLocation)
+                
+                let graveRef = self.db.collection("grave")
+                graveRef.whereField("graveId", isEqualTo: grave.graveId).getDocuments { (snapshot, error) in
+                    if error != nil {
+                        print(Error.self)
                     } else {
-                        print("no dupli")
+                        if snapshot?.description == grave.graveId {
+                            grave.graveId = newGraveId
+                        } else {
+                            print("no dupli")
+                        }
                     }
                 }
-            }
-            graveRef.document(String(grave.graveLocation)).setData(grave.dictionary) { err in
-                if let err = err {
-                    let graveCreationFailAert = UIAlertController(title: "Failed to create a Grave", message: "Your device failed to properly create a Grave on your desired destination, Please check your wifi and try again", preferredStyle: .alert)
-                    let dismiss = UIAlertAction(title: "OK", style: .default, handler: nil)
-                    graveCreationFailAert.addAction(dismiss)
-                    self.present(graveCreationFailAert, animated: true, completion: nil)
-                    print(err)
-                } else {
-                    self.performSegue(withIdentifier: "segueToGrave", sender: nil)
-                    print("Added Data")
+                graveRef.document(String(grave.graveId)).setData(grave.dictionary) { err in
+                    if let err = err {
+                        let graveCreationFailAert = UIAlertController(title: "Failed to create a Grave", message: "Your device failed to properly create a Grave on your desired destination, Please check your wifi and try again", preferredStyle: .alert)
+                        let dismiss = UIAlertAction(title: "OK", style: .default, handler: nil)
+                        graveCreationFailAert.addAction(dismiss)
+                        self.present(graveCreationFailAert, animated: true, completion: nil)
+                        print(err)
+                    } else {
+                        self.performSegue(withIdentifier: "segueToGrave", sender: nil)
+                        print("Added Data")
+                    }
                 }
-            }
             }
             
         }))
@@ -249,12 +251,12 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         self.present(newGraveAlert, animated: true)
         
     }
-
-override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-      if segue.identifier == "segueToGrave", let graveTVC = segue.destination as? GraveTableViewController {
-              
-              graveTVC.currentGraveLocation = currentGraveLocation
-          }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "segueToGrave", let graveTVC = segue.destination as? GraveTableViewController {
+            
+            graveTVC.currentGraveLocation = currentGraveLocation
+        }
     }
     
     @IBAction func SignInTapped(_ sender: UIBarButtonItem) {
@@ -272,7 +274,7 @@ override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
                 self.currentAuthID = nil
                 self.checkForUserId()
             })
-                locationAlert.addAction(goToSettingsAction)
+            locationAlert.addAction(goToSettingsAction)
             present(locationAlert, animated: true, completion: nil)
         }
     }

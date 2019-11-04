@@ -403,6 +403,13 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="bioLabel" destination="cjM-YW-G4y" id="qnB-bQ-2cm"/>
+                        <outlet property="birthDateLabel" destination="RGP-RJ-ISL" id="b1q-QF-E3X"/>
+                        <outlet property="birthLocationLabel" destination="R6X-Nc-CWD" id="dte-W0-T46"/>
+                        <outlet property="deathDateLabel" destination="UCv-uP-WB3" id="X2J-kJ-EoY"/>
+                        <outlet property="deathLocationLabel" destination="uln-qo-fEY" id="u06-s4-wbU"/>
+                        <outlet property="graveMainImage" destination="rzf-gV-0fs" id="SHs-It-Q4d"/>
+                        <outlet property="nameLabel" destination="YJQ-Nb-FpB" id="XQc-Ch-WBf"/>
                         <segue destination="akf-23-k3a" kind="show" identifier="editGraveSegue" id="2Vk-lS-08E"/>
                         <segue destination="7fh-bd-Npt" kind="show" identifier="graveStoriesSegue" id="owM-5Y-txC"/>
                     </connections>
@@ -582,7 +589,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="czz-gx-WDl">
-                                                    <rect key="frame" x="-3" y="-1" width="415" height="45"/>
+                                                    <rect key="frame" x="-4" y="-1" width="415" height="45"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                     <date key="date" timeIntervalSinceReferenceDate="-233726387.67283797">
                                                         <!--1993-08-05 20:00:12 +0000-->
@@ -646,8 +653,8 @@
                         <outlet property="bioTextView" destination="uJa-vq-QGj" id="zut-4p-UQw"/>
                         <outlet property="birthDatePicker" destination="G4W-NT-Qpq" id="gob-ML-mrl"/>
                         <outlet property="birthLocationTextField" destination="1z7-YR-Rng" id="wAx-L9-llU"/>
-                        <outlet property="deadLocationTextField" destination="PZL-I9-hHk" id="sjv-P0-2pF"/>
                         <outlet property="deathDatePicker" destination="czz-gx-WDl" id="6ez-De-htM"/>
+                        <outlet property="deathLocationTextField" destination="PZL-I9-hHk" id="sjv-P0-2pF"/>
                         <outlet property="graveMainImage" destination="A0e-uE-pgk" id="Hn6-4M-vFW"/>
                         <outlet property="marriageStatusTextField" destination="h1a-OZ-vBQ" id="MrQ-Kh-TzA"/>
                         <outlet property="nameTextField" destination="LBe-W8-wbt" id="6Jd-4K-KvD"/>

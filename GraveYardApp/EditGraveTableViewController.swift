@@ -18,82 +18,48 @@ class EditGraveTableViewController: UITableViewController {
     @IBOutlet weak var birthDatePicker: UIDatePicker!
     @IBOutlet weak var birthLocationTextField: UITextField!
     @IBOutlet weak var deathDatePicker: UIDatePicker!
-    @IBOutlet weak var deadLocationTextField: UITextField!
+    @IBOutlet weak var deathLocationTextField: UITextField!
     @IBOutlet weak var bioTextView: UITextView!
     
     var db: Firestore!
     var currentAuthID = Auth.auth().currentUser?.uid
     var currentUser: Grave?
     var userId: String?
-    let formatter = DateFormatter()
+    let dateFormatter = DateFormatter()
     var currentGraveLocation: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         db = Firestore.firestore()
-        //changeBackground()
         getGraveData()
     }
-
-    // MARK: - Table view data source
-
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
-    }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
     
-    func changeBackground() {
-        let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
-        backgroundImage.image = UIImage(named: "GradientPlaceHolder")
-        backgroundImage.contentMode = UIView.ContentMode.scaleToFill
-        self.view.insertSubview(backgroundImage, at: 0)
-    }
-    
-   func getGraveData() {
-        let graveRef = self.db.collection("grave").whereField("graveLocation", isEqualTo: currentGraveLocation) // this should ne th grave id thsat was tapped on
+    func getGraveData() { // mak srue to change the sting back to a date here
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let graveRef = self.db.collection("grave").whereField("graveId", isEqualTo: MapViewController.currentGraveId) // this should be the grave id that was tapped on
         graveRef.getDocuments { (snapshot, error) in
             if error != nil {
                 print(error as Any)
             } else {
                 for document in (snapshot?.documents)! {
                     if let name = document.data()["name"] as? String,
-                        let birthDate = document.data()["birthDate"] as? Date,
+                        let birthDate = document.data()["birthDate"] as? String,
                         let birthLocation = document.data()["birthLocation"] as? String,
-                        let deathDate = document.data()["deathDate"] as? Date,
+                        let deathDate = document.data()["deathDate"] as? String,
                         let deathLocation = document.data()["deathLocation"] as? String,
+                        let marriageStatus = document.data()["marriageStatus"] as? String,
                         let bio = document.data()["bio"] as? String {
-                        
+                        print(birthDate)
+                        print(self.dateFormatter.date(from:birthDate))
+                        guard let birthDate = self.dateFormatter.date(from:birthDate) else { return } // this fails atm
+                        guard let deathDate = self.dateFormatter.date(from:deathDate) else { return }
                         self.nameTextField.text = name
                         self.birthDatePicker.date = birthDate
                         self.birthLocationTextField.text = birthLocation
                         self.deathDatePicker.date = deathDate
-                        self.deadLocationTextField.text = deathLocation
-                        self.marriageStatusTextField.text = bio
+                        self.deathLocationTextField.text = deathLocation
+                        self.marriageStatusTextField.text = marriageStatus
+                        self.bioTextView.text = bio
                     }
                 }
             }
@@ -102,14 +68,14 @@ class EditGraveTableViewController: UITableViewController {
     
     @IBAction func saveGraveInfoTapped(_ sender: UIBarButtonItem) {
         let id = currentAuthID!
-        let graveId = "" // this is the grave id that was tapped on
+        guard let graveId = MapViewController.currentGraveId  else { return }// this is the grave id that was tapped on
         guard let name = nameTextField.text else { return }
         let birth = birthDatePicker.date
-        let birthDate = formatter.string(from: birth)
-        let birthLocation = ""
+        let birthDate = dateFormatter.string(from: birth)
+        guard let birthLocation = birthLocationTextField.text else { return }
         let death = deathDatePicker.date
-        let deathDate = formatter.string(from: death)
-        let deathLocation = ""
+        let deathDate = dateFormatter.string(from: death)
+        guard let deathLocation = deathLocationTextField.text else { return }
         guard let marriageStatus = marriageStatusTextField.text else { return }
         guard let bio = bioTextView.text else { return }
         guard let currentGraveLocation = currentGraveLocation else { return }
@@ -126,7 +92,7 @@ class EditGraveTableViewController: UITableViewController {
                           graveLocation: currentGraveLocation)
         
         let graveRef = self.db.collection("grave")
-        graveRef.document(String(grave.graveLocation)).updateData(grave.dictionary){ err in
+        graveRef.document(String(grave.graveId)).updateData(grave.dictionary){ err in
             if let err = err {
                 let alert1 = UIAlertController(title: "Not Saved", message: "Sorry, there was an error while trying to save your Grave. Please try again.", preferredStyle: .alert)
                 alert1.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
