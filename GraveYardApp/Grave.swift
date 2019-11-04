@@ -28,6 +28,7 @@ struct Grave {
     var deathLocation: String
     var marriageStatus: String?
     var bio: String
+    var graveLocation: String
     // BURIAL LOCATION
     // coordanates = jim
     // coodinates
@@ -44,7 +45,8 @@ struct Grave {
             "death": deathDate,
             "deathLocation": deathLocation,
             "marriageStatus": marriageStatus ?? "", //when, where, who
-            "bio": bio
+            "bio": bio,
+            "graveLocation": graveLocation
         ]
     }
 }
@@ -59,8 +61,9 @@ extension Grave: DocumentGraveSerializable {
             let deathDate = dictionary["deathDate"] as? String,
             let deathLocation = dictionary["deathLocation"] as? String,
             let marriageStatus = dictionary["marriageStatus"] as? String?,
-            let bio = dictionary["bio"] as? String else {return nil}
-        self.init(creatorId: creatorId, graveId: graveId, name: name, birthDate: birthDate, birthLocation: birthLocation, deathDate: deathDate, deathLocation: deathLocation, marriageStatus: marriageStatus, bio: bio)
+            let bio = dictionary["bio"] as? String,
+            let graveLocation = dictionary["graveLocation"] as? String else {return nil}
+        self.init(creatorId: creatorId, graveId: graveId, name: name, birthDate: birthDate, birthLocation: birthLocation, deathDate: deathDate, deathLocation: deathLocation, marriageStatus: marriageStatus, bio: bio, graveLocation: graveLocation)
     }
     
 }

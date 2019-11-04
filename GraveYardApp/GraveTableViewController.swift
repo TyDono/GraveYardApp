@@ -26,7 +26,7 @@ class GraveTableViewController: UITableViewController {
     var currentUser: Grave?
     var grave: [Grave]?
     var graveId: String?
-    var graveLocation: String?
+    var currentGraveLocation: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,57 +65,54 @@ class GraveTableViewController: UITableViewController {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
     }
-    */
+     */
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        if segue.identifier == "graveStoriesSegue", let GraveStoriesTVC = segue.destination as? GraveStoriesTableViewController {
+        if segue.identifier == "graveStoriesSegue", let graveStoriesTVC = segue.destination as? GraveStoriesTableViewController {
             
-            GraveStoriesTVC.graveStories = graveId
+            graveStoriesTVC.graveStories = graveId
+        } else {
+            if segue.identifier == "editGraveSegue", let editGraveTVC = segue.destination as? EditGraveTableViewController {
+                editGraveTVC.currentGraveLocation = currentGraveLocation
+            }
+            print("prepare for segueSearch called")
         }
-        print("prepare for segueSearch called")
     }
     
-    func changeBackground() {
-        let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
-        backgroundImage.image = UIImage(named: "GradientPlaceHolder")
-        backgroundImage.contentMode = UIView.ContentMode.scaleToFill
-        self.view.insertSubview(backgroundImage, at: 0)
+    func getGraveData() {
+        let graveRef = self.db.collection("grave").whereField("graveLocation", isEqualTo: currentGraveLocation) //change this to the grave id that was tapped, NOT THE USER ID. THE USER ID IS FOR DIF STUFF. use String(arc4random_uniform(99999999)) to generate the grave Id when created
+        graveRef.getDocuments { (snapshot, error) in
+            if error != nil {
+                print(error as Any)
+            } else {
+                for document in (snapshot?.documents)! {
+                    if let name = document.data()["name"] as? String,
+                        let birthDate = document.data()["birthDate"] as? String,
+                        let birthLocation = document.data()["birthLocation"] as? String,
+                        let deathDate = document.data()["deathDate"] as? String,
+                        let deathLocation = document.data()["deathLocation"] as? String,
+                        let marriageStatus = document.data()["marriageStatus"] as? String,
+                        let bio = document.data()["bio"] as? String {
+                        
+                        self.nameLabel.text = name
+                        self.marriageStatusLabel.text = marriageStatus
+                        self.birthDateLabel.text = birthDate
+                        self.birthLocationLabel.text = birthLocation
+                        self.deathDateLabel.text = deathDate
+                        self.deathLocationLabel.text = deathLocation
+                        self.marriageStatusLabel.text = marriageStatus
+                        self.bioLabel.text = bio
+                    }
+                }
+            }
+        }
     }
-
-     func getGraveData() {
-             guard let uId: String = self.currentAuthID else { return }
-             print("this is my uid i really like my uid \(uId)")
-             let graveRef = self.db.collection("grave").whereField("id", isEqualTo: uId) //change this to the grave id that was tapped, NOT THE USER ID. THE USER ID IS FOR DIF STUFF. use String(arc4random_uniform(99999999)) to generate the grave Id when created
-             graveRef.getDocuments { (snapshot, error) in
-                 if error != nil {
-                     print(error as Any)
-                 } else {
-                     for document in (snapshot?.documents)! {
-                         if let name = document.data()["name"] as? String,
-                             let birthDate = document.data()["birthDate"] as? String,
-                             let birthLocation = document.data()["birthLocation"] as? String,
-                             let deathDate = document.data()["deathDate"] as? String,
-                             let deathLocation = document.data()["deathLocation"] as? String,
-                             let marriageStatus = document.data()["marriageStatus"] as? String,
-                             let bio = document.data()["bio"] as? String {
-     
-                             self.nameLabel.text = name
-                             self.marriageStatusLabel.text = marriageStatus
-                             self.birthDateLabel.text = birthDate
-                             self.birthLocationLabel.text = birthLocation
-                             self.deathDateLabel.text = deathDate
-                             self.deathLocationLabel.text = deathLocation
-                             self.marriageStatusLabel.text = marriageStatus
-                             self.bioLabel.text = bio
-                         }
-                     }
-                 }
-             }
-         }
     
     @IBAction func editGraveBarButtonTapped(_ sender: UIBarButtonItem) {
         performSegue(withIdentifier: "editGraveSegue", sender: nil)
     }
+    
+    @IBAction func unwindToGrave(_ sender: UIStoryboardSegue) {}
     
 }

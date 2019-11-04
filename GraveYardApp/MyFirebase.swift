@@ -38,53 +38,54 @@ class MyFirebase {
         nId += 1
     }
     
-    func createData() {
-        
-        // IDEA, image of a folder, image that tells them what it is. is is a text doc is it pics? is ait a video? is it multiple? when u make a story ONE VC.
-        // when the id are made, a check to search for ids of the same must be made. if they are the same, rinse and repeat.
-        
-        let id = currentAuthID!
-        let graveId = String(arc4random_uniform(999999999)) + "id" //try UUID()
-        let newGraveId = String(arc4random_uniform(999999999)) + "id"
-        let storyId = graveId + String(arc4random_uniform(999999999))
-        let name: String = ""
-        let birthDate: String = ""
-        let birthLocation: String = ""
-        let deathDate: String = ""
-        let deathLocation: String = ""
-        let marriageStatus: String = ""
-        let bio: String = ""
-        
-        var grave = Grave(creatorId: id,
-                          graveId: graveId,
-                          name: name,
-                          birthDate: birthDate,
-                          birthLocation: birthLocation,
-                          deathDate: deathDate,
-                          deathLocation: deathLocation,
-                          marriageStatus: marriageStatus,
-                          bio: bio)
-        
-        let graveRef = self.db.collection("grave")
-        graveRef.whereField("graveId", isEqualTo: grave.graveId).getDocuments { (snapshot, error) in
-            if error != nil {
-                print(Error.self)
-            } else {
-                if snapshot?.description == grave.graveId {
-                    grave.graveId = newGraveId
-                } else {
-                    print("no dupli")
-                }
-            }
-        }
-        graveRef.document(String(grave.graveId)).setData(grave.dictionary) { err in
-            if let err = err {
-                print(err)
-            } else {
-                print("Added Data")
-            }
-        }
-    }
+//    func createData() {
+//        
+//        // IDEA, image of a folder, image that tells them what it is. is is a text doc is it pics? is ait a video? is it multiple? when u make a story ONE VC.
+//        // when the id are made, a check to search for ids of the same must be made. if they are the same, rinse and repeat.
+//        
+//        let id = currentAuthID!
+//        let graveId = String(arc4random_uniform(999999999)) + "id" //try UUID()
+//        let newGraveId = String(arc4random_uniform(999999999)) + "id"
+//        let storyId = graveId + String(arc4random_uniform(999999999))
+//        let name: String = ""
+//        let birthDate: String = ""
+//        let birthLocation: String = ""
+//        let deathDate: String = ""
+//        let deathLocation: String = ""
+//        let marriageStatus: String = ""
+//        let bio: String = ""
+//        
+//        var grave = Grave(creatorId: id,
+//                          graveId: graveId,
+//                          name: name,
+//                          birthDate: birthDate,
+//                          birthLocation: birthLocation,
+//                          deathDate: deathDate,
+//                          deathLocation: deathLocation,
+//                          marriageStatus: marriageStatus,
+//                          bio: bio,
+//                          graveLocation: currentGraveLocation)
+//        
+//        let graveRef = self.db.collection("grave")
+//        graveRef.whereField("graveId", isEqualTo: grave.graveId).getDocuments { (snapshot, error) in
+//            if error != nil {
+//                print(Error.self)
+//            } else {
+//                if snapshot?.description == grave.graveId {
+//                    grave.graveId = newGraveId
+//                } else {
+//                    print("no dupli")
+//                }
+//            }
+//        }
+//        graveRef.document(String(grave.graveId)).setData(grave.dictionary) { err in
+//            if let err = err {
+//                print(err)
+//            } else {
+//                print("Added Data")
+//            }
+//        }
+//    }
     
     func removeUserListener() {
         guard listenHandler != nil else {

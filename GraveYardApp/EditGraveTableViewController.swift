@@ -26,6 +26,7 @@ class EditGraveTableViewController: UITableViewController {
     var currentUser: Grave?
     var userId: String?
     let formatter = DateFormatter()
+    var currentGraveLocation: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,9 +75,7 @@ class EditGraveTableViewController: UITableViewController {
     }
     
    func getGraveData() {
-        guard let uId: String = self.currentAuthID else { return }
-        print("this is my uid i really like my uid \(uId)")
-        let graveRef = self.db.collection("grave").whereField("id", isEqualTo: uId) // this should ne th grave id thsat was tapped on
+        let graveRef = self.db.collection("grave").whereField("graveLocation", isEqualTo: currentGraveLocation) // this should ne th grave id thsat was tapped on
         graveRef.getDocuments { (snapshot, error) in
             if error != nil {
                 print(error as Any)
@@ -113,6 +112,7 @@ class EditGraveTableViewController: UITableViewController {
         let deathLocation = ""
         guard let marriageStatus = marriageStatusTextField.text else { return }
         guard let bio = bioTextView.text else { return }
+        guard let currentGraveLocation = currentGraveLocation else { return }
         
         let grave = Grave(creatorId: id,
                           graveId: graveId,
@@ -122,10 +122,11 @@ class EditGraveTableViewController: UITableViewController {
                           deathDate: deathDate,
                           deathLocation: deathLocation,
                           marriageStatus: marriageStatus,
-                          bio: bio)
+                          bio: bio,
+                          graveLocation: currentGraveLocation)
         
         let graveRef = self.db.collection("grave")
-        graveRef.document(String(grave.creatorId)).updateData(grave.dictionary){ err in
+        graveRef.document(String(grave.graveLocation)).updateData(grave.dictionary){ err in
             if let err = err {
                 let alert1 = UIAlertController(title: "Not Saved", message: "Sorry, there was an error while trying to save your Grave. Please try again.", preferredStyle: .alert)
                 alert1.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
