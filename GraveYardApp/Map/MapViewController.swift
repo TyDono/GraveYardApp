@@ -189,10 +189,10 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             } else {
                 let id = self.currentAuthID!
                 MapViewController.shared.currentGraveId = UUID().uuidString
-                self.currentGraveLocationLatitude = String(annotationCoordinates.latitude)
-                self.currentGraveLocationLongitude = String(annotationCoordinates.longitude)
+                MapViewController.shared.currentGraveLocationLatitude = String(annotationCoordinates.latitude)
+                MapViewController.shared.currentGraveLocationLongitude = String(annotationCoordinates.longitude)
                 let newGraveId = UUID().uuidString
-                let name: String = "jimmAy"
+                let name: String = ""
                 let birthDate: String = ""
                 let birthLocation: String = ""
                 let deathDate: String = ""
