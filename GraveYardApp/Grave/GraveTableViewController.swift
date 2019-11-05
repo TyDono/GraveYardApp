@@ -70,14 +70,9 @@ class GraveTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "graveStoriesSegue", let graveStoriesTVC = segue.destination as? GraveStoriesTableViewController {
-            
             graveStoriesTVC.graveStories = graveId
-        } else {
-            if segue.identifier == "editGraveSegue", let editGraveTVC = segue.destination as? EditGraveTableViewController {
-                editGraveTVC.currentGraveLocation = currentGraveLocation
-            }
-            print("prepare for segueSearch called")
         }
+        print("prepare for segueSearch called")
     }
     
     func getGraveData() {

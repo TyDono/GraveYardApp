@@ -26,8 +26,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     var currentUser: User?
     var locationManager = CLLocationManager()
     var db = Firestore.firestore()
-    var currentGraveLocation: String?
     var currentGraveId: String?
+    var currentGraveLocationLatitude: String = ""
+    var currentGraveLocationLongitude: String = ""
     
     //==================================================
     // MARK: - View Lifecycle
@@ -36,7 +37,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         checkForUserId()
-        print(currentAuthID)
         setMapViewLocationAndUser()
     }
     
@@ -175,13 +175,12 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         annotation.title = "New Entry"
         self.mapView.addAnnotation(annotation)
         let annotationCoordinates = annotation.coordinate
-        currentGraveLocation = String(annotationCoordinates.latitude) + String(annotationCoordinates.longitude)
         
         let newGraveAlert = UIAlertController(title: "New grave sight entry.", message: "Would you like to make a new entry at this location?", preferredStyle: .actionSheet)
-        newGraveAlert.addAction(UIAlertAction(title: "Create new entry.", style: .default, handler: { action in
+        newGraveAlert.addAction(UIAlertAction(title: "Create new entry", style: .default, handler: { action in
             print("Default Button Pressed")
             
-            //TYLER'S prepareForSegue
+            //TYLER'S prepareForSegue minus the prepare for and instead just a ton of code.
             if self.currentAuthID == nil {
                 let notSignInAlert = UIAlertController(title: "You are not signed in", message: "You must sign in to create a grave location", preferredStyle: .alert)
                 let dismiss = UIAlertAction(title: "OK", style: .default, handler: nil)
@@ -191,15 +190,16 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                 let id = self.currentAuthID!
                 MapViewController.shared.currentGraveId = UUID().uuidString
                 let newGraveId = UUID().uuidString
-                let name: String = "jimmy"
+                let name: String = "jimmAy"
                 let birthDate: String = ""
                 let birthLocation: String = ""
                 let deathDate: String = ""
                 let deathLocation: String = ""
                 let marriageStatus: String = ""
                 let bio: String = ""
-                guard let graveLocation = self.currentGraveLocation else { return }
                 guard let graveId: String = MapViewController.shared.currentGraveId else { return }
+                let graveLocationLatitude = String(annotationCoordinates.latitude)
+                let graveLocationLongitude = String(annotationCoordinates.longitude)
                 
                 var grave = Grave(creatorId: id,
                                   graveId: graveId,
@@ -210,7 +210,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                                   deathLocation: deathLocation,
                                   marriageStatus: marriageStatus,
                                   bio: bio,
-                                  graveLocation: graveLocation)
+                                  graveLocationLatitude: graveLocationLatitude,
+                                  graveLocationLongitude: graveLocationLongitude)
                 
                 let graveRef = self.db.collection("grave")
                 graveRef.whereField("graveId", isEqualTo: grave.graveId).getDocuments { (snapshot, error) in
@@ -251,13 +252,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         }))
         self.present(newGraveAlert, animated: true)
         
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "segueToGrave", let graveTVC = segue.destination as? GraveTableViewController {
-            
-            graveTVC.currentGraveLocation = currentGraveLocation
-        }
     }
     
     @IBAction func SignInTapped(_ sender: UIBarButtonItem) {

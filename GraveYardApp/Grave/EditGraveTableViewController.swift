@@ -26,7 +26,6 @@ class EditGraveTableViewController: UITableViewController {
     var currentUser: Grave?
     var userId: String?
     let dateFormatter = DateFormatter()
-    var currentGraveLocation: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,7 +77,8 @@ class EditGraveTableViewController: UITableViewController {
         guard let deathLocation = deathLocationTextField.text else { return }
         guard let marriageStatus = marriageStatusTextField.text else { return }
         guard let bio = bioTextView.text else { return }
-        guard let currentGraveLocation = currentGraveLocation else { return }
+        let currentGraveLocationLatitude = MapViewController.shared.currentGraveLocationLatitude
+        let graveLocationLongitude = MapViewController.shared.currentGraveLocationLongitude
         
         let grave = Grave(creatorId: id,
                           graveId: graveId,
@@ -89,7 +89,8 @@ class EditGraveTableViewController: UITableViewController {
                           deathLocation: deathLocation,
                           marriageStatus: marriageStatus,
                           bio: bio,
-                          graveLocation: currentGraveLocation)
+                          graveLocationLatitude: currentGraveLocationLatitude,
+                          graveLocationLongitude: graveLocationLongitude)
         
         let graveRef = self.db.collection("grave")
         graveRef.document(String(grave.graveId)).updateData(grave.dictionary){ err in
