@@ -77,8 +77,8 @@ class EditGraveTableViewController: UITableViewController {
         guard let deathLocation = deathLocationTextField.text else { return }
         guard let marriageStatus = marriageStatusTextField.text else { return }
         guard let bio = bioTextView.text else { return }
-        let currentGraveLocationLatitude = MapViewController.shared.currentGraveLocationLatitude
-        let graveLocationLongitude = MapViewController.shared.currentGraveLocationLongitude
+        guard let graveLocationLatitude = MapViewController.shared.currentGraveLocationLatitude  else { return }
+        guard let graveLocationLongitude = MapViewController.shared.currentGraveLocationLongitude  else { return }
         
         let grave = Grave(creatorId: id,
                           graveId: graveId,
@@ -89,7 +89,7 @@ class EditGraveTableViewController: UITableViewController {
                           deathLocation: deathLocation,
                           marriageStatus: marriageStatus,
                           bio: bio,
-                          graveLocationLatitude: currentGraveLocationLatitude,
+                          graveLocationLatitude: graveLocationLatitude,
                           graveLocationLongitude: graveLocationLongitude)
         
         let graveRef = self.db.collection("grave")

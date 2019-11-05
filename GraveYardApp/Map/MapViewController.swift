@@ -27,8 +27,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     var locationManager = CLLocationManager()
     var db = Firestore.firestore()
     var currentGraveId: String?
-    var currentGraveLocationLatitude: String = ""
-    var currentGraveLocationLongitude: String = ""
+    var currentGraveLocationLatitude: String?
+    var currentGraveLocationLongitude: String?
     
     //==================================================
     // MARK: - View Lifecycle
@@ -189,6 +189,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             } else {
                 let id = self.currentAuthID!
                 MapViewController.shared.currentGraveId = UUID().uuidString
+                self.currentGraveLocationLatitude = String(annotationCoordinates.latitude)
+                self.currentGraveLocationLongitude = String(annotationCoordinates.longitude)
                 let newGraveId = UUID().uuidString
                 let name: String = "jimmAy"
                 let birthDate: String = ""
@@ -198,8 +200,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                 let marriageStatus: String = ""
                 let bio: String = ""
                 guard let graveId: String = MapViewController.shared.currentGraveId else { return }
-                let graveLocationLatitude = String(annotationCoordinates.latitude)
-                let graveLocationLongitude = String(annotationCoordinates.longitude)
+                guard let graveLocationLatitude: String = MapViewController.shared.currentGraveLocationLatitude else { return }
+                guard let graveLocationLongitude: String = MapViewController.shared.currentGraveLocationLongitude else { return }
+
                 
                 var grave = Grave(creatorId: id,
                                   graveId: graveId,
