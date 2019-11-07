@@ -14,6 +14,8 @@ import Firebase
 
 class SignInViewController: UIViewController, GIDSignInUIDelegate {
     
+    var jim = "jim"
+    var currentAuthID = Auth.auth().currentUser?.uid
     var db: Firestore!
     var userId: String = ""
     let userDefault = UserDefaults.standard
@@ -24,6 +26,13 @@ class SignInViewController: UIViewController, GIDSignInUIDelegate {
         GIDSignIn.sharedInstance()?.uiDelegate = self
         db = Firestore.firestore()
         changeBackground()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        if jim == "jim" {
+            print("jim")
+           // unwind(for: <#T##UIStoryboardSegue#>, towards: <#T##UIViewController#>)
+        }
     }
     
     func changeBackground() {

@@ -67,7 +67,7 @@ class EditGraveTableViewController: UITableViewController {
     
     @IBAction func saveGraveInfoTapped(_ sender: UIBarButtonItem) {
         let id = currentAuthID!
-        guard let graveId = MapViewController.shared.currentGraveId  else { return }// this is the grave id that was tapped on
+        guard let graveId = MapViewController.shared.currentGraveId  else { return } // this is the grave id that was tapped on
         guard let name = nameTextField.text else { return }
         let birth = birthDatePicker.date
         let birthDate = dateFormatter.string(from: birth)
