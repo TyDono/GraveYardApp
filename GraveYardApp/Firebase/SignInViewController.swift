@@ -14,11 +14,11 @@ import Firebase
 
 class SignInViewController: UIViewController, GIDSignInUIDelegate {
     
-    var jim = "jim"
     var currentAuthID = Auth.auth().currentUser?.uid
     var db: Firestore!
     var userId: String = ""
     let userDefault = UserDefaults.standard
+     private var listenHandler: AuthStateDidChangeListenerHandle?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,13 +26,6 @@ class SignInViewController: UIViewController, GIDSignInUIDelegate {
         GIDSignIn.sharedInstance()?.uiDelegate = self
         db = Firestore.firestore()
         changeBackground()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        if jim == "jim" {
-            print("jim")
-           // unwind(for: <#T##UIStoryboardSegue#>, towards: <#T##UIViewController#>)
-        }
     }
     
     func changeBackground() {
@@ -46,7 +39,13 @@ class SignInViewController: UIViewController, GIDSignInUIDelegate {
         return UIStatusBarStyle.lightContent
     }
     
-    @IBAction func googleSignIn(_ sender: Any) {}
+    @IBAction func cancelSignUpButtonTapped(_ sender: UIBarButtonItem) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func googleSignIn(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
     
     @IBAction func logout(_ sender: UIBarButtonItem) {
         self.userId = ""

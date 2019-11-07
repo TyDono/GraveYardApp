@@ -12,8 +12,15 @@ import GoogleSignIn
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
+    
+    var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window?.makeKeyAndVisible()
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let splashVC = storyboard.instantiateViewController(withIdentifier: "splash")
+        window?.rootViewController = splashVC
         FirebaseApp.configure()
         let storage = Storage.storage()
         let storageRef = storage.reference()

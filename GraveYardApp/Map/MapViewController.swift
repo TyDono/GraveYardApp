@@ -182,9 +182,18 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             
             //TYLER'S prepareForSegue minus the prepare for and instead just a ton of code.
             if self.currentAuthID == nil {
-                let notSignInAlert = UIAlertController(title: "You are not signed in", message: "You must sign in to create a grave location", preferredStyle: .alert)
-                let dismiss = UIAlertAction(title: "OK", style: .default, handler: nil)
+                for annotation in self.mapView.annotations {
+                    if annotation.title == "New Entry" {
+                        self.mapView.removeAnnotation(annotation)
+                    }
+                }
+                let notSignInAlert = UIAlertController(title: "You are not signed in", message: "You must sign in to create a grave  at this location", preferredStyle: .actionSheet)
+                let dismiss = UIAlertAction(title: "cancel", style: .default, handler: nil)
                 notSignInAlert.addAction(dismiss)
+                let goToLogIn = UIAlertAction(title: "Sign In", style: .default, handler: { _ in
+                    moveToMap()
+                })
+                notSignInAlert.addAction(goToLogIn)
                 self.present(notSignInAlert, animated: true, completion: nil)
             } else {
                 let id = self.currentAuthID!

@@ -22,7 +22,6 @@ class MyFirebase {
     
     var db = Firestore.firestore()
     var currentAuthID = Auth.auth().currentUser?.uid
-    var currentUser: User?
     var userId: String? = ""
     var storage = Storage.storage().reference()
     let formatter = DateFormatter()
@@ -30,56 +29,22 @@ class MyFirebase {
     private var listenHandler: AuthStateDidChangeListenerHandle?
     var currentUpload:StorageUploadTask?
     
-    func addUserListender(loggedIn: Bool) {}
-    
-//    func createData() {
-//        
-//        // IDEA, image of a folder, image that tells them what it is. is is a text doc is it pics? is ait a video? is it multiple? when u make a story ONE VC.
-//        // when the id are made, a check to search for ids of the same must be made. if they are the same, rinse and repeat.
-//        
-//        let id = currentAuthID!
-//        let graveId = String(arc4random_uniform(999999999)) + "id" //try UUID()
-//        let newGraveId = String(arc4random_uniform(999999999)) + "id"
-//        let storyId = graveId + String(arc4random_uniform(999999999))
-//        let name: String = ""
-//        let birthDate: String = ""
-//        let birthLocation: String = ""
-//        let deathDate: String = ""
-//        let deathLocation: String = ""
-//        let marriageStatus: String = ""
-//        let bio: String = ""
-//        
-//        var grave = Grave(creatorId: id,
-//                          graveId: graveId,
-//                          name: name,
-//                          birthDate: birthDate,
-//                          birthLocation: birthLocation,
-//                          deathDate: deathDate,
-//                          deathLocation: deathLocation,
-//                          marriageStatus: marriageStatus,
-//                          bio: bio,
-//                          graveLocation: currentGraveLocation)
-//        
-//        let graveRef = self.db.collection("grave")
-//        graveRef.whereField("graveId", isEqualTo: grave.graveId).getDocuments { (snapshot, error) in
-//            if error != nil {
-//                print(Error.self)
-//            } else {
-//                if snapshot?.description == grave.graveId {
-//                    grave.graveId = newGraveId
-//                } else {
-//                    print("no dupli")
-//                }
-//            }
-//        }
-//        graveRef.document(String(grave.graveId)).setData(grave.dictionary) { err in
-//            if let err = err {
-//                print(err)
-//            } else {
-//                print("Added Data")
-//            }
-//        }
-//    }
+    func addUserListender(loggedIn: Bool) {
+        print("Add listener")
+        listenHandler = Auth.auth().addStateDidChangeListener{ (auth, user) in
+            if user == nil {
+                //logged Out
+                print("You Are Currently Logged Out")
+                self.currentAuthID = nil
+                self.userId = ""
+            } else {
+                DispatchQueue.main.asyncAfter(deadline: .now()) {
+                    print(self.currentAuthID, "logged in")
+                    moveToMap()
+                }
+            }
+        }
+    }
     
     func removeUserListener() {
         guard listenHandler != nil else {
@@ -89,23 +54,12 @@ class MyFirebase {
     }
     
     func isLoggedIn() -> Bool {
-        return(currentUser != nil)
-    }
-    
-    func liknCredential(credential: AuthCredential) {
-        currentUser?.link(with: credential) {
-            (user, error) in
-            
-            if let error = error {
-                print(error)
-                return
-            }
-            print("Credential linked")
-        }
+        return(currentAuthID != nil)
     }
     
     func logOut() {
         try! Auth.auth().signOut()
+        self.currentAuthID = nil
         GIDSignIn.sharedInstance()?.signIn()
     }
     
