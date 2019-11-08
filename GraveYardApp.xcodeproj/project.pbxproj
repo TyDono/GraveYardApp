@@ -12,7 +12,6 @@
 		CB398F01236969AC00A515B9 /* GraveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB398F00236969AC00A515B9 /* GraveViewController.swift */; };
 		CB398F03236969BB00A515B9 /* EditGraveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB398F02236969BB00A515B9 /* EditGraveViewController.swift */; };
 		CB398F05236A109B00A515B9 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB398F04236A109B00A515B9 /* TableViewController.swift */; };
-		CB398F07236A10B200A515B9 /* GraveStoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB398F06236A10B200A515B9 /* GraveStoryTableViewController.swift */; };
 		CB398F09236A16EE00A515B9 /* EditGraveStoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB398F08236A16EE00A515B9 /* EditGraveStoryTableViewController.swift */; };
 		CB398F0B236A64E000A515B9 /* Story.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB398F0A236A64E000A515B9 /* Story.swift */; };
 		CB3A30C1235636FB00CF2CBB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CB3A30C0235636FA00CF2CBB /* GoogleService-Info.plist */; };
@@ -23,6 +22,8 @@
 		CB3A30DF235F9E1100CF2CBB /* SignIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB3A30DE235F9E1000CF2CBB /* SignIn.storyboard */; };
 		CB3A30E1235F9E4B00CF2CBB /* Grave.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB3A30E0235F9E4B00CF2CBB /* Grave.storyboard */; };
 		CB3A38872374CAF400DA756D /* GlobalExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3A38862374CAF300DA756D /* GlobalExtension.swift */; };
+		CB3A388A237528E400DA756D /* NewGraveStoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3A3889237528E400DA756D /* NewGraveStoryTableViewController.swift */; };
+		CB3A388C2375293F00DA756D /* GraveStoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3A388B2375293F00DA756D /* GraveStoryTableViewController.swift */; };
 		CB4F2BFF2360EF7B00584D12 /* Grave.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB4F2BFE2360EF7B00584D12 /* Grave.swift */; };
 		CB5AE18723512B14001BCCCE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5AE18623512B14001BCCCE /* AppDelegate.swift */; };
 		CB5AE18923512B14001BCCCE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5AE18823512B14001BCCCE /* SceneDelegate.swift */; };
@@ -42,7 +43,6 @@
 		CB398F00236969AC00A515B9 /* GraveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraveViewController.swift; sourceTree = "<group>"; };
 		CB398F02236969BB00A515B9 /* EditGraveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditGraveViewController.swift; sourceTree = "<group>"; };
 		CB398F04236A109B00A515B9 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
-		CB398F06236A10B200A515B9 /* GraveStoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraveStoryTableViewController.swift; sourceTree = "<group>"; };
 		CB398F08236A16EE00A515B9 /* EditGraveStoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditGraveStoryTableViewController.swift; sourceTree = "<group>"; };
 		CB398F0A236A64E000A515B9 /* Story.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Story.swift; sourceTree = "<group>"; };
 		CB3A30C0235636FA00CF2CBB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -53,6 +53,8 @@
 		CB3A30DE235F9E1000CF2CBB /* SignIn.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignIn.storyboard; sourceTree = "<group>"; };
 		CB3A30E0235F9E4B00CF2CBB /* Grave.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Grave.storyboard; sourceTree = "<group>"; };
 		CB3A38862374CAF300DA756D /* GlobalExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalExtension.swift; sourceTree = "<group>"; };
+		CB3A3889237528E400DA756D /* NewGraveStoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGraveStoryTableViewController.swift; sourceTree = "<group>"; };
+		CB3A388B2375293F00DA756D /* GraveStoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraveStoryTableViewController.swift; sourceTree = "<group>"; };
 		CB4F2BFE2360EF7B00584D12 /* Grave.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Grave.swift; sourceTree = "<group>"; };
 		CB5AE18323512B14001BCCCE /* GraveYardApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GraveYardApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB5AE18623512B14001BCCCE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -138,7 +140,8 @@
 				CB881F972367B41300615F2F /* GraveTableViewController.swift */,
 				CB881F992367B41E00615F2F /* EditGraveTableViewController.swift */,
 				CB398EFA23695D0600A515B9 /* GraveStoriesTableViewController.swift */,
-				CB398F06236A10B200A515B9 /* GraveStoryTableViewController.swift */,
+				CB3A3889237528E400DA756D /* NewGraveStoryTableViewController.swift */,
+				CB3A388B2375293F00DA756D /* GraveStoryTableViewController.swift */,
 				CBAC4EAE2370EAD7006760A5 /* StoryTableViewCell.swift */,
 			);
 			path = Grave;
@@ -355,9 +358,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CB3A388A237528E400DA756D /* NewGraveStoryTableViewController.swift in Sources */,
 				CB398F05236A109B00A515B9 /* TableViewController.swift in Sources */,
 				CBAC4EAF2370EAD7006760A5 /* StoryTableViewCell.swift in Sources */,
-				CB398F07236A10B200A515B9 /* GraveStoryTableViewController.swift in Sources */,
 				CB4F2BFF2360EF7B00584D12 /* Grave.swift in Sources */,
 				CB398F03236969BB00A515B9 /* EditGraveViewController.swift in Sources */,
 				CB3A30D52359098700CF2CBB /* GIDSignInExtension.swift in Sources */,
@@ -368,6 +371,7 @@
 				CB398F01236969AC00A515B9 /* GraveViewController.swift in Sources */,
 				CB881F9A2367B41E00615F2F /* EditGraveTableViewController.swift in Sources */,
 				CB398F0B236A64E000A515B9 /* Story.swift in Sources */,
+				CB3A388C2375293F00DA756D /* GraveStoryTableViewController.swift in Sources */,
 				CB5AE18923512B14001BCCCE /* SceneDelegate.swift in Sources */,
 				CB3A30D3235904AA00CF2CBB /* SignInViewController.swift in Sources */,
 				CB398EFB23695D0600A515B9 /* GraveStoriesTableViewController.swift in Sources */,
