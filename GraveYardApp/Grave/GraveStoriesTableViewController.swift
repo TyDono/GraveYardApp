@@ -21,6 +21,7 @@ class GraveStoriesTableViewController: UITableViewController {
     var db: Firestore!
     var tableArray = [String]()
     var stories: [Story]?
+    var graveStoryId: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +29,14 @@ class GraveStoriesTableViewController: UITableViewController {
         if currentAuthID != creatorId {
             self.navigationItem.rightBarButtonItem = nil
         }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "addGraveStorySegue", let newGraveStoryTVC = segue.destination as? GraveStoriesTableViewController {
+            newGraveStoryTVC.graveStories = graveStoryId
+        }
+        print("prepare for segueSearch called")
     }
     
     func getGraveStories() {
@@ -61,6 +70,7 @@ class GraveStoriesTableViewController: UITableViewController {
         let storyBody: String = ""
         let storyTitle: String = ""
         let storyImage: String = ""
+        graveStoryId = storyId
         
         let story = Story(graveId: graveId,
                           storyId: storyId,
