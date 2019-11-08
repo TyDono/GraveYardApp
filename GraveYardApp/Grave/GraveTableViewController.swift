@@ -107,6 +107,8 @@ class GraveTableViewController: UITableViewController {
         }
     }
     
+    // MARK: - Actions
+    
     @IBAction func editGraveBarButtonTapped(_ sender: UIBarButtonItem) {
         performSegue(withIdentifier: "editGraveSegue", sender: nil)
     }

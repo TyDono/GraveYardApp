@@ -59,6 +59,8 @@ class NewGraveStoryTableViewController: UITableViewController {
         }
     }
     
+    // MARK: - Actions
+    
     @IBAction func saveStoryBarButtonTapped(_ sender: UIBarButtonItem) {
         updateStoryData()
     }

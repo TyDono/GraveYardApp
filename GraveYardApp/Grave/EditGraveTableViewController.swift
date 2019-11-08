@@ -69,6 +69,8 @@ class EditGraveTableViewController: UITableViewController {
         static let unwind = "unwindToGraveSegue"
     }
     
+    // MARK: - Actions
+    
     @IBAction func saveGraveInfoTapped(_ sender: UIBarButtonItem) {
         let id = currentAuthID!
         guard let graveId = MapViewController.shared.currentGraveId  else { return } // this is the grave id that was tapped on

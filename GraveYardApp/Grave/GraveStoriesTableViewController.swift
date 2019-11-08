@@ -120,7 +120,7 @@ class GraveStoriesTableViewController: UITableViewController {
         }
     }
     
-    // MARK: - IBAction
+    // MARK: - Action
     
     @IBAction func addGraveStoryBarButtonTapped(_ sender: UIBarButtonItem) {
         createNewStory()

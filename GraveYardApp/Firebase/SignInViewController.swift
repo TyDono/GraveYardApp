@@ -39,6 +39,8 @@ class SignInViewController: UIViewController, GIDSignInUIDelegate {
         return UIStatusBarStyle.lightContent
     }
     
+    // MARK: - Actions
+    
     @IBAction func cancelSignUpButtonTapped(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
     }
