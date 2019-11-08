@@ -24,6 +24,7 @@ class GraveStoriesTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        getGraveStories()
         if currentAuthID != creatorId {
             self.navigationItem.rightBarButtonItem = nil
         }
@@ -31,7 +32,7 @@ class GraveStoriesTableViewController: UITableViewController {
     
     func getGraveStories() {
         var stories = [Story]()
-        db.collection("stories").whereField("storyId", isEqualTo: graveStories!).getDocuments { (snapshot, error) in
+        db.collection("stories").whereField("storyId", isEqualTo: currentAuthID!).getDocuments { (snapshot, error) in
                 if error != nil {
                     print(Error.self)
                 } else {
@@ -52,6 +53,35 @@ class GraveStoriesTableViewController: UITableViewController {
                 }
             }
         }
+    
+    func createNewStory() {
+        
+        guard let graveId: String = MapViewController.shared.currentGraveId else { return }
+        let storyId: String = UUID().uuidString
+        let storyBody: String = ""
+        let storyTitle: String = ""
+        let storyImage: String = ""
+        
+        let story = Story(graveId: graveId,
+                          storyId: storyId,
+                          storyBody: storyBody,
+                          storyTitle: storyTitle,
+                          storyImage: storyImage)
+        
+        let storyRef = self.db.collection("grave")
+        storyRef.document(String(story.storyId)).setData(story.dictionary) { err in
+            if let err = err {
+                let graveCreationFailAert = UIAlertController(title: "Failed to create a Story", message: "Your device failed to properly create a Story, Please check your wifi and try again", preferredStyle: .alert)
+                let dismiss = UIAlertAction(title: "OK", style: .default, handler: nil)
+                graveCreationFailAert.addAction(dismiss)
+                self.present(graveCreationFailAert, animated: true, completion: nil)
+                print(err)
+            } else {
+                self.performSegue(withIdentifier: "addGraveStorySegue", sender: nil)
+                print("Added Data")
+            }
+        }
+    }
 
     // MARK: - Table view data source
 
@@ -74,14 +104,16 @@ class GraveStoriesTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-     if editingStyle == .delete {
-        self.tableArray.remove(at: indexPath.row)
-        tableView.deleteRows(at: [indexPath], with: .fade)
-     }
+        if editingStyle == .delete {
+            self.tableArray.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
     }
     
+    // MARK: - IBAction
+    
     @IBAction func addGraveStoryBarButtonTapped(_ sender: UIBarButtonItem) {
-        performSegue(withIdentifier: "graveStorySegue", sender: nil)
+        createNewStory()
     }
     
 }

@@ -762,7 +762,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="addStoryBarButton" destination="sBU-Qb-ECg" id="BbL-qc-CNo"/>
-                        <segue destination="8GQ-fW-7kZ" kind="show" identifier="graveStorySegue" id="7DO-rd-4qB"/>
+                        <segue destination="8GQ-fW-7kZ" kind="show" identifier="addGraveStorySegue" id="7DO-rd-4qB"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="beJ-ji-Lhz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

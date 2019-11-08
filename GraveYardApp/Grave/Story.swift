@@ -22,7 +22,7 @@ struct Story {
     
     var graveId: String
     var storyId: String
-    var story: String
+    var storyBody: String
     var storyTitle: String
     var storyImage: String
     
@@ -30,7 +30,7 @@ struct Story {
         return [
             "graveId": graveId,
             "storyId": storyId,
-            "story": story,
+            "storyBody": storyBody,
             "storyTitle": storyTitle,
             "storyImage": storyImage
         ]
@@ -41,10 +41,10 @@ extension Story: DocumentSerializableStory {
     init?(dictionary: [String: Any]) {
         guard let graveId = dictionary["graveId"] as? String,
             let storyId = dictionary["storyId"] as? String,
-            let story = dictionary["story"] as? String,
+            let storyBody = dictionary["storyBody"] as? String,
             let storyTitle = dictionary["storyTitle"] as? String,
             let storyImage = dictionary["storyImage"] as? String else {return nil}
-        self.init(graveId: graveId, storyId: storyId, story: story, storyTitle: storyTitle, storyImage: storyImage)
+        self.init(graveId: graveId, storyId: storyId, storyBody: storyBody, storyTitle: storyTitle, storyImage: storyImage)
     }
     
 }
