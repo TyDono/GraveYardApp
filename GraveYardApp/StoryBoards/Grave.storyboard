@@ -396,7 +396,7 @@
                     <navigationItem key="navigationItem" id="5l7-Vp-38m">
                         <barButtonItem key="leftBarButtonItem" title="Back" id="2eW-ym-fzd">
                             <connections>
-                                <segue destination="qo2-7w-7Qs" kind="unwind" identifier="unwindToGraveSegue" unwindAction="unwindToMap:" id="raZ-ta-5JV"/>
+                                <segue destination="qo2-7w-7Qs" kind="unwind" unwindAction="unwindToMap:" id="raZ-ta-5JV"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Edit" id="V6v-v6-hou">
@@ -661,9 +661,12 @@
                         <outlet property="graveMainImage" destination="A0e-uE-pgk" id="Hn6-4M-vFW"/>
                         <outlet property="marriageStatusTextField" destination="h1a-OZ-vBQ" id="MrQ-Kh-TzA"/>
                         <outlet property="nameTextField" destination="LBe-W8-wbt" id="6Jd-4K-KvD"/>
+                        <segue destination="lrJ-Dg-sXL" kind="unwind" identifier="unwindToGraveSegue" unwindAction="unwindToGrave:" id="lx7-NK-AXl"/>
+                        <segue destination="lrJ-Dg-sXL" kind="unwind" identifier="unwindToGraveSegue" unwindAction="unwindToGrave:" id="ApY-fG-L2p"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="twe-qP-4gI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="lrJ-Dg-sXL" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3386.9565217391305" y="614.67391304347836"/>
         </scene>
