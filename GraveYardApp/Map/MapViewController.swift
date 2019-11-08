@@ -38,6 +38,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         super.viewDidLoad()
         checkForUserId()
         setMapViewLocationAndUser()
+        signInTextChange()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -46,7 +47,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     
     func checkForUserId() {
         if currentAuthID == nil {
-            signUp.title = "Sign Up"
+            signUp.title = "Sign In"
         } else {
             signUp.title = "Log Out"
         }
@@ -139,6 +140,14 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         mapView.setRegion(viewRegion, animated: true)
     }
     
+    func signInTextChange() {
+        if currentAuthID == nil {
+            signUp.title = "Sign In"
+        } else {
+            signUp.title = "Log Out"
+        }
+    }
+    
     //    func presentAlertController() {
     //        let newGraveAlert = UIAlertController(title: "New grave sight entry.", message: "Would you like to make a new entry at this location?", preferredStyle: .actionSheet)
     //        newGraveAlert.addAction(UIAlertAction(title: "Create new entry.", style: .default, handler: { action in
@@ -168,6 +177,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     
     
     @IBAction func userDidLongPress(_ sender: UILongPressGestureRecognizer) {
+        print(currentAuthID)
         let location = sender.location(in: self.mapView)
         let locationCoordinate = self.mapView.convert(location, toCoordinateFrom: self.mapView)
         let annotation = MKPointAnnotation()
@@ -267,7 +277,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     }
     
     @IBAction func SignInTapped(_ sender: UIBarButtonItem) {
-        if currentAuthID == nil {
+        if signUp.title == "Sign In" {
             performSegue(withIdentifier: "segueToSignUp", sender: self)
         } else {
             let locationAlert = UIAlertController(title: "Log Out", message: "Are you sure you want to log out?", preferredStyle: .actionSheet)
@@ -275,7 +285,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
             locationAlert.addAction(cancelAction)
             
-            let goToSettingsAction = UIAlertAction(title: "Log Out", style: .default, handler: { _ in      self.currentUser = nil
+            let goToSettingsAction = UIAlertAction(title: "Log Out", style: .default, handler: { _ in
+                
+                self.currentUser = nil
                 self.userId = ""
                 try! Auth.auth().signOut()
                 self.currentAuthID = nil

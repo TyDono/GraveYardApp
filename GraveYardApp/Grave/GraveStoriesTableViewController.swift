@@ -25,6 +25,7 @@ class GraveStoriesTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        db = Firestore.firestore()
         getGraveStories()
         if currentAuthID != creatorId {
             self.navigationItem.rightBarButtonItem = nil
@@ -41,7 +42,9 @@ class GraveStoriesTableViewController: UITableViewController {
     
     func getGraveStories() {
         var stories = [Story]()
-        db.collection("stories").whereField("storyId", isEqualTo: currentAuthID!).getDocuments { (snapshot, error) in
+        guard let currentGraveCreatorId: String = creatorId else { return }
+        print(currentGraveCreatorId)
+        db.collection("stories").whereField("creatorId", isEqualTo: currentGraveCreatorId).getDocuments { (snapshot, error) in
                 if error != nil {
                     print(Error.self)
                 } else {
@@ -53,7 +56,6 @@ class GraveStoriesTableViewController: UITableViewController {
                         if let storiesResult = document.data() as? [String: Any], let otherStories = Story.init(dictionary: storiesResult) {
                             stories.append(otherStories)
                         }
-                        print("")
                     }
                     self.stories = stories
                     DispatchQueue.main.async {
@@ -72,7 +74,8 @@ class GraveStoriesTableViewController: UITableViewController {
         let storyImage: String = ""
         graveStoryId = storyId
         
-        let story = Story(graveId: graveId,
+        let story = Story(creatorId: creatorId ?? "nil",
+                          graveId: graveId,
                           storyId: storyId,
                           storyBody: storyBody,
                           storyTitle: storyTitle,

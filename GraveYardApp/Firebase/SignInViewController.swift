@@ -42,11 +42,11 @@ class SignInViewController: UIViewController, GIDSignInUIDelegate {
     // MARK: - Actions
     
     @IBAction func cancelSignUpButtonTapped(_ sender: UIBarButtonItem) {
-        dismiss(animated: true, completion: nil)
+        
     }
     
     @IBAction func googleSignIn(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
+        
     }
     
     @IBAction func logout(_ sender: UIBarButtonItem) {
