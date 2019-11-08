@@ -13,14 +13,20 @@ import FirebaseAuth
 
 class GraveStoriesTableViewController: UITableViewController {
     
+    @IBOutlet weak var addStoryBarButton: UIBarButtonItem!
+    
+    var currentAuthID = Auth.auth().currentUser?.uid
+    var creatorId: String?
     var graveStories: String?
     var db: Firestore!
     var tableArray = [String]()
     var stories: [Story]?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        if currentAuthID != creatorId {
+            self.navigationItem.rightBarButtonItem = nil
+        }
     }
     
     func getGraveStories() {
@@ -73,5 +79,9 @@ class GraveStoriesTableViewController: UITableViewController {
         tableView.deleteRows(at: [indexPath], with: .fade)
      }
     }
-
+    
+    @IBAction func addGraveStoryBarButtonTapped(_ sender: UIBarButtonItem) {
+        performSegue(withIdentifier: "graveStorySegue", sender: nil)
+    }
+    
 }

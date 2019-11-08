@@ -26,6 +26,7 @@ class GraveTableViewController: UITableViewController {
     var currentUser: Grave?
     var grave: [Grave]?
     var graveId: String?
+    var creatorId: String?
     var currentGraveLocation: String?
 
     override func viewDidLoad() {
@@ -71,6 +72,7 @@ class GraveTableViewController: UITableViewController {
         
         if segue.identifier == "graveStoriesSegue", let graveStoriesTVC = segue.destination as? GraveStoriesTableViewController {
             graveStoriesTVC.graveStories = graveId
+            graveStoriesTVC.creatorId = creatorId
         }
         print("prepare for segueSearch called")
     }
@@ -83,6 +85,7 @@ class GraveTableViewController: UITableViewController {
             } else {
                 for document in (snapshot?.documents)! {
                     if let name = document.data()["name"] as? String,
+                        let creatorId = document.data()["creatorId"] as? String,
                         let birthDate = document.data()["birthDate"] as? String,
                         let birthLocation = document.data()["birthLocation"] as? String,
                         let deathDate = document.data()["deathDate"] as? String,
@@ -91,6 +94,7 @@ class GraveTableViewController: UITableViewController {
                         let bio = document.data()["bio"] as? String {
                         print(name)
                         self.nameLabel.text = name
+                        self.creatorId = creatorId
                         self.birthDateLabel.text = birthDate
                         self.birthLocationLabel.text = birthLocation
                         self.deathDateLabel.text = deathDate
@@ -105,6 +109,10 @@ class GraveTableViewController: UITableViewController {
     
     @IBAction func editGraveBarButtonTapped(_ sender: UIBarButtonItem) {
         performSegue(withIdentifier: "editGraveSegue", sender: nil)
+    }
+    
+    @IBAction func storiesButtonTapped(_ sender: UIButton) {
+        performSegue(withIdentifier: "graveStoriesSegue", sender: nil)
     }
     
     @IBAction func unwindToGrave(_ sender: UIStoryboardSegue) {}

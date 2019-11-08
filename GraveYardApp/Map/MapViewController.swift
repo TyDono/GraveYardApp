@@ -191,7 +191,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                 let dismiss = UIAlertAction(title: "cancel", style: .default, handler: nil)
                 notSignInAlert.addAction(dismiss)
                 let goToLogIn = UIAlertAction(title: "Sign In", style: .default, handler: { _ in
-                    moveToMap()
+                    self.performSegue(withIdentifier: "segueToSignUp", sender: nil)
                 })
                 notSignInAlert.addAction(goToLogIn)
                 self.present(notSignInAlert, animated: true, completion: nil)
