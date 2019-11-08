@@ -65,6 +65,10 @@ class EditGraveTableViewController: UITableViewController {
         }
     }
     
+    struct PropertyKeys {
+        static let unwind = "unwindToGraveSegue"
+    }
+    
     @IBAction func saveGraveInfoTapped(_ sender: UIBarButtonItem) {
         let id = currentAuthID!
         guard let graveId = MapViewController.shared.currentGraveId  else { return } // this is the grave id that was tapped on
@@ -102,14 +106,7 @@ class EditGraveTableViewController: UITableViewController {
                 self.present(alert1, animated: true, completion: nil)
                 print(err)
             } else {
-                let alert2 = UIAlertController(title: "Saved", message: "Your Grave has been saved", preferredStyle: .alert)
-                alert2.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
-                    alert2.dismiss(animated: true, completion: nil)
-                }))
-                self.present(alert2, animated: true, completion: nil)
-                //self.profileInfo()
-                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                }
+                self.performSegue(withIdentifier: "unwindToGraveSegue", sender: nil)
             }
         }
     }
