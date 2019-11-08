@@ -47,27 +47,25 @@ class NewGraveStoryTableViewController: UITableViewController {
             let storyRef = self.db.collection("grave")
             storyRef.document(String(story.graveId)).updateData(story.dictionary){ err in
                 if let err = err {
-                    let alert1 = UIAlertController(title: "Not Saved", message: "Sorry, there was an error while trying to save your Grave. Please try again.", preferredStyle: .alert)
+                    let alert1 = UIAlertController(title: "Not Saved", message: "Sorry, there was an error while trying to save your Story. Please try again.", preferredStyle: .alert)
                     alert1.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
                         alert1.dismiss(animated: true, completion: nil)
                     }))
                     self.present(alert1, animated: true, completion: nil)
                     print(err)
                 } else {
-                    let alert2 = UIAlertController(title: "Saved", message: "Your Grave has been saved", preferredStyle: .alert)
+                    let alert2 = UIAlertController(title: "Saved", message: "Your Story has been saved", preferredStyle: .alert)
                     alert2.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
                         alert2.dismiss(animated: true, completion: nil)
+                        self.performSegue(withIdentifier: "editGraveStorySegue", sender: nil)
                     }))
                     self.present(alert2, animated: true, completion: nil)
-                    //self.profileInfo()
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                    }
                 }
             }
         }
         
         @IBAction func saveStoryBarButtonTapped(_ sender: UIBarButtonItem) {
-            performSegue(withIdentifier: "editGraveStorySegue", sender: nil)
+            updateStoryData()
         }
         
 
