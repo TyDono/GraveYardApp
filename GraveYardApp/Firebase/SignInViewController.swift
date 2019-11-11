@@ -9,13 +9,16 @@
 import UIKit
 import GoogleSignIn
 import FirebaseAuth
+import FirebaseFirestore
 import Firebase
 
 class SignInViewController: UIViewController, GIDSignInUIDelegate {
     
+    var currentAuthID = Auth.auth().currentUser?.uid
     var db: Firestore!
     var userId: String = ""
     let userDefault = UserDefaults.standard
+     private var listenHandler: AuthStateDidChangeListenerHandle?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,7 +39,15 @@ class SignInViewController: UIViewController, GIDSignInUIDelegate {
         return UIStatusBarStyle.lightContent
     }
     
-    @IBAction func googleSignIn(_ sender: Any) {}
+    // MARK: - Actions
+    
+    @IBAction func cancelSignUpButtonTapped(_ sender: UIBarButtonItem) {
+        
+    }
+    
+    @IBAction func googleSignIn(_ sender: Any) {
+        
+    }
     
     @IBAction func logout(_ sender: UIBarButtonItem) {
         self.userId = ""
