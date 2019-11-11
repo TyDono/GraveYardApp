@@ -115,6 +115,24 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     //        }
     //    }
     
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        if annotation is MKUserLocation {
+            return nil
+        }
+        return setGraveEntryPin(annotation: annotation)
+    }
+    
+    func setGraveEntryPin(annotation: MKAnnotation) -> MKAnnotationView? {
+        let reuseID = "entryPin"
+        var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseID) as? MKMarkerAnnotationView?
+        pinView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: reuseID)
+        pinView??.glyphImage = UIImage(named: "genericEntryGlyph")
+        pinView??.markerTintColor = #colorLiteral(red: 0.1201040372, green: 0.8558169007, blue: 0.5233284831, alpha: 1)
+        pinView??.canShowCallout = true
+        
+        return pinView ?? nil
+    }
+    
     func setMapViewLocationAndUser() {
         if CLLocationManager.locationServicesEnabled() {
             self.locationManager.requestWhenInUseAuthorization()
