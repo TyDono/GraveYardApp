@@ -81,7 +81,7 @@ class GraveStoriesTableViewController: UITableViewController {
                           storyTitle: storyTitle,
                           storyImage: storyImage)
         
-        let storyRef = self.db.collection("grave")
+        let storyRef = self.db.collection("stories")
         storyRef.document(String(story.storyId)).setData(story.dictionary) { err in
             if let err = err {
                 let graveCreationFailAert = UIAlertController(title: "Failed to create a Story", message: "Your device failed to properly create a Story, Please check your wifi and try again", preferredStyle: .alert)
@@ -128,5 +128,7 @@ class GraveStoriesTableViewController: UITableViewController {
     @IBAction func addGraveStoryBarButtonTapped(_ sender: UIBarButtonItem) {
         createNewStory()
     }
+    
+    @IBAction func unwindtoGraveStories(_ sender: UIStoryboardSegue) {}
     
 }

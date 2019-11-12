@@ -46,7 +46,7 @@ class NewGraveStoryTableViewController: UITableViewController {
                           storyTitle: storyTitle,
                           storyImage: storyImage)
         
-        let storyRef = self.db.collection("grave")
+        let storyRef = self.db.collection("stories")
         storyRef.document(String(story.graveId)).updateData(story.dictionary){ err in
             if let err = err {
                 let alert1 = UIAlertController(title: "Not Saved", message: "Sorry, there was an error while trying to save your Story. Please try again.", preferredStyle: .alert)
@@ -56,7 +56,7 @@ class NewGraveStoryTableViewController: UITableViewController {
                 self.present(alert1, animated: true, completion: nil)
                 print(err)
             } else {
-                self.performSegue(withIdentifier: "editGraveStorySegue", sender: nil)
+                self.performSegue(withIdentifier: "unwindtoGraveStoriesSegue", sender: nil)
             }
         }
     }
