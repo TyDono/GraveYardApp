@@ -26,7 +26,7 @@ struct Grave {
     var birthLocation: String
     var deathDate: String
     var deathLocation: String
-    var marriageStatus: String?
+    var familyStatus: String?
     var bio: String
     var graveLocationLatitude: String
     var graveLocationLongitude: String
@@ -45,7 +45,7 @@ struct Grave {
             "birthLocation": birthLocation,
             "deathDate": deathDate,
             "deathLocation": deathLocation,
-            "marriageStatus": marriageStatus ?? "", //when, where, who
+            "marriageStatus": familyStatus ?? "", //when, where, who
             "bio": bio,
             "graveLocationLatitude": graveLocationLatitude,
             "graveLocationLongitude": graveLocationLongitude
@@ -62,11 +62,11 @@ extension Grave: DocumentGraveSerializable {
             let birthLocation = dictionary["birthLocation"] as? String,
             let deathDate = dictionary["deathDate"] as? String,
             let deathLocation = dictionary["deathLocation"] as? String,
-            let marriageStatus = dictionary["marriageStatus"] as? String?,
+            let familyStatus = dictionary["marriageStatus"] as? String?,
             let bio = dictionary["bio"] as? String,
             let graveLocationLatitude = dictionary["graveLocationLatitude"] as? String,
-        let graveLocationLongitude = dictionary["graveLocationLongitude"] as? String else {return nil}
-        self.init(creatorId: creatorId, graveId: graveId, name: name, birthDate: birthDate, birthLocation: birthLocation, deathDate: deathDate, deathLocation: deathLocation, marriageStatus: marriageStatus, bio: bio, graveLocationLatitude: graveLocationLatitude, graveLocationLongitude: graveLocationLongitude)
+            let graveLocationLongitude = dictionary["graveLocationLongitude"] as? String else {return nil}
+        self.init(creatorId: creatorId, graveId: graveId, name: name, birthDate: birthDate, birthLocation: birthLocation, deathDate: deathDate, deathLocation: deathLocation, familyStatus: familyStatus, bio: bio, graveLocationLatitude: graveLocationLatitude, graveLocationLongitude: graveLocationLongitude)
     }
     
 }

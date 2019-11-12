@@ -77,7 +77,7 @@ class GraveStoriesTableViewController: UITableViewController {
         let story = Story(creatorId: creatorId ?? "nil",
                           graveId: graveId,
                           storyId: storyId,
-                          storyBody: storyBody,
+                          storyBodyText: storyBody,
                           storyTitle: storyTitle,
                           storyImage: storyImage)
         
@@ -90,7 +90,7 @@ class GraveStoriesTableViewController: UITableViewController {
                 self.present(graveCreationFailAert, animated: true, completion: nil)
                 print(err)
             } else {
-                self.performSegue(withIdentifier: "addGraveStorySegue", sender: nil)
+                self.performSegue(withIdentifier: "graveStorySegue", sender: nil)
                 print("Added Data")
             }
         }
@@ -110,17 +110,27 @@ class GraveStoriesTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "storyCell", for: indexPath) as? StoryTableViewCell else { return UITableViewCell() }
-
-        // Configure the cell...
-
+        
+        if let stories = stories {
+            let story = stories[indexPath.row]
+            cell.storyCellTitle.text = "\(story.storyTitle)"
+            cell.cellStoryText = "\(story.storyBodyText)"
+        }
+        
         return cell
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            self.tableArray.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
+        if currentAuthID == creatorId {
+            if editingStyle == .delete {
+                self.tableArray.remove(at: indexPath.row)
+                tableView.deleteRows(at: [indexPath], with: .fade)
+            }
         }
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "graveStorySegue", sender: self)
     }
     
     // MARK: - Action

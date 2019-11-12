@@ -9,7 +9,14 @@
 import UIKit
 
 class StoryTableViewCell: UITableViewCell {
-
+    @IBOutlet weak var storyCellImage: UIImageView!
+    @IBOutlet weak var storyCellTitle: UILabel!
+    
+    var story: [Story]?
+    var cellTitle: String?
+    var cellImage: UIImage?
+    var cellStoryText: String?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

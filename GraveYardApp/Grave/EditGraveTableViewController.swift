@@ -14,7 +14,7 @@ import GoogleSignIn
 class EditGraveTableViewController: UITableViewController {
     @IBOutlet weak var graveMainImage: UIImageView!
     @IBOutlet weak var nameTextField: UITextField!
-    @IBOutlet weak var marriageStatusTextField: UITextField!
+    @IBOutlet weak var familyStatusTextField: UITextField!
     @IBOutlet weak var birthDatePicker: UIDatePicker!
     @IBOutlet weak var birthLocationTextField: UITextField!
     @IBOutlet weak var deathDatePicker: UIDatePicker!
@@ -57,7 +57,7 @@ class EditGraveTableViewController: UITableViewController {
                         self.birthLocationTextField.text = birthLocation
                         self.deathDatePicker.date = deathDate
                         self.deathLocationTextField.text = deathLocation
-                        self.marriageStatusTextField.text = marriageStatus
+                        self.familyStatusTextField.text = marriageStatus
                         self.bioTextView.text = bio
                     }
                 }
@@ -81,7 +81,7 @@ class EditGraveTableViewController: UITableViewController {
         let death = deathDatePicker.date
         let deathDate = dateFormatter.string(from: death)
         guard let deathLocation = deathLocationTextField.text else { return }
-        guard let marriageStatus = marriageStatusTextField.text else { return }
+        guard let familyStatus = familyStatusTextField.text else { return }
         guard let bio = bioTextView.text else { return }
         guard let graveLocationLatitude = MapViewController.shared.currentGraveLocationLatitude  else { return }
         guard let graveLocationLongitude = MapViewController.shared.currentGraveLocationLongitude  else { return }
@@ -93,7 +93,7 @@ class EditGraveTableViewController: UITableViewController {
                           birthLocation: birthLocation,
                           deathDate: deathDate,
                           deathLocation: deathLocation,
-                          marriageStatus: marriageStatus,
+                          familyStatus: familyStatus,
                           bio: bio,
                           graveLocationLatitude: graveLocationLatitude,
                           graveLocationLongitude: graveLocationLongitude)

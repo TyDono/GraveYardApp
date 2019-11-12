@@ -216,7 +216,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                 let birthLocation: String = "At the Beach"
                 let deathDate: String = "July 4, 1995"
                 let deathLocation: String = "Florida"
-                let marriageStatus: String = "Yes"
+                let familyStatus: String = "Yes"
                 let bio: String = "Hi I'm bob ross and we are going to paint n stuff today!"
                 guard let graveId: String = MapViewController.shared.currentGraveId else { return }
                 guard let graveLocationLatitude: String = MapViewController.shared.currentGraveLocationLatitude else { return }
@@ -230,7 +230,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                                   birthLocation: birthLocation,
                                   deathDate: deathDate,
                                   deathLocation: deathLocation,
-                                  marriageStatus: marriageStatus,
+                                  familyStatus: familyStatus,
                                   bio: bio,
                                   graveLocationLatitude: graveLocationLatitude,
                                   graveLocationLongitude: graveLocationLongitude)

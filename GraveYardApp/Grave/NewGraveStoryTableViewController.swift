@@ -23,11 +23,6 @@ class NewGraveStoryTableViewController: UITableViewController {
         super.viewDidLoad()
         db = Firestore.firestore()
         
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-        
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
     func updateStoryData() {
@@ -35,14 +30,14 @@ class NewGraveStoryTableViewController: UITableViewController {
         guard let creatorId: String = currentAuthID else { return }
         guard let graveId: String = MapViewController.shared.currentGraveId else { return }
         guard let storyId: String = graveStoryId else { return }
-        guard let storyBody: String = storyBodyTextView.text else { return }
+        guard let storyBodyText: String = storyBodyTextView.text else { return }
         guard let storyTitle: String = storyTitleTextField.text else { return }
         let storyImage: String = ""
         
         let story = Story(creatorId: creatorId,
                           graveId: graveId,
                           storyId: storyId,
-                          storyBody: storyBody,
+                          storyBodyText: storyBodyText,
                           storyTitle: storyTitle,
                           storyImage: storyImage)
         
