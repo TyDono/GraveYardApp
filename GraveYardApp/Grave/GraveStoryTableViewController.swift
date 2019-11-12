@@ -14,6 +14,7 @@ class GraveStoryTableViewController: UITableViewController {
     
     var db: Firestore!
     var currentAuthID = Auth.auth().currentUser?.uid
+    var graveStoryId: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()

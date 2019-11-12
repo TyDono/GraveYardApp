@@ -32,14 +32,6 @@ class GraveStoriesTableViewController: UITableViewController {
         }
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        if segue.identifier == "addGraveStorySegue", let newGraveStoryTVC = segue.destination as? GraveStoriesTableViewController {
-            newGraveStoryTVC.graveStories = graveStoryId
-        }
-        print("prepare for segueSearch called")
-    }
-    
     func getGraveStories() {
         var stories = [Story]()
         guard let currentGraveCreatorId: String = creatorId else { return }
@@ -90,10 +82,19 @@ class GraveStoriesTableViewController: UITableViewController {
                 self.present(graveCreationFailAert, animated: true, completion: nil)
                 print(err)
             } else {
-                self.performSegue(withIdentifier: "graveStorySegue", sender: nil)
+                self.performSegue(withIdentifier: "editGraveStorySegue", sender: nil)
                 print("Added Data")
             }
         }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "editGraveStorySegue", let newGraveStoryTVC = segue.destination as? NewGraveStoryTableViewController {
+            newGraveStoryTVC.graveStoryId = graveStoryId
+        } else if segue.identifier == "graveStorySegue", let graveStoryTVC = segue.destination as? GraveStoryTableViewController {
+            graveStoryTVC.graveStoryId = graveStoryId
+        }
+
     }
 
     // MARK: - Table view data source

@@ -675,6 +675,35 @@
             </objects>
             <point key="canvasLocation" x="3386.9565217391305" y="614.67391304347836"/>
         </scene>
+        <!--Table View Controller-->
+        <scene sceneID="3mN-1B-43e">
+            <objects>
+                <tableViewController id="Deg-jX-e5u" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="VBc-MQ-Azj">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="UQg-BK-EWs">
+                                <rect key="frame" x="0.0" y="28" width="414" height="43.666667938232422"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="UQg-BK-EWs" id="yAz-jY-Y1c">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.666667938232422"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Deg-jX-e5u" id="bDe-oe-SCo"/>
+                            <outlet property="delegate" destination="Deg-jX-e5u" id="XH7-tH-yPV"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="Vht-OE-uEE"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qdD-Km-JKY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1732" y="2076"/>
+        </scene>
         <!--Edit Grave Story Table View Controller-->
         <scene sceneID="ZYY-pw-h5x">
             <objects>
@@ -825,7 +854,8 @@
                     </navigationItem>
                     <connections>
                         <outlet property="addStoryBarButton" destination="sBU-Qb-ECg" id="BbL-qc-CNo"/>
-                        <segue destination="8GQ-fW-7kZ" kind="show" identifier="graveStorySegue" id="7DO-rd-4qB"/>
+                        <segue destination="8GQ-fW-7kZ" kind="show" identifier="editGraveStorySegue" id="7DO-rd-4qB"/>
+                        <segue destination="Deg-jX-e5u" kind="show" identifier="graveStorySegue" id="6H8-Bg-iUI"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="beJ-ji-Lhz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
