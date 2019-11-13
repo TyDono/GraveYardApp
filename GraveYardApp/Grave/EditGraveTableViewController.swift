@@ -47,7 +47,7 @@ class EditGraveTableViewController: UITableViewController {
                         let birthLocation = document.data()["birthLocation"] as? String,
                         let deathDate = document.data()["deathDate"] as? String,
                         let deathLocation = document.data()["deathLocation"] as? String,
-                        let marriageStatus = document.data()["marriageStatus"] as? String,
+                        let familyStatus = document.data()["familyStatus"] as? String,
                         let bio = document.data()["bio"] as? String {
 
                         guard let birthDate = self.dateFormatter.date(from:birthDate) ?? defaultDate else { return } // this fails atm
@@ -57,7 +57,7 @@ class EditGraveTableViewController: UITableViewController {
                         self.birthLocationTextField.text = birthLocation
                         self.deathDatePicker.date = deathDate
                         self.deathLocationTextField.text = deathLocation
-                        self.familyStatusTextField.text = marriageStatus
+                        self.familyStatusTextField.text = familyStatus
                         self.bioTextView.text = bio
                     }
                 }
