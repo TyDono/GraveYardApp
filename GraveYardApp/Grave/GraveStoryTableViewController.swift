@@ -6,9 +6,11 @@
 //  Copyright © 2019 Tyler Donohue. All rights reserved.
 //
 
-import FirebaseAuth
+import UIKit
 import FirebaseFirestore
-import GoogleSignIn
+import Firebase
+import FirebaseAuth
+
 
 class GraveStoryTableViewController: UITableViewController {
     @IBOutlet weak var storyTitle: UILabel!
@@ -17,23 +19,22 @@ class GraveStoryTableViewController: UITableViewController {
     var db: Firestore!
     var currentAuthID = Auth.auth().currentUser?.uid
     var graveStoryId: String?
+    var creatorId: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         db = Firestore.firestore()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        if currentAuthID != creatorId {
+            self.navigationItem.rightBarButtonItem = nil
+        }
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "editGraveStorySegue", let newGraveStoryTVC = segue.destination as? NewGraveStoryTableViewController {
-            newGraveStoryTVC.graveStoryId = graveStoryId
-            newGraveStoryTVC.storyBodyTextView.text = storyBodyBio.text
-            newGraveStoryTVC.storyTitleTextField.text = storyTitle.text
+        if segue.identifier == "editGraveStorySegue", let editGraveStoryTVC = segue.destination as? NewGraveStoryTableViewController {
+            editGraveStoryTVC.graveStoryId = graveStoryId
+            editGraveStoryTVC.storyBodyTextView.text = storyBodyBio.text
+            editGraveStoryTVC.storyTitleTextField.text = storyTitle.text
         }
     }
 

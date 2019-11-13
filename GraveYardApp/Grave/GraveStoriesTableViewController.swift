@@ -119,6 +119,7 @@ class GraveStoriesTableViewController: UITableViewController {
                 graveStoryTVC.graveStoryId = graveStoryId
                 graveStoryTVC.storyTitle.text = story.storyTitle
                 graveStoryTVC.storyBodyBio.text = story.storyBodyText
+                graveStoryTVC.creatorId = creatorId
             }
         }
     }
