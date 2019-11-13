@@ -112,7 +112,7 @@ class GraveStoriesTableViewController: UITableViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "editGraveStorySegue", let newGraveStoryTVC = segue.destination as? NewGraveStoryTableViewController {
+        if segue.identifier == "newGraveStorySegue", let newGraveStoryTVC = segue.destination as? NewGraveStoryTableViewController {
             newGraveStoryTVC.graveStoryId = graveStoryId
         } else if segue.identifier == "graveStorySegue", let graveStoryTVC = segue.destination as? GraveStoryTableViewController {
             if let row = self.tableView.indexPathForSelectedRow?.row, let story = stories?[row] {

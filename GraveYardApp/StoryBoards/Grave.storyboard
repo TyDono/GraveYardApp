@@ -699,21 +699,31 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="259"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="title label text" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0hO-6U-BGI">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="title label text" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0hO-6U-BGI">
                                                     <rect key="frame" x="20" y="11" width="374" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="jyI-8C-Zbg"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="bio bopdy text" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ak0-MM-c96">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="bio bopdy text" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ak0-MM-c96">
                                                     <rect key="frame" x="20" y="40" width="374" height="208"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="ak0-MM-c96" firstAttribute="bottom" secondItem="yAz-jY-Y1c" secondAttribute="bottomMargin" id="DyL-2M-pnu"/>
+                                                <constraint firstItem="0hO-6U-BGI" firstAttribute="top" secondItem="yAz-jY-Y1c" secondAttribute="topMargin" id="JvX-CF-hnT"/>
+                                                <constraint firstItem="ak0-MM-c96" firstAttribute="top" secondItem="0hO-6U-BGI" secondAttribute="bottom" constant="8" id="LdD-AD-UQH"/>
+                                                <constraint firstItem="0hO-6U-BGI" firstAttribute="leading" secondItem="yAz-jY-Y1c" secondAttribute="leadingMargin" id="bEf-ET-DE6"/>
+                                                <constraint firstItem="0hO-6U-BGI" firstAttribute="trailing" secondItem="yAz-jY-Y1c" secondAttribute="trailingMargin" id="kHb-1u-177"/>
+                                                <constraint firstItem="0hO-6U-BGI" firstAttribute="leading" secondItem="ak0-MM-c96" secondAttribute="leading" id="nwZ-tl-jJl"/>
+                                                <constraint firstItem="0hO-6U-BGI" firstAttribute="trailing" secondItem="ak0-MM-c96" secondAttribute="trailing" id="sML-tl-8uW"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -724,44 +734,22 @@
                             <outlet property="delegate" destination="Deg-jX-e5u" id="XH7-tH-yPV"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="Vht-OE-uEE"/>
+                    <navigationItem key="navigationItem" id="Vht-OE-uEE">
+                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="rwy-dy-vpC">
+                            <connections>
+                                <action selector="editStoryBarButtonTapped:" destination="Deg-jX-e5u" id="Bmu-fs-ElG"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="storyBodyBio" destination="ak0-MM-c96" id="jnj-of-u2P"/>
                         <outlet property="storyTitle" destination="0hO-6U-BGI" id="Ey8-1o-Ibf"/>
+                        <segue destination="8GQ-fW-7kZ" kind="show" identifier="editGraveSegue" id="fpu-aT-yyc"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qdD-Km-JKY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1731.8840579710147" y="2074.7282608695655"/>
-        </scene>
-        <!--Edit Grave Story Table View Controller-->
-        <scene sceneID="ZYY-pw-h5x">
-            <objects>
-                <tableViewController id="7yq-hQ-o6j" customClass="EditGraveStoryTableViewController" customModule="GraveYardApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="6g8-vA-rr1">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="K7m-i7-F6T">
-                                <rect key="frame" x="0.0" y="28" width="414" height="43.666667938232422"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="K7m-i7-F6T" id="lwa-YK-ayG">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.666667938232422"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="7yq-hQ-o6j" id="83Y-lj-OZY"/>
-                            <outlet property="delegate" destination="7yq-hQ-o6j" id="fdx-AI-JJa"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" id="0al-DK-1zh"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="IEN-KV-uzg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2481" y="2077"/>
         </scene>
         <!--New Grave Story Table View Controller-->
         <scene sceneID="23l-6f-ENa">
@@ -817,7 +805,6 @@
                     <connections>
                         <outlet property="storyBodyTextView" destination="dKM-Lg-ic1" id="MVr-ZA-voP"/>
                         <outlet property="storyTitleTextField" destination="rNP-Pd-iPL" id="EG2-cF-uUU"/>
-                        <segue destination="7yq-hQ-o6j" kind="show" identifier="editGraveStorySegue" id="w7a-Q8-4sB"/>
                         <segue destination="V8h-T1-3cD" kind="unwind" identifier="unwindtoGraveStoriesSegue" unwindAction="unwindtoGraveStories:" id="22u-gQ-wbV"/>
                     </connections>
                 </tableViewController>
@@ -884,7 +871,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="addStoryBarButton" destination="sBU-Qb-ECg" id="BbL-qc-CNo"/>
-                        <segue destination="8GQ-fW-7kZ" kind="show" identifier="editGraveStorySegue" id="7DO-rd-4qB"/>
+                        <segue destination="8GQ-fW-7kZ" kind="show" identifier="newGraveStorySegue" id="7DO-rd-4qB"/>
                         <segue destination="Deg-jX-e5u" kind="show" identifier="graveStorySegue" id="6H8-Bg-iUI"/>
                     </connections>
                 </tableViewController>
@@ -932,4 +919,7 @@
     <resources>
         <image name="bob ross" width="112.5" height="112.5"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="fpu-aT-yyc"/>
+    </inferredMetricsTieBreakers>
 </document>

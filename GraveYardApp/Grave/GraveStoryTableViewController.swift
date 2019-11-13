@@ -28,5 +28,16 @@ class GraveStoryTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "editGraveStorySegue", let newGraveStoryTVC = segue.destination as? NewGraveStoryTableViewController {
+            newGraveStoryTVC.graveStoryId = graveStoryId
+            newGraveStoryTVC.storyBodyTextView.text = storyBodyBio.text
+            newGraveStoryTVC.storyTitleTextField.text = storyTitle.text
+        }
+    }
 
+    @IBAction func editStoryBarButtonTapped(_ sender: UIBarButtonItem) {
+        performSegue(withIdentifier: "editGraveStorySegue", sender: nil)
+    }
 }
