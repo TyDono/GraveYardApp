@@ -87,15 +87,6 @@ class GraveStoriesTableViewController: UITableViewController {
             }
         }
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "editGraveStorySegue", let newGraveStoryTVC = segue.destination as? NewGraveStoryTableViewController {
-            newGraveStoryTVC.graveStoryId = graveStoryId
-        } else if segue.identifier == "graveStorySegue", let graveStoryTVC = segue.destination as? GraveStoryTableViewController {
-            graveStoryTVC.graveStoryId = graveStoryId
-        }
-
-    }
 
     // MARK: - Table view data source
 
@@ -117,8 +108,20 @@ class GraveStoriesTableViewController: UITableViewController {
             cell.storyCellTitle.text = "\(story.storyTitle)"
             cell.cellStoryText = "\(story.storyBodyText)"
         }
-        
         return cell
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "editGraveStorySegue", let newGraveStoryTVC = segue.destination as? NewGraveStoryTableViewController {
+            newGraveStoryTVC.graveStoryId = graveStoryId
+        } else if segue.identifier == "graveStorySegue", let graveStoryTVC = segue.destination as? GraveStoryTableViewController {
+            if let row = self.tableView.indexPathForSelectedRow?.row, let story = stories?[row] {
+                graveStoryTVC.graveStoryId = graveStoryId
+                graveStoryTVC.storyTitle.text = story.storyTitle
+                graveStoryTVC.storyBodyBio.text = story.storyBodyText
+            }
+        }
+        
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {

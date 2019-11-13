@@ -42,7 +42,7 @@ class NewGraveStoryTableViewController: UITableViewController {
                           storyImage: storyImage)
         
         let storyRef = self.db.collection("stories")
-        storyRef.document(String(story.graveId)).updateData(story.dictionary){ err in
+        storyRef.document(String(story.storyId)).updateData(story.dictionary){ err in
             if let err = err {
                 let alert1 = UIAlertController(title: "Not Saved", message: "Sorry, there was an error while trying to save your Story. Please try again.", preferredStyle: .alert)
                 alert1.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in

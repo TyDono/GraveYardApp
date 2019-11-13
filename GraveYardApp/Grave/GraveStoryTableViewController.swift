@@ -11,6 +11,8 @@ import FirebaseFirestore
 import GoogleSignIn
 
 class GraveStoryTableViewController: UITableViewController {
+    @IBOutlet weak var storyTitle: UILabel!
+    @IBOutlet weak var storyBodyBio: UILabel!
     
     var db: Firestore!
     var currentAuthID = Auth.auth().currentUser?.uid
