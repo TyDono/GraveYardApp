@@ -14,7 +14,7 @@ import GoogleSignIn
 class GraveTableViewController: UITableViewController {
     @IBOutlet weak var graveMainImage: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var marriageStatusLabel: UILabel!
+    @IBOutlet weak var familyStatusLabel: UILabel!
     @IBOutlet weak var birthDateLabel: UILabel!
     @IBOutlet weak var birthLocationLabel: UILabel!
     @IBOutlet weak var deathDateLabel: UILabel!
@@ -90,7 +90,7 @@ class GraveTableViewController: UITableViewController {
                         let birthLocation = document.data()["birthLocation"] as? String,
                         let deathDate = document.data()["deathDate"] as? String,
                         let deathLocation = document.data()["deathLocation"] as? String,
-                        let marriageStatus = document.data()["marriageStatus"] as? String,
+                        let familyStatus = document.data()["familyStatus"] as? String,
                         let bio = document.data()["bio"] as? String {
                         print(name)
                         self.nameLabel.text = name
@@ -99,7 +99,7 @@ class GraveTableViewController: UITableViewController {
                         self.birthLocationLabel.text = birthLocation
                         self.deathDateLabel.text = deathDate
                         self.deathLocationLabel.text = deathLocation
-//                        self.marriageStatusLabel.text = marriageStatus
+//                        self.familyStatusLabel.text = familyStatus
                         self.bioLabel.text = bio
                     }
                 }

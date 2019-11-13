@@ -45,7 +45,7 @@ struct Grave {
             "birthLocation": birthLocation,
             "deathDate": deathDate,
             "deathLocation": deathLocation,
-            "marriageStatus": familyStatus ?? "", //when, where, who
+            "familyStatus": familyStatus ?? "", //when, where, who
             "bio": bio,
             "graveLocationLatitude": graveLocationLatitude,
             "graveLocationLongitude": graveLocationLongitude
@@ -62,7 +62,7 @@ extension Grave: DocumentGraveSerializable {
             let birthLocation = dictionary["birthLocation"] as? String,
             let deathDate = dictionary["deathDate"] as? String,
             let deathLocation = dictionary["deathLocation"] as? String,
-            let familyStatus = dictionary["marriageStatus"] as? String?,
+            let familyStatus = dictionary["familyStatus"] as? String?,
             let bio = dictionary["bio"] as? String,
             let graveLocationLatitude = dictionary["graveLocationLatitude"] as? String,
             let graveLocationLongitude = dictionary["graveLocationLongitude"] as? String else {return nil}

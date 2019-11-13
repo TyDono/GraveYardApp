@@ -121,7 +121,6 @@ class GraveStoriesTableViewController: UITableViewController {
                 graveStoryTVC.storyBodyBio.text = story.storyBodyText
             }
         }
-        
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
