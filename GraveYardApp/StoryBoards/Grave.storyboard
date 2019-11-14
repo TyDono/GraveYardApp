@@ -233,10 +233,17 @@
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bob ross" translatesAutoresizingMaskIntoConstraints="NO" id="rzf-gV-0fs">
                                                     <rect key="frame" x="11" y="-15" width="392" height="256"/>
                                                 </imageView>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3VJ-Ys-YoO">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3VJ-Ys-YoO">
                                                     <rect key="frame" x="11" y="249" width="392" height="30"/>
-                                                    <fontDescription key="fontDescription" name="Storybook" family="Storybook" pointSize="24"/>
-                                                    <state key="normal" title="STORIES"/>
+                                                    <state key="normal">
+                                                        <attributedString key="attributedTitle">
+                                                            <fragment content="STORIES">
+                                                                <attributes>
+                                                                    <font key="NSFont" size="24" name="Storybook"/>
+                                                                </attributes>
+                                                            </fragment>
+                                                        </attributedString>
+                                                    </state>
                                                     <connections>
                                                         <action selector="storiesButtonTapped:" destination="df1-gm-beU" eventType="touchUpInside" id="aqs-QM-3lI"/>
                                                     </connections>
@@ -898,6 +905,6 @@
         <image name="icons8-journal-30" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="7DO-rd-4qB"/>
+        <segue reference="fpu-aT-yyc"/>
     </inferredMetricsTieBreakers>
 </document>
