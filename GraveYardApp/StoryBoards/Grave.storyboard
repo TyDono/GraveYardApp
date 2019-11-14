@@ -806,38 +806,39 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="storyCell" rowHeight="65" id="lMZ-eW-jDX" customClass="StoryTableViewCell" customModule="GraveYardApp" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="414" height="65"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="storyCell" rowHeight="70" id="C2P-6y-1XP" customClass="StoryTableViewCell" customModule="GraveYardApp" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="70"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="lMZ-eW-jDX" id="SqM-79-6dM" customClass="StoryTableViewCell" customModule="GraveYardApp" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="65"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="C2P-6y-1XP" id="rdG-Rd-QgH">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="70"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zD6-mc-yff">
-                                            <rect key="frame" x="69" y="16.666666666666668" width="333" height="30.000000000000004"/>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icons8-journal-30" translatesAutoresizingMaskIntoConstraints="NO" id="Niw-gf-gMO">
+                                            <rect key="frame" x="20" y="10" width="50" height="50"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="50" id="N4b-A6-HsE"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Story" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sAf-wn-5V9">
+                                            <rect key="frame" x="78" y="11" width="316" height="48"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icons8-journal-30" translatesAutoresizingMaskIntoConstraints="NO" id="FxQ-Rg-Qqk">
-                                            <rect key="frame" x="20" y="11" width="41" height="41"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="41" id="XEv-dY-HPE"/>
-                                                <constraint firstAttribute="width" constant="41" id="oF7-oi-oWH"/>
-                                            </constraints>
-                                        </imageView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="zD6-mc-yff" firstAttribute="trailing" secondItem="SqM-79-6dM" secondAttribute="trailingMargin" constant="8" id="6gK-D3-ofd"/>
-                                        <constraint firstItem="FxQ-Rg-Qqk" firstAttribute="top" secondItem="SqM-79-6dM" secondAttribute="topMargin" id="89p-2o-7TQ"/>
-                                        <constraint firstItem="zD6-mc-yff" firstAttribute="leading" secondItem="FxQ-Rg-Qqk" secondAttribute="trailing" constant="8" id="YUL-mu-JVZ"/>
-                                        <constraint firstItem="FxQ-Rg-Qqk" firstAttribute="centerY" secondItem="zD6-mc-yff" secondAttribute="centerY" id="bV1-dF-LNL"/>
-                                        <constraint firstItem="FxQ-Rg-Qqk" firstAttribute="leading" secondItem="SqM-79-6dM" secondAttribute="leadingMargin" id="onr-85-JW1"/>
+                                        <constraint firstItem="sAf-wn-5V9" firstAttribute="leading" secondItem="Niw-gf-gMO" secondAttribute="trailing" constant="8" id="IoB-vR-9f9"/>
+                                        <constraint firstItem="sAf-wn-5V9" firstAttribute="trailing" secondItem="rdG-Rd-QgH" secondAttribute="trailingMargin" id="OY9-su-hfk"/>
+                                        <constraint firstItem="sAf-wn-5V9" firstAttribute="top" secondItem="rdG-Rd-QgH" secondAttribute="topMargin" id="WeI-v0-29Z"/>
+                                        <constraint firstItem="Niw-gf-gMO" firstAttribute="leading" secondItem="rdG-Rd-QgH" secondAttribute="leadingMargin" id="gZ7-zJ-XXC"/>
+                                        <constraint firstItem="Niw-gf-gMO" firstAttribute="top" secondItem="rdG-Rd-QgH" secondAttribute="topMargin" constant="-1" id="iU8-el-eGV"/>
+                                        <constraint firstItem="sAf-wn-5V9" firstAttribute="bottom" secondItem="rdG-Rd-QgH" secondAttribute="bottomMargin" id="oCy-2b-qnT"/>
+                                        <constraint firstItem="Niw-gf-gMO" firstAttribute="centerY" secondItem="sAf-wn-5V9" secondAttribute="centerY" id="qBy-1E-MDr"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="storyCellImage" destination="FxQ-Rg-Qqk" id="U0i-IY-rDc"/>
-                                    <outlet property="storyCellTitle" destination="zD6-mc-yff" id="Kua-ki-MDU"/>
+                                    <outlet property="storyCellImage" destination="Niw-gf-gMO" id="vK8-sd-T6X"/>
+                                    <outlet property="storyCellTitle" destination="sAf-wn-5V9" id="Oui-4w-13O"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -905,6 +906,6 @@
         <image name="icons8-journal-30" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="fpu-aT-yyc"/>
+        <segue reference="7DO-rd-4qB"/>
     </inferredMetricsTieBreakers>
 </document>
