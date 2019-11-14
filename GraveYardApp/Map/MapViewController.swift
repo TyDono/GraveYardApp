@@ -29,6 +29,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     var currentGraveId: String?
     var currentGraveLocationLatitude: String?
     var currentGraveLocationLongitude: String?
+    var graves = [Grave]()
+
     
     //==================================================
     // MARK: - View Lifecycle
@@ -56,6 +58,28 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     //==================================================
     // MARK: - Functions
     //==================================================
+    
+    func getGraveEntries() {
+    db.collection("stories").whereField("graveId", isEqualTo:  ).getDocuments { (snapshot, error) in
+            if error != nil {
+                print(Error.self)
+            } else {
+                guard let snapshot = snapshot else {
+                    print("could not unrwap snapshot")
+                    return
+                }
+                for document in (snapshot.documents) {
+                    if let graveResult = document.data() as? [String: Any], let graveStories = Story.init(dictionary: storiesResult) {
+                        graves.append(otherStories)
+                    }
+                }
+                self.graves = graves
+//                DispatchQueue.main.async {
+//
+//                }
+            }
+        }
+    }
     
     //    func createData() {
     //
