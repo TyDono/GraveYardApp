@@ -35,6 +35,7 @@ class GraveTableViewController: UITableViewController {
         super.viewDidLoad()
         db = Firestore.firestore()
         chageTextColor()
+        //tableView.rowHeight = UITableView.automaticDimension
        // changeBackground()
         getGraveData()
     }
@@ -47,6 +48,14 @@ class GraveTableViewController: UITableViewController {
     }
 
     // MARK: - Table view data source
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+        }
+
+    override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+        }
 
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
