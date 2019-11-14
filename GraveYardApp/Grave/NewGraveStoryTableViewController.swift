@@ -21,8 +21,13 @@ class NewGraveStoryTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        chageTextColor()
         db = Firestore.firestore()
-        
+    }
+    
+    func chageTextColor() {
+        navigationItem.leftBarButtonItem?.tintColor = UIColor(0.0, 128.0, 128.0, 1.0)
+        navigationItem.rightBarButtonItem?.tintColor = UIColor(0.0, 128.0, 128.0, 1.0)
     }
     
     func updateStoryData() {

@@ -13,6 +13,7 @@ import GoogleSignIn
 
 class GraveTableViewController: UITableViewController {
     @IBOutlet weak var graveMainImage: UIImageView!
+    @IBOutlet weak var storiesButton: UIButton!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var familyStatusLabel: UILabel!
     @IBOutlet weak var birthDateLabel: UILabel!
@@ -28,12 +29,20 @@ class GraveTableViewController: UITableViewController {
     var graveId: String?
     var creatorId: String = ""
     var currentGraveLocation: String?
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         db = Firestore.firestore()
+        chageTextColor()
        // changeBackground()
         getGraveData()
+    }
+    
+    func chageTextColor() {
+        storiesButton.tintColor = UIColor(0.0, 128.0, 128.0, 1.0)
+        navigationItem.leftBarButtonItem?.tintColor = UIColor(0.0, 128.0, 128.0, 1.0)
+        navigationItem.rightBarButtonItem?.tintColor = UIColor(0.0, 128.0, 128.0, 1.0)
     }
 
     // MARK: - Table view data source

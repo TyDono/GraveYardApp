@@ -29,9 +29,16 @@ class EditGraveTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        chageTextColor()
         db = Firestore.firestore()
         getGraveData()
     }
+    
+    func chageTextColor() {
+        navigationItem.leftBarButtonItem?.tintColor = UIColor(0.0, 128.0, 128.0, 1.0)
+        navigationItem.rightBarButtonItem?.tintColor = UIColor(0.0, 128.0, 128.0, 1.0)
+    }
+
     
     func getGraveData() { // mak srue to change the sting back to a date here
         dateFormatter.dateFormat = "yyyy-MM-dd"

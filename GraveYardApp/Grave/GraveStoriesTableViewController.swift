@@ -25,11 +25,17 @@ class GraveStoriesTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        chageTextColor()
         db = Firestore.firestore()
         getGraveStories()
         if currentAuthID != creatorId {
             self.navigationItem.rightBarButtonItem = nil
         }
+    }
+    
+    func chageTextColor() {
+        navigationItem.leftBarButtonItem?.tintColor = UIColor(0.0, 128.0, 128.0, 1.0)
+        navigationItem.rightBarButtonItem?.tintColor = UIColor(0.0, 128.0, 128.0, 1.0)
     }
     
     func getGraveStories() {

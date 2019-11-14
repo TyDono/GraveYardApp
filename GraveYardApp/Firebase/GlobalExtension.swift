@@ -20,3 +20,9 @@ func moveToMap() {
     let mapVC = storyboard.instantiateViewController(withIdentifier: "map")
     appDelegate.window?.rootViewController = mapVC
 }
+
+extension UIColor {
+    convenience init(_ r: Double,_ g: Double,_ b: Double,_ a: Double) {
+        self.init(red: CGFloat(r/255), green: CGFloat(g/255), blue: CGFloat(b/255), alpha: CGFloat(a))
+    }
+}
