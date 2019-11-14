@@ -27,10 +27,14 @@ class GraveStoriesTableViewController: UITableViewController {
         super.viewDidLoad()
         chageTextColor()
         db = Firestore.firestore()
-        getGraveStories()
+//        getGraveStories()
         if currentAuthID != creatorId {
             self.navigationItem.rightBarButtonItem = nil
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        getGraveStories()
     }
     
     func chageTextColor() {
@@ -89,7 +93,7 @@ class GraveStoriesTableViewController: UITableViewController {
                 self.present(graveCreationFailAert, animated: true, completion: nil)
                 print(err)
             } else {
-                self.performSegue(withIdentifier: "editGraveStorySegue", sender: nil)
+                self.performSegue(withIdentifier: "newGraveStorySegue", sender: nil)
                 print("Added Data")
             }
         }

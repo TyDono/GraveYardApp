@@ -45,7 +45,7 @@ struct Grave {
             "birthLocation": birthLocation,
             "deathDate": deathDate,
             "deathLocation": deathLocation,
-            "familyStatus": familyStatus ?? "", //when, where, who
+            "familyStatus": familyStatus ?? "",
             "bio": bio,
             "graveLocationLatitude": graveLocationLatitude,
             "graveLocationLongitude": graveLocationLongitude

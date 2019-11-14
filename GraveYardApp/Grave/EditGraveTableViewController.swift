@@ -55,7 +55,7 @@ class EditGraveTableViewController: UITableViewController {
                         let birthLocation = document.data()["birthLocation"] as? String,
                         let deathDate = document.data()["deathDate"] as? String,
                         let deathLocation = document.data()["deathLocation"] as? String,
-                        let familyStatus = document.data()["familyStatus"] as? String,
+//                        let familyStatus = document.data()["familyStatus"] as? String,
                         let bio = document.data()["bio"] as? String {
 
                         guard let birthDate = self.dateFormatter.date(from:birthDate) ?? defaultDate else { return } // this fails atm
@@ -65,7 +65,7 @@ class EditGraveTableViewController: UITableViewController {
                         self.birthLocationTextField.text = birthLocation
                         self.deathDatePicker.date = deathDate
                         self.deathLocationTextField.text = deathLocation
-                        self.familyStatusTextField.text = familyStatus
+//                        self.familyStatusTextField.text = familyStatus
                         self.bioTextView.text = bio
                     }
                 }
@@ -89,7 +89,7 @@ class EditGraveTableViewController: UITableViewController {
         let death = deathDatePicker.date
         let deathDate = dateFormatter.string(from: death)
         guard let deathLocation = deathLocationTextField.text else { return }
-        guard let familyStatus = familyStatusTextField.text else { return }
+//        guard let familyStatus = familyStatusTextField.text else { return }
         guard let bio = bioTextView.text else { return }
         guard let graveLocationLatitude = MapViewController.shared.currentGraveLocationLatitude  else { return }
         guard let graveLocationLongitude = MapViewController.shared.currentGraveLocationLongitude  else { return }
@@ -101,7 +101,7 @@ class EditGraveTableViewController: UITableViewController {
                           birthLocation: birthLocation,
                           deathDate: deathDate,
                           deathLocation: deathLocation,
-                          familyStatus: familyStatus,
+//                          familyStatus: familyStatus,
                           bio: bio,
                           graveLocationLatitude: graveLocationLatitude,
                           graveLocationLongitude: graveLocationLongitude)

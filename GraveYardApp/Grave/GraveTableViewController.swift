@@ -37,6 +37,10 @@ class GraveTableViewController: UITableViewController {
         chageTextColor()
         //tableView.rowHeight = UITableView.automaticDimension
        // changeBackground()
+        //getGraveData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         getGraveData()
     }
     
