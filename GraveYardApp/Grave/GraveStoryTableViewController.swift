@@ -31,6 +31,7 @@ class GraveStoryTableViewController: UITableViewController {
     }
     
     func chageTextColor() {
+        tableView.separatorColor = UIColor(0.0, 128.0, 128.0, 1.0)
         navigationItem.leftBarButtonItem?.tintColor = UIColor(0.0, 128.0, 128.0, 1.0)
         navigationItem.rightBarButtonItem?.tintColor = UIColor(0.0, 128.0, 128.0, 1.0)
     }
