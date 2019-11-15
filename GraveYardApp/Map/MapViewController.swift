@@ -29,7 +29,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     var currentGraveId: String?
     var currentGraveLocationLatitude: String?
     var currentGraveLocationLongitude: String?
-    var graves = [Grave]()
+    var graves : [Grave]?
+    var graveAnnotationCoordinates: String?
 
     
     //==================================================
@@ -41,6 +42,13 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         checkForUserId()
         setMapViewLocationAndUser()
         signInTextChange()
+        getGraveEntries { (graves) in
+            self.graves = graves
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        dropGraveEntryPins()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -59,26 +67,90 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     // MARK: - Functions
     //==================================================
     
-    func getGraveEntries() {
-    db.collection("stories").whereField("graveId", isEqualTo:  ).getDocuments { (snapshot, error) in
-            if error != nil {
-                print(Error.self)
-            } else {
-                guard let snapshot = snapshot else {
-                    print("could not unrwap snapshot")
-                    return
-                }
-                for document in (snapshot.documents) {
-                    if let graveResult = document.data() as? [String: Any], let graveStories = Story.init(dictionary: storiesResult) {
-                        graves.append(otherStories)
-                    }
-                }
-                self.graves = graves
-//                DispatchQueue.main.async {
-//
-//                }
+    func dropGraveEntryPins() {
+        if graves != nil {
+            for i in 0...graves!.count - 1 {
+                let registeredGrave = graves![i]
+                let annotation = MKPointAnnotation()
+                let lifeSpan = "\(registeredGrave.birthDate) - \(registeredGrave.deathDate)"
+                guard let graveLatitude = Double(registeredGrave.graveLocationLatitude),
+                    let graveLongitude = Double(registeredGrave.graveLocationLongitude) else {
+                        print("We don't have coordinates yet")
+                        return }
+                let graveCoordinates = CLLocationCoordinate2D(latitude: graveLatitude, longitude: graveLongitude)
+                let graveEntryAnnotation = GraveEntryAnnotation(annotation: annotation, coordinate: graveCoordinates, title: registeredGrave.name, subtitle: lifeSpan)
+                
+                annotation.coordinate = graveCoordinates
+                annotation.title = registeredGrave.name
+                annotation.subtitle = lifeSpan
+                mapView.addAnnotation(graveEntryAnnotation)
+                    
             }
         }
+    }
+    
+    func getGraveEntries(completion: @escaping ([Grave]) -> Void) {
+        db.collection("grave").getDocuments { (snapshot, error) in
+            guard let snapshot = snapshot else { return }
+            
+            var registeredGraves: [Grave] = []
+            
+            for i in snapshot.documents {
+                let currentGrave = i.data()
+                
+                if let creatorId = currentGrave["creatorId"] as? String,
+                    let graveId = currentGrave["graveId"] as? String,
+                    let name = currentGrave["name"] as? String,
+                    let birthDate = currentGrave["birthDate"] as? String,
+                    let birthLocation = currentGrave["birthLocation"] as? String,
+                    let deathDate = currentGrave["deathDate"] as? String,
+                    let deathLocation = currentGrave["deathLocation"] as? String,
+                    let marriageStatus = currentGrave["marriageStatus"] as? String,
+                    let bio = currentGrave["bio"] as? String,
+                    let graveLocationLatitude = currentGrave["graveLocationLatitude"] as? String,
+                    let graveLocationLongitude = currentGrave["graveLocationLongitude"] as? String,
+                    let allGraveIdentifier = currentGrave["allGraveIdentifier"] as? String
+                
+                {
+                    
+                    let registeredGrave = Grave(creatorId: creatorId, graveId: graveId, name: name, birthDate: birthDate, birthLocation: birthLocation, deathDate: deathDate, deathLocation: deathLocation, marriageStatus: marriageStatus, bio: bio, graveLocationLatitude: graveLocationLatitude, graveLocationLongitude: graveLocationLongitude, allGraveIdentifier: allGraveIdentifier)
+                    
+                    registeredGraves.append(registeredGrave)
+                    print(registeredGraves)
+                }
+            }
+            completion(registeredGraves)
+        }
+//        var graveArray = [Grave]()
+//        db.collection("stories").whereField("allGraveIdentifier", isEqualTo: "tylerRoolz" ).getDocuments { (snapshot, error) in
+//            if error != nil {
+//                print(Error.self)
+//            } else {
+//                guard let snapshot = snapshot else {
+//                    print("could not unrwap snapshot")
+//                    return
+//                }
+//                for document in (snapshot.documents) {
+//                    //do an if let statement for every value in the grave object and then set it to the check out the tableview
+//                    guard let name = document.data()["name"] as? String,
+//                        let birthDate = document.data()["birthDate"] as? String,
+//                        let deathDate = document.data()["deathDate"] as? String else {
+//                            print("name, birthDate, or deathDate is not working")
+//                            return }
+//
+//
+//                    if let graveResult = document.data() as? [String: Any], let graveStories = Grave.init(dictionary: graveResult) {
+//                        graveArray.append(graveStories)
+////                    }
+//                }
+//                self.graves = graveArray
+//                print("This is working")
+//                print(self.graves)
+////                DispatchQueue.main.async {
+////
+//                }
+//            }
+//        }
     }
     
     //    func createData() {
@@ -176,7 +248,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
         let locValue: CLLocationCoordinate2D = manager.location!.coordinate
-        print("Location coordinates = \(locValue.latitude) \(locValue.longitude)")
+        print("The user location coordinates are \(locValue.latitude) \(locValue.longitude)")
         let userLocation = locations.last
         let viewRegion = MKCoordinateRegion(center: (userLocation?.coordinate)!, latitudinalMeters: 600, longitudinalMeters: 600)
         mapView.setRegion(viewRegion, animated: true)
@@ -260,6 +332,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                 let deathLocation: String = "Florida"
                 let marriageStatus: String = "Yes"
                 let bio: String = "Hi I'm bob ross and we are going to paint n stuff today!"
+                let allGraveIdentifier = "tylerRoolz"
                 guard let graveId: String = MapViewController.shared.currentGraveId else { return }
                 guard let graveLocationLatitude: String = MapViewController.shared.currentGraveLocationLatitude else { return }
                 guard let graveLocationLongitude: String = MapViewController.shared.currentGraveLocationLongitude else { return }
@@ -275,7 +348,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                                   marriageStatus: marriageStatus,
                                   bio: bio,
                                   graveLocationLatitude: graveLocationLatitude,
-                                  graveLocationLongitude: graveLocationLongitude)
+                                  graveLocationLongitude: graveLocationLongitude,
+                                  allGraveIdentifier: allGraveIdentifier)
                 
                 let graveRef = self.db.collection("grave")
                 graveRef.whereField("graveId", isEqualTo: grave.graveId).getDocuments { (snapshot, error) in

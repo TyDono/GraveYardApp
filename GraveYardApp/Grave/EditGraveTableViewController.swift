@@ -85,6 +85,7 @@ class EditGraveTableViewController: UITableViewController {
         guard let bio = bioTextView.text else { return }
         guard let graveLocationLatitude = MapViewController.shared.currentGraveLocationLatitude  else { return }
         guard let graveLocationLongitude = MapViewController.shared.currentGraveLocationLongitude  else { return }
+        let allGraveIdentifier: String = "tylerRoolz"
         
         let grave = Grave(creatorId: id,
                           graveId: graveId,
@@ -96,7 +97,8 @@ class EditGraveTableViewController: UITableViewController {
                           marriageStatus: marriageStatus,
                           bio: bio,
                           graveLocationLatitude: graveLocationLatitude,
-                          graveLocationLongitude: graveLocationLongitude)
+                          graveLocationLongitude: graveLocationLongitude,
+                          allGraveIdentifier: allGraveIdentifier)
         
         let graveRef = self.db.collection("grave")
         graveRef.document(String(grave.graveId)).updateData(grave.dictionary){ err in
