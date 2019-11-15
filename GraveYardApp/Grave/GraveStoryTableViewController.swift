@@ -11,7 +11,6 @@ import FirebaseFirestore
 import Firebase
 import FirebaseAuth
 
-
 class GraveStoryTableViewController: UITableViewController {
     @IBOutlet weak var storyTitle: UILabel!
     @IBOutlet weak var storyBodyBio: UILabel!
@@ -43,10 +42,12 @@ class GraveStoryTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "editGraveStorySegue", let editGraveStoryTVC = segue.destination as? NewGraveStoryTableViewController {
             editGraveStoryTVC.graveStoryId = graveStoryId
-            editGraveStoryTVC.storyBodyTextView.text = storyBodyBio.text
-            editGraveStoryTVC.storyTitleTextField.text = storyTitle.text
+            editGraveStoryTVC.graveStoryTitleValue = storyBodyBio.text
+            editGraveStoryTVC.graveStoryBodyTextValue = storyTitle.text
         }
     }
+    
+    // MARK: - Actions
 
     @IBAction func editStoryBarButtonTapped(_ sender: UIBarButtonItem) {
         performSegue(withIdentifier: "editGraveStorySegue", sender: nil)

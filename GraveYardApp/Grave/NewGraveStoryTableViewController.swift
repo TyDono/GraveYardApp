@@ -18,9 +18,13 @@ class NewGraveStoryTableViewController: UITableViewController {
     var db: Firestore!
     var currentAuthID = Auth.auth().currentUser?.uid
     var graveStoryId: String?
+    var graveStoryTitleValue: String?
+    var graveStoryBodyTextValue: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        storyTitleTextField.text = graveStoryTitleValue
+        storyTitleTextField.text = graveStoryBodyTextValue
         chageTextColor()
         db = Firestore.firestore()
     }
@@ -32,7 +36,6 @@ class NewGraveStoryTableViewController: UITableViewController {
     }
     
     func updateStoryData() {
-        
         guard let creatorId: String = currentAuthID else { return }
         guard let graveId: String = MapViewController.shared.currentGraveId else { return }
         guard let storyId: String = graveStoryId else { return }

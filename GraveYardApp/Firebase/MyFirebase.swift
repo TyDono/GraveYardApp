@@ -23,6 +23,7 @@ class MyFirebase {
     var db = Firestore.firestore()
     var currentAuthID = Auth.auth().currentUser?.uid
     var userId: String? = ""
+    var currentUser: User?
     var storage = Storage.storage().reference()
     let formatter = DateFormatter()
     
@@ -34,14 +35,44 @@ class MyFirebase {
         listenHandler = Auth.auth().addStateDidChangeListener{ (auth, user) in
             if user == nil {
                 //logged Out
+                self.currentUser = nil
                 print("You Are Currently Logged Out")
                 self.currentAuthID = nil
                 self.userId = ""
             } else {
-                DispatchQueue.main.asyncAfter(deadline: .now()) {
-                    print(self.currentAuthID, "logged in")
-                    moveToMap()
+                print("Logged In")
+                let userReff = self.db.collection("userProfile").document("\(String(describing: self.userId))")
+                userReff.getDocument { (document, error) in
+                    if let document = document {
+                        let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
+                        print("data already added: \(dataDescription)")
+                    } else {
+                        self.createData()
+                    }
+                    self.currentUser = user
+                    self.userId = (user?.uid)!
+                    DispatchQueue.main.asyncAfter(deadline: .now()) {
+                        print(self.currentAuthID, "logged in")
+                        moveToMap()
+                    }
                 }
+            }
+        }
+    }
+    
+    func createData() {
+        let currentUserId: String = ""
+        let premiumStatus: Bool = false
+        
+        let user = UserProfile(currentAuthId: currentUserId,
+                               premiumStatus: premiumStatus)
+        
+        let userRef = self.db.collection("userProfile")
+        userRef.document(String(user.currentAuthId)).setData(user.dictionary) { err in
+            if let err = err {
+                print(err)
+            } else {
+                print("Added Data")
             }
         }
     }
@@ -64,4 +95,3 @@ class MyFirebase {
     }
     
 }
-
