@@ -113,7 +113,18 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                 
                 {
                     
-                    let registeredGrave = Grave(creatorId: creatorId, graveId: graveId, name: name, birthDate: birthDate, birthLocation: birthLocation, deathDate: deathDate, deathLocation: deathLocation, marriageStatus: marriageStatus, bio: bio, graveLocationLatitude: graveLocationLatitude, graveLocationLongitude: graveLocationLongitude, allGraveIdentifier: allGraveIdentifier)
+                    let registeredGrave = Grave(creatorId: creatorId,
+                                                graveId: graveId,
+                                                name: name,
+                                                birthDate: birthDate,
+                                                birthLocation: birthLocation,
+                                                deathDate: deathDate,
+                                                deathLocation: deathLocation,
+                                                marriageStatus: marriageStatus,
+                                                bio: bio,
+                                                graveLocationLatitude: graveLocationLatitude,
+                                                graveLocationLongitude: graveLocationLongitude,
+                                                allGraveIdentifier: allGraveIdentifier)
                     
                     registeredGraves.append(registeredGrave)
                     print(registeredGraves)
@@ -296,9 +307,12 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         let locationCoordinate = self.mapView.convert(location, toCoordinateFrom: self.mapView)
         let annotation = MKPointAnnotation()
         annotation.coordinate = locationCoordinate
+        print(annotation.coordinate)
         annotation.title = "New Entry"
         self.mapView.addAnnotation(annotation)
-        let annotationCoordinates = annotation.coordinate
+//        let annotationCoordinates = mapView.annotations.last
+        let annotationLat = annotation.coordinate.latitude
+        let annotationLong = annotation.coordinate.longitude
         
         let newGraveAlert = UIAlertController(title: "New grave sight entry.", message: "Would you like to make a new entry at this location?", preferredStyle: .actionSheet)
         newGraveAlert.addAction(UIAlertAction(title: "Create new entry", style: .default, handler: { action in
@@ -322,8 +336,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             } else {
                 let id = self.currentAuthID!
                 MapViewController.shared.currentGraveId = UUID().uuidString
-                MapViewController.shared.currentGraveLocationLatitude = String(annotationCoordinates.latitude)
-                MapViewController.shared.currentGraveLocationLongitude = String(annotationCoordinates.longitude)
+                MapViewController.shared.currentGraveLocationLatitude = String(annotationLat)
+                MapViewController.shared.currentGraveLocationLongitude = String(annotationLong)
                 let newGraveId = UUID().uuidString
                 let name: String = "Bob Ross"
                 let birthDate: String = "October 29, 1942"
