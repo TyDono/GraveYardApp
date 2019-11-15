@@ -43,6 +43,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         checkForUserId()
         setMapViewLocationAndUser()
         signInTextChange()
+        chageTextColor()
         getGraveEntries { (graves) in
             self.graves = graves
         }
@@ -111,7 +112,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                     let birthLocation = currentGrave["birthLocation"] as? String,
                     let deathDate = currentGrave["deathDate"] as? String,
                     let deathLocation = currentGrave["deathLocation"] as? String,
-                    let marriageStatus = currentGrave["marriageStatus"] as? String,
+                    let familyStatus = currentGrave["familyStatus"] as? String,
                     let bio = currentGrave["bio"] as? String,
                     let graveLocationLatitude = currentGrave["graveLocationLatitude"] as? String,
                     let graveLocationLongitude = currentGrave["graveLocationLongitude"] as? String,
@@ -126,7 +127,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                                                 birthLocation: birthLocation,
                                                 deathDate: deathDate,
                                                 deathLocation: deathLocation,
-                                                marriageStatus: marriageStatus,
+                                                familyStatus: familyStatus,
                                                 bio: bio,
                                                 graveLocationLatitude: graveLocationLatitude,
                                                 graveLocationLongitude: graveLocationLongitude,
