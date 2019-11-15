@@ -30,6 +30,7 @@ struct Grave {
     var bio: String
     var graveLocationLatitude: String
     var graveLocationLongitude: String
+    var allGraveIdentifier: String
     // BURIAL LOCATION
     // coordanates = jim
     // coodinates
@@ -48,7 +49,8 @@ struct Grave {
             "familyStatus": familyStatus ?? "",
             "bio": bio,
             "graveLocationLatitude": graveLocationLatitude,
-            "graveLocationLongitude": graveLocationLongitude
+            "graveLocationLongitude": graveLocationLongitude,
+            "allGraveIdentifier": allGraveIdentifier
         ]
     }
 }
