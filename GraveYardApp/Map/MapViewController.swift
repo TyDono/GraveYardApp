@@ -27,6 +27,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     var locationManager = CLLocationManager()
     var db = Firestore.firestore()
     var currentGraveId: String?
+    var creatorId: String?
     var currentGraveLocationLatitude: String?
     var currentGraveLocationLongitude: String?
     
@@ -40,6 +41,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         setMapViewLocationAndUser()
         signInTextChange()
         chageTextColor()
+        creatorId = currentAuthID
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -154,6 +156,12 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         }
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "segueToGrave", let GraveTVC = segue.destination as? GraveTableViewController {
+            GraveTVC.creatorId = creatorId ?? "nul"
+        }
+    }
+    
     //    func presentAlertController() {
     //        let newGraveAlert = UIAlertController(title: "New grave sight entry.", message: "Would you like to make a new entry at this location?", preferredStyle: .actionSheet)
     //        newGraveAlert.addAction(UIAlertAction(title: "Create new entry.", style: .default, handler: { action in
@@ -227,7 +235,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                 guard let graveId: String = MapViewController.shared.currentGraveId else { return }
                 guard let graveLocationLatitude: String = MapViewController.shared.currentGraveLocationLatitude else { return }
                 guard let graveLocationLongitude: String = MapViewController.shared.currentGraveLocationLongitude else { return }
-
                 
                 var grave = Grave(creatorId: id,
                                   graveId: graveId,

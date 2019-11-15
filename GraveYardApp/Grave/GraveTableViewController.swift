@@ -21,14 +21,14 @@ class GraveTableViewController: UITableViewController {
     @IBOutlet weak var deathDateLabel: UILabel!
     @IBOutlet weak var deathLocationLabel: UILabel!
     @IBOutlet weak var bioLabel: UILabel!
-    
     @IBOutlet weak var graveNavTitle: UINavigationItem!
+    
     var db: Firestore!
     var currentAuthID = Auth.auth().currentUser?.uid
     var currentUser: Grave?
     var grave: [Grave]?
     var graveId: String?
-    var creatorId: String = ""
+    var creatorId: String?
     var currentGraveLocation: String?
     
 
@@ -36,10 +36,10 @@ class GraveTableViewController: UITableViewController {
         super.viewDidLoad()
         db = Firestore.firestore()
         chageTextColor()
-        
-        //tableView.rowHeight = UITableView.automaticDimension
-       // changeBackground()
-        //getGraveData()
+        print(creatorId)
+//        if currentAuthID != creatorId {
+//            self.navigationItem.rightBarButtonItem = nil
+//        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

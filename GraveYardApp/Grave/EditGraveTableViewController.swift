@@ -11,7 +11,7 @@ import FirebaseAuth
 import FirebaseFirestore
 import GoogleSignIn
 
-class EditGraveTableViewController: UITableViewController {
+class EditGraveTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     @IBOutlet weak var graveMainImage: UIImageView!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var familyStatusTextField: UITextField!
@@ -25,6 +25,7 @@ class EditGraveTableViewController: UITableViewController {
     var currentAuthID = Auth.auth().currentUser?.uid
     var currentUser: Grave?
     var userId: String?
+    var creatorId: String? = ""
     let dateFormatter = DateFormatter()
 
     override func viewDidLoad() {
@@ -32,6 +33,18 @@ class EditGraveTableViewController: UITableViewController {
         chageTextColor()
         db = Firestore.firestore()
         getGraveData()
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        guard let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else {
+            fatalError()
+        }
+        graveMainImage.image = selectedImage
+        dismiss(animated: true, completion: nil)
     }
     
     func chageTextColor() {
@@ -120,5 +133,12 @@ class EditGraveTableViewController: UITableViewController {
             }
         }
     }
-
+    
+    @IBAction func changeImage(_ sender: UIButton) {
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        imagePickerController.sourceType = UIImagePickerController.SourceType.photoLibrary
+        present(imagePickerController, animated: true, completion: nil)
+    }
+    
 }

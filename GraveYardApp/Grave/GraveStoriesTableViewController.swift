@@ -77,7 +77,7 @@ class GraveStoriesTableViewController: UITableViewController {
         let storyImage: String = ""
         graveStoryId = storyId
         
-        let story = Story(creatorId: creatorId ?? "nil",
+        let story = Story(creatorId: creatorId ?? "nul",
                           graveId: graveId,
                           storyId: storyId,
                           storyBodyText: storyBody,
@@ -131,15 +131,6 @@ class GraveStoriesTableViewController: UITableViewController {
                 graveStoryTVC.graveStorytitleValue = story.storyTitle
                 graveStoryTVC.graveStoryBodyBioValue = story.storyBodyText
                 graveStoryTVC.creatorId = creatorId
-            }
-        }
-    }
-    
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if currentAuthID == creatorId {
-            if editingStyle == .delete {
-                self.tableArray.remove(at: indexPath.row)
-                tableView.deleteRows(at: [indexPath], with: .fade)
             }
         }
     }

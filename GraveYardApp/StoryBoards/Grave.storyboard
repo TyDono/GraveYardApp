@@ -445,17 +445,31 @@
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bob ross" translatesAutoresizingMaskIntoConstraints="NO" id="A0e-uE-pgk">
                                                     <rect key="frame" x="10" y="-17" width="394" height="250"/>
                                                 </imageView>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yqe-8G-m8e">
-                                                    <rect key="frame" x="368" y="11" width="46" height="222"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <state key="normal" title="Button"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9d1-Rx-hhC">
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="246"/>
+                                                    <connections>
+                                                        <action selector="changeImage:" destination="akf-23-k3a" eventType="touchUpInside" id="Brr-lL-REK"/>
+                                                    </connections>
                                                 </button>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="plus-big-512" translatesAutoresizingMaskIntoConstraints="NO" id="SNk-5k-6v3">
+                                                    <rect key="frame" x="0.0" y="161" width="82" height="85"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="85" id="0tN-fZ-EXW"/>
+                                                        <constraint firstAttribute="width" constant="82" id="pEP-Qz-1pu"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="A0e-uE-pgk" firstAttribute="centerX" secondItem="LbH-tm-d9a" secondAttribute="centerX" id="BBo-go-0j5"/>
+                                                <constraint firstItem="9d1-Rx-hhC" firstAttribute="leading" secondItem="LbH-tm-d9a" secondAttribute="leading" id="F1K-8s-VCf"/>
+                                                <constraint firstAttribute="bottom" secondItem="SNk-5k-6v3" secondAttribute="bottom" id="Fqn-vz-DmC"/>
                                                 <constraint firstItem="A0e-uE-pgk" firstAttribute="top" secondItem="LbH-tm-d9a" secondAttribute="topMargin" constant="-28" id="GuX-DW-qES"/>
+                                                <constraint firstItem="9d1-Rx-hhC" firstAttribute="top" secondItem="LbH-tm-d9a" secondAttribute="top" id="Kjv-jk-H8o"/>
                                                 <constraint firstItem="A0e-uE-pgk" firstAttribute="leading" secondItem="LbH-tm-d9a" secondAttribute="leadingMargin" constant="-10" id="cOg-Mi-ny1"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="A0e-uE-pgk" secondAttribute="bottom" constant="2" id="gzM-Kn-hQX"/>
+                                                <constraint firstAttribute="bottom" secondItem="9d1-Rx-hhC" secondAttribute="bottom" id="hCd-l6-Nz8"/>
+                                                <constraint firstAttribute="trailing" secondItem="9d1-Rx-hhC" secondAttribute="trailing" id="onf-AK-zBm"/>
+                                                <constraint firstItem="SNk-5k-6v3" firstAttribute="leading" secondItem="LbH-tm-d9a" secondAttribute="leading" id="xJf-GF-PLU"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -910,6 +924,7 @@
     <resources>
         <image name="bob ross" width="112.5" height="112.5"/>
         <image name="icons8-journal-30" width="30" height="30"/>
+        <image name="plus-big-512" width="512" height="512"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="fpu-aT-yyc"/>
