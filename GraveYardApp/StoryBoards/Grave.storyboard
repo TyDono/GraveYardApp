@@ -236,9 +236,7 @@
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3VJ-Ys-YoO">
                                                     <rect key="frame" x="11" y="249" width="392" height="30"/>
                                                     <fontDescription key="fontDescription" name="Storybook" family="Storybook" pointSize="24"/>
-                                                    <state key="normal" title="Go to Stories">
-                                                        <color key="titleColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                    </state>
+                                                    <state key="normal" title="Go to Stories"/>
                                                     <connections>
                                                         <action selector="storiesButtonTapped:" destination="df1-gm-beU" eventType="touchUpInside" id="aqs-QM-3lI"/>
                                                     </connections>
@@ -803,7 +801,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t66-Qz-rhT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="V8h-T1-3cD" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2479.7101449275365" y="1338.5869565217392"/>
+            <point key="canvasLocation" x="2581" y="1339"/>
         </scene>
         <!--Grave Stories Table View Controller-->
         <scene sceneID="IwN-v8-ITM">

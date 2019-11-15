@@ -20,11 +20,15 @@ class GraveStoryTableViewController: UITableViewController {
     var currentAuthID = Auth.auth().currentUser?.uid
     var graveStoryId: String?
     var creatorId: String?
+    var graveStorytitleValue: String?
+    var graveStoryBodyBioValue: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         chageTextColor()
         db = Firestore.firestore()
+        storyTitle.text = graveStorytitleValue
+        storyBodyBio.text = graveStoryBodyBioValue
         if currentAuthID != creatorId {
             self.navigationItem.rightBarButtonItem = nil
         }

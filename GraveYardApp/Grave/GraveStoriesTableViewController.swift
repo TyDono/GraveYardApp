@@ -125,11 +125,11 @@ class GraveStoriesTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "newGraveStorySegue", let newGraveStoryTVC = segue.destination as? NewGraveStoryTableViewController {
             newGraveStoryTVC.graveStoryId = graveStoryId
-        } else if segue.identifier == "editGraveSegue", let graveStoryTVC = segue.destination as? GraveStoryTableViewController {
+        } else if segue.identifier == "graveStorySegue", let graveStoryTVC = segue.destination as? GraveStoryTableViewController {
             if let row = self.tableView.indexPathForSelectedRow?.row, let story = stories?[row] {
                 graveStoryTVC.graveStoryId = graveStoryId
-                graveStoryTVC.storyTitle.text = story.storyTitle
-                graveStoryTVC.storyBodyBio.text = story.storyBodyText
+                graveStoryTVC.graveStorytitleValue = story.storyTitle
+                graveStoryTVC.graveStoryBodyBioValue = story.storyBodyText
                 graveStoryTVC.creatorId = creatorId
             }
         }
@@ -145,7 +145,7 @@ class GraveStoriesTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "editGraveSegue", sender: self)
+        performSegue(withIdentifier: "graveStorySegue", sender: self)
     }
     
     // MARK: - Action
