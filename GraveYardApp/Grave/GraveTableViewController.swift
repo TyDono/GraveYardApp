@@ -22,6 +22,7 @@ class GraveTableViewController: UITableViewController {
     @IBOutlet weak var deathLocationLabel: UILabel!
     @IBOutlet weak var bioLabel: UILabel!
     
+    @IBOutlet weak var graveNavTitle: UINavigationItem!
     var db: Firestore!
     var currentAuthID = Auth.auth().currentUser?.uid
     var currentUser: Grave?
@@ -35,6 +36,7 @@ class GraveTableViewController: UITableViewController {
         super.viewDidLoad()
         db = Firestore.firestore()
         chageTextColor()
+        
         //tableView.rowHeight = UITableView.automaticDimension
        // changeBackground()
         //getGraveData()
@@ -49,17 +51,11 @@ class GraveTableViewController: UITableViewController {
         storiesButton.tintColor = UIColor(0.0, 128.0, 128.0, 1.0)
         navigationItem.leftBarButtonItem?.tintColor = UIColor(0.0, 128.0, 128.0, 1.0)
         navigationItem.rightBarButtonItem?.tintColor = UIColor(0.0, 128.0, 128.0, 1.0)
+        let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor(0.0, 128.0, 128.0, 1.0)]
+        navigationController?.navigationBar.titleTextAttributes = textAttributes
     }
 
     // MARK: - Table view data source
-    
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
-        }
-
-    override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
-        }
 
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -116,7 +112,7 @@ class GraveTableViewController: UITableViewController {
                         let familyStatus = document.data()["familyStatus"] as? String,
                         let bio = document.data()["bio"] as? String {
                         print(name)
-                        self.nameLabel.text = name
+                        self.graveNavTitle.title = "\(name)'s Headstone"
                         self.creatorId = creatorId
                         self.birthDateLabel.text = birthDate
                         self.birthLocationLabel.text = birthLocation
