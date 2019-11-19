@@ -1,3 +1,4 @@
+
 //
 //  CustomAnnotation.swift
 //  GraveYardApp
@@ -5,7 +6,6 @@
 //  Created by Douglas Patterson on 11/11/19.
 //  Copyright © 2019 Tyler Donohue. All rights reserved.
 //
-
 import Foundation
 import MapKit
 
@@ -22,5 +22,4 @@ class GraveEntryAnnotation: NSObject, MKAnnotation {
         self.title = title
         self.subtitle = subtitle
     }
-    
 }
