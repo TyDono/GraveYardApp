@@ -13,27 +13,46 @@ import GoogleSignIn
 
 class GraveTableViewController: UITableViewController {
     @IBOutlet weak var graveMainImage: UIImageView!
+    @IBOutlet weak var storiesButton: UIButton!
     @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var marriageStatusLabel: UILabel!
+    @IBOutlet weak var familyStatusLabel: UILabel!
     @IBOutlet weak var birthDateLabel: UILabel!
     @IBOutlet weak var birthLocationLabel: UILabel!
     @IBOutlet weak var deathDateLabel: UILabel!
     @IBOutlet weak var deathLocationLabel: UILabel!
     @IBOutlet weak var bioLabel: UILabel!
+    @IBOutlet weak var graveNavTitle: UINavigationItem!
     
     var db: Firestore!
     var currentAuthID = Auth.auth().currentUser?.uid
     var currentUser: Grave?
     var grave: [Grave]?
     var graveId: String?
-    var creatorId: String = ""
+    var creatorId: String?
     var currentGraveLocation: String?
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         db = Firestore.firestore()
-       // changeBackground()
+        chageTextColor()
+        print(creatorId)
+//        if currentAuthID != creatorId {
+//            self.navigationItem.rightBarButtonItem = nil
+//        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         getGraveData()
+    }
+    
+    func chageTextColor() {
+        tableView.separatorColor = UIColor(0.0, 128.0, 128.0, 1.0)
+        storiesButton.tintColor = UIColor(0.0, 128.0, 128.0, 1.0)
+        navigationItem.leftBarButtonItem?.tintColor = UIColor(0.0, 128.0, 128.0, 1.0)
+        navigationItem.rightBarButtonItem?.tintColor = UIColor(0.0, 128.0, 128.0, 1.0)
+        let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor(0.0, 128.0, 128.0, 1.0)]
+        navigationController?.navigationBar.titleTextAttributes = textAttributes
     }
 
     // MARK: - Table view data source
@@ -90,16 +109,16 @@ class GraveTableViewController: UITableViewController {
                         let birthLocation = document.data()["birthLocation"] as? String,
                         let deathDate = document.data()["deathDate"] as? String,
                         let deathLocation = document.data()["deathLocation"] as? String,
-                        let marriageStatus = document.data()["marriageStatus"] as? String,
+                        let familyStatus = document.data()["familyStatus"] as? String,
                         let bio = document.data()["bio"] as? String {
                         print(name)
-                        self.nameLabel.text = name
+                        self.graveNavTitle.title = "\(name)'s Headstone"
                         self.creatorId = creatorId
                         self.birthDateLabel.text = birthDate
                         self.birthLocationLabel.text = birthLocation
                         self.deathDateLabel.text = deathDate
                         self.deathLocationLabel.text = deathLocation
-//                        self.marriageStatusLabel.text = marriageStatus
+//                        self.familyStatusLabel.text = familyStatus
                         self.bioLabel.text = bio
                     }
                 }

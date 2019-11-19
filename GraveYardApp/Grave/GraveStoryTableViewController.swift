@@ -6,24 +6,50 @@
 //  Copyright © 2019 Tyler Donohue. All rights reserved.
 //
 
-import FirebaseAuth
+import UIKit
 import FirebaseFirestore
-import GoogleSignIn
+import Firebase
+import FirebaseAuth
 
 class GraveStoryTableViewController: UITableViewController {
+    @IBOutlet weak var storyTitle: UILabel!
+    @IBOutlet weak var storyBodyBio: UILabel!
     
     var db: Firestore!
     var currentAuthID = Auth.auth().currentUser?.uid
+    var graveStoryId: String?
+    var creatorId: String?
+    var graveStorytitleValue: String?
+    var graveStoryBodyBioValue: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        chageTextColor()
         db = Firestore.firestore()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        storyTitle.text = graveStorytitleValue
+        storyBodyBio.text = graveStoryBodyBioValue
+        if currentAuthID != creatorId {
+            self.navigationItem.rightBarButtonItem = nil
+        }
     }
+    
+    func chageTextColor() {
+        tableView.separatorColor = UIColor(0.0, 128.0, 128.0, 1.0)
+        navigationItem.leftBarButtonItem?.tintColor = UIColor(0.0, 128.0, 128.0, 1.0)
+        navigationItem.rightBarButtonItem?.tintColor = UIColor(0.0, 128.0, 128.0, 1.0)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "editGraveStorySegue", let editGraveStoryTVC = segue.destination as? NewGraveStoryTableViewController {
+            editGraveStoryTVC.graveStoryId = graveStoryId
+            editGraveStoryTVC.graveStoryTitleValue = storyBodyBio.text
+            editGraveStoryTVC.graveStoryBodyTextValue = storyTitle.text
+        }
+    }
+    
+    // MARK: - Actions
 
+    @IBAction func editStoryBarButtonTapped(_ sender: UIBarButtonItem) {
+        performSegue(withIdentifier: "editGraveStorySegue", sender: nil)
+    }
 }

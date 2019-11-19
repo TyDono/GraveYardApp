@@ -18,36 +18,40 @@ class NewGraveStoryTableViewController: UITableViewController {
     var db: Firestore!
     var currentAuthID = Auth.auth().currentUser?.uid
     var graveStoryId: String?
+    var graveStoryTitleValue: String?
+    var graveStoryBodyTextValue: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        storyTitleTextField.text = graveStoryTitleValue
+        storyTitleTextField.text = graveStoryBodyTextValue
+        chageTextColor()
         db = Firestore.firestore()
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-        
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+    }
+    
+    func chageTextColor() {
+        tableView.separatorColor = UIColor(0.0, 128.0, 128.0, 1.0)
+        navigationItem.leftBarButtonItem?.tintColor = UIColor(0.0, 128.0, 128.0, 1.0)
+        navigationItem.rightBarButtonItem?.tintColor = UIColor(0.0, 128.0, 128.0, 1.0)
     }
     
     func updateStoryData() {
-        
         guard let creatorId: String = currentAuthID else { return }
         guard let graveId: String = MapViewController.shared.currentGraveId else { return }
         guard let storyId: String = graveStoryId else { return }
-        guard let storyBody: String = storyBodyTextView.text else { return }
+        guard let storyBodyText: String = storyBodyTextView.text else { return }
         guard let storyTitle: String = storyTitleTextField.text else { return }
         let storyImage: String = ""
         
         let story = Story(creatorId: creatorId,
                           graveId: graveId,
                           storyId: storyId,
-                          storyBody: storyBody,
+                          storyBodyText: storyBodyText,
                           storyTitle: storyTitle,
                           storyImage: storyImage)
         
-        let storyRef = self.db.collection("grave")
-        storyRef.document(String(story.graveId)).updateData(story.dictionary){ err in
+        let storyRef = self.db.collection("stories")
+        storyRef.document(String(story.storyId)).updateData(story.dictionary){ err in
             if let err = err {
                 let alert1 = UIAlertController(title: "Not Saved", message: "Sorry, there was an error while trying to save your Story. Please try again.", preferredStyle: .alert)
                 alert1.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
@@ -56,7 +60,7 @@ class NewGraveStoryTableViewController: UITableViewController {
                 self.present(alert1, animated: true, completion: nil)
                 print(err)
             } else {
-                self.performSegue(withIdentifier: "editGraveStorySegue", sender: nil)
+                self.performSegue(withIdentifier: "unwindtoGraveStoriesSegue", sender: nil)
             }
         }
     }

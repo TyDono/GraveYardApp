@@ -11,10 +11,10 @@ import FirebaseAuth
 import FirebaseFirestore
 import GoogleSignIn
 
-class EditGraveTableViewController: UITableViewController {
+class EditGraveTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     @IBOutlet weak var graveMainImage: UIImageView!
     @IBOutlet weak var nameTextField: UITextField!
-    @IBOutlet weak var marriageStatusTextField: UITextField!
+    @IBOutlet weak var familyStatusTextField: UITextField!
     @IBOutlet weak var birthDatePicker: UIDatePicker!
     @IBOutlet weak var birthLocationTextField: UITextField!
     @IBOutlet weak var deathDatePicker: UIDatePicker!
@@ -25,13 +25,34 @@ class EditGraveTableViewController: UITableViewController {
     var currentAuthID = Auth.auth().currentUser?.uid
     var currentUser: Grave?
     var userId: String?
+    var creatorId: String? = ""
     let dateFormatter = DateFormatter()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        chageTextColor()
         db = Firestore.firestore()
         getGraveData()
     }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        guard let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else {
+            fatalError()
+        }
+        graveMainImage.image = selectedImage
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func chageTextColor() {
+        tableView.separatorColor = UIColor(0.0, 128.0, 128.0, 1.0)
+        navigationItem.leftBarButtonItem?.tintColor = UIColor(0.0, 128.0, 128.0, 1.0)
+        navigationItem.rightBarButtonItem?.tintColor = UIColor(0.0, 128.0, 128.0, 1.0)
+    }
+
     
     func getGraveData() { // mak srue to change the sting back to a date here
         dateFormatter.dateFormat = "yyyy-MM-dd"
@@ -47,7 +68,7 @@ class EditGraveTableViewController: UITableViewController {
                         let birthLocation = document.data()["birthLocation"] as? String,
                         let deathDate = document.data()["deathDate"] as? String,
                         let deathLocation = document.data()["deathLocation"] as? String,
-                        let marriageStatus = document.data()["marriageStatus"] as? String,
+//                        let familyStatus = document.data()["familyStatus"] as? String,
                         let bio = document.data()["bio"] as? String {
 
                         guard let birthDate = self.dateFormatter.date(from:birthDate) ?? defaultDate else { return } // this fails atm
@@ -57,7 +78,7 @@ class EditGraveTableViewController: UITableViewController {
                         self.birthLocationTextField.text = birthLocation
                         self.deathDatePicker.date = deathDate
                         self.deathLocationTextField.text = deathLocation
-                        self.marriageStatusTextField.text = marriageStatus
+//                        self.familyStatusTextField.text = familyStatus
                         self.bioTextView.text = bio
                     }
                 }
@@ -81,10 +102,11 @@ class EditGraveTableViewController: UITableViewController {
         let death = deathDatePicker.date
         let deathDate = dateFormatter.string(from: death)
         guard let deathLocation = deathLocationTextField.text else { return }
-        guard let marriageStatus = marriageStatusTextField.text else { return }
+//        guard let familyStatus = familyStatusTextField.text else { return }
         guard let bio = bioTextView.text else { return }
         guard let graveLocationLatitude = MapViewController.shared.currentGraveLocationLatitude  else { return }
         guard let graveLocationLongitude = MapViewController.shared.currentGraveLocationLongitude  else { return }
+        let allGraveIdentifier: String = "tylerRoolz"
         
         let grave = Grave(creatorId: id,
                           graveId: graveId,
@@ -93,10 +115,11 @@ class EditGraveTableViewController: UITableViewController {
                           birthLocation: birthLocation,
                           deathDate: deathDate,
                           deathLocation: deathLocation,
-                          marriageStatus: marriageStatus,
+//                          familyStatus: familyStatus,
                           bio: bio,
                           graveLocationLatitude: graveLocationLatitude,
-                          graveLocationLongitude: graveLocationLongitude)
+                          graveLocationLongitude: graveLocationLongitude,
+                          allGraveIdentifier: allGraveIdentifier)
         
         let graveRef = self.db.collection("grave")
         graveRef.document(String(grave.graveId)).updateData(grave.dictionary){ err in
@@ -112,5 +135,12 @@ class EditGraveTableViewController: UITableViewController {
             }
         }
     }
-
+    
+    @IBAction func changeImage(_ sender: UIButton) {
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        imagePickerController.sourceType = UIImagePickerController.SourceType.photoLibrary
+        present(imagePickerController, animated: true, completion: nil)
+    }
+    
 }

@@ -25,19 +25,22 @@ class GraveStoriesTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        chageTextColor()
         db = Firestore.firestore()
-        getGraveStories()
+//        getGraveStories()
         if currentAuthID != creatorId {
             self.navigationItem.rightBarButtonItem = nil
         }
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        if segue.identifier == "addGraveStorySegue", let newGraveStoryTVC = segue.destination as? GraveStoriesTableViewController {
-            newGraveStoryTVC.graveStories = graveStoryId
-        }
-        print("prepare for segueSearch called")
+    override func viewWillAppear(_ animated: Bool) {
+        getGraveStories()
+    }
+    
+    func chageTextColor() {
+        tableView.separatorColor = UIColor(0.0, 128.0, 128.0, 1.0)
+        navigationItem.leftBarButtonItem?.tintColor = UIColor(0.0, 128.0, 128.0, 1.0)
+        navigationItem.rightBarButtonItem?.tintColor = UIColor(0.0, 128.0, 128.0, 1.0)
     }
     
     func getGraveStories() {
@@ -74,14 +77,14 @@ class GraveStoriesTableViewController: UITableViewController {
         let storyImage: String = ""
         graveStoryId = storyId
         
-        let story = Story(creatorId: creatorId ?? "nil",
+        let story = Story(creatorId: creatorId ?? "nul",
                           graveId: graveId,
                           storyId: storyId,
-                          storyBody: storyBody,
+                          storyBodyText: storyBody,
                           storyTitle: storyTitle,
                           storyImage: storyImage)
         
-        let storyRef = self.db.collection("grave")
+        let storyRef = self.db.collection("stories")
         storyRef.document(String(story.storyId)).setData(story.dictionary) { err in
             if let err = err {
                 let graveCreationFailAert = UIAlertController(title: "Failed to create a Story", message: "Your device failed to properly create a Story, Please check your wifi and try again", preferredStyle: .alert)
@@ -90,7 +93,7 @@ class GraveStoriesTableViewController: UITableViewController {
                 self.present(graveCreationFailAert, animated: true, completion: nil)
                 print(err)
             } else {
-                self.performSegue(withIdentifier: "addGraveStorySegue", sender: nil)
+                self.performSegue(withIdentifier: "newGraveStorySegue", sender: nil)
                 print("Added Data")
             }
         }
@@ -110,17 +113,30 @@ class GraveStoriesTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "storyCell", for: indexPath) as? StoryTableViewCell else { return UITableViewCell() }
-
-        // Configure the cell...
-
+        
+        if let stories = stories {
+            let story = stories[indexPath.row]
+            cell.storyCellTitle.text = "\(story.storyTitle)"
+            cell.cellStoryText = "\(story.storyBodyText)"
+        }
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            self.tableArray.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "newGraveStorySegue", let newGraveStoryTVC = segue.destination as? NewGraveStoryTableViewController {
+            newGraveStoryTVC.graveStoryId = graveStoryId
+        } else if segue.identifier == "graveStorySegue", let graveStoryTVC = segue.destination as? GraveStoryTableViewController {
+            if let row = self.tableView.indexPathForSelectedRow?.row, let story = stories?[row] {
+                graveStoryTVC.graveStoryId = graveStoryId
+                graveStoryTVC.graveStorytitleValue = story.storyTitle
+                graveStoryTVC.graveStoryBodyBioValue = story.storyBodyText
+                graveStoryTVC.creatorId = creatorId
+            }
         }
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "graveStorySegue", sender: self)
     }
     
     // MARK: - Action
@@ -128,5 +144,7 @@ class GraveStoriesTableViewController: UITableViewController {
     @IBAction func addGraveStoryBarButtonTapped(_ sender: UIBarButtonItem) {
         createNewStory()
     }
+    
+    @IBAction func unwindtoGraveStories(_ sender: UIStoryboardSegue) {}
     
 }
