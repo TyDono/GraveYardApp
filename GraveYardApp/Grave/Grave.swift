@@ -69,7 +69,6 @@ extension Grave: DocumentGraveSerializable {
             let graveLocationLatitude = dictionary["graveLocationLatitude"] as? String,
             let graveLocationLongitude = dictionary["graveLocationLongitude"] as? String,
         let allGraveIdentifier = dictionary["allGraveIdentifier"] as? String else {return nil}
- //       self.init(creatorId: creatorId, graveId: graveId, name: name, birthDate: birthDate, birthLocation: birthLocation, deathDate: deathDate, deathLocation: deathLocation, familyStatus: familyStatus, bio: bio, graveLocationLatitude: graveLocationLatitude, graveLocationLongitude: graveLocationLongitude)
         self.init(creatorId: creatorId, graveId: graveId, name: name, birthDate: birthDate, birthLocation: birthLocation, deathDate: deathDate, deathLocation: deathLocation, familyStatus: familyStatus, bio: bio, graveLocationLatitude: graveLocationLatitude, graveLocationLongitude: graveLocationLongitude, allGraveIdentifier: allGraveIdentifier)
     }
     

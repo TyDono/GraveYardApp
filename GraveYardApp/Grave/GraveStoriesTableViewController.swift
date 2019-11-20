@@ -69,7 +69,6 @@ class GraveStoriesTableViewController: UITableViewController {
         }
     
     func createNewStory() {
-        
         guard let graveId: String = MapViewController.shared.currentGraveId else { return }
         let storyId: String = UUID().uuidString
         let storyBody: String = ""
