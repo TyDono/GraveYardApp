@@ -107,6 +107,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                 
                 if let creatorId = currentGrave["creatorId"] as? String,
                     let graveId = currentGrave["graveId"] as? String,
+                    let profileImageId = currentGrave["profileImageId"] as? String,
                     let name = currentGrave["name"] as? String,
                     let birthDate = currentGrave["birthDate"] as? String,
                     let birthLocation = currentGrave["birthLocation"] as? String,
@@ -122,6 +123,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                     
                     let registeredGrave = Grave(creatorId: creatorId,
                                                 graveId: graveId,
+                                                profileImageId: profileImageId,
                                                 name: name,
                                                 birthDate: birthDate,
                                                 birthLocation: birthLocation,
@@ -352,6 +354,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                 MapViewController.shared.currentGraveLocationLatitude = String(annotationLat)
                 MapViewController.shared.currentGraveLocationLongitude = String(annotationLong)
                 let newGraveId = UUID().uuidString
+                let profileImageId: String = UUID().uuidString
                 let name: String = "Bob Ross"
                 let birthDate: String = "October 29, 1942"
                 let birthLocation: String = "At the Beach"
@@ -366,6 +369,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                 
                 var grave = Grave(creatorId: id,
                                   graveId: graveId,
+                                  profileImageId: profileImageId,
                                   name: name,
                                   birthDate: birthDate,
                                   birthLocation: birthLocation,

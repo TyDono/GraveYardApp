@@ -10,6 +10,7 @@ import UIKit
 import FirebaseAuth
 import FirebaseFirestore
 import GoogleSignIn
+import FirebaseStorage
 
 class EditGraveTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     @IBOutlet weak var graveMainImage: UIImageView!
@@ -27,12 +28,14 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
     var userId: String?
     var creatorId: String? = ""
     let dateFormatter = DateFormatter()
+    var imageString: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         chageTextColor()
         db = Firestore.firestore()
         getGraveData()
+        getImages()
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
@@ -63,7 +66,8 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
                 print(error as Any)
             } else {
                 for document in (snapshot?.documents)! {
-                    if let name = document.data()["name"] as? String,
+                    if let profileImageId = document.data()["profileImageId"] as? String,
+                        let name = document.data()["name"] as? String,
                         let birthDate = document.data()["birthDate"] as? String,
                         let birthLocation = document.data()["birthLocation"] as? String,
                         let deathDate = document.data()["deathDate"] as? String,
@@ -71,6 +75,7 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
 //                        let familyStatus = document.data()["familyStatus"] as? String,
                         let bio = document.data()["bio"] as? String {
 
+                        self.imageString = profileImageId
                         guard let birthDate = self.dateFormatter.date(from:birthDate) ?? defaultDate else { return } // this fails atm
                         guard let deathDate = self.dateFormatter.date(from:deathDate) ?? defaultDate else { return }
                         self.nameTextField.text = name
@@ -86,6 +91,14 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
         }
     }
     
+    func getImages() {
+        Storage.storage().reference(withPath: self.imageString ?? "").getData(maxSize: (1024 * 1024), completion:  { (data, err) in
+            guard let data = data else {return}
+            guard let image = UIImage(data: data) else {return}
+            self.graveMainImage.image = image
+        })
+    }
+    
     struct PropertyKeys {
         static let unwind = "unwindToGraveSegue"
     }
@@ -95,6 +108,7 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
     @IBAction func saveGraveInfoTapped(_ sender: UIBarButtonItem) {
         let id = currentAuthID!
         guard let graveId = MapViewController.shared.currentGraveId  else { return } // this is the grave id that was tapped on
+        let profileImageId: String = UUID().uuidString
         guard let name = nameTextField.text else { return }
         let birth = birthDatePicker.date
         let birthDate = dateFormatter.string(from: birth)
@@ -110,6 +124,7 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
         
         let grave = Grave(creatorId: id,
                           graveId: graveId,
+                          profileImageId: profileImageId,
                           name: name,
                           birthDate: birthDate,
                           birthLocation: birthLocation,

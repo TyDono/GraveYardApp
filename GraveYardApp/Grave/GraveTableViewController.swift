@@ -9,6 +9,7 @@
 import UIKit
 import FirebaseAuth
 import FirebaseFirestore
+import FirebaseStorage
 import GoogleSignIn
 
 class GraveTableViewController: UITableViewController {
@@ -30,6 +31,7 @@ class GraveTableViewController: UITableViewController {
     var graveId: String?
     var creatorId: String?
     var currentGraveLocation: String?
+    var imageString: String?
     
 
     override func viewDidLoad() {
@@ -44,6 +46,7 @@ class GraveTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         getGraveData()
+        getImages()
     }
     
     func chageTextColor() {
@@ -73,7 +76,8 @@ class GraveTableViewController: UITableViewController {
                 print(error as Any)
             } else {
                 for document in (snapshot?.documents)! {
-                    if let name = document.data()["name"] as? String,
+                    if let profileImageId = document.data()["profileImageId"] as? String,
+                        let name = document.data()["name"] as? String,
                         let creatorId = document.data()["creatorId"] as? String,
                         let birthDate = document.data()["birthDate"] as? String,
                         let birthLocation = document.data()["birthLocation"] as? String,
@@ -82,6 +86,7 @@ class GraveTableViewController: UITableViewController {
                         let familyStatus = document.data()["familyStatus"] as? String,
                         let bio = document.data()["bio"] as? String {
                         print(name)
+                        self.imageString = profileImageId
                         self.graveNavTitle.title = "\(name)'s Headstone"
                         self.creatorId = creatorId
                         self.birthDateLabel.text = birthDate
@@ -94,6 +99,14 @@ class GraveTableViewController: UITableViewController {
                 }
             }
         }
+    }
+    
+    func getImages() {
+        Storage.storage().reference(withPath: self.imageString ?? "").getData(maxSize: (1024 * 1024), completion:  { (data, err) in
+            guard let data = data else {return}
+            guard let image = UIImage(data: data) else {return}
+            self.graveMainImage.image = image
+        })
     }
     
     // MARK: - Actions
