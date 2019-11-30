@@ -31,6 +31,7 @@
 		CB5AE18E23512B14001BCCCE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB5AE18C23512B14001BCCCE /* Main.storyboard */; };
 		CB5AE19023512B16001BCCCE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB5AE18F23512B16001BCCCE /* Assets.xcassets */; };
 		CB5AE19323512B16001BCCCE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB5AE19123512B16001BCCCE /* LaunchScreen.storyboard */; };
+		CB5E07E0238F09A30062F7C7 /* GraveProfileImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5E07DF238F09A30062F7C7 /* GraveProfileImage.swift */; };
 		CB881F982367B41300615F2F /* GraveTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB881F972367B41300615F2F /* GraveTableViewController.swift */; };
 		CB881F9A2367B41E00615F2F /* EditGraveTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB881F992367B41E00615F2F /* EditGraveTableViewController.swift */; };
 		CBAC4EAF2370EAD7006760A5 /* StoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBAC4EAE2370EAD7006760A5 /* StoryTableViewCell.swift */; };
@@ -66,6 +67,7 @@
 		CB5AE18F23512B16001BCCCE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CB5AE19223512B16001BCCCE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CB5AE19423512B16001BCCCE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CB5E07DF238F09A30062F7C7 /* GraveProfileImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraveProfileImage.swift; sourceTree = "<group>"; };
 		CB881F972367B41300615F2F /* GraveTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraveTableViewController.swift; sourceTree = "<group>"; };
 		CB881F992367B41E00615F2F /* EditGraveTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditGraveTableViewController.swift; sourceTree = "<group>"; };
 		CBAC4EAE2370EAD7006760A5 /* StoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryTableViewCell.swift; sourceTree = "<group>"; };
@@ -150,6 +152,7 @@
 				CB4F2BFE2360EF7B00584D12 /* Grave.swift */,
 				CB398F0A236A64E000A515B9 /* Story.swift */,
 				CBC3BE80237E52B100BCC06A /* UserProfile.swift */,
+				CB5E07DF238F09A30062F7C7 /* GraveProfileImage.swift */,
 				CB881F972367B41300615F2F /* GraveTableViewController.swift */,
 				CB881F992367B41E00615F2F /* EditGraveTableViewController.swift */,
 				CB398EFA23695D0600A515B9 /* GraveStoriesTableViewController.swift */,
@@ -387,6 +390,7 @@
 				CBC3BE81237E52B100BCC06A /* UserProfile.swift in Sources */,
 				CB398F0B236A64E000A515B9 /* Story.swift in Sources */,
 				CB3A388C2375293F00DA756D /* GraveStoryTableViewController.swift in Sources */,
+				CB5E07E0238F09A30062F7C7 /* GraveProfileImage.swift in Sources */,
 				CB5AE18923512B14001BCCCE /* SceneDelegate.swift in Sources */,
 				CB3A30D3235904AA00CF2CBB /* SignInViewController.swift in Sources */,
 				CB398EFB23695D0600A515B9 /* GraveStoriesTableViewController.swift in Sources */,
