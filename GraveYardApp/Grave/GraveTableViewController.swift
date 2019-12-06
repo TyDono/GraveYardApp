@@ -66,7 +66,6 @@ class GraveTableViewController: UITableViewController {
             graveStoriesTVC.graveStories = graveId
             graveStoriesTVC.creatorId = creatorId
         }
-        print("prepare for segueSearch called")
     }
     
     func getGraveData() {
@@ -102,7 +101,9 @@ class GraveTableViewController: UITableViewController {
     }
     
     func getImages() {
-        Storage.storage().reference(withPath: self.imageString ?? "").getData(maxSize: (1024 * 1024), completion:  { (data, err) in
+        Storage.storage().reference(withPath: "graveProfileImages/\(self.imageString)" ?? "").getData(maxSize: (1024 * 1024), completion:  { (data, err) in
+            print(self.imageString)
+            print(data)
             guard let data = data else {return}
             guard let image = UIImage(data: data) else {return}
             self.graveMainImage.image = image

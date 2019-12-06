@@ -51,11 +51,6 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
             dismiss(animated: true, completion: nil)
             self.graveMainImage.reloadInputViews()
         }
-//        guard let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else {
-//            fatalError()
-//        }
-//        graveMainImage.image = selectedImage
-//        dismiss(animated: true, completion: nil)
     }
     
     func chageTextColor() {
@@ -63,7 +58,6 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
         navigationItem.leftBarButtonItem?.tintColor = UIColor(0.0, 128.0, 128.0, 1.0)
         navigationItem.rightBarButtonItem?.tintColor = UIColor(0.0, 128.0, 128.0, 1.0)
     }
-
     
     func getGraveData() { // mak srue to change the sting back to a date here
         dateFormatter.dateFormat = "yyyy-MM-dd"
@@ -83,7 +77,7 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
                         let graveId = document.data()["graveId"] as? String?,
 //                        let familyStatus = document.data()["familyStatus"] as? String,
                         let bio = document.data()["bio"] as? String {
-
+                        
                         self.imageString = profileImageId
                         guard let birthDate = self.dateFormatter.date(from:birthDate) ?? defaultDate else { return }
                         guard let deathDate = self.dateFormatter.date(from:deathDate) ?? defaultDate else { return }
@@ -103,6 +97,7 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
     
     func getImages() {
         Storage.storage().reference(withPath: self.imageString ?? "").getData(maxSize: (1024 * 1024), completion:  { (data, err) in
+            print(self.imageString)
             guard let data = data else {return}
             guard let image = UIImage(data: data) else {return}
             self.graveMainImage.image = image
@@ -110,8 +105,8 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
     }
     
     func uploadFirebaseImages(_ image: UIImage, completion: @escaping ((_ url: URL?) -> () )) {
-        let storageRef = Storage.storage().reference().child("graveProfileImages/\(self.currentGraveId ?? "no image")\(self.imageString ?? "no Image Found")")
-        guard let imageData = image.jpegData(compressionQuality: 1.0) else { return }
+        let storageRef = Storage.storage().reference().child("graveProfileImages/\(self.imageString ?? "no Image Found")")
+        guard let imageData = image.jpegData(compressionQuality: 0.50) else { return }
         let metaData = StorageMetadata()
         metaData.contentType = "image/jpg"
         storageRef.putData(imageData, metadata: metaData) { (metaData, error) in
@@ -126,31 +121,30 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
         }
     }
     
-    private func firebaseWrite(url: String) {
-        var ref: DocumentReference? = nil
-        ref = db.collection("grave").addDocument(data: [
-            "imageURL": url
-        ]) { err in
-            if let err = err {
-                print("Error adding document: \(err)")
-            } else {
-                print("Document added with ID: \(ref!.documentID)")
-            }
-        }
-        
-        db.collection("grave").getDocuments() { (querySnapshot, err) in
-            if let err = err {
-                print("Error getting documents: \(err)")
-            } else {
-                for document in querySnapshot!.documents {
-                    print("\(document.documentID) => \(document.data())")
-                }
-            }
-        }
-    }
+//    private func firebaseWrite(url: String) {
+//        var ref: DocumentReference? = nil
+//        ref = db.collection("grave").addDocument(data: [
+//            "imageURL": url
+//        ]) { err in
+//            if let err = err {
+//                print("Error adding document: \(err)")
+//            } else {
+//                print("Document added with ID: \(ref!.documentID)")
+//            }
+//        }
+//
+//        db.collection("grave").getDocuments() { (querySnapshot, err) in
+//            if let err = err {
+//                print("Error getting documents: \(err)")
+//            } else {
+//                for document in querySnapshot!.documents {
+//                    print("\(document.documentID) => \(document.data())")
+//                }
+//            }
+//        }
+//    }
     
     func saveImageToFirebase(graveImagesURL: URL, completion: @escaping((_ success: Bool) -> ())) {
-        print("SaveImageToFirebase has been saved!!!!!")
         let databaseRef = Firestore.firestore().document("graveProfileImages/\(self.currentGraveId ?? "no image")")
         let userObjectImages = [
             "imageURL": graveImagesURL.absoluteString
@@ -158,6 +152,7 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
         databaseRef.setData(userObjectImages) { (error) in
             completion(error == nil)
         }
+        print("SaveImageToFirebase has been saved!!!!!")
     }
     
     struct PropertyKeys {
@@ -170,16 +165,17 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
 //        guard let unwrappedGraveImage = graveMainImage.image else { return }
         for image in graveProfileImages {
             uploadFirebaseImages(image) { (url) in
+                print(url)
                 guard let url = url else { return }
-                self.saveImageToFirebase(graveImagesURL: url, completion: { success in
-                    self.firebaseWrite(url: url.absoluteString)
-                })
+//                self.saveImageToFirebase(graveImagesURL: url, completion: { success in
+//                    self.firebaseWrite(url: url.absoluteString)
+//                })
             }
         }
         
         let id = currentAuthID!
         guard let graveId = MapViewController.shared.currentGraveId  else { return } // this is the grave id that was tapped on
-        let profileImageId: String = UUID().uuidString
+        guard let profileImageId = self.imageString else { return }
         guard let name = nameTextField.text else { return }
         let birth = birthDatePicker.date
         let birthDate = dateFormatter.string(from: birth)
