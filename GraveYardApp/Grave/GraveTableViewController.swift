@@ -32,7 +32,7 @@ class GraveTableViewController: UITableViewController {
     var creatorId: String?
     var currentGraveLocation: String?
     var imageString: String?
-    
+    let storage = Storage.storage()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -101,13 +101,21 @@ class GraveTableViewController: UITableViewController {
     }
     
     func getImages() {
-        Storage.storage().reference(withPath: "graveProfileImages/\(self.imageString)" ?? "").getData(maxSize: (1024 * 1024), completion:  { (data, err) in
-            print(self.imageString)
-            print(data)
-            guard let data = data else {return}
-            guard let image = UIImage(data: data) else {return}
-            self.graveMainImage.image = image
-        })
+        if let imageStringId = self.imageString {
+            let storageRef = storage.reference()
+            let graveProfileImage = storageRef.child("graveProfileImages/\(imageStringId)")
+            graveProfileImage.getData(maxSize: (1024 * 1024), completion:  { (data, err) in
+                print(err)
+                print(self.imageString)
+                print(imageStringId)
+                print(data)
+                guard let data = data else {return}
+                guard let image = UIImage(data: data) else {return}
+                self.graveMainImage.image = image
+            })
+        } else {
+            return
+        }
     }
     
     // MARK: - Actions

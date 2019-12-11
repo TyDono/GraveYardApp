@@ -31,6 +31,7 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
     var currentGraveId: String?
     var graveProfileImage: GraveProfileImage?
     var graveProfileImages = [UIImage]()
+    let storage = Storage.storage()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -96,17 +97,26 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
     }
     
     func getImages() {
-        Storage.storage().reference(withPath: self.imageString ?? "").getData(maxSize: (1024 * 1024), completion:  { (data, err) in
-            print(self.imageString)
-            guard let data = data else {return}
-            guard let image = UIImage(data: data) else {return}
-            self.graveMainImage.image = image
-        })
+        if let imageStringId = self.imageString {
+            let storageRef = storage.reference()
+            let graveProfileImage = storageRef.child("graveProfileImages/\(imageStringId)")
+            graveProfileImage.getData(maxSize: (1024 * 1024), completion:  { (data, err) in
+                print(err)
+                print(self.imageString)
+                print(imageStringId)
+                print(data)
+                guard let data = data else {return}
+                guard let image = UIImage(data: data) else {return}
+                self.graveMainImage.image = image
+            })
+        } else {
+            return
+        }
     }
-    
+        
     func uploadFirebaseImages(_ image: UIImage, completion: @escaping ((_ url: URL?) -> () )) {
         let storageRef = Storage.storage().reference().child("graveProfileImages/\(self.imageString ?? "no Image Found")")
-        guard let imageData = image.jpegData(compressionQuality: 0.50) else { return }
+        guard let imageData = image.jpegData(compressionQuality: 0.25) else { return }
         let metaData = StorageMetadata()
         metaData.contentType = "image/jpg"
         storageRef.putData(imageData, metadata: metaData) { (metaData, error) in
