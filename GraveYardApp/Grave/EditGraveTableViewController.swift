@@ -101,10 +101,6 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
             let storageRef = storage.reference()
             let graveProfileImage = storageRef.child("graveProfileImages/\(imageStringId)")
             graveProfileImage.getData(maxSize: (1024 * 1024), completion:  { (data, err) in
-                print(err)
-                print(self.imageString)
-                print(imageStringId)
-                print(data)
                 guard let data = data else {return}
                 guard let image = UIImage(data: data) else {return}
                 self.graveMainImage.image = image
@@ -113,7 +109,7 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
             return
         }
     }
-        
+    
     func uploadFirebaseImages(_ image: UIImage, completion: @escaping ((_ url: URL?) -> () )) {
         let storageRef = Storage.storage().reference().child("graveProfileImages/\(self.imageString ?? "no Image Found")")
         guard let imageData = image.jpegData(compressionQuality: 0.25) else { return }
