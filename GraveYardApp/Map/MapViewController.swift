@@ -44,13 +44,17 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         setMapViewLocationAndUser()
         signInTextChange()
         chageTextColor()
-        getGraveEntries { (graves) in
-            self.graves = graves
-        }
+//        getGraveEntries { (graves) in
+//            self.graves = graves
+//        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        dropGraveEntryPins()
+        getGraveEntries { (graves) in
+            self.graves = graves
+            self.dropGraveEntryPins()
+        }
+        //dropGraveEntryPins()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -87,11 +91,11 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                 let graveCoordinates = CLLocationCoordinate2D(latitude: graveLatitude, longitude: graveLongitude)
                 let graveEntryAnnotation = GraveEntryAnnotation(annotation: annotation, coordinate: graveCoordinates, title: registeredGrave.name, subtitle: lifeSpan)
                 
-                annotation.coordinate = graveCoordinates
+                annotation.coordinate = graveCoordinates //adds pins when you log in
                 annotation.title = registeredGrave.name
                 annotation.subtitle = lifeSpan
                 mapView.addAnnotation(graveEntryAnnotation)
-                    
+                
             }
         }
     }
