@@ -44,17 +44,10 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         setMapViewLocationAndUser()
         signInTextChange()
         chageTextColor()
-//        getGraveEntries { (graves) in
-//            self.graves = graves
-//        }
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
         getGraveEntries { (graves) in
             self.graves = graves
             self.dropGraveEntryPins()
         }
-        //dropGraveEntryPins()
     }
     
     override func viewDidAppear(_ animated: Bool) {
