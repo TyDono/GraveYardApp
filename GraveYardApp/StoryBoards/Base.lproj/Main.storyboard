@@ -81,6 +81,7 @@
                         <outlet property="signUp" destination="bDe-is-SXm" id="QX5-4k-Sxv"/>
                         <segue destination="swz-Op-vTs" kind="show" identifier="segueToGrave" id="oY5-ju-XPb"/>
                         <segue destination="7wD-UE-Lcl" kind="show" identifier="segueToSignUp" id="78r-so-P3O"/>
+                        <segue destination="swz-Op-vTs" kind="show" identifier="segueToTappedOnGrave" id="Wwa-pC-8ke"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -136,6 +137,6 @@
         <image name="bob ross" width="112.5" height="112.5"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="oY5-ju-XPb"/>
+        <segue reference="Wwa-pC-8ke"/>
     </inferredMetricsTieBreakers>
 </document>

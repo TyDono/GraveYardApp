@@ -44,6 +44,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         setMapViewLocationAndUser()
         signInTextChange()
         chageTextColor()
+        mapView.delegate = self
         getGraveEntries { (graves) in
             self.graves = graves
             self.dropGraveEntryPins()
@@ -82,6 +83,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                         print("We don't have coordinates yet")
                         return }
                 let graveCoordinates = CLLocationCoordinate2D(latitude: graveLatitude, longitude: graveLongitude)
+                //change subtitle to grave. quote. the quote will be blank for free users and premium will have the ability to change their quote
                 let graveEntryAnnotation = GraveEntryAnnotation(annotation: annotation, coordinate: graveCoordinates, title: registeredGrave.name, subtitle: lifeSpan)
                 
                 annotation.coordinate = graveCoordinates //adds pins when you log in
@@ -235,13 +237,26 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         return setGraveEntryPin(annotation: annotation)
     }
     
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        print("you tapped on \(view.annotation?.title)")
+    }
+    
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        
+        performSegue(withIdentifier: "segueToGrave", sender: self)
+    }
+    
     func setGraveEntryPin(annotation: MKAnnotation) -> MKAnnotationView? {
         let reuseID = "entryPin"
         var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseID) as? MKMarkerAnnotationView?
         pinView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: reuseID)
         pinView??.glyphImage = UIImage(named: "genericEntryGlyph")
         pinView??.markerTintColor = #colorLiteral(red: 0.1201040372, green: 0.8558169007, blue: 0.5233284831, alpha: 1)
+        let pinButton = UIButton(type: .infoDark) as UIButton
+        pinView??.rightCalloutAccessoryView = pinButton
         pinView??.canShowCallout = true
+        //make a check here for if the user is premium if they are then  the image will change other wise it will be  adefault image from us
+        //pinView??.image = UIImage(named: <#T##String#>)
         
         return pinView ?? nil
     }
@@ -282,6 +297,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "segueToGrave", let GraveTVC = segue.destination as? GraveTableViewController {
             GraveTVC.creatorId = creatorId ?? "nul"
+        } else if segue.identifier == "segueToTappedOnGrave", let GraveTVC = segue.destination as? GraveTableViewController {
+            
         }
     }
     

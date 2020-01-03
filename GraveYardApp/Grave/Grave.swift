@@ -32,6 +32,7 @@ struct Grave {
     var graveLocationLatitude: String
     var graveLocationLongitude: String
     var allGraveIdentifier: String
+    // premium users, grave quote, grave node image
     // BURIAL LOCATION
     // coordanates = jim
     // coodinates
