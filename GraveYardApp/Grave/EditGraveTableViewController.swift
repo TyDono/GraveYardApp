@@ -37,9 +37,15 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
         super.viewDidLoad()
         chageTextColor()
         db = Firestore.firestore()
+//        getGraveData()
+//        getImages()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         getGraveData()
         getImages()
     }
+
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)

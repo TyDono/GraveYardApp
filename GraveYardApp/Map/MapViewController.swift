@@ -28,10 +28,12 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     var db = Firestore.firestore()
     var currentGraveId: String?
     var creatorId: String?
+    var graveId: String?
     var currentGraveLocationLatitude: String?
     var currentGraveLocationLongitude: String?
     var graves : [Grave]?
     var graveAnnotationCoordinates: String?
+    var selectedAnnotation: GraveEntryAnnotation?
 
     
     //==================================================
@@ -77,14 +79,16 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             for i in 0...graves!.count - 1 {
                 let registeredGrave = graves![i]
                 let annotation = MKPointAnnotation()
+                let currentGraveTitle = registeredGrave.name
                 let lifeSpan = "\(registeredGrave.birthDate) - \(registeredGrave.deathDate)"
+                let currentGraveId = registeredGrave.graveId
                 guard let graveLatitude = Double(registeredGrave.graveLocationLatitude),
                     let graveLongitude = Double(registeredGrave.graveLocationLongitude) else {
                         print("We don't have coordinates yet")
                         return }
                 let graveCoordinates = CLLocationCoordinate2D(latitude: graveLatitude, longitude: graveLongitude)
                 //change subtitle to grave. quote. the quote will be blank for free users and premium will have the ability to change their quote
-                let graveEntryAnnotation = GraveEntryAnnotation(annotation: annotation, coordinate: graveCoordinates, title: registeredGrave.name, subtitle: lifeSpan)
+                let graveEntryAnnotation = GraveEntryAnnotation(annotation: annotation, coordinate: graveCoordinates, title: currentGraveTitle, subtitle: lifeSpan, graveId: currentGraveId)
                 
                 annotation.coordinate = graveCoordinates //adds pins when you log in
                 annotation.title = registeredGrave.name
@@ -237,12 +241,15 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         return setGraveEntryPin(annotation: annotation)
     }
     
-    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        print("you tapped on \(view.annotation?.title)")
-    }
+//    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+//        self.selectedAnnotation = view.annotation as? GraveEntryAnnotation
+//        self.currentGraveId = self.selectedAnnotation?.graveId
+//        print("you tapped on \(view.annotation?.title)")
+//    }
     
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-        
+        self.selectedAnnotation = view.annotation as? GraveEntryAnnotation
+        MapViewController.shared.currentGraveId = self.selectedAnnotation?.graveId
         performSegue(withIdentifier: "segueToGrave", sender: self)
     }
     
@@ -294,13 +301,12 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         }
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "segueToGrave", let GraveTVC = segue.destination as? GraveTableViewController {
-            GraveTVC.creatorId = creatorId ?? "nul"
-        } else if segue.identifier == "segueToTappedOnGrave", let GraveTVC = segue.destination as? GraveTableViewController {
-            
-        }
-    }
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "segueToGrave", let GraveTVC = segue.destination as? GraveTableViewController {
+////            GraveTVC.creatorId = creatorId ?? "nul"
+////            GraveTVC.currentGraveId = currentGraveId ?? "nul"
+//        }
+//    }
     
     //    func presentAlertController() {
     //        let newGraveAlert = UIAlertController(title: "New grave sight entry.", message: "Would you like to make a new entry at this location?", preferredStyle: .actionSheet)
@@ -424,7 +430,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         }))
         newGraveAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { action in
             print("Cancel Button Pressed")
-            
             for annotation in self.mapView.annotations {
                 if annotation.title == "New Entry" {
                     self.mapView.removeAnnotation(annotation)

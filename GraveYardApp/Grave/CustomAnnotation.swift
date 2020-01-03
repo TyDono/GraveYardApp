@@ -15,11 +15,13 @@ class GraveEntryAnnotation: NSObject, MKAnnotation {
     var coordinate: CLLocationCoordinate2D
     var title: String?
     var subtitle: String?
+    var graveId: String?
     
-    init(annotation: MKAnnotation, coordinate: CLLocationCoordinate2D, title: String?, subtitle: String?) {
+    init(annotation: MKAnnotation, coordinate: CLLocationCoordinate2D, title: String?, subtitle: String?, graveId: String?) {
         self.annotation = annotation
         self.coordinate = coordinate
         self.title = title
         self.subtitle = subtitle
+        self.graveId = graveId
     }
 }
