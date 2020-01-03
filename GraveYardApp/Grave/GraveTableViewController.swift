@@ -39,10 +39,6 @@ class GraveTableViewController: UITableViewController {
         super.viewDidLoad()
         db = Firestore.firestore()
         chageTextColor()
-        if currentAuthID != MapViewController.shared.creatorId {
-            self.navigationItem.rightBarButtonItem = nil
-        }
-        print(creatorId)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -88,13 +84,18 @@ class GraveTableViewController: UITableViewController {
                         print(name)
                         self.imageString = profileImageId
                         self.graveNavTitle.title = "\(name)'s Headstone"
-                        self.creatorId = MapViewController.shared.currentGraveId
+                        self.creatorId = creatorId
                         self.birthDateLabel.text = birthDate
                         self.birthLocationLabel.text = birthLocation
                         self.deathDateLabel.text = deathDate
                         self.deathLocationLabel.text = deathLocation
 //                        self.familyStatusLabel.text = familyStatus
                         self.bioLabel.text = bio
+                        if let currentUserId = self.currentAuthID {
+                            if currentUserId != creatorId {
+                                self.navigationItem.rightBarButtonItem = nil
+                            }
+                        }
                     }
                 }
             }
