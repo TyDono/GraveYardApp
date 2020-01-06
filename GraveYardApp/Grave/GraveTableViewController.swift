@@ -39,11 +39,8 @@ class GraveTableViewController: UITableViewController {
         super.viewDidLoad()
         db = Firestore.firestore()
         chageTextColor()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
         getGraveData()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.75) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
             self.getImages()
         }
     }
