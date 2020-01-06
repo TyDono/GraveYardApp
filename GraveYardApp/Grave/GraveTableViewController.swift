@@ -40,7 +40,7 @@ class GraveTableViewController: UITableViewController {
         db = Firestore.firestore()
         chageTextColor()
         getGraveData()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
             self.getImages()
         }
     }
