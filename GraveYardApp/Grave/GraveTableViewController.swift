@@ -43,7 +43,9 @@ class GraveTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         getGraveData()
-        getImages()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.75) {
+            self.getImages()
+        }
     }
     
     func chageTextColor() {
