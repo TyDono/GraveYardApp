@@ -23,6 +23,7 @@ class GraveTableViewController: UITableViewController {
     @IBOutlet weak var deathLocationLabel: UILabel!
     @IBOutlet weak var bioLabel: UILabel!
     @IBOutlet weak var graveNavTitle: UINavigationItem!
+    @IBOutlet weak var pinQuoteLabel: UILabel!
     
     var db: Firestore!
     var currentAuthID = Auth.auth().currentUser?.uid
@@ -79,7 +80,8 @@ class GraveTableViewController: UITableViewController {
                         let deathDate = document.data()["deathDate"] as? String,
                         let deathLocation = document.data()["deathLocation"] as? String,
                         let familyStatus = document.data()["familyStatus"] as? String,
-                        let bio = document.data()["bio"] as? String {
+                        let bio = document.data()["bio"] as? String,
+                        let pinQuote = document.data()["pinQuote"] as? String {
                         print(name)
                         self.imageString = profileImageId
                         self.graveNavTitle.title = "\(name)'s Headstone"
@@ -90,9 +92,11 @@ class GraveTableViewController: UITableViewController {
                         self.deathLocationLabel.text = deathLocation
 //                        self.familyStatusLabel.text = familyStatus
                         self.bioLabel.text = bio
+                        self.pinQuoteLabel.text = pinQuote
                         if let currentUserId = self.currentAuthID {
                             if currentUserId != creatorId {
-                                self.navigationItem.rightBarButtonItem = nil
+                                self.navigationItem.rightBarButtonItem?.title = "Report"
+                                
                             }
                         }
                     }

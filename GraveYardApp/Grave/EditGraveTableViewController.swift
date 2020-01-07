@@ -20,6 +20,7 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
     @IBOutlet weak var deathDatePicker: UIDatePicker!
     @IBOutlet weak var deathLocationTextField: UITextField!
     @IBOutlet weak var bioTextView: UITextView!
+    @IBOutlet weak var pinQuoteTextField: UITextField!
     
     var db: Firestore!
     var currentAuthID = Auth.auth().currentUser?.uid
@@ -79,7 +80,8 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
                         let deathLocation = document.data()["deathLocation"] as? String,
                         let graveId = document.data()["graveId"] as? String?,
 //                        let familyStatus = document.data()["familyStatus"] as? String,
-                        let bio = document.data()["bio"] as? String {
+                        let bio = document.data()["bio"] as? String,
+                        let pinQuote = document.data()["pinQuote"] as? String {
                         
                         self.imageString = profileImageId
                         guard let birthDate = self.dateFormatter.date(from:birthDate) ?? defaultDate else { return }
@@ -92,6 +94,7 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
                         self.deathLocationTextField.text = deathLocation
 //                        self.familyStatusTextField.text = familyStatus
                         self.bioTextView.text = bio
+                        self.pinQuoteTextField.text = pinQuote
                     }
                 }
             }
@@ -196,6 +199,7 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
         guard let graveLocationLatitude = MapViewController.shared.currentGraveLocationLatitude  else { return }
         guard let graveLocationLongitude = MapViewController.shared.currentGraveLocationLongitude  else { return }
         let allGraveIdentifier: String = "tylerRoolz"
+        guard let pinQuote: String = self.pinQuoteTextField.text else { return }
         
         let grave = Grave(creatorId: id,
                           graveId: graveId,
@@ -209,7 +213,8 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
                           bio: bio,
                           graveLocationLatitude: graveLocationLatitude,
                           graveLocationLongitude: graveLocationLongitude,
-                          allGraveIdentifier: allGraveIdentifier)
+                          allGraveIdentifier: allGraveIdentifier,
+                          pinQuote: pinQuote)
         
         let graveRef = self.db.collection("grave")
         graveRef.document(String(grave.graveId)).updateData(grave.dictionary){ err in

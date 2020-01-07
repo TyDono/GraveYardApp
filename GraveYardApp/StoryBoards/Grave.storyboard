@@ -431,6 +431,7 @@
                         <outlet property="deathLocationLabel" destination="uln-qo-fEY" id="u06-s4-wbU"/>
                         <outlet property="graveMainImage" destination="rzf-gV-0fs" id="SHs-It-Q4d"/>
                         <outlet property="graveNavTitle" destination="5l7-Vp-38m" id="HhH-J4-c4W"/>
+                        <outlet property="pinQuoteLabel" destination="AQw-xL-FrS" id="FoW-cU-e8p"/>
                         <outlet property="storiesButton" destination="3VJ-Ys-YoO" id="kQy-eG-Hk9"/>
                         <segue destination="akf-23-k3a" kind="show" identifier="editGraveSegue" id="2Vk-lS-08E"/>
                         <segue destination="7fh-bd-Npt" kind="show" identifier="graveStoriesSegue" id="owM-5Y-txC"/>
@@ -706,6 +707,7 @@
                         <outlet property="deathLocationTextField" destination="WXA-Vl-eOn" id="Icu-z9-3bA"/>
                         <outlet property="graveMainImage" destination="A0e-uE-pgk" id="Hn6-4M-vFW"/>
                         <outlet property="nameTextField" destination="LBe-W8-wbt" id="6Jd-4K-KvD"/>
+                        <outlet property="pinQuoteTextField" destination="ChQ-Yw-FRJ" id="KVj-gG-KqD"/>
                         <segue destination="lrJ-Dg-sXL" kind="unwind" identifier="unwindToGraveSegue" unwindAction="unwindToGrave:" id="lx7-NK-AXl"/>
                         <segue destination="lrJ-Dg-sXL" kind="unwind" identifier="unwindToGraveSegue" unwindAction="unwindToGrave:" id="ApY-fG-L2p"/>
                     </connections>
@@ -965,6 +967,6 @@
         <image name="plus-big-512" width="512" height="512"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="7DO-rd-4qB"/>
+        <segue reference="fpu-aT-yyc"/>
     </inferredMetricsTieBreakers>
 </document>
