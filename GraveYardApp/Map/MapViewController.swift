@@ -77,10 +77,11 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     func dropGraveEntryPins() {
         if graves != nil {
             for i in 0...graves!.count - 1 {
+            //for i in stride(from: 0, through: graves!.count - 1, by: -1) {
                 let registeredGrave = graves![i]
                 let annotation = MKPointAnnotation()
                 let currentGraveTitle = registeredGrave.name
-                let lifeSpan = "\(registeredGrave.birthDate) - \(registeredGrave.deathDate)"
+                let pinQuote = "\(registeredGrave.pinQuote)"
                 let currentGraveId = registeredGrave.graveId
                 guard let graveLatitude = Double(registeredGrave.graveLocationLatitude),
                     let graveLongitude = Double(registeredGrave.graveLocationLongitude) else {
@@ -88,11 +89,11 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                         return }
                 let graveCoordinates = CLLocationCoordinate2D(latitude: graveLatitude, longitude: graveLongitude)
                 //change subtitle to grave. quote. the quote will be blank for free users and premium will have the ability to change their quote
-                let graveEntryAnnotation = GraveEntryAnnotation(annotation: annotation, coordinate: graveCoordinates, title: currentGraveTitle, subtitle: lifeSpan, graveId: currentGraveId)
+                let graveEntryAnnotation = GraveEntryAnnotation(annotation: annotation, coordinate: graveCoordinates, title: currentGraveTitle, subtitle: pinQuote, graveId: currentGraveId)
                 
                 annotation.coordinate = graveCoordinates //adds pins when you log in
                 annotation.title = registeredGrave.name
-                annotation.subtitle = lifeSpan
+                annotation.subtitle = pinQuote
                 mapView.addAnnotation(graveEntryAnnotation)
                 
             }
@@ -377,7 +378,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                 let profileImageId: String = UUID().uuidString
                 let name: String = ""
                 let birthDate: String = ""
-                let birthLocation: String = "A"
+                let birthLocation: String = ""
                 let deathDate: String = ""
                 let deathLocation: String = ""
                 let familyStatus: String = ""
