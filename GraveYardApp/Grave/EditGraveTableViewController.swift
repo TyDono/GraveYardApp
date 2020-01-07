@@ -44,7 +44,7 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
 //        }
     }
     
-    override func viewDidAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         getGraveData()
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
             self.getImages()
