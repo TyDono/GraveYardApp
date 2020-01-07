@@ -35,15 +35,12 @@ class GraveTableViewController: UITableViewController {
     var currentGraveLocation: String?
     var imageString: String?
     let storage = Storage.storage()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         db = Firestore.firestore()
         chageTextColor()
-//        getGraveData()
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
-//            self.getImages()
-//        }
+        pinQuoteLabel.font = pinQuoteLabel.font.italic
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -99,7 +96,7 @@ class GraveTableViewController: UITableViewController {
                         self.deathLocationLabel.text = deathLocation
 //                        self.familyStatusLabel.text = familyStatus
                         self.bioLabel.text = bio
-                        self.pinQuoteLabel.text = pinQuote
+                        self.pinQuoteLabel.text = "\"\(pinQuote)\""
                         if let currentUserId = self.currentAuthID {
                             if currentUserId != creatorId {
                                 self.navigationItem.rightBarButtonItem?.title = "Report"
