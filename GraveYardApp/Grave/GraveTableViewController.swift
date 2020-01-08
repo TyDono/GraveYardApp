@@ -13,6 +13,7 @@ import FirebaseStorage
 import GoogleSignIn
 
 class GraveTableViewController: UITableViewController {
+    @IBOutlet weak var rightBarButtonItem: UIBarButtonItem!
     @IBOutlet weak var graveMainImage: UIImageView!
     @IBOutlet weak var storiesButton: UIButton!
     @IBOutlet weak var nameLabel: UILabel!
@@ -45,8 +46,13 @@ class GraveTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         getGraveData()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
-            self.getImages()
+    }
+    
+    func checkForCreatorId() {
+        if currentAuthID == creatorId {
+            rightBarButtonItem.title = "Edit"
+        } else {
+            rightBarButtonItem.title = "Report"
         }
     }
     
@@ -76,7 +82,8 @@ class GraveTableViewController: UITableViewController {
                 print(error as Any)
             } else {
                 for document in (snapshot?.documents)! {
-                    if let profileImageId = document.data()["profileImageId"] as? String,
+                    if let graveId = document.data()["graveId"] as? String,
+                        let profileImageId = document.data()["profileImageId"] as? String,
                         let name = document.data()["name"] as? String,
                         let creatorId = document.data()["creatorId"] as? String,
                         let birthDate = document.data()["birthDate"] as? String,
@@ -87,6 +94,7 @@ class GraveTableViewController: UITableViewController {
                         let bio = document.data()["bio"] as? String,
                         let pinQuote = document.data()["pinQuote"] as? String {
                         print(name)
+                        self.currentGraveId = graveId
                         self.imageString = profileImageId
                         self.graveNavTitle.title = "\(name)'s Headstone"
                         self.creatorId = creatorId
@@ -100,9 +108,10 @@ class GraveTableViewController: UITableViewController {
                         if let currentUserId = self.currentAuthID {
                             if currentUserId != creatorId {
                                 self.navigationItem.rightBarButtonItem?.title = "Report"
-                                
                             }
                         }
+                        self.checkForCreatorId()
+                        self.getImages()// always call last
                     }
                 }
             }
@@ -126,7 +135,11 @@ class GraveTableViewController: UITableViewController {
     // MARK: - Actions
     
     @IBAction func editGraveBarButtonTapped(_ sender: UIBarButtonItem) {
+        if currentAuthID == self.currentGraveId {
         performSegue(withIdentifier: "editGraveSegue", sender: nil)
+        } else {
+            performSegue(withIdentifier: "", sender: nil)
+        }
     }
     
     @IBAction func storiesButtonTapped(_ sender: UIButton) {

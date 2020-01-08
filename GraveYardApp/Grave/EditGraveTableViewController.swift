@@ -26,12 +26,14 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
     var currentAuthID = Auth.auth().currentUser?.uid
     var currentUser: Grave?
     var userId: String?
-    var creatorId: String? = ""
+    var creatorId: String?
     let dateFormatter = DateFormatter()
     var imageString: String?
     var currentGraveId: String?
     var graveProfileImage: GraveProfileImage?
     var graveProfileImages = [UIImage]()
+    var currentGraveLocationLongitude: String?
+    var currentGraveLocationLatitude: String?
     let storage = Storage.storage()
 
     override func viewDidLoad() {
@@ -42,9 +44,6 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
     
     override func viewWillAppear(_ animated: Bool) {
         getGraveData()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
-            self.getImages()
-        }
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
@@ -75,7 +74,8 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
                 print(error as Any)
             } else {
                 for document in (snapshot?.documents)! {
-                    if let profileImageId = document.data()["profileImageId"] as? String,
+                    if let creatorId = document.data()["creatorId"] as? String,
+                        let profileImageId = document.data()["profileImageId"] as? String,
                         let name = document.data()["name"] as? String,
                         let birthDate = document.data()["birthDate"] as? String,
                         let birthLocation = document.data()["birthLocation"] as? String,
@@ -84,7 +84,9 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
                         let graveId = document.data()["graveId"] as? String?,
 //                        let familyStatus = document.data()["familyStatus"] as? String,
                         let bio = document.data()["bio"] as? String,
-                        let pinQuote = document.data()["pinQuote"] as? String {
+                        let pinQuote = document.data()["pinQuote"] as? String,
+                        let graveLocationLatitude = document.data()["graveLocationLatitude"] as? String,
+                        let graveLocationLongitude = document.data()["graveLocationLongitude"] as? String {
                         
                         self.imageString = profileImageId
                         guard let birthDate = self.dateFormatter.date(from:birthDate) ?? defaultDate else { return }
@@ -98,6 +100,10 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
 //                        self.familyStatusTextField.text = familyStatus
                         self.bioTextView.text = bio
                         self.pinQuoteTextField.text = pinQuote
+                        self.creatorId = creatorId
+                        self.currentGraveLocationLatitude = graveLocationLatitude
+                        self.currentGraveLocationLongitude = graveLocationLongitude
+                        self.getImages() //call this last
                     }
                 }
             }
@@ -187,8 +193,8 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
             }
         }
         
-        let id = currentAuthID!
-        guard let graveId = MapViewController.shared.currentGraveId  else { return } // this is the grave id that was tapped on
+        let creatorId = currentAuthID!
+        guard let graveId = self.currentGraveId  else { return } // this is the grave id that was tapped on
         guard let profileImageId = self.imageString else { return }
         guard let name = nameTextField.text else { return }
         let birth = birthDatePicker.date
@@ -199,12 +205,12 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
         guard let deathLocation = deathLocationTextField.text else { return }
 //        guard let familyStatus = familyStatusTextField.text else { return }
         guard let bio = bioTextView.text else { return }
-        guard let graveLocationLatitude = MapViewController.shared.currentGraveLocationLatitude  else { return }
-        guard let graveLocationLongitude = MapViewController.shared.currentGraveLocationLongitude  else { return }
+        guard let currentGraveLocationLatitude = self.currentGraveLocationLatitude  else { return }
+        guard let currentGraveLocationLongitude = self.currentGraveLocationLongitude  else { return }
         let allGraveIdentifier: String = "tylerRoolz"
         guard let pinQuote: String = self.pinQuoteTextField.text else { return }
         
-        let grave = Grave(creatorId: id,
+        let grave = Grave(creatorId: creatorId,
                           graveId: graveId,
                           profileImageId: profileImageId,
                           name: name,
@@ -214,8 +220,8 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
                           deathLocation: deathLocation,
 //                          familyStatus: familyStatus,
                           bio: bio,
-                          graveLocationLatitude: graveLocationLatitude,
-                          graveLocationLongitude: graveLocationLongitude,
+                          graveLocationLatitude: currentGraveLocationLatitude,
+                          graveLocationLongitude: currentGraveLocationLongitude,
                           allGraveIdentifier: allGraveIdentifier,
                           pinQuote: pinQuote)
         

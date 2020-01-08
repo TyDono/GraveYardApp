@@ -42,11 +42,17 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        checkForUserId()
         setMapViewLocationAndUser()
-        signInTextChange()
         chageTextColor()
         mapView.delegate = self
+//        getGraveEntries { (graves) in
+//            self.graves = graves
+//            self.dropGraveEntryPins()
+//        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        checkForUserId() // make sure this gets calld everytime u reload from sign in
         getGraveEntries { (graves) in
             self.graves = graves
             self.dropGraveEntryPins()
@@ -54,7 +60,11 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        checkForUserId()
+//        checkForUserId() // make sure this gets calld everytime u reload from sign in
+//        getGraveEntries { (graves) in
+//            self.graves = graves
+//            self.dropGraveEntryPins()
+//        }
     }
     
     func chageTextColor() {
@@ -294,14 +304,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         mapView.setRegion(viewRegion, animated: true)
     }
     
-    func signInTextChange() {
-        if currentAuthID == nil {
-            signUp.title = "Sign In"
-        } else {
-            signUp.title = "Log Out"
-        }
-    }
-    
 //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 //        if segue.identifier == "segueToGrave", let GraveTVC = segue.destination as? GraveTableViewController {
 ////            GraveTVC.creatorId = creatorId ?? "nul"
@@ -445,7 +447,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     }
     
     @IBAction func SignInTapped(_ sender: UIBarButtonItem) {
-        if signUp.title == "Sign In" {
+        if currentAuthID == nil {
             performSegue(withIdentifier: "segueToSignUp", sender: self)
         } else {
             let locationAlert = UIAlertController(title: "Log Out", message: "Are you sure you want to log out?", preferredStyle: .actionSheet)

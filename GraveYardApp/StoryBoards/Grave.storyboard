@@ -432,6 +432,7 @@
                         <outlet property="graveMainImage" destination="rzf-gV-0fs" id="SHs-It-Q4d"/>
                         <outlet property="graveNavTitle" destination="5l7-Vp-38m" id="HhH-J4-c4W"/>
                         <outlet property="pinQuoteLabel" destination="AQw-xL-FrS" id="FoW-cU-e8p"/>
+                        <outlet property="rightBarButtonItem" destination="V6v-v6-hou" id="iyh-Gp-gFr"/>
                         <outlet property="storiesButton" destination="3VJ-Ys-YoO" id="kQy-eG-Hk9"/>
                         <segue destination="akf-23-k3a" kind="show" identifier="editGraveSegue" id="2Vk-lS-08E"/>
                         <segue destination="7fh-bd-Npt" kind="show" identifier="graveStoriesSegue" id="owM-5Y-txC"/>
@@ -526,9 +527,11 @@
                                                 </textField>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="LBe-W8-wbt" secondAttribute="trailing" constant="15" id="5Ee-Ry-zpe"/>
                                                 <constraint firstItem="LBe-W8-wbt" firstAttribute="top" secondItem="qg0-BJ-yg1" secondAttribute="topMargin" constant="-7" id="8iK-IV-5O4"/>
                                                 <constraint firstItem="LBe-W8-wbt" firstAttribute="leading" secondItem="qg0-BJ-yg1" secondAttribute="leadingMargin" constant="-5" id="Bdf-m1-cje"/>
                                                 <constraint firstItem="LBe-W8-wbt" firstAttribute="centerY" secondItem="qg0-BJ-yg1" secondAttribute="centerY" id="Yfb-p3-NUy"/>
+                                                <constraint firstItem="LBe-W8-wbt" firstAttribute="leading" secondItem="qg0-BJ-yg1" secondAttribute="leading" constant="15" id="p4L-qr-rzK"/>
                                                 <constraint firstItem="LBe-W8-wbt" firstAttribute="centerX" secondItem="qg0-BJ-yg1" secondAttribute="centerX" id="zXn-4V-wr2"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -627,15 +630,16 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Location" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1z7-YR-Rng">
-                                                    <rect key="frame" x="20" y="4.3333333333333321" width="374" height="35.333333333333343"/>
+                                                    <rect key="frame" x="15" y="4.3333333333333321" width="384" height="35.333333333333343"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="1z7-YR-Rng" secondAttribute="trailing" constant="20" id="1tU-OJ-ly4"/>
                                                 <constraint firstItem="1z7-YR-Rng" firstAttribute="top" secondItem="anS-8b-uSH" secondAttribute="topMargin" constant="-6.6666679382324219" id="Enp-IC-ECO"/>
                                                 <constraint firstItem="1z7-YR-Rng" firstAttribute="centerX" secondItem="anS-8b-uSH" secondAttribute="centerX" id="RLt-8H-jae"/>
+                                                <constraint firstAttribute="trailing" secondItem="1z7-YR-Rng" secondAttribute="trailing" constant="15" id="VF5-7H-Etr"/>
+                                                <constraint firstItem="1z7-YR-Rng" firstAttribute="leading" secondItem="anS-8b-uSH" secondAttribute="leading" constant="15" id="WbV-8n-ag6"/>
                                                 <constraint firstItem="1z7-YR-Rng" firstAttribute="centerY" secondItem="anS-8b-uSH" secondAttribute="centerY" id="qUM-ax-zOS"/>
                                             </constraints>
                                         </tableViewCellContentView>
