@@ -122,7 +122,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K2f-j3-Rqn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1732" y="-86"/>
+            <point key="canvasLocation" x="1396" y="-337"/>
         </scene>
         <!--Edit Grave View Controller-->
         <scene sceneID="kkQ-9b-OuL">
@@ -209,7 +209,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CXQ-g6-wz3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2481.1594202898555" y="-86.413043478260875"/>
+            <point key="canvasLocation" x="2116" y="-329"/>
         </scene>
         <!--Grave Table View Controller-->
         <scene sceneID="7jP-VP-8HO">
@@ -432,14 +432,50 @@
                         <outlet property="graveMainImage" destination="rzf-gV-0fs" id="SHs-It-Q4d"/>
                         <outlet property="graveNavTitle" destination="5l7-Vp-38m" id="HhH-J4-c4W"/>
                         <outlet property="pinQuoteLabel" destination="AQw-xL-FrS" id="FoW-cU-e8p"/>
+                        <outlet property="reportCommentsTextView" destination="pph-df-0Ko" id="dms-r5-kcm"/>
+                        <outlet property="reportPopOver" destination="EIE-HG-6t2" id="CI4-Jr-zWl"/>
                         <outlet property="rightBarButtonItem" destination="V6v-v6-hou" id="iyh-Gp-gFr"/>
                         <outlet property="storiesButton" destination="3VJ-Ys-YoO" id="kQy-eG-Hk9"/>
                         <segue destination="akf-23-k3a" kind="show" identifier="editGraveSegue" id="2Vk-lS-08E"/>
                         <segue destination="7fh-bd-Npt" kind="show" identifier="graveStoriesSegue" id="owM-5Y-txC"/>
-                        <segue destination="yTF-l0-K99" kind="show" identifier="reportGraveSegue" id="zKg-c1-GBd"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eSG-v4-EBi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="EIE-HG-6t2">
+                    <rect key="frame" x="0.0" y="0.0" width="330" height="284"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tNM-Jg-hmP">
+                            <rect key="frame" x="16" y="234" width="298" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                            <state key="normal" title="Report">
+                                <color key="titleColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                            </state>
+                            <connections>
+                                <action selector="reportButtonTapped:" destination="df1-gm-beU" eventType="touchUpInside" id="kuf-6D-rBc"/>
+                            </connections>
+                        </button>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="pph-df-0Ko">
+                            <rect key="frame" x="16" y="143" width="298" height="83"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                        </textView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Aditional comments here" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U04-3f-7aT">
+                            <rect key="frame" x="16" y="114" width="298" height="21"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <viewLayoutGuide key="safeArea" id="Oag-fg-AJv"/>
+                </view>
                 <exit id="qo2-7w-7Qs" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2639.130434782609" y="614.67391304347836"/>
@@ -860,22 +896,6 @@
                 <exit id="V8h-T1-3cD" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2581" y="1339"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="Qug-Xd-hcm">
-            <objects>
-                <viewController id="yTF-l0-K99" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Jax-Z5-AlE">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="1YX-Gn-xmD"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="CLV-fC-nRr"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Eti-HM-kBB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3386" y="1276"/>
         </scene>
         <!--Grave Stories Table View Controller-->
         <scene sceneID="IwN-v8-ITM">

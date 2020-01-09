@@ -8,7 +8,6 @@
 
 import Foundation
 import UIKit
-import FirebaseFirestore
 
 protocol IdentifiableStory {
     var id: String? { get set }

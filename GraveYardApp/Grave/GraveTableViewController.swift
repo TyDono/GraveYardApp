@@ -25,6 +25,8 @@ class GraveTableViewController: UITableViewController {
     @IBOutlet weak var bioLabel: UILabel!
     @IBOutlet weak var graveNavTitle: UINavigationItem!
     @IBOutlet weak var pinQuoteLabel: UILabel!
+    @IBOutlet var reportPopOver: UIView!
+    @IBOutlet weak var reportCommentsTextView: UITextView!
     
     // MARK: - Propeties
     
@@ -44,6 +46,7 @@ class GraveTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         db = Firestore.firestore()
+        self.reportPopOver.layer.cornerRadius = 10
         chageTextColor()
         pinQuoteLabel.font = pinQuoteLabel.font.italic
     }
@@ -69,6 +72,23 @@ class GraveTableViewController: UITableViewController {
         navigationItem.rightBarButtonItem?.tintColor = UIColor(0.0, 128.0, 128.0, 1.0)
         let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor(0.0, 128.0, 128.0, 1.0)]
         navigationController?.navigationBar.titleTextAttributes = textAttributes
+    }
+    
+    func createReportData() {
+        var userReportId: String = UUID().uuidString
+        var userReport = UserReport(reporterCreatorId: currentAuthID ?? "No Creator ID", reason: reportCommentsTextView.text, creatorId: creatorId!, graveId: currentGraveId!, storyId: "")
+        let userReportRef = self.db.collection("userReports")
+        userReportRef.document(userReportId).setData(userReport.dictionary) { err in
+            if let err = err {
+                let graveCreationFailAert = UIAlertController(title: "Failed to report", message: "Your device failed to send the report. Please check your internet and try again.", preferredStyle: .alert)
+                let dismiss = UIAlertAction(title: "OK", style: .default, handler: nil)
+                graveCreationFailAert.addAction(dismiss)
+                self.present(graveCreationFailAert, animated: true, completion: nil)
+                print(err)
+            } else {
+                self.reportPopOver.removeFromSuperview()
+            }
+        }
     }
 
     // MARK: - Table view data source
@@ -144,12 +164,17 @@ class GraveTableViewController: UITableViewController {
         if currentAuthID == self.creatorId {
             performSegue(withIdentifier: "editGraveSegue", sender: nil)
         } else {
-            performSegue(withIdentifier: "reportGraveSegue", sender: nil)
+            self.view.addSubview(reportPopOver)
+            reportPopOver.center = self.view.center
         }
     }
     
     @IBAction func storiesButtonTapped(_ sender: UIButton) {
         performSegue(withIdentifier: "graveStoriesSegue", sender: nil)
+    }
+    
+    @IBAction func reportButtonTapped(_ sender: UIButton) {
+        createReportData()
     }
     
     @IBAction func unwindToGrave(_ sender: UIStoryboardSegue) {}
