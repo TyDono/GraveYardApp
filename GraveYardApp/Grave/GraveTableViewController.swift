@@ -80,13 +80,17 @@ class GraveTableViewController: UITableViewController {
         let userReportRef = self.db.collection("userReports")
         userReportRef.document(userReportId).setData(userReport.dictionary) { err in
             if let err = err {
-                let graveCreationFailAert = UIAlertController(title: "Failed to report", message: "Your device failed to send the report. Please check your internet and try again.", preferredStyle: .alert)
+                let reportGraveFailAlert = UIAlertController(title: "Failed to report", message: "Your device failed to send the report. Please check your internet and try again.", preferredStyle: .alert)
                 let dismiss = UIAlertAction(title: "OK", style: .default, handler: nil)
-                graveCreationFailAert.addAction(dismiss)
-                self.present(graveCreationFailAert, animated: true, completion: nil)
+                reportGraveFailAlert.addAction(dismiss)
+                self.present(reportGraveFailAlert, animated: true, completion: nil)
                 print(err)
             } else {
+                let graveReportAlertSucceed = UIAlertController(title: "Thank you!", message: "Your report has been received, thank you for your help.", preferredStyle: .alert)
+                let dismiss = UIAlertAction(title: "OK", style: .default, handler: nil)
+                graveReportAlertSucceed.addAction(dismiss)
                 self.reportPopOver.removeFromSuperview()
+                self.present(graveReportAlertSucceed, animated: true, completion: nil)
             }
         }
     }
@@ -94,7 +98,6 @@ class GraveTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
         if segue.identifier == "graveStoriesSegue", let graveStoriesTVC = segue.destination as? GraveStoriesTableViewController {
             graveStoriesTVC.graveStories = graveId
             graveStoriesTVC.creatorId = creatorId
