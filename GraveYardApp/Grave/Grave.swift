@@ -21,6 +21,7 @@ protocol DocumentGraveSerializable {
 struct Grave {
     var creatorId: String // this is the googleSign in userId
     var graveId: String // the grave specifict Id that is generated when the grave is created. each grave should have its own unique Id
+    var profileImageId: String
     var name: String //name of dead person
     var birthDate: String
     var birthLocation: String
@@ -31,6 +32,8 @@ struct Grave {
     var graveLocationLatitude: String
     var graveLocationLongitude: String
     var allGraveIdentifier: String
+    var pinQuote: String
+    // premium users, grave quote, grave node image
     // BURIAL LOCATION
     // coordanates = jim
     // coodinates
@@ -41,6 +44,7 @@ struct Grave {
         return [
             "creatorId": creatorId,
             "graveId": graveId,
+            "profileImageId": profileImageId,
             "name": name,
             "birthDate": birthDate,
             "birthLocation": birthLocation,
@@ -50,7 +54,8 @@ struct Grave {
             "bio": bio,
             "graveLocationLatitude": graveLocationLatitude,
             "graveLocationLongitude": graveLocationLongitude,
-            "allGraveIdentifier": allGraveIdentifier
+            "allGraveIdentifier": allGraveIdentifier,
+            "pinQuote": pinQuote
         ]
     }
 }
@@ -59,6 +64,7 @@ extension Grave: DocumentGraveSerializable {
     init?(dictionary: [String: Any]) {
         guard let creatorId = dictionary["creatorId"] as? String,
             let graveId = dictionary["graveId"] as? String,
+            let profileImageId = dictionary["profileImageId"] as? String,
             let name = dictionary["name"] as? String,
             let birthDate = dictionary["birthDate"] as? String,
             let birthLocation = dictionary["birthLocation"] as? String,
@@ -68,9 +74,9 @@ extension Grave: DocumentGraveSerializable {
             let bio = dictionary["bio"] as? String,
             let graveLocationLatitude = dictionary["graveLocationLatitude"] as? String,
             let graveLocationLongitude = dictionary["graveLocationLongitude"] as? String,
-        let allGraveIdentifier = dictionary["allGraveIdentifier"] as? String else {return nil}
- //       self.init(creatorId: creatorId, graveId: graveId, name: name, birthDate: birthDate, birthLocation: birthLocation, deathDate: deathDate, deathLocation: deathLocation, familyStatus: familyStatus, bio: bio, graveLocationLatitude: graveLocationLatitude, graveLocationLongitude: graveLocationLongitude)
-        self.init(creatorId: creatorId, graveId: graveId, name: name, birthDate: birthDate, birthLocation: birthLocation, deathDate: deathDate, deathLocation: deathLocation, familyStatus: familyStatus, bio: bio, graveLocationLatitude: graveLocationLatitude, graveLocationLongitude: graveLocationLongitude, allGraveIdentifier: allGraveIdentifier)
+            let allGraveIdentifier = dictionary["allGraveIdentifier"] as? String,
+            let pinQuote = dictionary["pinQuote"] as? String else {return nil}
+        self.init(creatorId: creatorId, graveId: graveId, profileImageId: profileImageId, name: name, birthDate: birthDate, birthLocation: birthLocation, deathDate: deathDate, deathLocation: deathLocation, familyStatus: familyStatus, bio: bio, graveLocationLatitude: graveLocationLatitude, graveLocationLongitude: graveLocationLongitude, allGraveIdentifier: allGraveIdentifier, pinQuote: pinQuote)
     }
     
 }

@@ -9,9 +9,11 @@
 import UIKit
 import FirebaseAuth
 import FirebaseFirestore
+import FirebaseStorage
 import GoogleSignIn
 
 class GraveTableViewController: UITableViewController {
+    @IBOutlet weak var rightBarButtonItem: UIBarButtonItem!
     @IBOutlet weak var graveMainImage: UIImageView!
     @IBOutlet weak var storiesButton: UIButton!
     @IBOutlet weak var nameLabel: UILabel!
@@ -22,6 +24,7 @@ class GraveTableViewController: UITableViewController {
     @IBOutlet weak var deathLocationLabel: UILabel!
     @IBOutlet weak var bioLabel: UILabel!
     @IBOutlet weak var graveNavTitle: UINavigationItem!
+    @IBOutlet weak var pinQuoteLabel: UILabel!
     
     var db: Firestore!
     var currentAuthID = Auth.auth().currentUser?.uid
@@ -29,21 +32,28 @@ class GraveTableViewController: UITableViewController {
     var grave: [Grave]?
     var graveId: String?
     var creatorId: String?
+    var currentGraveId: String?
     var currentGraveLocation: String?
+    var imageString: String?
+    let storage = Storage.storage()
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
         db = Firestore.firestore()
         chageTextColor()
-        print(creatorId)
-//        if currentAuthID != creatorId {
-//            self.navigationItem.rightBarButtonItem = nil
-//        }
+        pinQuoteLabel.font = pinQuoteLabel.font.italic
     }
     
     override func viewWillAppear(_ animated: Bool) {
         getGraveData()
+    }
+    
+    func checkForCreatorId() {
+        if currentAuthID == creatorId {
+            rightBarButtonItem.title = "Edit"
+        } else {
+            rightBarButtonItem.title = "Report"
+        }
     }
     
     func chageTextColor() {
@@ -57,43 +67,12 @@ class GraveTableViewController: UITableViewController {
 
     // MARK: - Table view data source
 
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
-    }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-     */
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "graveStoriesSegue", let graveStoriesTVC = segue.destination as? GraveStoriesTableViewController {
             graveStoriesTVC.graveStories = graveId
             graveStoriesTVC.creatorId = creatorId
         }
-        print("prepare for segueSearch called")
     }
     
     func getGraveData() {
@@ -103,15 +82,20 @@ class GraveTableViewController: UITableViewController {
                 print(error as Any)
             } else {
                 for document in (snapshot?.documents)! {
-                    if let name = document.data()["name"] as? String,
+                    if let graveId = document.data()["graveId"] as? String,
+                        let profileImageId = document.data()["profileImageId"] as? String,
+                        let name = document.data()["name"] as? String,
                         let creatorId = document.data()["creatorId"] as? String,
                         let birthDate = document.data()["birthDate"] as? String,
                         let birthLocation = document.data()["birthLocation"] as? String,
                         let deathDate = document.data()["deathDate"] as? String,
                         let deathLocation = document.data()["deathLocation"] as? String,
                         let familyStatus = document.data()["familyStatus"] as? String,
-                        let bio = document.data()["bio"] as? String {
+                        let bio = document.data()["bio"] as? String,
+                        let pinQuote = document.data()["pinQuote"] as? String {
                         print(name)
+                        self.currentGraveId = graveId
+                        self.imageString = profileImageId
                         self.graveNavTitle.title = "\(name)'s Headstone"
                         self.creatorId = creatorId
                         self.birthDateLabel.text = birthDate
@@ -120,16 +104,42 @@ class GraveTableViewController: UITableViewController {
                         self.deathLocationLabel.text = deathLocation
 //                        self.familyStatusLabel.text = familyStatus
                         self.bioLabel.text = bio
+                        self.pinQuoteLabel.text = "\"\(pinQuote)\""
+                        if let currentUserId = self.currentAuthID {
+                            if currentUserId != creatorId {
+                                self.navigationItem.rightBarButtonItem?.title = "Report"
+                            }
+                        }
+                        self.checkForCreatorId()
+                        self.getImages()// always call last
                     }
                 }
             }
         }
     }
     
+    func getImages() {
+        if let imageStringId = self.imageString {
+            let storageRef = storage.reference()
+            let graveProfileImage = storageRef.child("graveProfileImages/\(imageStringId)")
+            graveProfileImage.getData(maxSize: (1024 * 1024), completion:  { (data, err) in
+                guard let data = data else {return}
+                guard let image = UIImage(data: data) else {return}
+                self.graveMainImage.image = image
+            })
+        } else {
+            return
+        }
+    }
+    
     // MARK: - Actions
     
     @IBAction func editGraveBarButtonTapped(_ sender: UIBarButtonItem) {
-        performSegue(withIdentifier: "editGraveSegue", sender: nil)
+        if currentAuthID == self.creatorId {
+            performSegue(withIdentifier: "editGraveSegue", sender: nil)
+        } else {
+            performSegue(withIdentifier: "reportGraveSegue", sender: nil)
+        }
     }
     
     @IBAction func storiesButtonTapped(_ sender: UIButton) {

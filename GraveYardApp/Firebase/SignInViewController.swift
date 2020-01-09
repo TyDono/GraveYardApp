@@ -18,7 +18,7 @@ class SignInViewController: UIViewController, GIDSignInUIDelegate {
     var db: Firestore!
     var userId: String = ""
     let userDefault = UserDefaults.standard
-     private var listenHandler: AuthStateDidChangeListenerHandle?
+    private var listenHandler: AuthStateDidChangeListenerHandle?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,9 +50,7 @@ class SignInViewController: UIViewController, GIDSignInUIDelegate {
         
     }
     
-    @IBAction func googleSignIn(_ sender: Any) {
-        
-    }
+    @IBAction func googleSignIn(_ sender: Any) {}
     
     @IBAction func logout(_ sender: UIBarButtonItem) {
         self.userId = ""

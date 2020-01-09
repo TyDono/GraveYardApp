@@ -28,10 +28,12 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     var db = Firestore.firestore()
     var currentGraveId: String?
     var creatorId: String?
+    var graveId: String?
     var currentGraveLocationLatitude: String?
     var currentGraveLocationLongitude: String?
     var graves : [Grave]?
     var graveAnnotationCoordinates: String?
+    var selectedAnnotation: GraveEntryAnnotation?
 
     
     //==================================================
@@ -40,21 +42,25 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        checkForUserId()
         setMapViewLocationAndUser()
-        signInTextChange()
         chageTextColor()
+        mapView.delegate = self
         getGraveEntries { (graves) in
             self.graves = graves
+            self.dropGraveEntryPins()
         }
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        dropGraveEntryPins()
+        checkForUserId() // make sure this gets calld everytime u reload from sign in
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        checkForUserId()
+//        checkForUserId() // make sure this gets calld everytime u reload from sign in
+//        getGraveEntries { (graves) in
+//            self.graves = graves
+//            self.dropGraveEntryPins()
+//        }
     }
     
     func chageTextColor() {
@@ -77,21 +83,25 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     func dropGraveEntryPins() {
         if graves != nil {
             for i in 0...graves!.count - 1 {
+            //for i in stride(from: 0, through: graves!.count - 1, by: -1) {
                 let registeredGrave = graves![i]
                 let annotation = MKPointAnnotation()
-                let lifeSpan = "\(registeredGrave.birthDate) - \(registeredGrave.deathDate)"
+                let currentGraveTitle = registeredGrave.name
+                let pinQuote = "\(registeredGrave.pinQuote)"
+                let currentGraveId = registeredGrave.graveId
                 guard let graveLatitude = Double(registeredGrave.graveLocationLatitude),
                     let graveLongitude = Double(registeredGrave.graveLocationLongitude) else {
                         print("We don't have coordinates yet")
                         return }
                 let graveCoordinates = CLLocationCoordinate2D(latitude: graveLatitude, longitude: graveLongitude)
-                let graveEntryAnnotation = GraveEntryAnnotation(annotation: annotation, coordinate: graveCoordinates, title: registeredGrave.name, subtitle: lifeSpan)
+                //change subtitle to grave. quote. the quote will be blank for free users and premium will have the ability to change their quote
+                let graveEntryAnnotation = GraveEntryAnnotation(annotation: annotation, coordinate: graveCoordinates, title: currentGraveTitle, subtitle: pinQuote, graveId: currentGraveId)
                 
-                annotation.coordinate = graveCoordinates
+                annotation.coordinate = graveCoordinates //adds pins when you log in
                 annotation.title = registeredGrave.name
-                annotation.subtitle = lifeSpan
+                annotation.subtitle = pinQuote
                 mapView.addAnnotation(graveEntryAnnotation)
-                    
+                
             }
         }
     }
@@ -107,6 +117,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                 
                 if let creatorId = currentGrave["creatorId"] as? String,
                     let graveId = currentGrave["graveId"] as? String,
+                    let profileImageId = currentGrave["profileImageId"] as? String,
                     let name = currentGrave["name"] as? String,
                     let birthDate = currentGrave["birthDate"] as? String,
                     let birthLocation = currentGrave["birthLocation"] as? String,
@@ -116,12 +127,12 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                     let bio = currentGrave["bio"] as? String,
                     let graveLocationLatitude = currentGrave["graveLocationLatitude"] as? String,
                     let graveLocationLongitude = currentGrave["graveLocationLongitude"] as? String,
-                    let allGraveIdentifier = currentGrave["allGraveIdentifier"] as? String
-                
+                    let allGraveIdentifier = currentGrave["allGraveIdentifier"] as? String,
+                    let pinQuote = currentGrave["pinQuote"] as? String
                 {
-                    
                     let registeredGrave = Grave(creatorId: creatorId,
                                                 graveId: graveId,
+                                                profileImageId: profileImageId,
                                                 name: name,
                                                 birthDate: birthDate,
                                                 birthLocation: birthLocation,
@@ -131,7 +142,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                                                 bio: bio,
                                                 graveLocationLatitude: graveLocationLatitude,
                                                 graveLocationLongitude: graveLocationLongitude,
-                                                allGraveIdentifier: allGraveIdentifier)
+                                                allGraveIdentifier: allGraveIdentifier,
+                                                pinQuote: pinQuote)
                     
                     registeredGraves.append(registeredGrave)
                     print(registeredGraves)
@@ -236,13 +248,29 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         return setGraveEntryPin(annotation: annotation)
     }
     
+//    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+//        self.selectedAnnotation = view.annotation as? GraveEntryAnnotation
+//        self.currentGraveId = self.selectedAnnotation?.graveId
+//        print("you tapped on \(view.annotation?.title)")
+//    }
+    
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        self.selectedAnnotation = view.annotation as? GraveEntryAnnotation
+        MapViewController.shared.currentGraveId = self.selectedAnnotation?.graveId
+        performSegue(withIdentifier: "segueToGrave", sender: self)
+    }
+    
     func setGraveEntryPin(annotation: MKAnnotation) -> MKAnnotationView? {
         let reuseID = "entryPin"
         var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseID) as? MKMarkerAnnotationView?
         pinView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: reuseID)
         pinView??.glyphImage = UIImage(named: "genericEntryGlyph")
         pinView??.markerTintColor = #colorLiteral(red: 0.1201040372, green: 0.8558169007, blue: 0.5233284831, alpha: 1)
+        let pinButton = UIButton(type: .infoDark) as UIButton
+        pinView??.rightCalloutAccessoryView = pinButton
         pinView??.canShowCallout = true
+        //make a check here for if the user is premium if they are then  the image will change other wise it will be  adefault image from us
+        //pinView??.image = UIImage(named: <#T##String#>)
         
         return pinView ?? nil
     }
@@ -272,19 +300,12 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         mapView.setRegion(viewRegion, animated: true)
     }
     
-    func signInTextChange() {
-        if currentAuthID == nil {
-            signUp.title = "Sign In"
-        } else {
-            signUp.title = "Log Out"
-        }
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "segueToGrave", let GraveTVC = segue.destination as? GraveTableViewController {
-            GraveTVC.creatorId = creatorId ?? "nul"
-        }
-    }
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "segueToGrave", let GraveTVC = segue.destination as? GraveTableViewController {
+////            GraveTVC.creatorId = creatorId ?? "nul"
+////            GraveTVC.currentGraveId = currentGraveId ?? "nul"
+//        }
+//    }
     
     //    func presentAlertController() {
     //        let newGraveAlert = UIAlertController(title: "New grave sight entry.", message: "Would you like to make a new entry at this location?", preferredStyle: .actionSheet)
@@ -352,13 +373,15 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                 MapViewController.shared.currentGraveLocationLatitude = String(annotationLat)
                 MapViewController.shared.currentGraveLocationLongitude = String(annotationLong)
                 let newGraveId = UUID().uuidString
-                let name: String = "Bob Ross"
-                let birthDate: String = "October 29, 1942"
-                let birthLocation: String = "At the Beach"
-                let deathDate: String = "July 4, 1995"
-                let deathLocation: String = "Florida"
-                let familyStatus: String = "Yes"
-                let bio: String = "Hi I'm bob ross and we are going to paint n stuff today!"
+                let profileImageId: String = UUID().uuidString
+                let name: String = ""
+                let birthDate: String = ""
+                let birthLocation: String = ""
+                let deathDate: String = ""
+                let deathLocation: String = ""
+                let familyStatus: String = ""
+                let bio: String = ""
+                let pinQuote: String = ""
                 let allGraveIdentifier = "tylerRoolz"
                 guard let graveId: String = MapViewController.shared.currentGraveId else { return }
                 guard let graveLocationLatitude: String = MapViewController.shared.currentGraveLocationLatitude else { return }
@@ -366,6 +389,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                 
                 var grave = Grave(creatorId: id,
                                   graveId: graveId,
+                                  profileImageId: profileImageId,
                                   name: name,
                                   birthDate: birthDate,
                                   birthLocation: birthLocation,
@@ -375,7 +399,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                                   bio: bio,
                                   graveLocationLatitude: graveLocationLatitude,
                                   graveLocationLongitude: graveLocationLongitude,
-                                  allGraveIdentifier: allGraveIdentifier)
+                                  allGraveIdentifier: allGraveIdentifier,
+                                  pinQuote: pinQuote)
                 
                 let graveRef = self.db.collection("grave")
                 graveRef.whereField("graveId", isEqualTo: grave.graveId).getDocuments { (snapshot, error) in
@@ -391,7 +416,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                 }
                 graveRef.document(String(grave.graveId)).setData(grave.dictionary) { err in
                     if let err = err {
-                        let graveCreationFailAert = UIAlertController(title: "Failed to create a Grave", message: "Your device failed to properly create a Grave on your desired destination, Please check your wifi and try again", preferredStyle: .alert)
+                        let graveCreationFailAert = UIAlertController(title: "Failed to create a Grave", message: "Your device failed to properly create a Grave on your desired tdestination, Please check your wifi and try again", preferredStyle: .alert)
                         let dismiss = UIAlertAction(title: "OK", style: .default, handler: nil)
                         graveCreationFailAert.addAction(dismiss)
                         self.present(graveCreationFailAert, animated: true, completion: nil)
@@ -406,7 +431,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         }))
         newGraveAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { action in
             print("Cancel Button Pressed")
-            
             for annotation in self.mapView.annotations {
                 if annotation.title == "New Entry" {
                     self.mapView.removeAnnotation(annotation)
@@ -419,7 +443,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     }
     
     @IBAction func SignInTapped(_ sender: UIBarButtonItem) {
-        if signUp.title == "Sign In" {
+        if currentAuthID == nil {
             performSegue(withIdentifier: "segueToSignUp", sender: self)
         } else {
             let locationAlert = UIAlertController(title: "Log Out", message: "Are you sure you want to log out?", preferredStyle: .actionSheet)
