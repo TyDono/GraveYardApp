@@ -45,18 +45,14 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         setMapViewLocationAndUser()
         chageTextColor()
         mapView.delegate = self
-//        getGraveEntries { (graves) in
-//            self.graves = graves
-//            self.dropGraveEntryPins()
-//        }
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        checkForUserId() // make sure this gets calld everytime u reload from sign in
         getGraveEntries { (graves) in
             self.graves = graves
             self.dropGraveEntryPins()
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        checkForUserId() // make sure this gets calld everytime u reload from sign in
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -420,7 +416,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                 }
                 graveRef.document(String(grave.graveId)).setData(grave.dictionary) { err in
                     if let err = err {
-                        let graveCreationFailAert = UIAlertController(title: "Failed to create a Grave", message: "Your device failed to properly create a Grave on your desired destination, Please check your wifi and try again", preferredStyle: .alert)
+                        let graveCreationFailAert = UIAlertController(title: "Failed to create a Grave", message: "Your device failed to properly create a Grave on your desired tdestination, Please check your wifi and try again", preferredStyle: .alert)
                         let dismiss = UIAlertAction(title: "OK", style: .default, handler: nil)
                         graveCreationFailAert.addAction(dismiss)
                         self.present(graveCreationFailAert, animated: true, completion: nil)

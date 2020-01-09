@@ -135,10 +135,10 @@ class GraveTableViewController: UITableViewController {
     // MARK: - Actions
     
     @IBAction func editGraveBarButtonTapped(_ sender: UIBarButtonItem) {
-        if currentAuthID == self.currentGraveId {
-        performSegue(withIdentifier: "editGraveSegue", sender: nil)
+        if currentAuthID == self.creatorId {
+            performSegue(withIdentifier: "editGraveSegue", sender: nil)
         } else {
-            performSegue(withIdentifier: "", sender: nil)
+            performSegue(withIdentifier: "reportGraveSegue", sender: nil)
         }
     }
     
