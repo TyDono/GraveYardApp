@@ -15,6 +15,8 @@ class GraveStoriesTableViewController: UITableViewController {
     
     @IBOutlet weak var addStoryBarButton: UIBarButtonItem!
     
+    // MARK: - Propeties
+    
     var currentAuthID = Auth.auth().currentUser?.uid
     var creatorId: String?
     var graveStories: String?
@@ -22,6 +24,8 @@ class GraveStoriesTableViewController: UITableViewController {
     var tableArray = [String]()
     var stories: [Story]?
     var graveStoryId: String?
+    
+    // MARK: - View Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()

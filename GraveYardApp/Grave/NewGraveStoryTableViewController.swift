@@ -15,11 +15,15 @@ class NewGraveStoryTableViewController: UITableViewController {
     @IBOutlet weak var storyTitleTextField: UITextField!
     @IBOutlet weak var storyBodyTextView: UITextView!
     
+    // MARK: - Propeties
+    
     var db: Firestore!
     var currentAuthID = Auth.auth().currentUser?.uid
     var graveStoryId: String?
     var graveStoryTitleValue: String?
     var graveStoryBodyTextValue: String?
+    
+    // MARK: - View Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +32,8 @@ class NewGraveStoryTableViewController: UITableViewController {
         chageTextColor()
         db = Firestore.firestore()
     }
+    
+    // MARK: - Functions
     
     func chageTextColor() {
         tableView.separatorColor = UIColor(0.0, 128.0, 128.0, 1.0)

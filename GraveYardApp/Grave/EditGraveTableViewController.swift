@@ -22,6 +22,8 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
     @IBOutlet weak var bioTextView: UITextView!
     @IBOutlet weak var pinQuoteTextField: UITextField!
     
+    // MARK: - Propeties
+    
     var db: Firestore!
     var currentAuthID = Auth.auth().currentUser?.uid
     var currentUser: Grave?
@@ -35,6 +37,8 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
     var currentGraveLocationLongitude: String?
     var currentGraveLocationLatitude: String?
     let storage = Storage.storage()
+    
+    // MARK: - View Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,6 +49,8 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
     override func viewWillAppear(_ animated: Bool) {
         getGraveData()
     }
+    
+    // MARK: - Functions
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
@@ -239,6 +245,8 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
             }
         }
     }
+    
+    // MARK: - Actions
     
     @IBAction func changeImage(_ sender: UIButton) {
         let imagePickerController = UIImagePickerController()

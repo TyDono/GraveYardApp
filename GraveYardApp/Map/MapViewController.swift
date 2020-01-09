@@ -55,13 +55,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         checkForUserId() // make sure this gets calld everytime u reload from sign in
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-//        checkForUserId() // make sure this gets calld everytime u reload from sign in
-//        getGraveEntries { (graves) in
-//            self.graves = graves
-//            self.dropGraveEntryPins()
-//        }
-    }
+    //==================================================
+    // MARK: - Functions
+    //==================================================
     
     func chageTextColor() {
         navigationItem.leftBarButtonItem?.tintColor = UIColor(0.0, 128.0, 128.0, 1.0)
@@ -75,10 +71,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             signUp.title = "Log Out"
         }
     }
-    
-    //==================================================
-    // MARK: - Functions
-    //==================================================
     
     func dropGraveEntryPins() {
         if graves != nil {

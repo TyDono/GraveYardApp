@@ -26,6 +26,8 @@ class GraveTableViewController: UITableViewController {
     @IBOutlet weak var graveNavTitle: UINavigationItem!
     @IBOutlet weak var pinQuoteLabel: UILabel!
     
+    // MARK: - Propeties
+    
     var db: Firestore!
     var currentAuthID = Auth.auth().currentUser?.uid
     var currentUser: Grave?
@@ -37,6 +39,8 @@ class GraveTableViewController: UITableViewController {
     var imageString: String?
     let storage = Storage.storage()
     
+    // MARK: - View Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         db = Firestore.firestore()
@@ -47,6 +51,8 @@ class GraveTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         getGraveData()
     }
+    
+    // MARK: - Functions
     
     func checkForCreatorId() {
         if currentAuthID == creatorId {

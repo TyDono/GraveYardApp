@@ -14,11 +14,15 @@ import Firebase
 
 class SignInViewController: UIViewController, GIDSignInUIDelegate {
     
+    // MARK: - Propeties
+    
     var currentAuthID = Auth.auth().currentUser?.uid
     var db: Firestore!
     var userId: String = ""
     let userDefault = UserDefaults.standard
     private var listenHandler: AuthStateDidChangeListenerHandle?
+    
+    // MARK: - View Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +31,8 @@ class SignInViewController: UIViewController, GIDSignInUIDelegate {
         db = Firestore.firestore()
         changeBackground()
     }
+    
+    // MARK: - Functions
     
     func chageTextColor() {
         navigationItem.leftBarButtonItem?.tintColor = UIColor(0.0, 128.0, 128.0, 1.0)

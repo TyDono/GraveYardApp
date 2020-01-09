@@ -15,12 +15,16 @@ class GraveStoryTableViewController: UITableViewController {
     @IBOutlet weak var storyTitle: UILabel!
     @IBOutlet weak var storyBodyBio: UILabel!
     
+    // MARK: - Propeties
+    
     var db: Firestore!
     var currentAuthID = Auth.auth().currentUser?.uid
     var graveStoryId: String?
     var creatorId: String?
     var graveStorytitleValue: String?
     var graveStoryBodyBioValue: String?
+    
+    // MARK: - View Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +36,8 @@ class GraveStoryTableViewController: UITableViewController {
             self.navigationItem.rightBarButtonItem = nil
         }
     }
+    
+    // MARK: - Functions
     
     func chageTextColor() {
         tableView.separatorColor = UIColor(0.0, 128.0, 128.0, 1.0)
