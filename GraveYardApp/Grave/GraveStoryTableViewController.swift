@@ -50,6 +50,7 @@ class GraveStoryTableViewController: UITableViewController {
             editGraveStoryTVC.graveStoryId = graveStoryId
             editGraveStoryTVC.graveStoryTitleValue = storyBodyBio.text
             editGraveStoryTVC.graveStoryBodyTextValue = storyTitle.text
+            editGraveStoryTVC
         }
     }
     

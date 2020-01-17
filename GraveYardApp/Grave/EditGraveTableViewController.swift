@@ -188,7 +188,7 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
     // MARK: - Actions
     
     @IBAction func saveGraveInfoTapped(_ sender: UIBarButtonItem) {
-//        guard let unwrappedGraveImage = graveMainImage.image else { return }
+        guard let unwrappedGraveImage = graveMainImage.image else { return }
         for image in graveProfileImages {
             uploadFirebaseImages(image) { (url) in
                 print(url)
