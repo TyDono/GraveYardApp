@@ -51,11 +51,19 @@ class GraveTableViewController: UITableViewController {
         pinQuoteLabel.font = pinQuoteLabel.font.italic
     }
     
+    
     override func viewWillAppear(_ animated: Bool) {
         getGraveData()
     }
     
     // MARK: - Functions
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+         let touch = touches.first
+         if touch?.view == self.view {
+            self.removeAnimate()
+        }
+    }
     
     func checkForCreatorId() {
         if currentAuthID == creatorId {
@@ -75,12 +83,12 @@ class GraveTableViewController: UITableViewController {
     }
     
     func createReportData() {
-        var userReportId: String = UUID().uuidString
-        var userReport = UserReport(reporterCreatorId: currentAuthID ?? "No Creator ID", reason: reportCommentsTextView.text, creatorId: creatorId!, graveId: currentGraveId!, storyId: "")
+        let userReportId: String = UUID().uuidString
+        let userReport = UserReport(reporterCreatorId: currentAuthID ?? "No Creator ID", reason: reportCommentsTextView.text, creatorId: creatorId!, graveId: currentGraveId!, storyId: "")
         let userReportRef = self.db.collection("userReports")
         userReportRef.document(userReportId).setData(userReport.dictionary) { err in
             if let err = err {
-                let reportGraveFailAlert = UIAlertController(title: "Failed to report", message: "Your device failed to send the report. Please check your internet and try again.", preferredStyle: .alert)
+                let reportGraveFailAlert = UIAlertController(title: "Failed to report", message: "Your device failed to send the report. Please make sure you are logged in with an internet connection.", preferredStyle: .alert)
                 let dismiss = UIAlertAction(title: "OK", style: .default, handler: nil)
                 reportGraveFailAlert.addAction(dismiss)
                 self.present(reportGraveFailAlert, animated: true, completion: nil)
@@ -89,7 +97,7 @@ class GraveTableViewController: UITableViewController {
                 let graveReportAlertSucceed = UIAlertController(title: "Thank you!", message: "Your report has been received, thank you for your help.", preferredStyle: .alert)
                 let dismiss = UIAlertAction(title: "OK", style: .default, handler: nil)
                 graveReportAlertSucceed.addAction(dismiss)
-                self.reportPopOver.removeFromSuperview()
+                self.removeAnimate()
                 self.present(graveReportAlertSucceed, animated: true, completion: nil)
             }
         }
@@ -161,6 +169,28 @@ class GraveTableViewController: UITableViewController {
         }
     }
     
+    func showAnimate() {
+        self.reportPopOver.center = self.view.center
+        self.reportPopOver.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
+        self.reportPopOver.alpha = 0.0;
+        UIView.animate(withDuration: 0.25, animations: {
+            self.reportPopOver.alpha = 1.0
+            self.reportPopOver.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+        });
+    }
+    
+    func removeAnimate() {
+        UIView.animate(withDuration: 0.25, animations: {
+            self.reportPopOver.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
+            self.reportPopOver.alpha = 0.0;
+            }, completion:{(finished : Bool)  in
+                if (finished)
+                {
+                    self.reportPopOver.removeFromSuperview()
+                }
+        });
+    }
+    
     // MARK: - Actions
     
     @IBAction func editGraveBarButtonTapped(_ sender: UIBarButtonItem) {
@@ -168,7 +198,8 @@ class GraveTableViewController: UITableViewController {
             performSegue(withIdentifier: "editGraveSegue", sender: nil)
         } else {
             self.view.addSubview(reportPopOver)
-            reportPopOver.center = self.view.center
+            showAnimate()
+           // reportPopOver.center = self.view.center
         }
     }
     

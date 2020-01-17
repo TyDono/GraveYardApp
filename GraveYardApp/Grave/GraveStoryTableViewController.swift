@@ -14,6 +14,9 @@ import FirebaseAuth
 class GraveStoryTableViewController: UITableViewController {
     @IBOutlet weak var storyTitle: UILabel!
     @IBOutlet weak var storyBodyBio: UILabel!
+    @IBOutlet weak var rightBarButtonItem: UIBarButtonItem!
+    @IBOutlet var reportPopOver: UIView!
+    @IBOutlet weak var reportCommentsTextView: UITextView!
     
     // MARK: - Propeties
     
@@ -54,9 +57,69 @@ class GraveStoryTableViewController: UITableViewController {
         }
     }
     
+    func createReportData() {
+        let userReportId: String = UUID().uuidString
+        let userReport = UserReport(reporterCreatorId: currentAuthID ?? "No Creator ID", reason: reportCommentsTextView.text, creatorId: creatorId!, graveId: "", storyId: graveStoryId!)
+        let userReportRef = self.db.collection("userReports")
+        userReportRef.document(userReportId).setData(userReport.dictionary) { err in
+            if let err = err {
+                let reportGraveFailAlert = UIAlertController(title: "Failed to report", message: "Your device failed to send the report. Please make sure you are logged in with an internet connection.", preferredStyle: .alert)
+                let dismiss = UIAlertAction(title: "OK", style: .default, handler: nil)
+                reportGraveFailAlert.addAction(dismiss)
+                self.present(reportGraveFailAlert, animated: true, completion: nil)
+                print(err)
+            } else {
+                let graveReportAlertSucceed = UIAlertController(title: "Thank you!", message: "Your report has been received, thank you for your help.", preferredStyle: .alert)
+                let dismiss = UIAlertAction(title: "OK", style: .default, handler: nil)
+                graveReportAlertSucceed.addAction(dismiss)
+                self.removeReportPopOverAnimate()
+                self.present(graveReportAlertSucceed, animated: true, completion: nil)
+            }
+        }
+    }
+    
+    func checkForCreatorId() {
+        if currentAuthID == creatorId {
+            rightBarButtonItem.title = "Edit"
+        } else {
+            rightBarButtonItem.title = "Report"
+        }
+    }
+    
+    func showReportPopOverAnimate() {
+        self.reportPopOver.center = self.view.center
+        self.reportPopOver.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
+        self.reportPopOver.alpha = 0.0;
+        UIView.animate(withDuration: 0.25, animations: {
+            self.reportPopOver.alpha = 1.0
+            self.reportPopOver.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+        });
+    }
+    
+    func removeReportPopOverAnimate() {
+        UIView.animate(withDuration: 0.25, animations: {
+            self.reportPopOver.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
+            self.reportPopOver.alpha = 0.0;
+            }, completion:{(finished : Bool)  in
+                if (finished)
+                {
+                    self.reportPopOver.removeFromSuperview()
+                }
+        });
+    }
+    
     // MARK: - Actions
-
+    
+    @IBAction func reportButtonTapped(_ sender: UIButton) {
+        createReportData()
+    }
+    
     @IBAction func editStoryBarButtonTapped(_ sender: UIBarButtonItem) {
-        performSegue(withIdentifier: "editGraveStorySegue", sender: nil)
+        if currentAuthID == self.creatorId {
+            performSegue(withIdentifier: "editGraveStorySegue", sender: nil)
+        } else {
+            self.view.addSubview(reportPopOver)
+            showReportPopOverAnimate()
+        }
     }
 }
