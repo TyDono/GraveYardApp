@@ -59,10 +59,13 @@ class GraveTableViewController: UITableViewController {
     // MARK: - Functions
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        print("lets go")
          let touch = touches.first
          if touch?.view == self.view {
-            self.removeAnimate()
+            print("pablo hestiastes")
+            self.removePopOverAnimate()
         }
+        print("diamante")
     }
     
     func checkForCreatorId() {
@@ -97,7 +100,7 @@ class GraveTableViewController: UITableViewController {
                 let graveReportAlertSucceed = UIAlertController(title: "Thank you!", message: "Your report has been received, thank you for your help.", preferredStyle: .alert)
                 let dismiss = UIAlertAction(title: "OK", style: .default, handler: nil)
                 graveReportAlertSucceed.addAction(dismiss)
-                self.removeAnimate()
+                self.removePopOverAnimate()
                 self.present(graveReportAlertSucceed, animated: true, completion: nil)
             }
         }
@@ -169,7 +172,7 @@ class GraveTableViewController: UITableViewController {
         }
     }
     
-    func showAnimate() {
+    func showPopOverAnimate() {
         self.reportPopOver.center = self.view.center
         self.reportPopOver.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
         self.reportPopOver.alpha = 0.0;
@@ -179,7 +182,7 @@ class GraveTableViewController: UITableViewController {
         });
     }
     
-    func removeAnimate() {
+    func removePopOverAnimate() {
         UIView.animate(withDuration: 0.25, animations: {
             self.reportPopOver.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
             self.reportPopOver.alpha = 0.0;
@@ -198,7 +201,7 @@ class GraveTableViewController: UITableViewController {
             performSegue(withIdentifier: "editGraveSegue", sender: nil)
         } else {
             self.view.addSubview(reportPopOver)
-            showAnimate()
+            showPopOverAnimate()
            // reportPopOver.center = self.view.center
         }
     }

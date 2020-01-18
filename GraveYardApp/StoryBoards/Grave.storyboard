@@ -706,31 +706,38 @@
                                 <action selector="reportButtonTapped:" destination="Deg-jX-e5u" eventType="touchUpInside" id="lH3-SY-pJE"/>
                             </connections>
                         </button>
-                        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OBJ-fW-WuG">
+                        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OBJ-fW-WuG">
                             <rect key="frame" x="16" y="145" width="308" height="83"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="usB-Cu-u8F">
+                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="usB-Cu-u8F">
                                     <rect key="frame" x="20" y="0.0" width="268" height="83"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                     <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 </textView>
                             </subviews>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="usB-Cu-u8F" secondAttribute="trailing" constant="20" id="8vz-rP-8JO"/>
+                                <constraint firstItem="usB-Cu-u8F" firstAttribute="leading" secondItem="OBJ-fW-WuG" secondAttribute="leading" constant="20" id="XVr-J6-gM7"/>
+                            </constraints>
                             <viewLayoutGuide key="contentLayoutGuide" id="N1s-FL-zyC"/>
                             <viewLayoutGuide key="frameLayoutGuide" id="0HA-S4-bJv"/>
                         </scrollView>
                     </subviews>
                     <color key="backgroundColor" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
+                        <constraint firstItem="oYw-nw-F7c" firstAttribute="top" secondItem="OBJ-fW-WuG" secondAttribute="bottom" constant="8" id="2R7-kX-mBt"/>
                         <constraint firstItem="5eE-gm-rMT" firstAttribute="leading" secondItem="bVB-9t-Yg7" secondAttribute="leading" id="Cxa-4X-d0Z"/>
+                        <constraint firstItem="OBJ-fW-WuG" firstAttribute="top" secondItem="5eE-gm-rMT" secondAttribute="bottom" constant="107" id="Fjr-Xg-YXU"/>
+                        <constraint firstItem="bVB-9t-Yg7" firstAttribute="trailing" secondItem="OBJ-fW-WuG" secondAttribute="trailing" constant="16" id="Kva-TM-Y4o"/>
                         <constraint firstItem="5eE-gm-rMT" firstAttribute="top" secondItem="bVB-9t-Yg7" secondAttribute="top" id="OmX-JV-AVQ"/>
+                        <constraint firstItem="oYw-nw-F7c" firstAttribute="top" secondItem="OBJ-fW-WuG" secondAttribute="bottom" constant="8" id="RX0-Jr-27H"/>
                         <constraint firstItem="bVB-9t-Yg7" firstAttribute="trailing" secondItem="oYw-nw-F7c" secondAttribute="trailing" constant="110" id="ag0-Kp-lZN"/>
                         <constraint firstItem="bVB-9t-Yg7" firstAttribute="trailing" secondItem="bvw-ac-ipF" secondAttribute="trailing" constant="16" id="ak9-Kf-aCL"/>
                         <constraint firstItem="bvw-ac-ipF" firstAttribute="leading" secondItem="bVB-9t-Yg7" secondAttribute="leading" constant="16" id="cpF-y0-3mL"/>
                         <constraint firstItem="bvw-ac-ipF" firstAttribute="top" secondItem="bVB-9t-Yg7" secondAttribute="top" constant="8" id="h0j-Ih-bXH"/>
+                        <constraint firstItem="OBJ-fW-WuG" firstAttribute="leading" secondItem="bVB-9t-Yg7" secondAttribute="leading" constant="16" id="jyc-jS-Ezx"/>
                         <constraint firstItem="bVB-9t-Yg7" firstAttribute="bottom" secondItem="oYw-nw-F7c" secondAttribute="bottom" constant="8" id="k3S-Rb-jgw"/>
                         <constraint firstItem="5eE-gm-rMT" firstAttribute="trailing" secondItem="bVB-9t-Yg7" secondAttribute="trailing" id="mb6-26-2k3"/>
                         <constraint firstItem="oYw-nw-F7c" firstAttribute="leading" secondItem="bVB-9t-Yg7" secondAttribute="leading" constant="110" id="sZ7-Zr-3wY"/>
