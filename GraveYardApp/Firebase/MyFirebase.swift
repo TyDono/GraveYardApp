@@ -35,17 +35,19 @@ class MyFirebase {
         listenHandler = Auth.auth().addStateDidChangeListener{ (auth, user) in
             if user == nil {
                 //logged Out
-                self.currentUser = nil
                 print("You Are Currently Logged Out")
+                self.currentUser = nil
                 self.currentAuthID = nil
                 self.userId = ""
             } else {
                 print("Logged In")
                 let userReff = self.db.collection("userProfile").document("\(String(describing: self.userId))")
                 userReff.getDocument { (document, error) in
-                    if let document = document {
-                        let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
-                        print("data already added: \(dataDescription)")
+                    print(document?.exists)
+                    guard let document = document?.exists else { return }
+                    if document == true {
+                        //let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
+                        print("data already added: \(document)")
                     } else {
                         self.createData()
                     }
@@ -53,6 +55,7 @@ class MyFirebase {
                     self.userId = (user?.uid)!
                     DispatchQueue.main.asyncAfter(deadline: .now()) {
                         print(self.currentAuthID, "logged in")
+                        print("sined in")
                         moveToMap()
                     }
                 }
@@ -61,7 +64,7 @@ class MyFirebase {
     }
     
     func createData() {
-        let currentUserId: String = ""
+        let currentUserId: String = currentAuthID ?? "no current auth Id detected"
         let premiumStatus: Bool = false
         
         let user = UserProfile(currentAuthId: currentUserId,
