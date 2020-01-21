@@ -26,6 +26,7 @@ class MyFirebase {
     var currentUser: User?
     var storage = Storage.storage().reference()
     let formatter = DateFormatter()
+    var currentUserPremiumStatus: Bool = false
     
     private var listenHandler: AuthStateDidChangeListenerHandle?
     var currentUpload:StorageUploadTask?
@@ -53,9 +54,11 @@ class MyFirebase {
                     }
                     self.currentUser = user
                     self.userId = (user?.uid)!
+                    print(self.currentAuthID)
+                    //self.getCurrentUserData()
+                    //call function to call for user premium statatus and set the var premiumStatus
                     DispatchQueue.main.asyncAfter(deadline: .now()) {
-                        print(self.currentAuthID, "logged in")
-                        print("sined in")
+                        print(self.currentAuthID, "is logged in")
                         moveToMap()
                     }
                 }
@@ -76,6 +79,21 @@ class MyFirebase {
                 print(err)
             } else {
                 print("Added Data")
+            }
+        }
+    }
+    
+    func getCurrentUserData() {
+        let graveRef = self.db.collection("userProfile").whereField("currentAuthId", isEqualTo: self.currentAuthID!) //change this to the grave id that was tapped, NOT THE USER ID. THE USER ID IS FOR DIF STUFF. use String(arc4random_uniform(99999999)) to generate the grave Id when created
+        graveRef.getDocuments { (snapshot, error) in
+            if error != nil {
+                print(error as Any)
+            } else {
+                for document in (snapshot?.documents)! {
+                    if let premiumStatus = document.data()["premiumStatus"] as? Bool {
+                        self.currentUserPremiumStatus = premiumStatus
+                    }
+                }
             }
         }
     }
