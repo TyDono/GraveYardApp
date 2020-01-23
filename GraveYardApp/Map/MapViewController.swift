@@ -101,12 +101,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     func getGraveEntries(completion: @escaping ([Grave]) -> Void) {
         db.collection("grave").getDocuments { (snapshot, error) in
             guard let snapshot = snapshot else { return }
-            
             var registeredGraves: [Grave] = []
-            
             for i in snapshot.documents {
                 let currentGrave = i.data()
-                
                 if let creatorId = currentGrave["creatorId"] as? String,
                     let graveId = currentGrave["graveId"] as? String,
                     let profileImageId = currentGrave["profileImageId"] as? String,
@@ -419,7 +416,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                     }
                 }
             }
-            
         }))
         newGraveAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { action in
             print("Cancel Button Pressed")
@@ -428,10 +424,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                     self.mapView.removeAnnotation(annotation)
                 }
             }
-            
         }))
         self.present(newGraveAlert, animated: true)
-        
     }
     
     @IBAction func SignInTapped(_ sender: UIBarButtonItem) {
