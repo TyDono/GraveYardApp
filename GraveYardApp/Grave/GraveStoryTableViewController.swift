@@ -114,6 +114,10 @@ class GraveStoryTableViewController: UITableViewController {
         createReportData()
     }
     
+    @IBAction func closeReportPopUp(_ sender: UIButton) {
+        removeReportPopOverAnimate()
+    }
+    
     @IBAction func editStoryBarButtonTapped(_ sender: UIBarButtonItem) {
         if currentAuthID == self.creatorId {
             performSegue(withIdentifier: "editGraveStorySegue", sender: nil)

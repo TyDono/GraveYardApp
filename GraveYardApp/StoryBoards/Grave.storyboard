@@ -594,6 +594,36 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
+                            <tableViewSection headerTitle="Delete Headstone" id="BIO-FY-0jp">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="Kpz-br-u9b">
+                                        <rect key="frame" x="0.0" y="930.33333969116211" width="414" height="43.666667938232422"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Kpz-br-u9b" id="rQF-NQ-S4W">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZNU-MZ-UIK">
+                                                    <rect key="frame" x="20" y="8" width="374" height="28"/>
+                                                    <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <state key="normal" title="DELETE HEADSTONE">
+                                                        <color key="titleColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="deleteGraveButtonTapped:" destination="akf-23-k3a" eventType="touchUpInside" id="mEA-hr-Het"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="ZNU-MZ-UIK" firstAttribute="top" secondItem="rQF-NQ-S4W" secondAttribute="top" constant="8" id="nGp-NP-wV4"/>
+                                                <constraint firstAttribute="bottom" secondItem="ZNU-MZ-UIK" secondAttribute="bottom" constant="8" id="ql1-M1-K1v"/>
+                                                <constraint firstAttribute="trailing" secondItem="ZNU-MZ-UIK" secondAttribute="trailing" constant="20" id="r4H-w6-TZm"/>
+                                                <constraint firstItem="ZNU-MZ-UIK" firstAttribute="leading" secondItem="rQF-NQ-S4W" secondAttribute="leading" constant="20" id="zUZ-8s-d9I"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                         </sections>
                     </tableView>
                     <navigationItem key="navigationItem" id="O7Q-Wd-KZA">
@@ -738,6 +768,15 @@
                             <viewLayoutGuide key="contentLayoutGuide" id="N1s-FL-zyC"/>
                             <viewLayoutGuide key="frameLayoutGuide" id="0HA-S4-bJv"/>
                         </scrollView>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SPh-mS-REt">
+                            <rect key="frame" x="-3" y="-1" width="48" height="48"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" image="icons8-x"/>
+                            <connections>
+                                <action selector="closeReportPopUp:" destination="Deg-jX-e5u" eventType="touchUpInside" id="jkl-z4-9gv"/>
+                                <action selector="reportButtonTapped:" destination="Deg-jX-e5u" eventType="touchUpInside" id="AbE-j6-nfQ"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
@@ -770,7 +809,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <sections>
-                            <tableViewSection id="zZW-fm-SrC">
+                            <tableViewSection headerTitle="Section-1" id="zZW-fm-SrC">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="301" id="XdA-19-6vT">
                                         <rect key="frame" x="0.0" y="28" width="414" height="301"/>
@@ -801,6 +840,36 @@
                                                 <constraint firstItem="rNP-Pd-iPL" firstAttribute="top" secondItem="lIE-sY-Lw9" secondAttribute="topMargin" constant="8" id="mt3-6K-uTo"/>
                                                 <constraint firstItem="dKM-Lg-ic1" firstAttribute="top" secondItem="rNP-Pd-iPL" secondAttribute="bottom" constant="5" id="nhd-wQ-Imz"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="dKM-Lg-ic1" secondAttribute="bottom" constant="8" id="vHK-Jp-Qwf"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="Section-2" id="bMW-YH-ipm">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="YzS-Hh-ztU">
+                                        <rect key="frame" x="0.0" y="385" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="YzS-Hh-ztU" id="VaO-8P-6wV">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5yc-MI-Ftz">
+                                                    <rect key="frame" x="20" y="8" width="374" height="28"/>
+                                                    <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <state key="normal" title="Delete Story">
+                                                        <color key="titleColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="deleteStoryButtonTapped:" destination="8GQ-fW-7kZ" eventType="touchUpInside" id="Dpj-To-kfp"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="5yc-MI-Ftz" firstAttribute="top" secondItem="VaO-8P-6wV" secondAttribute="top" constant="8" id="6Yf-iR-U11"/>
+                                                <constraint firstAttribute="trailing" secondItem="5yc-MI-Ftz" secondAttribute="trailing" constant="20" id="8ul-Ak-ZW1"/>
+                                                <constraint firstAttribute="bottom" secondItem="5yc-MI-Ftz" secondAttribute="bottom" constant="8" id="FeU-fj-5kY"/>
+                                                <constraint firstItem="5yc-MI-Ftz" firstAttribute="leading" secondItem="VaO-8P-6wV" secondAttribute="leading" constant="20" id="cyY-vC-ZPu"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>

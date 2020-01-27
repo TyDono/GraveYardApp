@@ -136,5 +136,39 @@ class NewGraveStoryTableViewController: UITableViewController, UIImagePickerCont
         updateStoryData()
     }
     
+    @IBAction func deleteStoryButtonTapped(_ sender: UIButton) {
+        let alerController = UIAlertController(title: "WARNING!", message: "This will delete all of the information on this Story!", preferredStyle: .actionSheet)
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alerController.addAction(cancel)
+        let delete = UIAlertAction(title: "DELETE", style: .destructive) { _ in
+            
+            let userId = self.currentAuthID!
+            let userRef = self.db.collection("stories")
+            userRef.document(self.graveStoryId ?? "no StoryId detected").delete(){ err in
+                if err == nil {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0) {
+                        moveToMap()
+                    }
+                } else {
+                    let alert1 = UIAlertController(title: "ERROR", message: "Sorry, there was an error while trying to delete this story, please check your internet connection and try again", preferredStyle: .alert)
+                    alert1.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
+                        alert1.dismiss(animated: true, completion: nil)
+                    }))
+                    self.present(alert1, animated: true, completion: nil)
+                    print("document not deleted, ERROR")
+                    //                    print("Logged Out Tapped")
+                    //                    self.currentUser = nil
+                    //                    self.userId = ""
+                    //                    try! Auth.auth().signOut()
+                    //                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                    //                        moveToLogIn()
+                    //                    }
+                }
+            }
+        }
+        alerController.addAction(delete)
+        self.present(alerController, animated: true) {
+        }
+    }
     
 }
