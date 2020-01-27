@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="cs5-ik-Ric">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="cs5-ik-Ric">
     <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -263,7 +263,7 @@
                             <state key="normal" title="Button"/>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LSz-m9-frx">
-                            <rect key="frame" x="16" y="38" width="46" height="30"/>
+                            <rect key="frame" x="16" y="56" width="46" height="30"/>
                             <state key="normal" title="Button"/>
                         </button>
                         <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="seq-vB-iO7">
@@ -298,12 +298,25 @@
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Npd-VJ-Qda">
+                            <rect key="frame" x="0.0" y="0.0" width="41" height="38"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="41" id="CIU-xb-eMb"/>
+                                <constraint firstAttribute="height" constant="38" id="kk5-F2-CvZ"/>
+                            </constraints>
+                            <state key="normal" image="icons8-x"/>
+                            <connections>
+                                <action selector="closePopUpButtonTapped:" destination="df1-gm-beU" eventType="touchUpInside" id="7WF-vt-cZP"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstItem="seq-vB-iO7" firstAttribute="top" secondItem="U04-3f-7aT" secondAttribute="bottom" constant="8" id="1ZG-zv-O8J"/>
+                        <constraint firstItem="Npd-VJ-Qda" firstAttribute="top" secondItem="Oag-fg-AJv" secondAttribute="top" id="3nT-V8-QdV"/>
                         <constraint firstItem="Oag-fg-AJv" firstAttribute="trailing" secondItem="tNM-Jg-hmP" secondAttribute="trailing" constant="100" id="4Ie-Ik-m6L"/>
                         <constraint firstItem="seq-vB-iO7" firstAttribute="leading" secondItem="Oag-fg-AJv" secondAttribute="leading" constant="16" id="A8s-6F-1R5"/>
+                        <constraint firstItem="Npd-VJ-Qda" firstAttribute="leading" secondItem="Oag-fg-AJv" secondAttribute="leading" id="ASY-XU-cs4"/>
                         <constraint firstItem="tNM-Jg-hmP" firstAttribute="leading" secondItem="Oag-fg-AJv" secondAttribute="leading" constant="110" id="DQl-Cd-lRR"/>
                         <constraint firstItem="U04-3f-7aT" firstAttribute="leading" secondItem="Oag-fg-AJv" secondAttribute="leading" constant="16" id="DRZ-xG-WZj"/>
                         <constraint firstItem="tNM-Jg-hmP" firstAttribute="top" secondItem="seq-vB-iO7" secondAttribute="bottom" constant="8" id="FRe-XL-wHe"/>
@@ -319,6 +332,7 @@
                         <constraint firstItem="seq-vB-iO7" firstAttribute="leading" secondItem="YPk-im-V9G" secondAttribute="leading" id="kWO-FU-LZ7"/>
                         <constraint firstItem="seq-vB-iO7" firstAttribute="leading" secondItem="LSz-m9-frx" secondAttribute="leading" id="mRi-HC-rkd"/>
                         <constraint firstItem="A6X-yZ-Ueu" firstAttribute="leading" secondItem="Oag-fg-AJv" secondAttribute="leading" constant="16" id="ojd-fx-Js4"/>
+                        <constraint firstItem="Oag-fg-AJv" firstAttribute="trailing" secondItem="Npd-VJ-Qda" secondAttribute="trailing" constant="289" id="pNj-N1-0ep"/>
                         <constraint firstItem="seq-vB-iO7" firstAttribute="leading" secondItem="U04-3f-7aT" secondAttribute="leading" id="pPH-nA-9MP"/>
                         <constraint firstItem="seq-vB-iO7" firstAttribute="top" secondItem="EIE-HG-6t2" secondAttribute="top" constant="143" id="x4W-Uc-1b0"/>
                         <constraint firstItem="U04-3f-7aT" firstAttribute="top" secondItem="YPk-im-V9G" secondAttribute="bottom" constant="8" id="zeb-v1-Vig"/>
@@ -327,7 +341,7 @@
                 </view>
                 <exit id="qo2-7w-7Qs" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2639.130434782609" y="614.67391304347836"/>
+            <point key="canvasLocation" x="2580" y="615"/>
         </scene>
         <!--Edit Grave Table View Controller-->
         <scene sceneID="R9d-cl-TEQ">
@@ -906,9 +920,10 @@
         <image name="2bd2f713a915ce40711bb4618d4547be_123238a36d92_t" width="300" height="300"/>
         <image name="default-avatar" width="233" height="232"/>
         <image name="icons8-journal-30" width="30" height="30"/>
+        <image name="icons8-x" width="48" height="48"/>
         <image name="plus-big-512" width="512" height="512"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="7DO-rd-4qB"/>
+        <segue reference="fpu-aT-yyc"/>
     </inferredMetricsTieBreakers>
 </document>

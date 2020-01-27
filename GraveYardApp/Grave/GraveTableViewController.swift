@@ -214,6 +214,10 @@ class GraveTableViewController: UITableViewController {
         createReportData()
     }
     
+    @IBAction func closePopUpButtonTapped(_ sender: UIButton) {
+        removePopOverAnimate()
+    }
+    
     @IBAction func unwindToGrave(_ sender: UIStoryboardSegue) {}
     
 }

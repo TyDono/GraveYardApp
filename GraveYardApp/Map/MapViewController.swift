@@ -51,6 +51,10 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
 //        }
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        print(currentAuthID)
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         getGraveEntries { (graves) in
              self.graves = graves

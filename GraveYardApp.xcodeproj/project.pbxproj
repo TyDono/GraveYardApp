@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -158,13 +158,13 @@
 				CBC3BE80237E52B100BCC06A /* UserProfile.swift */,
 				CB5E07DF238F09A30062F7C7 /* GraveProfileImage.swift */,
 				CBF4795F23C75ADF0058AB30 /* UserReport.swift */,
+				CB06FB03237F253000611C62 /* CustomAnnotation.swift */,
 				CB881F972367B41300615F2F /* GraveTableViewController.swift */,
 				CB881F992367B41E00615F2F /* EditGraveTableViewController.swift */,
 				CB398EFA23695D0600A515B9 /* GraveStoriesTableViewController.swift */,
 				CB3A3889237528E400DA756D /* NewGraveStoryTableViewController.swift */,
 				CB3A388B2375293F00DA756D /* GraveStoryTableViewController.swift */,
 				CBAC4EAE2370EAD7006760A5 /* StoryTableViewCell.swift */,
-				CB06FB03237F253000611C62 /* CustomAnnotation.swift */,
 			);
 			path = Grave;
 			sourceTree = "<group>";

@@ -60,8 +60,8 @@ class MyFirebase {
                     self.getCurrentUserData()
                     //call function to call for user premium statatus and set the var premiumStatus
                     DispatchQueue.main.asyncAfter(deadline: .now()) {
-                        print(self.currentAuthID, "is logged in")
-                        moveToMap()
+                        print(self.userId, "is logged in")
+                        //moveToMap()
                     }
                 }
             }
