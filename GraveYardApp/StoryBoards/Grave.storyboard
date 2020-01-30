@@ -769,7 +769,7 @@
                             <viewLayoutGuide key="frameLayoutGuide" id="0HA-S4-bJv"/>
                         </scrollView>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SPh-mS-REt">
-                            <rect key="frame" x="-3" y="-1" width="48" height="48"/>
+                            <rect key="frame" x="-3" y="-1" width="41" height="41"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <state key="normal" image="icons8-x"/>
                             <connections>
@@ -818,8 +818,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="301"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Story Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rNP-Pd-iPL">
-                                                    <rect key="frame" x="28" y="19" width="374" height="37"/>
+                                                <textField opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Story Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rNP-Pd-iPL">
+                                                    <rect key="frame" x="20" y="19" width="382" height="37"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
@@ -833,13 +833,13 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="dKM-Lg-ic1" firstAttribute="trailing" secondItem="lIE-sY-Lw9" secondAttribute="trailingMargin" id="StC-bR-zQc"/>
-                                                <constraint firstItem="rNP-Pd-iPL" firstAttribute="leading" secondItem="lIE-sY-Lw9" secondAttribute="leadingMargin" constant="8" id="Yte-Zb-edK"/>
-                                                <constraint firstItem="rNP-Pd-iPL" firstAttribute="trailing" secondItem="lIE-sY-Lw9" secondAttribute="trailingMargin" constant="8" id="i1Y-eh-UZS"/>
+                                                <constraint firstItem="rNP-Pd-iPL" firstAttribute="trailing" secondItem="lIE-sY-Lw9" secondAttribute="trailingMargin" constant="8" id="hEM-eY-6to"/>
                                                 <constraint firstItem="dKM-Lg-ic1" firstAttribute="top" secondItem="rNP-Pd-iPL" secondAttribute="bottom" constant="5" id="i6w-ZV-eRv"/>
                                                 <constraint firstItem="dKM-Lg-ic1" firstAttribute="leading" secondItem="lIE-sY-Lw9" secondAttribute="leadingMargin" id="lun-Wy-uxM"/>
                                                 <constraint firstItem="rNP-Pd-iPL" firstAttribute="top" secondItem="lIE-sY-Lw9" secondAttribute="topMargin" constant="8" id="mt3-6K-uTo"/>
                                                 <constraint firstItem="dKM-Lg-ic1" firstAttribute="top" secondItem="rNP-Pd-iPL" secondAttribute="bottom" constant="5" id="nhd-wQ-Imz"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="dKM-Lg-ic1" secondAttribute="bottom" constant="8" id="vHK-Jp-Qwf"/>
+                                                <constraint firstItem="rNP-Pd-iPL" firstAttribute="leading" secondItem="lIE-sY-Lw9" secondAttribute="leadingMargin" constant="8" id="w37-Rz-aSs"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -853,23 +853,35 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="YzS-Hh-ztU" id="VaO-8P-6wV">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="Section-3" id="grF-jw-euA">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="Hb5-rd-Jly">
+                                        <rect key="frame" x="0.0" y="485" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Hb5-rd-Jly" id="KUq-6t-TkR">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5yc-MI-Ftz">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q4a-EV-l2W">
                                                     <rect key="frame" x="20" y="8" width="374" height="28"/>
                                                     <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <state key="normal" title="Delete Story">
                                                         <color key="titleColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                                     </state>
                                                     <connections>
-                                                        <action selector="deleteStoryButtonTapped:" destination="8GQ-fW-7kZ" eventType="touchUpInside" id="Dpj-To-kfp"/>
+                                                        <action selector="deleteStoryButtonTapped:" destination="8GQ-fW-7kZ" eventType="touchUpInside" id="QHA-eV-PD8"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="5yc-MI-Ftz" firstAttribute="top" secondItem="VaO-8P-6wV" secondAttribute="top" constant="8" id="6Yf-iR-U11"/>
-                                                <constraint firstAttribute="trailing" secondItem="5yc-MI-Ftz" secondAttribute="trailing" constant="20" id="8ul-Ak-ZW1"/>
-                                                <constraint firstAttribute="bottom" secondItem="5yc-MI-Ftz" secondAttribute="bottom" constant="8" id="FeU-fj-5kY"/>
-                                                <constraint firstItem="5yc-MI-Ftz" firstAttribute="leading" secondItem="VaO-8P-6wV" secondAttribute="leading" constant="20" id="cyY-vC-ZPu"/>
+                                                <constraint firstAttribute="trailing" secondItem="q4a-EV-l2W" secondAttribute="trailing" constant="20" id="AFN-Iu-WUc"/>
+                                                <constraint firstAttribute="bottom" secondItem="q4a-EV-l2W" secondAttribute="bottom" constant="8" id="EP7-0v-9LW"/>
+                                                <constraint firstItem="q4a-EV-l2W" firstAttribute="leading" secondItem="KUq-6t-TkR" secondAttribute="leading" constant="20" id="cXh-yp-Zqa"/>
+                                                <constraint firstItem="q4a-EV-l2W" firstAttribute="top" secondItem="KUq-6t-TkR" secondAttribute="top" constant="8" id="zm7-ur-xhB"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -897,7 +909,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t66-Qz-rhT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="V8h-T1-3cD" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2581" y="1339"/>
+            <point key="canvasLocation" x="2579.7101449275365" y="1338.5869565217392"/>
         </scene>
         <!--Grave Stories Table View Controller-->
         <scene sceneID="IwN-v8-ITM">
