@@ -262,6 +262,32 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
         }
     }
     
+    func deleteGraveStories() {
+        let graveStoryRef = self.db.collection("stories")
+        
+        let getStories = graveStoryRef.whereField(<#T##field: String##String#>, in: <#T##[Any]#>)
+        getStories.getDocuments { (snapshot, err) in
+            if err != nil {
+                print(err as Any)
+            } else {
+                for document in (snapshot?.documents)! {
+//                    if let creatorId = document.data()["creatorId"] as? String,
+//                        let profileImageId = document.data()["profileImageId"] as? String,
+                }
+            }
+            
+        }
+        
+        graveStoryRef.document(<#T##documentPath: String##String#>).delete() {
+            err in
+            if err == nil {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0) {
+                    moveToMap()
+                }
+            }
+        }
+    }
+    
     // MARK: - Actions
     
     @IBAction func changeImage(_ sender: UIButton) {
@@ -275,16 +301,11 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
         let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         alerController.addAction(cancel)
         let delete = UIAlertAction(title: "DELETE", style: .destructive) { _ in
-            self.deleteGraveProfileImage()
 //            let userId = self.currentAuthID!
             let userRef = self.db.collection("grave")
-            userRef.document(MapViewController.shared.currentGraveId ?? "error no graveId found").delete(){ err in
+            userRef.document(MapViewController.shared.currentGraveId ?? "error no graveId found").delete() { err in
                 if err == nil {
-                    
-                    print("Logged Out Tapped")
-                    self.currentUser = nil
-                    self.userId = ""
-                    try! Auth.auth().signOut()
+                    self.deleteGraveProfileImage()
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0) {
                         moveToMap()
                     }
