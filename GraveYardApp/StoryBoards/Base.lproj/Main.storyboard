@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="8IJ-A0-5Ul">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="8IJ-A0-5Ul">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -80,8 +80,8 @@
                         <outlet property="mapView" destination="5HP-f9-7HN" id="ITC-yp-qvE"/>
                         <outlet property="signUp" destination="bDe-is-SXm" id="QX5-4k-Sxv"/>
                         <segue destination="swz-Op-vTs" kind="show" identifier="segueToGrave" id="oY5-ju-XPb"/>
-                        <segue destination="7wD-UE-Lcl" kind="show" identifier="segueToSignUp" id="78r-so-P3O"/>
                         <segue destination="swz-Op-vTs" kind="show" identifier="segueToTappedOnGrave" id="Wwa-pC-8ke"/>
+                        <segue destination="i5b-RB-ecB" kind="show" identifier="segueToSignUp" id="1Fj-ce-nHo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -103,16 +103,6 @@
             </objects>
             <point key="canvasLocation" x="238" y="682"/>
         </scene>
-        <!--SignIn-->
-        <scene sceneID="BAi-E4-MD9">
-            <objects>
-                <viewControllerPlaceholder storyboardName="SignIn" id="7wD-UE-Lcl" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="xYP-Ca-pJ7"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="AoR-TV-sFV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1822" y="-368"/>
-        </scene>
         <!--Navigation Controller-->
         <scene sceneID="2e6-xP-hN0">
             <objects>
@@ -131,6 +121,56 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5M3-1q-Lky" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="136.80000000000001" y="111.99400299850076"/>
+        </scene>
+        <!--Sign In View Controller-->
+        <scene sceneID="gF2-JF-u0Z">
+            <objects>
+                <viewController id="i5b-RB-ecB" customClass="SignInViewController" customModule="GraveYardApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ygU-Jm-bqm">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iku-OG-eR3" customClass="GIDSignInButton">
+                                <rect key="frame" x="75" y="588" width="225" height="59"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <action selector="googleSignIn:" destination="i5b-RB-ecB" eventType="valueChanged" id="cuu-U0-teJ"/>
+                                </connections>
+                            </view>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2FU-oQ-Pfw">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="Title" id="1vn-Sd-80N">
+                                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="svP-ok-cho">
+                                            <connections>
+                                                <action selector="cancelSignUpButtonTapped:" destination="i5b-RB-ecB" id="7k2-jv-v1d"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="1uw-Xk-kzo"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="PS2-9w-VQi">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="1DG-Ml-jAO">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="M8o-Nj-jbz">
+                                <rect key="frame" x="276" y="7" width="83" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                            </button>
+                            <connections>
+                                <action selector="logout:" destination="i5b-RB-ecB" id="izR-aK-Mfz"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5eK-T3-SxS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2247" y="26"/>
         </scene>
     </scenes>
     <resources>

@@ -265,7 +265,7 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
     func deleteGraveStories() {
         let graveStoryRef = self.db.collection("stories")
         
-        let getStories = graveStoryRef.whereField(<#T##field: String##String#>, in: <#T##[Any]#>)
+        let getStories = graveStoryRef.whereField("graveId", isEqualTo: self.currentGraveId)
         getStories.getDocuments { (snapshot, err) in
             if err != nil {
                 print(err as Any)
@@ -278,7 +278,7 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
             
         }
         
-        graveStoryRef.document(<#T##documentPath: String##String#>).delete() {
+        graveStoryRef.document("").delete() {
             err in
             if err == nil {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0) {

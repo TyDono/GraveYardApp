@@ -56,12 +56,12 @@ class MyFirebase {
                     }
                     self.currentUser = user
                     self.userId = (user?.uid)!
-                    print("UserID: \(self.userId ?? "no ID")")
+                    print("UserID: \(self.userId )")
                     self.getCurrentUserData()
                     //call function to call for user premium statatus and set the var premiumStatus
                     DispatchQueue.main.asyncAfter(deadline: .now()) {
                         print(self.userId, "is logged in")
-                        //moveToMap()
+                        moveToMap()
                     }
                 }
             }
