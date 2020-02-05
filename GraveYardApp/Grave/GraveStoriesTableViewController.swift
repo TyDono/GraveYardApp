@@ -19,6 +19,7 @@ class GraveStoriesTableViewController: UITableViewController {
     
     var currentAuthID = Auth.auth().currentUser?.uid
     var creatorId: String?
+    var graveId: String? = MapViewController.shared.currentGraveId
     var graveStories: String?
     var db: Firestore!
     var tableArray = [String]()
@@ -50,8 +51,9 @@ class GraveStoriesTableViewController: UITableViewController {
     func getGraveStories() {
         var stories = [Story]()
         guard let currentGraveCreatorId: String = creatorId else { return }
+        guard let currentGraveId: String = graveId else { return }
         print(currentGraveCreatorId)
-        db.collection("stories").whereField("creatorId", isEqualTo: currentGraveCreatorId).getDocuments { (snapshot, error) in
+        db.collection("stories").whereField("graveId", isEqualTo: currentGraveId).getDocuments { (snapshot, error) in
                 if error != nil {
                     print(Error.self)
                 } else {
