@@ -79,7 +79,7 @@ class GraveStoriesTableViewController: UITableViewController {
         let storyId: String = UUID().uuidString
         let storyBody: String = ""
         let storyTitle: String = ""
-        let storyImage: String = ""
+        let storyImage: [String] = [""]
         graveStoryId = storyId
         
         let story = Story(creatorId: creatorId ?? "nul",

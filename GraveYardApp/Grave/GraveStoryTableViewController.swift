@@ -11,7 +11,7 @@ import FirebaseFirestore
 import Firebase
 import FirebaseAuth
 
-class GraveStoryTableViewController: UITableViewController {
+class GraveStoryTableViewController: UITableViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     @IBOutlet weak var storyTitle: UILabel!
     @IBOutlet weak var storyBodyBio: UILabel!
     @IBOutlet weak var rightBarButtonItem: UIBarButtonItem!
@@ -26,6 +26,7 @@ class GraveStoryTableViewController: UITableViewController {
     var creatorId: String?
     var graveStorytitleValue: String?
     var graveStoryBodyBioValue: String?
+    var storyImageArray: [String]?
     
     // MARK: - View Lifecycle
     
@@ -41,6 +42,14 @@ class GraveStoryTableViewController: UITableViewController {
     }
     
     // MARK: - Functions
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return storyImageArray?.count ?? 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        <#code#>
+    }
     
     func chageTextColor() {
         tableView.separatorColor = UIColor(0.0, 128.0, 128.0, 1.0)

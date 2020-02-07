@@ -11,7 +11,7 @@ import FirebaseFirestore
 import GoogleSignIn
 import FirebaseStorage
 
-class NewGraveStoryTableViewController: UITableViewController, UIImagePickerControllerDelegate {
+class NewGraveStoryTableViewController: UITableViewController, UIImagePickerControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource {
     
     @IBOutlet weak var storyTitleTextField: UITextField!
     @IBOutlet weak var storyBodyTextView: UITextView!
@@ -24,6 +24,7 @@ class NewGraveStoryTableViewController: UITableViewController, UIImagePickerCont
     var graveStoryTitleValue: String?
     var graveStoryBodyTextValue: String?
     var imageString: String?
+    var storyImageArray: [String]?
     let storage = Storage.storage()
     
     // MARK: - View Lifecycle
@@ -38,6 +39,14 @@ class NewGraveStoryTableViewController: UITableViewController, UIImagePickerCont
     
     // MARK: - Functions
     
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return storyImageArray?.count ?? 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        <#code#>
+    }
+    
     func chageTextColor() {
         tableView.separatorColor = UIColor(0.0, 128.0, 128.0, 1.0)
         navigationItem.leftBarButtonItem?.tintColor = UIColor(0.0, 128.0, 128.0, 1.0)
@@ -50,7 +59,7 @@ class NewGraveStoryTableViewController: UITableViewController, UIImagePickerCont
         guard let storyId: String = graveStoryId else { return }
         guard let storyBodyText: String = storyBodyTextView.text else { return }
         guard let storyTitle: String = storyTitleTextField.text else { return }
-        let storyImage: String = ""
+        let storyImage: [String] = [""]
         
         let story = Story(creatorId: creatorId,
                           graveId: graveId,

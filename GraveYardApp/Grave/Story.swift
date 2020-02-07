@@ -24,7 +24,7 @@ struct Story {
     var storyId: String
     var storyBodyText: String
     var storyTitle: String
-    var storyImage: String
+    var storyImage: [String]
     
     var dictionary: [String: Any] {
         return [
@@ -45,7 +45,7 @@ extension Story: DocumentSerializableStory {
             let storyId = dictionary["storyId"] as? String,
             let storyBodyText = dictionary["storyBodyText"] as? String,
             let storyTitle = dictionary["storyTitle"] as? String,
-            let storyImage = dictionary["storyImage"] as? String else {return nil}
+            let storyImage = dictionary["storyImage"] as? [String] else {return nil}
         self.init(creatorId: creatorId, graveId: graveId, storyId: storyId, storyBodyText: storyBodyText, storyTitle: storyTitle, storyImage: storyImage)
     }
     
