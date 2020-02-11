@@ -950,33 +950,65 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="765"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="R6t-e7-mQD">
-                                                    <rect key="frame" x="20" y="11" width="374" height="242"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wPp-Jy-DV8">
+                                                    <rect key="frame" x="28" y="261" width="366" height="242"/>
+                                                </imageView>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YY7-MK-yLO">
+                                                    <rect key="frame" x="28" y="511" width="366" height="243"/>
+                                                </imageView>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PLt-6M-535">
+                                                    <rect key="frame" x="28" y="11" width="366" height="242"/>
+                                                </imageView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3qp-Me-37T" userLabel="Button1">
+                                                    <rect key="frame" x="20" y="11" width="366" height="242"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="242" id="zb5-kJ-9eO"/>
+                                                        <constraint firstAttribute="height" constant="242" id="6oo-Pb-9u3"/>
                                                     </constraints>
-                                                </imageView>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="OIL-SI-1vy">
-                                                    <rect key="frame" x="20" y="261" width="374" height="243"/>
-                                                </imageView>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DOV-sO-drj">
-                                                    <rect key="frame" x="20" y="512" width="374" height="242"/>
-                                                </imageView>
+                                                    <connections>
+                                                        <action selector="storyImage1ButtonTapped:" destination="8GQ-fW-7kZ" eventType="touchUpInside" id="Reb-fL-llO"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t2a-ZR-XLP" userLabel="Button2">
+                                                    <rect key="frame" x="28" y="262" width="358" height="241"/>
+                                                    <connections>
+                                                        <action selector="storyImage2ButtonTapped:" destination="8GQ-fW-7kZ" eventType="touchUpInside" id="4mU-IE-hyw"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lob-3R-QqV" userLabel="Button3">
+                                                    <rect key="frame" x="28" y="511" width="358" height="243"/>
+                                                    <connections>
+                                                        <action selector="storyImage3ButtonTapped:" destination="8GQ-fW-7kZ" eventType="touchUpInside" id="lbd-1T-G0R"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="DOV-sO-drj" firstAttribute="top" secondItem="OIL-SI-1vy" secondAttribute="bottom" constant="8" id="5ql-QY-ECR"/>
-                                                <constraint firstItem="DOV-sO-drj" firstAttribute="leading" secondItem="ZEM-Hp-kyO" secondAttribute="leadingMargin" id="9b0-ml-W2t"/>
-                                                <constraint firstItem="OIL-SI-1vy" firstAttribute="centerY" secondItem="ZEM-Hp-kyO" secondAttribute="centerY" id="KRE-ir-wJe"/>
-                                                <constraint firstItem="R6t-e7-mQD" firstAttribute="trailing" secondItem="ZEM-Hp-kyO" secondAttribute="trailingMargin" id="Qo6-S8-bmB"/>
-                                                <constraint firstItem="OIL-SI-1vy" firstAttribute="top" secondItem="R6t-e7-mQD" secondAttribute="bottom" constant="8" id="RXQ-hr-y3K"/>
-                                                <constraint firstItem="DOV-sO-drj" firstAttribute="top" secondItem="OIL-SI-1vy" secondAttribute="bottom" constant="8" id="ZO7-ND-vSr"/>
-                                                <constraint firstItem="OIL-SI-1vy" firstAttribute="trailing" secondItem="ZEM-Hp-kyO" secondAttribute="trailingMargin" id="amV-0G-u0a"/>
-                                                <constraint firstItem="OIL-SI-1vy" firstAttribute="top" secondItem="R6t-e7-mQD" secondAttribute="bottom" constant="8" id="bLZ-Vk-ey6"/>
-                                                <constraint firstItem="DOV-sO-drj" firstAttribute="trailing" secondItem="ZEM-Hp-kyO" secondAttribute="trailingMargin" id="cZZ-tt-ahG"/>
-                                                <constraint firstItem="OIL-SI-1vy" firstAttribute="leading" secondItem="ZEM-Hp-kyO" secondAttribute="leadingMargin" id="hbv-w9-4vA"/>
-                                                <constraint firstItem="R6t-e7-mQD" firstAttribute="leading" secondItem="ZEM-Hp-kyO" secondAttribute="leadingMargin" id="pnL-Qv-JGh"/>
-                                                <constraint firstItem="DOV-sO-drj" firstAttribute="bottom" secondItem="ZEM-Hp-kyO" secondAttribute="bottomMargin" id="rU4-eE-5qb"/>
-                                                <constraint firstItem="R6t-e7-mQD" firstAttribute="top" secondItem="ZEM-Hp-kyO" secondAttribute="topMargin" id="zdr-20-uwS"/>
+                                                <constraint firstItem="PLt-6M-535" firstAttribute="leading" secondItem="t2a-ZR-XLP" secondAttribute="leading" id="3UA-sM-q6B"/>
+                                                <constraint firstItem="YY7-MK-yLO" firstAttribute="top" secondItem="wPp-Jy-DV8" secondAttribute="bottom" constant="8" id="4Gs-fg-CcZ"/>
+                                                <constraint firstItem="YY7-MK-yLO" firstAttribute="top" secondItem="wPp-Jy-DV8" secondAttribute="bottom" constant="8" id="6A3-ji-fQ5"/>
+                                                <constraint firstItem="Lob-3R-QqV" firstAttribute="top" secondItem="t2a-ZR-XLP" secondAttribute="bottom" constant="8" id="GBm-gS-10S"/>
+                                                <constraint firstItem="wPp-Jy-DV8" firstAttribute="top" secondItem="3qp-Me-37T" secondAttribute="bottom" constant="8" id="Gvt-cs-VB6"/>
+                                                <constraint firstItem="3qp-Me-37T" firstAttribute="leading" secondItem="ZEM-Hp-kyO" secondAttribute="leadingMargin" id="Iis-rI-7Te"/>
+                                                <constraint firstItem="YY7-MK-yLO" firstAttribute="top" secondItem="Lob-3R-QqV" secondAttribute="top" id="Jso-q3-VrE"/>
+                                                <constraint firstItem="t2a-ZR-XLP" firstAttribute="centerX" secondItem="ZEM-Hp-kyO" secondAttribute="centerX" id="MLR-n5-0zb"/>
+                                                <constraint firstItem="3qp-Me-37T" firstAttribute="leading" secondItem="ZEM-Hp-kyO" secondAttribute="leadingMargin" id="N0S-mW-RSU"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="3qp-Me-37T" secondAttribute="trailing" constant="8" id="PJz-5t-bct"/>
+                                                <constraint firstItem="t2a-ZR-XLP" firstAttribute="leading" secondItem="ZEM-Hp-kyO" secondAttribute="leadingMargin" constant="8" id="SrW-dq-re7"/>
+                                                <constraint firstItem="PLt-6M-535" firstAttribute="trailing" secondItem="wPp-Jy-DV8" secondAttribute="trailing" id="d37-A4-0Nq"/>
+                                                <constraint firstAttribute="trailing" secondItem="Lob-3R-QqV" secondAttribute="trailing" constant="28" id="eo5-5v-UMJ"/>
+                                                <constraint firstItem="wPp-Jy-DV8" firstAttribute="top" secondItem="PLt-6M-535" secondAttribute="bottom" constant="8" id="hR2-Re-51n"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="3qp-Me-37T" secondAttribute="trailing" constant="8" id="hw7-yB-gRa"/>
+                                                <constraint firstItem="PLt-6M-535" firstAttribute="top" secondItem="3qp-Me-37T" secondAttribute="top" id="jRo-8U-XDN"/>
+                                                <constraint firstItem="3qp-Me-37T" firstAttribute="top" secondItem="ZEM-Hp-kyO" secondAttribute="topMargin" id="lOV-S0-kNN"/>
+                                                <constraint firstItem="wPp-Jy-DV8" firstAttribute="trailing" secondItem="ZEM-Hp-kyO" secondAttribute="trailingMargin" id="lrP-M1-9BI"/>
+                                                <constraint firstItem="YY7-MK-yLO" firstAttribute="leading" secondItem="ZEM-Hp-kyO" secondAttribute="leadingMargin" constant="8" id="nmd-2h-N22"/>
+                                                <constraint firstItem="t2a-ZR-XLP" firstAttribute="centerY" secondItem="ZEM-Hp-kyO" secondAttribute="centerY" id="qJI-eo-BR0"/>
+                                                <constraint firstItem="Lob-3R-QqV" firstAttribute="leading" secondItem="ZEM-Hp-kyO" secondAttribute="leading" constant="28" id="t0r-12-igw"/>
+                                                <constraint firstItem="t2a-ZR-XLP" firstAttribute="top" secondItem="3qp-Me-37T" secondAttribute="bottom" constant="9" id="tph-Qv-5gr"/>
+                                                <constraint firstItem="YY7-MK-yLO" firstAttribute="bottom" secondItem="ZEM-Hp-kyO" secondAttribute="bottomMargin" id="trw-xm-aJo"/>
+                                                <constraint firstItem="3qp-Me-37T" firstAttribute="top" secondItem="ZEM-Hp-kyO" secondAttribute="topMargin" id="ty2-eU-1SA"/>
+                                                <constraint firstAttribute="bottom" secondItem="Lob-3R-QqV" secondAttribute="bottom" constant="11" id="vBb-Kg-v8z"/>
+                                                <constraint firstItem="YY7-MK-yLO" firstAttribute="trailing" secondItem="ZEM-Hp-kyO" secondAttribute="trailingMargin" id="yHk-gP-H4S"/>
+                                                <constraint firstItem="wPp-Jy-DV8" firstAttribute="leading" secondItem="ZEM-Hp-kyO" secondAttribute="leadingMargin" constant="8" id="zdg-c4-SOL"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -1027,9 +1059,9 @@
                     </navigationItem>
                     <connections>
                         <outlet property="storyBodyTextView" destination="dKM-Lg-ic1" id="MVr-ZA-voP"/>
-                        <outlet property="storyImage1" destination="R6t-e7-mQD" id="8Pd-eJ-t6v"/>
-                        <outlet property="storyImage2" destination="OIL-SI-1vy" id="RaR-P4-aGp"/>
-                        <outlet property="storyImage3" destination="DOV-sO-drj" id="v9g-wZ-RmN"/>
+                        <outlet property="storyImage1" destination="PLt-6M-535" id="FzO-JN-IDT"/>
+                        <outlet property="storyImage2" destination="wPp-Jy-DV8" id="RJy-3e-PLo"/>
+                        <outlet property="storyImage3" destination="YY7-MK-yLO" id="0x1-Nd-lgd"/>
                         <outlet property="storyTitleTextField" destination="rNP-Pd-iPL" id="EG2-cF-uUU"/>
                         <segue destination="V8h-T1-3cD" kind="unwind" identifier="unwindtoGraveStoriesSegue" unwindAction="unwindtoGraveStories:" id="22u-gQ-wbV"/>
                     </connections>

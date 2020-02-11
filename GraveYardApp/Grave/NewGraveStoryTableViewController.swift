@@ -11,22 +11,25 @@ import FirebaseFirestore
 import GoogleSignIn
 import FirebaseStorage
 
-class NewGraveStoryTableViewController: UITableViewController, UIImagePickerControllerDelegate {
+class NewGraveStoryTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
     @IBOutlet weak var storyImage1: UIImageView!
     @IBOutlet weak var storyImage2: UIImageView!
     @IBOutlet weak var storyImage3: UIImageView!
-    
     @IBOutlet weak var storyTitleTextField: UITextField!
     @IBOutlet weak var storyBodyTextView: UITextView!
     
     // MARK: - Propeties
     
+    var currentButtonTapped: Int = 0
     var db: Firestore!
     var currentAuthID = Auth.auth().currentUser?.uid
     var graveStoryId: String?
     var graveStoryTitleValue: String?
     var graveStoryBodyTextValue: String?
     var imageString: String?
+    var storyImage: GraveProfileImage?
+    var storyImages = [UIImage]()
     var storyImageArray = [UIImage(named: "icons8-x"),UIImage(named: "bob ross"),UIImage(named: "icons8-pictures-folder-50")]
     let storage = Storage.storage()
     
@@ -42,9 +45,7 @@ class NewGraveStoryTableViewController: UITableViewController, UIImagePickerCont
     
     // MARK: - Functions
     
-//make 3 images for new/edit story. THIS LIMITS IT to only 3.  those r uploaded indivisually. then those are pulled down as an array an dpopulated in the actual story. they each have their own name which is storyId + 1, 2, or 3. that String is saved in an array. then to pull down images we use that array and pull them down. then each image will be put in an array. that aray will then be set to storyimages array, populating the colloction view
-    
-    
+//make 3 images for new/edit story. THIS LIMITS IT to only 3.  those r uploaded indivisually. then those are pulled down as an array an dpopulated in the actual story. they each have their own name which is storyId + 1, 2, or 3. that String is saved in an array. then to pull down images we use that array and pull them down. then each image will set as a var. those vars will then b epu tinto the array. like var 1 vasr 2 var 3. then array is var array = [var1, var2, var3]
     
     func chageTextColor() {
         tableView.separatorColor = UIColor(0.0, 128.0, 128.0, 1.0)
@@ -82,14 +83,32 @@ class NewGraveStoryTableViewController: UITableViewController, UIImagePickerCont
         }
     }
     
-//    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-//        if let selectedImage = info[.originalImage] as? UIImage {
-//            graveMainImage.image = selectedImage
-//            graveProfileImages.append(selectedImage)
-//            dismiss(animated: true, completion: nil)
-//            self.graveMainImage.reloadInputViews()
-//        }
-//    }
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let selectedImage = info[.originalImage] as? UIImage {
+            switch currentButtonTapped {
+            case 1:
+                storyImage1.image = selectedImage
+            case 2:
+                storyImage2.image = selectedImage
+            case 3:
+                storyImage3.image = selectedImage
+            default:
+                print("")
+            }
+//            storyImage1.image = selectedImage
+//            storyImage2.image = selectedImage
+//            storyImage3.image = selectedImage
+//            storyImages.append(selectedImage)
+            dismiss(animated: true, completion: nil)
+            self.storyImage1.reloadInputViews()
+            self.storyImage2.reloadInputViews()
+            self.storyImage3.reloadInputViews()
+        }
+    }
     
 //    func getImages() {
 //        if let imageStringId = self.imageString {
@@ -177,6 +196,30 @@ class NewGraveStoryTableViewController: UITableViewController, UIImagePickerCont
         alerController.addAction(delete)
         self.present(alerController, animated: true) {
         }
+    }
+    
+    @IBAction func storyImage1ButtonTapped(_ sender: UIButton) {
+        currentButtonTapped = 1
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        imagePickerController.sourceType = UIImagePickerController.SourceType.photoLibrary
+        present(imagePickerController, animated: true, completion: nil)
+    }
+    
+    @IBAction func storyImage2ButtonTapped(_ sender: Any) {
+        currentButtonTapped = 2
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        imagePickerController.sourceType = UIImagePickerController.SourceType.photoLibrary
+        present(imagePickerController, animated: true, completion: nil)
+    }
+    
+    @IBAction func storyImage3ButtonTapped(_ sender: UIButton) {
+        currentButtonTapped = 3
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        imagePickerController.sourceType = UIImagePickerController.SourceType.photoLibrary
+        present(imagePickerController, animated: true, completion: nil)
     }
     
 }
