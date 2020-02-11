@@ -11,7 +11,10 @@ import FirebaseFirestore
 import GoogleSignIn
 import FirebaseStorage
 
-class NewGraveStoryTableViewController: UITableViewController, UIImagePickerControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource {
+class NewGraveStoryTableViewController: UITableViewController, UIImagePickerControllerDelegate {
+    @IBOutlet weak var storyImage1: UIImageView!
+    @IBOutlet weak var storyImage2: UIImageView!
+    @IBOutlet weak var storyImage3: UIImageView!
     
     @IBOutlet weak var storyTitleTextField: UITextField!
     @IBOutlet weak var storyBodyTextView: UITextView!
@@ -24,7 +27,7 @@ class NewGraveStoryTableViewController: UITableViewController, UIImagePickerCont
     var graveStoryTitleValue: String?
     var graveStoryBodyTextValue: String?
     var imageString: String?
-    var storyImageArray: [String]?
+    var storyImageArray = [UIImage(named: "icons8-x"),UIImage(named: "bob ross"),UIImage(named: "icons8-pictures-folder-50")]
     let storage = Storage.storage()
     
     // MARK: - View Lifecycle
@@ -39,13 +42,9 @@ class NewGraveStoryTableViewController: UITableViewController, UIImagePickerCont
     
     // MARK: - Functions
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return storyImageArray?.count ?? 0
-    }
+//make 3 images for new/edit story. THIS LIMITS IT to only 3.  those r uploaded indivisually. then those are pulled down as an array an dpopulated in the actual story. they each have their own name which is storyId + 1, 2, or 3. that String is saved in an array. then to pull down images we use that array and pull them down. then each image will be put in an array. that aray will then be set to storyimages array, populating the colloction view
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        <#code#>
-    }
+    
     
     func chageTextColor() {
         tableView.separatorColor = UIColor(0.0, 128.0, 128.0, 1.0)

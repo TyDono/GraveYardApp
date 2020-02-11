@@ -752,7 +752,7 @@
                                                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                     </collectionViewFlowLayout>
                                                     <cells>
-                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="PAY-KQ-QJd">
+                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="PAY-KQ-QJd" customClass="StoryImagesCollectionViewCell" customModule="GraveYardApp" customModuleProvider="target">
                                                             <rect key="frame" x="1" y="0.0" width="412" height="316"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="5P5-hV-Z8e">
@@ -771,6 +771,9 @@
                                                                 </constraints>
                                                             </collectionViewCellContentView>
                                                             <size key="customSize" width="412" height="316"/>
+                                                            <connections>
+                                                                <outlet property="storyImages" destination="Kje-Ym-eEn" id="ORj-vG-R9Y"/>
+                                                            </connections>
                                                         </collectionViewCell>
                                                     </cells>
                                                 </collectionView>
@@ -940,58 +943,40 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="301" id="rJo-vh-lKf">
-                                        <rect key="frame" x="0.0" y="329" width="414" height="301"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="765" id="rJo-vh-lKf">
+                                        <rect key="frame" x="0.0" y="329" width="414" height="765"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rJo-vh-lKf" id="ZEM-Hp-kyO">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="301"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="765"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="8ik-10-CPu">
-                                                    <rect key="frame" x="20" y="8" width="374" height="285"/>
-                                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                                    <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="zn1-Gz-qK7">
-                                                        <size key="itemSize" width="374" height="274"/>
-                                                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                                    </collectionViewFlowLayout>
-                                                    <cells>
-                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="noD-zv-53i" customClass="StoryImagesCollectionViewCell" customModule="GraveYardApp" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="0.0" width="374" height="274"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                            <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="ylG-jU-xiS">
-                                                                <rect key="frame" x="0.0" y="0.0" width="374" height="274"/>
-                                                                <autoresizingMask key="autoresizingMask"/>
-                                                                <subviews>
-                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ReF-eJ-Ugj">
-                                                                        <rect key="frame" x="8" y="8" width="358" height="258"/>
-                                                                    </imageView>
-                                                                </subviews>
-                                                                <constraints>
-                                                                    <constraint firstItem="ReF-eJ-Ugj" firstAttribute="leading" secondItem="ylG-jU-xiS" secondAttribute="leading" constant="8" id="Fgr-S1-wYq"/>
-                                                                    <constraint firstAttribute="bottom" secondItem="ReF-eJ-Ugj" secondAttribute="bottom" constant="8" id="jhf-4I-Jef"/>
-                                                                    <constraint firstAttribute="trailing" secondItem="ReF-eJ-Ugj" secondAttribute="trailing" constant="8" id="rCl-UA-xpb"/>
-                                                                    <constraint firstItem="ReF-eJ-Ugj" firstAttribute="top" secondItem="ylG-jU-xiS" secondAttribute="top" constant="8" id="zhw-eO-qNL"/>
-                                                                </constraints>
-                                                            </collectionViewCellContentView>
-                                                            <size key="customSize" width="374" height="274"/>
-                                                            <connections>
-                                                                <outlet property="storyImages" destination="ReF-eJ-Ugj" id="AE8-O4-Qo4"/>
-                                                            </connections>
-                                                        </collectionViewCell>
-                                                    </cells>
-                                                    <connections>
-                                                        <outlet property="dataSource" destination="8GQ-fW-7kZ" id="J1q-pO-oP3"/>
-                                                        <outlet property="delegate" destination="8GQ-fW-7kZ" id="W9n-1D-O9c"/>
-                                                    </connections>
-                                                </collectionView>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="R6t-e7-mQD">
+                                                    <rect key="frame" x="20" y="11" width="374" height="242"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="242" id="zb5-kJ-9eO"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="OIL-SI-1vy">
+                                                    <rect key="frame" x="20" y="261" width="374" height="243"/>
+                                                </imageView>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DOV-sO-drj">
+                                                    <rect key="frame" x="20" y="512" width="374" height="242"/>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="8ik-10-CPu" firstAttribute="leading" secondItem="ZEM-Hp-kyO" secondAttribute="leading" constant="20" id="5Am-6e-S7d"/>
-                                                <constraint firstAttribute="trailing" secondItem="8ik-10-CPu" secondAttribute="trailing" constant="20" id="l4w-6p-BTJ"/>
-                                                <constraint firstItem="8ik-10-CPu" firstAttribute="top" secondItem="ZEM-Hp-kyO" secondAttribute="top" constant="8" id="xVI-DF-Jv6"/>
-                                                <constraint firstAttribute="bottom" secondItem="8ik-10-CPu" secondAttribute="bottom" constant="8" id="yIU-0v-tpI"/>
+                                                <constraint firstItem="DOV-sO-drj" firstAttribute="top" secondItem="OIL-SI-1vy" secondAttribute="bottom" constant="8" id="5ql-QY-ECR"/>
+                                                <constraint firstItem="DOV-sO-drj" firstAttribute="leading" secondItem="ZEM-Hp-kyO" secondAttribute="leadingMargin" id="9b0-ml-W2t"/>
+                                                <constraint firstItem="OIL-SI-1vy" firstAttribute="centerY" secondItem="ZEM-Hp-kyO" secondAttribute="centerY" id="KRE-ir-wJe"/>
+                                                <constraint firstItem="R6t-e7-mQD" firstAttribute="trailing" secondItem="ZEM-Hp-kyO" secondAttribute="trailingMargin" id="Qo6-S8-bmB"/>
+                                                <constraint firstItem="OIL-SI-1vy" firstAttribute="top" secondItem="R6t-e7-mQD" secondAttribute="bottom" constant="8" id="RXQ-hr-y3K"/>
+                                                <constraint firstItem="DOV-sO-drj" firstAttribute="top" secondItem="OIL-SI-1vy" secondAttribute="bottom" constant="8" id="ZO7-ND-vSr"/>
+                                                <constraint firstItem="OIL-SI-1vy" firstAttribute="trailing" secondItem="ZEM-Hp-kyO" secondAttribute="trailingMargin" id="amV-0G-u0a"/>
+                                                <constraint firstItem="OIL-SI-1vy" firstAttribute="top" secondItem="R6t-e7-mQD" secondAttribute="bottom" constant="8" id="bLZ-Vk-ey6"/>
+                                                <constraint firstItem="DOV-sO-drj" firstAttribute="trailing" secondItem="ZEM-Hp-kyO" secondAttribute="trailingMargin" id="cZZ-tt-ahG"/>
+                                                <constraint firstItem="OIL-SI-1vy" firstAttribute="leading" secondItem="ZEM-Hp-kyO" secondAttribute="leadingMargin" id="hbv-w9-4vA"/>
+                                                <constraint firstItem="R6t-e7-mQD" firstAttribute="leading" secondItem="ZEM-Hp-kyO" secondAttribute="leadingMargin" id="pnL-Qv-JGh"/>
+                                                <constraint firstItem="DOV-sO-drj" firstAttribute="bottom" secondItem="ZEM-Hp-kyO" secondAttribute="bottomMargin" id="rU4-eE-5qb"/>
+                                                <constraint firstItem="R6t-e7-mQD" firstAttribute="top" secondItem="ZEM-Hp-kyO" secondAttribute="topMargin" id="zdr-20-uwS"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -1000,7 +985,7 @@
                             <tableViewSection headerTitle="Section-3" id="grF-jw-euA">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="Hb5-rd-Jly">
-                                        <rect key="frame" x="0.0" y="686" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="1150" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Hb5-rd-Jly" id="KUq-6t-TkR">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
@@ -1042,6 +1027,9 @@
                     </navigationItem>
                     <connections>
                         <outlet property="storyBodyTextView" destination="dKM-Lg-ic1" id="MVr-ZA-voP"/>
+                        <outlet property="storyImage1" destination="R6t-e7-mQD" id="8Pd-eJ-t6v"/>
+                        <outlet property="storyImage2" destination="OIL-SI-1vy" id="RaR-P4-aGp"/>
+                        <outlet property="storyImage3" destination="DOV-sO-drj" id="v9g-wZ-RmN"/>
                         <outlet property="storyTitleTextField" destination="rNP-Pd-iPL" id="EG2-cF-uUU"/>
                         <segue destination="V8h-T1-3cD" kind="unwind" identifier="unwindtoGraveStoriesSegue" unwindAction="unwindtoGraveStories:" id="22u-gQ-wbV"/>
                     </connections>

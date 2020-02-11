@@ -26,7 +26,7 @@ class GraveStoryTableViewController: UITableViewController, UICollectionViewDele
     var creatorId: String?
     var graveStorytitleValue: String?
     var graveStoryBodyBioValue: String?
-    var storyImageArray: [String]?
+    var storyImageArray: [UIImage]?
     
     // MARK: - View Lifecycle
     
@@ -48,7 +48,10 @@ class GraveStoryTableViewController: UITableViewController, UICollectionViewDele
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        <#code#>
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "StoryImagesCell", for: indexPath) as! StoryImagesCollectionViewCell
+        cell.storyImages.image = self.storyImageArray?[indexPath.row]//make array of images
+        
+        return cell
     }
     
     func chageTextColor() {
