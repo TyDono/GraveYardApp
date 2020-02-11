@@ -185,6 +185,48 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
         static let unwind = "unwindToGraveSegue"
     }
     
+        func deleteGraveProfileImage() {
+            let imageRef = self.storage.reference().child(self.imageString ?? "no image String found")
+            imageRef.delete { err in
+                if let error = err {
+                    let deleteImageAlert = UIAlertController(title: "Error", message: "Sorry, there was an error while trying to delete your Headstone Image. Please check your internet connection and try again.", preferredStyle: .alert)
+                    deleteImageAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
+                        deleteImageAlert.dismiss(animated: true, completion: nil)
+                    }))
+                    self.present(deleteImageAlert, animated: true, completion: nil)
+                    print(error)
+                } else {
+                    // File deleted successfully
+                }
+            }
+        }
+        
+        func deleteGraveStories() {
+            let graveStoryRef = self.db.collection("stories")
+            
+            let getStories = graveStoryRef.whereField("graveId", isEqualTo: self.currentGraveId)
+            getStories.getDocuments { (snapshot, err) in
+                if err != nil {
+                    print(err as Any)
+                } else {
+                    for document in (snapshot?.documents)! {
+    //                    if let creatorId = document.data()["creatorId"] as? String,
+    //                        let profileImageId = document.data()["profileImageId"] as? String,
+                    }
+                }
+                
+            }
+            
+            graveStoryRef.document("").delete() {
+                err in
+                if err == nil {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0) {
+                        moveToMap()
+                    }
+                }
+            }
+        }
+    
     // MARK: - Actions
     
     @IBAction func saveGraveInfoTapped(_ sender: UIBarButtonItem) {
@@ -245,50 +287,6 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
             }
         }
     }
-    
-    func deleteGraveProfileImage() {
-        let imageRef = self.storage.reference().child(self.imageString ?? "no image String found")
-        imageRef.delete { err in
-            if let error = err {
-                let deleteImageAlert = UIAlertController(title: "Error", message: "Sorry, there was an error while trying to delete your Headstone Image. Please check your internet connection and try again.", preferredStyle: .alert)
-                deleteImageAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
-                    deleteImageAlert.dismiss(animated: true, completion: nil)
-                }))
-                self.present(deleteImageAlert, animated: true, completion: nil)
-                print(error)
-            } else {
-                // File deleted successfully
-            }
-        }
-    }
-    
-    func deleteGraveStories() {
-        let graveStoryRef = self.db.collection("stories")
-        
-        let getStories = graveStoryRef.whereField("graveId", isEqualTo: self.currentGraveId)
-        getStories.getDocuments { (snapshot, err) in
-            if err != nil {
-                print(err as Any)
-            } else {
-                for document in (snapshot?.documents)! {
-//                    if let creatorId = document.data()["creatorId"] as? String,
-//                        let profileImageId = document.data()["profileImageId"] as? String,
-                }
-            }
-            
-        }
-        
-        graveStoryRef.document("").delete() {
-            err in
-            if err == nil {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0) {
-                    moveToMap()
-                }
-            }
-        }
-    }
-    
-    // MARK: - Actions
     
     @IBAction func changeImage(_ sender: UIButton) {
         let imagePickerController = UIImagePickerController()

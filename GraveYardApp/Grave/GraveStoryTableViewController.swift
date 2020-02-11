@@ -27,6 +27,9 @@ class GraveStoryTableViewController: UITableViewController, UICollectionViewDele
     var graveStorytitleValue: String?
     var graveStoryBodyBioValue: String?
     var storyImageArray: [UIImage]?
+    var storyImageId1: String = ""
+    var storyImageId2: String = ""
+    var storyImageId3: String = ""
     
     // MARK: - View Lifecycle
     
@@ -62,10 +65,12 @@ class GraveStoryTableViewController: UITableViewController, UICollectionViewDele
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "editGraveStorySegue", let editGraveStoryTVC = segue.destination as? NewGraveStoryTableViewController {
-            editGraveStoryTVC.graveStoryId = graveStoryId
+            editGraveStoryTVC.currentGraveStoryId = graveStoryId
             editGraveStoryTVC.graveStoryTitleValue = storyBodyBio.text
             editGraveStoryTVC.graveStoryBodyTextValue = storyTitle.text
-            editGraveStoryTVC
+            editGraveStoryTVC.storyImageId1 = self.storyImageId1
+            editGraveStoryTVC.storyImageId2 = self.storyImageId2
+            editGraveStoryTVC.storyImageId3 = self.storyImageId3
         }
     }
     

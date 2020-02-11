@@ -24,13 +24,15 @@ class NewGraveStoryTableViewController: UITableViewController, UIImagePickerCont
     var currentButtonTapped: Int = 0
     var db: Firestore!
     var currentAuthID = Auth.auth().currentUser?.uid
-    var graveStoryId: String?
+    var currentGraveStoryId: String?
     var graveStoryTitleValue: String?
     var graveStoryBodyTextValue: String?
     var imageString: String?
     var storyImage: GraveProfileImage?
     var storyImages = [UIImage]()
-    var storyImageArray = [UIImage(named: "icons8-x"),UIImage(named: "bob ross"),UIImage(named: "icons8-pictures-folder-50")]
+    var storyImageId1: String = ""
+    var storyImageId2: String = ""
+    var storyImageId3: String = ""
     let storage = Storage.storage()
     
     // MARK: - View Lifecycle
@@ -56,17 +58,21 @@ class NewGraveStoryTableViewController: UITableViewController, UIImagePickerCont
     func updateStoryData() {
         guard let creatorId: String = currentAuthID else { return }
         guard let graveId: String = MapViewController.shared.currentGraveId else { return }
-        guard let storyId: String = graveStoryId else { return }
+        guard let storyId: String = currentGraveStoryId else { return }
         guard let storyBodyText: String = storyBodyTextView.text else { return }
         guard let storyTitle: String = storyTitleTextField.text else { return }
-        let storyImage: [String] = [""]
+        let storyImageId1: String = self.storyImageId1
+        let storyImageId2: String = self.storyImageId2
+        let storyImageId3: String = self.storyImageId3
         
         let story = Story(creatorId: creatorId,
                           graveId: graveId,
                           storyId: storyId,
                           storyBodyText: storyBodyText,
                           storyTitle: storyTitle,
-                          storyImage: storyImage)
+                          storyImageId1: storyImageId1,
+                          storyImageId2: storyImageId2,
+                          storyImageId3: storyImageId3)
         
         let storyRef = self.db.collection("stories")
         storyRef.document(String(story.storyId)).updateData(story.dictionary){ err in
@@ -99,10 +105,6 @@ class NewGraveStoryTableViewController: UITableViewController, UIImagePickerCont
             default:
                 print("")
             }
-//            storyImage1.image = selectedImage
-//            storyImage2.image = selectedImage
-//            storyImage3.image = selectedImage
-//            storyImages.append(selectedImage)
             dismiss(animated: true, completion: nil)
             self.storyImage1.reloadInputViews()
             self.storyImage2.reloadInputViews()
@@ -124,20 +126,16 @@ class NewGraveStoryTableViewController: UITableViewController, UIImagePickerCont
 //        }
 //    }
     
-//    func saveImageToFirebase(graveImagesURL: URL, completion: @escaping((_ success: Bool) -> ())) {
-//        let databaseRef = Firestore.firestore().document("graveProfileImages/\(self.currentGraveId ?? "no image")")
-//        let userObjectImages = [
-//            "imageURL": graveImagesURL.absoluteString
-//        ] as [String:Any]
-//        databaseRef.setData(userObjectImages) { (error) in
-//            completion(error == nil)
-//        }
-//        print("SaveImageToFirebase has been saved!!!!!")
-//    }
-//    
-//    struct PropertyKeys {
-//        static let unwind = "unwindToGraveSegue"
-//    }
+    func saveImageToFirebase(graveImagesURL: URL, completion: @escaping((_ success: Bool) -> ())) {
+        let databaseRef = Firestore.firestore().document("storyImages/\(self.currentGraveStoryId ?? "no image")")
+        let userObjectImages = [
+            "imageURL": graveImagesURL.absoluteString
+        ] as [String:Any]
+        databaseRef.setData(userObjectImages) { (error) in
+            completion(error == nil)
+        }
+        print("SaveImageToFirebase has been saved!!!!!")
+    }
     
     func uploadFirebaseImages(_ image: UIImage, completion: @escaping ((_ url: URL?) -> () )) {
         let storageRef = Storage.storage().reference().child("graveProfileImages/\(self.imageString ?? "no Image Found")")
@@ -160,6 +158,16 @@ class NewGraveStoryTableViewController: UITableViewController, UIImagePickerCont
     // MARK: - Actions
     
     @IBAction func saveStoryBarButtonTapped(_ sender: UIBarButtonItem) {
+           //guard let unwrappedStoryImage = storyImage1.image else { return }
+                for image in storyImages {
+                    uploadFirebaseImages(image) { (url) in
+                        print(url)
+                        guard let url = url else { return }
+        //                self.saveImageToFirebase(graveImagesURL: url, completion: { success in
+        //                    self.firebaseWrite(url: url.absoluteString)
+        //                })
+                    }
+                }
         updateStoryData()
     }
     
@@ -171,7 +179,7 @@ class NewGraveStoryTableViewController: UITableViewController, UIImagePickerCont
             
             let userId = self.currentAuthID!
             let userRef = self.db.collection("stories")
-            userRef.document(self.graveStoryId ?? "no StoryId detected").delete(){ err in
+            userRef.document(self.currentGraveStoryId ?? "no StoryId detected").delete(){ err in
                 if err == nil {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0) {
                         moveToMap()
