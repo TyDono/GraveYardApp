@@ -701,6 +701,17 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="PFY-Xz-86t">
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                                <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="A0d-lC-CeP">
+                                                    <rect key="frame" x="207" y="158" width="0.0" height="0.0"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                                <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="pjm-FX-pyp">
+                                                    <rect key="frame" x="207" y="158" width="0.0" height="0.0"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
                                                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZE9-am-8Bu">
                                                     <rect key="frame" x="0.0" y="40" width="414" height="286"/>
                                                     <subviews>
@@ -771,9 +782,6 @@
                                                                 </constraints>
                                                             </collectionViewCellContentView>
                                                             <size key="customSize" width="412" height="316"/>
-                                                            <connections>
-                                                                <outlet property="storyImages" destination="Kje-Ym-eEn" id="ORj-vG-R9Y"/>
-                                                            </connections>
                                                         </collectionViewCell>
                                                     </cells>
                                                 </collectionView>
@@ -800,6 +808,9 @@
                         <outlet property="reportPopOver" destination="Z9O-BS-4uW" id="UUs-Sh-teO"/>
                         <outlet property="rightBarButtonItem" destination="rwy-dy-vpC" id="WLY-Ys-0Gd"/>
                         <outlet property="storyBodyBio" destination="ak0-MM-c96" id="jnj-of-u2P"/>
+                        <outlet property="storyImage1" destination="PFY-Xz-86t" id="xCU-fN-xtH"/>
+                        <outlet property="storyImage2" destination="A0d-lC-CeP" id="AzL-PO-glt"/>
+                        <outlet property="storyImage3" destination="pjm-FX-pyp" id="cDB-hO-LTk"/>
                         <outlet property="storyTitle" destination="0hO-6U-BGI" id="Ey8-1o-Ibf"/>
                         <segue destination="8GQ-fW-7kZ" kind="show" identifier="editGraveStorySegue" id="fpu-aT-yyc"/>
                     </connections>

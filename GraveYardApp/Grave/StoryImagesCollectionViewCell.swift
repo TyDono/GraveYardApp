@@ -13,11 +13,12 @@ import FirebaseStorage
 
 
 class StoryImagesCollectionViewCell: UICollectionViewCell, UIImagePickerControllerDelegate {
+    
     @IBOutlet weak var storyImages: UIImageView!
     
     var imageString: String?
-    var graveProfileImage: GraveProfileImage?
-    var graveProfileImages = [UIImage]()
+    var graveStoryImage: GraveProfileImage?
+    var graveStoryImages = [UIImage]()
     let storage = Storage.storage()
     
 //        func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {

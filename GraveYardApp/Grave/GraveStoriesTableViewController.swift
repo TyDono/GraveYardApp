@@ -18,6 +18,7 @@ class GraveStoriesTableViewController: UITableViewController {
     // MARK: - Propeties
     
     var currentAuthID = Auth.auth().currentUser?.uid
+    let storage = Storage.storage()
     var creatorId: String?
     var graveId: String? = MapViewController.shared.currentGraveId
     var graveStories: String?
@@ -26,9 +27,9 @@ class GraveStoriesTableViewController: UITableViewController {
     var stories: [Story]?
     var currentGraveStoryId: String?
     var currentStoryId: String?
-    var storyImageId1: String = ""
-    var storyImageId2: String = ""
-    var storyImageId3: String = ""
+    var storyImageId1: String? = ""
+    var storyImageId2: String? = ""
+    var storyImageId3: String? = ""
     
     // MARK: - View Lifecycle
     

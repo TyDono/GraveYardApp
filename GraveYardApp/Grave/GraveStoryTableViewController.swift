@@ -17,6 +17,10 @@ class GraveStoryTableViewController: UITableViewController, UICollectionViewDele
     @IBOutlet weak var rightBarButtonItem: UIBarButtonItem!
     @IBOutlet var reportPopOver: UIView!
     @IBOutlet weak var reportCommentsTextView: UITextView!
+    @IBOutlet weak var storyImage1: UIImageView!
+    @IBOutlet weak var storyImage2: UIImageView!
+    @IBOutlet weak var storyImage3: UIImageView!
+    @IBOutlet weak var storyImages: UIImageView!
     
     // MARK: - Propeties
     
@@ -24,12 +28,13 @@ class GraveStoryTableViewController: UITableViewController, UICollectionViewDele
     var currentAuthID = Auth.auth().currentUser?.uid
     var graveStoryId: String?
     var creatorId: String?
+    let storage = Storage.storage()
     var graveStorytitleValue: String?
     var graveStoryBodyBioValue: String?
-    var storyImageArray: [UIImage]?
-    var storyImageId1: String = ""
-    var storyImageId2: String = ""
-    var storyImageId3: String = ""
+    var storyImagesArray = [UIImage]()
+    var storyImageId1: String? = ""
+    var storyImageId2: String? = ""
+    var storyImageId3: String? = ""
     
     // MARK: - View Lifecycle
     
@@ -42,17 +47,26 @@ class GraveStoryTableViewController: UITableViewController, UICollectionViewDele
         if currentAuthID != creatorId {
             self.navigationItem.rightBarButtonItem = nil
         }
+        getImage1()
+        getImage2()
+        getImage3()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        getImage1()
+        getImage2()
+        getImage3()
     }
     
     // MARK: - Functions
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return storyImageArray?.count ?? 0
+        return storyImagesArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "StoryImagesCell", for: indexPath) as! StoryImagesCollectionViewCell
-        cell.storyImages.image = self.storyImageArray?[indexPath.row]//make array of images
+        cell.storyImages.image = self.storyImagesArray[indexPath.row]//make array of images
         
         return cell
     }
@@ -143,4 +157,61 @@ class GraveStoryTableViewController: UITableViewController, UICollectionViewDele
             showReportPopOverAnimate()
         }
     }
+}
+
+extension GraveStoryTableViewController {
+    
+    func getImage1() {
+        if let imageStringId = self.storyImageId1 {
+            let storageRef = storage.reference()
+            let graveProfileImage = storageRef.child("storyImages/\(imageStringId)")
+            graveProfileImage.getData(maxSize: (1024 * 1024), completion:  { (data, err) in
+                guard let data = data else {return}
+                guard let image = UIImage(data: data) else {return}
+                self.storyImagesArray.append(image)
+                self.storyImage1.image = image // images exists but storyimage1 is nil
+                //guard let storyImage = self.storyImage1.image else { return }
+                self.storyImagesArray.append(image)
+//                guard let storyImage: UIImage = self.storyImage1 else { return }
+            })
+        } else {
+            return
+        }
+    }
+    
+    func getImage2() {
+        if let imageStringId = self.storyImageId2 {
+            let storageRef = storage.reference()
+            let graveProfileImage = storageRef.child("storyImages/\(imageStringId)")
+            graveProfileImage.getData(maxSize: (1024 * 1024), completion:  { (data, err) in
+                guard let data = data else {return}
+                guard let image = UIImage(data: data) else {return}
+                self.storyImage2.image = image
+                //guard let storyImage = self.storyImage2.image else { return }
+                self.storyImagesArray.append(image)
+//                guard let storyImage: UIImage = self.storyImage2 else { return }
+//                self.storyImagesArray?.append(storyImage)
+            })
+        } else {
+            return
+        }
+    }
+    
+    func getImage3() {
+        if let imageStringId = self.storyImageId3 {
+            let storageRef = storage.reference()
+            let graveProfileImage = storageRef.child("storyImages/\(imageStringId)")
+            graveProfileImage.getData(maxSize: (1024 * 1024), completion:  { (data, err) in
+                guard let data = data else {return}
+                guard let image = UIImage(data: data) else {return}
+                self.storyImage3.image = image
+                //guard let storyImage = self.storyImage3.image else { return }
+                self.storyImagesArray.append(image)
+//                guard let storyImage: UIImage = self.storyImage3 else { return }
+            })
+        } else {
+            return
+        }
+    }
+    
 }
