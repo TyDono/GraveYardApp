@@ -52,12 +52,6 @@ class GraveStoryTableViewController: UITableViewController, UICollectionViewDele
         getImage3()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        getImage1()
-        getImage2()
-        getImage3()
-    }
-    
     // MARK: - Functions
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -80,8 +74,8 @@ class GraveStoryTableViewController: UITableViewController, UICollectionViewDele
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "editGraveStorySegue", let editGraveStoryTVC = segue.destination as? NewGraveStoryTableViewController {
             editGraveStoryTVC.currentGraveStoryId = graveStoryId
-            editGraveStoryTVC.graveStoryTitleValue = storyBodyBio.text
-            editGraveStoryTVC.graveStoryBodyTextValue = storyTitle.text
+            editGraveStoryTVC.graveStoryTitleValue = storyTitle.text
+            editGraveStoryTVC.graveStoryBodyTextValue = storyBodyBio.text
             editGraveStoryTVC.storyImageId1 = self.storyImageId1
             editGraveStoryTVC.storyImageId2 = self.storyImageId2
             editGraveStoryTVC.storyImageId3 = self.storyImageId3
@@ -166,11 +160,11 @@ extension GraveStoryTableViewController {
             let storageRef = storage.reference()
             let graveProfileImage = storageRef.child("storyImages/\(imageStringId)")
             graveProfileImage.getData(maxSize: (1024 * 1024), completion:  { (data, err) in
-                guard let data = data else {return}
-                guard let image = UIImage(data: data) else {return}
+                guard let data = data else { return }
+                guard let image = UIImage(data: data) else { return }
                 self.storyImagesArray.append(image)
                 self.storyImage1.image = image // images exists but storyimage1 is nil
-                //guard let storyImage = self.storyImage1.image else { return }
+//                guard let storyImage = self.storyImage1.image else { return }
                 self.storyImagesArray.append(image)
 //                guard let storyImage: UIImage = self.storyImage1 else { return }
             })
@@ -184,10 +178,10 @@ extension GraveStoryTableViewController {
             let storageRef = storage.reference()
             let graveProfileImage = storageRef.child("storyImages/\(imageStringId)")
             graveProfileImage.getData(maxSize: (1024 * 1024), completion:  { (data, err) in
-                guard let data = data else {return}
-                guard let image = UIImage(data: data) else {return}
+                guard let data = data else { return }
+                guard let image = UIImage(data: data) else { return }
                 self.storyImage2.image = image
-                //guard let storyImage = self.storyImage2.image else { return }
+//                guard let storyImage = self.storyImage2.image else { return }
                 self.storyImagesArray.append(image)
 //                guard let storyImage: UIImage = self.storyImage2 else { return }
 //                self.storyImagesArray?.append(storyImage)
@@ -202,12 +196,13 @@ extension GraveStoryTableViewController {
             let storageRef = storage.reference()
             let graveProfileImage = storageRef.child("storyImages/\(imageStringId)")
             graveProfileImage.getData(maxSize: (1024 * 1024), completion:  { (data, err) in
-                guard let data = data else {return}
-                guard let image = UIImage(data: data) else {return}
+                guard let data = data else { return }
+                guard let image = UIImage(data: data) else { return }
                 self.storyImage3.image = image
-                //guard let storyImage = self.storyImage3.image else { return }
+//                guard let storyImage = self.storyImage3.image else { return }
                 self.storyImagesArray.append(image)
 //                guard let storyImage: UIImage = self.storyImage3 else { return }
+                
             })
         } else {
             return
