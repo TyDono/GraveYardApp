@@ -43,11 +43,13 @@ class GraveStoryTableViewController: UITableViewController, UICollectionViewDele
             self.navigationItem.rightBarButtonItem = nil
         }
 <<<<<<< HEAD
+<<<<<<< HEAD
         getImage1()
         getImage2()
         getImage3()
 =======
 >>>>>>> parent of 69dd09b... images are pulled down, still trying to get them into the array
+=======
 >>>>>>> parent of 69dd09b... images are pulled down, still trying to get them into the array
     }
     
@@ -152,6 +154,7 @@ class GraveStoryTableViewController: UITableViewController, UICollectionViewDele
     }
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 extension GraveStoryTableViewController {
     
@@ -212,4 +215,5 @@ extension GraveStoryTableViewController {
 }
 =======
 >>>>>>> parent of 69dd09b... images are pulled down, still trying to get them into the array
+=======
 >>>>>>> parent of 69dd09b... images are pulled down, still trying to get them into the array

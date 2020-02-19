@@ -702,6 +702,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
 <<<<<<< HEAD
+<<<<<<< HEAD
                                                 <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="PFY-Xz-86t">
                                                     <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -714,6 +715,8 @@
                                                     <rect key="frame" x="207" y="158" width="0.0" height="0.0"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
+=======
+>>>>>>> parent of 69dd09b... images are pulled down, still trying to get them into the array
 =======
 >>>>>>> parent of 69dd09b... images are pulled down, still trying to get them into the array
                                                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZE9-am-8Bu">
