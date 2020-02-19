@@ -48,6 +48,7 @@ class GraveStoryTableViewController: UITableViewController, UICollectionViewDele
         getImage3()
 =======
 >>>>>>> parent of 69dd09b... images are pulled down, still trying to get them into the array
+>>>>>>> parent of 69dd09b... images are pulled down, still trying to get them into the array
     }
     
     // MARK: - Functions
@@ -210,4 +211,5 @@ extension GraveStoryTableViewController {
     
 }
 =======
+>>>>>>> parent of 69dd09b... images are pulled down, still trying to get them into the array
 >>>>>>> parent of 69dd09b... images are pulled down, still trying to get them into the array
