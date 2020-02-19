@@ -17,6 +17,10 @@ class GraveStoryTableViewController: UITableViewController, UICollectionViewDele
     @IBOutlet weak var rightBarButtonItem: UIBarButtonItem!
     @IBOutlet var reportPopOver: UIView!
     @IBOutlet weak var reportCommentsTextView: UITextView!
+    @IBOutlet weak var storyImage1: UIImageView!
+    @IBOutlet weak var storyImage2: UIImageView!
+    @IBOutlet weak var storyImage3: UIImageView!
+    @IBOutlet weak var storyImages: UIImageView!
     
     // MARK: - Propeties
     
@@ -24,12 +28,13 @@ class GraveStoryTableViewController: UITableViewController, UICollectionViewDele
     var currentAuthID = Auth.auth().currentUser?.uid
     var graveStoryId: String?
     var creatorId: String?
+    let storage = Storage.storage()
     var graveStorytitleValue: String?
     var graveStoryBodyBioValue: String?
-    var storyImageArray: [UIImage]?
-    var storyImageId1: String = ""
-    var storyImageId2: String = ""
-    var storyImageId3: String = ""
+    var storyImagesArray = [UIImage]()
+    var storyImageId1: String? = ""
+    var storyImageId2: String? = ""
+    var storyImageId3: String? = ""
     
     // MARK: - View Lifecycle
     
@@ -42,26 +47,20 @@ class GraveStoryTableViewController: UITableViewController, UICollectionViewDele
         if currentAuthID != creatorId {
             self.navigationItem.rightBarButtonItem = nil
         }
-<<<<<<< HEAD
-<<<<<<< HEAD
         getImage1()
         getImage2()
         getImage3()
-=======
->>>>>>> parent of 69dd09b... images are pulled down, still trying to get them into the array
-=======
->>>>>>> parent of 69dd09b... images are pulled down, still trying to get them into the array
     }
     
     // MARK: - Functions
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return storyImageArray?.count ?? 0
+        return storyImagesArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "StoryImagesCell", for: indexPath) as! StoryImagesCollectionViewCell
-        cell.storyImages.image = self.storyImageArray?[indexPath.row]//make array of images
+        cell.storyImages.image = self.storyImagesArray[indexPath.row]//make array of images
         
         return cell
     }
@@ -153,8 +152,6 @@ class GraveStoryTableViewController: UITableViewController, UICollectionViewDele
         }
     }
 }
-<<<<<<< HEAD
-<<<<<<< HEAD
 
 extension GraveStoryTableViewController {
     
@@ -213,7 +210,3 @@ extension GraveStoryTableViewController {
     }
     
 }
-=======
->>>>>>> parent of 69dd09b... images are pulled down, still trying to get them into the array
-=======
->>>>>>> parent of 69dd09b... images are pulled down, still trying to get them into the array
