@@ -33,6 +33,7 @@
 		CB5AE19023512B16001BCCCE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB5AE18F23512B16001BCCCE /* Assets.xcassets */; };
 		CB5AE19323512B16001BCCCE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB5AE19123512B16001BCCCE /* LaunchScreen.storyboard */; };
 		CB5E07E0238F09A30062F7C7 /* GraveProfileImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5E07DF238F09A30062F7C7 /* GraveProfileImage.swift */; };
+		CB60EE8623FCFB8E007788DD /* Pods_GraveYardApp.framework in Resources */ = {isa = PBXBuildFile; fileRef = 348ED5F5413457F6CE84F925 /* Pods_GraveYardApp.framework */; };
 		CB881F982367B41300615F2F /* GraveTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB881F972367B41300615F2F /* GraveTableViewController.swift */; };
 		CB881F9A2367B41E00615F2F /* EditGraveTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB881F992367B41E00615F2F /* EditGraveTableViewController.swift */; };
 		CBAC4EAF2370EAD7006760A5 /* StoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBAC4EAE2370EAD7006760A5 /* StoryTableViewCell.swift */; };
@@ -280,6 +281,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CB60EE8623FCFB8E007788DD /* Pods_GraveYardApp.framework in Resources */,
 				CB5AE19323512B16001BCCCE /* LaunchScreen.storyboard in Resources */,
 				CB3A30E1235F9E4B00CF2CBB /* Grave.storyboard in Resources */,
 				CB5AE19023512B16001BCCCE /* Assets.xcassets in Resources */,
