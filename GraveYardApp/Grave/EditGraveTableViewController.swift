@@ -136,12 +136,13 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
         let metaData = StorageMetadata()
         metaData.contentType = "image/jpg"
         storageRef.putData(imageData, metadata: metaData) { (metaData, error) in
-            if error == nil, metaData != nil {
+            if error == nil, metaData != nil { // getting an errror here
                 print("got grave image")
                 storageRef.downloadURL(completion: { (url, error) in
                     completion(url)
                 })
             } else {
+                //make a pop up here for falures
                 completion(nil)
             }
         }

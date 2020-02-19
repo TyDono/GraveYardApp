@@ -40,7 +40,7 @@ class NewGraveStoryTableViewController: UITableViewController, UIImagePickerCont
     override func viewDidLoad() {
         super.viewDidLoad()
         storyTitleTextField.text = graveStoryTitleValue
-        storyTitleTextField.text = graveStoryBodyTextValue
+        storyBodyTextView.text = graveStoryBodyTextValue
         chageTextColor()
         db = Firestore.firestore()
         getImage1()
@@ -165,9 +165,9 @@ class NewGraveStoryTableViewController: UITableViewController, UIImagePickerCont
     
     @IBAction func saveStoryBarButtonTapped(_ sender: UIBarButtonItem) {
         guard storyImage1.image != nil else { return }
-        for image in storyImages {
+        for image in storyImages { // this is empty
             uploadFirebaseImage1(image) { (url) in
-                guard let url = url else { return }
+                guard url != nil else { return }
 //                self.saveImageToFirebase(graveImagesURL: url, completion: { success in
 //                    self.firebaseWrite(url: url.absoluteString)
 //                })
@@ -176,13 +176,13 @@ class NewGraveStoryTableViewController: UITableViewController, UIImagePickerCont
         for image in storyImages {
             guard storyImage2.image != nil else { return }
             uploadFirebaseImage2(image) { (url) in
-                guard let url = url else { return }
+                guard url != nil else { return }
             }
         }
         for image in storyImages {
             guard storyImage3.image != nil else { return }
             uploadFirebaseImage3(image) { (url) in
-                guard let url = url else { return }
+                guard url != nil else { return }
             }
         }
         updateStoryData()

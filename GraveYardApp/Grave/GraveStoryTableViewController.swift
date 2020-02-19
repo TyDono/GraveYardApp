@@ -17,10 +17,6 @@ class GraveStoryTableViewController: UITableViewController, UICollectionViewDele
     @IBOutlet weak var rightBarButtonItem: UIBarButtonItem!
     @IBOutlet var reportPopOver: UIView!
     @IBOutlet weak var reportCommentsTextView: UITextView!
-    @IBOutlet weak var storyImage1: UIImageView!
-    @IBOutlet weak var storyImage2: UIImageView!
-    @IBOutlet weak var storyImage3: UIImageView!
-    @IBOutlet weak var storyImages: UIImageView!
     
     // MARK: - Propeties
     
@@ -28,13 +24,12 @@ class GraveStoryTableViewController: UITableViewController, UICollectionViewDele
     var currentAuthID = Auth.auth().currentUser?.uid
     var graveStoryId: String?
     var creatorId: String?
-    let storage = Storage.storage()
     var graveStorytitleValue: String?
     var graveStoryBodyBioValue: String?
-    var storyImagesArray = [UIImage]()
-    var storyImageId1: String? = ""
-    var storyImageId2: String? = ""
-    var storyImageId3: String? = ""
+    var storyImageArray: [UIImage]?
+    var storyImageId1: String = ""
+    var storyImageId2: String = ""
+    var storyImageId3: String = ""
     
     // MARK: - View Lifecycle
     
@@ -47,26 +42,23 @@ class GraveStoryTableViewController: UITableViewController, UICollectionViewDele
         if currentAuthID != creatorId {
             self.navigationItem.rightBarButtonItem = nil
         }
+<<<<<<< HEAD
         getImage1()
         getImage2()
         getImage3()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        getImage1()
-        getImage2()
-        getImage3()
+=======
+>>>>>>> parent of 69dd09b... images are pulled down, still trying to get them into the array
     }
     
     // MARK: - Functions
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return storyImagesArray.count
+        return storyImageArray?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "StoryImagesCell", for: indexPath) as! StoryImagesCollectionViewCell
-        cell.storyImages.image = self.storyImagesArray[indexPath.row]//make array of images
+        cell.storyImages.image = self.storyImageArray?[indexPath.row]//make array of images
         
         return cell
     }
@@ -80,8 +72,8 @@ class GraveStoryTableViewController: UITableViewController, UICollectionViewDele
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "editGraveStorySegue", let editGraveStoryTVC = segue.destination as? NewGraveStoryTableViewController {
             editGraveStoryTVC.currentGraveStoryId = graveStoryId
-            editGraveStoryTVC.graveStoryTitleValue = storyBodyBio.text
-            editGraveStoryTVC.graveStoryBodyTextValue = storyTitle.text
+            editGraveStoryTVC.graveStoryTitleValue = storyTitle.text
+            editGraveStoryTVC.graveStoryBodyTextValue = storyBodyBio.text
             editGraveStoryTVC.storyImageId1 = self.storyImageId1
             editGraveStoryTVC.storyImageId2 = self.storyImageId2
             editGraveStoryTVC.storyImageId3 = self.storyImageId3
@@ -158,6 +150,7 @@ class GraveStoryTableViewController: UITableViewController, UICollectionViewDele
         }
     }
 }
+<<<<<<< HEAD
 
 extension GraveStoryTableViewController {
     
@@ -166,11 +159,11 @@ extension GraveStoryTableViewController {
             let storageRef = storage.reference()
             let graveProfileImage = storageRef.child("storyImages/\(imageStringId)")
             graveProfileImage.getData(maxSize: (1024 * 1024), completion:  { (data, err) in
-                guard let data = data else {return}
-                guard let image = UIImage(data: data) else {return}
+                guard let data = data else { return }
+                guard let image = UIImage(data: data) else { return }
                 self.storyImagesArray.append(image)
                 self.storyImage1.image = image // images exists but storyimage1 is nil
-                //guard let storyImage = self.storyImage1.image else { return }
+//                guard let storyImage = self.storyImage1.image else { return }
                 self.storyImagesArray.append(image)
 //                guard let storyImage: UIImage = self.storyImage1 else { return }
             })
@@ -184,10 +177,10 @@ extension GraveStoryTableViewController {
             let storageRef = storage.reference()
             let graveProfileImage = storageRef.child("storyImages/\(imageStringId)")
             graveProfileImage.getData(maxSize: (1024 * 1024), completion:  { (data, err) in
-                guard let data = data else {return}
-                guard let image = UIImage(data: data) else {return}
+                guard let data = data else { return }
+                guard let image = UIImage(data: data) else { return }
                 self.storyImage2.image = image
-                //guard let storyImage = self.storyImage2.image else { return }
+//                guard let storyImage = self.storyImage2.image else { return }
                 self.storyImagesArray.append(image)
 //                guard let storyImage: UIImage = self.storyImage2 else { return }
 //                self.storyImagesArray?.append(storyImage)
@@ -202,12 +195,13 @@ extension GraveStoryTableViewController {
             let storageRef = storage.reference()
             let graveProfileImage = storageRef.child("storyImages/\(imageStringId)")
             graveProfileImage.getData(maxSize: (1024 * 1024), completion:  { (data, err) in
-                guard let data = data else {return}
-                guard let image = UIImage(data: data) else {return}
+                guard let data = data else { return }
+                guard let image = UIImage(data: data) else { return }
                 self.storyImage3.image = image
-                //guard let storyImage = self.storyImage3.image else { return }
+//                guard let storyImage = self.storyImage3.image else { return }
                 self.storyImagesArray.append(image)
 //                guard let storyImage: UIImage = self.storyImage3 else { return }
+                
             })
         } else {
             return
@@ -215,3 +209,5 @@ extension GraveStoryTableViewController {
     }
     
 }
+=======
+>>>>>>> parent of 69dd09b... images are pulled down, still trying to get them into the array
