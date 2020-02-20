@@ -4,13 +4,11 @@
 <dict>
 	<key>NSAppTransportSecurity</key>
 	<dict>
+		<key>NSExceptionDomains</key>
+		<dict/>
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
-	<key>LSApplicationCategoryType</key>
-	<string></string>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>Your location is requested in order to locate nearby cemeteries.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Your location is requested in order to locate nearby cemeteries.</string>
 	<key>CFBundleDevelopmentRegion</key>
