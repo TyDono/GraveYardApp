@@ -24,7 +24,9 @@ struct Story {
     var storyId: String
     var storyBodyText: String
     var storyTitle: String
-    var storyImage: String
+    var storyImageId1: String
+    var storyImageId2: String
+    var storyImageId3: String
     
     var dictionary: [String: Any] {
         return [
@@ -33,7 +35,9 @@ struct Story {
             "storyId": storyId,
             "storyBodyText": storyBodyText,
             "storyTitle": storyTitle,
-            "storyImage": storyImage
+            "storyImageId1": storyImageId1,
+            "storyImageId2": storyImageId2,
+            "storyImageId3": storyImageId3
         ]
     }
 }
@@ -45,8 +49,10 @@ extension Story: DocumentSerializableStory {
             let storyId = dictionary["storyId"] as? String,
             let storyBodyText = dictionary["storyBodyText"] as? String,
             let storyTitle = dictionary["storyTitle"] as? String,
-            let storyImage = dictionary["storyImage"] as? String else {return nil}
-        self.init(creatorId: creatorId, graveId: graveId, storyId: storyId, storyBodyText: storyBodyText, storyTitle: storyTitle, storyImage: storyImage)
+            let storyImageId1 = dictionary["storyImageId1"] as? String,
+            let storyImageId2 = dictionary["storyImageId2"] as? String,
+            let storyImageId3 = dictionary["storyImageId3"] as? String else {return nil}
+        self.init(creatorId: creatorId, graveId: graveId, storyId: storyId, storyBodyText: storyBodyText, storyTitle: storyTitle, storyImageId1: storyImageId1, storyImageId2: storyImageId2, storyImageId3: storyImageId3)
     }
     
 }

@@ -22,10 +22,11 @@ class MyFirebase {
     
     var db = Firestore.firestore()
     var currentAuthID = Auth.auth().currentUser?.uid
-    var userId: String? = ""
+    var userId = ""
     var currentUser: User?
     var storage = Storage.storage().reference()
     let formatter = DateFormatter()
+    var currentUserPremiumStatus: Bool = false
     
     private var listenHandler: AuthStateDidChangeListenerHandle?
     var currentUpload:StorageUploadTask?
@@ -36,23 +37,30 @@ class MyFirebase {
             if user == nil {
                 //logged Out
                 self.currentUser = nil
-                print("You Are Currently Logged Out")
                 self.currentAuthID = nil
                 self.userId = ""
+                print("You Are Currently Logged Out")
             } else {
+                
+                self.userId = user?.uid ?? "Error, No current Auth ID detected!"
                 print("Logged In")
                 let userReff = self.db.collection("userProfile").document("\(String(describing: self.userId))")
                 userReff.getDocument { (document, error) in
-                    if let document = document {
-                        let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
-                        print("data already added: \(dataDescription)")
+                    print(document?.exists)
+                    guard let document = document?.exists else { return }
+                    if document == true {
+                        //let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
+                        print("data already added: \(document)")
                     } else {
                         self.createData()
                     }
                     self.currentUser = user
                     self.userId = (user?.uid)!
+                    print("UserID: \(self.userId )")
+                    self.getCurrentUserData()
+                    //call function to call for user premium statatus and set the var premiumStatus
                     DispatchQueue.main.asyncAfter(deadline: .now()) {
-                        print(self.currentAuthID, "logged in")
+                        print(self.userId, "is logged in")
                         moveToMap()
                     }
                 }
@@ -61,18 +69,33 @@ class MyFirebase {
     }
     
     func createData() {
-        let currentUserId: String = ""
+        let currentUserId: String = self.userId ?? "no current auth Id detected"
         let premiumStatus: Bool = false
         
-        let user = UserProfile(currentAuthId: currentUserId,
+        let user = UserProfile(currentUserAuthId: currentUserId,
                                premiumStatus: premiumStatus)
         
         let userRef = self.db.collection("userProfile")
-        userRef.document(String(user.currentAuthId)).setData(user.dictionary) { err in
+        userRef.document(user.currentUserAuthId).setData(user.dictionary) { err in
             if let err = err {
                 print(err)
             } else {
                 print("Added Data")
+            }
+        }
+    }
+    
+    func getCurrentUserData() {
+        let graveRef = self.db.collection("userProfile").whereField("currentUserAuthId", isEqualTo: self.userId) //change this to the grave id that was tapped, NOT THE USER ID. THE USER ID IS FOR DIF STUFF. use String(arc4random_uniform(99999999)) to generate the grave Id when created
+        graveRef.getDocuments { (snapshot, error) in
+            if error != nil {
+                print(error as Any)
+            } else {
+                for document in (snapshot?.documents)! {
+                    if let premiumStatus = document.data()["premiumStatus"] as? Bool {
+                        self.currentUserPremiumStatus = premiumStatus
+                    }
+                }
             }
         }
     }

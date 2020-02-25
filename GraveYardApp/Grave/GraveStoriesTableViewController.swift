@@ -18,12 +18,18 @@ class GraveStoriesTableViewController: UITableViewController {
     // MARK: - Propeties
     
     var currentAuthID = Auth.auth().currentUser?.uid
+    let storage = Storage.storage()
     var creatorId: String?
+    var graveId: String? = MapViewController.shared.currentGraveId
     var graveStories: String?
     var db: Firestore!
     var tableArray = [String]()
     var stories: [Story]?
-    var graveStoryId: String?
+    var currentGraveStoryId: String?
+    var currentStoryId: String?
+    var storyImageId1: String? = ""
+    var storyImageId2: String? = ""
+    var storyImageId3: String? = ""
     
     // MARK: - View Lifecycle
     
@@ -50,8 +56,9 @@ class GraveStoriesTableViewController: UITableViewController {
     func getGraveStories() {
         var stories = [Story]()
         guard let currentGraveCreatorId: String = creatorId else { return }
+        guard let currentGraveId: String = graveId else { return }
         print(currentGraveCreatorId)
-        db.collection("stories").whereField("creatorId", isEqualTo: currentGraveCreatorId).getDocuments { (snapshot, error) in
+        db.collection("stories").whereField("graveId", isEqualTo: currentGraveId).getDocuments { (snapshot, error) in
                 if error != nil {
                     print(Error.self)
                 } else {
@@ -77,15 +84,22 @@ class GraveStoriesTableViewController: UITableViewController {
         let storyId: String = UUID().uuidString
         let storyBody: String = ""
         let storyTitle: String = ""
-        let storyImage: String = ""
-        graveStoryId = storyId
+        let storyImageId1: String = UUID().uuidString
+        let storyImageId2: String = UUID().uuidString
+        let storyImageId3: String = UUID().uuidString
+        currentGraveStoryId = storyId
+        self.storyImageId1 = storyImageId1
+        self.storyImageId2 = storyImageId2
+        self.storyImageId3 = storyImageId3
         
         let story = Story(creatorId: creatorId ?? "nul",
                           graveId: graveId,
                           storyId: storyId,
                           storyBodyText: storyBody,
                           storyTitle: storyTitle,
-                          storyImage: storyImage)
+                          storyImageId1: storyImageId1,
+                          storyImageId2: storyImageId2,
+                          storyImageId3: storyImageId3)
         
         let storyRef = self.db.collection("stories")
         storyRef.document(String(story.storyId)).setData(story.dictionary) { err in
@@ -127,13 +141,19 @@ class GraveStoriesTableViewController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "newGraveStorySegue", let newGraveStoryTVC = segue.destination as? NewGraveStoryTableViewController {
-            newGraveStoryTVC.graveStoryId = graveStoryId
+            newGraveStoryTVC.currentGraveStoryId = currentGraveStoryId
+            newGraveStoryTVC.storyImageId1 = storyImageId1
+            newGraveStoryTVC.storyImageId2 = storyImageId2
+            newGraveStoryTVC.storyImageId3 = storyImageId3
         } else if segue.identifier == "graveStorySegue", let graveStoryTVC = segue.destination as? GraveStoryTableViewController {
             if let row = self.tableView.indexPathForSelectedRow?.row, let story = stories?[row] {
-                graveStoryTVC.graveStoryId = graveStoryId
+                graveStoryTVC.graveStoryId = currentGraveStoryId
                 graveStoryTVC.graveStorytitleValue = story.storyTitle
                 graveStoryTVC.graveStoryBodyBioValue = story.storyBodyText
                 graveStoryTVC.creatorId = creatorId
+                graveStoryTVC.storyImageId1 = story.storyImageId1
+                graveStoryTVC.storyImageId2 = story.storyImageId2
+                graveStoryTVC.storyImageId3 = story.storyImageId3
             }
         }
     }

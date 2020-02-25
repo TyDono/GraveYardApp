@@ -12,7 +12,7 @@ import FirebaseAuth
 import FirebaseFirestore
 import GoogleSignIn
 
-class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
+class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UIGestureRecognizerDelegate {
     @IBOutlet weak var signUp: UIBarButtonItem!
     @IBOutlet weak var mapView: MKMapView!
     
@@ -45,13 +45,21 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         setMapViewLocationAndUser()
         chageTextColor()
         mapView.delegate = self
-        getGraveEntries { (graves) in
-            self.graves = graves
-            self.dropGraveEntryPins()
-        }
+//        getGraveEntries { (graves) in
+//            self.graves = graves
+//            self.dropGraveEntryPins()
+//        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        print(currentAuthID)
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        getGraveEntries { (graves) in
+             self.graves = graves
+             self.dropGraveEntryPins()
+         }
         checkForUserId() // make sure this gets calld everytime u reload from sign in
     }
     
@@ -101,12 +109,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     func getGraveEntries(completion: @escaping ([Grave]) -> Void) {
         db.collection("grave").getDocuments { (snapshot, error) in
             guard let snapshot = snapshot else { return }
-            
             var registeredGraves: [Grave] = []
-            
             for i in snapshot.documents {
                 let currentGrave = i.data()
-                
                 if let creatorId = currentGrave["creatorId"] as? String,
                     let graveId = currentGrave["graveId"] as? String,
                     let profileImageId = currentGrave["profileImageId"] as? String,
@@ -273,6 +278,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             locationManager.delegate = self
             locationManager.desiredAccuracy = kCLLocationAccuracyBest
             locationManager.startUpdatingLocation()
+//            locationManager.stopUpdatingLocation()
             self.mapView.showsUserLocation = true
         }
         mapView.showsScale = true
@@ -321,6 +327,33 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     //        self.present(newGraveAlert, animated: true)
     //    }
     
+//    private var mapChangedFromUserInteraction = false
+//
+//    private func mapViewRegionDidChangeFromUserInteraction() -> Bool {
+//        let view = self.mapView.subviews[0]
+//        //  Look through gesture recognizers to determine whether this region change is from user interaction
+//        if let gestureRecognizers = view.gestureRecognizers {
+//            for recognizer in gestureRecognizers {
+//                if( recognizer.state == UIGestureRecognizer.State.began || recognizer.state == UIGestureRecognizer.State.ended ) {
+//                    return true
+//                }
+//            }
+//        }
+//        return false
+//    }
+//
+//    func mapView(_ mapView: MKMapView, regionWillChangeAnimated animated: Bool) {
+//        mapChangedFromUserInteraction = mapViewRegionDidChangeFromUserInteraction()
+//        if (mapChangedFromUserInteraction) {
+//            // user changed map region
+//        }
+//    }
+//
+//    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+//        if (mapChangedFromUserInteraction) {
+//            // user changed map region
+//        }
+//    }
     
     //==================================================
     // MARK: - Actions
@@ -366,7 +399,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                 MapViewController.shared.currentGraveLocationLongitude = String(annotationLong)
                 let newGraveId = UUID().uuidString
                 let profileImageId: String = UUID().uuidString
-                let name: String = ""
+                let name: String = "Name"
                 let birthDate: String = ""
                 let birthLocation: String = ""
                 let deathDate: String = ""
@@ -419,7 +452,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                     }
                 }
             }
-            
         }))
         newGraveAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { action in
             print("Cancel Button Pressed")
@@ -428,10 +460,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                     self.mapView.removeAnnotation(annotation)
                 }
             }
-            
         }))
         self.present(newGraveAlert, animated: true)
-        
     }
     
     @IBAction func SignInTapped(_ sender: UIBarButtonItem) {

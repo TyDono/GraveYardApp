@@ -185,10 +185,52 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
         static let unwind = "unwindToGraveSegue"
     }
     
+        func deleteGraveProfileImage() {
+            let imageRef = self.storage.reference().child(self.imageString ?? "no image String found")
+            imageRef.delete { err in
+                if let error = err {
+                    let deleteImageAlert = UIAlertController(title: "Error", message: "Sorry, there was an error while trying to delete your Headstone Image. Please check your internet connection and try again.", preferredStyle: .alert)
+                    deleteImageAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
+                        deleteImageAlert.dismiss(animated: true, completion: nil)
+                    }))
+                    self.present(deleteImageAlert, animated: true, completion: nil)
+                    print(error)
+                } else {
+                    // File deleted successfully
+                }
+            }
+        }
+        
+        func deleteGraveStories() {
+            let graveStoryRef = self.db.collection("stories")
+            
+            let getStories = graveStoryRef.whereField("graveId", isEqualTo: self.currentGraveId)
+            getStories.getDocuments { (snapshot, err) in
+                if err != nil {
+                    print(err as Any)
+                } else {
+                    for document in (snapshot?.documents)! {
+    //                    if let creatorId = document.data()["creatorId"] as? String,
+    //                        let profileImageId = document.data()["profileImageId"] as? String,
+                    }
+                }
+                
+            }
+            
+            graveStoryRef.document("").delete() {
+                err in
+                if err == nil {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0) {
+                        moveToMap()
+                    }
+                }
+            }
+        }
+    
     // MARK: - Actions
     
     @IBAction func saveGraveInfoTapped(_ sender: UIBarButtonItem) {
-//        guard let unwrappedGraveImage = graveMainImage.image else { return }
+        guard let unwrappedGraveImage = graveMainImage.image else { return }
         for image in graveProfileImages {
             uploadFirebaseImages(image) { (url) in
                 print(url)
@@ -246,13 +288,45 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
         }
     }
     
-    // MARK: - Actions
-    
     @IBAction func changeImage(_ sender: UIButton) {
         let imagePickerController = UIImagePickerController()
         imagePickerController.delegate = self
         imagePickerController.sourceType = UIImagePickerController.SourceType.photoLibrary
         present(imagePickerController, animated: true, completion: nil)
+    }
+    @IBAction func deleteGraveButtonTapped(_ sender: UIButton) {
+        let alerController = UIAlertController(title: "WARNING!", message: "This will delete all of the information on this Headstone!", preferredStyle: .actionSheet)
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alerController.addAction(cancel)
+        let delete = UIAlertAction(title: "DELETE", style: .destructive) { _ in
+//            let userId = self.currentAuthID!
+            let userRef = self.db.collection("grave")
+            userRef.document(MapViewController.shared.currentGraveId ?? "error no graveId found").delete() { err in
+                if err == nil {
+                    self.deleteGraveProfileImage()
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0) {
+                        moveToMap()
+                    }
+                } else {
+                    let alert1 = UIAlertController(title: "ERROR", message: "Sorry, there was an error while trying to delete this Headstone, please check your internet connection  and try again", preferredStyle: .alert)
+                    alert1.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
+                        alert1.dismiss(animated: true, completion: nil)
+                    }))
+                    self.present(alert1, animated: true, completion: nil)
+                    print("document not deleted, ERROR")
+                    //                    print("Logged Out Tapped")
+                    //                    self.currentUser = nil
+                    //                    self.userId = ""
+                    //                    try! Auth.auth().signOut()
+                    //                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                    //                        moveToLogIn()
+                    //                    }
+                }
+            }
+        }
+        alerController.addAction(delete)
+        self.present(alerController, animated: true) {
+        }
     }
     
 }
