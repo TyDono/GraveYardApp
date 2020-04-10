@@ -290,7 +290,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
+        //being spam called ERROR
         let locValue: CLLocationCoordinate2D = manager.location!.coordinate
         print("The user location coordinates are \(locValue.latitude) \(locValue.longitude)")
         let userLocation = locations.last

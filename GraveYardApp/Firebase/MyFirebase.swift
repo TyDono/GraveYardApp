@@ -41,7 +41,6 @@ class MyFirebase {
                 self.userId = ""
                 print("You Are Currently Logged Out")
             } else {
-                
                 self.userId = user?.uid ?? "Error, No current Auth ID detected!"
                 print("Logged In")
                 let userReff = self.db.collection("userProfile").document("\(String(describing: self.userId))")

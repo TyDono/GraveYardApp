@@ -143,7 +143,7 @@ class GraveTableViewController: UITableViewController {
                         self.birthLocationLabel.text = birthLocation
                         self.deathDateLabel.text = deathDate
                         self.deathLocationLabel.text = deathLocation
-//                        self.familyStatusLabel.text = familyStatus
+                        self.familyStatusLabel.text = familyStatus
                         self.bioLabel.text = bio
                         self.pinQuoteLabel.text = "\"\(pinQuote)\""
                         if let currentUserId = self.currentAuthID {

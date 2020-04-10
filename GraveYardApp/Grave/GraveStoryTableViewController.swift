@@ -52,11 +52,11 @@ class GraveStoryTableViewController: UITableViewController, UICollectionViewDele
         getImage3()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        getImage1()
-        getImage2()
-        getImage3()
-    }
+//    override func viewWillAppear(_ animated: Bool) {
+//        getImage1()
+//        getImage2()
+//        getImage3()
+//    }
     
     // MARK: - Functions
     
@@ -173,6 +173,7 @@ extension GraveStoryTableViewController {
                 //guard let storyImage = self.storyImage1.image else { return }
                 self.storyImagesArray.append(image)
 //                guard let storyImage: UIImage = self.storyImage1 else { return }
+                self.reloadInputViews()
             })
         } else {
             return
@@ -191,6 +192,7 @@ extension GraveStoryTableViewController {
                 self.storyImagesArray.append(image)
 //                guard let storyImage: UIImage = self.storyImage2 else { return }
 //                self.storyImagesArray?.append(storyImage)
+                self.reloadInputViews()
             })
         } else {
             return
@@ -208,6 +210,7 @@ extension GraveStoryTableViewController {
                 //guard let storyImage = self.storyImage3.image else { return }
                 self.storyImagesArray.append(image)
 //                guard let storyImage: UIImage = self.storyImage3 else { return }
+                self.reloadInputViews() // test to see if this helps
             })
         } else {
             return

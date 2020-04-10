@@ -14,13 +14,13 @@ import FirebaseStorage
 class EditGraveTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     @IBOutlet weak var graveMainImage: UIImageView!
     @IBOutlet weak var nameTextField: UITextField!
-    @IBOutlet weak var familyStatusTextField: UITextField!
     @IBOutlet weak var birthDatePicker: UIDatePicker!
     @IBOutlet weak var birthLocationTextField: UITextField!
     @IBOutlet weak var deathDatePicker: UIDatePicker!
     @IBOutlet weak var deathLocationTextField: UITextField!
     @IBOutlet weak var bioTextView: UITextView!
     @IBOutlet weak var pinQuoteTextField: UITextField!
+    @IBOutlet weak var familyStatusTextView: UITextView!
     
     // MARK: - Propeties
     
@@ -88,7 +88,7 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
                         let deathDate = document.data()["deathDate"] as? String,
                         let deathLocation = document.data()["deathLocation"] as? String,
                         let graveId = document.data()["graveId"] as? String?,
-//                        let familyStatus = document.data()["familyStatus"] as? String,
+                        let familyStatus = document.data()["familyStatus"] as? String,
                         let bio = document.data()["bio"] as? String,
                         let pinQuote = document.data()["pinQuote"] as? String,
                         let graveLocationLatitude = document.data()["graveLocationLatitude"] as? String,
@@ -103,13 +103,28 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
                         self.deathDatePicker.date = deathDate
                         self.currentGraveId = graveId
                         self.deathLocationTextField.text = deathLocation
-//                        self.familyStatusTextField.text = familyStatus
+                        self.familyStatusTextView.text = familyStatus
                         self.bioTextView.text = bio
                         self.pinQuoteTextField.text = pinQuote
                         self.creatorId = creatorId
                         self.currentGraveLocationLatitude = graveLocationLatitude
                         self.currentGraveLocationLongitude = graveLocationLongitude
                         self.getImages() //call this last
+                    }
+                }
+            }
+        }
+    }
+    
+    func getStoryData() {
+        let graveRef = self.db.collection("grave").whereField("graveId", isEqualTo: MapViewController.shared.currentGraveId)
+        graveRef.getDocuments { (snapshot, error) in
+            if error != nil {
+                print(error as Any)
+            } else {
+                for document in (snapshot?.documents)! {
+                    if let creatorId = document.data()["creatorId"] as? String {
+
                     }
                 }
             }
@@ -185,21 +200,21 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
         static let unwind = "unwindToGraveSegue"
     }
     
-        func deleteGraveProfileImage() {
-            let imageRef = self.storage.reference().child(self.imageString ?? "no image String found")
-            imageRef.delete { err in
-                if let error = err {
-                    let deleteImageAlert = UIAlertController(title: "Error", message: "Sorry, there was an error while trying to delete your Headstone Image. Please check your internet connection and try again.", preferredStyle: .alert)
-                    deleteImageAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
-                        deleteImageAlert.dismiss(animated: true, completion: nil)
-                    }))
-                    self.present(deleteImageAlert, animated: true, completion: nil)
-                    print(error)
-                } else {
-                    // File deleted successfully
-                }
+    func deleteGraveProfileImage() {
+        let imageRef = self.storage.reference().child(self.imageString ?? "no image String found")
+        imageRef.delete { err in
+            if let error = err {
+                let deleteImageAlert = UIAlertController(title: "Error", message: "Sorry, there was an error while trying to delete your Headstone Image. Please check your internet connection and try again.", preferredStyle: .alert)
+                deleteImageAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
+                    deleteImageAlert.dismiss(animated: true, completion: nil)
+                }))
+                self.present(deleteImageAlert, animated: true, completion: nil)
+                print(error)
+            } else {
+                // File deleted successfully
             }
         }
+    }
         
         func deleteGraveStories() {
             let graveStoryRef = self.db.collection("stories")
@@ -294,6 +309,7 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
         imagePickerController.sourceType = UIImagePickerController.SourceType.photoLibrary
         present(imagePickerController, animated: true, completion: nil)
     }
+    
     @IBAction func deleteGraveButtonTapped(_ sender: UIButton) {
         let alerController = UIAlertController(title: "WARNING!", message: "This will delete all of the information on this Headstone!", preferredStyle: .actionSheet)
         let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
