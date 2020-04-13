@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="cs5-ik-Ric">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="cs5-ik-Ric">
     <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -929,24 +929,24 @@
                                                     <rect key="frame" x="28" y="11" width="366" height="279"/>
                                                     <subviews>
                                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="dKM-Lg-ic1">
-                                                            <rect key="frame" x="4" y="0.0" width="358" height="279"/>
+                                                            <rect key="frame" x="4" y="46" width="358" height="233"/>
                                                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                             <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                         </textView>
                                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Story Title" textAlignment="natural" minimumFontSize="17" background="Page" translatesAutoresizingMaskIntoConstraints="NO" id="rNP-Pd-iPL">
-                                                            <rect key="frame" x="8" y="0.0" width="350" height="37"/>
+                                                            <rect key="frame" x="8" y="0.0" width="350" height="38.333333333333336"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                                             <textInputTraits key="textInputTraits"/>
                                                         </textField>
                                                     </subviews>
                                                     <constraints>
-                                                        <constraint firstAttribute="trailing" secondItem="dKM-Lg-ic1" secondAttribute="trailing" constant="32" id="3a1-tj-opr"/>
+                                                        <constraint firstAttribute="trailing" secondItem="dKM-Lg-ic1" secondAttribute="trailing" constant="4" id="3a1-tj-opr"/>
                                                         <constraint firstItem="dKM-Lg-ic1" firstAttribute="centerX" secondItem="rNP-Pd-iPL" secondAttribute="centerX" id="7iP-wM-nQt"/>
                                                         <constraint firstAttribute="bottom" secondItem="dKM-Lg-ic1" secondAttribute="bottom" id="9Lk-1C-ugr"/>
                                                         <constraint firstItem="E7A-21-X7p" firstAttribute="trailing" secondItem="rNP-Pd-iPL" secondAttribute="trailing" constant="8" id="NN1-09-16T"/>
-                                                        <constraint firstItem="dKM-Lg-ic1" firstAttribute="top" secondItem="E7A-21-X7p" secondAttribute="top" id="PGE-am-6Mg"/>
+                                                        <constraint firstItem="dKM-Lg-ic1" firstAttribute="top" secondItem="E7A-21-X7p" secondAttribute="top" constant="46" id="PGE-am-6Mg"/>
                                                         <constraint firstItem="E7A-21-X7p" firstAttribute="trailing" secondItem="dKM-Lg-ic1" secondAttribute="trailing" constant="4" id="hmz-sr-PnB"/>
                                                         <constraint firstItem="rNP-Pd-iPL" firstAttribute="top" secondItem="P4C-dl-dxk" secondAttribute="top" id="lXP-J4-vrj"/>
                                                         <constraint firstItem="dKM-Lg-ic1" firstAttribute="leading" secondItem="E7A-21-X7p" secondAttribute="leading" constant="4" id="qPa-iY-vxc"/>
@@ -1181,6 +1181,9 @@
             <point key="canvasLocation" x="1731.8840579710147" y="614.67391304347836"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="7DO-rd-4qB"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="2bd2f713a915ce40711bb4618d4547be_123238a36d92_t" width="300" height="300"/>
         <image name="Page" width="617" height="500"/>
@@ -1189,9 +1192,6 @@
         <image name="headstone-2" width="375" height="265"/>
         <image name="icons8-journal-30" width="30" height="30"/>
         <image name="plus-big-512" width="512" height="512"/>
-        <image name="xmark.circle.fill" catalog="system" width="64" height="60"/>
+        <image name="xmark.circle.fill" catalog="system" width="128" height="121"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="7DO-rd-4qB"/>
-    </inferredMetricsTieBreakers>
 </document>
