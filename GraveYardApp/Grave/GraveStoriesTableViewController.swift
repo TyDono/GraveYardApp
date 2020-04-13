@@ -132,7 +132,8 @@ class GraveStoriesTableViewController: UITableViewController {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "storyCell", for: indexPath) as? StoryTableViewCell else { return UITableViewCell() }
         
         if let stories = stories {
-            let story = stories[indexPath.row]
+            var story = stories[indexPath.row]
+            currentGraveStoryId = story.storyId
             cell.storyCellTitle.text = "\(story.storyTitle)"
             cell.cellStoryText = "\(story.storyBodyText)"
         }

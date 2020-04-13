@@ -266,7 +266,7 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
         let death = deathDatePicker.date
         let deathDate = dateFormatter.string(from: death)
         guard let deathLocation = deathLocationTextField.text else { return }
-//        guard let familyStatus = familyStatusTextField.text else { return }
+        guard let familyStatus = familyStatusTextView.text else { return }
         guard let bio = bioTextView.text else { return }
         guard let currentGraveLocationLatitude = self.currentGraveLocationLatitude  else { return }
         guard let currentGraveLocationLongitude = self.currentGraveLocationLongitude  else { return }
@@ -281,7 +281,7 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
                           birthLocation: birthLocation,
                           deathDate: deathDate,
                           deathLocation: deathLocation,
-//                          familyStatus: familyStatus,
+                          familyStatus: familyStatus,
                           bio: bio,
                           graveLocationLatitude: currentGraveLocationLatitude,
                           graveLocationLongitude: currentGraveLocationLongitude,

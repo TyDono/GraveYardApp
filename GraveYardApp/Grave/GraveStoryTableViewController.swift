@@ -44,9 +44,7 @@ class GraveStoryTableViewController: UITableViewController, UICollectionViewDele
         db = Firestore.firestore()
         storyTitle.text = graveStorytitleValue
         storyBodyBio.text = graveStoryBodyBioValue
-        if currentAuthID != creatorId {
-            self.navigationItem.rightBarButtonItem = nil
-        }
+        checkForCreatorId()
         getImage1()
         getImage2()
         getImage3()
@@ -90,7 +88,14 @@ class GraveStoryTableViewController: UITableViewController, UICollectionViewDele
     
     func createReportData() {
         let userReportId: String = UUID().uuidString
-        let userReport = UserReport(reporterCreatorId: currentAuthID ?? "No Creator ID", reason: reportCommentsTextView.text, creatorId: creatorId!, graveId: "", storyId: graveStoryId!)
+        guard let currentAuthID = self.currentAuthID else {
+            let reportGraveFailAlert = UIAlertController(title: "Failed to report", message: "You must be sign in to send a report", preferredStyle: .alert)
+            let dismiss = UIAlertAction(title: "OK", style: .default, handler: nil)
+            reportGraveFailAlert.addAction(dismiss)
+            self.present(reportGraveFailAlert, animated: true, completion: nil)
+            return
+        }
+        let userReport = UserReport(reporterCreatorId: currentAuthID, reason: reportCommentsTextView.text, creatorId: creatorId!, graveId: "", storyId: graveStoryId!)
         let userReportRef = self.db.collection("userReports")
         userReportRef.document(userReportId).setData(userReport.dictionary) { err in
             if let err = err {
