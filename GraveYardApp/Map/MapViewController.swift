@@ -45,10 +45,10 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         setMapViewLocationAndUser()
         chageTextColor()
         mapView.delegate = self
-//        getGraveEntries { (graves) in
-//            self.graves = graves
-//            self.dropGraveEntryPins()
-//        }
+        getGraveEntries { (graves) in
+            self.graves = graves
+            self.dropGraveEntryPins()
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -56,10 +56,10 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        getGraveEntries { (graves) in
-             self.graves = graves
-             self.dropGraveEntryPins()
-         }
+//        getGraveEntries { (graves) in
+//             self.graves = graves
+//             self.dropGraveEntryPins()
+//         }
         checkForUserId() // make sure this gets calld everytime u reload from sign in
     }
     
@@ -292,7 +292,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         //being spam called ERROR
         let locValue: CLLocationCoordinate2D = manager.location!.coordinate
-        print("The user location coordinates are \(locValue.latitude) \(locValue.longitude)")
+        //print("The user location coordinates are \(locValue.latitude) \(locValue.longitude)") // this is getting spam called!!!!!
         let userLocation = locations.last
         let viewRegion = MKCoordinateRegion(center: (userLocation?.coordinate)!, latitudinalMeters: 600, longitudinalMeters: 600)
         mapView.setRegion(viewRegion, animated: true)

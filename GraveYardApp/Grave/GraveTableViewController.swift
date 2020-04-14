@@ -116,7 +116,7 @@ class GraveTableViewController: UITableViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "graveStoriesSegue", let graveStoriesTVC = segue.destination as? GraveStoriesTableViewController {
-            graveStoriesTVC.currentGraveStoryId = graveId
+            graveStoriesTVC.graveStories = graveId
             graveStoriesTVC.creatorId = creatorId
         }
     }

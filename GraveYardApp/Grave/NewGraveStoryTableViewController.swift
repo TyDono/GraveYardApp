@@ -40,9 +40,10 @@ class NewGraveStoryTableViewController: UITableViewController, UIImagePickerCont
     override func viewDidLoad() {
         super.viewDidLoad()
         storyTitleTextField.text = graveStoryTitleValue
-        storyTitleTextField.text = graveStoryBodyTextValue
+        storyBodyTextView.text = graveStoryBodyTextValue
         chageTextColor()
         db = Firestore.firestore()
+        
         getImage1()
         getImage2()
         getImage3()
@@ -264,7 +265,7 @@ extension NewGraveStoryTableViewController {
         metaData.contentType = "image/jpg"
         storageRef.putData(imageData, metadata: metaData) { (metaData, error) in
             if error == nil, metaData != nil {
-                print("got story images")
+                print("got story images1")
                 storageRef.downloadURL(completion: { (url, error) in
                     completion(url)
                 })
@@ -295,7 +296,7 @@ extension NewGraveStoryTableViewController {
         metaData.contentType = "image/jpg"
         storageRef.putData(imageData, metadata: metaData) { (metaData, error) in
             if error == nil, metaData != nil {
-                print("got story images")
+                print("got story images2")
                 storageRef.downloadURL(completion: { (url, error) in
                     completion(url)
                 })
@@ -326,7 +327,7 @@ extension NewGraveStoryTableViewController {
         metaData.contentType = "image/jpg"
         storageRef.putData(imageData, metadata: metaData) { (metaData, error) in
             if error == nil, metaData != nil {
-                print("got story images")
+                print("got story images3")
                 storageRef.downloadURL(completion: { (url, error) in
                     completion(url)
                 })

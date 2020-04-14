@@ -45,9 +45,11 @@ class GraveStoryTableViewController: UITableViewController, UICollectionViewDele
         storyTitle.text = graveStorytitleValue
         storyBodyBio.text = graveStoryBodyBioValue
         checkForCreatorId()
-        getImage1()
-        getImage2()
-        getImage3()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+            self.getImage1()
+            self.getImage2()
+            self.getImage3()
+        }
     }
     
 //    override func viewWillAppear(_ animated: Bool) {
@@ -176,9 +178,9 @@ extension GraveStoryTableViewController {
                 self.storyImagesArray.append(image)
                 self.storyImage1.image = image // images exists but storyimage1 is nil
                 //guard let storyImage = self.storyImage1.image else { return }
-                self.storyImagesArray.append(image)
+//                self.storyImagesArray.append(image)
 //                guard let storyImage: UIImage = self.storyImage1 else { return }
-                self.reloadInputViews()
+//                self.reloadInputViews()
             })
         } else {
             return
@@ -192,12 +194,13 @@ extension GraveStoryTableViewController {
             graveProfileImage.getData(maxSize: (1024 * 1024), completion:  { (data, err) in
                 guard let data = data else {return}
                 guard let image = UIImage(data: data) else {return}
+                print(imageStringId)
                 self.storyImage2.image = image
                 //guard let storyImage = self.storyImage2.image else { return }
-                self.storyImagesArray.append(image)
+//                self.storyImagesArray.append(image)
 //                guard let storyImage: UIImage = self.storyImage2 else { return }
 //                self.storyImagesArray?.append(storyImage)
-                self.reloadInputViews()
+//                self.reloadInputViews()
             })
         } else {
             return
@@ -213,9 +216,9 @@ extension GraveStoryTableViewController {
                 guard let image = UIImage(data: data) else {return}
                 self.storyImage3.image = image
                 //guard let storyImage = self.storyImage3.image else { return }
-                self.storyImagesArray.append(image)
+//                self.storyImagesArray.append(image)
 //                guard let storyImage: UIImage = self.storyImage3 else { return }
-                self.reloadInputViews() // test to see if this helps
+//                self.reloadInputViews() // test to see if this helps
             })
         } else {
             return
