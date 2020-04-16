@@ -151,7 +151,7 @@ class GraveStoriesTableViewController: UITableViewController {
                 graveStoryTVC.graveStoryId = currentGraveStoryId
                 graveStoryTVC.graveStorytitleValue = story.storyTitle
                 graveStoryTVC.graveStoryBodyBioValue = story.storyBodyText
-                graveStoryTVC.creatorId = creatorId
+                graveStoryTVC.creatorId = self.creatorId
                 graveStoryTVC.storyImageId1 = story.storyImageId1
                 graveStoryTVC.storyImageId2 = story.storyImageId2
                 graveStoryTVC.storyImageId3 = story.storyImageId3

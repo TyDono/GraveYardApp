@@ -80,8 +80,8 @@ class GraveStoryTableViewController: UITableViewController, UICollectionViewDele
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "editGraveStorySegue", let editGraveStoryTVC = segue.destination as? NewGraveStoryTableViewController {
             editGraveStoryTVC.currentGraveStoryId = graveStoryId
-            editGraveStoryTVC.graveStoryTitleValue = storyBodyBio.text
-            editGraveStoryTVC.graveStoryBodyTextValue = storyTitle.text
+            editGraveStoryTVC.graveStoryTitleValue = storyTitle.text
+            editGraveStoryTVC.graveStoryBodyTextValue = storyBodyBio.text
             editGraveStoryTVC.storyImageId1 = self.storyImageId1
             editGraveStoryTVC.storyImageId2 = self.storyImageId2
             editGraveStoryTVC.storyImageId3 = self.storyImageId3
