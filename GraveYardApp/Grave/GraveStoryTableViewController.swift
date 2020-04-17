@@ -11,7 +11,12 @@ import FirebaseFirestore
 import Firebase
 import FirebaseAuth
 
-class GraveStoryTableViewController: UITableViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class GraveStoryTableViewController: UITableViewController {
+    
+    // MARK: - Outlets
+    
+    
+    @IBOutlet weak var horizonalImageScrollCollectionView: UICollectionView!
     @IBOutlet weak var storyTitle: UILabel!
     @IBOutlet weak var storyBodyBio: UILabel!
     @IBOutlet weak var rightBarButtonItem: UIBarButtonItem!
@@ -20,7 +25,6 @@ class GraveStoryTableViewController: UITableViewController, UICollectionViewDele
     @IBOutlet weak var storyImage1: UIImageView!
     @IBOutlet weak var storyImage2: UIImageView!
     @IBOutlet weak var storyImage3: UIImageView!
-    @IBOutlet weak var storyImages: UIImageView!
     
     // MARK: - Propeties
     
@@ -60,16 +64,7 @@ class GraveStoryTableViewController: UITableViewController, UICollectionViewDele
     
     // MARK: - Functions
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return storyImagesArray.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "StoryImagesCell", for: indexPath) as! StoryImagesCollectionViewCell
-        cell.storyImages.image = self.storyImagesArray[indexPath.row]//make array of images
-        
-        return cell
-    }
+
     
     func chageTextColor() {
         tableView.separatorColor = UIColor(0.0, 128.0, 128.0, 1.0)
@@ -175,12 +170,12 @@ extension GraveStoryTableViewController {
             graveProfileImage.getData(maxSize: (1024 * 1024), completion:  { (data, err) in
                 guard let data = data else {return}
                 guard let image = UIImage(data: data) else {return}
-                self.storyImagesArray.append(image)
-                self.storyImage1.image = image // images exists but storyimage1 is nil
-                //guard let storyImage = self.storyImage1.image else { return }
 //                self.storyImagesArray.append(image)
+                self.storyImage1.image = image // images exists but storyimage1 is nil
+                guard let storyImage = self.storyImage1.image else { return }
 //                guard let storyImage: UIImage = self.storyImage1 else { return }
-//                self.reloadInputViews()
+                self.storyImagesArray.append(storyImage)
+                self.reloadInputViews()
             })
         } else {
             return
@@ -196,11 +191,11 @@ extension GraveStoryTableViewController {
                 guard let image = UIImage(data: data) else {return}
                 print(imageStringId)
                 self.storyImage2.image = image
-                //guard let storyImage = self.storyImage2.image else { return }
+                guard let storyImage = self.storyImage2.image else { return }
 //                self.storyImagesArray.append(image)
 //                guard let storyImage: UIImage = self.storyImage2 else { return }
-//                self.storyImagesArray?.append(storyImage)
-//                self.reloadInputViews()
+                self.storyImagesArray.append(storyImage)
+                self.reloadInputViews()
             })
         } else {
             return
@@ -215,14 +210,29 @@ extension GraveStoryTableViewController {
                 guard let data = data else {return}
                 guard let image = UIImage(data: data) else {return}
                 self.storyImage3.image = image
-                //guard let storyImage = self.storyImage3.image else { return }
+                guard let storyImage = self.storyImage3.image else { return }
 //                self.storyImagesArray.append(image)
 //                guard let storyImage: UIImage = self.storyImage3 else { return }
-//                self.reloadInputViews() // test to see if this helps
+                self.storyImagesArray.append(storyImage)
+                self.reloadInputViews() // test to see if this helps
             })
         } else {
             return
         }
     }
     
+}
+
+extension GraveStoryTableViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return storyImagesArray.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "StoryImagesCell", for: indexPath) as? StoryImagesCollectionViewCell else { return UICollectionViewCell() }
+        cell.storyImages.image = self.storyImagesArray[indexPath.row]//make array of images
+        
+        return cell
+    }
 }
