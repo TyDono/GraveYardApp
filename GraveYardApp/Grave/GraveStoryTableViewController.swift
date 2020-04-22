@@ -16,15 +16,12 @@ class GraveStoryTableViewController: UITableViewController {
     // MARK: - Outlets
     
     
-    @IBOutlet weak var horizonalImageScrollCollectionView: UICollectionView!
+    @IBOutlet weak var storyImagesScrollView: UIScrollView!
     @IBOutlet weak var storyTitle: UILabel!
     @IBOutlet weak var storyBodyBio: UILabel!
     @IBOutlet weak var rightBarButtonItem: UIBarButtonItem!
     @IBOutlet var reportPopOver: UIView!
     @IBOutlet weak var reportCommentsTextView: UITextView!
-    @IBOutlet weak var storyImage1: UIImageView!
-    @IBOutlet weak var storyImage2: UIImageView!
-    @IBOutlet weak var storyImage3: UIImageView!
     
     // MARK: - Propeties
     
@@ -35,7 +32,6 @@ class GraveStoryTableViewController: UITableViewController {
     let storage = Storage.storage()
     var graveStorytitleValue: String?
     var graveStoryBodyBioValue: String?
-//    var storyImagesArray = [UIImage]()
     var storyImagesArray: [UIImage?] = []
     var storyUIImage1: UIImage?
     var storyUIImage2: UIImage?
@@ -53,23 +49,26 @@ class GraveStoryTableViewController: UITableViewController {
         storyTitle.text = graveStorytitleValue
         storyBodyBio.text = graveStoryBodyBioValue
         checkForCreatorId()
-        storyImagesArray = [UIImage(named: "Page"), UIImage(named: "Icon"), UIImage(named: "Bob ross")]
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
-//            self.getImage1()
-//            self.getImage2()
-//            self.getImage3()
+            self.getImage1()
+            self.getImage2()
+            self.getImage3()
         }
+
     }
-    
-//    override func viewWillAppear(_ animated: Bool) {
-//        getImage1()
-//        getImage2()
-//        getImage3()
-//    }
     
     // MARK: - Functions
     
-
+    func setUpScrollView() {
+        for i in 0..<storyImagesArray.count {
+            let imageView = UIImageView()
+            imageView.image = storyImagesArray[i]
+            let xPosition = self.view.frame.width * CGFloat(i)
+            imageView.frame = CGRect(x: xPosition, y: 0, width: self.storyImagesScrollView.frame.width, height: self.storyImagesScrollView.frame.height)
+            storyImagesScrollView.contentSize.width = storyImagesScrollView.frame.width * CGFloat(i + 1)
+            storyImagesScrollView.addSubview(imageView)
+        }
+    }
     
     func chageTextColor() {
         tableView.separatorColor = UIColor(0.0, 128.0, 128.0, 1.0)
@@ -177,11 +176,11 @@ extension GraveStoryTableViewController {
                 guard let image = UIImage(data: data) else {return}
 //                self.storyImagesArray.append(image)
                 self.storyUIImage1 = image
-                self.storyImage1.image = image // images exists but storyimage1 is nil
+//                self.storyImage1.image = image // images exists but storyimage1 is nil
                 guard let storyImage = self.storyUIImage1 else { return }
 //                guard let storyImage: UIImage = self.storyImage1 else { return }
                 self.storyImagesArray.append(storyImage)
-                self.reloadInputViews()
+                self.setUpScrollView()
             })
         } else {
             return
@@ -197,12 +196,12 @@ extension GraveStoryTableViewController {
                 guard let image = UIImage(data: data) else {return}
                 print(imageStringId)
                 self.storyUIImage2 = image
-                self.storyImage2.image = image
+//                self.storyImage2.image = image
                 guard let storyImage = self.storyUIImage2 else { return }
 //                self.storyImagesArray.append(image)
 //                guard let storyImage: UIImage = self.storyImage2 else { return }
                 self.storyImagesArray.append(storyImage)
-                self.reloadInputViews()
+                self.setUpScrollView()
             })
         } else {
             return
@@ -217,30 +216,16 @@ extension GraveStoryTableViewController {
                 guard let data = data else {return}
                 guard let image = UIImage(data: data) else {return}
                 self.storyUIImage3 = image
-                self.storyImage3.image = image
+//                self.storyImage3.image = image
                 guard let storyImage = self.storyUIImage3 else { return }
 //                self.storyImagesArray.append(image)
 //                guard let storyImage: UIImage = self.storyImage3 else { return }
                 self.storyImagesArray.append(storyImage)
-                self.reloadInputViews() // test to see if this helps
+                self.setUpScrollView()
             })
         } else {
             return
         }
     }
     
-}
-
-extension GraveStoryTableViewController: UICollectionViewDelegate, UICollectionViewDataSource {
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return storyImagesArray.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "StoryImagesCell", for: indexPath) as? StoryImagesCollectionViewCell else { return UICollectionViewCell() }
-        cell.storyImages.image = self.storyImagesArray[indexPath.row]//make array of images
-        
-        return cell
-    }
 }
