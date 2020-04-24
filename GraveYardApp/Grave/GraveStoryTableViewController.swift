@@ -44,6 +44,7 @@ class GraveStoryTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        storyImagesScrollView.frame = view.frame
         chageTextColor()
         db = Firestore.firestore()
         storyTitle.text = graveStorytitleValue

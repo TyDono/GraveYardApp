@@ -860,14 +860,23 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VBe-MZ-WDh">
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="364"/>
                                                     <subviews>
-                                                        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wkN-1j-kTE">
-                                                            <rect key="frame" x="0.0" y="-11" width="414" height="364"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wkN-1j-kTE">
+                                                            <rect key="frame" x="0.0" y="-8" width="414" height="364"/>
                                                             <viewLayoutGuide key="contentLayoutGuide" id="4Cb-Bb-LQM"/>
                                                             <viewLayoutGuide key="frameLayoutGuide" id="zad-so-gsS"/>
                                                         </scrollView>
                                                     </subviews>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                    <constraints>
+                                                        <constraint firstItem="wkN-1j-kTE" firstAttribute="centerX" secondItem="VBe-MZ-WDh" secondAttribute="centerX" id="5rQ-Sz-uUv"/>
+                                                        <constraint firstItem="wkN-1j-kTE" firstAttribute="width" secondItem="VBe-MZ-WDh" secondAttribute="width" id="6Y6-fb-aea"/>
+                                                        <constraint firstItem="wkN-1j-kTE" firstAttribute="top" secondItem="VBe-MZ-WDh" secondAttribute="top" id="Mkg-Qg-QsM"/>
+                                                        <constraint firstItem="wkN-1j-kTE" firstAttribute="centerY" secondItem="VBe-MZ-WDh" secondAttribute="centerY" id="QML-bf-HYv"/>
+                                                        <constraint firstAttribute="trailing" secondItem="wkN-1j-kTE" secondAttribute="trailing" id="R67-dz-dI6"/>
+                                                        <constraint firstItem="wkN-1j-kTE" firstAttribute="leading" secondItem="VBe-MZ-WDh" secondAttribute="leading" id="XNV-5X-sHr"/>
+                                                        <constraint firstItem="wkN-1j-kTE" firstAttribute="height" secondItem="VBe-MZ-WDh" secondAttribute="height" id="h0V-X3-QUO"/>
+                                                        <constraint firstAttribute="bottom" secondItem="wkN-1j-kTE" secondAttribute="bottom" id="omR-pY-ADz"/>
+                                                    </constraints>
                                                 </view>
                                             </subviews>
                                             <constraints>
