@@ -142,7 +142,8 @@ class GraveTableViewController: UITableViewController {
                         print(name)
                         self.currentGraveId = graveId
                         self.imageString = profileImageId
-                        self.graveNavTitle.title = "\(name)'s Headstone"
+                        let nameHeadstone = "\(name)'s Headstone"
+                        self.graveNavTitle.title = nameHeadstone.uppercased()
                         self.creatorId = creatorId
                         self.birthDateLabel.text = birthDate
                         self.birthLocationLabel.text = birthLocation
@@ -150,7 +151,11 @@ class GraveTableViewController: UITableViewController {
                         self.deathLocationLabel.text = deathLocation
                         self.familyStatusLabel.text = familyStatus
                         self.bioLabel.text = bio
-                        self.pinQuoteLabel.text = "\"\(pinQuote)\""
+                        if pinQuote == "" {
+                            self.pinQuoteLabel.text = ""
+                        } else {
+                            self.pinQuoteLabel.text = "\"\(pinQuote)\""
+                        }
                         if let currentUserId = self.currentAuthID {
                             if currentUserId != creatorId {
                                 self.navigationItem.rightBarButtonItem?.title = "Report"

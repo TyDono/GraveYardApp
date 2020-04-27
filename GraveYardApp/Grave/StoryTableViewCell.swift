@@ -11,6 +11,7 @@ import UIKit
 class StoryTableViewCell: UITableViewCell {
     @IBOutlet weak var storyCellImage: UIImageView!
     @IBOutlet weak var storyCellTitle: UILabel!
+    @IBOutlet weak var cellBackgroundImage: UIImageView!
     
     var story: [Story]?
     var cellTitle: String?
