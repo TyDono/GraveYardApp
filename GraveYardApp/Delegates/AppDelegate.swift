@@ -6,9 +6,11 @@
 //  Copyright © 2019 Tyler Donohue. All rights reserved.
 //
 
-import UIKit
-import Firebase
+import FirebaseAuth
+import FirebaseFirestore
 import GoogleSignIn
+import FirebaseCore
+import FirebaseStorage
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {

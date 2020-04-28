@@ -8,16 +8,16 @@
 
 
 import Foundation
-import UIKit
 import FirebaseCore
 import FirebaseAuth
 import GoogleSignIn
 import FirebaseFirestore
-import Firebase
+import FirebaseStorage
 
 class MyFirebase {
     
-    // Variables
+    // MARK: - Propeties
+    
     static let shared = MyFirebase()
     
     var db = Firestore.firestore()
@@ -31,6 +31,8 @@ class MyFirebase {
     private var listenHandler: AuthStateDidChangeListenerHandle?
     var currentUpload:StorageUploadTask?
     
+    // MARK: - Functions
+    
     func addUserListender(loggedIn: Bool) {
         print("Add listener")
         listenHandler = Auth.auth().addStateDidChangeListener{ (auth, user) in
@@ -40,6 +42,13 @@ class MyFirebase {
                 self.currentAuthID = nil
                 self.userId = ""
                 print("You Are Currently Logged Out")
+                DispatchQueue.main.asyncAfter(deadline: .now()) {
+                    if loggedIn == true {
+                        moveToMap()
+                    } else {
+                        moveToMap()
+                    }
+                }
             } else {
                 self.userId = user?.uid ?? "Error, No current Auth ID detected!"
                 print("Logged In")

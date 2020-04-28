@@ -8,7 +8,7 @@
 
 import UIKit
 import FirebaseFirestore
-import Firebase
+import FirebaseStorage
 import FirebaseAuth
 
 class GraveStoryTableViewController: UITableViewController {
