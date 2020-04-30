@@ -13,6 +13,7 @@ import FirebaseFirestore
 import GoogleSignIn
 
 class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UIGestureRecognizerDelegate {
+    
     @IBOutlet weak var signUp: UIBarButtonItem!
     @IBOutlet weak var mapView: MKMapView!
     
@@ -42,13 +43,14 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
+//        self.mapView.removeAnnotations(self.mapView.annotations)
         setMapViewLocationAndUser()
         chageTextColor()
         mapView.delegate = self
-        getGraveEntries { (graves) in
-            self.graves = graves
-            self.dropGraveEntryPins()
-        }
+//        getGraveEntries { (graves) in
+//            self.graves = graves
+//            self.dropGraveEntryPins()
+//        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -56,16 +58,19 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     }
     
     override func viewWillAppear(_ animated: Bool) {
-//        getGraveEntries { (graves) in
-//             self.graves = graves
-//             self.dropGraveEntryPins()
-//         }
-        checkForUserId() // make sure this gets calld everytime u reload from sign in
+        self.mapView.removeAnnotations(self.mapView.annotations)
+        getGraveEntries { (graves) in
+            self.graves = graves
+            self.dropGraveEntryPins()
+         }
+        checkForUserId()// make sure this gets calld everytime u reload from sign in
     }
     
-    //==================================================
     // MARK: - Functions
-    //==================================================
+    
+    func reloadMapView() {
+        mapView.reloadInputViews()
+    }
     
     func chageTextColor() {
         navigationItem.leftBarButtonItem?.tintColor = UIColor(0.0, 128.0, 128.0, 1.0)

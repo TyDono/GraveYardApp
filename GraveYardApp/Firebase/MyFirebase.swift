@@ -44,9 +44,9 @@ class MyFirebase {
                 print("You Are Currently Logged Out")
                 DispatchQueue.main.asyncAfter(deadline: .now()) {
                     if loggedIn == true {
-                        moveToMap()
+                        //moveToMap()
                     } else {
-                        moveToMap()
+                        //moveToMap()
                     }
                 }
             } else {
@@ -69,7 +69,7 @@ class MyFirebase {
                     //call function to call for user premium statatus and set the var premiumStatus
                     DispatchQueue.main.asyncAfter(deadline: .now()) {
                         print(self.userId, "is logged in")
-                        moveToMap()
+                        //moveToMap()
                     }
                 }
             }

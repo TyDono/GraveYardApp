@@ -42,9 +42,16 @@ class SignInViewController: UIViewController, GIDSignInUIDelegate {
         GIDSignIn.sharedInstance()?.uiDelegate = self
         db = Firestore.firestore()
         changeBackground()
+        checkForcurrentAuthID()
     }
     
     // MARK: - Functions
+    
+    func checkForcurrentAuthID() {
+        if currentAuthID != nil {
+            performSegue(withIdentifier: "unwindToMapSegue", sender: nil)
+        }
+    }
     
     func chageTextColor() {
         navigationItem.leftBarButtonItem?.tintColor = UIColor(0.0, 128.0, 128.0, 1.0)
@@ -62,7 +69,7 @@ class SignInViewController: UIViewController, GIDSignInUIDelegate {
         return UIStatusBarStyle.lightContent
     }
     
-    //Apple
+    // MARK: - Apple
     
     // makes the nonce
     private func randomNonceString(length: Int = 32) -> String {

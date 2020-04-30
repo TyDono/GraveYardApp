@@ -20,12 +20,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
+        FirebaseApp.configure()
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let splashVC = storyboard.instantiateViewController(withIdentifier: "splash")
+        let splashVC = storyboard.instantiateViewController(withIdentifier: "map")
         window?.rootViewController = splashVC
-        FirebaseApp.configure()
         let storage = Storage.storage()
         let storageRef = storage.reference()
         

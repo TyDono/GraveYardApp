@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		3362CB87928C29254756C0AE /* Pods_GraveYardApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 348ED5F5413457F6CE84F925 /* Pods_GraveYardApp.framework */; };
 		CB398EFB23695D0600A515B9 /* GraveStoriesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB398EFA23695D0600A515B9 /* GraveStoriesTableViewController.swift */; };
-		CB3A30E1235F9E4B00CF2CBB /* Grave.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB3A30E0235F9E4B00CF2CBB /* Grave.storyboard */; };
+		CB3A30E1235F9E4B00CF2CBB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB3A30E0235F9E4B00CF2CBB /* Main.storyboard */; };
 		CB3A388A237528E400DA756D /* NewGraveStoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3A3889237528E400DA756D /* NewGraveStoryTableViewController.swift */; };
 		CB3A388C2375293F00DA756D /* GraveStoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3A388B2375293F00DA756D /* GraveStoryTableViewController.swift */; };
 		CB697DF32440A82F0035C07A /* SignInWithAppleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB697DF22440A82F0035C07A /* SignInWithAppleManager.swift */; };
@@ -23,7 +23,6 @@
 		CBCE0E1623FD13300077A4F1 /* MyFirebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCE0E1223FD132E0077A4F1 /* MyFirebase.swift */; };
 		CBCE0E1723FD13300077A4F1 /* GIDSignInExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCE0E1323FD13300077A4F1 /* GIDSignInExtension.swift */; };
 		CBCE0E1923FD13460077A4F1 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCE0E1823FD13460077A4F1 /* MapViewController.swift */; };
-		CBCE0E1B23FD135C0077A4F1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CBCE0E1A23FD135C0077A4F1 /* Main.storyboard */; };
 		CBCE0E1D23FD13910077A4F1 /* CustomAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCE0E1C23FD13910077A4F1 /* CustomAnnotation.swift */; };
 		CBCE0E2123FD13AC0077A4F1 /* Grave.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCE0E2023FD13AB0077A4F1 /* Grave.swift */; };
 		CBCE0E2323FD13BE0077A4F1 /* Story.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCE0E2223FD13BE0077A4F1 /* Story.swift */; };
@@ -42,7 +41,7 @@
 		A4F7843C66B0D74E07A3E170 /* Pods-GraveYardApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GraveYardApp.debug.xcconfig"; path = "Target Support Files/Pods-GraveYardApp/Pods-GraveYardApp.debug.xcconfig"; sourceTree = "<group>"; };
 		CB09711224538664008B653C /* GraveYardApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GraveYardApp.entitlements; sourceTree = "<group>"; };
 		CB398EFA23695D0600A515B9 /* GraveStoriesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraveStoriesTableViewController.swift; sourceTree = "<group>"; };
-		CB3A30E0235F9E4B00CF2CBB /* Grave.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Grave.storyboard; sourceTree = "<group>"; };
+		CB3A30E0235F9E4B00CF2CBB /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		CB3A3889237528E400DA756D /* NewGraveStoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGraveStoryTableViewController.swift; sourceTree = "<group>"; };
 		CB3A388B2375293F00DA756D /* GraveStoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraveStoryTableViewController.swift; sourceTree = "<group>"; };
 		CB5AE18323512B14001BCCCE /* GraveYardApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GraveYardApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -58,7 +57,6 @@
 		CBCE0E1223FD132E0077A4F1 /* MyFirebase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyFirebase.swift; sourceTree = "<group>"; };
 		CBCE0E1323FD13300077A4F1 /* GIDSignInExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GIDSignInExtension.swift; sourceTree = "<group>"; };
 		CBCE0E1823FD13460077A4F1 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
-		CBCE0E1A23FD135C0077A4F1 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		CBCE0E1C23FD13910077A4F1 /* CustomAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAnnotation.swift; sourceTree = "<group>"; };
 		CBCE0E2023FD13AB0077A4F1 /* Grave.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Grave.swift; sourceTree = "<group>"; };
 		CBCE0E2223FD13BE0077A4F1 /* Story.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Story.swift; sourceTree = "<group>"; };
@@ -138,7 +136,6 @@
 				CBAC4EA82370E88E006760A5 /* Grave */,
 				CBAC4EAC2370E9DE006760A5 /* StoryBoards */,
 				CBCE0E2E23FD14410077A4F1 /* Assets.xcassets */,
-				CBCE0E3223FD14690077A4F1 /* LaunchScreen.storyboard */,
 				CB5AE19423512B16001BCCCE /* Info.plist */,
 				CBCE0E3023FD144F0077A4F1 /* GoogleService-Info.plist */,
 			);
@@ -186,8 +183,8 @@
 		CBAC4EAC2370E9DE006760A5 /* StoryBoards */ = {
 			isa = PBXGroup;
 			children = (
-				CBCE0E1A23FD135C0077A4F1 /* Main.storyboard */,
-				CB3A30E0235F9E4B00CF2CBB /* Grave.storyboard */,
+				CB3A30E0235F9E4B00CF2CBB /* Main.storyboard */,
+				CBCE0E3223FD14690077A4F1 /* LaunchScreen.storyboard */,
 			);
 			path = StoryBoards;
 			sourceTree = "<group>";
@@ -265,9 +262,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CB3A30E1235F9E4B00CF2CBB /* Grave.storyboard in Resources */,
+				CB3A30E1235F9E4B00CF2CBB /* Main.storyboard in Resources */,
 				CBCE0E3123FD144F0077A4F1 /* GoogleService-Info.plist in Resources */,
-				CBCE0E1B23FD135C0077A4F1 /* Main.storyboard in Resources */,
 				CBCE0E3323FD14690077A4F1 /* LaunchScreen.storyboard in Resources */,
 				CBCE0E2F23FD14410077A4F1 /* Assets.xcassets in Resources */,
 			);
