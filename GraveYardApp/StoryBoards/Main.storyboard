@@ -1273,7 +1273,6 @@
                         <viewLayoutGuide key="safeArea" id="Abc-m9-DRn"/>
                     </view>
                     <navigationItem key="navigationItem" id="3eL-az-WuV">
-                        <barButtonItem key="leftBarButtonItem" title="go to grave" id="kkJ-u8-i2v"/>
                         <barButtonItem key="rightBarButtonItem" title="Log in/sign up" id="RFS-BO-bmg">
                             <connections>
                                 <action selector="SignInTapped:" destination="9X6-7Z-pCz" id="1qX-3O-Z1y"/>
@@ -1347,18 +1346,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="qmL-If-WqM"/>
                     </view>
-                    <navigationItem key="navigationItem" id="rxj-8M-V1F">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="cqP-yl-DqW">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="NXL-0Q-RL3">
-                                <rect key="frame" x="311" y="7" width="83" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                            </button>
-                            <connections>
-                                <action selector="logout:" destination="V3w-If-NiO" id="MEe-8w-yZf"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="rxj-8M-V1F"/>
                     <connections>
                         <outlet property="signInWithappleButton" destination="9B9-O8-rwK" id="pkf-F5-DHS"/>
                         <segue destination="8kA-df-0Ng" kind="unwind" identifier="unwindToMapSegue" unwindAction="unwindToMap:" id="Hwf-XN-Rmp"/>
