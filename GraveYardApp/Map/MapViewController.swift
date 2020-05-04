@@ -490,6 +490,12 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             present(locationAlert, animated: true, completion: nil)
         }
     }
+    @IBAction func helpButtonTapped(_ sender: UIBarButtonItem) {
+        let helpAlert = UIAlertController(title: "How to Create a Pin", message: "To create a pin on the map, hold down your finger on the desired location for a few seconds", preferredStyle: .alert)
+        let dismiss = UIAlertAction(title: "OK", style: .default, handler: nil)
+        helpAlert.addAction(dismiss)
+        self.present(helpAlert, animated: true, completion: nil)
+    }
     
     @IBAction func unwindToMap(_ sender: UIStoryboardSegue) {}
     

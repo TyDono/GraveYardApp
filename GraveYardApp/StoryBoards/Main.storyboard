@@ -1273,6 +1273,11 @@
                         <viewLayoutGuide key="safeArea" id="Abc-m9-DRn"/>
                     </view>
                     <navigationItem key="navigationItem" id="3eL-az-WuV">
+                        <barButtonItem key="leftBarButtonItem" title="Create Pin" id="rQ8-Ij-DFF">
+                            <connections>
+                                <action selector="helpButtonTapped:" destination="9X6-7Z-pCz" id="bjg-xK-gVX"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Log in/sign up" id="RFS-BO-bmg">
                             <connections>
                                 <action selector="SignInTapped:" destination="9X6-7Z-pCz" id="1qX-3O-Z1y"/>
