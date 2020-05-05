@@ -165,6 +165,8 @@ class SignInViewController: UIViewController, GIDSignInUIDelegate {
         try! Auth.auth().signOut()
     }
     
+    @IBAction func unwindToSignIn(_ sender: UIStoryboardSegue) {}
+    
 }
 
 @available(iOS 13.0, *)

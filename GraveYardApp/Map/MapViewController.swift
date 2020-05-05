@@ -17,9 +17,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     @IBOutlet weak var signUp: UIBarButtonItem!
     @IBOutlet weak var mapView: MKMapView!
     
-    //==================================================
     // MARK: - Propeties
-    //==================================================
     
     static let shared = MapViewController()
     var currentAuthID = Auth.auth().currentUser?.uid
@@ -37,9 +35,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     var selectedAnnotation: GraveEntryAnnotation?
 
     
-    //==================================================
     // MARK: - View Lifecycle
-    //==================================================
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,6 +43,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         setMapViewLocationAndUser()
         chageTextColor()
         mapView.delegate = self
+        
 //        getGraveEntries { (graves) in
 //            self.graves = graves
 //            self.dropGraveEntryPins()
@@ -360,10 +357,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
 //        }
 //    }
     
-    //==================================================
     // MARK: - Actions
-    //==================================================
-    
     
     @IBAction func userDidLongPress(_ sender: UILongPressGestureRecognizer) {
         print(currentAuthID)
@@ -393,7 +387,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                 let dismiss = UIAlertAction(title: "cancel", style: .default, handler: nil)
                 notSignInAlert.addAction(dismiss)
                 let goToLogIn = UIAlertAction(title: "Sign In", style: .default, handler: { _ in
-                    self.performSegue(withIdentifier: "segueToSignUp", sender: nil)
+                    self.performSegue(withIdentifier: "unwindToSignIn", sender: nil)
                 })
                 notSignInAlert.addAction(goToLogIn)
                 self.present(notSignInAlert, animated: true, completion: nil)
@@ -471,7 +465,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     
     @IBAction func SignInTapped(_ sender: UIBarButtonItem) {
         if currentAuthID == nil {
-            performSegue(withIdentifier: "segueToSignUp", sender: self)
+            performSegue(withIdentifier: "unwindToSignIn", sender: self)
         } else {
             let locationAlert = UIAlertController(title: "Log Out", message: "Are you sure you want to log out?", preferredStyle: .actionSheet)
             
@@ -490,6 +484,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             present(locationAlert, animated: true, completion: nil)
         }
     }
+    
     @IBAction func helpButtonTapped(_ sender: UIBarButtonItem) {
         let helpAlert = UIAlertController(title: "How to Create a Pin", message: "To create a pin on the map, hold down your finger on the desired location for a few seconds", preferredStyle: .alert)
         let dismiss = UIAlertAction(title: "OK", style: .default, handler: nil)

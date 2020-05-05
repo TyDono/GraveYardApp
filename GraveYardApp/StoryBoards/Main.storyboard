@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="NL8-34-rPy">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="7GT-Uf-jGM">
     <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -1273,32 +1273,33 @@
                         <viewLayoutGuide key="safeArea" id="Abc-m9-DRn"/>
                     </view>
                     <navigationItem key="navigationItem" id="3eL-az-WuV">
-                        <barButtonItem key="leftBarButtonItem" title="Create Pin" id="rQ8-Ij-DFF">
+                        <barButtonItem key="leftBarButtonItem" title="SignIn/LogOut" id="rQ8-Ij-DFF">
                             <connections>
-                                <action selector="helpButtonTapped:" destination="9X6-7Z-pCz" id="bjg-xK-gVX"/>
+                                <action selector="SignInTapped:" destination="9X6-7Z-pCz" id="aaI-mx-CVZ"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Log in/sign up" id="RFS-BO-bmg">
+                        <barButtonItem key="rightBarButtonItem" title="Create Pin" id="RFS-BO-bmg">
                             <connections>
-                                <action selector="SignInTapped:" destination="9X6-7Z-pCz" id="1qX-3O-Z1y"/>
+                                <action selector="helpButtonTapped:" destination="9X6-7Z-pCz" id="qNB-En-KcA"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="mapView" destination="6MH-ve-unU" id="KFx-y7-2xf"/>
-                        <outlet property="signUp" destination="RFS-BO-bmg" id="8FA-ec-wOQ"/>
-                        <segue destination="V3w-If-NiO" kind="show" identifier="segueToSignUp" id="v2e-SF-Y2t"/>
+                        <outlet property="signUp" destination="rQ8-Ij-DFF" id="ShX-Ox-C7m"/>
                         <segue destination="df1-gm-beU" kind="show" identifier="segueToGrave" id="xN6-dc-fkE"/>
+                        <segue destination="wtE-vq-OyN" kind="unwind" identifier="unwindToSignIn" unwindAction="unwindToSignIn:" id="xDe-gH-4KU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9D0-qq-1KH" sceneMemberID="firstResponder"/>
+                <exit id="wtE-vq-OyN" userLabel="Exit" sceneMemberID="exit"/>
                 <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="lDL-6j-HQn">
                     <connections>
                         <action selector="userDidLongPress:" destination="9X6-7Z-pCz" id="8VV-4a-xMh"/>
                     </connections>
                 </pongPressGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2580" y="-141"/>
+            <point key="canvasLocation" x="3387" y="-141"/>
         </scene>
         <!--Sign In View Controller-->
         <scene sceneID="eey-YM-mnw">
@@ -1351,37 +1352,45 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="qmL-If-WqM"/>
                     </view>
-                    <navigationItem key="navigationItem" id="rxj-8M-V1F"/>
+                    <navigationItem key="navigationItem" id="rxj-8M-V1F">
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="WSB-Hn-jXW">
+                            <connections>
+                                <segue destination="9X6-7Z-pCz" kind="show" id="IT7-WT-Blf"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="signInWithappleButton" destination="9B9-O8-rwK" id="pkf-F5-DHS"/>
                         <segue destination="8kA-df-0Ng" kind="unwind" identifier="unwindToMapSegue" unwindAction="unwindToMap:" id="Hwf-XN-Rmp"/>
+                        <segue destination="9X6-7Z-pCz" kind="show" identifier="segueToMap" id="z4g-pH-uIZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eoN-ga-5yR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="8kA-df-0Ng" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3387" y="-141"/>
+            <point key="canvasLocation" x="2580" y="-141"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="ZlT-5R-IfA">
+        <scene sceneID="PND-vC-Yty">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="NL8-34-rPy" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="7GT-Uf-jGM" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="pqy-yC-NaD">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="gJE-9X-vop">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="9X6-7Z-pCz" kind="relationship" relationship="rootViewController" id="CqG-Vm-18g"/>
+                        <segue destination="V3w-If-NiO" kind="relationship" relationship="rootViewController" id="CbH-YK-JFc"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="297-fF-EhF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IOM-bc-IW6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1732" y="-141"/>
+            <point key="canvasLocation" x="1848" y="-141"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="IT7-WT-Blf"/>
         <segue reference="7DO-rd-4qB"/>
     </inferredMetricsTieBreakers>
     <resources>

@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		3362CB87928C29254756C0AE /* Pods_GraveYardApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 348ED5F5413457F6CE84F925 /* Pods_GraveYardApp.framework */; };
+		CB0971152461F672008B653C /* test1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0971142461F672008B653C /* test1ViewController.swift */; };
+		CB0971172461F680008B653C /* test2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0971162461F680008B653C /* test2ViewController.swift */; };
 		CB398EFB23695D0600A515B9 /* GraveStoriesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB398EFA23695D0600A515B9 /* GraveStoriesTableViewController.swift */; };
 		CB3A30E1235F9E4B00CF2CBB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB3A30E0235F9E4B00CF2CBB /* Main.storyboard */; };
 		CB3A388A237528E400DA756D /* NewGraveStoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3A3889237528E400DA756D /* NewGraveStoryTableViewController.swift */; };
@@ -40,6 +42,8 @@
 		348ED5F5413457F6CE84F925 /* Pods_GraveYardApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GraveYardApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4F7843C66B0D74E07A3E170 /* Pods-GraveYardApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GraveYardApp.debug.xcconfig"; path = "Target Support Files/Pods-GraveYardApp/Pods-GraveYardApp.debug.xcconfig"; sourceTree = "<group>"; };
 		CB09711224538664008B653C /* GraveYardApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GraveYardApp.entitlements; sourceTree = "<group>"; };
+		CB0971142461F672008B653C /* test1ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = test1ViewController.swift; sourceTree = "<group>"; };
+		CB0971162461F680008B653C /* test2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = test2ViewController.swift; sourceTree = "<group>"; };
 		CB398EFA23695D0600A515B9 /* GraveStoriesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraveStoriesTableViewController.swift; sourceTree = "<group>"; };
 		CB3A30E0235F9E4B00CF2CBB /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		CB3A3889237528E400DA756D /* NewGraveStoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGraveStoryTableViewController.swift; sourceTree = "<group>"; };
@@ -105,6 +109,15 @@
 			children = (
 			);
 			name = "Recovered References";
+			sourceTree = "<group>";
+		};
+		CB0971132461F651008B653C /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+				CB0971142461F672008B653C /* test1ViewController.swift */,
+				CB0971162461F680008B653C /* test2ViewController.swift */,
+			);
+			path = "New Group";
 			sourceTree = "<group>";
 		};
 		CB5AE17A23512B14001BCCCE = {
@@ -185,6 +198,7 @@
 			children = (
 				CB3A30E0235F9E4B00CF2CBB /* Main.storyboard */,
 				CBCE0E3223FD14690077A4F1 /* LaunchScreen.storyboard */,
+				CB0971132461F651008B653C /* New Group */,
 			);
 			path = StoryBoards;
 			sourceTree = "<group>";
@@ -353,8 +367,10 @@
 				CB3A388C2375293F00DA756D /* GraveStoryTableViewController.swift in Sources */,
 				CBCE0E0B23FD12D00077A4F1 /* SplashViewController.swift in Sources */,
 				CB398EFB23695D0600A515B9 /* GraveStoriesTableViewController.swift in Sources */,
+				CB0971152461F672008B653C /* test1ViewController.swift in Sources */,
 				CBCE0E1623FD13300077A4F1 /* MyFirebase.swift in Sources */,
 				CBCE0E1523FD13300077A4F1 /* GlobalExtension.swift in Sources */,
+				CB0971172461F680008B653C /* test2ViewController.swift in Sources */,
 				CBCE0E1D23FD13910077A4F1 /* CustomAnnotation.swift in Sources */,
 				CBCE0E2523FD13CC0077A4F1 /* UserProfile.swift in Sources */,
 			);
