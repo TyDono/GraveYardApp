@@ -49,7 +49,7 @@ class SignInViewController: UIViewController, GIDSignInUIDelegate {
     
     func checkForcurrentAuthID() {
         if currentAuthID != nil {
-            performSegue(withIdentifier: "unwindToMapSegue", sender: nil)
+            performSegue(withIdentifier: "segueToMap", sender: nil)
         }
     }
     

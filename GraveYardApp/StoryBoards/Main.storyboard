@@ -1353,11 +1353,7 @@
                         <viewLayoutGuide key="safeArea" id="qmL-If-WqM"/>
                     </view>
                     <navigationItem key="navigationItem" id="rxj-8M-V1F">
-                        <barButtonItem key="rightBarButtonItem" title="Item" id="WSB-Hn-jXW">
-                            <connections>
-                                <segue destination="9X6-7Z-pCz" kind="show" id="IT7-WT-Blf"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Map" id="WSB-Hn-jXW"/>
                     </navigationItem>
                     <connections>
                         <outlet property="signInWithappleButton" destination="9B9-O8-rwK" id="pkf-F5-DHS"/>
@@ -1390,7 +1386,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="IT7-WT-Blf"/>
         <segue reference="7DO-rd-4qB"/>
     </inferredMetricsTieBreakers>
     <resources>
