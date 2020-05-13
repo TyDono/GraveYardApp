@@ -1310,7 +1310,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JgC-x9-jmI" customClass="GIDSignInButton">
-                                <rect key="frame" x="75" y="588" width="264" height="128"/>
+                                <rect key="frame" x="75" y="653" width="264" height="63"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <action selector="googleSignIn:" destination="V3w-If-NiO" eventType="valueChanged" id="MYZ-1o-NXx"/>
@@ -1329,7 +1329,7 @@
                                 </items>
                             </navigationBar>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9B9-O8-rwK">
-                                <rect key="frame" x="82" y="532" width="251" height="38"/>
+                                <rect key="frame" x="82" y="607" width="251" height="38"/>
                                 <state key="normal" image="appleSigninButton"/>
                                 <connections>
                                     <action selector="appleSigninButtonWasTapped:" destination="V3w-If-NiO" eventType="touchUpInside" id="hkf-Ak-K63"/>
@@ -1339,10 +1339,10 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="f77-cs-Zg2" firstAttribute="leading" secondItem="hhe-VD-6ou" secondAttribute="leadingMargin" constant="-16" id="7SC-iy-6aA"/>
-                            <constraint firstItem="JgC-x9-jmI" firstAttribute="top" secondItem="9B9-O8-rwK" secondAttribute="bottom" constant="18" id="8cp-1c-ZE7"/>
+                            <constraint firstItem="JgC-x9-jmI" firstAttribute="top" secondItem="9B9-O8-rwK" secondAttribute="bottom" constant="8" id="8cp-1c-ZE7"/>
                             <constraint firstItem="qmL-If-WqM" firstAttribute="bottom" secondItem="JgC-x9-jmI" secondAttribute="bottom" constant="20" id="ABS-qp-iOY"/>
-                            <constraint firstItem="9B9-O8-rwK" firstAttribute="top" secondItem="f77-cs-Zg2" secondAttribute="bottom" constant="488" id="C4b-rU-Ch5"/>
-                            <constraint firstItem="JgC-x9-jmI" firstAttribute="top" secondItem="9B9-O8-rwK" secondAttribute="bottom" constant="18" id="Cgh-E4-GC9"/>
+                            <constraint firstItem="9B9-O8-rwK" firstAttribute="top" secondItem="f77-cs-Zg2" secondAttribute="bottom" constant="563" id="C4b-rU-Ch5"/>
+                            <constraint firstItem="JgC-x9-jmI" firstAttribute="top" secondItem="9B9-O8-rwK" secondAttribute="bottom" constant="8" id="Cgh-E4-GC9"/>
                             <constraint firstItem="qmL-If-WqM" firstAttribute="trailing" secondItem="JgC-x9-jmI" secondAttribute="trailing" constant="75" id="GKd-dp-BPs"/>
                             <constraint firstItem="f77-cs-Zg2" firstAttribute="centerX" secondItem="9B9-O8-rwK" secondAttribute="centerX" id="OFi-Nx-nFr"/>
                             <constraint firstItem="9B9-O8-rwK" firstAttribute="leading" secondItem="qmL-If-WqM" secondAttribute="leading" constant="82" id="ZpI-Cz-sDX"/>
@@ -1368,7 +1368,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eoN-ga-5yR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="8kA-df-0Ng" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2580" y="-141"/>
+            <point key="canvasLocation" x="2579.7101449275365" y="-141.03260869565219"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="PND-vC-Yty">

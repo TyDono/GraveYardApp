@@ -29,6 +29,11 @@ class SignInViewController: UIViewController, GIDSignInUIDelegate {
     var currentAuthID = Auth.auth().currentUser?.uid
     var db: Firestore!
     var userId: String = ""
+    var summer: String?
+    var winter: String?
+    var fall: String?
+    var currentSeason: String?
+    var spring: String?
     let userDefault = UserDefaults.standard
     var delegate: SignInViewControllerDelegate?
     fileprivate var currentNonce: String?
@@ -39,6 +44,7 @@ class SignInViewController: UIViewController, GIDSignInUIDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         chageTextColor()
+        getCurrentSeason()
         GIDSignIn.sharedInstance()?.uiDelegate = self
         db = Firestore.firestore()
         changeBackground()
@@ -46,6 +52,41 @@ class SignInViewController: UIViewController, GIDSignInUIDelegate {
     }
     
     // MARK: - Functions
+    
+    func getCurrentSeason() {
+        let date = Date()
+        let format = DateFormatter()
+        format.dateFormat = "MM"
+        let formattedDate = format.string(from: date)
+        switch formattedDate {
+        case "1":
+            self.currentSeason = self.winter
+        case "2":
+            self.currentSeason = self.winter
+        case "3":
+            self.currentSeason = self.spring
+        case "4":
+            self.currentSeason = self.spring
+        case "5":
+            self.currentSeason = self.spring
+        case "6":
+            self.currentSeason = self.summer
+        case "7":
+            self.currentSeason = self.summer
+        case "8":
+            self.currentSeason = self.summer
+        case "9":
+            self.currentSeason = self.fall
+        case "10":
+            self.currentSeason = self.fall
+        case "11":
+            self.currentSeason = self.fall
+        case "12":
+            self.currentSeason = self.winter
+        default:
+            self.currentSeason = self.summer
+        }
+    }
     
     func checkForcurrentAuthID() {
         if currentAuthID != nil {
@@ -60,7 +101,7 @@ class SignInViewController: UIViewController, GIDSignInUIDelegate {
     
     func changeBackground() {
         let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
-        backgroundImage.image = UIImage(named: "GradientPlaceHolder")
+        backgroundImage.image = UIImage(named: currentSeason ?? "Summer")
         backgroundImage.contentMode = UIView.ContentMode.scaleToFill
         self.view.insertSubview(backgroundImage, at: 0)
     }
