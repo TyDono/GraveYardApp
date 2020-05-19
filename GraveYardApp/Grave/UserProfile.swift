@@ -21,11 +21,13 @@ protocol DocumentSerializableUser {
 struct UserProfile {
     var currentUserAuthId: String
     var premiumStatus: Bool
+    var dataCount: Int
     
     var dictionary: [String: Any] {
         return [
             "currentUserAuthId": currentUserAuthId,
-            "premiumStatus": premiumStatus
+            "premiumStatus": premiumStatus,
+            "dataCount": dataCount
         ]
     }
 }
@@ -33,7 +35,8 @@ struct UserProfile {
 extension UserProfile: DocumentSerializableUser {
     init?(dictionary: [String: Any]) {
         guard let currentUserAuthId = dictionary["currentUserAuthId"] as? String,
-            let premiumStatus = dictionary["premiumStatus"] as? Bool else { return nil }
-        self.init(currentUserAuthId: currentUserAuthId, premiumStatus: premiumStatus)
+            let premiumStatus = dictionary["premiumStatus"] as? Bool,
+        let dataCount = dictionary["dataCount"] as? Int else { return nil }
+        self.init(currentUserAuthId: currentUserAuthId, premiumStatus: premiumStatus, dataCount: dataCount)
     }
 }

@@ -19,6 +19,7 @@ class MyFirebase {
     // MARK: - Propeties
     
     static let shared = MyFirebase()
+    static var currentDataUsage: Int? = 0
     
     var db = Firestore.firestore()
     var currentAuthID = Auth.auth().currentUser?.uid
@@ -79,15 +80,18 @@ class MyFirebase {
     func createData() {
         let currentUserId: String = self.userId ?? "no current auth Id detected"
         let premiumStatus: Bool = false
+        let dataCount: Int = 0
         
         let user = UserProfile(currentUserAuthId: currentUserId,
-                               premiumStatus: premiumStatus)
+                               premiumStatus: premiumStatus,
+                               dataCount: dataCount)
         
         let userRef = self.db.collection("userProfile")
         userRef.document(user.currentUserAuthId).setData(user.dictionary) { err in
             if let err = err {
                 print(err)
             } else {
+                MyFirebase.currentDataUsage = dataCount
                 print("Added Data")
             }
         }
@@ -100,8 +104,11 @@ class MyFirebase {
                 print(error as Any)
             } else {
                 for document in (snapshot?.documents)! {
-                    if let premiumStatus = document.data()["premiumStatus"] as? Bool {
+                    if let premiumStatus = document.data()["premiumStatus"] as? Bool,
+                        let dataCount = document.data()["dataCount"] as? Int {
                         self.currentUserPremiumStatus = premiumStatus
+                        MyFirebase.currentDataUsage = dataCount
+                        
                     }
                 }
             }

@@ -35,6 +35,7 @@ class NewGraveStoryTableViewController: UITableViewController, UIImagePickerCont
     var storyImageId1: String?
     var storyImageId2: String?
     var storyImageId3: String?
+    let newDataCount: Int? = 0
     let storage = Storage.storage()
     
     // MARK: - View Lifecycle
@@ -53,7 +54,20 @@ class NewGraveStoryTableViewController: UITableViewController, UIImagePickerCont
     
     // MARK: - Functions
     
-//make 3 images for new/edit story. THIS LIMITS IT to only 3.  those r uploaded indivisually. then those are pulled down as an array an dpopulated in the actual story. they each have their own name which is storyId + 1, 2, or 3. that String is saved in an array. then to pull down images we use that array and pull them down. then each image will set as a var. those vars will then b epu tinto the array. like var 1 vasr 2 var 3. then array is var array = [var1, var2, var3]
+    func updateDataStorage() {
+        guard let currentId = currentAuthID else { return }
+        let db = Firestore.firestore()
+        let updateDataRef = db.collection("userProfile").document(currentId)
+        updateDataRef.updateData([
+            "dataCount": newDataCount
+        ]) { err in
+            if let err = err {
+                print("Error updating document: \(err)")
+            } else {
+                print("Document successfully updated")
+            }
+        }
+    }
     
     func chageTextColor() {
         tableView.separatorColor = UIColor(0.0, 128.0, 128.0, 1.0)

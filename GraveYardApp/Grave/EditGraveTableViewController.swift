@@ -8,6 +8,8 @@
 
 import UIKit
 import FirebaseAuth
+import Firebase
+import FirebaseCore
 import FirebaseFirestore
 import FirebaseStorage
 
@@ -37,9 +39,10 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
     var currentGraveLocationLongitude: String?
     var currentGraveLocationLatitude: String?
     let storage = Storage.storage()
+    var imageDataCount: Int?
     
     // MARK: - View Lifecycle
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         chageTextColor()
@@ -301,6 +304,9 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
                 self.performSegue(withIdentifier: "unwindToGraveSegue", sender: nil)
             }
         }
+        
+        //make it here
+        
     }
     
     @IBAction func changeImage(_ sender: UIButton) {

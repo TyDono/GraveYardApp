@@ -29,11 +29,11 @@ class SignInViewController: UIViewController, GIDSignInUIDelegate {
     var currentAuthID = Auth.auth().currentUser?.uid
     var db: Firestore!
     var userId: String = ""
-    var summer: String?
-    var winter: String?
-    var fall: String?
+    var summer: String = "summer"
+    var winter: String = "winter"
+    var fall: String = "fall"
+    var spring: String = "spring"
     var currentSeason: String?
-    var spring: String?
     let userDefault = UserDefaults.standard
     var delegate: SignInViewControllerDelegate?
     fileprivate var currentNonce: String?
@@ -59,23 +59,23 @@ class SignInViewController: UIViewController, GIDSignInUIDelegate {
         format.dateFormat = "MM"
         let formattedDate = format.string(from: date)
         switch formattedDate {
-        case "1":
+        case "01":
             self.currentSeason = self.winter
-        case "2":
+        case "02":
             self.currentSeason = self.winter
-        case "3":
+        case "03":
             self.currentSeason = self.spring
-        case "4":
+        case "04":
             self.currentSeason = self.spring
-        case "5":
+        case "05":
             self.currentSeason = self.spring
-        case "6":
+        case "06":
             self.currentSeason = self.summer
-        case "7":
+        case "07":
             self.currentSeason = self.summer
-        case "8":
+        case "08":
             self.currentSeason = self.summer
-        case "9":
+        case "09":
             self.currentSeason = self.fall
         case "10":
             self.currentSeason = self.fall
@@ -101,7 +101,7 @@ class SignInViewController: UIViewController, GIDSignInUIDelegate {
     
     func changeBackground() {
         let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
-        backgroundImage.image = UIImage(named: currentSeason ?? "Summer")
+        backgroundImage.image = UIImage(named: currentSeason ?? "summer")
         backgroundImage.contentMode = UIView.ContentMode.scaleToFill
         self.view.insertSubview(backgroundImage, at: 0)
     }
