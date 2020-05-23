@@ -267,14 +267,12 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
         guard let unwrappedGraveImage = graveMainImage.image else { return } // the uplaod takes 2 long and needs a delay before segue is called
         for image in graveProfileImages {
             uploadFirebaseImages(image) { (url) in
-                if let imageData = image.pngData() {
-                    guard let imageDataBytes = image.jpegData(compressionQuality: 0.20) else { return }
-                    if let unwrappedCurrentImageDataCount = self.currentImageDataCount {
-                        MyFirebase.currentDataUsage = MyFirebase.currentDataUsage! - unwrappedCurrentImageDataCount
-                    }
-                    MyFirebase.currentDataUsage = MyFirebase.currentDataUsage! + imageDataBytes.count
-                    self.updateUserData()
+                guard let imageDataBytes = image.jpegData(compressionQuality: 0.20) else { return }
+                if let unwrappedCurrentImageDataCount = self.currentImageDataCount {
+                    MyFirebase.currentDataUsage = MyFirebase.currentDataUsage! - unwrappedCurrentImageDataCount
                 }
+                MyFirebase.currentDataUsage = MyFirebase.currentDataUsage! + imageDataBytes.count
+                self.updateUserData()
                 print(url)
                 guard let url = url else { return }
 //                self.saveImageToFirebase(graveImagesURL: url, completion: { success in
@@ -325,7 +323,12 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
                 self.present(alert1, animated: true, completion: nil)
                 print(err)
             } else {
-                self.performSegue(withIdentifier: "unwindToGraveSegue", sender: nil) // make an alert and move this
+                let alert1 = UIAlertController(title: "Memorial Saved!", message: "You have successfully save your Memorial data", preferredStyle: .alert)
+                alert1.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
+                    alert1.dismiss(animated: true, completion: nil)
+                    self.performSegue(withIdentifier: "unwindToGraveSegue", sender: nil)
+                }))
+                self.present(alert1, animated: true, completion: nil)
             }
         }
         
