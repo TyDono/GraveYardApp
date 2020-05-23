@@ -39,7 +39,7 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
     var currentGraveLocationLongitude: String?
     var currentGraveLocationLatitude: String?
     let storage = Storage.storage()
-    var imageDataCount: Int?
+    var currentImageDataCount: Int?
     
     // MARK: - View Lifecycle
     
@@ -72,6 +72,20 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
         tableView.separatorColor = UIColor(0.0, 128.0, 128.0, 1.0)
         navigationItem.leftBarButtonItem?.tintColor = UIColor(0.0, 128.0, 128.0, 1.0)
         navigationItem.rightBarButtonItem?.tintColor = UIColor(0.0, 128.0, 128.0, 1.0)
+    }
+    
+    func updateUserData() {
+        db = Firestore.firestore()
+        guard let currentId = currentAuthID else { return }
+        db.collection("userProfile").document(currentId).updateData([
+            "dataCount": MyFirebase.currentDataUsage
+        ]) { err in
+            if let err = err {
+                print("Error updating document: \(err)")
+            } else {
+                print("Document successfully updated")
+            }
+        }
     }
     
     func getGraveData() { // mak srue to change the sting back to a date here
@@ -139,9 +153,11 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
             let storageRef = storage.reference()
             let graveProfileImage = storageRef.child("graveProfileImages/\(imageStringId)")
             graveProfileImage.getData(maxSize: (1024 * 1024), completion:  { (data, err) in
-                guard let data = data else {return}
-                guard let image = UIImage(data: data) else {return}
+                guard let data = data else { return }
+                guard let image = UIImage(data: data) else { return }
                 self.graveMainImage.image = image
+                guard let imageDataBytes = image.jpegData(compressionQuality: 0.20) else { return }
+                self.currentImageDataCount = imageDataBytes.count
             })
         } else {
             return
@@ -248,9 +264,17 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
     // MARK: - Actions
     
     @IBAction func saveGraveInfoTapped(_ sender: UIBarButtonItem) {
-        guard let unwrappedGraveImage = graveMainImage.image else { return }
+        guard let unwrappedGraveImage = graveMainImage.image else { return } // the uplaod takes 2 long and needs a delay before segue is called
         for image in graveProfileImages {
             uploadFirebaseImages(image) { (url) in
+                if let imageData = image.pngData() {
+                    guard let imageDataBytes = image.jpegData(compressionQuality: 0.20) else { return }
+                    if let unwrappedCurrentImageDataCount = self.currentImageDataCount {
+                        MyFirebase.currentDataUsage = MyFirebase.currentDataUsage! - unwrappedCurrentImageDataCount
+                    }
+                    MyFirebase.currentDataUsage = MyFirebase.currentDataUsage! + imageDataBytes.count
+                    self.updateUserData()
+                }
                 print(url)
                 guard let url = url else { return }
 //                self.saveImageToFirebase(graveImagesURL: url, completion: { success in
@@ -301,11 +325,9 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
                 self.present(alert1, animated: true, completion: nil)
                 print(err)
             } else {
-                self.performSegue(withIdentifier: "unwindToGraveSegue", sender: nil)
+                self.performSegue(withIdentifier: "unwindToGraveSegue", sender: nil) // make an alert and move this
             }
         }
-        
-        //make it here
         
     }
     

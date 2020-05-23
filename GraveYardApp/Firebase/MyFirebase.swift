@@ -19,7 +19,7 @@ class MyFirebase {
     // MARK: - Propeties
     
     static let shared = MyFirebase()
-    static var currentDataUsage: Int? = 0
+    static var currentDataUsage: Int?
     
     var db = Firestore.firestore()
     var currentAuthID = Auth.auth().currentUser?.uid
