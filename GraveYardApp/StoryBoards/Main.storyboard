@@ -1289,6 +1289,7 @@
                         <outlet property="signUp" destination="rQ8-Ij-DFF" id="ShX-Ox-C7m"/>
                         <segue destination="df1-gm-beU" kind="show" identifier="segueToGrave" id="xN6-dc-fkE"/>
                         <segue destination="wtE-vq-OyN" kind="unwind" identifier="unwindToSignIn" unwindAction="unwindToSignIn:" id="xDe-gH-4KU"/>
+                        <segue destination="SzX-iF-Ewd" kind="show" identifier="segueToSubscription" id="74B-mS-0pn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9D0-qq-1KH" sceneMemberID="firstResponder"/>
@@ -1300,6 +1301,22 @@
                 </pongPressGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="3387" y="-141"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="SMl-v1-Kcm">
+            <objects>
+                <viewController id="SzX-iF-Ewd" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="LWv-MD-5gs">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="RNs-pX-eco"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="VrO-aj-I3s"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7Ur-vo-Eqm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4312" y="-141"/>
         </scene>
         <!--Sign In View Controller-->
         <scene sceneID="eey-YM-mnw">
@@ -1390,8 +1407,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="z4g-pH-uIZ"/>
-        <segue reference="7DO-rd-4qB"/>
+        <segue reference="v3p-eh-PGk"/>
+        <segue reference="fpu-aT-yyc"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="2bd2f713a915ce40711bb4618d4547be_123238a36d92_t" width="300" height="300"/>
