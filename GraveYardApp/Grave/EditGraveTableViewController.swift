@@ -354,6 +354,11 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
                     storyRef.document(self.currentGraveId ?? "error no graveId found").delete() { err in
                         if err == nil {
                             self.deleteGraveProfileImage()
+                            let alert1 = UIAlertController(title: "Success", message: "You have successfully deleted this Memorial", preferredStyle: .alert)
+                            alert1.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
+                                alert1.dismiss(animated: true, completion: nil)
+                            }))
+                            self.present(alert1, animated: true, completion: nil)
                             DispatchQueue.main.asyncAfter(deadline: .now() + 0) {
                                 moveToMap()
                             }
