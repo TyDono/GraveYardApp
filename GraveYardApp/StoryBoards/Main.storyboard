@@ -285,7 +285,7 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="familyCell" id="Ssi-kW-MnC">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="videoCell" id="Ssi-kW-MnC">
                                         <rect key="frame" x="0.0" y="650.00000047683716" width="414" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Ssi-kW-MnC" id="BQI-vX-JNU">
@@ -590,7 +590,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="238"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Family" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8df-BP-Gpa">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Video Intro" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8df-BP-Gpa">
                                                     <rect key="frame" x="8" y="8" width="398" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                     <nil key="textColor"/>
@@ -1289,7 +1289,7 @@
                         <outlet property="signUp" destination="rQ8-Ij-DFF" id="ShX-Ox-C7m"/>
                         <segue destination="df1-gm-beU" kind="show" identifier="segueToGrave" id="xN6-dc-fkE"/>
                         <segue destination="wtE-vq-OyN" kind="unwind" identifier="unwindToSignIn" unwindAction="unwindToSignIn:" id="xDe-gH-4KU"/>
-                        <segue destination="SzX-iF-Ewd" kind="show" identifier="segueToSubscription" id="74B-mS-0pn"/>
+                        <segue destination="SzX-iF-Ewd" kind="show" identifier="segueToPayments" id="74B-mS-0pn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9D0-qq-1KH" sceneMemberID="firstResponder"/>
@@ -1312,7 +1312,9 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="RNs-pX-eco"/>
                     </view>
-                    <navigationItem key="navigationItem" id="VrO-aj-I3s"/>
+                    <navigationItem key="navigationItem" id="VrO-aj-I3s">
+                        <barButtonItem key="rightBarButtonItem" title="Your Acccount" id="CaB-ng-TMl"/>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Ur-vo-Eqm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

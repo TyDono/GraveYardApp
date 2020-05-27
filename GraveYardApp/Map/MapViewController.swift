@@ -10,7 +10,6 @@ import UIKit
 import MapKit
 import FirebaseAuth
 import FirebaseFirestore
-import GoogleSignIn
 
 class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UIGestureRecognizerDelegate {
     
@@ -30,7 +29,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     var graveId: String?
     var currentGraveLocationLatitude: String?
     var currentGraveLocationLongitude: String?
-    var graves : [Grave]?
+    var graves: [Grave]?
     var graveAnnotationCoordinates: String?
     var selectedAnnotation: GraveEntryAnnotation?
 
@@ -48,10 +47,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
 //            self.graves = graves
 //            self.dropGraveEntryPins()
 //        }
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        print(currentAuthID)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -493,7 +488,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     }
     
     @IBAction func helpButtonTapped(_ sender: UIBarButtonItem) {
-        performSegue(withIdentifier: "segueToSubscription", sender: nil)
+        performSegue(withIdentifier: "segueToPayments", sender: nil)
     }
     
     @IBAction func unwindToMap(_ sender: UIStoryboardSegue) {}
