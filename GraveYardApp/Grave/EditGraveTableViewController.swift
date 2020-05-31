@@ -347,10 +347,10 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
         alerController.addAction(cancel)
         let delete = UIAlertAction(title: "DELETE", style: .destructive) { _ in
 //            let userId = self.currentAuthID!
-            let userRef = self.db.collection("grave")
+            let userRef = self.db.collection("stories")
             userRef.document(self.currentGraveId ?? "error no graveId found").delete() { err in
                 if err == nil {
-                    let storyRef = self.db.collection("stories")
+                    let storyRef = self.db.collection("grave")
                     storyRef.document(self.currentGraveId ?? "error no graveId found").delete() { err in
                         if err == nil {
                             self.deleteGraveProfileImage()
@@ -362,11 +362,18 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
                             DispatchQueue.main.asyncAfter(deadline: .now() + 0) {
                                 moveToMap()
                             }
+                        } else {
+                            let alert1 = UIAlertController(title: "ERROR", message: "Sorry, there was an error while trying to delete this Memorial, please check your internet connection  and try again", preferredStyle: .alert)
+                            alert1.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
+                                alert1.dismiss(animated: true, completion: nil)
+                            }))
+                            self.present(alert1, animated: true, completion: nil)
+                            print("document not deleted, ERROR")
                         }
                     }
                     
                 } else {
-                    let alert1 = UIAlertController(title: "ERROR", message: "Sorry, there was an error while trying to delete this Headstone, please check your internet connection  and try again", preferredStyle: .alert)
+                    let alert1 = UIAlertController(title: "ERROR", message: "Sorry, there was an error while trying to delete this Memorial's stories, please check your internet connection  and try again", preferredStyle: .alert)
                     alert1.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
                         alert1.dismiss(animated: true, completion: nil)
                     }))
