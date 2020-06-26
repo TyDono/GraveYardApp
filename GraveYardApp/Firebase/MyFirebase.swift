@@ -78,7 +78,7 @@ class MyFirebase {
     }
     
     func createData() {
-        let currentUserId: String = self.userId ?? "no current auth Id detected"
+        let currentUserId: String = self.userId
         let premiumStatus: Bool = false
         let dataCount: Int = 0
         

@@ -12,6 +12,8 @@ import Firebase
 import FirebaseCore
 import FirebaseFirestore
 import FirebaseStorage
+import AVKit
+import AVFoundation
 
 class EditGraveTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     @IBOutlet weak var graveMainImage: UIImageView!
@@ -40,6 +42,8 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
     var currentGraveLocationLatitude: String?
     let storage = Storage.storage()
     var currentImageDataCount: Int?
+    var player = AVPlayer()
+    var playerViewController = AVPlayerViewController()
     
     // MARK: - View Lifecycle
     

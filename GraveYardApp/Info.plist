@@ -8,7 +8,7 @@
 		<true/>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Your location is requested in order to locate nearby cemeteries.</string>
+	<string>Your location is requested in order to locate nearby Memorials.</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>

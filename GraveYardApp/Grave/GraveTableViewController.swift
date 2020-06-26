@@ -11,6 +11,9 @@ import FirebaseAuth
 import FirebaseFirestore
 import FirebaseStorage
 import GoogleSignIn
+import AVKit
+import AVFoundation
+
 
 class GraveTableViewController: UITableViewController {
     @IBOutlet weak var headstoneBasicInfoImage: UIImageView!

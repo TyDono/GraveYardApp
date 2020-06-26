@@ -26,6 +26,7 @@ class SignInViewController: UIViewController, GIDSignInUIDelegate {
     
     // MARK: - Propeties
     
+    var currentUser: User?
     var currentAuthID = Auth.auth().currentUser?.uid
     var db: Firestore!
     var userId: String = ""

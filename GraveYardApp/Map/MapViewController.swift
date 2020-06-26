@@ -40,6 +40,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         super.viewDidLoad()
 //        self.mapView.removeAnnotations(self.mapView.annotations)
         setMapViewLocationAndUser()
+        self.navigationItem.rightBarButtonItem = nil // this will stay UNTIL i add payment process in
         chageTextColor()
         mapView.delegate = self
         

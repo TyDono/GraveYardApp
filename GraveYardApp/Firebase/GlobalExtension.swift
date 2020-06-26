@@ -17,7 +17,7 @@ func moveToMap() {
     appDelegate.window?.makeKeyAndVisible()
     
     let storyboard = UIStoryboard(name: "Main", bundle: nil)
-    let mapVC = storyboard.instantiateViewController(withIdentifier: "cd")
+    let mapVC = storyboard.instantiateViewController(withIdentifier: "map")
     appDelegate.window?.rootViewController = mapVC
 }
 
