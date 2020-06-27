@@ -104,6 +104,11 @@ class NewGraveStoryTableViewController: UITableViewController, UIImagePickerCont
                 self.present(alert1, animated: true, completion: nil)
                 print(err)
             } else {
+                let alert2 = UIAlertController(title: "Saved", message: "You have successfully saved \(self.storyTitleTextField.text ?? "this story")", preferredStyle: .alert)
+                alert2.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
+                    alert2.dismiss(animated: true, completion: nil)
+                }))
+                self.present(alert2, animated: true, completion: nil)
                 self.performSegue(withIdentifier: "unwindtoGraveStoriesSegue", sender: nil)
             }
         }
@@ -181,27 +186,30 @@ class NewGraveStoryTableViewController: UITableViewController, UIImagePickerCont
     
     @IBAction func saveStoryBarButtonTapped(_ sender: UIBarButtonItem) {
         
-        guard storyImage1.image != nil else { return }
-        for image in storyImages1 {
-            uploadFirebaseImage1(image) { (url) in
-                guard let url = url else { return }
-//                self.saveImageToFirebase(graveImagesURL: url, completion: { success in
-//                    self.firebaseWrite(url: url.absoluteString)
-//                })
+        if storyImage1.image != nil {
+            for image in storyImages1 {
+                uploadFirebaseImage1(image) { (url) in
+                    guard let url = url else { return }
+                    //                self.saveImageToFirebase(graveImagesURL: url, completion: { success in
+                    //                    self.firebaseWrite(url: url.absoluteString)
+                    //                })
+                }
             }
         }
-
-        guard storyImage2.image != nil else { return }
-        for image in storyImages2 {
-            uploadFirebaseImage2(image) { (url) in
-                guard let url = url else { return }
+        
+        if storyImage2.image != nil {
+            for image in storyImages2 {
+                uploadFirebaseImage2(image) { (url) in
+                    guard let url = url else { return }
+                }
             }
         }
-
-        guard storyImage3.image != nil else { return }
-        for image in storyImages3 {
-            uploadFirebaseImage3(image) { (url) in
-                guard let url = url else { return }
+        
+        if storyImage3.image != nil {
+            for image in storyImages3 {
+                uploadFirebaseImage3(image) { (url) in
+                    guard let url = url else { return }
+                }
             }
         }
         updateStoryData()
