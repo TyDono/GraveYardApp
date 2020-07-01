@@ -824,18 +824,19 @@
                                                     <rect key="frame" x="20" y="48" width="374" height="258"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w4N-td-nnl">
+                                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="EJs-T9-0Fu">
                                                             <rect key="frame" x="0.0" y="0.0" width="374" height="258"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
+                                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                            <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                        </textView>
                                                     </subviews>
                                                     <constraints>
-                                                        <constraint firstItem="w4N-td-nnl" firstAttribute="top" secondItem="052-9Q-aej" secondAttribute="top" id="CE5-Iy-MtT"/>
-                                                        <constraint firstItem="w4N-td-nnl" firstAttribute="leading" secondItem="052-9Q-aej" secondAttribute="leading" id="DsI-nZ-U2o"/>
-                                                        <constraint firstItem="w4N-td-nnl" firstAttribute="trailing" secondItem="052-9Q-aej" secondAttribute="trailing" id="k6t-EW-aUp"/>
-                                                        <constraint firstItem="w4N-td-nnl" firstAttribute="bottom" secondItem="052-9Q-aej" secondAttribute="bottom" id="yEL-MC-5KE"/>
+                                                        <constraint firstItem="EJs-T9-0Fu" firstAttribute="bottom" secondItem="052-9Q-aej" secondAttribute="bottom" id="24B-lK-8UL"/>
+                                                        <constraint firstItem="EJs-T9-0Fu" firstAttribute="leading" secondItem="052-9Q-aej" secondAttribute="leading" id="VbR-Dq-tOh"/>
+                                                        <constraint firstItem="EJs-T9-0Fu" firstAttribute="top" secondItem="052-9Q-aej" secondAttribute="top" id="ipk-cD-fg4"/>
+                                                        <constraint firstItem="052-9Q-aej" firstAttribute="trailing" secondItem="EJs-T9-0Fu" secondAttribute="trailing" id="qJv-5L-Fyb"/>
                                                     </constraints>
                                                     <viewLayoutGuide key="contentLayoutGuide" id="YVz-BL-O3W"/>
                                                     <viewLayoutGuide key="frameLayoutGuide" id="052-9Q-aej"/>
@@ -938,7 +939,7 @@
                         <outlet property="reportPopOver" destination="Z9O-BS-4uW" id="UUs-Sh-teO"/>
                         <outlet property="rightBarButtonItem" destination="rwy-dy-vpC" id="WLY-Ys-0Gd"/>
                         <outlet property="scrollView" destination="6c7-L8-gAT" id="a5G-si-YRR"/>
-                        <outlet property="storyBodyBio" destination="w4N-td-nnl" id="1Bm-VL-epp"/>
+                        <outlet property="storyBodyTextView" destination="EJs-T9-0Fu" id="HWT-90-5eZ"/>
                         <outlet property="storyImagesScrollView" destination="wkN-1j-kTE" id="XbV-ID-jpo"/>
                         <outlet property="storyTitle" destination="0hO-6U-BGI" id="Ey8-1o-Ibf"/>
                         <segue destination="8GQ-fW-7kZ" kind="show" identifier="editGraveStorySegue" id="fpu-aT-yyc"/>

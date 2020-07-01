@@ -15,10 +15,10 @@ class GraveStoryTableViewController: UITableViewController {
     
     // MARK: - Outlets
     
+    @IBOutlet weak var storyBodyTextView: UITextView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var storyImagesScrollView: UIScrollView!
     @IBOutlet weak var storyTitle: UILabel!
-    @IBOutlet weak var storyBodyBio: UILabel!
     @IBOutlet weak var rightBarButtonItem: UIBarButtonItem!
     @IBOutlet var reportPopOver: UIView!
     @IBOutlet weak var reportCommentsTextView: UITextView!
@@ -49,7 +49,7 @@ class GraveStoryTableViewController: UITableViewController {
         //chageTextColor()
         db = Firestore.firestore()
         storyTitle.text = graveStorytitleValue
-        storyBodyBio.text = graveStoryBodyBioValue
+        storyBodyTextView.text = graveStoryBodyBioValue
         checkForCreatorId()
         scrollView.delegate = self
         tableView.delegate = self
@@ -98,7 +98,7 @@ class GraveStoryTableViewController: UITableViewController {
         if segue.identifier == "editGraveStorySegue", let editGraveStoryTVC = segue.destination as? NewGraveStoryTableViewController {
             editGraveStoryTVC.currentGraveStoryId = graveStoryId
             editGraveStoryTVC.graveStoryTitleValue = storyTitle.text
-            editGraveStoryTVC.graveStoryBodyTextValue = storyBodyBio.text
+            editGraveStoryTVC.graveStoryBodyTextValue = storyBodyTextView.text
             editGraveStoryTVC.storyImageId1 = self.storyImageId1
             editGraveStoryTVC.storyImageId2 = self.storyImageId2
             editGraveStoryTVC.storyImageId3 = self.storyImageId3
