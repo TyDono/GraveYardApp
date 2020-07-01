@@ -15,7 +15,7 @@ class GraveStoryTableViewController: UITableViewController {
     
     // MARK: - Outlets
     
-    
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var storyImagesScrollView: UIScrollView!
     @IBOutlet weak var storyTitle: UILabel!
     @IBOutlet weak var storyBodyBio: UILabel!
@@ -33,6 +33,7 @@ class GraveStoryTableViewController: UITableViewController {
     var graveStorytitleValue: String?
     var graveStoryBodyBioValue: String?
     var storyImagesArray: [UIImage?] = []
+    let screenHeight = UIScreen.main.bounds.height
     var storyUIImage1: UIImage?
     var storyUIImage2: UIImage?
     var storyUIImage3: UIImage?
@@ -45,11 +46,17 @@ class GraveStoryTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         storyImagesScrollView.frame = view.frame
-        chageTextColor()
+        //chageTextColor()
         db = Firestore.firestore()
         storyTitle.text = graveStorytitleValue
         storyBodyBio.text = graveStoryBodyBioValue
         checkForCreatorId()
+        scrollView.delegate = self
+        tableView.delegate = self
+        self.tableView.isScrollEnabled = false
+        scrollView.bounces = false
+        tableView.bounces = true
+        tableView.isScrollEnabled = false
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
             self.getImage1()
             self.getImage2()
@@ -59,6 +66,16 @@ class GraveStoryTableViewController: UITableViewController {
     }
     
     // MARK: - Functions
+    
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView == self.scrollView {
+            tableView.isScrollEnabled = (self.scrollView.contentOffset.y >= 200)
+        }
+
+        if scrollView == self.tableView {
+            self.tableView.isScrollEnabled = (tableView.contentOffset.y > 0)
+        }
+    }
     
     func setUpScrollView() {
         for i in 0..<storyImagesArray.count {
@@ -164,6 +181,15 @@ class GraveStoryTableViewController: UITableViewController {
             showReportPopOverAnimate()
         }
     }
+    
+    @IBAction func leftArrowImageSlideButtonTapped(_ sender: UIButton) {
+        
+    }
+    
+    @IBAction func rightArrowImageSlideButtonTapped(_ sender: UIButton) {
+        
+    }
+    
 }
 
 extension GraveStoryTableViewController {

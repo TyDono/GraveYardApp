@@ -35,7 +35,7 @@ class GraveStoriesTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        chageTextColor()
+        //chageTextColor()
         db = Firestore.firestore()
 //        getGraveStories()
         if currentAuthID != creatorId {

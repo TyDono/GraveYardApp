@@ -49,7 +49,7 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        chageTextColor()
+        //chageTextColor()
         db = Firestore.firestore()
     }
     

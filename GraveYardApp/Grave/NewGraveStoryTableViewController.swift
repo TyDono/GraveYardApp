@@ -44,7 +44,7 @@ class NewGraveStoryTableViewController: UITableViewController, UIImagePickerCont
         super.viewDidLoad()
         storyTitleTextField.text = graveStoryTitleValue
         storyBodyTextView.text = graveStoryBodyTextValue
-        chageTextColor()
+        //chageTextColor()
         db = Firestore.firestore()
         
         getImage1()

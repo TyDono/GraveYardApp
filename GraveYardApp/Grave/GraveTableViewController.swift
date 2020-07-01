@@ -31,6 +31,8 @@ class GraveTableViewController: UITableViewController {
     @IBOutlet weak var pinQuoteLabel: UILabel!
     @IBOutlet var reportPopOver: UIView!
     @IBOutlet weak var reportCommentsTextView: UITextView!
+    @IBOutlet weak var videoCell: UITableViewCell!
+    @IBOutlet weak var bioCell: UITableViewCell!
     
     // MARK: - Propeties
     
@@ -51,7 +53,8 @@ class GraveTableViewController: UITableViewController {
         super.viewDidLoad()
         db = Firestore.firestore()
         self.reportPopOver.layer.cornerRadius = 10
-        chageTextColor()
+        //chageTextColor()
+        checkForBioLabel()
         pinQuoteLabel.font = pinQuoteLabel.font.italic
     }
     
@@ -77,6 +80,12 @@ class GraveTableViewController: UITableViewController {
             rightBarButtonItem.title = "Edit"
         } else {
             rightBarButtonItem.title = "Report"
+        }
+    }
+    
+    func checkForBioLabel() {
+        if self.bioLabel.text == nil {
+            self.bioCell.isHidden = true
         }
     }
     

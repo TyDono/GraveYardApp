@@ -44,7 +44,7 @@ class SignInViewController: UIViewController, GIDSignInUIDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        chageTextColor()
+        //chageTextColor()
         getCurrentSeason()
         GIDSignIn.sharedInstance()?.uiDelegate = self
         db = Firestore.firestore()
