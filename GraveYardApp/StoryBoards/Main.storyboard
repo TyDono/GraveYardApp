@@ -472,7 +472,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="246"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default-avatar" translatesAutoresizingMaskIntoConstraints="NO" id="A0e-uE-pgk">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icons8-add-image-90" translatesAutoresizingMaskIntoConstraints="NO" id="A0e-uE-pgk">
                                                     <rect key="frame" x="10" y="-17" width="394" height="250"/>
                                                 </imageView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9d1-Rx-hhC">
@@ -481,25 +481,16 @@
                                                         <action selector="changeImage:" destination="akf-23-k3a" eventType="touchUpInside" id="Brr-lL-REK"/>
                                                     </connections>
                                                 </button>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="plus-big-512" translatesAutoresizingMaskIntoConstraints="NO" id="SNk-5k-6v3">
-                                                    <rect key="frame" x="0.0" y="161" width="82" height="85"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="85" id="0tN-fZ-EXW"/>
-                                                        <constraint firstAttribute="width" constant="82" id="pEP-Qz-1pu"/>
-                                                    </constraints>
-                                                </imageView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="A0e-uE-pgk" firstAttribute="centerX" secondItem="LbH-tm-d9a" secondAttribute="centerX" id="BBo-go-0j5"/>
                                                 <constraint firstItem="9d1-Rx-hhC" firstAttribute="leading" secondItem="LbH-tm-d9a" secondAttribute="leading" id="F1K-8s-VCf"/>
-                                                <constraint firstAttribute="bottom" secondItem="SNk-5k-6v3" secondAttribute="bottom" id="Fqn-vz-DmC"/>
                                                 <constraint firstItem="A0e-uE-pgk" firstAttribute="top" secondItem="LbH-tm-d9a" secondAttribute="topMargin" constant="-28" id="GuX-DW-qES"/>
                                                 <constraint firstItem="9d1-Rx-hhC" firstAttribute="top" secondItem="LbH-tm-d9a" secondAttribute="top" id="Kjv-jk-H8o"/>
                                                 <constraint firstItem="A0e-uE-pgk" firstAttribute="leading" secondItem="LbH-tm-d9a" secondAttribute="leadingMargin" constant="-10" id="cOg-Mi-ny1"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="A0e-uE-pgk" secondAttribute="bottom" constant="2" id="gzM-Kn-hQX"/>
                                                 <constraint firstAttribute="bottom" secondItem="9d1-Rx-hhC" secondAttribute="bottom" id="hCd-l6-Nz8"/>
                                                 <constraint firstAttribute="trailing" secondItem="9d1-Rx-hhC" secondAttribute="trailing" id="onf-AK-zBm"/>
-                                                <constraint firstItem="SNk-5k-6v3" firstAttribute="leading" secondItem="LbH-tm-d9a" secondAttribute="leading" id="xJf-GF-PLU"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -1396,14 +1387,28 @@
             </objects>
             <point key="canvasLocation" x="3387" y="-141"/>
         </scene>
-        <!--View Controller-->
+        <!--Account Information-->
         <scene sceneID="SMl-v1-Kcm">
             <objects>
-                <viewController id="SzX-iF-Ewd" sceneMemberID="viewController">
+                <viewController title="Account Information" id="SzX-iF-Ewd" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="LWv-MD-5gs">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Data Cap LAbel" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zZm-8k-Mx8">
+                                <rect key="frame" x="20" y="52" width="374" height="47"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="zZm-8k-Mx8" firstAttribute="leading" secondItem="RNs-pX-eco" secondAttribute="leading" constant="20" id="4q1-Aw-9G6"/>
+                            <constraint firstItem="RNs-pX-eco" firstAttribute="bottom" secondItem="zZm-8k-Mx8" secondAttribute="bottom" constant="637" id="6dq-1q-uPc"/>
+                            <constraint firstItem="RNs-pX-eco" firstAttribute="trailing" secondItem="zZm-8k-Mx8" secondAttribute="trailing" constant="20" id="BNW-jx-LCh"/>
+                            <constraint firstItem="zZm-8k-Mx8" firstAttribute="top" secondItem="RNs-pX-eco" secondAttribute="top" constant="8" id="sys-5z-afd"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="RNs-pX-eco"/>
                     </view>
                     <navigationItem key="navigationItem" id="VrO-aj-I3s">
@@ -1412,7 +1417,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Ur-vo-Eqm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4312" y="-141"/>
+            <point key="canvasLocation" x="4311.594202898551" y="-141.03260869565219"/>
         </scene>
         <!--Sign In View Controller-->
         <scene sceneID="eey-YM-mnw">
@@ -1530,7 +1535,6 @@
         <image name="icons8-expand-arrow" width="100" height="100"/>
         <image name="icons8-expand-arrow-left" width="100" height="100"/>
         <image name="icons8-journal-30" width="30" height="30"/>
-        <image name="plus-big-512" width="512" height="512"/>
         <image name="xmark.circle.fill" catalog="system" width="128" height="121"/>
     </resources>
 </document>
