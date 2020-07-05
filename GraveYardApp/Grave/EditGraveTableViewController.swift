@@ -124,7 +124,7 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
                         self.deathDatePicker.date = deathDate
                         self.currentGraveId = graveId
                         self.deathLocationTextField.text = deathLocation
-                        self.familyStatusTextView.text = familyStatus
+                        //self.familyStatusTextView.text = familyStatus
                         self.bioTextView.text = bio
                         self.pinQuoteTextField.text = pinQuote
                         self.creatorId = creatorId
@@ -295,7 +295,7 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
         let death = deathDatePicker.date
         let deathDate = dateFormatter.string(from: death)
         guard let deathLocation = deathLocationTextField.text else { return }
-        guard let familyStatus = familyStatusTextView.text else { return }
+        let familyStatus =  "" //familyStatusTextView.text else { return }
         guard let bio = bioTextView.text else { return }
         guard let currentGraveLocationLatitude = self.currentGraveLocationLatitude  else { return }
         guard let currentGraveLocationLongitude = self.currentGraveLocationLongitude  else { return }

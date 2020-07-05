@@ -15,6 +15,7 @@ class GraveStoryTableViewController: UITableViewController {
     
     // MARK: - Outlets
     
+    @IBOutlet weak var imageCounterLabel: UILabel!
     @IBOutlet weak var storyBodyTextView: UITextView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var storyImagesScrollView: UIScrollView!
@@ -189,6 +190,8 @@ class GraveStoryTableViewController: UITableViewController {
     @IBAction func rightArrowImageSlideButtonTapped(_ sender: UIButton) {
         
     }
+    
+    @IBAction func unwindtoGraveStory(_ sender: UIStoryboardSegue) {}
     
 }
 

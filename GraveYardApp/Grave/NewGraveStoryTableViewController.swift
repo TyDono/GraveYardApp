@@ -107,9 +107,9 @@ class NewGraveStoryTableViewController: UITableViewController, UIImagePickerCont
                 let alert2 = UIAlertController(title: "Saved", message: "You have successfully saved \(self.storyTitleTextField.text ?? "this story")", preferredStyle: .alert)
                 alert2.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
                     alert2.dismiss(animated: true, completion: nil)
+                    self.performSegue(withIdentifier: "unwindtoGraveStoriesSegue", sender: nil)
                 }))
                 self.present(alert2, animated: true, completion: nil)
-                self.performSegue(withIdentifier: "unwindtoGraveStoriesSegue", sender: nil)
             }
         }
     }
