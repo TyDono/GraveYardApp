@@ -1091,20 +1091,20 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Image 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k5l-mk-DFj">
-                                                    <rect key="frame" x="28" y="11" width="59" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <rect key="frame" x="28" y="11" width="91" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Image 2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dLH-00-85h">
-                                                    <rect key="frame" x="28.000000000000004" y="253" width="61.333333333333343" height="30"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <rect key="frame" x="28" y="253" width="91" height="30"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Image 3" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pdg-94-Dlm">
-                                                    <rect key="frame" x="28" y="503" width="62" height="26"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <rect key="frame" x="28" y="503" width="91" height="26"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -1155,10 +1155,11 @@
                                                 <constraint firstItem="t2a-ZR-XLP" firstAttribute="centerX" secondItem="ZEM-Hp-kyO" secondAttribute="centerX" id="MLR-n5-0zb"/>
                                                 <constraint firstItem="3qp-Me-37T" firstAttribute="leading" secondItem="ZEM-Hp-kyO" secondAttribute="leadingMargin" id="N0S-mW-RSU"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="3qp-Me-37T" secondAttribute="trailing" constant="8" id="PJz-5t-bct"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="k5l-mk-DFj" secondAttribute="trailing" constant="307" id="Rf4-ja-bCq"/>
+                                                <constraint firstItem="k5l-mk-DFj" firstAttribute="leading" secondItem="ZEM-Hp-kyO" secondAttribute="leadingMargin" constant="8" id="RIo-XD-CTN"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="k5l-mk-DFj" secondAttribute="trailing" constant="275" id="Rf4-ja-bCq"/>
                                                 <constraint firstItem="t2a-ZR-XLP" firstAttribute="leading" secondItem="ZEM-Hp-kyO" secondAttribute="leadingMargin" constant="8" id="SrW-dq-re7"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="dLH-00-85h" secondAttribute="trailing" constant="304.67000000000002" id="Uft-tp-m6E"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="pdg-94-Dlm" secondAttribute="trailing" constant="304" id="Z2T-z9-oZg"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="dLH-00-85h" secondAttribute="trailing" constant="275" id="Uft-tp-m6E"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="pdg-94-Dlm" secondAttribute="trailing" constant="275" id="Z2T-z9-oZg"/>
                                                 <constraint firstItem="pdg-94-Dlm" firstAttribute="top" secondItem="dLH-00-85h" secondAttribute="bottom" constant="220" id="agM-0J-REc"/>
                                                 <constraint firstItem="PLt-6M-535" firstAttribute="trailing" secondItem="wPp-Jy-DV8" secondAttribute="trailing" id="d37-A4-0Nq"/>
                                                 <constraint firstAttribute="trailing" secondItem="Lob-3R-QqV" secondAttribute="trailing" constant="28" id="eo5-5v-UMJ"/>
@@ -1227,6 +1228,9 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="imageLabel1" destination="k5l-mk-DFj" id="kZp-es-YJa"/>
+                        <outlet property="imageLabel2" destination="dLH-00-85h" id="j23-w7-v2W"/>
+                        <outlet property="imageLabel3" destination="pdg-94-Dlm" id="zn1-ny-VYl"/>
                         <outlet property="storyBodyTextView" destination="dKM-Lg-ic1" id="MVr-ZA-voP"/>
                         <outlet property="storyImage1" destination="PLt-6M-535" id="FzO-JN-IDT"/>
                         <outlet property="storyImage2" destination="wPp-Jy-DV8" id="RJy-3e-PLo"/>

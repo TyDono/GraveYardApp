@@ -13,6 +13,9 @@ import FirebaseStorage
 
 class NewGraveStoryTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
+    @IBOutlet weak var imageLabel1: UILabel!
+    @IBOutlet weak var imageLabel2: UILabel!
+    @IBOutlet weak var imageLabel3: UILabel!
     @IBOutlet weak var storyImage1: UIImageView!
     @IBOutlet weak var storyImage2: UIImageView!
     @IBOutlet weak var storyImage3: UIImageView!
@@ -270,6 +273,7 @@ class NewGraveStoryTableViewController: UITableViewController, UIImagePickerCont
 }
 
 extension NewGraveStoryTableViewController {
+    
     func getImage1() {
         if let imageStringId = self.storyImageId1 {
             let storageRef = storage.reference()
@@ -278,6 +282,7 @@ extension NewGraveStoryTableViewController {
                 guard let data = data else {return}
                 guard let image = UIImage(data: data) else {return}
                 self.storyImage1.image = image
+                self.imageLabel1.text = nil
             })
         } else {
             return
@@ -309,6 +314,7 @@ extension NewGraveStoryTableViewController {
                 guard let data = data else {return}
                 guard let image = UIImage(data: data) else {return}
                 self.storyImage2.image = image
+                self.imageLabel2.text = nil
             })
         } else {
             return
@@ -340,6 +346,7 @@ extension NewGraveStoryTableViewController {
                 guard let data = data else {return}
                 guard let image = UIImage(data: data) else {return}
                 self.storyImage3.image = image
+                self.imageLabel3.text = nil
             })
         } else {
             return
