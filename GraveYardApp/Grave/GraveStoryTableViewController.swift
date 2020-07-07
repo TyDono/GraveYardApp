@@ -58,24 +58,42 @@ class GraveStoryTableViewController: UITableViewController {
         scrollView.bounces = false
         tableView.bounces = true
         tableView.isScrollEnabled = false
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
-            self.getImage1()
-            self.getImage2()
-            self.getImage3()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.31) {
+            self.callImageArrayInOrder()
+//            self.getImage1()
+//            self.getImage2()
+//            self.getImage3()
         }
 
     }
     
     // MARK: - Functions
     
+    func changeImageLabelCounter() {
+        //check array counter. depeding on which image is showing\ tje counter changes. and the arrow key dissapears and appears.
+        switch storyImagesArray.capacity {
+        case 1:
+            self.imageCounterLabel.text = "1/3"
+        case 2:
+            self.imageCounterLabel.text = "2/3"
+        case 3:
+            self.imageCounterLabel.text = "3/3"
+        default:
+            self.imageCounterLabel.text = ""
+        }
+    }
+    
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if scrollView == self.scrollView {
-            tableView.isScrollEnabled = (self.scrollView.contentOffset.y >= 200)
-        }
-
-        if scrollView == self.tableView {
-            self.tableView.isScrollEnabled = (tableView.contentOffset.y > 0)
-        }
+        
+//        print("\(self.storyImagesScrollView.contentOffset)")
+        
+//        if scrollView == self.scrollView {
+//            tableView.isScrollEnabled = (self.scrollView.contentOffset.y >= 200)
+//        }
+//
+//        if scrollView == self.tableView {
+//            self.tableView.isScrollEnabled = (tableView.contentOffset.y > 0)
+//        }
     }
     
     func setUpScrollView() {
@@ -85,8 +103,7 @@ class GraveStoryTableViewController: UITableViewController {
             let xPosition = self.view.frame.width * CGFloat(i)
             imageView.frame = CGRect(x: xPosition, y: 0, width: self.storyImagesScrollView.frame.width, height: self.storyImagesScrollView.frame.height)
             storyImagesScrollView.contentSize.width = storyImagesScrollView.frame.width * CGFloat(i + 1)
-            storyImagesScrollView.addSubview(imageView)
-        }
+            storyImagesScrollView.addSubview(imageView)        }
     }
     
     func chageTextColor() {
@@ -255,6 +272,78 @@ extension GraveStoryTableViewController {
             })
         } else {
             return
+        }
+    }
+    
+    func callImage1(handleComplete:(()->())) {
+                if let imageStringId = self.storyImageId1 {
+                    let storageRef = storage.reference()
+                    let graveProfileImage = storageRef.child("storyImages/\(imageStringId)")
+                    graveProfileImage.getData(maxSize: (1024 * 1024), completion:  { (data, err) in
+                        guard let data = data else {return}
+                        guard let image = UIImage(data: data) else {return}
+        //                self.storyImagesArray.append(image)
+                        self.storyUIImage1 = image
+        //                self.storyImage1.image = image // images exists but storyimage1 is nil
+                        guard let storyImage = self.storyUIImage1 else { return }
+        //                guard let storyImage: UIImage = self.storyImage1 else { return }
+                        self.storyImagesArray.append(storyImage)
+                        self.setUpScrollView()
+                    })
+                } else {
+                    return
+                }
+        //getImage1()
+        handleComplete() // call it when finished stuff what you want
+    }
+    func callImage2(handleComplete:(()->())) {
+                if let imageStringId = self.storyImageId2 {
+                    let storageRef = storage.reference()
+                    let graveProfileImage = storageRef.child("storyImages/\(imageStringId)")
+                    graveProfileImage.getData(maxSize: (1024 * 1024), completion:  { (data, err) in
+                        guard let data = data else {return}
+                        guard let image = UIImage(data: data) else {return}
+                        print(imageStringId)
+                        self.storyUIImage2 = image
+        //                self.storyImage2.image = image
+                        guard let storyImage = self.storyUIImage2 else { return }
+        //                self.storyImagesArray.append(image)
+        //                guard let storyImage: UIImage = self.storyImage2 else { return }
+                        self.storyImagesArray.append(storyImage)
+                        self.setUpScrollView()
+                    })
+                } else {
+                    return
+                }
+        //getImage2()
+        handleComplete()
+    }
+    func callImage3() {
+                if let imageStringId = self.storyImageId3 {
+                    let storageRef = storage.reference()
+                    let graveProfileImage = storageRef.child("storyImages/\(imageStringId)")
+                    graveProfileImage.getData(maxSize: (1024 * 1024), completion:  { (data, err) in
+                        guard let data = data else {return}
+                        guard let image = UIImage(data: data) else {return}
+                        self.storyUIImage3 = image
+        //                self.storyImage3.image = image
+                        guard let storyImage = self.storyUIImage3 else { return }
+        //                self.storyImagesArray.append(image)
+        //                guard let storyImage: UIImage = self.storyImage3 else { return }
+                        self.storyImagesArray.append(storyImage)
+                        self.setUpScrollView()
+                    })
+                } else {
+                    return
+                }
+        //getImage3()
+    }
+    
+    func callImageArrayInOrder() {
+        self.callImage1 { () -> () in
+            callImage2 { () -> () in
+                callImage3()
+            }
         }
     }
     
