@@ -769,6 +769,7 @@
                         <segue destination="lrJ-Dg-sXL" kind="unwind" identifier="unwindToGraveSegue" unwindAction="unwindToGrave:" id="lx7-NK-AXl"/>
                         <segue destination="lrJ-Dg-sXL" kind="unwind" identifier="unwindToGraveSegue" unwindAction="unwindToGrave:" id="ApY-fG-L2p"/>
                         <segue destination="lrJ-Dg-sXL" kind="unwind" identifier="unwindtoGraveStory" unwindAction="unwindtoGraveStory:" id="h00-52-APK"/>
+                        <segue destination="SzX-iF-Ewd" kind="show" identifier="seguetoPremiumFromGrave" id="JUc-GY-fg1"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="twe-qP-4gI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1423,13 +1424,19 @@
         <!--Account Information-->
         <scene sceneID="SMl-v1-Kcm">
             <objects>
-                <viewController title="Account Information" id="SzX-iF-Ewd" sceneMemberID="viewController">
+                <viewController title="Account Information" id="SzX-iF-Ewd" customClass="AccountViewController" customModule="GraveYardApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="LWv-MD-5gs">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Data Cap LAbel" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zZm-8k-Mx8">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Data Cap Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zZm-8k-Mx8">
                                 <rect key="frame" x="20" y="52" width="374" height="47"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Premium user status" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2R6-M4-lIf">
+                                <rect key="frame" x="20" y="107" width="374" height="36"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -1440,6 +1447,10 @@
                             <constraint firstItem="zZm-8k-Mx8" firstAttribute="leading" secondItem="RNs-pX-eco" secondAttribute="leading" constant="20" id="4q1-Aw-9G6"/>
                             <constraint firstItem="RNs-pX-eco" firstAttribute="bottom" secondItem="zZm-8k-Mx8" secondAttribute="bottom" constant="637" id="6dq-1q-uPc"/>
                             <constraint firstItem="RNs-pX-eco" firstAttribute="trailing" secondItem="zZm-8k-Mx8" secondAttribute="trailing" constant="20" id="BNW-jx-LCh"/>
+                            <constraint firstItem="2R6-M4-lIf" firstAttribute="top" secondItem="zZm-8k-Mx8" secondAttribute="bottom" constant="8" id="alh-zm-q8b"/>
+                            <constraint firstItem="RNs-pX-eco" firstAttribute="trailing" secondItem="2R6-M4-lIf" secondAttribute="trailing" constant="20" id="c8p-vf-hxS"/>
+                            <constraint firstItem="RNs-pX-eco" firstAttribute="bottom" secondItem="2R6-M4-lIf" secondAttribute="bottom" constant="593" id="gAF-eW-7Ug"/>
+                            <constraint firstItem="2R6-M4-lIf" firstAttribute="leading" secondItem="RNs-pX-eco" secondAttribute="leading" constant="20" id="r5H-fB-UvQ"/>
                             <constraint firstItem="zZm-8k-Mx8" firstAttribute="top" secondItem="RNs-pX-eco" secondAttribute="top" constant="8" id="sys-5z-afd"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="RNs-pX-eco"/>
@@ -1447,6 +1458,10 @@
                     <navigationItem key="navigationItem" id="VrO-aj-I3s">
                         <barButtonItem key="rightBarButtonItem" title="Premium" id="CaB-ng-TMl"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="dataCountLabel" destination="zZm-8k-Mx8" id="TB4-iY-TW1"/>
+                        <outlet property="premiumStatusLabel" destination="2R6-M4-lIf" id="jkL-1S-5B8"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Ur-vo-Eqm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1556,6 +1571,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="JUc-GY-fg1"/>
         <segue reference="z4g-pH-uIZ"/>
         <segue reference="fpu-aT-yyc"/>
     </inferredMetricsTieBreakers>

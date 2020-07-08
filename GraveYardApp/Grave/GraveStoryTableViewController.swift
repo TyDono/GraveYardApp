@@ -52,12 +52,6 @@ class GraveStoryTableViewController: UITableViewController {
         storyTitle.text = graveStorytitleValue
         storyBodyTextView.text = graveStoryBodyBioValue
         checkForCreatorId()
-        scrollView.delegate = self
-        tableView.delegate = self
-        self.tableView.isScrollEnabled = false
-        scrollView.bounces = false
-        tableView.bounces = true
-        tableView.isScrollEnabled = false
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.31) {
             self.getImage1()
         }

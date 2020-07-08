@@ -16,6 +16,7 @@ import AVFoundation
 
 
 class GraveTableViewController: UITableViewController {
+    
     @IBOutlet weak var headstoneBasicInfoImage: UIImageView!
     @IBOutlet weak var rightBarButtonItem: UIBarButtonItem!
     @IBOutlet weak var graveMainImage: UIImageView!

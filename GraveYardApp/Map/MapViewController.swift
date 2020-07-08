@@ -40,7 +40,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         super.viewDidLoad()
 //        self.mapView.removeAnnotations(self.mapView.annotations)
         setMapViewLocationAndUser()
-        self.navigationItem.rightBarButtonItem = nil // this will stay UNTIL i add payment process in
         //chageTextColor()
         mapView.delegate = self
         
@@ -387,7 +386,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                     }
                 }
                 let notSignInAlert = UIAlertController(title: "You are not signed in", message: "You must sign in to create a grave  at this location", preferredStyle: .actionSheet)
-                let dismiss = UIAlertAction(title: "cancel", style: .default, handler: nil)
+                let dismiss = UIAlertAction(title: "Cancel", style: .default, handler: nil)
                 notSignInAlert.addAction(dismiss)
                 let goToLogIn = UIAlertAction(title: "Sign In", style: .default, handler: { _ in
                     self.performSegue(withIdentifier: "unwindToSignIn", sender: nil)
@@ -489,7 +488,18 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     }
     
     @IBAction func helpButtonTapped(_ sender: UIBarButtonItem) {
-        performSegue(withIdentifier: "segueToPayments", sender: nil)
+        if currentAuthID != nil {
+            performSegue(withIdentifier: "segueToPayments", sender: nil)
+        } else {
+            let notSignInAlert = UIAlertController(title: "You are not signed in", message: "You must be signed in to check account information", preferredStyle: .actionSheet)
+            let dismiss = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+            notSignInAlert.addAction(dismiss)
+            let goToLogIn = UIAlertAction(title: "Sign In", style: .default, handler: { _ in
+                self.performSegue(withIdentifier: "unwindToSignIn", sender: nil)
+            })
+            notSignInAlert.addAction(goToLogIn)
+            self.present(notSignInAlert, animated: true, completion: nil)
+        }
     }
     
     @IBAction func unwindToMap(_ sender: UIStoryboardSegue) {}

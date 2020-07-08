@@ -15,6 +15,7 @@
 		CB5BAAE1247DBA8C00350553 /* PaymentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5BAAE0247DBA8C00350553 /* PaymentsViewController.swift */; };
 		CB697DF32440A82F0035C07A /* SignInWithAppleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB697DF22440A82F0035C07A /* SignInWithAppleManager.swift */; };
 		CB697DF52440A8460035C07A /* AuthState.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB697DF42440A8460035C07A /* AuthState.swift */; };
+		CB8304C824B5CE9D0023F4EA /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8304C724B5CE9D0023F4EA /* AccountViewController.swift */; };
 		CB881F9A2367B41E00615F2F /* EditGraveTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB881F992367B41E00615F2F /* EditGraveTableViewController.swift */; };
 		CBCE0E0B23FD12D00077A4F1 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCE0E0823FD12D00077A4F1 /* SplashViewController.swift */; };
 		CBCE0E0D23FD12D00077A4F1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCE0E0A23FD12D00077A4F1 /* SceneDelegate.swift */; };
@@ -50,6 +51,7 @@
 		CB5BAAE0247DBA8C00350553 /* PaymentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentsViewController.swift; sourceTree = "<group>"; };
 		CB697DF22440A82F0035C07A /* SignInWithAppleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithAppleManager.swift; sourceTree = "<group>"; };
 		CB697DF42440A8460035C07A /* AuthState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthState.swift; sourceTree = "<group>"; };
+		CB8304C724B5CE9D0023F4EA /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		CB881F992367B41E00615F2F /* EditGraveTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditGraveTableViewController.swift; sourceTree = "<group>"; };
 		CBCE0E0823FD12D00077A4F1 /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		CBCE0E0A23FD12D00077A4F1 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -161,6 +163,7 @@
 				CBCE0E1C23FD13910077A4F1 /* CustomAnnotation.swift */,
 				CBCE0E2823FD13F40077A4F1 /* UserReport.swift */,
 				CBCE0E2423FD13CB0077A4F1 /* UserProfile.swift */,
+				CB8304C724B5CE9D0023F4EA /* AccountViewController.swift */,
 				CBCE0E2623FD13E80077A4F1 /* GraveProfileImage.swift */,
 				CB881F992367B41E00615F2F /* EditGraveTableViewController.swift */,
 				CBCE0E2A23FD14080077A4F1 /* GraveTableViewController.swift */,
@@ -348,6 +351,7 @@
 			files = (
 				CB697DF32440A82F0035C07A /* SignInWithAppleManager.swift in Sources */,
 				CBCE0E2123FD13AC0077A4F1 /* Grave.swift in Sources */,
+				CB8304C824B5CE9D0023F4EA /* AccountViewController.swift in Sources */,
 				CBCE0E1423FD13300077A4F1 /* SignInViewController.swift in Sources */,
 				CBCE0E2923FD13F40077A4F1 /* UserReport.swift in Sources */,
 				CB3A388A237528E400DA756D /* NewGraveStoryTableViewController.swift in Sources */,

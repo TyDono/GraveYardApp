@@ -16,6 +16,7 @@ import AVKit
 import AVFoundation
 
 class EditGraveTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
     @IBOutlet weak var graveMainImage: UIImageView!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var birthDatePicker: UIDatePicker!

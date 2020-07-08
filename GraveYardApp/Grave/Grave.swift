@@ -31,7 +31,7 @@ struct Grave {
     var bio: String
     var graveLocationLatitude: String
     var graveLocationLongitude: String
-    var allGraveIdentifier: String
+    var allGraveIdentifier: String //this is used to locate pins and is needed for every pin
     var pinQuote: String
     // premium users, grave quote, grave node image
     // BURIAL LOCATION
