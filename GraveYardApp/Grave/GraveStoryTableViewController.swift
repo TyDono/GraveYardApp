@@ -55,19 +55,53 @@ class GraveStoryTableViewController: UITableViewController {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.31) {
             self.getImage1()
         }
-
+        witchylair()
+        
     }
     
     // MARK: - Functions
     
+    func witchylair() {
+        let madeIntoText: String = "\(storyImagesScrollView.contentOffset.x)"
+        self.imageCounterLabel.text = madeIntoText
+    }
+    
     func changeImageLabelCounter() {
-        //check array counter. depeding on which image is showing\ tje counter changes. and the arrow key dissapears and appears.
-        switch storyImagesArray.capacity {
+        switch storyImagesArray.count {
+        case 0:
+            self.imageCounterLabel.text = ""
         case 1:
-            self.imageCounterLabel.text = "1/3"
+            self.imageCounterLabel.text = "1/1"
+            
         case 2:
-            self.imageCounterLabel.text = "2/3"
+            switch storyImagesScrollView.contentOffset.x {
+            case 0.0:
+                self.imageCounterLabel.text = "1/2"
+            case 414.0:
+                self.imageCounterLabel.text = "2/2"
+            default:
+                self.imageCounterLabel.text = ""
+            }
         case 3:
+            switch storyImagesScrollView.contentOffset.x {
+            case 0.0:
+                self.imageCounterLabel.text = "1/3"
+            case 414.0:
+                self.imageCounterLabel.text = "2/3"
+            case 828.0:
+                self.imageCounterLabel.text = "3/3"
+            default:
+                self.imageCounterLabel.text = ""
+            }
+        default:
+            self.imageCounterLabel.text = ""
+        }
+        switch storyImagesScrollView.contentOffset.x {
+        case 0.0:
+            self.imageCounterLabel.text = "1/3"
+        case 414.0:
+            self.imageCounterLabel.text = "2/3"
+        case 828.0:
             self.imageCounterLabel.text = "3/3"
         default:
             self.imageCounterLabel.text = ""
@@ -75,6 +109,12 @@ class GraveStoryTableViewController: UITableViewController {
     }
     
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        // 0.0 414.0 828.0
+        
+    
+        
+        let madeIntoText: String = "\(storyImagesScrollView.contentOffset.x)"
+        self.imageCounterLabel.text = madeIntoText
         
 //        print("\(self.storyImagesScrollView.contentOffset)")
         
@@ -94,7 +134,11 @@ class GraveStoryTableViewController: UITableViewController {
             let xPosition = self.view.frame.width * CGFloat(i)
             imageView.frame = CGRect(x: xPosition, y: 0, width: self.storyImagesScrollView.frame.width, height: self.storyImagesScrollView.frame.height)
             storyImagesScrollView.contentSize.width = storyImagesScrollView.frame.width * CGFloat(i + 1)
-            storyImagesScrollView.addSubview(imageView)        }
+            storyImagesScrollView.addSubview(imageView)
+            storyImagesScrollView.contentOffset.x = 415.0
+            print(storyImagesScrollView.contentOffset.x)
+            print("end here")
+        }
     }
     
     func chageTextColor() {
