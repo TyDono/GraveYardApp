@@ -26,15 +26,9 @@ class AccountViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         db = Firestore.firestore()
-        getUserData()
+//        getUserData() re-instate this when premium is out!!!!!!
         self.premiumStatusLabel.text = "Premium accounts comming soon!"
-        if dataCount != 0 {
-            let dividedDataCount: Int = self.dataCount/1000
-            let stringDataCount: String = String(dividedDataCount)
-            self.dataCountLabel.text = "\(stringDataCount) kb / 5,000 kb"
-        } else {
-            self.dataCountLabel.text = "0 kb / 5,000 kb"
-        }
+        self.dataCountLabel.text = "Limited time Only!!! Unlimited Data!!!"
         
     }
     
@@ -65,7 +59,7 @@ class AccountViewController: UIViewController {
         db = Firestore.firestore()
         guard let currentId = currentAuthID else { return }
         db.collection("userProfile").document(currentId).updateData([
-            "dataCount": MyFirebase.currentDataUsage
+            "dataCount": MyFirebase.currentDataUsage!
         ]) { err in
             if let err = err {
                 print("Error updating document: \(err)")

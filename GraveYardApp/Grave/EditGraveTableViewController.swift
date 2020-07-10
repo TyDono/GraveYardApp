@@ -268,18 +268,28 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
     
     // MARK: - Actions
     
-    @IBAction func saveGraveInfoTapped(_ sender: UIBarButtonItem) {
-        guard let unwrappedGraveImage = graveMainImage.image else { return } // the uplaod takes 2 long and needs a delay before segue is called
+    @IBAction func saveGraveInfoTapped(_ sender: UIBarButtonItem) { //  MOST OF COMMENTED OUT CODE WILL BE RE-ADDED WHEN PREMIUM IS LIVE TO KEEP TRACK OF THEIR DATA USE AND TO LET THE USERS KNOW. ADD THIS TO NEWGRAVESTORYVIEWCONTROLLER WHEN PREMIUM IS LIVE
+//        guard let unwrappedGraveImage = graveMainImage.image else { return } // the uplaod takes 2 long and needs a delay before segue is called
+//        guard let currentDataUseCount = MyFirebase.currentDataUsage else { return }
+//        var checkDataCap: Int = 0
         for image in graveProfileImages {
             uploadFirebaseImages(image) { (url) in
                 guard let imageDataBytes = image.jpegData(compressionQuality: 0.20) else { return }
                 if let unwrappedCurrentImageDataCount = self.currentImageDataCount {
-                    MyFirebase.currentDataUsage = MyFirebase.currentDataUsage! - unwrappedCurrentImageDataCount
+//                    checkDataCap = currentDataUseCount - unwrappedCurrentImageDataCount + imageDataBytes.count
+//                    if checkDataCap > 5000 {
+//                        let alert = UIAlertController(title: "Over Limit!", message: "Saving this puts you over your alloted data use! Try deleting some photos to make room, or sign up for premium to expand your data cap for Remembrance.  current amount in use \(checkDataCap) / 5,000kb", preferredStyle: .alert)
+//                        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
+//                            alert.dismiss(animated: true, completion: nil)
+//                            return
+//                        }))
+//                        self.present(alert, animated: true, completion: nil)
+//                    } else {
+                        MyFirebase.currentDataUsage = MyFirebase.currentDataUsage! - unwrappedCurrentImageDataCount + imageDataBytes.count
+                        self.updateUserData()
+//                    }
                 }
-                MyFirebase.currentDataUsage = MyFirebase.currentDataUsage! + imageDataBytes.count
-                self.updateUserData()
-                print(url)
-                guard let url = url else { return }
+                guard url != nil else { return }
 //                self.saveImageToFirebase(graveImagesURL: url, completion: { success in
 //                    self.firebaseWrite(url: url.absoluteString)
 //                })
