@@ -25,6 +25,7 @@ class AccountViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        db = Firestore.firestore()
         getUserData()
         self.premiumStatusLabel.text = "Premium accounts comming soon!"
         if dataCount != 0 {
@@ -39,14 +40,21 @@ class AccountViewController: UIViewController {
     
     func getUserData() {
         guard let currentUserAuthID: String = self.currentAuthID else { return }
-        let userRef = self.db.collection("user").whereField("currentUserAuthID", isEqualTo: currentUserAuthID)
+        let userRef = self.db.collection("userProfile").whereField("currentUserAuthId", isEqualTo: currentUserAuthID)
         userRef.getDocuments { (snapshot, error) in
             if error != nil {
-                print(error)
+                print(error as Any)
             } else {
                 for document in (snapshot?.documents)! {
                     if let dataCount = document.data()["dataCount"] as? Int {
                         self.dataCount = dataCount
+                        if dataCount != 0 {
+                            let dividedDataCount: Int = self.dataCount/1000
+                            let stringDataCount: String = String(dividedDataCount)
+                            self.dataCountLabel.text = "\(stringDataCount) kb / 5,000 kb"
+                        } else {
+                            self.dataCountLabel.text = "0 kb / 5,000 kb"
+                        }
                     }
                 }
             }

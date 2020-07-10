@@ -83,7 +83,7 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
         db = Firestore.firestore()
         guard let currentId = currentAuthID else { return }
         db.collection("userProfile").document(currentId).updateData([
-            "dataCount": MyFirebase.currentDataUsage
+            "dataCount": MyFirebase.currentDataUsage!
         ]) { err in
             if let err = err {
                 print("Error updating document: \(err)")
@@ -96,7 +96,7 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
     func getGraveData() { // mak srue to change the sting back to a date here
         dateFormatter.dateFormat = "yyyy-MM-dd"
         let defaultDate: Date? = self.dateFormatter.date(from: "1993-08-05") // this is nil atm
-        let graveRef = self.db.collection("grave").whereField("graveId", isEqualTo: MapViewController.shared.currentGraveId) // this should be the grave id that was tapped on
+        let graveRef = self.db.collection("grave").whereField("graveId", isEqualTo: MapViewController.shared.currentGraveId!) // this should be the grave id that was tapped on
         graveRef.getDocuments { (snapshot, error) in
             if error != nil {
                 print(error as Any)

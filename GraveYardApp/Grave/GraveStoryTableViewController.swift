@@ -55,16 +55,10 @@ class GraveStoryTableViewController: UITableViewController {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.31) {
             self.getImage1()
         }
-        witchylair()
         
     }
     
     // MARK: - Functions
-    
-    func witchylair() {
-        let madeIntoText: String = "\(storyImagesScrollView.contentOffset.x)"
-        self.imageCounterLabel.text = madeIntoText
-    }
     
     func changeImageLabelCounter() {
         switch storyImagesArray.count {
@@ -111,10 +105,7 @@ class GraveStoryTableViewController: UITableViewController {
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         // 0.0 414.0 828.0
         
-    
-        
-        let madeIntoText: String = "\(storyImagesScrollView.contentOffset.x)"
-        self.imageCounterLabel.text = madeIntoText
+        changeImageLabelCounter()
         
 //        print("\(self.storyImagesScrollView.contentOffset)")
         
@@ -135,9 +126,6 @@ class GraveStoryTableViewController: UITableViewController {
             imageView.frame = CGRect(x: xPosition, y: 0, width: self.storyImagesScrollView.frame.width, height: self.storyImagesScrollView.frame.height)
             storyImagesScrollView.contentSize.width = storyImagesScrollView.frame.width * CGFloat(i + 1)
             storyImagesScrollView.addSubview(imageView)
-            storyImagesScrollView.contentOffset.x = 415.0
-            print(storyImagesScrollView.contentOffset.x)
-            print("end here")
         }
     }
     
@@ -263,6 +251,7 @@ extension GraveStoryTableViewController {
 //                guard let storyImage: UIImage = self.storyImage1 else { return }
                 self.storyImagesArray.append(storyImage)
                 self.setUpScrollView()
+                self.changeImageLabelCounter()
                 self.getImage2()
             })
         } else {
@@ -285,6 +274,7 @@ extension GraveStoryTableViewController {
 //                guard let storyImage: UIImage = self.storyImage2 else { return }
                 self.storyImagesArray.append(storyImage)
                 self.setUpScrollView()
+                self.changeImageLabelCounter()
                 self.getImage3()
             })
         } else {
@@ -306,6 +296,7 @@ extension GraveStoryTableViewController {
 //                guard let storyImage: UIImage = self.storyImage3 else { return }
                 self.storyImagesArray.append(storyImage)
                 self.setUpScrollView()
+                self.changeImageLabelCounter()
             })
         } else {
             return
