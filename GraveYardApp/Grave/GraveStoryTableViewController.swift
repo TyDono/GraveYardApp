@@ -70,7 +70,7 @@ class GraveStoryTableViewController: UITableViewController {
             self.rightArrowButton.isHidden = true
             self.leftArrowButton.isHidden = true
         case 1:
-            self.imageCounterLabel.text = "1/1"
+            self.imageCounterLabel.text = ""
             self.rightArrowButton.isHidden = true
             self.leftArrowButton.isHidden = true
             
