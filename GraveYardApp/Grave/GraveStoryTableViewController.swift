@@ -52,6 +52,7 @@ class GraveStoryTableViewController: UITableViewController {
         storyTitle.text = graveStorytitleValue
         storyBodyTextView.text = graveStoryBodyBioValue
         checkForCreatorId()
+        storyImagesScrollView.delegate = self
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.31) {
             self.getImage1()
         }
@@ -102,7 +103,8 @@ class GraveStoryTableViewController: UITableViewController {
         }
     }
     
-    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    override func scrollViewDidScroll(_ storyImagesScrollView: UIScrollView) {
+//        self.storyImagesScrollView = storyImagesScrollView /this makes the HWOLE this itsself
         // 0.0 414.0 828.0
         
         changeImageLabelCounter()
