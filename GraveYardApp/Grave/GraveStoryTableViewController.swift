@@ -76,11 +76,11 @@ class GraveStoryTableViewController: UITableViewController {
             
         case 2:
             switch storyImagesScrollView.contentOffset.x {
-            case 0.0:
+            case 0.0...112.0:
                 self.imageCounterLabel.text = "1/2"
                 self.leftArrowButton.isHidden = true
                 self.rightArrowButton.isHidden = false
-            case 414.0:
+            case 113.0...414.0:
                 self.imageCounterLabel.text = "2/2"
                 self.rightArrowButton.isHidden = true
                 self.leftArrowButton.isHidden = false
@@ -89,15 +89,15 @@ class GraveStoryTableViewController: UITableViewController {
             }
         case 3:
             switch storyImagesScrollView.contentOffset.x {
-            case 0.0:
+            case 0.0...112.0:
                 self.imageCounterLabel.text = "1/3"
                 self.leftArrowButton.isHidden = true
                 self.rightArrowButton.isHidden = false
-            case 414.0:
+            case 113.0...614.0: // 414 is centered in
                 self.imageCounterLabel.text = "2/3"
                 self.rightArrowButton.isHidden = false
                 self.leftArrowButton.isHidden = false
-            case 828.0:
+            case 613.0...828.0:
                 self.imageCounterLabel.text = "3/3"
                 self.rightArrowButton.isHidden = true
                 self.leftArrowButton.isHidden = false
