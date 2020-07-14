@@ -15,6 +15,8 @@ class GraveStoryTableViewController: UITableViewController {
     
     // MARK: - Outlets
     
+    @IBOutlet weak var rightArrowButton: UIButton!
+    @IBOutlet weak var leftArrowButton: UIButton!
     @IBOutlet weak var imageCounterLabel: UILabel!
     @IBOutlet weak var storyBodyTextView: UITextView!
     @IBOutlet weak var scrollView: UIScrollView!
@@ -65,15 +67,23 @@ class GraveStoryTableViewController: UITableViewController {
         switch storyImagesArray.count {
         case 0:
             self.imageCounterLabel.text = ""
+            self.rightArrowButton.isHidden = true
+            self.leftArrowButton.isHidden = true
         case 1:
             self.imageCounterLabel.text = "1/1"
+            self.rightArrowButton.isHidden = true
+            self.leftArrowButton.isHidden = true
             
         case 2:
             switch storyImagesScrollView.contentOffset.x {
             case 0.0:
                 self.imageCounterLabel.text = "1/2"
+                self.leftArrowButton.isHidden = true
+                self.rightArrowButton.isHidden = false
             case 414.0:
                 self.imageCounterLabel.text = "2/2"
+                self.rightArrowButton.isHidden = true
+                self.leftArrowButton.isHidden = false
             default:
                 self.imageCounterLabel.text = ""
             }
@@ -81,43 +91,26 @@ class GraveStoryTableViewController: UITableViewController {
             switch storyImagesScrollView.contentOffset.x {
             case 0.0:
                 self.imageCounterLabel.text = "1/3"
+                self.leftArrowButton.isHidden = true
+                self.rightArrowButton.isHidden = false
             case 414.0:
                 self.imageCounterLabel.text = "2/3"
+                self.rightArrowButton.isHidden = false
+                self.leftArrowButton.isHidden = false
             case 828.0:
                 self.imageCounterLabel.text = "3/3"
+                self.rightArrowButton.isHidden = true
+                self.leftArrowButton.isHidden = false
             default:
                 self.imageCounterLabel.text = ""
             }
         default:
             self.imageCounterLabel.text = ""
         }
-        switch storyImagesScrollView.contentOffset.x {
-        case 0.0:
-            self.imageCounterLabel.text = "1/3"
-        case 414.0:
-            self.imageCounterLabel.text = "2/3"
-        case 828.0:
-            self.imageCounterLabel.text = "3/3"
-        default:
-            self.imageCounterLabel.text = ""
-        }
     }
     
     override func scrollViewDidScroll(_ storyImagesScrollView: UIScrollView) {
-//        self.storyImagesScrollView = storyImagesScrollView /this makes the HWOLE this itsself
-        // 0.0 414.0 828.0
-        
         changeImageLabelCounter()
-        
-//        print("\(self.storyImagesScrollView.contentOffset)")
-        
-//        if scrollView == self.scrollView {
-//            tableView.isScrollEnabled = (self.scrollView.contentOffset.y >= 200)
-//        }
-//
-//        if scrollView == self.tableView {
-//            self.tableView.isScrollEnabled = (tableView.contentOffset.y > 0)
-//        }
     }
     
     func setUpScrollView() {

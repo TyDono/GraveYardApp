@@ -921,8 +921,10 @@
                     </navigationItem>
                     <connections>
                         <outlet property="imageCounterLabel" destination="jMZ-gj-0u3" id="WoX-25-vzk"/>
+                        <outlet property="leftArrowButton" destination="jhF-Yl-Yx7" id="JHV-LJ-6XG"/>
                         <outlet property="reportCommentsTextView" destination="usB-Cu-u8F" id="Mfl-1u-zcx"/>
                         <outlet property="reportPopOver" destination="Z9O-BS-4uW" id="UUs-Sh-teO"/>
+                        <outlet property="rightArrowButton" destination="MxG-ZG-ned" id="uz6-cO-C9p"/>
                         <outlet property="rightBarButtonItem" destination="rwy-dy-vpC" id="WLY-Ys-0Gd"/>
                         <outlet property="scrollView" destination="6c7-L8-gAT" id="a5G-si-YRR"/>
                         <outlet property="storyBodyTextView" destination="EJs-T9-0Fu" id="HWT-90-5eZ"/>
