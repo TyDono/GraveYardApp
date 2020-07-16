@@ -1383,11 +1383,31 @@
                                     <outletCollection property="gestureRecognizers" destination="lDL-6j-HQn" appends="YES" id="STK-9a-Uht"/>
                                 </connections>
                             </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A6a-Yu-Ch0">
+                                <rect key="frame" x="20" y="686" width="152" height="30"/>
+                                <color key="backgroundColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="nS2-ab-roC"/>
+                                    <constraint firstAttribute="width" constant="152" id="xLM-au-Tuu"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" title="Create a Memorial">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="titleShadowColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="createMemorialHelperButtonTapped:" destination="9X6-7Z-pCz" eventType="touchUpInside" id="f25-sh-ITL"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="Abc-m9-DRn" firstAttribute="trailing" secondItem="A6a-Yu-Ch0" secondAttribute="trailing" constant="242" id="5u7-b5-28Z"/>
                             <constraint firstItem="6MH-ve-unU" firstAttribute="leading" secondItem="Abc-m9-DRn" secondAttribute="leading" id="71F-Fp-uIZ"/>
+                            <constraint firstItem="A6a-Yu-Ch0" firstAttribute="leading" secondItem="Abc-m9-DRn" secondAttribute="leading" constant="20" id="LJq-RG-vOK"/>
+                            <constraint firstItem="A6a-Yu-Ch0" firstAttribute="top" secondItem="Abc-m9-DRn" secondAttribute="top" constant="642" id="NBK-lG-Zr9"/>
                             <constraint firstItem="6MH-ve-unU" firstAttribute="top" secondItem="Abc-m9-DRn" secondAttribute="top" id="WwJ-dk-9KL"/>
+                            <constraint firstItem="Abc-m9-DRn" firstAttribute="bottom" secondItem="A6a-Yu-Ch0" secondAttribute="bottom" constant="20" id="Zdx-Aw-1Yr"/>
                             <constraint firstItem="6MH-ve-unU" firstAttribute="trailing" secondItem="Abc-m9-DRn" secondAttribute="trailing" id="hoX-c6-dMm"/>
                             <constraint firstItem="6MH-ve-unU" firstAttribute="bottom" secondItem="Abc-m9-DRn" secondAttribute="bottom" id="u5v-ji-bRW"/>
                         </constraints>
@@ -1406,6 +1426,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="createMemorialPinButton" destination="A6a-Yu-Ch0" id="iaf-NU-oMa"/>
                         <outlet property="mapView" destination="6MH-ve-unU" id="KFx-y7-2xf"/>
                         <outlet property="signUp" destination="rQ8-Ij-DFF" id="ShX-Ox-C7m"/>
                         <segue destination="df1-gm-beU" kind="show" identifier="segueToGrave" id="xN6-dc-fkE"/>
@@ -1421,7 +1442,7 @@
                     </connections>
                 </pongPressGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="3387" y="-141"/>
+            <point key="canvasLocation" x="3386.9565217391305" y="-141.03260869565219"/>
         </scene>
         <!--Account Information-->
         <scene sceneID="SMl-v1-Kcm">
@@ -1573,7 +1594,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="JUc-GY-fg1"/>
+        <segue reference="74B-mS-0pn"/>
         <segue reference="z4g-pH-uIZ"/>
         <segue reference="fpu-aT-yyc"/>
     </inferredMetricsTieBreakers>

@@ -13,6 +13,7 @@ import FirebaseFirestore
 
 class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UIGestureRecognizerDelegate {
     
+    @IBOutlet weak var createMemorialPinButton: UIButton!
     @IBOutlet weak var signUp: UIBarButtonItem!
     @IBOutlet weak var mapView: MKMapView!
     
@@ -42,7 +43,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         setMapViewLocationAndUser()
         //chageTextColor()
         mapView.delegate = self
-        
+        MemorialHelperFunction()
 //        getGraveEntries { (graves) in
 //            self.graves = graves
 //            self.dropGraveEntryPins()
@@ -59,6 +60,13 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     }
     
     // MARK: - Functions
+    
+    func MemorialHelperFunction() {
+        self.createMemorialPinButton.layer.cornerRadius = 10
+        self.createMemorialPinButton.titleLabel?.text = "Create a Memorial!"
+        self.createMemorialPinButton.clipsToBounds = true
+        
+    }
     
     func reloadMapView() {
         mapView.reloadInputViews()
@@ -361,8 +369,19 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     
     // MARK: - Actions
     
+    
+    @IBAction func createMemorialHelperButtonTapped(_ sender: Any) {
+//        self.createMemorialPinButton.titleLabel?.text = ""
+        
+        let memorialHelpAlert = UIAlertController(title: "", message: "Hold down your finger on the desired loaction to create a Memorial", preferredStyle: .alert)
+        let dismiss = UIAlertAction(title: "OK", style: .default, handler: nil)
+        memorialHelpAlert.addAction(dismiss)
+        self.present(memorialHelpAlert, animated: true, completion: nil)
+        
+        
+    }
+    
     @IBAction func userDidLongPress(_ sender: UILongPressGestureRecognizer) {
-        print(currentAuthID)
         let location = sender.location(in: self.mapView)
         let locationCoordinate = self.mapView.convert(location, toCoordinateFrom: self.mapView)
         let annotation = MKPointAnnotation()
@@ -442,10 +461,10 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                 }
                 graveRef.document(String(grave.graveId)).setData(grave.dictionary) { err in
                     if let err = err {
-                        let graveCreationFailAert = UIAlertController(title: "Failed to create a Grave", message: "Your device failed to properly create a Grave on your desired tdestination, Please check your wifi and try again", preferredStyle: .alert)
+                        let graveCreationFailAlert = UIAlertController(title: "Failed to create a Grave", message: "Your device failed to properly create a Grave on your desired tdestination, Please check your wifi and try again", preferredStyle: .alert)
                         let dismiss = UIAlertAction(title: "OK", style: .default, handler: nil)
-                        graveCreationFailAert.addAction(dismiss)
-                        self.present(graveCreationFailAert, animated: true, completion: nil)
+                        graveCreationFailAlert.addAction(dismiss)
+                        self.present(graveCreationFailAlert, animated: true, completion: nil)
                         print(err)
                     } else {
                         self.performSegue(withIdentifier: "segueToGrave", sender: nil)
