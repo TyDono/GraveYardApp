@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="7GT-Uf-jGM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="7GT-Uf-jGM">
     <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -1384,7 +1384,7 @@
                                 </connections>
                             </mapView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ywG-st-t1E">
-                                <rect key="frame" x="20" y="686" width="154" height="30"/>
+                                <rect key="frame" x="20" y="686" width="187" height="30"/>
                                 <color key="backgroundColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Create A Memorial">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1398,7 +1398,7 @@
                         <constraints>
                             <constraint firstItem="6MH-ve-unU" firstAttribute="leading" secondItem="Abc-m9-DRn" secondAttribute="leading" id="71F-Fp-uIZ"/>
                             <constraint firstItem="Abc-m9-DRn" firstAttribute="bottom" secondItem="ywG-st-t1E" secondAttribute="bottom" constant="20" id="C4r-Jn-yp9"/>
-                            <constraint firstItem="Abc-m9-DRn" firstAttribute="trailing" secondItem="ywG-st-t1E" secondAttribute="trailing" constant="240" id="H2l-m4-JGs"/>
+                            <constraint firstItem="Abc-m9-DRn" firstAttribute="trailing" secondItem="ywG-st-t1E" secondAttribute="trailing" constant="207" id="H2l-m4-JGs"/>
                             <constraint firstItem="ywG-st-t1E" firstAttribute="leading" secondItem="Abc-m9-DRn" secondAttribute="leading" constant="20" id="JMI-bX-yH4"/>
                             <constraint firstItem="6MH-ve-unU" firstAttribute="top" secondItem="Abc-m9-DRn" secondAttribute="top" id="WwJ-dk-9KL"/>
                             <constraint firstItem="6MH-ve-unU" firstAttribute="trailing" secondItem="Abc-m9-DRn" secondAttribute="trailing" id="hoX-c6-dMm"/>
@@ -1412,7 +1412,7 @@
                                 <action selector="SignInTapped:" destination="9X6-7Z-pCz" id="aaI-mx-CVZ"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Account" id="RFS-BO-bmg">
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="Account" id="RFS-BO-bmg">
                             <connections>
                                 <action selector="helpButtonTapped:" destination="9X6-7Z-pCz" id="qNB-En-KcA"/>
                             </connections>

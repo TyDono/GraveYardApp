@@ -371,13 +371,10 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     
     
     @IBAction func createMemorialHelperButtonTapped(_ sender: Any) {
-//        self.createMemorialPinButton.titleLabel?.text = ""
-        
         let memorialHelpAlert = UIAlertController(title: "", message: "Hold down your finger on the desired loaction to create a Memorial", preferredStyle: .alert)
         let dismiss = UIAlertAction(title: "OK", style: .default, handler: nil)
         memorialHelpAlert.addAction(dismiss)
         self.present(memorialHelpAlert, animated: true, completion: nil)
-        
         
     }
     
