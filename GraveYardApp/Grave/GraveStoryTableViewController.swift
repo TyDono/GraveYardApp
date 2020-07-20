@@ -119,6 +119,7 @@ class GraveStoryTableViewController: UITableViewController {
             imageView.image = storyImagesArray[i]
             let xPosition = self.view.frame.width * CGFloat(i)
             imageView.frame = CGRect(x: xPosition, y: 0, width: self.storyImagesScrollView.frame.width, height: self.storyImagesScrollView.frame.height)
+            imageView.contentMode = .scaleAspectFit
             storyImagesScrollView.contentSize.width = storyImagesScrollView.frame.width * CGFloat(i + 1)
             storyImagesScrollView.addSubview(imageView)
         }

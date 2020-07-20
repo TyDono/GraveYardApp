@@ -46,6 +46,11 @@ class GraveTableViewController: UITableViewController {
     var currentGraveId: String?
     var currentGraveLocation: String?
     var imageString: String?
+    var summer: String = "summer"
+    var winter: String = "winter"
+    var fall: String = "fall"
+    var spring: String = "spring"
+    var currentSeason: String?
     let storage = Storage.storage()
     
     // MARK: - View Lifecycle
@@ -57,6 +62,8 @@ class GraveTableViewController: UITableViewController {
         //chageTextColor()
         checkForBioLabel()
         pinQuoteLabel.font = pinQuoteLabel.font.italic
+//        getCurrentSeason()
+//        changeBackground()
     }
     
     
@@ -99,6 +106,48 @@ class GraveTableViewController: UITableViewController {
         navigationController?.navigationBar.titleTextAttributes = textAttributes
     }
     
+    func getCurrentSeason() {
+        let date = Date()
+        let format = DateFormatter()
+        format.dateFormat = "MM"
+        let formattedDate = format.string(from: date)
+        switch formattedDate {
+        case "01":
+            self.currentSeason = self.winter
+        case "02":
+            self.currentSeason = self.winter
+        case "03":
+            self.currentSeason = self.spring
+        case "04":
+            self.currentSeason = self.spring
+        case "05":
+            self.currentSeason = self.spring
+        case "06":
+            self.currentSeason = self.summer
+        case "07":
+            self.currentSeason = self.summer
+        case "08":
+            self.currentSeason = self.summer
+        case "09":
+            self.currentSeason = self.fall
+        case "10":
+            self.currentSeason = self.fall
+        case "11":
+            self.currentSeason = self.fall
+        case "12":
+            self.currentSeason = self.winter
+        default:
+            self.currentSeason = self.summer
+        }
+    }
+    
+    func changeBackground() {
+        let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
+        backgroundImage.image = UIImage(named: currentSeason ?? "summer")
+        backgroundImage.contentMode = UIView.ContentMode.scaleToFill
+        self.tableView.backgroundView = backgroundImage
+    }
+    
     func createReportData() {
         let userReportId: String = UUID().uuidString
         guard let currentAuthID = self.currentAuthID else {
@@ -135,7 +184,7 @@ class GraveTableViewController: UITableViewController {
     }
     
     func getGraveData() {
-        let graveRef = self.db.collection("grave").whereField("graveId", isEqualTo: MapViewController.shared.currentGraveId) //change this to the grave id that was tapped, NOT THE USER ID. THE USER ID IS FOR DIF STUFF. use String(arc4random_uniform(99999999)) to generate the grave Id when created
+        let graveRef = self.db.collection("grave").whereField("graveId", isEqualTo: MapViewController.shared.currentGraveId!) //change this to the grave id that was tapped, NOT THE USER ID. THE USER ID IS FOR DIF STUFF. use String(arc4random_uniform(99999999)) to generate the grave Id when created
         graveRef.getDocuments { (snapshot, error) in
             if error != nil {
                 print(error as Any)
