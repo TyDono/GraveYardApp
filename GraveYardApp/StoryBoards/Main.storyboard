@@ -1376,7 +1376,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="6MH-ve-unU">
-                                <rect key="frame" x="0.0" y="44" width="414" height="692"/>
+                                <rect key="frame" x="0.0" y="78" width="414" height="658"/>
                                 <gestureRecognizers/>
                                 <connections>
                                     <outlet property="delegate" destination="9X6-7Z-pCz" id="18M-Vt-qvS"/>
@@ -1384,29 +1384,31 @@
                                 </connections>
                             </mapView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ywG-st-t1E">
-                                <rect key="frame" x="20" y="686" width="187" height="30"/>
+                                <rect key="frame" x="20" y="680" width="122" height="36"/>
                                 <color key="backgroundColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="Create A Memorial">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="Recenter">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="createMemorialHelperButtonTapped:" destination="9X6-7Z-pCz" eventType="touchUpInside" id="iAM-hW-t2S"/>
+                                    <action selector="recenterButtonTapped:" destination="9X6-7Z-pCz" eventType="touchUpInside" id="iAM-hW-t2S"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="6MH-ve-unU" firstAttribute="leading" secondItem="Abc-m9-DRn" secondAttribute="leading" id="71F-Fp-uIZ"/>
-                            <constraint firstItem="Abc-m9-DRn" firstAttribute="bottom" secondItem="ywG-st-t1E" secondAttribute="bottom" constant="20" id="C4r-Jn-yp9"/>
-                            <constraint firstItem="Abc-m9-DRn" firstAttribute="trailing" secondItem="ywG-st-t1E" secondAttribute="trailing" constant="207" id="H2l-m4-JGs"/>
-                            <constraint firstItem="ywG-st-t1E" firstAttribute="leading" secondItem="Abc-m9-DRn" secondAttribute="leading" constant="20" id="JMI-bX-yH4"/>
+                            <constraint firstItem="ywG-st-t1E" firstAttribute="leading" secondItem="FOT-J4-Seo" secondAttribute="leadingMargin" id="GTu-VW-78f"/>
+                            <constraint firstItem="Abc-m9-DRn" firstAttribute="trailing" secondItem="ywG-st-t1E" secondAttribute="trailing" constant="272" id="Oty-Ay-7qY"/>
                             <constraint firstItem="6MH-ve-unU" firstAttribute="top" secondItem="Abc-m9-DRn" secondAttribute="top" id="WwJ-dk-9KL"/>
+                            <constraint firstItem="ywG-st-t1E" firstAttribute="top" secondItem="Abc-m9-DRn" secondAttribute="top" constant="602" id="dSx-pk-emh"/>
                             <constraint firstItem="6MH-ve-unU" firstAttribute="trailing" secondItem="Abc-m9-DRn" secondAttribute="trailing" id="hoX-c6-dMm"/>
+                            <constraint firstItem="Abc-m9-DRn" firstAttribute="bottom" secondItem="ywG-st-t1E" secondAttribute="bottom" constant="20" id="jSt-R7-cpc"/>
                             <constraint firstItem="6MH-ve-unU" firstAttribute="bottom" secondItem="Abc-m9-DRn" secondAttribute="bottom" id="u5v-ji-bRW"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Abc-m9-DRn"/>
                     </view>
-                    <navigationItem key="navigationItem" id="3eL-az-WuV">
+                    <navigationItem key="navigationItem" prompt="Hold down your finger on the desired loaction to create a Memorial" id="3eL-az-WuV">
                         <barButtonItem key="leftBarButtonItem" title="SignIn/LogOut" id="rQ8-Ij-DFF">
                             <connections>
                                 <action selector="SignInTapped:" destination="9X6-7Z-pCz" id="aaI-mx-CVZ"/>
@@ -1414,7 +1416,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" enabled="NO" title="Account" id="RFS-BO-bmg">
                             <connections>
-                                <action selector="helpButtonTapped:" destination="9X6-7Z-pCz" id="qNB-En-KcA"/>
+                                <action selector="AccountSideBarButtonItemTapped:" destination="9X6-7Z-pCz" id="qNB-En-KcA"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -1498,18 +1500,6 @@
                                     <action selector="googleSignIn:" destination="V3w-If-NiO" eventType="valueChanged" id="MYZ-1o-NXx"/>
                                 </connections>
                             </view>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f77-cs-Zg2">
-                                <rect key="frame" x="4" y="0.0" width="407" height="44"/>
-                                <items>
-                                    <navigationItem title="Title" id="oCn-Ax-H8Z">
-                                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="ZJt-PN-LY2">
-                                            <connections>
-                                                <action selector="cancelSignUpButtonTapped:" destination="V3w-If-NiO" id="159-cD-Ogv"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9B9-O8-rwK">
                                 <rect key="frame" x="82" y="607" width="251" height="38"/>
                                 <state key="normal" image="appleSigninButton"/>
@@ -1520,17 +1510,14 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="f77-cs-Zg2" firstAttribute="leading" secondItem="hhe-VD-6ou" secondAttribute="leadingMargin" constant="-16" id="7SC-iy-6aA"/>
-                            <constraint firstItem="JgC-x9-jmI" firstAttribute="top" secondItem="9B9-O8-rwK" secondAttribute="bottom" constant="8" id="8cp-1c-ZE7"/>
-                            <constraint firstItem="qmL-If-WqM" firstAttribute="bottom" secondItem="JgC-x9-jmI" secondAttribute="bottom" constant="20" id="ABS-qp-iOY"/>
-                            <constraint firstItem="9B9-O8-rwK" firstAttribute="top" secondItem="f77-cs-Zg2" secondAttribute="bottom" constant="563" id="C4b-rU-Ch5"/>
-                            <constraint firstItem="JgC-x9-jmI" firstAttribute="top" secondItem="9B9-O8-rwK" secondAttribute="bottom" constant="8" id="Cgh-E4-GC9"/>
-                            <constraint firstItem="qmL-If-WqM" firstAttribute="trailing" secondItem="JgC-x9-jmI" secondAttribute="trailing" constant="75" id="GKd-dp-BPs"/>
-                            <constraint firstItem="f77-cs-Zg2" firstAttribute="centerX" secondItem="9B9-O8-rwK" secondAttribute="centerX" id="OFi-Nx-nFr"/>
-                            <constraint firstItem="9B9-O8-rwK" firstAttribute="leading" secondItem="qmL-If-WqM" secondAttribute="leading" constant="82" id="ZpI-Cz-sDX"/>
-                            <constraint firstItem="JgC-x9-jmI" firstAttribute="leading" secondItem="qmL-If-WqM" secondAttribute="leading" constant="75" id="smQ-4E-j3o"/>
-                            <constraint firstItem="qmL-If-WqM" firstAttribute="trailing" secondItem="9B9-O8-rwK" secondAttribute="trailing" constant="81" id="uth-EY-O9P"/>
-                            <constraint firstItem="f77-cs-Zg2" firstAttribute="top" secondItem="hhe-VD-6ou" secondAttribute="topMargin" constant="-44" id="x8H-ob-BU9"/>
+                            <constraint firstItem="qmL-If-WqM" firstAttribute="trailing" secondItem="9B9-O8-rwK" secondAttribute="trailing" constant="81" id="DAJ-48-kMy"/>
+                            <constraint firstItem="9B9-O8-rwK" firstAttribute="top" secondItem="qmL-If-WqM" secondAttribute="top" constant="563" id="V02-lp-Jbq"/>
+                            <constraint firstItem="qmL-If-WqM" firstAttribute="trailing" secondItem="JgC-x9-jmI" secondAttribute="trailing" constant="75" id="bGe-5N-bmP"/>
+                            <constraint firstItem="JgC-x9-jmI" firstAttribute="top" secondItem="9B9-O8-rwK" secondAttribute="bottom" constant="8" id="cOc-Nd-jDB"/>
+                            <constraint firstItem="9B9-O8-rwK" firstAttribute="leading" secondItem="qmL-If-WqM" secondAttribute="leading" constant="82" id="ggR-IP-RCy"/>
+                            <constraint firstItem="JgC-x9-jmI" firstAttribute="top" secondItem="9B9-O8-rwK" secondAttribute="bottom" constant="8" id="qth-3U-7Kp"/>
+                            <constraint firstItem="qmL-If-WqM" firstAttribute="bottom" secondItem="JgC-x9-jmI" secondAttribute="bottom" constant="20" id="wWc-U8-ZE3"/>
+                            <constraint firstItem="JgC-x9-jmI" firstAttribute="leading" secondItem="qmL-If-WqM" secondAttribute="leading" constant="75" id="yPT-XI-Lpl"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="qmL-If-WqM"/>
                     </view>

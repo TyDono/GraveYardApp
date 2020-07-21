@@ -103,7 +103,7 @@ class SignInViewController: UIViewController, GIDSignInUIDelegate {
     func changeBackground() {
         let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
         backgroundImage.image = UIImage(named: currentSeason ?? "summer")
-        backgroundImage.contentMode = UIView.ContentMode.scaleToFill
+        backgroundImage.contentMode = .scaleToFill
         self.view.insertSubview(backgroundImage, at: 0)
     }
     

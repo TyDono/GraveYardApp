@@ -44,6 +44,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         //chageTextColor()
         mapView.delegate = self
         MemorialHelperFunction()
+        self.navigationItem.rightBarButtonItem?.isEnabled = false
 //        getGraveEntries { (graves) in
 //            self.graves = graves
 //            self.dropGraveEntryPins()
@@ -295,12 +296,12 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        //being spam called ERROR
+        //lock on location, disabled go let user view around more
         let locValue: CLLocationCoordinate2D = manager.location!.coordinate
         //print("The user location coordinates are \(locValue.latitude) \(locValue.longitude)") // this is getting spam called!!!!!
         let userLocation = locations.last
-        let viewRegion = MKCoordinateRegion(center: (userLocation?.coordinate)!, latitudinalMeters: 600, longitudinalMeters: 600)
-        mapView.setRegion(viewRegion, animated: true)
+//        let viewRegion = MKCoordinateRegion(center: (userLocation?.coordinate)!, latitudinalMeters: 600, longitudinalMeters: 600)
+//        mapView.setRegion(viewRegion, animated: true)
     }
     
     func helpPopUp() {
@@ -339,42 +340,39 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     //        self.present(newGraveAlert, animated: true)
     //    }
     
-//    private var mapChangedFromUserInteraction = false
-//
-//    private func mapViewRegionDidChangeFromUserInteraction() -> Bool {
-//        let view = self.mapView.subviews[0]
-//        //  Look through gesture recognizers to determine whether this region change is from user interaction
-//        if let gestureRecognizers = view.gestureRecognizers {
-//            for recognizer in gestureRecognizers {
-//                if( recognizer.state == UIGestureRecognizer.State.began || recognizer.state == UIGestureRecognizer.State.ended ) {
-//                    return true
-//                }
-//            }
-//        }
-//        return false
-//    }
-//
-//    func mapView(_ mapView: MKMapView, regionWillChangeAnimated animated: Bool) {
-//        mapChangedFromUserInteraction = mapViewRegionDidChangeFromUserInteraction()
-//        if (mapChangedFromUserInteraction) {
-//            // user changed map region
-//        }
-//    }
-//
-//    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
-//        if (mapChangedFromUserInteraction) {
-//            // user changed map region
-//        }
-//    }
+    private var mapChangedFromUserInteraction = false
+
+    private func mapViewRegionDidChangeFromUserInteraction() -> Bool {
+        let view = self.mapView.subviews[0]
+        //  Look through gesture recognizers to determine whether this region change is from user interaction
+        if let gestureRecognizers = view.gestureRecognizers {
+            for recognizer in gestureRecognizers {
+                if( recognizer.state == UIGestureRecognizer.State.began || recognizer.state == UIGestureRecognizer.State.ended ) {
+                    return true
+                }
+            }
+        }
+        return false
+    }
+
+    func mapView(_ mapView: MKMapView, regionWillChangeAnimated animated: Bool) {
+        mapChangedFromUserInteraction = mapViewRegionDidChangeFromUserInteraction()
+        if (mapChangedFromUserInteraction) {
+            // user changed map region
+        }
+    }
+
+    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+        if (mapChangedFromUserInteraction) {
+            // user changed map region
+        }
+    }
     
     // MARK: - Actions
     
     
-    @IBAction func createMemorialHelperButtonTapped(_ sender: Any) {
-        let memorialHelpAlert = UIAlertController(title: "", message: "Hold down your finger on the desired loaction to create a Memorial", preferredStyle: .alert)
-        let dismiss = UIAlertAction(title: "OK", style: .default, handler: nil)
-        memorialHelpAlert.addAction(dismiss)
-        self.present(memorialHelpAlert, animated: true, completion: nil)
+    @IBAction func recenterButtonTapped(_ sender: Any) {
+        self.mapView.setUserTrackingMode(MKUserTrackingMode.follow, animated: true)
         
     }
     
@@ -503,7 +501,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         }
     }
     
-    @IBAction func helpButtonTapped(_ sender: UIBarButtonItem) {
+    @IBAction func AccountSideBarButtonItemTapped(_ sender: UIBarButtonItem) {
         if currentAuthID != nil {
             performSegue(withIdentifier: "segueToPayments", sender: nil)
         } else {

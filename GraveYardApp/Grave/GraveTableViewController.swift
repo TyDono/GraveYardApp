@@ -62,6 +62,7 @@ class GraveTableViewController: UITableViewController {
         //chageTextColor()
         checkForBioLabel()
         pinQuoteLabel.font = pinQuoteLabel.font.italic
+        self.storiesButton.layer.cornerRadius = 10
 //        getCurrentSeason()
 //        changeBackground()
     }
