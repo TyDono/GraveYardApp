@@ -17,6 +17,7 @@ import AVFoundation
 
 class GraveTableViewController: UITableViewController {
     
+    @IBOutlet weak var reportButton: UIButton!
     @IBOutlet weak var headstoneBasicInfoImage: UIImageView!
     @IBOutlet weak var rightBarButtonItem: UIBarButtonItem!
     @IBOutlet weak var graveMainImage: UIImageView!
@@ -61,6 +62,7 @@ class GraveTableViewController: UITableViewController {
         self.reportPopOver.layer.cornerRadius = 10
         //chageTextColor()
         checkForBioLabel()
+        self.reportButton.layer.cornerRadius = 10
         pinQuoteLabel.font = pinQuoteLabel.font.italic
         self.storiesButton.layer.cornerRadius = 10
 //        getCurrentSeason()

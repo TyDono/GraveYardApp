@@ -17,6 +17,7 @@ import AVFoundation
 
 class EditGraveTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
+    @IBOutlet weak var deleteHeadstoneButton: UIButton!
     @IBOutlet weak var graveMainImage: UIImageView!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var birthDatePicker: UIDatePicker!
@@ -51,6 +52,7 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
     override func viewDidLoad() {
         super.viewDidLoad()
         //chageTextColor()
+        self.deleteHeadstoneButton.layer.cornerRadius = 10
         db = Firestore.firestore()
     }
     

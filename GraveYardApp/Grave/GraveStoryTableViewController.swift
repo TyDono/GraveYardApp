@@ -15,6 +15,7 @@ class GraveStoryTableViewController: UITableViewController {
     
     // MARK: - Outlets
     
+    @IBOutlet weak var reportButton: UIButton!
     @IBOutlet weak var rightArrowButton: UIButton!
     @IBOutlet weak var leftArrowButton: UIButton!
     @IBOutlet weak var imageCounterLabel: UILabel!
@@ -55,6 +56,7 @@ class GraveStoryTableViewController: UITableViewController {
         storyBodyTextView.text = graveStoryBodyBioValue
         checkForCreatorId()
         storyImagesScrollView.delegate = self
+        self.reportButton.layer.cornerRadius = 10
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.31) {
             self.getImage1()
         }

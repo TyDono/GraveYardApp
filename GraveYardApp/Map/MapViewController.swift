@@ -13,7 +13,7 @@ import FirebaseFirestore
 
 class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UIGestureRecognizerDelegate {
     
-    @IBOutlet weak var createMemorialPinButton: UIButton!
+    @IBOutlet weak var recenterMapButton: UIButton!
     @IBOutlet weak var signUp: UIBarButtonItem!
     @IBOutlet weak var mapView: MKMapView!
     
@@ -63,9 +63,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     // MARK: - Functions
     
     func MemorialHelperFunction() {
-        self.createMemorialPinButton.layer.cornerRadius = 10
-        self.createMemorialPinButton.titleLabel?.text = "Create a Memorial!"
-        self.createMemorialPinButton.clipsToBounds = true
+        self.recenterMapButton.layer.cornerRadius = 10
+        self.recenterMapButton.clipsToBounds = true
         
     }
     

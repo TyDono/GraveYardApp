@@ -13,6 +13,7 @@ import FirebaseStorage
 
 class NewGraveStoryTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
+    @IBOutlet weak var deleteStoryButton: UIButton!
     @IBOutlet weak var imageLabel1: UILabel!
     @IBOutlet weak var imageLabel2: UILabel!
     @IBOutlet weak var imageLabel3: UILabel!
@@ -45,6 +46,7 @@ class NewGraveStoryTableViewController: UITableViewController, UIImagePickerCont
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.deleteStoryButton.layer.cornerRadius = 10
         storyTitleTextField.text = graveStoryTitleValue
         storyBodyTextView.text = graveStoryBodyTextValue
         //chageTextColor()

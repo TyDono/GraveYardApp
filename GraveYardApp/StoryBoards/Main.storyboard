@@ -371,6 +371,7 @@
                         <outlet property="graveNavTitle" destination="5l7-Vp-38m" id="HhH-J4-c4W"/>
                         <outlet property="headstoneBasicInfoImage" destination="xbn-Q9-sIO" id="iL4-6v-RzC"/>
                         <outlet property="pinQuoteLabel" destination="AQw-xL-FrS" id="FoW-cU-e8p"/>
+                        <outlet property="reportButton" destination="tNM-Jg-hmP" id="vRO-E8-Ew1"/>
                         <outlet property="reportCommentsTextView" destination="pph-df-0Ko" id="dms-r5-kcm"/>
                         <outlet property="reportPopOver" destination="EIE-HG-6t2" id="CI4-Jr-zWl"/>
                         <outlet property="rightBarButtonItem" destination="V6v-v6-hou" id="iyh-Gp-gFr"/>
@@ -763,6 +764,7 @@
                         <outlet property="birthLocationTextField" destination="1z7-YR-Rng" id="wAx-L9-llU"/>
                         <outlet property="deathDatePicker" destination="5UU-NF-NTR" id="oio-Fm-w6v"/>
                         <outlet property="deathLocationTextField" destination="WXA-Vl-eOn" id="Icu-z9-3bA"/>
+                        <outlet property="deleteHeadstoneButton" destination="ZNU-MZ-UIK" id="nUj-yF-dd9"/>
                         <outlet property="graveMainImage" destination="A0e-uE-pgk" id="Hn6-4M-vFW"/>
                         <outlet property="nameTextField" destination="LBe-W8-wbt" id="6Jd-4K-KvD"/>
                         <outlet property="pinQuoteTextField" destination="ChQ-Yw-FRJ" id="KVj-gG-KqD"/>
@@ -922,6 +924,7 @@
                     <connections>
                         <outlet property="imageCounterLabel" destination="jMZ-gj-0u3" id="WoX-25-vzk"/>
                         <outlet property="leftArrowButton" destination="jhF-Yl-Yx7" id="JHV-LJ-6XG"/>
+                        <outlet property="reportButton" destination="oYw-nw-F7c" id="qZz-3d-8W3"/>
                         <outlet property="reportCommentsTextView" destination="usB-Cu-u8F" id="Mfl-1u-zcx"/>
                         <outlet property="reportPopOver" destination="Z9O-BS-4uW" id="UUs-Sh-teO"/>
                         <outlet property="rightArrowButton" destination="MxG-ZG-ned" id="uz6-cO-C9p"/>
@@ -1231,6 +1234,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="deleteStoryButton" destination="q4a-EV-l2W" id="pxA-Hg-aMs"/>
                         <outlet property="imageLabel1" destination="k5l-mk-DFj" id="kZp-es-YJa"/>
                         <outlet property="imageLabel2" destination="dLH-00-85h" id="j23-w7-v2W"/>
                         <outlet property="imageLabel3" destination="pdg-94-Dlm" id="zn1-ny-VYl"/>
@@ -1383,27 +1387,25 @@
                                     <outletCollection property="gestureRecognizers" destination="lDL-6j-HQn" appends="YES" id="STK-9a-Uht"/>
                                 </connections>
                             </mapView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ywG-st-t1E">
-                                <rect key="frame" x="20" y="680" width="122" height="36"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W5U-iO-55T">
+                                <rect key="frame" x="20" y="686" width="122" height="30"/>
                                 <color key="backgroundColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <state key="normal" title="Recenter">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="recenterButtonTapped:" destination="9X6-7Z-pCz" eventType="touchUpInside" id="iAM-hW-t2S"/>
+                                    <action selector="recenterButtonTapped:" destination="9X6-7Z-pCz" eventType="touchUpInside" id="8Rr-ai-ajw"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="6MH-ve-unU" firstAttribute="leading" secondItem="Abc-m9-DRn" secondAttribute="leading" id="71F-Fp-uIZ"/>
-                            <constraint firstItem="ywG-st-t1E" firstAttribute="leading" secondItem="FOT-J4-Seo" secondAttribute="leadingMargin" id="GTu-VW-78f"/>
-                            <constraint firstItem="Abc-m9-DRn" firstAttribute="trailing" secondItem="ywG-st-t1E" secondAttribute="trailing" constant="272" id="Oty-Ay-7qY"/>
+                            <constraint firstItem="W5U-iO-55T" firstAttribute="leading" secondItem="Abc-m9-DRn" secondAttribute="leading" constant="20" id="KaD-hK-OX8"/>
+                            <constraint firstItem="Abc-m9-DRn" firstAttribute="trailing" secondItem="W5U-iO-55T" secondAttribute="trailing" constant="272" id="VCm-yD-83l"/>
                             <constraint firstItem="6MH-ve-unU" firstAttribute="top" secondItem="Abc-m9-DRn" secondAttribute="top" id="WwJ-dk-9KL"/>
-                            <constraint firstItem="ywG-st-t1E" firstAttribute="top" secondItem="Abc-m9-DRn" secondAttribute="top" constant="602" id="dSx-pk-emh"/>
+                            <constraint firstItem="Abc-m9-DRn" firstAttribute="bottom" secondItem="W5U-iO-55T" secondAttribute="bottom" constant="20" id="hQi-Qy-eoU"/>
                             <constraint firstItem="6MH-ve-unU" firstAttribute="trailing" secondItem="Abc-m9-DRn" secondAttribute="trailing" id="hoX-c6-dMm"/>
-                            <constraint firstItem="Abc-m9-DRn" firstAttribute="bottom" secondItem="ywG-st-t1E" secondAttribute="bottom" constant="20" id="jSt-R7-cpc"/>
                             <constraint firstItem="6MH-ve-unU" firstAttribute="bottom" secondItem="Abc-m9-DRn" secondAttribute="bottom" id="u5v-ji-bRW"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Abc-m9-DRn"/>
@@ -1421,8 +1423,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="createMemorialPinButton" destination="ywG-st-t1E" id="sLZ-jH-EJZ"/>
                         <outlet property="mapView" destination="6MH-ve-unU" id="KFx-y7-2xf"/>
+                        <outlet property="recenterMapButton" destination="W5U-iO-55T" id="yse-to-gs6"/>
                         <outlet property="signUp" destination="rQ8-Ij-DFF" id="ShX-Ox-C7m"/>
                         <segue destination="df1-gm-beU" kind="show" identifier="segueToGrave" id="xN6-dc-fkE"/>
                         <segue destination="wtE-vq-OyN" kind="unwind" identifier="unwindToSignIn" unwindAction="unwindToSignIn:" id="xDe-gH-4KU"/>
@@ -1574,9 +1576,9 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="74B-mS-0pn"/>
+        <segue reference="JUc-GY-fg1"/>
         <segue reference="z4g-pH-uIZ"/>
-        <segue reference="fpu-aT-yyc"/>
+        <segue reference="7DO-rd-4qB"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="2bd2f713a915ce40711bb4618d4547be_123238a36d92_t" width="300" height="300"/>
