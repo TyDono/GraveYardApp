@@ -44,7 +44,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         //chageTextColor()
         mapView.delegate = self
         MemorialHelperFunction()
-        self.navigationItem.rightBarButtonItem?.isEnabled = false
+//        self.navigationItem.rightBarButtonItem?.isEnabled = false
 //        getGraveEntries { (graves) in
 //            self.graves = graves
 //            self.dropGraveEntryPins()

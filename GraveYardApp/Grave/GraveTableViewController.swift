@@ -77,13 +77,10 @@ class GraveTableViewController: UITableViewController {
     // MARK: - Functions
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        print("lets go")
          let touch = touches.first
          if touch?.view == self.view {
-            print("pablo hestiastes")
             self.removePopOverAnimate()
         }
-        print("diamante")
     }
     
     func checkForCreatorId() {
@@ -207,7 +204,7 @@ class GraveTableViewController: UITableViewController {
                         print(name)
                         self.currentGraveId = graveId
                         self.imageString = profileImageId
-                        let nameHeadstone = "\(name)'s Headstone"
+                        let nameHeadstone = "\(name)"
                         self.graveNavTitle.title = nameHeadstone.uppercased()
                         self.creatorId = creatorId
                         self.birthDateLabel.text = birthDate

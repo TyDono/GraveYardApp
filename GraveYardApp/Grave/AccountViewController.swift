@@ -31,9 +31,9 @@ class AccountViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         db = Firestore.firestore()
-//        getUserData() re-instate this when premium is out!!!!!!
-        self.premiumStatusLabel.text = "Premium accounts comming soon!"
-        self.dataCountLabel.text = "Limited time Only!!! Unlimited Data!!!"
+        getUserData() //re-instate this when premium is out!!!!!!
+//        self.premiumStatusLabel.text = "Premium accounts comming soon!"
+//        self.dataCountLabel.text = "Limited time Only!!! Unlimited Data!!!"
         getCurrentSeason()
         changeBackground()
         

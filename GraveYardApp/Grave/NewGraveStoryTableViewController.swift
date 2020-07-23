@@ -190,7 +190,6 @@ class NewGraveStoryTableViewController: UITableViewController, UIImagePickerCont
     // MARK: - Actions
     
     @IBAction func saveStoryBarButtonTapped(_ sender: UIBarButtonItem) {
-        
         if storyImage1.image != nil {
             for image in storyImages1 {
                 uploadFirebaseImage1(image) { (url) in

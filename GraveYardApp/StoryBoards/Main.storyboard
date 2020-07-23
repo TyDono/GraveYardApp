@@ -1416,7 +1416,7 @@
                                 <action selector="SignInTapped:" destination="9X6-7Z-pCz" id="aaI-mx-CVZ"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="Account" id="RFS-BO-bmg">
+                        <barButtonItem key="rightBarButtonItem" title="Account" id="RFS-BO-bmg">
                             <connections>
                                 <action selector="AccountSideBarButtonItemTapped:" destination="9X6-7Z-pCz" id="qNB-En-KcA"/>
                             </connections>
@@ -1503,7 +1503,7 @@
                                 </connections>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9B9-O8-rwK">
-                                <rect key="frame" x="82" y="607" width="251" height="38"/>
+                                <rect key="frame" x="101" y="607" width="212" height="38"/>
                                 <state key="normal" image="appleSigninButton"/>
                                 <connections>
                                     <action selector="appleSigninButtonWasTapped:" destination="V3w-If-NiO" eventType="touchUpInside" id="hkf-Ak-K63"/>
@@ -1512,14 +1512,12 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="qmL-If-WqM" firstAttribute="trailing" secondItem="9B9-O8-rwK" secondAttribute="trailing" constant="81" id="DAJ-48-kMy"/>
-                            <constraint firstItem="9B9-O8-rwK" firstAttribute="top" secondItem="qmL-If-WqM" secondAttribute="top" constant="563" id="V02-lp-Jbq"/>
-                            <constraint firstItem="qmL-If-WqM" firstAttribute="trailing" secondItem="JgC-x9-jmI" secondAttribute="trailing" constant="75" id="bGe-5N-bmP"/>
-                            <constraint firstItem="JgC-x9-jmI" firstAttribute="top" secondItem="9B9-O8-rwK" secondAttribute="bottom" constant="8" id="cOc-Nd-jDB"/>
-                            <constraint firstItem="9B9-O8-rwK" firstAttribute="leading" secondItem="qmL-If-WqM" secondAttribute="leading" constant="82" id="ggR-IP-RCy"/>
-                            <constraint firstItem="JgC-x9-jmI" firstAttribute="top" secondItem="9B9-O8-rwK" secondAttribute="bottom" constant="8" id="qth-3U-7Kp"/>
-                            <constraint firstItem="qmL-If-WqM" firstAttribute="bottom" secondItem="JgC-x9-jmI" secondAttribute="bottom" constant="20" id="wWc-U8-ZE3"/>
-                            <constraint firstItem="JgC-x9-jmI" firstAttribute="leading" secondItem="qmL-If-WqM" secondAttribute="leading" constant="75" id="yPT-XI-Lpl"/>
+                            <constraint firstItem="qmL-If-WqM" firstAttribute="bottom" secondItem="JgC-x9-jmI" secondAttribute="bottom" constant="20" id="DQb-VX-5TI"/>
+                            <constraint firstItem="9B9-O8-rwK" firstAttribute="centerX" secondItem="JgC-x9-jmI" secondAttribute="centerX" id="Twc-tR-U8U"/>
+                            <constraint firstItem="9B9-O8-rwK" firstAttribute="top" secondItem="qmL-If-WqM" secondAttribute="top" constant="563" id="U65-cE-JC7"/>
+                            <constraint firstItem="JgC-x9-jmI" firstAttribute="top" secondItem="9B9-O8-rwK" secondAttribute="bottom" constant="8" id="Zfa-Ul-VON"/>
+                            <constraint firstItem="JgC-x9-jmI" firstAttribute="leading" secondItem="qmL-If-WqM" secondAttribute="leading" constant="75" id="ro0-oq-zID"/>
+                            <constraint firstItem="9B9-O8-rwK" firstAttribute="centerX" secondItem="hhe-VD-6ou" secondAttribute="centerX" id="tBd-UJ-vyw"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="qmL-If-WqM"/>
                     </view>
@@ -1576,7 +1574,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="JUc-GY-fg1"/>
+        <segue reference="74B-mS-0pn"/>
         <segue reference="z4g-pH-uIZ"/>
         <segue reference="7DO-rd-4qB"/>
     </inferredMetricsTieBreakers>
