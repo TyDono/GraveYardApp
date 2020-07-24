@@ -201,7 +201,6 @@ class GraveTableViewController: UITableViewController {
                         let familyStatus = document.data()["familyStatus"] as? String,
                         let bio = document.data()["bio"] as? String,
                         let pinQuote = document.data()["pinQuote"] as? String {
-                        print(name)
                         self.currentGraveId = graveId
                         self.imageString = profileImageId
                         let nameHeadstone = "\(name)"

@@ -1498,6 +1498,10 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JgC-x9-jmI" customClass="GIDSignInButton">
                                 <rect key="frame" x="75" y="653" width="264" height="63"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="264" id="k3y-B0-aCS"/>
+                                    <constraint firstAttribute="height" constant="63" id="pB3-82-8Bj"/>
+                                </constraints>
                                 <connections>
                                     <action selector="googleSignIn:" destination="V3w-If-NiO" eventType="valueChanged" id="MYZ-1o-NXx"/>
                                 </connections>

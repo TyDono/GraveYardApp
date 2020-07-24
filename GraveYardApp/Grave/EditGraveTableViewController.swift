@@ -359,7 +359,7 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
     }
     
     @IBAction func deleteGraveButtonTapped(_ sender: UIButton) {
-        let alerController = UIAlertController(title: "WARNING!", message: "This will delete all of the information on this Memorial!", preferredStyle: .actionSheet)
+        let alerController = UIAlertController(title: "WARNING!", message: "This will delete all of the information on this Memorial along with it's stories!", preferredStyle: .actionSheet)
         let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         alerController.addAction(cancel)
         let delete = UIAlertAction(title: "DELETE", style: .destructive) { _ in
@@ -371,20 +371,21 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
                     storyRef.document(self.currentGraveId ?? "error no graveId found").delete() { err in
                         if err == nil {
                             self.deleteGraveProfileImage()
-                            let alert1 = UIAlertController(title: "Success", message: "You have successfully deleted this Memorial", preferredStyle: .alert)
+                            let alert1 = UIAlertController(title: "Success", message: "You have successfully deleted this Memorial and all of it's content", preferredStyle: .alert)
                             alert1.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
                                 alert1.dismiss(animated: true, completion: nil)
+                                self.performSegue(withIdentifier: "unwindToMap", sender: nil)
                             }))
                             self.present(alert1, animated: true, completion: nil)
                             DispatchQueue.main.asyncAfter(deadline: .now() + 0) {
                                 moveToMap()
                             }
                         } else {
-                            let alert1 = UIAlertController(title: "ERROR", message: "Sorry, there was an error while trying to delete this Memorial, please check your internet connection  and try again", preferredStyle: .alert)
-                            alert1.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
-                                alert1.dismiss(animated: true, completion: nil)
+                            let alert2 = UIAlertController(title: "ERROR", message: "Sorry, there was an error while trying to delete this Memorial, please check your internet connection  and try again", preferredStyle: .alert)
+                            alert2.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
+                                alert2.dismiss(animated: true, completion: nil)
                             }))
-                            self.present(alert1, animated: true, completion: nil)
+                            self.present(alert2, animated: true, completion: nil)
                             print("document not deleted, ERROR")
                         }
                     }
@@ -395,14 +396,7 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
                         alert1.dismiss(animated: true, completion: nil)
                     }))
                     self.present(alert1, animated: true, completion: nil)
-                    print("document not deleted, ERROR")
-                    //                    print("Logged Out Tapped")
-                    //                    self.currentUser = nil
-                    //                    self.userId = ""
-                    //                    try! Auth.auth().signOut()
-                    //                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                    //                        moveToLogIn()
-                    //                    }
+                    print("Story document not deleted, ERROR")
                 }
             }
         }

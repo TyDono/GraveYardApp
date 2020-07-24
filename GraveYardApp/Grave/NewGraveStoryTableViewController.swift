@@ -229,15 +229,18 @@ class NewGraveStoryTableViewController: UITableViewController, UIImagePickerCont
             let userRef = self.db.collection("stories")
             userRef.document(self.currentGraveStoryId ?? "no StoryId detected").delete(){ err in
                 if err == nil {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0) {
-                        moveToMap()
-                    }
-                } else {
-                    let alert1 = UIAlertController(title: "ERROR", message: "Sorry, there was an error while trying to delete this story, please check your internet connection and try again", preferredStyle: .alert)
+                    let alert1 = UIAlertController(title: "Success", message: "This Story and all of it's contents have been successfully deleted", preferredStyle: .alert)
                     alert1.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
                         alert1.dismiss(animated: true, completion: nil)
                     }))
                     self.present(alert1, animated: true, completion: nil)
+                    self.performSegue(withIdentifier: "unwindtoGraveStoriesSegue", sender: nil)
+                } else {
+                    let alert2 = UIAlertController(title: "ERROR", message: "Sorry, there was an error while trying to delete this story, please check your internet connection and try again", preferredStyle: .alert)
+                    alert2.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
+                        alert2.dismiss(animated: true, completion: nil)
+                    }))
+                    self.present(alert2, animated: true, completion: nil)
                     print("document not deleted, ERROR")
                 }
             }
