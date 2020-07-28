@@ -18,16 +18,16 @@ import AVFoundation
 class GraveTableViewController: UITableViewController {
     
     @IBOutlet weak var reportButton: UIButton!
-    @IBOutlet weak var headstoneBasicInfoImage: UIImageView!
     @IBOutlet weak var rightBarButtonItem: UIBarButtonItem!
     @IBOutlet weak var graveMainImage: UIImageView!
     @IBOutlet weak var storiesButton: UIButton!
-    @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var familyStatusLabel: UILabel!
     @IBOutlet weak var birthDateLabel: UILabel!
     @IBOutlet weak var birthLocationLabel: UILabel!
     @IBOutlet weak var deathDateLabel: UILabel!
     @IBOutlet weak var deathLocationLabel: UILabel!
+    @IBOutlet weak var midTopLabel: UILabel!
+    @IBOutlet weak var midBotLabel: UILabel!
     @IBOutlet weak var bioLabel: UILabel!
     @IBOutlet weak var graveNavTitle: UINavigationItem!
     @IBOutlet weak var pinQuoteLabel: UILabel!
@@ -222,6 +222,7 @@ class GraveTableViewController: UITableViewController {
                                 self.navigationItem.rightBarButtonItem?.title = "Report"
                             }
                         }
+                        
                         self.checkForCreatorId()
                         self.getImages()// always call last
                     }
