@@ -17,6 +17,8 @@ import AVFoundation
 
 class EditGraveTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
+    @IBOutlet weak var birthSwitch: UISwitch!
+    @IBOutlet weak var deathSwitch: UISwitch!
     @IBOutlet weak var deleteHeadstoneButton: UIButton!
     @IBOutlet weak var graveMainImage: UIImageView!
     @IBOutlet weak var nameTextField: UITextField!
@@ -46,6 +48,8 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
     var currentImageDataCount: Int?
     var player = AVPlayer()
     var playerViewController = AVPlayerViewController()
+    var birthDate: String = ""
+    var deathDate: String = ""
     
     // MARK: - View Lifecycle
     
@@ -141,13 +145,13 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
     }
     
     func getStoryData() {
-        let graveRef = self.db.collection("grave").whereField("graveId", isEqualTo: MapViewController.shared.currentGraveId)
+        let graveRef = self.db.collection("grave").whereField("graveId", isEqualTo: MapViewController.shared.currentGraveId!)
         graveRef.getDocuments { (snapshot, error) in
             if error != nil {
                 print(error as Any)
             } else {
                 for document in (snapshot?.documents)! {
-                    if let creatorId = document.data()["creatorId"] as? String {
+                    if (document.data()["creatorId"] as? String) != nil {
 
                     }
                 }
@@ -302,11 +306,19 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
         guard let graveId = self.currentGraveId  else { return } // this is the grave id that was tapped on
         guard let profileImageId = self.imageString else { return }
         guard let name = nameTextField.text else { return }
-        let birth = birthDatePicker.date
-        let birthDate = dateFormatter.string(from: birth)
+        if birthSwitch.isOn == true {
+            let birth = birthDatePicker.date
+            self.birthDate = dateFormatter.string(from: birth)
+        } else {
+            self.birthDate = ""
+        }
         guard let birthLocation = birthLocationTextField.text else { return }
-        let death = deathDatePicker.date
-        let deathDate = dateFormatter.string(from: death)
+        if deathSwitch.isOn == true {
+            let death = deathDatePicker.date
+            self.deathDate = dateFormatter.string(from: death)
+        } else {
+            self.deathDate = ""
+        }
         guard let deathLocation = deathLocationTextField.text else { return }
         let familyStatus =  "" //familyStatusTextView.text else { return }
         guard let bio = bioTextView.text else { return }
@@ -319,9 +331,9 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
                           graveId: graveId,
                           profileImageId: profileImageId,
                           name: name,
-                          birthDate: birthDate,
+                          birthDate: self.birthDate,
                           birthLocation: birthLocation,
-                          deathDate: deathDate,
+                          deathDate: self.deathDate,
                           deathLocation: deathLocation,
                           familyStatus: familyStatus,
                           bio: bio,
@@ -356,6 +368,11 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
         imagePickerController.delegate = self
         imagePickerController.sourceType = UIImagePickerController.SourceType.photoLibrary
         present(imagePickerController, animated: true, completion: nil)
+    }
+    @IBAction func birthSwitchWasTapped(_ sender: UISwitch) {
+    }
+    
+    @IBAction func deathSwitchWasTapped(_ sender: UISwitch) {
     }
     
     @IBAction func deleteGraveButtonTapped(_ sender: UIButton) {

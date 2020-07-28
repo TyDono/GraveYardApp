@@ -270,21 +270,24 @@
                                                 <constraint firstAttribute="trailingMargin" secondItem="a2Y-sB-v5O" secondAttribute="trailing" constant="-20" id="6AL-Pc-jCg"/>
                                                 <constraint firstItem="QQm-lk-9c4" firstAttribute="bottom" secondItem="7RO-fZ-qoc" secondAttribute="bottomMargin" id="Anj-3F-4Kl"/>
                                                 <constraint firstItem="QQm-lk-9c4" firstAttribute="firstBaseline" secondItem="j3O-za-A98" secondAttribute="firstBaseline" id="Fc3-q0-QxO"/>
+                                                <constraint firstItem="j3O-za-A98" firstAttribute="bottom" secondItem="7RO-fZ-qoc" secondAttribute="bottomMargin" id="H8E-Au-5dm"/>
                                                 <constraint firstItem="a2Y-sB-v5O" firstAttribute="leading" secondItem="cbC-Ph-ckh" secondAttribute="leading" id="HAL-vf-T5z"/>
                                                 <constraint firstItem="j3O-za-A98" firstAttribute="firstBaseline" secondItem="cbC-Ph-ckh" secondAttribute="firstBaseline" id="HJa-cP-pBe"/>
                                                 <constraint firstItem="a2Y-sB-v5O" firstAttribute="leading" secondItem="H71-Aq-rMn" secondAttribute="trailing" constant="8" id="KF3-68-l9c"/>
                                                 <constraint firstItem="QQm-lk-9c4" firstAttribute="baseline" secondItem="j3O-za-A98" secondAttribute="baseline" id="KP1-FP-3Gq"/>
-                                                <constraint firstItem="eXT-Se-1rN" firstAttribute="centerX" secondItem="7RO-fZ-qoc" secondAttribute="centerX" id="QYk-SZ-tJP"/>
                                                 <constraint firstItem="H71-Aq-rMn" firstAttribute="top" secondItem="7RO-fZ-qoc" secondAttribute="topMargin" constant="-11" id="RFU-Te-YZO"/>
-                                                <constraint firstItem="eXT-Se-1rN" firstAttribute="leading" secondItem="7RO-fZ-qoc" secondAttribute="leadingMargin" constant="86" id="RXK-Y4-SxB"/>
+                                                <constraint firstItem="eXT-Se-1rN" firstAttribute="leading" secondItem="7RO-fZ-qoc" secondAttribute="leading" constant="106" id="W0J-bV-Pu5"/>
+                                                <constraint firstItem="j3O-za-A98" firstAttribute="leading" secondItem="7RO-fZ-qoc" secondAttribute="leadingMargin" constant="86" id="X4m-hy-W7k"/>
+                                                <constraint firstItem="QQm-lk-9c4" firstAttribute="top" secondItem="eXT-Se-1rN" secondAttribute="bottom" constant="18" id="aY3-tr-00z"/>
                                                 <constraint firstItem="eXT-Se-1rN" firstAttribute="baseline" secondItem="a2Y-sB-v5O" secondAttribute="baseline" id="b5t-xh-7Iz"/>
                                                 <constraint firstItem="j3O-za-A98" firstAttribute="baseline" secondItem="cbC-Ph-ckh" secondAttribute="baseline" id="cLO-D5-a8d"/>
                                                 <constraint firstItem="eXT-Se-1rN" firstAttribute="baseline" secondItem="H71-Aq-rMn" secondAttribute="firstBaseline" id="d91-c2-c6g"/>
                                                 <constraint firstItem="H71-Aq-rMn" firstAttribute="leading" secondItem="QQm-lk-9c4" secondAttribute="leading" id="ky0-gt-YAE"/>
                                                 <constraint firstItem="QQm-lk-9c4" firstAttribute="top" secondItem="H71-Aq-rMn" secondAttribute="bottom" constant="18" id="mj6-Hy-GwX"/>
                                                 <constraint firstItem="eXT-Se-1rN" firstAttribute="leading" secondItem="j3O-za-A98" secondAttribute="leading" id="ox3-UN-WO8"/>
-                                                <constraint firstItem="eXT-Se-1rN" firstAttribute="trailing" secondItem="j3O-za-A98" secondAttribute="trailing" id="rST-D5-mfG"/>
+                                                <constraint firstItem="eXT-Se-1rN" firstAttribute="top" secondItem="7RO-fZ-qoc" secondAttribute="top" id="p6w-dE-WOx"/>
                                                 <constraint firstItem="a2Y-sB-v5O" firstAttribute="trailing" secondItem="cbC-Ph-ckh" secondAttribute="trailing" id="rn5-b2-c2V"/>
+                                                <constraint firstItem="j3O-za-A98" firstAttribute="top" secondItem="H71-Aq-rMn" secondAttribute="bottom" constant="18" id="tK6-1A-C1E"/>
                                                 <constraint firstItem="H71-Aq-rMn" firstAttribute="baseline" secondItem="eXT-Se-1rN" secondAttribute="baseline" id="tnq-Z9-dnZ"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -612,6 +615,9 @@
                                             <subviews>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0e9-1k-fAC">
                                                     <rect key="frame" x="20" y="6" width="51" height="32"/>
+                                                    <connections>
+                                                        <action selector="birthSwitchWasTapped:" destination="akf-23-k3a" eventType="valueChanged" id="nkb-Ua-apF"/>
+                                                    </connections>
                                                 </switch>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KKT-Ud-MaG">
                                                     <rect key="frame" x="77" y="6" width="317" height="32"/>
@@ -689,6 +695,9 @@
                                             <subviews>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yer-Qg-J5B">
                                                     <rect key="frame" x="20" y="6" width="51" height="32"/>
+                                                    <connections>
+                                                        <action selector="deathSwitchWasTapped:" destination="akf-23-k3a" eventType="valueChanged" id="f8L-0K-Vum"/>
+                                                    </connections>
                                                 </switch>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WHp-nc-xKk">
                                                     <rect key="frame" x="77" y="6" width="317" height="32"/>
@@ -798,8 +807,10 @@
                         <outlet property="bioTextView" destination="uJa-vq-QGj" id="zut-4p-UQw"/>
                         <outlet property="birthDatePicker" destination="G4W-NT-Qpq" id="gob-ML-mrl"/>
                         <outlet property="birthLocationTextField" destination="1z7-YR-Rng" id="wAx-L9-llU"/>
+                        <outlet property="birthSwitch" destination="0e9-1k-fAC" id="MCj-az-2bs"/>
                         <outlet property="deathDatePicker" destination="5UU-NF-NTR" id="oio-Fm-w6v"/>
                         <outlet property="deathLocationTextField" destination="WXA-Vl-eOn" id="Icu-z9-3bA"/>
+                        <outlet property="deathSwitch" destination="yer-Qg-J5B" id="zVb-q1-DGg"/>
                         <outlet property="deleteHeadstoneButton" destination="ZNU-MZ-UIK" id="nUj-yF-dd9"/>
                         <outlet property="graveMainImage" destination="A0e-uE-pgk" id="Hn6-4M-vFW"/>
                         <outlet property="nameTextField" destination="LBe-W8-wbt" id="6Jd-4K-KvD"/>

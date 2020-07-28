@@ -206,10 +206,32 @@ class GraveTableViewController: UITableViewController {
                         let nameHeadstone = "\(name)"
                         self.graveNavTitle.title = nameHeadstone.uppercased()
                         self.creatorId = creatorId
-                        self.birthDateLabel.text = birthDate
-                        self.birthLocationLabel.text = birthLocation
-                        self.deathDateLabel.text = deathDate
-                        self.deathLocationLabel.text = deathLocation
+                        if birthDate != "" {
+                            self.midTopLabel.text = ""
+                            self.midBotLabel.text = ""
+                            self.birthDateLabel.text = birthDate
+                            self.birthLocationLabel.text = birthLocation
+                        } else {
+                            self.birthDateLabel.text = ""
+                            self.birthLocationLabel.text = ""
+                            self.deathDateLabel.text = ""
+                            self.deathLocationLabel.text = ""
+                            self.midTopLabel.text = deathDate
+                            self.midBotLabel.text = deathLocation
+                        }
+                        if deathDate != "" {
+                            self.midTopLabel.text = ""
+                            self.midBotLabel.text = ""
+                            self.deathDateLabel.text = deathDate
+                            self.deathLocationLabel.text = deathLocation
+                        } else {
+                            self.birthDateLabel.text = ""
+                            self.birthLocationLabel.text = ""
+                            self.deathDateLabel.text = ""
+                            self.deathLocationLabel.text = ""
+                            self.midTopLabel.text = birthDate
+                            self.midBotLabel.text = birthLocation
+                        }
                         self.familyStatusLabel.text = familyStatus
                         self.bioLabel.text = bio
                         if pinQuote == "" {
