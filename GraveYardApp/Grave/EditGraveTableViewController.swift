@@ -17,6 +17,8 @@ import AVFoundation
 
 class EditGraveTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
+    @IBOutlet weak var birthLabel: UILabel!
+    @IBOutlet weak var deathLabel: UILabel!
     @IBOutlet weak var birthSwitch: UISwitch!
     @IBOutlet weak var deathSwitch: UISwitch!
     @IBOutlet weak var deleteHeadstoneButton: UIButton!
@@ -58,6 +60,7 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
         //chageTextColor()
         self.deleteHeadstoneButton.layer.cornerRadius = 10
         db = Firestore.firestore()
+        switchEnabler()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -83,6 +86,19 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
         tableView.separatorColor = UIColor(0.0, 128.0, 128.0, 1.0)
         navigationItem.leftBarButtonItem?.tintColor = UIColor(0.0, 128.0, 128.0, 1.0)
         navigationItem.rightBarButtonItem?.tintColor = UIColor(0.0, 128.0, 128.0, 1.0)
+    }
+    
+    func switchEnabler() {
+        if birthSwitch.isOn == true {
+            birthLabel.text = "Enabled"
+        } else {
+            birthLabel.text = "Disabled"
+        }
+        if deathSwitch.isOn == true {
+            deathLabel.text = "Enabled"
+        } else {
+            deathLabel.text = "Disabled"
+        }
     }
     
     func updateUserData() {
@@ -370,9 +386,20 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
         present(imagePickerController, animated: true, completion: nil)
     }
     @IBAction func birthSwitchWasTapped(_ sender: UISwitch) {
+        if birthSwitch.isOn == true {
+            birthLabel.text = "Enabled"
+        } else {
+            birthLabel.text = "Disabled"
+        }
     }
     
     @IBAction func deathSwitchWasTapped(_ sender: UISwitch) {
+        print("switch was tapped")
+        if deathSwitch.isOn == true {
+            deathLabel.text = "Enabled"
+        } else {
+            deathLabel.text = "Disabled"
+        }
     }
     
     @IBAction func deleteGraveButtonTapped(_ sender: UIButton) {
