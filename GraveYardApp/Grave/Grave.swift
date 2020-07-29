@@ -33,6 +33,8 @@ struct Grave {
     var graveLocationLongitude: String
     var allGraveIdentifier: String //this is used to locate pins and is needed for every pin
     var pinQuote: String
+    var birthSwitchIsOn: Bool
+    var deathSwitchIsOn: Bool
     // premium users, grave quote, grave node image
     // BURIAL LOCATION
     // coordanates = jim
@@ -55,7 +57,9 @@ struct Grave {
             "graveLocationLatitude": graveLocationLatitude,
             "graveLocationLongitude": graveLocationLongitude,
             "allGraveIdentifier": allGraveIdentifier,
-            "pinQuote": pinQuote
+            "pinQuote": pinQuote,
+            "birthSwitchIsOn": birthSwitchIsOn,
+            "deathSwitchIsOn": deathSwitchIsOn
         ]
     }
 }
@@ -75,8 +79,10 @@ extension Grave: DocumentGraveSerializable {
             let graveLocationLatitude = dictionary["graveLocationLatitude"] as? String,
             let graveLocationLongitude = dictionary["graveLocationLongitude"] as? String,
             let allGraveIdentifier = dictionary["allGraveIdentifier"] as? String,
-            let pinQuote = dictionary["pinQuote"] as? String else {return nil}
-        self.init(creatorId: creatorId, graveId: graveId, profileImageId: profileImageId, name: name, birthDate: birthDate, birthLocation: birthLocation, deathDate: deathDate, deathLocation: deathLocation, familyStatus: familyStatus, bio: bio, graveLocationLatitude: graveLocationLatitude, graveLocationLongitude: graveLocationLongitude, allGraveIdentifier: allGraveIdentifier, pinQuote: pinQuote)
+            let pinQuote = dictionary["pinQuote"] as? String,
+            let birthSwitchIsOn = dictionary["birthSwitchIsOn"] as? Bool,
+            let deathSwitchIsOn = dictionary["deathSwitchIsOn"] as? Bool else {return nil}
+        self.init(creatorId: creatorId, graveId: graveId, profileImageId: profileImageId, name: name, birthDate: birthDate, birthLocation: birthLocation, deathDate: deathDate, deathLocation: deathLocation, familyStatus: familyStatus, bio: bio, graveLocationLatitude: graveLocationLatitude, graveLocationLongitude: graveLocationLongitude, allGraveIdentifier: allGraveIdentifier, pinQuote: pinQuote, birthSwitchIsOn: birthSwitchIsOn, deathSwitchIsOn: deathSwitchIsOn)
     }
     
 }

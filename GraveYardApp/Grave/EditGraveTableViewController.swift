@@ -148,7 +148,9 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
                         let bio = document.data()["bio"] as? String,
                         let pinQuote = document.data()["pinQuote"] as? String,
                         let graveLocationLatitude = document.data()["graveLocationLatitude"] as? String,
-                        let graveLocationLongitude = document.data()["graveLocationLongitude"] as? String {
+                        let graveLocationLongitude = document.data()["graveLocationLongitude"] as? String,
+                        let birthSwitchIsOn = document.data()["birthSwitchIsOn"] as? Bool,
+                        let deathSwitchIsOn = document.data()["deathSwitchIsOn"] as? Bool {
                         
                         self.imageString = profileImageId
                         guard let birthDate = self.dateFormatter.date(from:birthDate) ?? defaultDate else { return }
@@ -165,6 +167,8 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
                         self.creatorId = creatorId
                         self.currentGraveLocationLatitude = graveLocationLatitude
                         self.currentGraveLocationLongitude = graveLocationLongitude
+                        self.birthSwitch.isOn = birthSwitchIsOn
+                        self.deathSwitch.isOn = deathSwitchIsOn
                         self.getImages() //call this last
                     }
                 }
@@ -368,7 +372,9 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
                           graveLocationLatitude: currentGraveLocationLatitude,
                           graveLocationLongitude: currentGraveLocationLongitude,
                           allGraveIdentifier: allGraveIdentifier,
-                          pinQuote: pinQuote)
+                          pinQuote: pinQuote,
+                          birthSwitchIsOn: self.birthSwitch.isOn,
+                          deathSwitchIsOn: self.deathSwitch.isOn)
         
         let graveRef = self.db.collection("grave")
         graveRef.document(String(grave.graveId)).updateData(grave.dictionary){ err in
