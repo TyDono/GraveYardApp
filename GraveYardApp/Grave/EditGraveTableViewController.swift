@@ -17,6 +17,10 @@ import AVFoundation
 
 class EditGraveTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
+    @IBOutlet weak var birthDateCell: UITableViewCell!
+    @IBOutlet weak var birthLocationCell: UITableViewCell!
+    @IBOutlet weak var deathDateCell: UITableViewCell!
+    @IBOutlet weak var deathLocationCell: UITableViewCell!
     @IBOutlet weak var birthLabel: UILabel!
     @IBOutlet weak var deathLabel: UILabel!
     @IBOutlet weak var birthSwitch: UISwitch!
@@ -91,13 +95,21 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
     func switchEnabler() {
         if birthSwitch.isOn == true {
             birthLabel.text = "Enabled"
+            birthDateCell.isHidden = false
+            birthLocationCell.isHidden = false
         } else {
             birthLabel.text = "Disabled"
+            birthDateCell.isHidden = true
+            birthLocationCell.isHidden = true
         }
         if deathSwitch.isOn == true {
             deathLabel.text = "Enabled"
+            deathDateCell.isHidden = false
+            deathLocationCell.isHidden = false
         } else {
             deathLabel.text = "Disabled"
+            deathDateCell.isHidden = true
+            deathLocationCell.isHidden = true
         }
     }
     
@@ -388,17 +400,24 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
     @IBAction func birthSwitchWasTapped(_ sender: UISwitch) {
         if birthSwitch.isOn == true {
             birthLabel.text = "Enabled"
+            birthDateCell.isHidden = false
+            birthLocationCell.isHidden = false
         } else {
             birthLabel.text = "Disabled"
+            birthDateCell.isHidden = true
+            birthLocationCell.isHidden = true
         }
     }
     
     @IBAction func deathSwitchWasTapped(_ sender: UISwitch) {
-        print("switch was tapped")
         if deathSwitch.isOn == true {
             deathLabel.text = "Enabled"
+            deathDateCell.isHidden = false
+            deathLocationCell.isHidden = false
         } else {
             deathLabel.text = "Disabled"
+            deathDateCell.isHidden = true
+            deathLocationCell.isHidden = true
         }
     }
     

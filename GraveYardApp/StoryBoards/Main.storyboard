@@ -816,12 +816,16 @@
                     </navigationItem>
                     <connections>
                         <outlet property="bioTextView" destination="uJa-vq-QGj" id="zut-4p-UQw"/>
+                        <outlet property="birthDateCell" destination="IlB-7M-UUF" id="MUI-gx-L0q"/>
                         <outlet property="birthDatePicker" destination="G4W-NT-Qpq" id="gob-ML-mrl"/>
                         <outlet property="birthLabel" destination="KKT-Ud-MaG" id="19y-gu-xZn"/>
+                        <outlet property="birthLocationCell" destination="xpo-cd-42m" id="kc7-Wl-Hxh"/>
                         <outlet property="birthLocationTextField" destination="1z7-YR-Rng" id="wAx-L9-llU"/>
                         <outlet property="birthSwitch" destination="0e9-1k-fAC" id="MCj-az-2bs"/>
+                        <outlet property="deathDateCell" destination="CyL-5m-frz" id="jcD-pO-aNE"/>
                         <outlet property="deathDatePicker" destination="5UU-NF-NTR" id="oio-Fm-w6v"/>
                         <outlet property="deathLabel" destination="WHp-nc-xKk" id="3rw-d3-8Ce"/>
+                        <outlet property="deathLocationCell" destination="8eQ-LP-te5" id="B8i-1V-aUe"/>
                         <outlet property="deathLocationTextField" destination="WXA-Vl-eOn" id="Icu-z9-3bA"/>
                         <outlet property="deathSwitch" destination="yer-Qg-J5B" id="zVb-q1-DGg"/>
                         <outlet property="deleteHeadstoneButton" destination="ZNU-MZ-UIK" id="nUj-yF-dd9"/>
