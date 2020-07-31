@@ -87,8 +87,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     
     func dropGraveEntryPins() {
         if graves != nil {
-//            for i in 0...graves!.count - 1 {
-            for i in stride(from: 0, through: graves!.count - 1, by: -1) {
+            for i in 0...graves!.count - 1 {
+//            for i in stride(from: 0, through: graves!.count - 1, by: -1) {
                 let registeredGrave = graves![i]
                 let annotation = MKPointAnnotation()
                 let currentGraveTitle = registeredGrave.name

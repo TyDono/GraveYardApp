@@ -306,12 +306,12 @@
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="bioCell" id="6Pf-U6-0Ak">
                                         <rect key="frame" x="0.0" y="562.00000047683716" width="414" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6Pf-U6-0Ak" id="BLp-Sj-gZc">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6Pf-U6-0Ak" id="BLp-Sj-gZc">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XKX-qo-Rag">
-                                                    <rect key="frame" x="20" y="11" width="374" height="22"/>
+                                                    <rect key="frame" x="20" y="11" width="343" height="38"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="343" id="N0K-ok-EWd"/>
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="38" id="NVE-Xh-JA3"/>
@@ -865,7 +865,7 @@
                                                     <rect key="frame" x="20" y="48" width="374" height="258"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <subviews>
-                                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="EJs-T9-0Fu">
+                                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EJs-T9-0Fu">
                                                             <rect key="frame" x="0.0" y="0.0" width="374" height="258"/>
                                                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                             <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -1643,7 +1643,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="JUc-GY-fg1"/>
         <segue reference="z4g-pH-uIZ"/>
-        <segue reference="7DO-rd-4qB"/>
+        <segue reference="fpu-aT-yyc"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="2bd2f713a915ce40711bb4618d4547be_123238a36d92_t" width="300" height="300"/>

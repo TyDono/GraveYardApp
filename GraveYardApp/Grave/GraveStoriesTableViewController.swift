@@ -38,6 +38,7 @@ class GraveStoriesTableViewController: UITableViewController {
         //chageTextColor()
         db = Firestore.firestore()
 //        getGraveStories()
+        changeBackground()
         if currentAuthID != creatorId {
             self.navigationItem.rightBarButtonItem = nil
         }
@@ -157,6 +158,13 @@ class GraveStoriesTableViewController: UITableViewController {
                 graveStoryTVC.storyImageId3 = story.storyImageId3
             }
         }
+    }
+    
+    func changeBackground() {
+        let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
+        backgroundImage.image = UIImage(named: "sampleShelf")
+        backgroundImage.contentMode = UIView.ContentMode.scaleToFill
+        self.tableView.backgroundView = backgroundImage
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
