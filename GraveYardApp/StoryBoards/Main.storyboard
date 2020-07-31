@@ -615,7 +615,7 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Birth" id="MYG-F5-e0M">
+                            <tableViewSection headerTitle="Begining Date/Location" id="MYG-F5-e0M">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="aWY-3S-cNw">
                                         <rect key="frame" x="0.0" y="895.66666793823242" width="414" height="44"/>
@@ -695,7 +695,7 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Death" id="10Y-Zq-9f3">
+                            <tableViewSection headerTitle="Ending Date/Location" id="10Y-Zq-9f3">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="k2y-jR-vdW">
                                         <rect key="frame" x="0.0" y="1083.0000038146973" width="414" height="44"/>
