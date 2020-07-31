@@ -86,7 +86,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     }
     
     func dropGraveEntryPins() {
-        if graves != nil {
+        if graves != nil && graves?.count != 0 {
             for i in 0...graves!.count - 1 {
 //            for i in stride(from: 0, through: graves!.count - 1, by: -1) {
                 let registeredGrave = graves![i]
