@@ -36,6 +36,7 @@ class GraveStoriesTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         //chageTextColor()
+        self.tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         db = Firestore.firestore()
 //        getGraveStories()
         changeBackground()
@@ -162,7 +163,7 @@ class GraveStoriesTableViewController: UITableViewController {
     
     func changeBackground() {
         let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
-        backgroundImage.image = UIImage(named: "sampleShelf")
+        backgroundImage.image = UIImage(named: "bookshelf")
         backgroundImage.contentMode = UIView.ContentMode.scaleToFill
         self.tableView.backgroundView = backgroundImage
     }

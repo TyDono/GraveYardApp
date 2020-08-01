@@ -294,6 +294,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         mapView.mapType = .standard
         mapView.isZoomEnabled = true
         mapView.isScrollEnabled = true
+        
         mapView.userTrackingMode = .followWithHeading
         mapView.isUserInteractionEnabled = true
     }

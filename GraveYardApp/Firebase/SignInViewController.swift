@@ -49,7 +49,11 @@ class SignInViewController: UIViewController, GIDSignInUIDelegate {
         GIDSignIn.sharedInstance()?.uiDelegate = self
         db = Firestore.firestore()
         changeBackground()
-        checkForcurrentAuthID()
+        Auth.auth().addStateDidChangeListener() { auth, user in
+            if user != nil {
+                self.performSegue(withIdentifier: "segueToMap", sender: nil)
+            }
+        }
     }
     
     // MARK: - Functions
@@ -86,12 +90,6 @@ class SignInViewController: UIViewController, GIDSignInUIDelegate {
             self.currentSeason = self.winter
         default:
             self.currentSeason = self.summer
-        }
-    }
-    
-    func checkForcurrentAuthID() {
-        if currentAuthID != nil {
-            performSegue(withIdentifier: "segueToMap", sender: nil)
         }
     }
     
