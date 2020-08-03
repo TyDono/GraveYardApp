@@ -295,7 +295,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         mapView.isZoomEnabled = true
         mapView.isScrollEnabled = true
         
-        mapView.userTrackingMode = .followWithHeading
+        mapView.userTrackingMode = .follow
         mapView.isUserInteractionEnabled = true
     }
     
@@ -377,7 +377,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     
     @IBAction func recenterButtonTapped(_ sender: Any) {
         self.mapView.setUserTrackingMode(MKUserTrackingMode.follow, animated: true)
-        
+        mapView.userTrackingMode = .follow
     }
     
     @IBAction func userDidLongPress(_ sender: UILongPressGestureRecognizer) {
