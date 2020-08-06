@@ -45,6 +45,7 @@
 		CB3A30E0235F9E4B00CF2CBB /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		CB3A3889237528E400DA756D /* NewGraveStoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGraveStoryTableViewController.swift; sourceTree = "<group>"; };
 		CB3A388B2375293F00DA756D /* GraveStoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraveStoryTableViewController.swift; sourceTree = "<group>"; };
+		CB4895A324DC95A000055688 /* GraveYardApp.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = GraveYardApp.entitlements; sourceTree = "<group>"; };
 		CB5AE18323512B14001BCCCE /* GraveYardApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GraveYardApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB5AE19423512B16001BCCCE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CB5BAAE0247DBA8C00350553 /* PaymentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentsViewController.swift; sourceTree = "<group>"; };
@@ -140,6 +141,7 @@
 				CBAC4EAC2370E9DE006760A5 /* StoryBoards */,
 				CBCE0E2E23FD14410077A4F1 /* Assets.xcassets */,
 				CB5AE19423512B16001BCCCE /* Info.plist */,
+				CB4895A324DC95A000055688 /* GraveYardApp.entitlements */,
 				CBCE0E3023FD144F0077A4F1 /* GoogleService-Info.plist */,
 			);
 			path = GraveYardApp;
@@ -505,6 +507,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.01;
 				PRODUCT_BUNDLE_IDENTIFIER = TyDon.GraveYardApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -527,6 +530,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.01;
 				PRODUCT_BUNDLE_IDENTIFIER = TyDon.GraveYardApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
