@@ -16,6 +16,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     @IBOutlet weak var recenterMapButton: UIButton!
     @IBOutlet weak var signUp: UIBarButtonItem!
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet var addMemorialView: UIView!
+    @IBOutlet weak var addMemorialButton: UIButton!
     
     // MARK: - Propeties
     
@@ -42,8 +44,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
 //        self.mapView.removeAnnotations(self.mapView.annotations)
         setMapViewLocationAndUser()
         //chageTextColor()
+        addMemorialView.layer.cornerRadius = 10
         mapView.delegate = self
-        MemorialHelperFunction()
+        MemorialButtonFunction()
         self.navigationItem.rightBarButtonItem?.isEnabled = false
         self.navigationItem.rightBarButtonItem?.title = ""
 //        getGraveEntries { (graves) in
@@ -63,10 +66,11 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     
     // MARK: - Functions
     
-    func MemorialHelperFunction() {
+    func MemorialButtonFunction() {
         self.recenterMapButton.layer.cornerRadius = 10
         self.recenterMapButton.clipsToBounds = true
-        
+        self.addMemorialButton.layer.cornerRadius = 10
+        self.addMemorialButton.clipsToBounds = true
     }
     
     func reloadMapView() {
@@ -309,13 +313,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
 //        mapView.setRegion(viewRegion, animated: true)
     }
     
-    func helpPopUp() {
-        let helpAlert = UIAlertController(title: "How to Create a Pin", message: "To create a pin on the map, hold down your finger on the desired location for a few seconds", preferredStyle: .alert)
-        let dismiss = UIAlertAction(title: "OK", style: .default, handler: nil)
-        helpAlert.addAction(dismiss)
-        self.present(helpAlert, animated: true, completion: nil)
-    }
-    
 //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 //        if segue.identifier == "segueToGrave", let GraveTVC = segue.destination as? GraveTableViewController {
 ////            GraveTVC.creatorId = creatorId ?? "nul"
@@ -373,12 +370,43 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         }
     }
     
-    // MARK: - Actions
+    func showPopOverAnimate() {
+        self.addMemorialView.center = self.view.center
+        self.addMemorialView.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
+        self.addMemorialView.alpha = 0.0;
+        UIView.animate(withDuration: 0.25, animations: {
+            self.addMemorialView.alpha = 1.0
+            self.addMemorialView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+        });
+    }
     
+    func removePopOverAnimate() {
+        UIView.animate(withDuration: 0.25, animations: {
+            self.addMemorialView.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
+            self.addMemorialView.alpha = 0.0;
+        }, completion:{(finished : Bool)  in
+            if (finished)
+            {
+                self.addMemorialView.removeFromSuperview()
+            }
+        });
+    }
+    
+    // MARK: - Actions
     
     @IBAction func recenterButtonTapped(_ sender: Any) {
         self.mapView.setUserTrackingMode(MKUserTrackingMode.follow, animated: true)
         mapView.userTrackingMode = .follow
+    }
+    
+    @IBAction func closeMemorialHelperButtonTapped(_ sender: UIButton) {
+        removePopOverAnimate()
+    }
+    
+    @IBAction func addMemorialButtonTapped(_ sender: UIButton) {
+        self.view.addSubview(addMemorialView)
+        showPopOverAnimate()
+        // reportPopOver.center = self.view.center
     }
     
     @IBAction func userDidLongPress(_ sender: UILongPressGestureRecognizer) {

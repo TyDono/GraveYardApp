@@ -388,7 +388,7 @@
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                         </textView>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="2bd2f713a915ce40711bb4618d4547be_123238a36d92_t" translatesAutoresizingMaskIntoConstraints="NO" id="1K2-rA-c36">
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1K2-rA-c36">
                             <rect key="frame" x="0.0" y="0.0" width="330" height="49.5"/>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Comment your reason for reporting" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A6X-yZ-Ueu">
@@ -1004,7 +1004,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="340" height="291"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="2bd2f713a915ce40711bb4618d4547be_123238a36d92_t" translatesAutoresizingMaskIntoConstraints="NO" id="5eE-gm-rMT">
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5eE-gm-rMT">
                             <rect key="frame" x="0.0" y="0.0" width="340" height="38"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="340" id="mfi-wc-jfQ"/>
@@ -1460,15 +1460,29 @@
                                     <action selector="recenterButtonTapped:" destination="9X6-7Z-pCz" eventType="touchUpInside" id="8Rr-ai-ajw"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9rq-Dj-ROK">
+                                <rect key="frame" x="240" y="617" width="119" height="30"/>
+                                <color key="backgroundColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" title="Add Memorial">
+                                    <color key="titleColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="addMemorialButtonTapped:" destination="9X6-7Z-pCz" eventType="touchUpInside" id="yqE-rr-68c"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="6MH-ve-unU" firstAttribute="leading" secondItem="Abc-m9-DRn" secondAttribute="leading" id="71F-Fp-uIZ"/>
                             <constraint firstItem="W5U-iO-55T" firstAttribute="leading" secondItem="Abc-m9-DRn" secondAttribute="leading" constant="20" id="KaD-hK-OX8"/>
+                            <constraint firstItem="Abc-m9-DRn" firstAttribute="bottom" secondItem="9rq-Dj-ROK" secondAttribute="bottom" constant="20" id="TDe-gw-UNX"/>
                             <constraint firstItem="Abc-m9-DRn" firstAttribute="trailing" secondItem="W5U-iO-55T" secondAttribute="trailing" constant="272" id="VCm-yD-83l"/>
                             <constraint firstItem="6MH-ve-unU" firstAttribute="top" secondItem="Abc-m9-DRn" secondAttribute="top" id="WwJ-dk-9KL"/>
+                            <constraint firstItem="Abc-m9-DRn" firstAttribute="trailing" secondItem="9rq-Dj-ROK" secondAttribute="trailing" constant="16" id="XIc-HK-myF"/>
                             <constraint firstItem="Abc-m9-DRn" firstAttribute="bottom" secondItem="W5U-iO-55T" secondAttribute="bottom" constant="20" id="hQi-Qy-eoU"/>
                             <constraint firstItem="6MH-ve-unU" firstAttribute="trailing" secondItem="Abc-m9-DRn" secondAttribute="trailing" id="hoX-c6-dMm"/>
+                            <constraint firstItem="9rq-Dj-ROK" firstAttribute="leading" secondItem="W5U-iO-55T" secondAttribute="trailing" constant="137" id="ss0-s7-izM"/>
                             <constraint firstItem="6MH-ve-unU" firstAttribute="bottom" secondItem="Abc-m9-DRn" secondAttribute="bottom" id="u5v-ji-bRW"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Abc-m9-DRn"/>
@@ -1486,6 +1500,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="addMemorialButton" destination="9rq-Dj-ROK" id="96p-s1-bSf"/>
+                        <outlet property="addMemorialView" destination="u3G-HJ-4vP" id="mAQ-CH-YGS"/>
                         <outlet property="mapView" destination="6MH-ve-unU" id="KFx-y7-2xf"/>
                         <outlet property="recenterMapButton" destination="W5U-iO-55T" id="yse-to-gs6"/>
                         <outlet property="signUp" destination="rQ8-Ij-DFF" id="ShX-Ox-C7m"/>
@@ -1501,8 +1517,31 @@
                         <action selector="userDidLongPress:" destination="9X6-7Z-pCz" id="8VV-4a-xMh"/>
                     </connections>
                 </pongPressGestureRecognizer>
+                <view contentMode="scaleToFill" id="u3G-HJ-4vP">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="352"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tFF-7D-uo5">
+                            <rect key="frame" x="0.0" y="0.0" width="34" height="40"/>
+                            <state key="normal" image="xmark.circle.fill" catalog="system"/>
+                            <connections>
+                                <action selector="closeMemorial:" destination="O25-nA-g2T" eventType="touchUpInside" id="nxN-3t-dc7"/>
+                                <action selector="closeMemorialHelperButtonTapped:" destination="9X6-7Z-pCz" eventType="touchUpInside" id="Xij-tC-hMW"/>
+                                <action selector="closeReportPopUp:" destination="Deg-jX-e5u" eventType="touchUpInside" id="81I-C3-rDX"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <constraints>
+                        <constraint firstItem="UXZ-y2-LVy" firstAttribute="trailing" secondItem="tFF-7D-uo5" secondAttribute="trailing" constant="206" id="JOK-Zw-u3b"/>
+                        <constraint firstItem="tFF-7D-uo5" firstAttribute="top" secondItem="UXZ-y2-LVy" secondAttribute="top" id="e9u-En-yZ6"/>
+                        <constraint firstItem="tFF-7D-uo5" firstAttribute="leading" secondItem="UXZ-y2-LVy" secondAttribute="leading" id="qZa-Xb-Tw2"/>
+                        <constraint firstItem="UXZ-y2-LVy" firstAttribute="bottom" secondItem="tFF-7D-uo5" secondAttribute="bottom" constant="312" id="wQ7-As-SSo"/>
+                    </constraints>
+                    <viewLayoutGuide key="safeArea" id="UXZ-y2-LVy"/>
+                </view>
             </objects>
-            <point key="canvasLocation" x="3386.9565217391305" y="-141.03260869565219"/>
+            <point key="canvasLocation" x="3386.4000000000001" y="-141.67916041979012"/>
         </scene>
         <!--Account Information-->
         <scene sceneID="SMl-v1-Kcm">
@@ -1614,8 +1653,9 @@
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wco-9f-ZMw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="O25-nA-g2T" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2580" y="-829"/>
+            <point key="canvasLocation" x="2233" y="-857"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="PND-vC-Yty">
@@ -1639,10 +1679,9 @@
     <inferredMetricsTieBreakers>
         <segue reference="74B-mS-0pn"/>
         <segue reference="z4g-pH-uIZ"/>
-        <segue reference="7DO-rd-4qB"/>
+        <segue reference="fpu-aT-yyc"/>
     </inferredMetricsTieBreakers>
     <resources>
-        <image name="2bd2f713a915ce40711bb4618d4547be_123238a36d92_t" width="300" height="300"/>
         <image name="Page" width="617" height="500"/>
         <image name="appleSigninButton" width="212" height="38"/>
         <image name="default-avatar" width="233" height="232"/>

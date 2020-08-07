@@ -69,7 +69,6 @@ class GraveTableViewController: UITableViewController {
 //        changeBackground()
     }
     
-    
     override func viewWillAppear(_ animated: Bool) {
         getGraveData()
     }
