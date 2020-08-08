@@ -494,7 +494,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Pin Message" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ChQ-Yw-FRJ">
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Pinned Message" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ChQ-Yw-FRJ">
                                                     <rect key="frame" x="15" y="4" width="345" height="36"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
@@ -540,9 +540,9 @@
                                                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8XO-4o-Rxr">
                                                     <rect key="frame" x="16" y="60" width="343" height="154"/>
                                                     <subviews>
-                                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="uJa-vq-QGj">
+                                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Enter text here" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="uJa-vq-QGj">
                                                             <rect key="frame" x="0.0" y="0.0" width="343" height="154"/>
-                                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                            <color key="backgroundColor" systemColor="systemGray4Color" red="0.81960784310000001" green="0.81960784310000001" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -860,27 +860,16 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="317"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6c7-L8-gAT">
-                                                    <rect key="frame" x="20" y="48" width="374" height="258"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <subviews>
-                                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EJs-T9-0Fu">
-                                                            <rect key="frame" x="0.0" y="0.0" width="374" height="258"/>
-                                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                                            <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                        </textView>
-                                                    </subviews>
-                                                    <constraints>
-                                                        <constraint firstItem="EJs-T9-0Fu" firstAttribute="bottom" secondItem="052-9Q-aej" secondAttribute="bottom" id="24B-lK-8UL"/>
-                                                        <constraint firstItem="EJs-T9-0Fu" firstAttribute="leading" secondItem="052-9Q-aej" secondAttribute="leading" id="VbR-Dq-tOh"/>
-                                                        <constraint firstItem="EJs-T9-0Fu" firstAttribute="top" secondItem="052-9Q-aej" secondAttribute="top" id="ipk-cD-fg4"/>
-                                                        <constraint firstItem="052-9Q-aej" firstAttribute="trailing" secondItem="EJs-T9-0Fu" secondAttribute="trailing" id="qJv-5L-Fyb"/>
-                                                    </constraints>
-                                                    <viewLayoutGuide key="contentLayoutGuide" id="YVz-BL-O3W"/>
-                                                    <viewLayoutGuide key="frameLayoutGuide" id="052-9Q-aej"/>
-                                                </scrollView>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="paperImage" translatesAutoresizingMaskIntoConstraints="NO" id="HWt-WU-f5d">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="317"/>
+                                                </imageView>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EJs-T9-0Fu">
+                                                    <rect key="frame" x="21" y="48" width="333" height="239"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                </textView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="title label text" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0hO-6U-BGI">
                                                     <rect key="frame" x="16" y="11" width="343" height="29"/>
                                                     <constraints>
@@ -892,8 +881,16 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstAttribute="bottomMargin" secondItem="EJs-T9-0Fu" secondAttribute="bottom" constant="19" id="7d7-Ur-phM"/>
+                                                <constraint firstAttribute="trailing" secondItem="HWt-WU-f5d" secondAttribute="trailing" id="Bi4-Of-mz4"/>
+                                                <constraint firstItem="EJs-T9-0Fu" firstAttribute="top" secondItem="0hO-6U-BGI" secondAttribute="bottom" constant="8" id="G1o-W2-6B3"/>
                                                 <constraint firstItem="0hO-6U-BGI" firstAttribute="top" secondItem="yAz-jY-Y1c" secondAttribute="topMargin" id="JvX-CF-hnT"/>
+                                                <constraint firstItem="HWt-WU-f5d" firstAttribute="leading" secondItem="yAz-jY-Y1c" secondAttribute="leading" id="M9s-VX-a6Z"/>
+                                                <constraint firstItem="EJs-T9-0Fu" firstAttribute="leading" secondItem="yAz-jY-Y1c" secondAttribute="leadingMargin" constant="5" id="SyX-Qh-KBW"/>
+                                                <constraint firstItem="HWt-WU-f5d" firstAttribute="top" secondItem="yAz-jY-Y1c" secondAttribute="top" id="V0t-04-gLq"/>
+                                                <constraint firstAttribute="bottom" secondItem="HWt-WU-f5d" secondAttribute="bottom" id="X7b-CR-Hmi"/>
                                                 <constraint firstItem="0hO-6U-BGI" firstAttribute="leading" secondItem="yAz-jY-Y1c" secondAttribute="leadingMargin" id="bEf-ET-DE6"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="EJs-T9-0Fu" secondAttribute="trailing" constant="5" id="j2x-hW-sRV"/>
                                                 <constraint firstItem="0hO-6U-BGI" firstAttribute="trailing" secondItem="yAz-jY-Y1c" secondAttribute="trailingMargin" id="kHb-1u-177"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -909,7 +906,8 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="340"/>
                                                     <subviews>
                                                         <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wkN-1j-kTE">
-                                                            <rect key="frame" x="0.0" y="0.0" width="414" height="282"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="375" height="282"/>
+                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <viewLayoutGuide key="contentLayoutGuide" id="4Cb-Bb-LQM"/>
                                                             <viewLayoutGuide key="frameLayoutGuide" id="zad-so-gsS"/>
                                                         </scrollView>
@@ -992,7 +990,6 @@
                         <outlet property="reportPopOver" destination="Z9O-BS-4uW" id="UUs-Sh-teO"/>
                         <outlet property="rightArrowButton" destination="MxG-ZG-ned" id="uz6-cO-C9p"/>
                         <outlet property="rightBarButtonItem" destination="rwy-dy-vpC" id="WLY-Ys-0Gd"/>
-                        <outlet property="scrollView" destination="6c7-L8-gAT" id="a5G-si-YRR"/>
                         <outlet property="storyBodyTextView" destination="EJs-T9-0Fu" id="HWT-90-5eZ"/>
                         <outlet property="storyImagesScrollView" destination="wkN-1j-kTE" id="XbV-ID-jpo"/>
                         <outlet property="storyTitle" destination="0hO-6U-BGI" id="Ey8-1o-Ibf"/>
@@ -1068,7 +1065,7 @@
                     <viewLayoutGuide key="safeArea" id="bVB-9t-Yg7"/>
                 </view>
             </objects>
-            <point key="canvasLocation" x="1732" y="2238"/>
+            <point key="canvasLocation" x="1732" y="2237.6311844077964"/>
         </scene>
         <!--New Grave Story Table View Controller-->
         <scene sceneID="23l-6f-ENa">
@@ -1091,9 +1088,12 @@
                                                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3JQ-B5-s91">
                                                     <rect key="frame" x="24" y="11" width="335" height="279"/>
                                                     <subviews>
-                                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="dKM-Lg-ic1">
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="paperImage" translatesAutoresizingMaskIntoConstraints="NO" id="ASB-Wo-QZ4" userLabel="textviewbacxkground">
+                                                            <rect key="frame" x="0.0" y="0.0" width="335" height="279"/>
+                                                        </imageView>
+                                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Enter text here" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="dKM-Lg-ic1">
                                                             <rect key="frame" x="4" y="46" width="327" height="233"/>
-                                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -1108,12 +1108,16 @@
                                                         <constraint firstAttribute="trailing" secondItem="dKM-Lg-ic1" secondAttribute="trailing" constant="4" id="3a1-tj-opr"/>
                                                         <constraint firstItem="dKM-Lg-ic1" firstAttribute="centerX" secondItem="rNP-Pd-iPL" secondAttribute="centerX" id="7iP-wM-nQt"/>
                                                         <constraint firstAttribute="bottom" secondItem="dKM-Lg-ic1" secondAttribute="bottom" id="9Lk-1C-ugr"/>
+                                                        <constraint firstItem="ASB-Wo-QZ4" firstAttribute="trailing" secondItem="P4C-dl-dxk" secondAttribute="trailing" id="DHt-Bd-F14"/>
+                                                        <constraint firstItem="ASB-Wo-QZ4" firstAttribute="leading" secondItem="P4C-dl-dxk" secondAttribute="leading" id="DKi-YF-f9F"/>
                                                         <constraint firstItem="E7A-21-X7p" firstAttribute="trailing" secondItem="rNP-Pd-iPL" secondAttribute="trailing" constant="8" id="NN1-09-16T"/>
                                                         <constraint firstItem="dKM-Lg-ic1" firstAttribute="top" secondItem="E7A-21-X7p" secondAttribute="top" constant="46" id="PGE-am-6Mg"/>
                                                         <constraint firstItem="E7A-21-X7p" firstAttribute="trailing" secondItem="dKM-Lg-ic1" secondAttribute="trailing" constant="4" id="hmz-sr-PnB"/>
                                                         <constraint firstItem="rNP-Pd-iPL" firstAttribute="top" secondItem="P4C-dl-dxk" secondAttribute="top" id="lXP-J4-vrj"/>
+                                                        <constraint firstItem="ASB-Wo-QZ4" firstAttribute="bottom" secondItem="P4C-dl-dxk" secondAttribute="bottom" id="pQC-If-Ajd"/>
                                                         <constraint firstItem="dKM-Lg-ic1" firstAttribute="leading" secondItem="E7A-21-X7p" secondAttribute="leading" constant="4" id="qPa-iY-vxc"/>
                                                         <constraint firstItem="rNP-Pd-iPL" firstAttribute="leading" secondItem="P4C-dl-dxk" secondAttribute="leading" constant="8" id="qn0-hd-rL9"/>
+                                                        <constraint firstItem="ASB-Wo-QZ4" firstAttribute="top" secondItem="P4C-dl-dxk" secondAttribute="top" id="vd3-yV-78N"/>
                                                         <constraint firstItem="dKM-Lg-ic1" firstAttribute="bottom" secondItem="E7A-21-X7p" secondAttribute="bottom" id="ycQ-dR-3IH"/>
                                                     </constraints>
                                                     <viewLayoutGuide key="contentLayoutGuide" id="P4C-dl-dxk"/>
@@ -1313,7 +1317,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t66-Qz-rhT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="V8h-T1-3cD" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2654" y="1537"/>
+            <point key="canvasLocation" x="2653.5999999999999" y="1535.9820089955024"/>
         </scene>
         <!--Table View Controller-->
         <scene sceneID="WfJ-Rm-grw">
@@ -1677,7 +1681,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="74B-mS-0pn"/>
+        <segue reference="JUc-GY-fg1"/>
         <segue reference="z4g-pH-uIZ"/>
         <segue reference="fpu-aT-yyc"/>
     </inferredMetricsTieBreakers>
@@ -1689,6 +1693,7 @@
         <image name="icons8-expand-arrow" width="100" height="100"/>
         <image name="icons8-expand-arrow-left" width="100" height="100"/>
         <image name="icons8-journal-30" width="30" height="30"/>
+        <image name="paperImage" width="724" height="483"/>
         <image name="xmark.circle.fill" catalog="system" width="128" height="121"/>
     </resources>
 </document>
