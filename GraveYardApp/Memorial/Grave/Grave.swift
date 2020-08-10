@@ -19,7 +19,7 @@ protocol DocumentGraveSerializable {
 }
 
 struct Grave {
-    var creatorId: String // this is the googleSign in userId
+    var creatorId: String // this is the sign in userId
     var graveId: String // the grave specifict Id that is generated when the grave is created. each grave should have its own unique Id
     var profileImageId: String
     var name: String //name of dead person
@@ -35,6 +35,7 @@ struct Grave {
     var pinQuote: String
     var birthSwitchIsOn: Bool
     var deathSwitchIsOn: Bool
+    var publicIsTrue: Bool
     // premium users, grave quote, grave node image
     // BURIAL LOCATION
     // coordanates = jim
@@ -59,7 +60,8 @@ struct Grave {
             "allGraveIdentifier": allGraveIdentifier,
             "pinQuote": pinQuote,
             "birthSwitchIsOn": birthSwitchIsOn,
-            "deathSwitchIsOn": deathSwitchIsOn
+            "deathSwitchIsOn": deathSwitchIsOn,
+            "publicIsTrue": publicIsTrue
         ]
     }
 }
@@ -81,8 +83,9 @@ extension Grave: DocumentGraveSerializable {
             let allGraveIdentifier = dictionary["allGraveIdentifier"] as? String,
             let pinQuote = dictionary["pinQuote"] as? String,
             let birthSwitchIsOn = dictionary["birthSwitchIsOn"] as? Bool,
-            let deathSwitchIsOn = dictionary["deathSwitchIsOn"] as? Bool else {return nil}
-        self.init(creatorId: creatorId, graveId: graveId, profileImageId: profileImageId, name: name, birthDate: birthDate, birthLocation: birthLocation, deathDate: deathDate, deathLocation: deathLocation, familyStatus: familyStatus, bio: bio, graveLocationLatitude: graveLocationLatitude, graveLocationLongitude: graveLocationLongitude, allGraveIdentifier: allGraveIdentifier, pinQuote: pinQuote, birthSwitchIsOn: birthSwitchIsOn, deathSwitchIsOn: deathSwitchIsOn)
+            let deathSwitchIsOn = dictionary["deathSwitchIsOn"] as? Bool,
+        let publicIsTrue = dictionary["publicIsTrue"] as? Bool else {return nil}
+        self.init(creatorId: creatorId, graveId: graveId, profileImageId: profileImageId, name: name, birthDate: birthDate, birthLocation: birthLocation, deathDate: deathDate, deathLocation: deathLocation, familyStatus: familyStatus, bio: bio, graveLocationLatitude: graveLocationLatitude, graveLocationLongitude: graveLocationLongitude, allGraveIdentifier: allGraveIdentifier, pinQuote: pinQuote, birthSwitchIsOn: birthSwitchIsOn, deathSwitchIsOn: deathSwitchIsOn, publicIsTrue: publicIsTrue)
     }
     
 }

@@ -47,10 +47,6 @@ class GraveTableViewController: UITableViewController {
     var currentGraveId: String?
     var currentGraveLocation: String?
     var imageString: String?
-    var summer: String = "summer"
-    var winter: String = "winter"
-    var fall: String = "fall"
-    var spring: String = "spring"
     var currentSeason: String?
     let storage = Storage.storage()
     
@@ -65,8 +61,8 @@ class GraveTableViewController: UITableViewController {
         self.reportButton.layer.cornerRadius = 10
         pinQuoteLabel.font = pinQuoteLabel.font.italic
         self.storiesButton.layer.cornerRadius = 10
-//        getCurrentSeason()
-//        changeBackground()
+        //        getCurrentSeason()
+        changeBackground()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -76,8 +72,8 @@ class GraveTableViewController: UITableViewController {
     // MARK: - Functions
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-         let touch = touches.first
-         if touch?.view == self.view {
+        let touch = touches.first
+        if touch?.view == self.view {
             self.removePopOverAnimate()
         }
     }
@@ -105,44 +101,9 @@ class GraveTableViewController: UITableViewController {
         navigationController?.navigationBar.titleTextAttributes = textAttributes
     }
     
-    func getCurrentSeason() {
-        let date = Date()
-        let format = DateFormatter()
-        format.dateFormat = "MM"
-        let formattedDate = format.string(from: date)
-        switch formattedDate {
-        case "01":
-            self.currentSeason = self.winter
-        case "02":
-            self.currentSeason = self.winter
-        case "03":
-            self.currentSeason = self.spring
-        case "04":
-            self.currentSeason = self.spring
-        case "05":
-            self.currentSeason = self.spring
-        case "06":
-            self.currentSeason = self.summer
-        case "07":
-            self.currentSeason = self.summer
-        case "08":
-            self.currentSeason = self.summer
-        case "09":
-            self.currentSeason = self.fall
-        case "10":
-            self.currentSeason = self.fall
-        case "11":
-            self.currentSeason = self.fall
-        case "12":
-            self.currentSeason = self.winter
-        default:
-            self.currentSeason = self.summer
-        }
-    }
-    
     func changeBackground() {
         let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
-        backgroundImage.image = UIImage(named: currentSeason ?? "summer")
+        backgroundImage.image = UIImage(named: "juhani-pelli-stone")
         backgroundImage.contentMode = UIView.ContentMode.scaleToFill
         self.tableView.backgroundView = backgroundImage
     }
@@ -174,7 +135,7 @@ class GraveTableViewController: UITableViewController {
             }
         }
     }
-
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "graveStoriesSegue", let graveStoriesTVC = segue.destination as? GraveStoriesTableViewController {
             graveStoriesTVC.graveStories = graveId
@@ -199,53 +160,59 @@ class GraveTableViewController: UITableViewController {
                         let deathLocation = document.data()["deathLocation"] as? String,
                         let familyStatus = document.data()["familyStatus"] as? String,
                         let bio = document.data()["bio"] as? String,
-                        let pinQuote = document.data()["pinQuote"] as? String {
-                        self.currentGraveId = graveId
-                        self.imageString = profileImageId
-                        let nameHeadstone = "\(name)"
-                        self.graveNavTitle.title = nameHeadstone.uppercased()
-                        self.creatorId = creatorId
-                        if birthDate != "" {
-                            self.midTopLabel.text = ""
-                            self.midBotLabel.text = ""
-                            self.birthDateLabel.text = birthDate
-                            self.birthLocationLabel.text = birthLocation
+                        let pinQuote = document.data()["pinQuote"] as? String,
+                        let publicIsTrue = document.data()["publicIsTrue"] as? Bool {
+                        if creatorId != MapViewController.shared.currentGraveId! && publicIsTrue == false {
+                            self.graveNavTitle.title = "PRIVATE"
+                            return
                         } else {
-                            self.birthDateLabel.text = ""
-                            self.birthLocationLabel.text = ""
-                            self.deathDateLabel.text = ""
-                            self.deathLocationLabel.text = ""
-                            self.midTopLabel.text = deathDate
-                            self.midBotLabel.text = deathLocation
-                        }
-                        if deathDate != "" {
-                            self.midTopLabel.text = ""
-                            self.midBotLabel.text = ""
-                            self.deathDateLabel.text = deathDate
-                            self.deathLocationLabel.text = deathLocation
-                        } else {
-                            self.birthDateLabel.text = ""
-                            self.birthLocationLabel.text = ""
-                            self.deathDateLabel.text = ""
-                            self.deathLocationLabel.text = ""
-                            self.midTopLabel.text = birthDate
-                            self.midBotLabel.text = birthLocation
-                        }
-                        self.familyStatusLabel.text = familyStatus
-                        self.bioLabel.text = bio
-                        if pinQuote == "" {
-                            self.pinQuoteLabel.text = ""
-                        } else {
-                            self.pinQuoteLabel.text = "\"\(pinQuote)\""
-                        }
-                        if let currentUserId = self.currentAuthID {
-                            if currentUserId != creatorId {
-                                self.navigationItem.rightBarButtonItem?.title = "Report"
+                            self.currentGraveId = graveId
+                            self.imageString = profileImageId
+                            let nameHeadstone = "\(name)"
+                            self.graveNavTitle.title = nameHeadstone.uppercased()
+                            self.creatorId = creatorId
+                            if birthDate != "" {
+                                self.midTopLabel.text = ""
+                                self.midBotLabel.text = ""
+                                self.birthDateLabel.text = birthDate
+                                self.birthLocationLabel.text = birthLocation
+                            } else {
+                                self.birthDateLabel.text = ""
+                                self.birthLocationLabel.text = ""
+                                self.deathDateLabel.text = ""
+                                self.deathLocationLabel.text = ""
+                                self.midTopLabel.text = deathDate
+                                self.midBotLabel.text = deathLocation
                             }
+                            if deathDate != "" {
+                                self.midTopLabel.text = ""
+                                self.midBotLabel.text = ""
+                                self.deathDateLabel.text = deathDate
+                                self.deathLocationLabel.text = deathLocation
+                            } else {
+                                self.birthDateLabel.text = ""
+                                self.birthLocationLabel.text = ""
+                                self.deathDateLabel.text = ""
+                                self.deathLocationLabel.text = ""
+                                self.midTopLabel.text = birthDate
+                                self.midBotLabel.text = birthLocation
+                            }
+                            self.familyStatusLabel.text = familyStatus
+                            self.bioLabel.text = bio
+                            if pinQuote == "" {
+                                self.pinQuoteLabel.text = ""
+                            } else {
+                                self.pinQuoteLabel.text = "\"\(pinQuote)\""
+                            }
+                            if let currentUserId = self.currentAuthID {
+                                if currentUserId != creatorId {
+                                    self.navigationItem.rightBarButtonItem?.title = "Report"
+                                }
+                            }
+                            
+                            self.checkForCreatorId()
+                            self.getImages()// always call last
                         }
-                        
-                        self.checkForCreatorId()
-                        self.getImages()// always call last
                     }
                 }
             }

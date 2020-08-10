@@ -17,6 +17,8 @@ import AVFoundation
 
 class EditGraveTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
+    @IBOutlet weak var publicIsTrueSwitch: UISwitch!
+    @IBOutlet weak var publicIsTrueLabel: UILabel!
     @IBOutlet weak var birthDateCell: UITableViewCell!
     @IBOutlet weak var birthLocationCell: UITableViewCell!
     @IBOutlet weak var deathDateCell: UITableViewCell!
@@ -110,6 +112,11 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
             deathLabel.text = "Disabled"
             deathDateCell.isHidden = true
             deathLocationCell.isHidden = true
+        }
+        if publicIsTrueSwitch.isOn == true {
+            publicIsTrueLabel.text = "Public"
+        } else {
+            publicIsTrueLabel.text = "Private"
         }
     }
     
@@ -374,7 +381,8 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
                           allGraveIdentifier: allGraveIdentifier,
                           pinQuote: pinQuote,
                           birthSwitchIsOn: self.birthSwitch.isOn,
-                          deathSwitchIsOn: self.deathSwitch.isOn)
+                          deathSwitchIsOn: self.deathSwitch.isOn,
+                          publicIsTrue: self.publicIsTrueSwitch.isOn)
         
         let graveRef = self.db.collection("grave")
         graveRef.document(String(grave.graveId)).updateData(grave.dictionary){ err in
@@ -403,6 +411,15 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
         imagePickerController.sourceType = UIImagePickerController.SourceType.photoLibrary
         present(imagePickerController, animated: true, completion: nil)
     }
+    
+    @IBAction func publicIsTrueSwitchWasTapped(_ sender: UISwitch) {
+        if publicIsTrueSwitch.isOn == true {
+            publicIsTrueLabel.text = "Public"
+        } else {
+            publicIsTrueLabel.text = "Private"
+        }
+    }
+    
     @IBAction func birthSwitchWasTapped(_ sender: UISwitch) {
         if birthSwitch.isOn == true {
             birthLabel.text = "Enabled"
