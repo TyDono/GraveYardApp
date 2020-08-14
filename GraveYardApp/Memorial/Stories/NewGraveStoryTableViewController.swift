@@ -225,16 +225,39 @@ class NewGraveStoryTableViewController: UITableViewController, UIImagePickerCont
         alerController.addAction(cancel)
         let delete = UIAlertAction(title: "DELETE", style: .destructive) { _ in
             
-            let userId = self.currentAuthID!
             let userRef = self.db.collection("stories")
             userRef.document(self.currentGraveStoryId ?? "no StoryId detected").delete(){ err in
                 if err == nil {
+                    if let safeStoryImageId1 = self.storyImageId1 {
+                        let storageImageRef = self.storage.reference().child("storyImages/\(safeStoryImageId1)")
+                        storageImageRef.delete { (error) in
+                            if error == nil {
+                                // no error
+                            }
+                        }
+                    }
+                    if let safeStoryImageId2 = self.storyImageId2 {
+                        let storageImageRef = self.storage.reference().child("storyImages/\(safeStoryImageId2)")
+                        storageImageRef.delete { (error) in
+                            if error == nil {
+                                // no error
+                            }
+                        }
+                    }
+                    if let safeStoryImageId3 = self.storyImageId3 {
+                        let storageImageRef = self.storage.reference().child("storyImages/\(safeStoryImageId3)")
+                        storageImageRef.delete { (error) in
+                            if error == nil {
+                                // no error
+                            }
+                        }
+                    }
                     let alert1 = UIAlertController(title: "Success", message: "This Story and all of it's contents have been successfully deleted", preferredStyle: .alert)
                     alert1.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
                         alert1.dismiss(animated: true, completion: nil)
+                        self.performSegue(withIdentifier: "unwindtoGraveStoriesSegue", sender: nil)
                     }))
                     self.present(alert1, animated: true, completion: nil)
-                    self.performSegue(withIdentifier: "unwindtoGraveStoriesSegue", sender: nil)
                 } else {
                     let alert2 = UIAlertController(title: "ERROR", message: "Sorry, there was an error while trying to delete this story, please check your internet connection and try again", preferredStyle: .alert)
                     alert2.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in

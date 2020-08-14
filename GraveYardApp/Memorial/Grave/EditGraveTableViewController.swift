@@ -157,7 +157,8 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
                         let graveLocationLatitude = document.data()["graveLocationLatitude"] as? String,
                         let graveLocationLongitude = document.data()["graveLocationLongitude"] as? String,
                         let birthSwitchIsOn = document.data()["birthSwitchIsOn"] as? Bool,
-                        let deathSwitchIsOn = document.data()["deathSwitchIsOn"] as? Bool {
+                        let deathSwitchIsOn = document.data()["deathSwitchIsOn"] as? Bool,
+                        let publicIsTrue = document.data()["publicIsTrue"] as? Bool {
                         
                         self.imageString = profileImageId
                         guard let birthDate = self.dateFormatter.date(from:birthDate) ?? defaultDate else { return }
@@ -176,6 +177,7 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
                         self.currentGraveLocationLongitude = graveLocationLongitude
                         self.birthSwitch.isOn = birthSwitchIsOn
                         self.deathSwitch.isOn = deathSwitchIsOn
+                        self.publicIsTrueSwitch.isOn = publicIsTrue
                         self.getImages() //call this last
                     }
                 }
@@ -273,11 +275,11 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
         let imageRef = self.storage.reference().child(self.imageString ?? "no image String found")
         imageRef.delete { err in
             if let error = err {
-                let deleteImageAlert = UIAlertController(title: "Error", message: "Sorry, there was an error while trying to delete your Headstone Image. Please check your internet connection and try again.", preferredStyle: .alert)
-                deleteImageAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
-                    deleteImageAlert.dismiss(animated: true, completion: nil)
-                }))
-                self.present(deleteImageAlert, animated: true, completion: nil)
+//                let deleteImageAlert = UIAlertController(title: "Error", message: "Sorry, there was an error while trying to delete your Headstone Image. Please check your internet connection and try again.", preferredStyle: .alert)
+//                deleteImageAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
+//                    deleteImageAlert.dismiss(animated: true, completion: nil)
+//                }))
+//                self.present(deleteImageAlert, animated: true, completion: nil)
                 print(error)
             } else {
                 // File deleted successfully
@@ -305,39 +307,39 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
                 err in
                 if err == nil {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0) {
-                        moveToMap()
+                        self.performSegue(withIdentifier: "unwindToMap", sender: nil)
                     }
                 }
             }
-        }
+    }
     
     // MARK: - Actions
     
     @IBAction func saveGraveInfoTapped(_ sender: UIBarButtonItem) { //  MOST OF COMMENTED OUT CODE WILL BE RE-ADDED WHEN PREMIUM IS LIVE TO KEEP TRACK OF THEIR DATA USE AND TO LET THE USERS KNOW. ADD THIS TO NEWGRAVESTORYVIEWCONTROLLER WHEN PREMIUM IS LIVE
-//        guard let unwrappedGraveImage = graveMainImage.image else { return } // the uplaod takes 2 long and needs a delay before segue is called
-//        guard let currentDataUseCount = MyFirebase.currentDataUsage else { return }
-//        var checkDataCap: Int = 0
+        //        guard let unwrappedGraveImage = graveMainImage.image else { return } // the uplaod takes 2 long and needs a delay before segue is called
+        //        guard let currentDataUseCount = MyFirebase.currentDataUsage else { return }
+        //        var checkDataCap: Int = 0
         for image in graveProfileImages {
             uploadFirebaseImages(image) { (url) in
                 guard let imageDataBytes = image.jpegData(compressionQuality: 0.20) else { return }
                 if let unwrappedCurrentImageDataCount = self.currentImageDataCount {
-//                    checkDataCap = currentDataUseCount - unwrappedCurrentImageDataCount + imageDataBytes.count
-//                    if checkDataCap > 5000 {
-//                        let alert = UIAlertController(title: "Over Limit!", message: "Saving this puts you over your alloted data use! Try deleting some photos to make room, or sign up for premium to expand your data cap for Remembrance.  current amount in use \(checkDataCap) / 5,000kb", preferredStyle: .alert)
-//                        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
-//                            alert.dismiss(animated: true, completion: nil)
-//                            return
-//                        }))
-//                        self.present(alert, animated: true, completion: nil)
-//                    } else {
-                        MyFirebase.currentDataUsage = MyFirebase.currentDataUsage! - unwrappedCurrentImageDataCount + imageDataBytes.count
-                        self.updateUserData()
-//                    }
+                    //                    checkDataCap = currentDataUseCount - unwrappedCurrentImageDataCount + imageDataBytes.count
+                    //                    if checkDataCap > 5000 {
+                    //                        let alert = UIAlertController(title: "Over Limit!", message: "Saving this puts you over your alloted data use! Try deleting some photos to make room, or sign up for premium to expand your data cap for Remembrance.  current amount in use \(checkDataCap) / 5,000kb", preferredStyle: .alert)
+                    //                        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
+                    //                            alert.dismiss(animated: true, completion: nil)
+                    //                            return
+                    //                        }))
+                    //                        self.present(alert, animated: true, completion: nil)
+                    //                    } else {
+                    MyFirebase.currentDataUsage = MyFirebase.currentDataUsage! - unwrappedCurrentImageDataCount + imageDataBytes.count
+                    self.updateUserData()
+                    //                    }
                 }
                 guard url != nil else { return }
-//                self.saveImageToFirebase(graveImagesURL: url, completion: { success in
-//                    self.firebaseWrite(url: url.absoluteString)
-//                })
+                //                self.saveImageToFirebase(graveImagesURL: url, completion: { success in
+                //                    self.firebaseWrite(url: url.absoluteString)
+                //                })
             }
         }
         
@@ -449,45 +451,50 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
         let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         alerController.addAction(cancel)
         let delete = UIAlertAction(title: "DELETE", style: .destructive) { _ in
-//            let userId = self.currentAuthID!
+            let forcedUserId = self.currentAuthID!
+            let forcedGraveId = self.currentGraveId!
             let userRef = self.db.collection("stories")
-            userRef.document(self.currentGraveId ?? "error no graveId found").delete() { err in
+            userRef.document(forcedUserId).delete() { err in //deletes stories, call story image delete before this
                 if err == nil {
                     let storyRef = self.db.collection("grave")
-                    storyRef.document(self.currentGraveId ?? "error no graveId found").delete() { err in
+                    storyRef.document(forcedGraveId).delete() { err in //deletes current grave
                         if err == nil {
-                            self.deleteGraveProfileImage()
-                            let alert1 = UIAlertController(title: "Success", message: "You have successfully deleted this Memorial and all of it's content", preferredStyle: .alert)
-                            alert1.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
-                                alert1.dismiss(animated: true, completion: nil)
-                                self.performSegue(withIdentifier: "unwindToMap", sender: nil)
-                            }))
-                            self.present(alert1, animated: true, completion: nil)
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 0) {
-                                moveToMap()
+                            if let safeImageString = self.imageString {
+                                let storageImageRef = self.storage.reference().child("graveProfileImages/\(safeImageString)")
+                                storageImageRef.delete { (error) in //deletes grave image
+                                    if error == nil {
+                                        let alertSuccess = UIAlertController(title: "Success", message: "You have successfully deleted this Memorial and all of it's content", preferredStyle: .alert)
+                                        alertSuccess.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
+                                            alertSuccess.dismiss(animated: true, completion: nil)
+                                            self.performSegue(withIdentifier: "unwindToMap", sender: nil)
+                                        }))
+                                        self.present(alertSuccess, animated: true, completion: nil)
+                                    } else {
+                                        print("no image to delete")
+                                        let alertSuccess = UIAlertController(title: "Success", message: "You have successfully deleted this Memorial and all of it's content", preferredStyle: .alert)
+                                        alertSuccess.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
+                                            alertSuccess.dismiss(animated: true, completion: nil)
+                                            self.performSegue(withIdentifier: "unwindToMap", sender: nil)
+                                        }))
+                                        self.present(alertSuccess, animated: true, completion: nil)
+                                    }
+                                }
                             }
-                        } else {
-                            let alert2 = UIAlertController(title: "ERROR", message: "Sorry, there was an error while trying to delete this Memorial, please check your internet connection  and try again", preferredStyle: .alert)
-                            alert2.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
-                                alert2.dismiss(animated: true, completion: nil)
-                            }))
-                            self.present(alert2, animated: true, completion: nil)
-                            print("document not deleted, ERROR")
                         }
                     }
-                    
                 } else {
-                    let alert1 = UIAlertController(title: "ERROR", message: "Sorry, there was an error while trying to delete this Memorial's stories, please check your internet connection  and try again", preferredStyle: .alert)
-                    alert1.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
-                        alert1.dismiss(animated: true, completion: nil)
+                    let alertFailure = UIAlertController(title: "ERROR", message: "Sorry, there was an error while trying to delete this Memorial's stories, please check your internet connection  and try again", preferredStyle: .alert)
+                    alertFailure.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
+                        alertFailure.dismiss(animated: true, completion: nil)
                     }))
-                    self.present(alert1, animated: true, completion: nil)
+                    self.present(alertFailure, animated: true, completion: nil)
                     print("Story document not deleted, ERROR")
                 }
             }
         }
         alerController.addAction(delete)
         self.present(alerController, animated: true) {
+            
         }
     }
     

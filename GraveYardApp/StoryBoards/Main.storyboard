@@ -624,7 +624,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Comming soon with Premium User Update!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mFq-2l-XzX">
-                                                    <rect key="frame" x="16" y="46" width="343" height="70"/>
+                                                    <rect key="frame" x="8" y="46" width="359" height="70"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -790,7 +790,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Location" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WXA-Vl-eOn">
-                                                    <rect key="frame" x="20" y="4.5" width="335" height="35"/>
+                                                    <rect key="frame" x="20" y="1.5" width="335" height="41"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
@@ -869,12 +869,13 @@
                         <segue destination="lrJ-Dg-sXL" kind="unwind" identifier="unwindToGraveSegue" unwindAction="unwindToGrave:" id="ApY-fG-L2p"/>
                         <segue destination="lrJ-Dg-sXL" kind="unwind" identifier="unwindtoGraveStory" unwindAction="unwindtoGraveStory:" id="h00-52-APK"/>
                         <segue destination="SzX-iF-Ewd" kind="show" identifier="seguetoPremiumFromGrave" id="JUc-GY-fg1"/>
+                        <segue destination="lrJ-Dg-sXL" kind="unwind" identifier="unwindToMap" unwindAction="unwindToMap:" id="xmN-4G-K4g"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="twe-qP-4gI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="lrJ-Dg-sXL" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3386.4000000000001" y="613.94302848575717"/>
+            <point key="canvasLocation" x="3386" y="814"/>
         </scene>
         <!--Grave Story Table View Controller-->
         <scene sceneID="3mN-1B-43e">
@@ -1351,7 +1352,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t66-Qz-rhT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="V8h-T1-3cD" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2653.5999999999999" y="1535.9820089955024"/>
+            <point key="canvasLocation" x="2628" y="1585"/>
         </scene>
         <!--Table View Controller-->
         <scene sceneID="WfJ-Rm-grw">

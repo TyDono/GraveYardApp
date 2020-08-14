@@ -61,8 +61,7 @@ class GraveTableViewController: UITableViewController {
         self.reportButton.layer.cornerRadius = 10
         pinQuoteLabel.font = pinQuoteLabel.font.italic
         self.storiesButton.layer.cornerRadius = 10
-        //        getCurrentSeason()
-        changeBackground()
+//        changeBackground()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -162,8 +161,13 @@ class GraveTableViewController: UITableViewController {
                         let bio = document.data()["bio"] as? String,
                         let pinQuote = document.data()["pinQuote"] as? String,
                         let publicIsTrue = document.data()["publicIsTrue"] as? Bool {
-                        if creatorId != MapViewController.shared.currentGraveId! && publicIsTrue == false {
+                        let time = false
+                        if creatorId != MapViewController.shared.currentAuthID && publicIsTrue == false {
                             self.graveNavTitle.title = "PRIVATE"
+                            self.midTopLabel.text = ""
+                            self.midBotLabel.text = ""
+                            self.birthDateLabel.text = ""
+                            self.birthLocationLabel.text = ""
                             return
                         } else {
                             self.currentGraveId = graveId
