@@ -242,109 +242,56 @@ extension GraveStoryTableViewController {
             graveProfileImage.getData(maxSize: (1024 * 1024), completion:  { (data, err) in
                 guard let data = data else {return}
                 guard let image = UIImage(data: data) else {return}
-//                self.storyImagesArray.append(image)
+                //                self.storyImagesArray.append(image)
                 self.storyUIImage1 = image
-//                self.storyImage1.image = image // images exists but storyimage1 is nil
+                //                self.storyImage1.image = image // images exists but storyimage1 is nil
                 guard let storyImage = self.storyUIImage1 else { return }
-//                guard let storyImage: UIImage = self.storyImage1 else { return }
+                //                guard let storyImage: UIImage = self.storyImage1 else { return }
                 self.storyImagesArray.append(storyImage)
                 self.setUpScrollView()
-                self.changeImageLabelCounter()
-                if let imageStringId = self.storyImageId2 {
-                    let storageRef2 = self.storage.reference()
-                    let graveProfileImage = storageRef2.child("storyImages/\(imageStringId)")
-                    graveProfileImage.getData(maxSize: (1024 * 1024), completion:  { (data, err) in
-                        guard let data = data else {return}
-                        guard let image = UIImage(data: data) else {return}
-                        print(imageStringId)
-                        self.storyUIImage2 = image
-                        guard let storyImage = self.storyUIImage2 else { return }
-                        self.storyImagesArray.append(storyImage)
-                        self.setUpScrollView()
-                        self.changeImageLabelCounter()
-                                if let imageStringId = self.storyImageId3 {
-                                    let storageRef3 = self.storage.reference()
-                            let graveProfileImage = storageRef3.child("storyImages/\(imageStringId)")
-                            graveProfileImage.getData(maxSize: (1024 * 1024), completion:  { (data, err) in
-                                guard let data = data else {return}
-                                guard let image = UIImage(data: data) else {return}
-                                self.storyUIImage3 = image
-                                guard let storyImage = self.storyUIImage3 else { return }
-                                self.storyImagesArray.append(storyImage)
-                                self.setUpScrollView()
-                                self.changeImageLabelCounter()
-                            })
-                        }
-                    })
-                }
+                self.getImage2()
             })
         } else {
-                    if let imageStringId = self.storyImageId2 {
-                let storageRef3 = storage.reference()
-                let graveProfileImage = storageRef3.child("storyImages/\(imageStringId)")
-                graveProfileImage.getData(maxSize: (1024 * 1024), completion:  { (data, err) in
-                    guard let data = data else {return}
-                    guard let image = UIImage(data: data) else {return}
-                    print(imageStringId)
-                    self.storyUIImage2 = image
-                    guard let storyImage = self.storyUIImage2 else { return }
-                    self.storyImagesArray.append(storyImage)
-                    self.setUpScrollView()
-                    self.changeImageLabelCounter()
-                            if let imageStringId = self.storyImageId3 {
-                                let storageRef = self.storage.reference()
-                        let graveProfileImage = storageRef.child("storyImages/\(imageStringId)")
-                        graveProfileImage.getData(maxSize: (1024 * 1024), completion:  { (data, err) in
-                            guard let data = data else {return}
-                            guard let image = UIImage(data: data) else {return}
-                            self.storyUIImage3 = image
-                            guard let storyImage = self.storyUIImage3 else { return }
-                            self.storyImagesArray.append(storyImage)
-                            self.setUpScrollView()
-                            self.changeImageLabelCounter()
-                        })
-                    }
-                })
-            }
+            getImage2()
         }
     }
     
-//    func getImage2() {
-//        if let imageStringId = self.storyImageId2 {
-//            let storageRef = storage.reference()
-//            let graveProfileImage = storageRef.child("storyImages/\(imageStringId)")
-//            graveProfileImage.getData(maxSize: (1024 * 1024), completion:  { (data, err) in
-//                guard let data = data else {return}
-//                guard let image = UIImage(data: data) else {return}
-//                print(imageStringId)
-//                self.storyUIImage2 = image
-//                guard let storyImage = self.storyUIImage2 else { return }
-//                self.storyImagesArray.append(storyImage)
-//                self.setUpScrollView()
-//                self.changeImageLabelCounter()
-//                self.getImage3()
-//            })
-//        } else {
-//            self.getImage3()
-//        }
-//    }
-//
-//    func getImage3() {
-//        if let imageStringId = self.storyImageId3 {
-//            let storageRef = storage.reference()
-//            let graveProfileImage = storageRef.child("storyImages/\(imageStringId)")
-//            graveProfileImage.getData(maxSize: (1024 * 1024), completion:  { (data, err) in
-//                guard let data = data else {return}
-//                guard let image = UIImage(data: data) else {return}
-//                self.storyUIImage3 = image
-//                guard let storyImage = self.storyUIImage3 else { return }
-//                self.storyImagesArray.append(storyImage)
-//                self.setUpScrollView()
-//                self.changeImageLabelCounter()
-//            })
-//        } else {
-//            return
-//        }
-//    }
+    func getImage2() {
+        if let imageStringId = self.storyImageId2 {
+            let storageRef = storage.reference()
+            let graveProfileImage = storageRef.child("storyImages/\(imageStringId)")
+            graveProfileImage.getData(maxSize: (1024 * 1024), completion:  { (data, err) in
+                guard let data = data else {return}
+                guard let image = UIImage(data: data) else {return}
+                print(imageStringId)
+                self.storyUIImage2 = image
+                guard let storyImage = self.storyUIImage2 else { return }
+                self.storyImagesArray.append(storyImage)
+                self.setUpScrollView()
+                self.changeImageLabelCounter()
+                self.getImage3()
+            })
+        } else {
+            self.getImage3()
+        }
+    }
+
+    func getImage3() {
+        if let imageStringId = self.storyImageId3 {
+            let storageRef = storage.reference()
+            let graveProfileImage = storageRef.child("storyImages/\(imageStringId)")
+            graveProfileImage.getData(maxSize: (1024 * 1024), completion:  { (data, err) in
+                guard let data = data else {return}
+                guard let image = UIImage(data: data) else {return}
+                self.storyUIImage3 = image
+                guard let storyImage = self.storyUIImage3 else { return }
+                self.storyImagesArray.append(storyImage)
+                self.setUpScrollView()
+                self.changeImageLabelCounter()
+            })
+        } else {
+            return
+        }
+    }
     
 }
