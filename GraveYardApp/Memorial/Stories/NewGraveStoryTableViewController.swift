@@ -36,9 +36,10 @@ class NewGraveStoryTableViewController: UITableViewController, UIImagePickerCont
     var storyImages1 = [UIImage]()
     var storyImages2 = [UIImage]()
     var storyImages3 = [UIImage]()
-    var storyImageId1: String?
-    var storyImageId2: String?
-    var storyImageId3: String?
+    var storyImageId1: String? = ""
+    var storyImageId2: String? = ""
+    var storyImageId3: String? = ""
+    var storyImageStringArray: [String] = []
     let newDataCount: Int? = 0
     let storage = Storage.storage()
     
@@ -190,6 +191,20 @@ class NewGraveStoryTableViewController: UITableViewController, UIImagePickerCont
 //        }
 //    }
     
+    func deletedStoryImages() {
+        print(self.storyImageStringArray)
+        for i in self.storyImageStringArray {
+            self.storage.reference().child("storyImages/\(i)").delete { (err) in
+                if err == nil {
+                    // no error
+                } else {
+                    // this might be called since they might not have images to be deleted. also called if they dont have an image 2 or 3. it will still delete teh iamges that do exist.
+                    print(err as Any)
+                }
+            }
+        }
+    }
+    
     // MARK: - Actions
     
     @IBAction func saveStoryBarButtonTapped(_ sender: UIBarButtonItem) {
@@ -232,30 +247,7 @@ class NewGraveStoryTableViewController: UITableViewController, UIImagePickerCont
             let userRef = self.db.collection("stories")
             userRef.document(self.currentGraveStoryId ?? "no StoryId detected").delete(){ err in
                 if err == nil {
-                    if let safeStoryImageId1 = self.storyImageId1 {
-                        let storageImageRef = self.storage.reference().child("storyImages/\(safeStoryImageId1)")
-                        storageImageRef.delete { (error) in
-                            if error == nil {
-                                // no error
-                            }
-                        }
-                    }
-                    if let safeStoryImageId2 = self.storyImageId2 {
-                        let storageImageRef = self.storage.reference().child("storyImages/\(safeStoryImageId2)")
-                        storageImageRef.delete { (error) in
-                            if error == nil {
-                                // no error
-                            }
-                        }
-                    }
-                    if let safeStoryImageId3 = self.storyImageId3 {
-                        let storageImageRef = self.storage.reference().child("storyImages/\(safeStoryImageId3)")
-                        storageImageRef.delete { (error) in
-                            if error == nil {
-                                // no error
-                            }
-                        }
-                    }
+                    self.deletedStoryImages()
                     let alert1 = UIAlertController(title: "Success", message: "This Story and all of it's contents have been successfully deleted", preferredStyle: .alert)
                     alert1.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
                         alert1.dismiss(animated: true, completion: nil)

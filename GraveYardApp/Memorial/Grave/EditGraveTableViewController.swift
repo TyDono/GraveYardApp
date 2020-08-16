@@ -58,6 +58,7 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
     var playerViewController = AVPlayerViewController()
     var birthDate: String = ""
     var deathDate: String = ""
+    var storyImageStringArray: [String] = [String]()
     
     // MARK: - View Lifecycle
     
@@ -316,6 +317,19 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
         }
     }
     
+    func deletedStoryImages() {
+        for i in self.storyImageStringArray {
+            self.storage.reference().child("storyImages/\(i)").delete { (err) in
+                if err == nil {
+                    // no error
+                } else {
+                    // this might be called since they might not have images to be deleted
+                    print(err as Any)
+                }
+            }
+        }
+    }
+    
     // MARK: - Actions
     
     @IBAction func saveGraveInfoTapped(_ sender: UIBarButtonItem) { //  MOST OF COMMENTED OUT CODE WILL BE RE-ADDED WHEN PREMIUM IS LIVE TO KEEP TRACK OF THEIR DATA USE AND TO LET THE USERS KNOW. ADD THIS TO NEWGRAVESTORYVIEWCONTROLLER WHEN PREMIUM IS LIVE
@@ -458,8 +472,7 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
             let forcedGraveId = self.currentGraveId!
             let userRef = self.db.collection("stories")
             
-            
-            
+            self.deletedStoryImages()
             userRef.document(forcedUserId).delete() { err in //deletes stories, call story image delete before this
                 if err == nil {
                     let storyRef = self.db.collection("grave")

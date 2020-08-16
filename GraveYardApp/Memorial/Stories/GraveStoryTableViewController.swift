@@ -41,9 +41,9 @@ class GraveStoryTableViewController: UITableViewController {
     var storyUIImage1: UIImage?
     var storyUIImage2: UIImage?
     var storyUIImage3: UIImage?
-    var storyImageId1: String? = ""
-    var storyImageId2: String? = ""
-    var storyImageId3: String? = ""
+    var storyImageId1: String? = "1"
+    var storyImageId2: String? = "2"
+    var storyImageId3: String? = "3"
     
     // MARK: - View Lifecycle
     
@@ -138,9 +138,13 @@ class GraveStoryTableViewController: UITableViewController {
             editGraveStoryTVC.currentGraveStoryId = graveStoryId
             editGraveStoryTVC.graveStoryTitleValue = storyTitle.text
             editGraveStoryTVC.graveStoryBodyTextValue = storyBodyTextView.text
-            editGraveStoryTVC.storyImageId1 = self.storyImageId1
-            editGraveStoryTVC.storyImageId2 = self.storyImageId2
-            editGraveStoryTVC.storyImageId3 = self.storyImageId3
+            guard let safeStoryImageId1 = self.storyImageId1,
+            let safeStoryImageId2 = self.storyImageId2,
+            let safeStoryImageId3 = self.storyImageId3 else { return }
+            editGraveStoryTVC.storyImageId1 = safeStoryImageId1
+            editGraveStoryTVC.storyImageId2 = safeStoryImageId2
+            editGraveStoryTVC.storyImageId3 = safeStoryImageId3
+            editGraveStoryTVC.storyImageStringArray = [safeStoryImageId1, safeStoryImageId2, safeStoryImageId3]
         }
     }
     
