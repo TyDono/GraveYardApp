@@ -86,15 +86,18 @@ class NewGraveStoryTableViewController: UITableViewController, UIImagePickerCont
             let storyId: String = currentGraveStoryId,
             let storyBodyText: String = storyBodyTextView.text,
             let storyTitle: String = storyTitleTextField.text,
+//            let storyImageArray: [String]? = [String](),
             let storyImageId1: String = self.storyImageId1,
             let storyImageId2: String = self.storyImageId2,
             let storyImageId3: String = self.storyImageId3 else { return }
+        let storyImageArray = [String]()
         
         let story = Story(creatorId: creatorId,
                           graveId: graveId,
                           storyId: storyId,
                           storyBodyText: storyBodyText,
                           storyTitle: storyTitle,
+                          storyImageArray: storyImageArray,
                           storyImageId1: storyImageId1,
                           storyImageId2: storyImageId2,
                           storyImageId3: storyImageId3)
@@ -224,6 +227,7 @@ class NewGraveStoryTableViewController: UITableViewController, UIImagePickerCont
         let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         alerController.addAction(cancel)
         let delete = UIAlertAction(title: "DELETE", style: .destructive) { _ in
+            
             
             let userRef = self.db.collection("stories")
             userRef.document(self.currentGraveStoryId ?? "no StoryId detected").delete(){ err in

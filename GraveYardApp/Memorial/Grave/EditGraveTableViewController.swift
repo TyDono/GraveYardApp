@@ -217,7 +217,9 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
     }
     
     func uploadFirebaseImages(_ image: UIImage, completion: @escaping ((_ url: URL?) -> () )) {
-        let storageRef = Storage.storage().reference().child("graveProfileImages/\(self.imageString ?? "no Image Found")")
+        guard let imageStringId = self.imageString else { return }
+        guard let SafeCurrentGraveId = self.currentGraveId else { return }
+        let storageRef = Storage.storage().reference().child("graveProfileImages/\(SafeCurrentGraveId)Folder/\(imageStringId)")
         guard let imageData = image.jpegData(compressionQuality: 0.20) else { return }
         let metaData = StorageMetadata()
         metaData.contentType = "image/jpg"
@@ -256,8 +258,9 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
 //        }
 //    }
     
-    func saveImageToFirebase(graveImagesURL: URL, completion: @escaping((_ success: Bool) -> ())) {
-        let databaseRef = Firestore.firestore().document("graveProfileImages/\(self.currentGraveId ?? "no image")")
+    func saveImageToFirebase(graveImagesURL: URL, completion: @escaping((_ success: Bool) -> ())) { //not called
+        guard let imageStringId = self.imageString else { return }
+        let databaseRef = Firestore.firestore().document("graveProfileImages/\(imageStringId)")
         let userObjectImages = [
             "imageURL": graveImagesURL.absoluteString
         ] as [String:Any]
@@ -287,30 +290,30 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
         }
     }
         
-        func deleteGraveStories() {
-            let graveStoryRef = self.db.collection("stories")
-            
-            let getStories = graveStoryRef.whereField("graveId", isEqualTo: self.currentGraveId)
-            getStories.getDocuments { (snapshot, err) in
-                if err != nil {
-                    print(err as Any)
-                } else {
-                    for document in (snapshot?.documents)! {
-    //                    if let creatorId = document.data()["creatorId"] as? String,
-    //                        let profileImageId = document.data()["profileImageId"] as? String,
-                    }
-                }
-                
-            }
-            
-            graveStoryRef.document("").delete() {
-                err in
-                if err == nil {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0) {
-                        self.performSegue(withIdentifier: "unwindToMap", sender: nil)
-                    }
+    func deleteGraveStories() {
+        let graveStoryRef = self.db.collection("stories")
+        
+        let getStories = graveStoryRef.whereField("graveId", isEqualTo: self.currentGraveId)
+        getStories.getDocuments { (snapshot, err) in
+            if err != nil {
+                print(err as Any)
+            } else {
+                for document in (snapshot?.documents)! {
+                    //                    if let creatorId = document.data()["creatorId"] as? String,
+                    //                        let profileImageId = document.data()["profileImageId"] as? String,
                 }
             }
+            
+        }
+        
+        graveStoryRef.document("").delete() {
+            err in
+            if err == nil {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0) {
+                    self.performSegue(withIdentifier: "unwindToMap", sender: nil)
+                }
+            }
+        }
     }
     
     // MARK: - Actions
@@ -454,6 +457,9 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
             let forcedUserId = self.currentAuthID!
             let forcedGraveId = self.currentGraveId!
             let userRef = self.db.collection("stories")
+            
+            
+            
             userRef.document(forcedUserId).delete() { err in //deletes stories, call story image delete before this
                 if err == nil {
                     let storyRef = self.db.collection("grave")
@@ -470,7 +476,7 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
                                         }))
                                         self.present(alertSuccess, animated: true, completion: nil)
                                     } else {
-                                        print("no image to delete")
+                                        print("\(error) no image to delete")
                                         let alertSuccess = UIAlertController(title: "Success", message: "You have successfully deleted this Memorial and all of it's content", preferredStyle: .alert)
                                         alertSuccess.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
                                             alertSuccess.dismiss(animated: true, completion: nil)
