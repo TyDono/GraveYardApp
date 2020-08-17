@@ -59,6 +59,7 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
     var birthDate: String = ""
     var deathDate: String = ""
     var storyImageStringArray: [String] = [String]()
+    var arrayOfStoryImageIDs: [String] = []
     
     // MARK: - View Lifecycle
     
@@ -159,7 +160,8 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
                         let graveLocationLongitude = document.data()["graveLocationLongitude"] as? String,
                         let birthSwitchIsOn = document.data()["birthSwitchIsOn"] as? Bool,
                         let deathSwitchIsOn = document.data()["deathSwitchIsOn"] as? Bool,
-                        let publicIsTrue = document.data()["publicIsTrue"] as? Bool {
+                        let publicIsTrue = document.data()["publicIsTrue"] as? Bool,
+                        let arrayOfStoryImageIDs = document.data()["arrayOfStoryImageIDs"] as? [String] {
                         
                         self.imageString = profileImageId
                         guard let birthDate = self.dateFormatter.date(from:birthDate) ?? defaultDate else { return }
@@ -179,6 +181,7 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
                         self.birthSwitch.isOn = birthSwitchIsOn
                         self.deathSwitch.isOn = deathSwitchIsOn
                         self.publicIsTrueSwitch.isOn = publicIsTrue
+                        self.arrayOfStoryImageIDs = arrayOfStoryImageIDs
                         self.getImages() //call this last
                     }
                 }
@@ -318,7 +321,7 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
     }
     
     func deletedStoryImages() {
-        for i in self.storyImageStringArray {
+        for i in self.arrayOfStoryImageIDs {
             self.storage.reference().child("storyImages/\(i)").delete { (err) in
                 if err == nil {
                     // no error
@@ -379,6 +382,7 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
         }
         guard let deathLocation = deathLocationTextField.text else { return }
         let familyStatus =  "" //familyStatusTextView.text else { return }
+        let arrayOfStoryImageIDs = self.arrayOfStoryImageIDs
         guard let bio = bioTextView.text else { return }
         guard let currentGraveLocationLatitude = self.currentGraveLocationLatitude  else { return }
         guard let currentGraveLocationLongitude = self.currentGraveLocationLongitude  else { return }
@@ -401,7 +405,8 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
                           pinQuote: pinQuote,
                           birthSwitchIsOn: self.birthSwitch.isOn,
                           deathSwitchIsOn: self.deathSwitch.isOn,
-                          publicIsTrue: self.publicIsTrueSwitch.isOn)
+                          publicIsTrue: self.publicIsTrueSwitch.isOn,
+                          arrayOfStoryImageIDs: arrayOfStoryImageIDs)
         
         let graveRef = self.db.collection("grave")
         graveRef.document(String(grave.graveId)).updateData(grave.dictionary){ err in

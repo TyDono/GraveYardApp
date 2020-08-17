@@ -86,7 +86,7 @@ class GraveStoriesTableViewController: UITableViewController {
         let storyId: String = UUID().uuidString
         let storyBody: String = ""
         let storyTitle: String = ""
-        let storyImageArray = [String]()
+        let storyImageArray: [String] = [String]()
         let storyImageId1: String = UUID().uuidString
         let storyImageId2: String = UUID().uuidString
         let storyImageId3: String = UUID().uuidString

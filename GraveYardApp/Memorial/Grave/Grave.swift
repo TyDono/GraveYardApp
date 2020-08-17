@@ -36,6 +36,7 @@ struct Grave {
     var birthSwitchIsOn: Bool
     var deathSwitchIsOn: Bool
     var publicIsTrue: Bool
+    var arrayOfStoryImageIDs: [String]
     // premium users, grave quote, grave node image
     // BURIAL LOCATION
     // coordanates = jim
@@ -61,7 +62,8 @@ struct Grave {
             "pinQuote": pinQuote,
             "birthSwitchIsOn": birthSwitchIsOn,
             "deathSwitchIsOn": deathSwitchIsOn,
-            "publicIsTrue": publicIsTrue
+            "publicIsTrue": publicIsTrue,
+            "arrayOfStoryImageIDs": arrayOfStoryImageIDs
         ]
     }
 }
@@ -84,8 +86,9 @@ extension Grave: DocumentGraveSerializable {
             let pinQuote = dictionary["pinQuote"] as? String,
             let birthSwitchIsOn = dictionary["birthSwitchIsOn"] as? Bool,
             let deathSwitchIsOn = dictionary["deathSwitchIsOn"] as? Bool,
-        let publicIsTrue = dictionary["publicIsTrue"] as? Bool else {return nil}
-        self.init(creatorId: creatorId, graveId: graveId, profileImageId: profileImageId, name: name, birthDate: birthDate, birthLocation: birthLocation, deathDate: deathDate, deathLocation: deathLocation, familyStatus: familyStatus, bio: bio, graveLocationLatitude: graveLocationLatitude, graveLocationLongitude: graveLocationLongitude, allGraveIdentifier: allGraveIdentifier, pinQuote: pinQuote, birthSwitchIsOn: birthSwitchIsOn, deathSwitchIsOn: deathSwitchIsOn, publicIsTrue: publicIsTrue)
+            let publicIsTrue = dictionary["publicIsTrue"] as? Bool,
+            let arrayOfStoryImageIDs = dictionary["arrayOfStoryImageIDs"] as? [String] else {return nil}
+        self.init(creatorId: creatorId, graveId: graveId, profileImageId: profileImageId, name: name, birthDate: birthDate, birthLocation: birthLocation, deathDate: deathDate, deathLocation: deathLocation, familyStatus: familyStatus, bio: bio, graveLocationLatitude: graveLocationLatitude, graveLocationLongitude: graveLocationLongitude, allGraveIdentifier: allGraveIdentifier, pinQuote: pinQuote, birthSwitchIsOn: birthSwitchIsOn, deathSwitchIsOn: deathSwitchIsOn, publicIsTrue: publicIsTrue, arrayOfStoryImageIDs: arrayOfStoryImageIDs)
     }
     
 }

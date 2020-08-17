@@ -138,7 +138,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                     let pinQuote = currentGrave["pinQuote"] as? String,
                     let birthSwitchIsOn = currentGrave["birthSwitchIsOn"] as? Bool,
                     let deathSwitchIsOn = currentGrave["deathSwitchIsOn"] as? Bool,
-                    let publicIsTrue = currentGrave["publicIsTrue"] as? Bool {
+                    let publicIsTrue = currentGrave["publicIsTrue"] as? Bool,
+                    let arrayOfStoryImageIDs = currentGrave["arrayOfStoryImageIDs"] as? [String] {
                     
                     let registeredGrave = Grave(creatorId: creatorId,
                                                 graveId: graveId,
@@ -156,7 +157,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                                                 pinQuote: pinQuote,
                                                 birthSwitchIsOn: birthSwitchIsOn,
                                                 deathSwitchIsOn: deathSwitchIsOn,
-                                                publicIsTrue: publicIsTrue)
+                                                publicIsTrue: publicIsTrue,
+                                                arrayOfStoryImageIDs: arrayOfStoryImageIDs)
                     
                     registeredGraves.append(registeredGrave)
                     print(registeredGraves)
@@ -461,6 +463,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                 let birthSwitchIsOn: Bool = true
                 let deathSwitchIsOn: Bool = true
                 let publicIsTrue: Bool = true
+                let arrayOfStoryImageIDs: [String] = [""]
                 guard let graveId: String = MapViewController.shared.currentGraveId else { return }
                 guard let graveLocationLatitude: String = MapViewController.shared.currentGraveLocationLatitude else { return }
                 guard let graveLocationLongitude: String = MapViewController.shared.currentGraveLocationLongitude else { return }
@@ -481,7 +484,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                                   pinQuote: pinQuote,
                                   birthSwitchIsOn: birthSwitchIsOn,
                                   deathSwitchIsOn: deathSwitchIsOn,
-                                  publicIsTrue: publicIsTrue)
+                                  publicIsTrue: publicIsTrue,
+                                  arrayOfStoryImageIDs: arrayOfStoryImageIDs)
                 
                 let graveRef = self.db.collection("grave")
                 graveRef.whereField("graveId", isEqualTo: grave.graveId).getDocuments { (snapshot, error) in

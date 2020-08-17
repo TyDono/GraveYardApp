@@ -40,6 +40,7 @@ class NewGraveStoryTableViewController: UITableViewController, UIImagePickerCont
     var storyImageId2: String? = ""
     var storyImageId3: String? = ""
     var storyImageStringArray: [String] = []
+    var arrayOfStoryImageIDs: [String] = []
     let newDataCount: Int? = 0
     let storage = Storage.storage()
     
@@ -62,8 +63,7 @@ class NewGraveStoryTableViewController: UITableViewController, UIImagePickerCont
     
     func updateDataStorage() {
         guard let currentId = currentAuthID else { return }
-        let db = Firestore.firestore()
-        let updateDataRef = db.collection("userProfile").document(currentId)
+        let updateDataRef = self.db.collection("userProfile").document(currentId)
         updateDataRef.updateData([
             "dataCount": newDataCount
         ]) { err in
@@ -71,6 +71,44 @@ class NewGraveStoryTableViewController: UITableViewController, UIImagePickerCont
                 print("Error updating document: \(err)")
             } else {
                 print("Document successfully updated")
+            }
+        }
+    }
+    
+    func getGraveData() {
+        let graveRef = self.db.collection("grave").whereField("graveId", isEqualTo: MapViewController.shared.currentGraveId!) // this should be the grave id that was tapped on
+        graveRef.getDocuments { (snapshot, error) in
+            if error != nil {
+                print(error as Any)
+            } else {
+                for document in (snapshot?.documents)! {
+                    guard let arrayOfStoryImageIDs = document.data()["arrayOfStoryImageIDs"] as? [String] else { return }
+                    self.arrayOfStoryImageIDs = arrayOfStoryImageIDs
+                }
+            }
+        }
+    }
+    
+    func updateArrayOfStoryImageIDs() {
+        let arrayOfStoryImageIDs = self.arrayOfStoryImageIDs + self.storyImageStringArray
+        guard let currentGraveId = MapViewController.shared.currentGraveId else { return }
+        self.db.collection("grave").document(currentGraveId).updateData([
+            "arrayOfStoryImageIDs": arrayOfStoryImageIDs
+        ]) { err in
+            if let err = err {
+                print("Error updating document: \(err)")
+                let alert1 = UIAlertController(title: "Not Saved", message: "Sorry, there was an error while trying to save your Story. Please try again.", preferredStyle: .alert)
+                alert1.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
+                    alert1.dismiss(animated: true, completion: nil)
+                }))
+                self.present(alert1, animated: true, completion: nil)
+            } else {
+                let alert2 = UIAlertController(title: "Saved", message: "You have successfully saved \(self.storyTitleTextField.text ?? "this story")", preferredStyle: .alert)
+                alert2.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
+                    alert2.dismiss(animated: true, completion: nil)
+                    self.performSegue(withIdentifier: "unwindtoGraveStoriesSegue", sender: nil)
+                }))
+                self.present(alert2, animated: true, completion: nil)
             }
         }
     }
@@ -106,19 +144,9 @@ class NewGraveStoryTableViewController: UITableViewController, UIImagePickerCont
         let storyRef = self.db.collection("stories")
         storyRef.document(String(story.storyId)).updateData(story.dictionary){ err in
             if let err = err {
-                let alert1 = UIAlertController(title: "Not Saved", message: "Sorry, there was an error while trying to save your Story. Please try again.", preferredStyle: .alert)
-                alert1.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
-                    alert1.dismiss(animated: true, completion: nil)
-                }))
-                self.present(alert1, animated: true, completion: nil)
                 print(err)
             } else {
-                let alert2 = UIAlertController(title: "Saved", message: "You have successfully saved \(self.storyTitleTextField.text ?? "this story")", preferredStyle: .alert)
-                alert2.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
-                    alert2.dismiss(animated: true, completion: nil)
-                    self.performSegue(withIdentifier: "unwindtoGraveStoriesSegue", sender: nil)
-                }))
-                self.present(alert2, animated: true, completion: nil)
+                self.updateArrayOfStoryImageIDs()
             }
         }
     }
