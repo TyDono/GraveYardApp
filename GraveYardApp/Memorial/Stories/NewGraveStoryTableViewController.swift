@@ -271,7 +271,6 @@ class NewGraveStoryTableViewController: UITableViewController, UIImagePickerCont
         alerController.addAction(cancel)
         let delete = UIAlertAction(title: "DELETE", style: .destructive) { _ in
             
-            
             let userRef = self.db.collection("stories")
             userRef.document(self.currentGraveStoryId ?? "no StoryId detected").delete(){ err in
                 if err == nil {

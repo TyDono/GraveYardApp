@@ -58,7 +58,7 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
     var playerViewController = AVPlayerViewController()
     var birthDate: String = ""
     var deathDate: String = ""
-    var storyImageStringArray: [String] = [String]()
+    var storyImageStringArray: [String] = []
     var arrayOfStoryImageIDs: [String] = []
     
     // MARK: - View Lifecycle
@@ -262,17 +262,17 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
 //        }
 //    }
     
-    func saveImageToFirebase(graveImagesURL: URL, completion: @escaping((_ success: Bool) -> ())) { //not called
-        guard let imageStringId = self.imageString else { return }
-        let databaseRef = Firestore.firestore().document("graveProfileImages/\(imageStringId)")
-        let userObjectImages = [
-            "imageURL": graveImagesURL.absoluteString
-        ] as [String:Any]
-        databaseRef.setData(userObjectImages) { (error) in
-            completion(error == nil)
-        }
-        print("SaveImageToFirebase has been saved!!!!!")
-    }
+//    func saveImageToFirebase(graveImagesURL: URL, completion: @escaping((_ success: Bool) -> ())) { //not called
+//        guard let imageStringId = self.imageString else { return }
+//        let databaseRef = Firestore.firestore().document("graveProfileImages/\(imageStringId)")
+//        let userObjectImages = [
+//            "imageURL": graveImagesURL.absoluteString
+//        ] as [String:Any]
+//        databaseRef.setData(userObjectImages) { (error) in
+//            completion(error == nil)
+//        }
+//        print("SaveImageToFirebase has been saved!!!!!")
+//    }
     
     struct PropertyKeys {
         static let unwind = "unwindToGraveSegue"
@@ -476,7 +476,7 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
             let forcedUserId = self.currentAuthID!
             let forcedGraveId = self.currentGraveId!
             let userRef = self.db.collection("stories")
-            
+            print(self.storyImageStringArray)
             self.deletedStoryImages()
             userRef.document(forcedUserId).delete() { err in //deletes stories, call story image delete before this
                 if err == nil {
