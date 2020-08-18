@@ -191,7 +191,7 @@ class NewGraveStoryTableViewController: UITableViewController, UIImagePickerCont
 //        }
 //    }
     
-    func saveImageToFirebase(graveImagesURL: URL, completion: @escaping((_ success: Bool) -> ())) {
+    func saveImageToFirebase(graveImagesURL: URL, completion: @escaping((_ success: Bool) -> ())) { // not being caled
         let databaseRef = Firestore.firestore().document("storyImages/\(self.currentGraveStoryId ?? "no image")")
         let userObjectImages = [
             "imageURL": graveImagesURL.absoluteString
