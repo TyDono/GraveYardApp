@@ -33,6 +33,7 @@ class NewGraveStoryTableViewController: UITableViewController, UIImagePickerCont
     var graveStoryBodyTextValue: String?
     var imageString: String?
     var storyImage: GraveProfileImage?
+    var storyImages = [UIImage]()
     var storyImages1 = [UIImage]()
     var storyImages2 = [UIImage]()
     var storyImages3 = [UIImage]()

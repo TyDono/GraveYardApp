@@ -136,8 +136,7 @@ class GraveStoriesTableViewController: UITableViewController {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "storyCell", for: indexPath) as? StoryTableViewCell else { return UITableViewCell() }
         
         if let stories = stories {
-            var story = stories[indexPath.row]
-            currentGraveStoryId = story.storyId
+            let story = stories[indexPath.row]
             cell.storyCellTitle.text = "\(story.storyTitle)"
             cell.cellStoryText = "\(story.storyBodyText)"
         }
@@ -155,6 +154,7 @@ class GraveStoriesTableViewController: UITableViewController {
                 graveStoryTVC.graveStoryId = currentGraveStoryId
                 graveStoryTVC.graveStorytitleValue = story.storyTitle
                 graveStoryTVC.graveStoryBodyBioValue = story.storyBodyText
+                graveStoryTVC.graveStoryId = story.storyId
                 graveStoryTVC.creatorId = self.creatorId
                 graveStoryTVC.storyImageId1 = story.storyImageId1
                 graveStoryTVC.storyImageId2 = story.storyImageId2
@@ -171,6 +171,7 @@ class GraveStoriesTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
         performSegue(withIdentifier: "graveStorySegue", sender: self)
     }
     
