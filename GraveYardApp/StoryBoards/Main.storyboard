@@ -807,11 +807,11 @@
                                         <rect key="frame" x="0.0" y="1314.3333396911621" width="375" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Kpz-br-u9b" id="rQF-NQ-S4W">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.666667938232422"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="1024" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZNU-MZ-UIK">
-                                                    <rect key="frame" x="20" y="8.0000000000000018" width="335" height="27.666666666666671"/>
+                                                    <rect key="frame" x="20" y="8.0000000000000018" width="984" height="27.666666666666671"/>
                                                     <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <state key="normal" title="DELETE HEADSTONE">
                                                         <color key="titleColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -938,19 +938,31 @@
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D88-RR-YuN">
                                                             <rect key="frame" x="0.0" y="0.0" width="375" height="301"/>
                                                             <subviews>
-                                                                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wkN-1j-kTE">
+                                                                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wkN-1j-kTE">
                                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="301"/>
+                                                                    <subviews>
+                                                                        <view hidden="YES" opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G9H-Xf-FkF">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="375" height="301"/>
+                                                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                                        </view>
+                                                                    </subviews>
                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                    <viewLayoutGuide key="contentLayoutGuide" id="4Cb-Bb-LQM"/>
-                                                                    <viewLayoutGuide key="frameLayoutGuide" id="zad-so-gsS"/>
+                                                                    <constraints>
+                                                                        <constraint firstItem="G9H-Xf-FkF" firstAttribute="width" secondItem="wkN-1j-kTE" secondAttribute="width" id="2VY-3u-OEh"/>
+                                                                        <constraint firstAttribute="bottom" secondItem="G9H-Xf-FkF" secondAttribute="bottom" id="DEc-BJ-sbX"/>
+                                                                        <constraint firstItem="G9H-Xf-FkF" firstAttribute="top" secondItem="wkN-1j-kTE" secondAttribute="top" id="EQE-kU-Dxs"/>
+                                                                        <constraint firstAttribute="trailing" secondItem="G9H-Xf-FkF" secondAttribute="trailing" id="PyT-2Y-awg"/>
+                                                                        <constraint firstItem="G9H-Xf-FkF" firstAttribute="height" secondItem="wkN-1j-kTE" secondAttribute="height" id="bPv-Fq-i5d"/>
+                                                                        <constraint firstItem="G9H-Xf-FkF" firstAttribute="leading" secondItem="wkN-1j-kTE" secondAttribute="leading" id="giN-mK-3Ci"/>
+                                                                    </constraints>
                                                                 </scrollView>
                                                             </subviews>
                                                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="bottom" secondItem="wkN-1j-kTE" secondAttribute="bottom" id="6VX-lC-Yhh"/>
-                                                                <constraint firstAttribute="trailing" secondItem="wkN-1j-kTE" secondAttribute="trailing" id="B8b-EB-TcC"/>
-                                                                <constraint firstItem="wkN-1j-kTE" firstAttribute="leading" secondItem="D88-RR-YuN" secondAttribute="leading" id="bK9-ss-gvG"/>
-                                                                <constraint firstItem="wkN-1j-kTE" firstAttribute="top" secondItem="D88-RR-YuN" secondAttribute="top" id="wDg-lk-ivK"/>
+                                                                <constraint firstItem="wkN-1j-kTE" firstAttribute="top" secondItem="D88-RR-YuN" secondAttribute="top" id="AaZ-yL-Wcc"/>
+                                                                <constraint firstItem="wkN-1j-kTE" firstAttribute="centerX" secondItem="D88-RR-YuN" secondAttribute="centerX" id="IcG-SN-zpz"/>
+                                                                <constraint firstItem="wkN-1j-kTE" firstAttribute="leading" secondItem="D88-RR-YuN" secondAttribute="leading" id="vcc-MO-XyG"/>
+                                                                <constraint firstItem="wkN-1j-kTE" firstAttribute="centerY" secondItem="D88-RR-YuN" secondAttribute="centerY" id="wRg-90-ejC"/>
                                                             </constraints>
                                                         </view>
                                                         <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" verticalHuggingPriority="252" horizontalCompressionResistancePriority="753" verticalCompressionResistancePriority="753" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jhF-Yl-Yx7">
@@ -1099,7 +1111,7 @@
                     <viewLayoutGuide key="safeArea" id="bVB-9t-Yg7"/>
                 </view>
             </objects>
-            <point key="canvasLocation" x="1728.8" y="2234.4827586206898"/>
+            <point key="canvasLocation" x="1727.536231884058" y="2233.2589285714284"/>
         </scene>
         <!--New Grave Story Table View Controller-->
         <scene sceneID="23l-6f-ENa">
