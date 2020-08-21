@@ -153,7 +153,7 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
                         let deathDate = document.data()["deathDate"] as? String,
                         let deathLocation = document.data()["deathLocation"] as? String,
                         let graveId = document.data()["graveId"] as? String?,
-                        let familyStatus = document.data()["familyStatus"] as? String,
+//                        let familyStatus = document.data()["familyStatus"] as? String,
                         let bio = document.data()["bio"] as? String,
                         let pinQuote = document.data()["pinQuote"] as? String,
                         let graveLocationLatitude = document.data()["graveLocationLatitude"] as? String,
@@ -164,12 +164,13 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
                         let arrayOfStoryImageIDs = document.data()["arrayOfStoryImageIDs"] as? [String] {
                         
                         self.imageString = profileImageId
-                        guard let birthDate = self.dateFormatter.date(from:birthDate) ?? defaultDate else { return }
-                        guard let deathDate = self.dateFormatter.date(from:deathDate) ?? defaultDate else { return }
+                        self.dateFormatter.dateFormat = "MM/dd/yyyy"
+                        guard let safeBirthDate = self.dateFormatter.date(from:birthDate) else { return }
+                        guard let safeDeathDate = self.dateFormatter.date(from:deathDate) else { return }
                         self.nameTextField.text = name
-                        self.birthDatePicker.date = birthDate
+                        self.birthDatePicker.date = safeBirthDate
                         self.birthLocationTextField.text = birthLocation
-                        self.deathDatePicker.date = deathDate
+                        self.deathDatePicker.date = safeDeathDate
                         self.currentGraveId = graveId
                         self.deathLocationTextField.text = deathLocation
                         //self.familyStatusTextView.text = familyStatus
