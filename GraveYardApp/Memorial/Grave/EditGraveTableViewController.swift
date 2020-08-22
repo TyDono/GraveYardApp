@@ -285,16 +285,16 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
             if let error = err {
 //                let deleteImageAlert = UIAlertController(title: "Error", message: "Sorry, there was an error while trying to delete your Headstone Image. Please check your internet connection and try again.", preferredStyle: .alert)
 //                deleteImageAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
-//                    deleteImageAlert.dismiss(animated: true, completion: nil)
-//                }))
-//                self.present(deleteImageAlert, animated: true, completion: nil)
+                //                    deleteImageAlert.dismiss(animated: true, completion: nil)
+                //                }))
+                //                self.present(deleteImageAlert, animated: true, completion: nil)
                 print(error)
             } else {
                 // File deleted successfully
             }
         }
     }
-        
+    
     func deleteGraveStories() {
         let graveStoryRef = self.db.collection("stories")
         
@@ -337,94 +337,99 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
     // MARK: - Actions
     
     @IBAction func saveGraveInfoTapped(_ sender: UIBarButtonItem) { //  MOST OF COMMENTED OUT CODE WILL BE RE-ADDED WHEN PREMIUM IS LIVE TO KEEP TRACK OF THEIR DATA USE AND TO LET THE USERS KNOW. ADD THIS TO NEWGRAVESTORYVIEWCONTROLLER WHEN PREMIUM IS LIVE
-        //        guard let unwrappedGraveImage = graveMainImage.image else { return } // the uplaod takes 2 long and needs a delay before segue is called
-        //        guard let currentDataUseCount = MyFirebase.currentDataUsage else { return }
-        //        var checkDataCap: Int = 0
-        for image in graveProfileImages {
-            uploadFirebaseImages(image) { (url) in
-                guard let imageDataBytes = image.jpegData(compressionQuality: 0.20) else { return }
-                if let unwrappedCurrentImageDataCount = self.currentImageDataCount {
-                    //                    checkDataCap = currentDataUseCount - unwrappedCurrentImageDataCount + imageDataBytes.count
-                    //                    if checkDataCap > 5000 {
-                    //                        let alert = UIAlertController(title: "Over Limit!", message: "Saving this puts you over your alloted data use! Try deleting some photos to make room, or sign up for premium to expand your data cap for Remembrance.  current amount in use \(checkDataCap) / 5,000kb", preferredStyle: .alert)
-                    //                        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
-                    //                            alert.dismiss(animated: true, completion: nil)
-                    //                            return
-                    //                        }))
-                    //                        self.present(alert, animated: true, completion: nil)
-                    //                    } else {
-                    MyFirebase.currentDataUsage = MyFirebase.currentDataUsage! - unwrappedCurrentImageDataCount + imageDataBytes.count
-                    self.updateUserData()
-                    //                    }
+        if nameTextField.text == "" {
+            nameTextField.isError(baseColor: UIColor.red.cgColor, numberOfShakes: 3, revert: true)
+            return
+        } else {
+            //        guard let unwrappedGraveImage = graveMainImage.image else { return } // the uplaod takes 2 long and needs a delay before segue is called
+            //        guard let currentDataUseCount = MyFirebase.currentDataUsage else { return }
+            //        var checkDataCap: Int = 0
+            for image in graveProfileImages {
+                uploadFirebaseImages(image) { (url) in
+                    guard let imageDataBytes = image.jpegData(compressionQuality: 0.20) else { return }
+                    if let unwrappedCurrentImageDataCount = self.currentImageDataCount {
+                        //                    checkDataCap = currentDataUseCount - unwrappedCurrentImageDataCount + imageDataBytes.count
+                        //                    if checkDataCap > 5000 {
+                        //                        let alert = UIAlertController(title: "Over Limit!", message: "Saving this puts you over your alloted data use! Try deleting some photos to make room, or sign up for premium to expand your data cap for Remembrance.  current amount in use \(checkDataCap) / 5,000kb", preferredStyle: .alert)
+                        //                        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
+                        //                            alert.dismiss(animated: true, completion: nil)
+                        //                            return
+                        //                        }))
+                        //                        self.present(alert, animated: true, completion: nil)
+                        //                    } else {
+                        MyFirebase.currentDataUsage = MyFirebase.currentDataUsage! - unwrappedCurrentImageDataCount + imageDataBytes.count
+                        self.updateUserData()
+                        //                    }
+                    }
+                    guard url != nil else { return }
+                    //                self.saveImageToFirebase(graveImagesURL: url, completion: { success in
+                    //                    self.firebaseWrite(url: url.absoluteString)
+                    //                })
                 }
-                guard url != nil else { return }
-                //                self.saveImageToFirebase(graveImagesURL: url, completion: { success in
-                //                    self.firebaseWrite(url: url.absoluteString)
-                //                })
             }
-        }
-        
-        let creatorId = currentAuthID!
-        guard let graveId = self.currentGraveId  else { return } // this is the grave id that was tapped on
-        guard let profileImageId = self.imageString else { return }
-        guard let name = nameTextField.text else { return }
-        if birthSwitch.isOn == true {
-            let birth = birthDatePicker.date
-            self.birthDate = dateFormatter.string(from: birth)
-        } else {
-            self.birthDate = ""
-        }
-        guard let birthLocation = birthLocationTextField.text else { return }
-        if deathSwitch.isOn == true {
-            let death = deathDatePicker.date
-            self.deathDate = dateFormatter.string(from: death)
-        } else {
-            self.deathDate = ""
-        }
-        guard let deathLocation = deathLocationTextField.text else { return }
-        let familyStatus =  "" //familyStatusTextView.text else { return }
-        let arrayOfStoryImageIDs = self.arrayOfStoryImageIDs
-        guard let bio = bioTextView.text else { return }
-        guard let currentGraveLocationLatitude = self.currentGraveLocationLatitude  else { return }
-        guard let currentGraveLocationLongitude = self.currentGraveLocationLongitude  else { return }
-        let allGraveIdentifier: String = "tylerRoolz"
-        guard let pinQuote: String = self.pinQuoteTextField.text else { return }
-        
-        let grave = Grave(creatorId: creatorId,
-                          graveId: graveId,
-                          profileImageId: profileImageId,
-                          name: name,
-                          birthDate: self.birthDate,
-                          birthLocation: birthLocation,
-                          deathDate: self.deathDate,
-                          deathLocation: deathLocation,
-                          familyStatus: familyStatus,
-                          bio: bio,
-                          graveLocationLatitude: currentGraveLocationLatitude,
-                          graveLocationLongitude: currentGraveLocationLongitude,
-                          allGraveIdentifier: allGraveIdentifier,
-                          pinQuote: pinQuote,
-                          birthSwitchIsOn: self.birthSwitch.isOn,
-                          deathSwitchIsOn: self.deathSwitch.isOn,
-                          publicIsTrue: self.publicIsTrueSwitch.isOn,
-                          arrayOfStoryImageIDs: arrayOfStoryImageIDs)
-        
-        let graveRef = self.db.collection("grave")
-        graveRef.document(String(grave.graveId)).updateData(grave.dictionary){ err in
-            if let err = err {
-                let alert1 = UIAlertController(title: "Not Saved", message: "Sorry, there was an error while trying to save your Grave. Please try again.", preferredStyle: .alert)
-                alert1.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
-                    alert1.dismiss(animated: true, completion: nil)
-                }))
-                self.present(alert1, animated: true, completion: nil)
-                print(err)
+            
+            let creatorId = currentAuthID!
+            guard let graveId = self.currentGraveId  else { return } // this is the grave id that was tapped on
+            guard let profileImageId = self.imageString else { return }
+            guard let name = nameTextField.text else { return }
+            if birthSwitch.isOn == true {
+                let birth = birthDatePicker.date
+                self.birthDate = dateFormatter.string(from: birth)
             } else {
-                let alert1 = UIAlertController(title: "Memorial Saved!", message: "You have successfully save your Memorial data", preferredStyle: .alert)
-                alert1.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
-                    alert1.dismiss(animated: true, completion: nil)
-                    self.performSegue(withIdentifier: "unwindToGraveSegue", sender: nil)
-                }))
-                self.present(alert1, animated: true, completion: nil)
+                self.birthDate = ""
+            }
+            guard let birthLocation = birthLocationTextField.text else { return }
+            if deathSwitch.isOn == true {
+                let death = deathDatePicker.date
+                self.deathDate = dateFormatter.string(from: death)
+            } else {
+                self.deathDate = ""
+            }
+            guard let deathLocation = deathLocationTextField.text else { return }
+            let familyStatus =  "" //familyStatusTextView.text else { return }
+            let arrayOfStoryImageIDs = self.arrayOfStoryImageIDs
+            guard let bio = bioTextView.text else { return }
+            guard let currentGraveLocationLatitude = self.currentGraveLocationLatitude  else { return }
+            guard let currentGraveLocationLongitude = self.currentGraveLocationLongitude  else { return }
+            let allGraveIdentifier: String = "tylerRoolz"
+            guard let pinQuote: String = self.pinQuoteTextField.text else { return }
+            
+            let grave = Grave(creatorId: creatorId,
+                              graveId: graveId,
+                              profileImageId: profileImageId,
+                              name: name,
+                              birthDate: self.birthDate,
+                              birthLocation: birthLocation,
+                              deathDate: self.deathDate,
+                              deathLocation: deathLocation,
+                              familyStatus: familyStatus,
+                              bio: bio,
+                              graveLocationLatitude: currentGraveLocationLatitude,
+                              graveLocationLongitude: currentGraveLocationLongitude,
+                              allGraveIdentifier: allGraveIdentifier,
+                              pinQuote: pinQuote,
+                              birthSwitchIsOn: self.birthSwitch.isOn,
+                              deathSwitchIsOn: self.deathSwitch.isOn,
+                              publicIsTrue: self.publicIsTrueSwitch.isOn,
+                              arrayOfStoryImageIDs: arrayOfStoryImageIDs)
+            
+            let graveRef = self.db.collection("grave")
+            graveRef.document(String(grave.graveId)).updateData(grave.dictionary){ err in
+                if let err = err {
+                    let alertFailure = UIAlertController(title: "Not Saved", message: "Sorry, there was an error while trying to save your Grave. Please try again.", preferredStyle: .alert)
+                    alertFailure.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
+                        alertFailure.dismiss(animated: true, completion: nil)
+                    }))
+                    self.present(alertFailure, animated: true, completion: nil)
+                    print(err)
+                } else {
+                    let alertSuccess = UIAlertController(title: "Memorial Saved!", message: "You have successfully save your Memorial data", preferredStyle: .alert)
+                    alertSuccess.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
+                        alertSuccess.dismiss(animated: true, completion: nil)
+                        self.performSegue(withIdentifier: "unwindToGraveSegue", sender: nil)
+                    }))
+                    self.present(alertSuccess, animated: true, completion: nil)
+                }
             }
         }
         

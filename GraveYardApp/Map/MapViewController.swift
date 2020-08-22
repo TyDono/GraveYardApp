@@ -96,7 +96,10 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
 //            for i in stride(from: 0, through: graves!.count - 1, by: -1) {
                 let registeredGrave = graves![i]
                 let annotation = MKPointAnnotation()
-                let currentGraveTitle = registeredGrave.name
+                var currentGraveTitle = registeredGrave.name
+                if currentGraveTitle.isEmpty == true {
+                    currentGraveTitle = "New Entry"
+                }
                 let pinQuote = "\(registeredGrave.pinQuote)"
                 let currentGraveId = registeredGrave.graveId
                 guard let graveLatitude = Double(registeredGrave.graveLocationLatitude),
@@ -455,7 +458,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                 let formattedDate = format.string(from: date)
                 let newGraveId = UUID().uuidString
                 let profileImageId: String = UUID().uuidString
-                let name: String = "Name"
+                let name: String = ""
                 let birthDate: String = formattedDate
                 let birthLocation: String = ""
                 let deathDate: String = formattedDate
