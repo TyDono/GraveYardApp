@@ -134,6 +134,8 @@ class GraveStoriesTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "storyCell", for: indexPath) as? StoryTableViewCell else { return UITableViewCell() }
+        cell.backgroundColor = UIColor.clear
+        cell.backgroundView = UIImageView.init(image: UIImage.init(named: "bookBlue"))
         
         if let stories = stories {
             let story = stories[indexPath.row]
