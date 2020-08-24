@@ -44,7 +44,7 @@ class GraveTableViewController: UITableViewController {
     var grave: [Grave]?
     var graveId: String?
     var creatorId: String?
-    var currentGraveId: String?
+    var currentGraveId: String? = MapViewController.shared.currentGraveId
     var currentGraveLocation: String?
     var imageString: String?
     var currentSeason: String?
@@ -143,7 +143,9 @@ class GraveTableViewController: UITableViewController {
     }
     
     func getGraveData() {
-        let graveRef = self.db.collection("grave").whereField("graveId", isEqualTo: MapViewController.shared.currentGraveId!) //change this to the grave id that was tapped, NOT THE USER ID. THE USER ID IS FOR DIF STUFF. use String(arc4random_uniform(99999999)) to generate the grave Id when created
+        guard let safeCurrentGraveId = self.currentGraveId else { return }
+        print(safeCurrentGraveId)
+        let graveRef = self.db.collection("grave").whereField("graveId", isEqualTo: safeCurrentGraveId)
         graveRef.getDocuments { (snapshot, error) in
             if error != nil {
                 print(error as Any)
@@ -161,7 +163,7 @@ class GraveTableViewController: UITableViewController {
                         let bio = document.data()["bio"] as? String,
                         let pinQuote = document.data()["pinQuote"] as? String,
                         let publicIsTrue = document.data()["publicIsTrue"] as? Bool {
-                        let time = false
+//                        let time = false
                         if creatorId != MapViewController.shared.currentAuthID && publicIsTrue == false {
                             self.graveNavTitle.title = "PRIVATE"
                             self.midTopLabel.text = ""

@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		3362CB87928C29254756C0AE /* Pods_GraveYardApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 348ED5F5413457F6CE84F925 /* Pods_GraveYardApp.framework */; };
 		CB398EFB23695D0600A515B9 /* GraveStoriesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB398EFA23695D0600A515B9 /* GraveStoriesTableViewController.swift */; };
+		CB3A1AA524F4475500BACC73 /* MemorialsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3A1AA424F4475500BACC73 /* MemorialsTableViewController.swift */; };
+		CB3A1AA724F447DC00BACC73 /* MemorialsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3A1AA624F447DC00BACC73 /* MemorialsTableViewCell.swift */; };
 		CB3A30E1235F9E4B00CF2CBB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB3A30E0235F9E4B00CF2CBB /* Main.storyboard */; };
 		CB3A388A237528E400DA756D /* NewGraveStoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3A3889237528E400DA756D /* NewGraveStoryTableViewController.swift */; };
 		CB3A388C2375293F00DA756D /* GraveStoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3A388B2375293F00DA756D /* GraveStoryTableViewController.swift */; };
@@ -42,6 +44,8 @@
 		348ED5F5413457F6CE84F925 /* Pods_GraveYardApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GraveYardApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4F7843C66B0D74E07A3E170 /* Pods-GraveYardApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GraveYardApp.debug.xcconfig"; path = "Target Support Files/Pods-GraveYardApp/Pods-GraveYardApp.debug.xcconfig"; sourceTree = "<group>"; };
 		CB398EFA23695D0600A515B9 /* GraveStoriesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraveStoriesTableViewController.swift; sourceTree = "<group>"; };
+		CB3A1AA424F4475500BACC73 /* MemorialsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemorialsTableViewController.swift; sourceTree = "<group>"; };
+		CB3A1AA624F447DC00BACC73 /* MemorialsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemorialsTableViewCell.swift; sourceTree = "<group>"; };
 		CB3A30E0235F9E4B00CF2CBB /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		CB3A3889237528E400DA756D /* NewGraveStoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGraveStoryTableViewController.swift; sourceTree = "<group>"; };
 		CB3A388B2375293F00DA756D /* GraveStoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraveStoryTableViewController.swift; sourceTree = "<group>"; };
@@ -181,6 +185,8 @@
 		CBAC4EA82370E88E006760A5 /* Memorial */ = {
 			isa = PBXGroup;
 			children = (
+				CB3A1AA424F4475500BACC73 /* MemorialsTableViewController.swift */,
+				CB3A1AA624F447DC00BACC73 /* MemorialsTableViewCell.swift */,
 				CBCE0E1C23FD13910077A4F1 /* CustomAnnotation.swift */,
 				CBCE0E2823FD13F40077A4F1 /* UserReport.swift */,
 				CBCE0E2423FD13CB0077A4F1 /* UserProfile.swift */,
@@ -377,6 +383,7 @@
 				CBCE0E1923FD13460077A4F1 /* MapViewController.swift in Sources */,
 				CBCE0E2323FD13BE0077A4F1 /* Story.swift in Sources */,
 				CBCE0E2B23FD14080077A4F1 /* GraveTableViewController.swift in Sources */,
+				CB3A1AA524F4475500BACC73 /* MemorialsTableViewController.swift in Sources */,
 				CBCE0E1723FD13300077A4F1 /* GIDSignInExtension.swift in Sources */,
 				CB5BAAE1247DBA8C00350553 /* PaymentsViewController.swift in Sources */,
 				CBCE0E2D23FD14250077A4F1 /* StoryTableViewCell.swift in Sources */,
@@ -387,6 +394,7 @@
 				CB398EFB23695D0600A515B9 /* GraveStoriesTableViewController.swift in Sources */,
 				CBCE0E1623FD13300077A4F1 /* MyFirebase.swift in Sources */,
 				CBCE0E1523FD13300077A4F1 /* GlobalExtension.swift in Sources */,
+				CB3A1AA724F447DC00BACC73 /* MemorialsTableViewCell.swift in Sources */,
 				CBCE0E1D23FD13910077A4F1 /* CustomAnnotation.swift in Sources */,
 				CBCE0E2523FD13CC0077A4F1 /* UserProfile.swift in Sources */,
 			);

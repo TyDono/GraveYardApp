@@ -18,6 +18,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet var addMemorialView: UIView!
     @IBOutlet weak var addMemorialButton: UIButton!
+    @IBOutlet weak var yourMemorialsButton: UIButton!
     
     // MARK: - Propeties
     
@@ -399,6 +400,12 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         });
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "segueToGrave", let graveTVC = segue.destination as? GraveTableViewController {
+            graveTVC.currentGraveId = MapViewController.shared.currentGraveId
+        }
+    }
+    
     // MARK: - Actions
     
     @IBAction func recenterButtonTapped(_ sender: Any) {
@@ -567,6 +574,11 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             self.present(notSignInAlert, animated: true, completion: nil)
         }
     }
+    
+    @IBAction func yourMemorialsButtonWasTapped(_ sender: UIButton) {
+        performSegue(withIdentifier: "viewOwnMemorialsSegue", sender: nil)
+    }
+    
     
     @IBAction func unwindToMap(_ sender: UIStoryboardSegue) {}
     

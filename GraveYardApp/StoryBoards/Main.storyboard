@@ -339,7 +339,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" largeTitleDisplayMode="always" id="5l7-Vp-38m">
-                        <barButtonItem key="leftBarButtonItem" title="Back" id="2eW-ym-fzd">
+                        <barButtonItem key="leftBarButtonItem" title="Map" id="2eW-ym-fzd">
                             <connections>
                                 <segue destination="qo2-7w-7Qs" kind="unwind" unwindAction="unwindToMap:" id="raZ-ta-5JV"/>
                             </connections>
@@ -440,7 +440,7 @@
                 </view>
                 <exit id="qo2-7w-7Qs" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2628.985507246377" y="814.4021739130435"/>
+            <point key="canvasLocation" x="2522" y="802"/>
         </scene>
         <!--Edit Grave Table View Controller-->
         <scene sceneID="R9d-cl-TEQ">
@@ -870,24 +870,41 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="twe-qP-4gI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="lrJ-Dg-sXL" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3386" y="814"/>
+            <point key="canvasLocation" x="3473" y="802"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Memorials Table View Controller-->
         <scene sceneID="Dy1-2d-CbK">
             <objects>
-                <tableViewController id="SIl-1N-tic" sceneMemberID="viewController">
+                <tableViewController id="SIl-1N-tic" customClass="MemorialsTableViewController" customModule="GraveYardApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Te8-0v-rdw">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="sQc-DD-k88">
-                                <rect key="frame" x="0.0" y="28" width="375" height="43.666667938232422"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="memorialCell" rowHeight="82" id="sQc-DD-k88" customClass="MemorialsTableViewCell" customModule="GraveYardApp" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="82"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="sQc-DD-k88" id="NQH-un-bxU">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.666667938232422"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="82"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fFj-pR-hVc">
+                                            <rect key="frame" x="104" y="11" width="255" height="60"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="fFj-pR-hVc" firstAttribute="top" secondItem="NQH-un-bxU" secondAttribute="topMargin" id="1pS-hi-sDw"/>
+                                        <constraint firstItem="fFj-pR-hVc" firstAttribute="leading" secondItem="NQH-un-bxU" secondAttribute="leadingMargin" constant="88" id="6dV-j6-xmQ"/>
+                                        <constraint firstItem="fFj-pR-hVc" firstAttribute="bottom" secondItem="NQH-un-bxU" secondAttribute="bottomMargin" id="hYC-hM-PLh"/>
+                                        <constraint firstItem="fFj-pR-hVc" firstAttribute="trailing" secondItem="NQH-un-bxU" secondAttribute="trailingMargin" id="yhE-Ru-O1T"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="cellTitle" destination="fFj-pR-hVc" id="RMy-La-X4g"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -896,10 +913,13 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="0LQ-P9-BzO"/>
+                    <connections>
+                        <segue destination="df1-gm-beU" kind="show" identifier="graveSegue" id="soh-re-d5z"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rJC-3i-OEb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4326" y="575"/>
+            <point key="canvasLocation" x="4325.6000000000004" y="574.8768472906404"/>
         </scene>
         <!--Grave Story Table View Controller-->
         <scene sceneID="3mN-1B-43e">
@@ -1551,6 +1571,17 @@
                                     <action selector="addMemorialButtonTapped:" destination="9X6-7Z-pCz" eventType="touchUpInside" id="yqE-rr-68c"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r2x-wd-vYK">
+                                <rect key="frame" x="-216" y="88" width="319" height="76"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="76" id="Iit-LP-HIO"/>
+                                    <constraint firstAttribute="width" constant="319" id="zgy-9B-Ga0"/>
+                                </constraints>
+                                <state key="normal" image="bookBlue"/>
+                                <connections>
+                                    <action selector="yourMemorialsButtonWasTapped:" destination="9X6-7Z-pCz" eventType="touchUpInside" id="IgD-jf-ezM"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -1562,8 +1593,11 @@
                             <constraint firstItem="Abc-m9-DRn" firstAttribute="trailing" secondItem="9rq-Dj-ROK" secondAttribute="trailing" constant="16" id="XIc-HK-myF"/>
                             <constraint firstItem="Abc-m9-DRn" firstAttribute="bottom" secondItem="W5U-iO-55T" secondAttribute="bottom" constant="20" id="hQi-Qy-eoU"/>
                             <constraint firstItem="6MH-ve-unU" firstAttribute="trailing" secondItem="Abc-m9-DRn" secondAttribute="trailing" id="hoX-c6-dMm"/>
+                            <constraint firstItem="Abc-m9-DRn" firstAttribute="trailing" secondItem="r2x-wd-vYK" secondAttribute="trailing" constant="272" id="m3F-B9-Q2W"/>
+                            <constraint firstItem="r2x-wd-vYK" firstAttribute="leading" secondItem="FOT-J4-Seo" secondAttribute="leading" constant="-216" id="sc4-jR-CKo"/>
                             <constraint firstItem="9rq-Dj-ROK" firstAttribute="leading" secondItem="W5U-iO-55T" secondAttribute="trailing" constant="137" id="ss0-s7-izM"/>
                             <constraint firstItem="6MH-ve-unU" firstAttribute="bottom" secondItem="Abc-m9-DRn" secondAttribute="bottom" id="u5v-ji-bRW"/>
+                            <constraint firstItem="r2x-wd-vYK" firstAttribute="top" secondItem="Abc-m9-DRn" secondAttribute="top" id="urm-3Z-QDC"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Abc-m9-DRn"/>
                     </view>
@@ -1585,6 +1619,7 @@
                         <outlet property="mapView" destination="6MH-ve-unU" id="KFx-y7-2xf"/>
                         <outlet property="recenterMapButton" destination="W5U-iO-55T" id="yse-to-gs6"/>
                         <outlet property="signUp" destination="rQ8-Ij-DFF" id="ShX-Ox-C7m"/>
+                        <outlet property="yourMemorialsButton" destination="r2x-wd-vYK" id="S2K-EH-Hzl"/>
                         <segue destination="df1-gm-beU" kind="show" identifier="segueToGrave" id="xN6-dc-fkE"/>
                         <segue destination="wtE-vq-OyN" kind="unwind" identifier="unwindToSignIn" unwindAction="unwindToSignIn:" id="xDe-gH-4KU"/>
                         <segue destination="SzX-iF-Ewd" kind="show" identifier="segueToPayments" id="74B-mS-0pn"/>
@@ -1730,7 +1765,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eoN-ga-5yR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="8kA-df-0Ng" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2578.4000000000001" y="-141.67916041979012"/>
+            <point key="canvasLocation" x="1759" y="-142"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="qQm-FZ-b6Z">
@@ -1764,17 +1799,19 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IOM-bc-IW6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1848" y="-141"/>
+            <point key="canvasLocation" x="1002" y="-142"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="74B-mS-0pn"/>
+        <segue reference="JUc-GY-fg1"/>
         <segue reference="z4g-pH-uIZ"/>
         <segue reference="7DO-rd-4qB"/>
+        <segue reference="soh-re-d5z"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Page" width="617" height="500"/>
         <image name="appleSigninButton" width="212" height="38"/>
+        <image name="bookBlue" width="161" height="38.5"/>
         <image name="default-avatar" width="233" height="232"/>
         <image name="icons8-add-image-90" width="90" height="90"/>
         <image name="icons8-expand-arrow" width="100" height="100"/>
