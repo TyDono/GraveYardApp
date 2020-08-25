@@ -47,7 +47,7 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
     var creatorId: String?
     let dateFormatter = DateFormatter()
     var imageString: String?
-    var currentGraveId: String?
+    var currentGraveId: String? = MapViewController.shared.currentGraveId
     var graveProfileImage: GraveProfileImage?
     var graveProfileImages = [UIImage]()
     var currentGraveLocationLongitude: String?
@@ -138,8 +138,10 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
     
     func getGraveData() { // mak srue to change the sting back to a date here
         dateFormatter.dateFormat = "yyyy-MM-dd"
-        let defaultDate: Date? = self.dateFormatter.date(from: "1993-08-05") // this is nil atm
-        let graveRef = self.db.collection("grave").whereField("graveId", isEqualTo: MapViewController.shared.currentGraveId!) // this should be the grave id that was tapped on
+        guard let safeCurrentGraveId = self.currentGraveId else { return }
+        print(safeCurrentGraveId)
+//        let defaultDate: Date? = self.dateFormatter.date(from: "1993-08-05") // this is nil atm
+        let graveRef = self.db.collection("grave").whereField("graveId", isEqualTo: safeCurrentGraveId) // this should be the grave id that was tapped on
         graveRef.getDocuments { (snapshot, error) in
             if error != nil {
                 print(error as Any)
@@ -191,7 +193,8 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
     }
     
     func getStoryData() {
-        let graveRef = self.db.collection("grave").whereField("graveId", isEqualTo: MapViewController.shared.currentGraveId!)
+        guard let safeCurrentGraveId = self.currentGraveId else { return }
+        let graveRef = self.db.collection("grave").whereField("graveId", isEqualTo: safeCurrentGraveId)
         graveRef.getDocuments { (snapshot, error) in
             if error != nil {
                 print(error as Any)
