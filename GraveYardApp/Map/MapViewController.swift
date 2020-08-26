@@ -19,6 +19,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     @IBOutlet var addMemorialView: UIView!
     @IBOutlet weak var addMemorialButton: UIButton!
     @IBOutlet weak var yourMemorialsButton: UIButton!
+    @IBOutlet weak var bookSideExpandButton: UIButton!
+    @IBOutlet weak var bookSideUIView: UIView!
+    @IBOutlet weak var bookSideUIImageView: UIImageView!
     
     // MARK: - Propeties
     
@@ -36,6 +39,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     var graves: [Grave]?
     var graveAnnotationCoordinates: String?
     var selectedAnnotation: GraveEntryAnnotation?
+    var bookSideHasExpanded: Bool = false
 
     
     // MARK: - View Lifecycle
@@ -576,9 +580,44 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     }
     
     @IBAction func yourMemorialsButtonWasTapped(_ sender: UIButton) {
+        self.bookSideHasExpanded = false
+        UIView.animate(withDuration: 0.4,
+                       delay: 0.0,
+                       options: .curveEaseInOut,
+                       animations: {
+                        let moveLeft = CGAffineTransform(translationX: 0, y: 0)
+                        self.bookSideUIView.transform = moveLeft
+        }) {
+            (_) in
+        }
         performSegue(withIdentifier: "viewOwnMemorialsSegue", sender: nil)
     }
     
+    @IBAction func bookSideExpandButtonWasTapped(_ sender: UIButton) {
+        if self.bookSideHasExpanded == false {
+            self.bookSideHasExpanded = true
+            UIView.animate(withDuration: 0.4,
+                           delay: 0.0,
+                           options: .curveEaseInOut,
+                           animations: {
+                            let moveRight = CGAffineTransform(translationX: 200, y: 0)
+                            self.bookSideUIView.transform = moveRight
+            }) {
+                (_) in
+            }
+        } else if self.bookSideHasExpanded == true {
+            self.bookSideHasExpanded = false
+            UIView.animate(withDuration: 0.4,
+                           delay: 0.0,
+                           options: .curveEaseInOut,
+                           animations: {
+                            let moveLeft = CGAffineTransform(translationX: 0, y: 0)
+                            self.bookSideUIView.transform = moveLeft
+            }) {
+                (_) in
+            }
+        }
+    }
     
     @IBAction func unwindToMap(_ sender: UIStoryboardSegue) {}
     

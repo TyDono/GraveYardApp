@@ -1571,33 +1571,60 @@
                                     <action selector="addMemorialButtonTapped:" destination="9X6-7Z-pCz" eventType="touchUpInside" id="yqE-rr-68c"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r2x-wd-vYK">
-                                <rect key="frame" x="-216" y="88" width="319" height="76"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zx1-5A-lzB">
+                                <rect key="frame" x="-260" y="114" width="298" height="79"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bookBlue" translatesAutoresizingMaskIntoConstraints="NO" id="JWA-Ic-Hmq">
+                                        <rect key="frame" x="0.0" y="0.0" width="298" height="79"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SC6-Vp-Sq2">
+                                        <rect key="frame" x="237" y="0.0" width="61" height="79"/>
+                                        <connections>
+                                            <action selector="bookSideExpandButtonWasTapped:" destination="9X6-7Z-pCz" eventType="touchUpInside" id="Lpy-cC-M2Z"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TgG-vd-iv9">
+                                        <rect key="frame" x="0.0" y="0.0" width="237" height="79"/>
+                                        <state key="normal" title="Your Memorials"/>
+                                        <connections>
+                                            <action selector="yourMemorialsButtonWasTapped:" destination="9X6-7Z-pCz" eventType="touchUpInside" id="tD5-Us-1EZ"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="76" id="Iit-LP-HIO"/>
-                                    <constraint firstAttribute="width" constant="319" id="zgy-9B-Ga0"/>
+                                    <constraint firstItem="JWA-Ic-Hmq" firstAttribute="top" secondItem="Zx1-5A-lzB" secondAttribute="top" id="1Zx-fp-wwR"/>
+                                    <constraint firstItem="TgG-vd-iv9" firstAttribute="top" secondItem="Zx1-5A-lzB" secondAttribute="top" id="4Hh-WH-ZZU"/>
+                                    <constraint firstItem="SC6-Vp-Sq2" firstAttribute="leading" secondItem="Zx1-5A-lzB" secondAttribute="leading" constant="237" id="8O2-6G-SUb"/>
+                                    <constraint firstItem="TgG-vd-iv9" firstAttribute="leading" secondItem="Zx1-5A-lzB" secondAttribute="leading" id="Kpu-o4-w0A"/>
+                                    <constraint firstAttribute="trailing" secondItem="JWA-Ic-Hmq" secondAttribute="trailing" id="MNm-U6-E2T"/>
+                                    <constraint firstItem="JWA-Ic-Hmq" firstAttribute="leading" secondItem="Zx1-5A-lzB" secondAttribute="leading" id="S0X-me-cCx"/>
+                                    <constraint firstAttribute="bottom" secondItem="SC6-Vp-Sq2" secondAttribute="bottom" id="Y8A-H7-73E"/>
+                                    <constraint firstAttribute="bottom" secondItem="JWA-Ic-Hmq" secondAttribute="bottom" id="aYF-iN-axQ"/>
+                                    <constraint firstAttribute="trailing" secondItem="SC6-Vp-Sq2" secondAttribute="trailing" id="bqc-lW-fWe"/>
+                                    <constraint firstItem="SC6-Vp-Sq2" firstAttribute="top" secondItem="Zx1-5A-lzB" secondAttribute="top" id="dHt-Wc-PVa"/>
+                                    <constraint firstAttribute="bottom" secondItem="TgG-vd-iv9" secondAttribute="bottom" id="gRU-8B-NTb"/>
+                                    <constraint firstItem="SC6-Vp-Sq2" firstAttribute="leading" secondItem="TgG-vd-iv9" secondAttribute="trailing" id="vM9-0r-3a9"/>
                                 </constraints>
-                                <state key="normal" image="bookBlue"/>
-                                <connections>
-                                    <action selector="yourMemorialsButtonWasTapped:" destination="9X6-7Z-pCz" eventType="touchUpInside" id="IgD-jf-ezM"/>
-                                </connections>
-                            </button>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="6MH-ve-unU" firstAttribute="leading" secondItem="Abc-m9-DRn" secondAttribute="leading" id="71F-Fp-uIZ"/>
                             <constraint firstItem="W5U-iO-55T" firstAttribute="leading" secondItem="Abc-m9-DRn" secondAttribute="leading" constant="20" id="KaD-hK-OX8"/>
+                            <constraint firstItem="Zx1-5A-lzB" firstAttribute="top" secondItem="Abc-m9-DRn" secondAttribute="top" constant="26" id="N9H-Cw-d3h"/>
+                            <constraint firstAttribute="bottom" secondItem="Zx1-5A-lzB" secondAttribute="bottom" constant="619" id="S8g-ck-bmF"/>
                             <constraint firstItem="Abc-m9-DRn" firstAttribute="bottom" secondItem="9rq-Dj-ROK" secondAttribute="bottom" constant="20" id="TDe-gw-UNX"/>
+                            <constraint firstItem="Zx1-5A-lzB" firstAttribute="leading" secondItem="FOT-J4-Seo" secondAttribute="leading" constant="-260" id="TdR-Ni-56C"/>
                             <constraint firstItem="Abc-m9-DRn" firstAttribute="trailing" secondItem="W5U-iO-55T" secondAttribute="trailing" constant="272" id="VCm-yD-83l"/>
                             <constraint firstItem="6MH-ve-unU" firstAttribute="top" secondItem="Abc-m9-DRn" secondAttribute="top" id="WwJ-dk-9KL"/>
                             <constraint firstItem="Abc-m9-DRn" firstAttribute="trailing" secondItem="9rq-Dj-ROK" secondAttribute="trailing" constant="16" id="XIc-HK-myF"/>
+                            <constraint firstItem="Abc-m9-DRn" firstAttribute="trailing" secondItem="Zx1-5A-lzB" secondAttribute="trailing" constant="337" id="aKH-bo-W4k"/>
                             <constraint firstItem="Abc-m9-DRn" firstAttribute="bottom" secondItem="W5U-iO-55T" secondAttribute="bottom" constant="20" id="hQi-Qy-eoU"/>
                             <constraint firstItem="6MH-ve-unU" firstAttribute="trailing" secondItem="Abc-m9-DRn" secondAttribute="trailing" id="hoX-c6-dMm"/>
-                            <constraint firstItem="Abc-m9-DRn" firstAttribute="trailing" secondItem="r2x-wd-vYK" secondAttribute="trailing" constant="272" id="m3F-B9-Q2W"/>
-                            <constraint firstItem="r2x-wd-vYK" firstAttribute="leading" secondItem="FOT-J4-Seo" secondAttribute="leading" constant="-216" id="sc4-jR-CKo"/>
                             <constraint firstItem="9rq-Dj-ROK" firstAttribute="leading" secondItem="W5U-iO-55T" secondAttribute="trailing" constant="137" id="ss0-s7-izM"/>
                             <constraint firstItem="6MH-ve-unU" firstAttribute="bottom" secondItem="Abc-m9-DRn" secondAttribute="bottom" id="u5v-ji-bRW"/>
-                            <constraint firstItem="r2x-wd-vYK" firstAttribute="top" secondItem="Abc-m9-DRn" secondAttribute="top" id="urm-3Z-QDC"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Abc-m9-DRn"/>
                     </view>
@@ -1616,10 +1643,13 @@
                     <connections>
                         <outlet property="addMemorialButton" destination="9rq-Dj-ROK" id="96p-s1-bSf"/>
                         <outlet property="addMemorialView" destination="u3G-HJ-4vP" id="mAQ-CH-YGS"/>
+                        <outlet property="bookSideExpandButton" destination="SC6-Vp-Sq2" id="lAw-zK-2AD"/>
+                        <outlet property="bookSideUIImageView" destination="JWA-Ic-Hmq" id="fhP-nP-P7d"/>
+                        <outlet property="bookSideUIView" destination="Zx1-5A-lzB" id="JVQ-H5-AE0"/>
                         <outlet property="mapView" destination="6MH-ve-unU" id="KFx-y7-2xf"/>
                         <outlet property="recenterMapButton" destination="W5U-iO-55T" id="yse-to-gs6"/>
                         <outlet property="signUp" destination="rQ8-Ij-DFF" id="ShX-Ox-C7m"/>
-                        <outlet property="yourMemorialsButton" destination="r2x-wd-vYK" id="S2K-EH-Hzl"/>
+                        <outlet property="yourMemorialsButton" destination="TgG-vd-iv9" id="WU7-Ar-vQW"/>
                         <segue destination="df1-gm-beU" kind="show" identifier="segueToGrave" id="xN6-dc-fkE"/>
                         <segue destination="wtE-vq-OyN" kind="unwind" identifier="unwindToSignIn" unwindAction="unwindToSignIn:" id="xDe-gH-4KU"/>
                         <segue destination="SzX-iF-Ewd" kind="show" identifier="segueToPayments" id="74B-mS-0pn"/>
@@ -1803,10 +1833,10 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="JUc-GY-fg1"/>
+        <segue reference="74B-mS-0pn"/>
         <segue reference="z4g-pH-uIZ"/>
         <segue reference="7DO-rd-4qB"/>
-        <segue reference="soh-re-d5z"/>
+        <segue reference="xN6-dc-fkE"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Page" width="617" height="500"/>
