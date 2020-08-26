@@ -60,6 +60,7 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
     var deathDate: String = ""
     var storyImageStringArray: [String] = []
     var arrayOfStoryImageIDs: [String] = []
+    var memorialCount: Int = 0
     
     // MARK: - View Lifecycle
     
@@ -72,10 +73,41 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        getUserMemorialCount()
         getGraveData()
     }
     
     // MARK: - Functions
+    
+    func getUserMemorialCount() {
+        guard let safeCurrentAuthID = self.currentAuthID else { return }
+        let userRef = self.db.collection("userProfile").whereField("currentUserAuthId", isEqualTo: safeCurrentAuthID)
+        userRef.getDocuments { (snapshot, error) in
+            if error != nil {
+                print(error as Any)
+            } else {
+                for document in (snapshot?.documents)! {
+                    if let memorialCount = document.data()["memorialCount"] as? Int {
+                        self.memorialCount = memorialCount
+                    }
+                }
+            }
+        }
+    }
+    
+    func updateUserMemorialCount() {
+        guard let currentId = currentAuthID else { return }
+        self.memorialCount -= 1
+        db.collection("userProfile").document(currentId).updateData([
+            "memorialCount": self.memorialCount
+        ]) { err in
+            if let err = err {
+                print("Error updating document: \(err)")
+            } else {
+                print("Document successfully updated")
+            }
+        }
+    }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
@@ -492,6 +524,7 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
                     let storyRef = self.db.collection("grave")
                     storyRef.document(forcedGraveId).delete() { err in //deletes current grave
                         if err == nil {
+                            self.updateUserMemorialCount()
                             if let safeImageString = self.imageString {
                                 let storageImageRef = self.storage.reference().child("graveProfileImages/\(safeImageString)")
                                 storageImageRef.delete { (error) in //deletes grave image
