@@ -40,6 +40,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     var graveAnnotationCoordinates: String?
     var selectedAnnotation: GraveEntryAnnotation?
     var bookSideHasExpanded: Bool = false
+    var memorialCount: Int = 0
 
     
     // MARK: - View Lifecycle
@@ -47,6 +48,11 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     override func viewDidLoad() {
         super.viewDidLoad()
 //        self.mapView.removeAnnotations(self.mapView.annotations)
+        if self.memorialCount == 0 {
+            yourMemorialsButton.titleLabel?.text = "Create a Memorial"
+        } else {
+            yourMemorialsButton.titleLabel?.text = "Your Memorials"
+        }
         setMapViewLocationAndUser()
         //chageTextColor()
         addMemorialView.layer.cornerRadius = 10
@@ -404,6 +410,19 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         });
     }
     
+    func moveBookSidetoLeft() {
+        self.bookSideHasExpanded = false
+        UIView.animate(withDuration: 0.4,
+                       delay: 0.0,
+                       options: .curveEaseInOut,
+                       animations: {
+                        let moveLeft = CGAffineTransform(translationX: 0, y: 0)
+                        self.bookSideUIView.transform = moveLeft
+        }) {
+            (_) in
+        }
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "segueToGrave", let graveTVC = segue.destination as? GraveTableViewController {
             graveTVC.currentGraveId = MapViewController.shared.currentGraveId
@@ -443,7 +462,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         newGraveAlert.addAction(UIAlertAction(title: "Create new entry", style: .default, handler: { action in
             print("Default Button Pressed")
             
-            //TYLER'S prepareForSegue minus the prepare for and instead just a ton of code.
             if self.currentAuthID == nil {
                 for annotation in self.mapView.annotations {
                     if annotation.title == "New Entry" {
@@ -454,6 +472,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                 let dismiss = UIAlertAction(title: "Cancel", style: .default, handler: nil)
                 notSignInAlert.addAction(dismiss)
                 let goToLogIn = UIAlertAction(title: "Sign In", style: .default, handler: { _ in
+                    self.moveBookSidetoLeft()
                     self.performSegue(withIdentifier: "unwindToSignIn", sender: nil)
                 })
                 notSignInAlert.addAction(goToLogIn)
@@ -525,6 +544,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                         self.present(graveCreationFailAlert, animated: true, completion: nil)
                         print(err)
                     } else {
+                        self.moveBookSidetoLeft()
                         self.performSegue(withIdentifier: "segueToGrave", sender: nil)
                         print("Added Data")
                     }
@@ -544,6 +564,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     
     @IBAction func SignInTapped(_ sender: UIBarButtonItem) {
         if currentAuthID == nil {
+           self.moveBookSidetoLeft()
             performSegue(withIdentifier: "unwindToSignIn", sender: self)
         } else {
             let locationAlert = UIAlertController(title: "Log Out", message: "Are you sure you want to log out?", preferredStyle: .actionSheet)
@@ -552,7 +573,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             locationAlert.addAction(cancelAction)
             
             let goToSettingsAction = UIAlertAction(title: "Log Out", style: .default, handler: { _ in
-                
+                self.moveBookSidetoLeft()
                 self.currentUser = nil
                 self.userId = ""
                 try! Auth.auth().signOut()
@@ -566,12 +587,14 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     
     @IBAction func AccountSideBarButtonItemTapped(_ sender: UIBarButtonItem) {
         if currentAuthID != nil {
+            self.moveBookSidetoLeft()
             performSegue(withIdentifier: "segueToPayments", sender: nil)
         } else {
             let notSignInAlert = UIAlertController(title: "You are not signed in", message: "You must be signed in to check account information", preferredStyle: .actionSheet)
             let dismiss = UIAlertAction(title: "Cancel", style: .default, handler: nil)
             notSignInAlert.addAction(dismiss)
             let goToLogIn = UIAlertAction(title: "Sign In", style: .default, handler: { _ in
+                self.moveBookSidetoLeft()
                 self.performSegue(withIdentifier: "unwindToSignIn", sender: nil)
             })
             notSignInAlert.addAction(goToLogIn)
@@ -580,17 +603,13 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     }
     
     @IBAction func yourMemorialsButtonWasTapped(_ sender: UIButton) {
-        self.bookSideHasExpanded = false
-        UIView.animate(withDuration: 0.4,
-                       delay: 0.0,
-                       options: .curveEaseInOut,
-                       animations: {
-                        let moveLeft = CGAffineTransform(translationX: 0, y: 0)
-                        self.bookSideUIView.transform = moveLeft
-        }) {
-            (_) in
+        if self.memorialCount == 0 {
+            self.view.addSubview(addMemorialView)
+            showPopOverAnimate()
+        } else {
+            self.moveBookSidetoLeft()
+            performSegue(withIdentifier: "viewOwnMemorialsSegue", sender: nil)
         }
-        performSegue(withIdentifier: "viewOwnMemorialsSegue", sender: nil)
     }
     
     @IBAction func bookSideExpandButtonWasTapped(_ sender: UIButton) {
