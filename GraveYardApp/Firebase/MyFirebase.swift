@@ -81,10 +81,12 @@ class MyFirebase {
         let currentUserId: String = self.userId
         let premiumStatus: Bool = false
         let dataCount: Int = 0
+        let memorialCount: Int = 0
         
         let user = UserProfile(currentUserAuthId: currentUserId,
                                premiumStatus: premiumStatus,
-                               dataCount: dataCount)
+                               dataCount: dataCount,
+                               memorialCount: memorialCount)
         
         let userRef = self.db.collection("userProfile")
         userRef.document(user.currentUserAuthId).setData(user.dictionary) { err in

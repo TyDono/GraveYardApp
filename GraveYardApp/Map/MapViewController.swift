@@ -42,7 +42,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     var bookSideHasExpanded: Bool = false
     var memorialCount: Int = 0
 
-    
     // MARK: - View Lifecycle
     
     override func viewDidLoad() {
@@ -67,6 +66,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        getUserMemorialCount()
         self.mapView.removeAnnotations(self.mapView.annotations)
         getGraveEntries { (graves) in
             self.graves = graves
@@ -98,6 +98,36 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             signUp.title = "Sign In"
         } else {
             signUp.title = "Log Out"
+        }
+    }
+    
+    func getUserMemorialCount() {
+        guard let safeCurrentAuthID = self.currentAuthID else { return }
+        let userRef = self.db.collection("userProfile").whereField("currentUserAuthId", isEqualTo: safeCurrentAuthID)
+        userRef.getDocuments { (snapshot, error) in
+            if error != nil {
+                print(error as Any)
+            } else {
+                for document in (snapshot?.documents)! {
+                    if let memorialCount = document.data()["memorialCount"] as? Int {
+                        self.memorialCount = memorialCount
+                    }
+                }
+            }
+        }
+    }
+    
+    func updateUserMemorialCount() {
+        guard let currentId = currentAuthID else { return }
+        self.memorialCount += 1
+        db.collection("userProfile").document(currentId).updateData([
+            "memorialCount": self.memorialCount
+        ]) { err in
+            if let err = err {
+                print("Error updating document: \(err)")
+            } else {
+                print("Document successfully updated")
+            }
         }
     }
     
@@ -544,9 +574,10 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                         self.present(graveCreationFailAlert, animated: true, completion: nil)
                         print(err)
                     } else {
-                        self.moveBookSidetoLeft()
-                        self.performSegue(withIdentifier: "segueToGrave", sender: nil)
                         print("Added Data")
+                        self.moveBookSidetoLeft()
+                        self.updateUserMemorialCount()
+                        self.performSegue(withIdentifier: "segueToGrave", sender: nil)
                     }
                 }
             }

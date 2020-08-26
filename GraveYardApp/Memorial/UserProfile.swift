@@ -22,12 +22,14 @@ struct UserProfile {
     var currentUserAuthId: String
     var premiumStatus: Bool
     var dataCount: Int
+    var memorialCount: Int
     
     var dictionary: [String: Any] {
         return [
             "currentUserAuthId": currentUserAuthId,
             "premiumStatus": premiumStatus,
-            "dataCount": dataCount
+            "dataCount": dataCount,
+            "memorialCount": memorialCount
         ]
     }
 }
@@ -36,7 +38,8 @@ extension UserProfile: DocumentSerializableUser {
     init?(dictionary: [String: Any]) {
         guard let currentUserAuthId = dictionary["currentUserAuthId"] as? String,
             let premiumStatus = dictionary["premiumStatus"] as? Bool,
-        let dataCount = dictionary["dataCount"] as? Int else { return nil }
-        self.init(currentUserAuthId: currentUserAuthId, premiumStatus: premiumStatus, dataCount: dataCount)
+            let dataCount = dictionary["dataCount"] as? Int,
+            let memorialCount = dictionary["memorialCount"] as? Int else { return nil }
+        self.init(currentUserAuthId: currentUserAuthId, premiumStatus: premiumStatus, dataCount: dataCount, memorialCount: memorialCount)
     }
 }
