@@ -79,6 +79,10 @@ class MemorialsTableViewController: UITableViewController {
         if let memorials = graves {
             let story = memorials[indexPath.row]
             cell.cellTitle.text = "\(story.name)"
+            let maskLayer = CAShapeLayer()
+            let bounds = cell.bounds
+            maskLayer.path = UIBezierPath(roundedRect: CGRect(x: 2, y: 7, width: bounds.width-4, height: bounds.height-4), cornerRadius: 5).cgPath
+            cell.layer.mask = maskLayer
         }
         
         return cell
