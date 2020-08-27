@@ -17,7 +17,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     @IBOutlet weak var signUp: UIBarButtonItem!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet var addMemorialView: UIView!
-    @IBOutlet weak var addMemorialButton: UIButton!
     @IBOutlet weak var yourMemorialsButton: UIButton!
     @IBOutlet weak var bookSideExpandButton: UIButton!
     @IBOutlet weak var bookSideUIView: UIView!
@@ -47,16 +46,10 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     override func viewDidLoad() {
         super.viewDidLoad()
 //        self.mapView.removeAnnotations(self.mapView.annotations)
-        if self.memorialCount == 0 {
-            yourMemorialsButton.titleLabel?.text = "Create a Memorial"
-        } else {
-            yourMemorialsButton.titleLabel?.text = "Your Memorials"
-        }
         setMapViewLocationAndUser()
         //chageTextColor()
         addMemorialView.layer.cornerRadius = 10
         mapView.delegate = self
-        MemorialButtonFunction()
         self.navigationItem.rightBarButtonItem?.isEnabled = false
         self.navigationItem.rightBarButtonItem?.title = ""
 //        getGraveEntries { (graves) in
@@ -76,13 +69,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     }
     
     // MARK: - Functions
-    
-    func MemorialButtonFunction() {
-        self.recenterMapButton.layer.cornerRadius = 10
-        self.recenterMapButton.clipsToBounds = true
-        self.addMemorialButton.layer.cornerRadius = 10
-        self.addMemorialButton.clipsToBounds = true
-    }
     
     func reloadMapView() {
         mapView.reloadInputViews()
@@ -111,6 +97,11 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                 for document in (snapshot?.documents)! {
                     if let memorialCount = document.data()["memorialCount"] as? Int {
                         self.memorialCount = memorialCount
+                        if self.memorialCount == 0 {
+                            self.yourMemorialsButton.titleLabel?.text = "Create a Memorial"
+                        } else {
+                            self.yourMemorialsButton.titleLabel?.text = "Your Memorials"
+                        }
                     }
                 }
             }
@@ -468,12 +459,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     
     @IBAction func closeMemorialHelperButtonTapped(_ sender: UIButton) {
         removePopOverAnimate()
-    }
-    
-    @IBAction func addMemorialButtonTapped(_ sender: UIButton) {
-        self.view.addSubview(addMemorialView)
-        showPopOverAnimate()
-        // reportPopOver.center = self.view.center
     }
     
     @IBAction func userDidLongPress(_ sender: UILongPressGestureRecognizer) {

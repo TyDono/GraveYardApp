@@ -785,7 +785,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Location" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WXA-Vl-eOn">
-                                                    <rect key="frame" x="20" y="1.5" width="374" height="41"/>
+                                                    <rect key="frame" x="20" y="1.5" width="335" height="41"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
@@ -811,7 +811,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZNU-MZ-UIK">
-                                                    <rect key="frame" x="20" y="8" width="374" height="27.5"/>
+                                                    <rect key="frame" x="20" y="8" width="335" height="27.5"/>
                                                     <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <state key="normal" title="DELETE HEADSTONE">
                                                         <color key="titleColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -1560,17 +1560,6 @@
                                     <action selector="recenterButtonTapped:" destination="9X6-7Z-pCz" eventType="touchUpInside" id="8Rr-ai-ajw"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9rq-Dj-ROK">
-                                <rect key="frame" x="240" y="617" width="119" height="30"/>
-                                <color key="backgroundColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <state key="normal" title="Add Memorial">
-                                    <color key="titleColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                </state>
-                                <connections>
-                                    <action selector="addMemorialButtonTapped:" destination="9X6-7Z-pCz" eventType="touchUpInside" id="yqE-rr-68c"/>
-                                </connections>
-                            </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zx1-5A-lzB">
                                 <rect key="frame" x="-261" y="68" width="298" height="38.5"/>
                                 <subviews>
@@ -1614,15 +1603,12 @@
                             <constraint firstItem="6MH-ve-unU" firstAttribute="leading" secondItem="Abc-m9-DRn" secondAttribute="leading" id="71F-Fp-uIZ"/>
                             <constraint firstItem="W5U-iO-55T" firstAttribute="leading" secondItem="Abc-m9-DRn" secondAttribute="leading" constant="20" id="KaD-hK-OX8"/>
                             <constraint firstItem="Zx1-5A-lzB" firstAttribute="top" secondItem="Abc-m9-DRn" secondAttribute="top" constant="24" id="N9H-Cw-d3h"/>
-                            <constraint firstItem="Abc-m9-DRn" firstAttribute="bottom" secondItem="9rq-Dj-ROK" secondAttribute="bottom" constant="20" id="TDe-gw-UNX"/>
                             <constraint firstItem="Zx1-5A-lzB" firstAttribute="leading" secondItem="FOT-J4-Seo" secondAttribute="leading" constant="-261" id="TdR-Ni-56C"/>
                             <constraint firstItem="Abc-m9-DRn" firstAttribute="trailing" secondItem="W5U-iO-55T" secondAttribute="trailing" constant="272" id="VCm-yD-83l"/>
                             <constraint firstItem="6MH-ve-unU" firstAttribute="top" secondItem="Abc-m9-DRn" secondAttribute="top" id="WwJ-dk-9KL"/>
-                            <constraint firstItem="Abc-m9-DRn" firstAttribute="trailing" secondItem="9rq-Dj-ROK" secondAttribute="trailing" constant="16" id="XIc-HK-myF"/>
                             <constraint firstItem="Abc-m9-DRn" firstAttribute="trailing" secondItem="Zx1-5A-lzB" secondAttribute="trailing" constant="338" id="aKH-bo-W4k"/>
                             <constraint firstItem="Abc-m9-DRn" firstAttribute="bottom" secondItem="W5U-iO-55T" secondAttribute="bottom" constant="20" id="hQi-Qy-eoU"/>
                             <constraint firstItem="6MH-ve-unU" firstAttribute="trailing" secondItem="Abc-m9-DRn" secondAttribute="trailing" id="hoX-c6-dMm"/>
-                            <constraint firstItem="9rq-Dj-ROK" firstAttribute="leading" secondItem="W5U-iO-55T" secondAttribute="trailing" constant="137" id="ss0-s7-izM"/>
                             <constraint firstItem="6MH-ve-unU" firstAttribute="bottom" secondItem="Abc-m9-DRn" secondAttribute="bottom" id="u5v-ji-bRW"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Abc-m9-DRn"/>
@@ -1640,7 +1626,6 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="addMemorialButton" destination="9rq-Dj-ROK" id="96p-s1-bSf"/>
                         <outlet property="addMemorialView" destination="u3G-HJ-4vP" id="mAQ-CH-YGS"/>
                         <outlet property="bookSideExpandButton" destination="SC6-Vp-Sq2" id="lAw-zK-2AD"/>
                         <outlet property="bookSideUIImageView" destination="JWA-Ic-Hmq" id="fhP-nP-P7d"/>
