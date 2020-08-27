@@ -66,15 +66,12 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //chageTextColor()
-        self.deleteHeadstoneButton.layer.cornerRadius = 10
         db = Firestore.firestore()
-        switchEnabler()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
         getUserMemorialCount()
         getGraveData()
+        //chageTextColor()
+        self.deleteHeadstoneButton.layer.cornerRadius = 10
+        switchEnabler()
     }
     
     // MARK: - Functions

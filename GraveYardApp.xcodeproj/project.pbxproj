@@ -573,7 +573,7 @@
 				CB5AE19623512B16001BCCCE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		CB5AE19723512B16001BCCCE /* Build configuration list for PBXNativeTarget "GraveYardApp" */ = {
 			isa = XCConfigurationList;
@@ -582,7 +582,7 @@
 				CB5AE19923512B16001BCCCE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};
