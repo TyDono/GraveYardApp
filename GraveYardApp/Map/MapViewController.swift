@@ -128,11 +128,18 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
 //            for i in stride(from: 0, through: graves!.count - 1, by: -1) {
                 let registeredGrave = graves![i]
                 let annotation = MKPointAnnotation()
-                var currentGraveTitle = registeredGrave.name
+                var currentGraveTitle: String = ""
+                var pinQuote: String = ""
+                if registeredGrave.publicIsTrue == false && self.currentAuthID != registeredGrave.creatorId {
+                    currentGraveTitle = "Private"
+                    pinQuote = ""
+                } else {
+                    currentGraveTitle = registeredGrave.name
+                    pinQuote = "\(registeredGrave.pinQuote)"
+                }
                 if currentGraveTitle.isEmpty == true {
                     currentGraveTitle = "New Entry"
                 }
-                let pinQuote = "\(registeredGrave.pinQuote)"
                 let currentGraveId = registeredGrave.graveId
                 guard let graveLatitude = Double(registeredGrave.graveLocationLatitude),
                     let graveLongitude = Double(registeredGrave.graveLocationLongitude) else {
