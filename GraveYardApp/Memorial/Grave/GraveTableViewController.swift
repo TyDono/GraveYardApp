@@ -48,6 +48,7 @@ class GraveTableViewController: UITableViewController {
     var currentGraveLocation: String?
     var imageString: String?
     var currentSeason: String?
+    var videoURLString: String?
     let storage = Storage.storage()
     
     // MARK: - View Lifecycle
@@ -165,6 +166,7 @@ class GraveTableViewController: UITableViewController {
                         let familyStatus = document.data()["familyStatus"] as? String,
                         let bio = document.data()["bio"] as? String,
                         let pinQuote = document.data()["pinQuote"] as? String,
+                        let videoURL = document.data()["videoURLString"] as? String,
                         let publicIsTrue = document.data()["publicIsTrue"] as? Bool {
 //                        let time = false
                         if creatorId != MapViewController.shared.currentAuthID && publicIsTrue == false {
@@ -218,7 +220,7 @@ class GraveTableViewController: UITableViewController {
                                     self.navigationItem.rightBarButtonItem?.title = "Report"
                                 }
                             }
-                            
+                            self.videoURLString = videoURL
                             self.checkForCreatorId()
                             self.getImages()// always call last
                         }
@@ -286,6 +288,22 @@ class GraveTableViewController: UITableViewController {
     
     @IBAction func closePopUpButtonTapped(_ sender: UIButton) {
         removePopOverAnimate()
+    }
+    
+    @IBAction func playVideo(_ sender: UIButton) {
+        guard let safeVideoURLString = self.videoURLString else { return }//have this be the link to the ivdeo uploaded in firebase storage
+        guard let url = URL(string: safeVideoURLString) else { return }
+        // Create an AVPlayer, passing it the HTTP Live Streaming URL.
+        let player = AVPlayer(url: url)
+
+        // Create a new AVPlayerViewController and pass it a reference to the player.
+        let controller = AVPlayerViewController()
+        controller.player = player
+
+        // Modally present the player and call the player's play() method when complete.
+        present(controller, animated: true) {
+            player.play()
+        }
     }
     
     @IBAction func unwindToGrave(_ sender: UIStoryboardSegue) {}

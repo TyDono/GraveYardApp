@@ -20,7 +20,6 @@ class GraveStoryTableViewController: UITableViewController {
     @IBOutlet weak var leftArrowButton: UIButton!
     @IBOutlet weak var imageCounterLabel: UILabel!
     @IBOutlet weak var storyBodyTextView: UITextView!
-    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var storyImagesScrollView: UIScrollView!
     @IBOutlet weak var storyTitle: UILabel!
     @IBOutlet weak var rightBarButtonItem: UIBarButtonItem!

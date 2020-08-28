@@ -181,6 +181,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                     let birthSwitchIsOn = currentGrave["birthSwitchIsOn"] as? Bool,
                     let deathSwitchIsOn = currentGrave["deathSwitchIsOn"] as? Bool,
                     let publicIsTrue = currentGrave["publicIsTrue"] as? Bool,
+                    let videoURL = currentGrave["videoURL"] as? String,
                     let arrayOfStoryImageIDs = currentGrave["arrayOfStoryImageIDs"] as? [String] {
                     
                     let registeredGrave = Grave(creatorId: creatorId,
@@ -200,6 +201,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                                                 birthSwitchIsOn: birthSwitchIsOn,
                                                 deathSwitchIsOn: deathSwitchIsOn,
                                                 publicIsTrue: publicIsTrue,
+                                                videoURL: videoURL,
                                                 arrayOfStoryImageIDs: arrayOfStoryImageIDs)
                     
                     registeredGraves.append(registeredGrave)
@@ -522,6 +524,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                 let birthSwitchIsOn: Bool = true
                 let deathSwitchIsOn: Bool = true
                 let publicIsTrue: Bool = true
+                let videoURL: String = ""
                 let arrayOfStoryImageIDs: [String] = [""]
                 guard let graveId: String = MapViewController.shared.currentGraveId else { return }
                 guard let graveLocationLatitude: String = MapViewController.shared.currentGraveLocationLatitude else { return }
@@ -544,6 +547,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                                   birthSwitchIsOn: birthSwitchIsOn,
                                   deathSwitchIsOn: deathSwitchIsOn,
                                   publicIsTrue: publicIsTrue,
+                                  videoURL: videoURL,
                                   arrayOfStoryImageIDs: arrayOfStoryImageIDs)
                 
                 let graveRef = self.db.collection("grave")

@@ -36,6 +36,7 @@ struct Grave {
     var birthSwitchIsOn: Bool
     var deathSwitchIsOn: Bool
     var publicIsTrue: Bool
+    var videoURL: String
     var arrayOfStoryImageIDs: [String]
     // premium users, grave quote, grave node image
     // BURIAL LOCATION
@@ -63,6 +64,7 @@ struct Grave {
             "birthSwitchIsOn": birthSwitchIsOn,
             "deathSwitchIsOn": deathSwitchIsOn,
             "publicIsTrue": publicIsTrue,
+            "videoURL": videoURL,
             "arrayOfStoryImageIDs": arrayOfStoryImageIDs
         ]
     }
@@ -87,8 +89,9 @@ extension Grave: DocumentGraveSerializable {
             let birthSwitchIsOn = dictionary["birthSwitchIsOn"] as? Bool,
             let deathSwitchIsOn = dictionary["deathSwitchIsOn"] as? Bool,
             let publicIsTrue = dictionary["publicIsTrue"] as? Bool,
+            let videoURL = dictionary["videoURL"] as? String,
             let arrayOfStoryImageIDs = dictionary["arrayOfStoryImageIDs"] as? [String] else {return nil}
-        self.init(creatorId: creatorId, graveId: graveId, profileImageId: profileImageId, name: name, birthDate: birthDate, birthLocation: birthLocation, deathDate: deathDate, deathLocation: deathLocation, familyStatus: familyStatus, bio: bio, graveLocationLatitude: graveLocationLatitude, graveLocationLongitude: graveLocationLongitude, allGraveIdentifier: allGraveIdentifier, pinQuote: pinQuote, birthSwitchIsOn: birthSwitchIsOn, deathSwitchIsOn: deathSwitchIsOn, publicIsTrue: publicIsTrue, arrayOfStoryImageIDs: arrayOfStoryImageIDs)
+        self.init(creatorId: creatorId, graveId: graveId, profileImageId: profileImageId, name: name, birthDate: birthDate, birthLocation: birthLocation, deathDate: deathDate, deathLocation: deathLocation, familyStatus: familyStatus, bio: bio, graveLocationLatitude: graveLocationLatitude, graveLocationLongitude: graveLocationLongitude, allGraveIdentifier: allGraveIdentifier, pinQuote: pinQuote, birthSwitchIsOn: birthSwitchIsOn, deathSwitchIsOn: deathSwitchIsOn, publicIsTrue: publicIsTrue, videoURL: videoURL, arrayOfStoryImageIDs: arrayOfStoryImageIDs)
     }
     
 }

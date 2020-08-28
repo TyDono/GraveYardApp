@@ -61,6 +61,7 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
     var storyImageStringArray: [String] = []
     var arrayOfStoryImageIDs: [String] = []
     var memorialCount: Int = 0
+    var videoURLString: String?
     
     // MARK: - View Lifecycle
     
@@ -192,6 +193,7 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
                         let birthSwitchIsOn = document.data()["birthSwitchIsOn"] as? Bool,
                         let deathSwitchIsOn = document.data()["deathSwitchIsOn"] as? Bool,
                         let publicIsTrue = document.data()["publicIsTrue"] as? Bool,
+                        let videoURL = document.data()["videoURLString"] as? String,
                         let arrayOfStoryImageIDs = document.data()["arrayOfStoryImageIDs"] as? [String] {
                         
                         self.imageString = profileImageId
@@ -213,6 +215,7 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
                         self.birthSwitch.isOn = birthSwitchIsOn
                         self.deathSwitch.isOn = deathSwitchIsOn
                         self.publicIsTrueSwitch.isOn = publicIsTrue
+                        self.videoURLString = videoURL
                         self.arrayOfStoryImageIDs = arrayOfStoryImageIDs
                         self.getImages() //call this last
                     }
@@ -423,6 +426,7 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
             guard let bio = bioTextView.text else { return }
             guard let currentGraveLocationLatitude = self.currentGraveLocationLatitude  else { return }
             guard let currentGraveLocationLongitude = self.currentGraveLocationLongitude  else { return }
+            guard let currentVideoURLString = self.videoURLString else { return }
             let allGraveIdentifier: String = "tylerRoolz"
             guard let pinQuote: String = self.pinQuoteTextField.text else { return }
             
@@ -443,6 +447,7 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
                               birthSwitchIsOn: self.birthSwitch.isOn,
                               deathSwitchIsOn: self.deathSwitch.isOn,
                               publicIsTrue: self.publicIsTrueSwitch.isOn,
+                              videoURL: currentVideoURLString,
                               arrayOfStoryImageIDs: arrayOfStoryImageIDs)
             
             let graveRef = self.db.collection("grave")
@@ -558,6 +563,22 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
         alerController.addAction(delete)
         self.present(alerController, animated: true) {
             
+        }
+    }
+    
+    @IBAction func playVideo(_ sender: UIButton) {
+        guard let safeVideoURLString = self.videoURLString else { return }
+        guard let url = URL(string: safeVideoURLString) else { return }
+        // Create an AVPlayer, passing it the HTTP Live Streaming URL.
+        let player = AVPlayer(url: url)
+
+        // Create a new AVPlayerViewController and pass it a reference to the player.
+        let controller = AVPlayerViewController()
+        controller.player = player
+
+        // Modally present the player and call the player's play() method when complete.
+        present(controller, animated: true) {
+            player.play()
         }
     }
     

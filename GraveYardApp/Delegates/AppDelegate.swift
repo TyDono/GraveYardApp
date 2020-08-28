@@ -11,6 +11,8 @@ import FirebaseFirestore
 import GoogleSignIn
 import FirebaseCore
 import FirebaseStorage
+import AVKit
+import AVFoundation
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
@@ -27,12 +29,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         let splashVC = storyboard.instantiateViewController(withIdentifier: "map")
         window?.rootViewController = splashVC
         let storage = Storage.storage()
-        let storageRef = storage.reference()
         
         //check for currnt login token
         MyFirebase.shared.addUserListender(loggedIn: false)
         GIDSignIn.sharedInstance()?.clientID = "924369462499-e451ovm1fiupuc3lonhhdl3lhis4r7iq.apps.googleusercontent.com"
         GIDSignIn.sharedInstance()?.delegate = self
+        let audioSession = AVAudioSession.sharedInstance()
+        do {
+            try audioSession.setCategory(.playback, mode: .moviePlayback)
+        }
+        catch {
+            print("Setting category to AVAudioSessionCategoryPlayback failed.")
+        }
         return true
     }
     
