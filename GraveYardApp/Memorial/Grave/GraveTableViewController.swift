@@ -166,7 +166,7 @@ class GraveTableViewController: UITableViewController {
                         let familyStatus = document.data()["familyStatus"] as? String,
                         let bio = document.data()["bio"] as? String,
                         let pinQuote = document.data()["pinQuote"] as? String,
-                        let videoURL = document.data()["videoURLString"] as? String,
+                        let videoURL = document.data()["videoURL"] as? String,
                         let publicIsTrue = document.data()["publicIsTrue"] as? Bool {
 //                        let time = false
                         if creatorId != MapViewController.shared.currentAuthID && publicIsTrue == false {
@@ -208,7 +208,7 @@ class GraveTableViewController: UITableViewController {
                                 self.midTopLabel.text = birthDate
                                 self.midBotLabel.text = birthLocation
                             }
-                            self.familyStatusLabel.text = familyStatus
+//                            self.familyStatusLabel.text = familyStatus
                             self.bioLabel.text = bio
                             if pinQuote == "" {
                                 self.pinQuoteLabel.text = ""
@@ -269,7 +269,7 @@ class GraveTableViewController: UITableViewController {
     // MARK: - Actions
     
     @IBAction func editGraveBarButtonTapped(_ sender: UIBarButtonItem) {
-        if currentAuthID == self.creatorId {
+        if self.currentAuthID == self.creatorId {
             performSegue(withIdentifier: "editGraveSegue", sender: nil)
         } else {
             self.view.addSubview(reportPopOver)

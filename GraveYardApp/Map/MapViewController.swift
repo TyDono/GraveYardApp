@@ -524,7 +524,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                 let birthSwitchIsOn: Bool = true
                 let deathSwitchIsOn: Bool = true
                 let publicIsTrue: Bool = true
-                let videoURL: String = ""
+                let videoURL: String = UUID().uuidString + ".mov"
                 let arrayOfStoryImageIDs: [String] = [""]
                 guard let graveId: String = MapViewController.shared.currentGraveId else { return }
                 guard let graveLocationLatitude: String = MapViewController.shared.currentGraveLocationLatitude else { return }

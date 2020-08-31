@@ -193,7 +193,7 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
                         let birthSwitchIsOn = document.data()["birthSwitchIsOn"] as? Bool,
                         let deathSwitchIsOn = document.data()["deathSwitchIsOn"] as? Bool,
                         let publicIsTrue = document.data()["publicIsTrue"] as? Bool,
-                        let videoURL = document.data()["videoURLString"] as? String,
+                        let videoURL = document.data()["videoURL"] as? String,
                         let arrayOfStoryImageIDs = document.data()["arrayOfStoryImageIDs"] as? [String] {
                         
                         self.imageString = profileImageId
@@ -565,6 +565,43 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
             
         }
     }
+    
+    @IBAction func uploadVideoButtonWasTapped(_ sender: UIButton) {
+                // Configuration
+                let picker = UIImagePickerController()
+                picker.allowsEditing = true
+                picker.delegate = self
+//        picker.mediaTypes = 
+        //        picker.mediaTypes = [kUTTypeImage as String, kUTTypeMovie as String]// kUTT is an error set it as somthing
+
+                // Present the UIImagePicker Controller
+                present(picker, animated: true, completion: nil)
+    }
+    // The didFinishPickingMediaWithInfo let's you select an image/video and let's you decide what to do with it. In my example, I decided to convert the selected data into video and upload it to Firebase Storage
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        guard let safeVideoURLString = self.videoURLString else { return }
+        if let videoURL = info[UIImagePickerController.InfoKey.mediaURL.rawValue] as? NSURL {
+            // we selected a video
+            print("Here's the file URL: ", videoURL)
+
+            // Where we'll store the video:
+            
+            let videoURLRef = "graveProfileVideos/\(safeVideoURLString)"
+            let storageReference = Storage.storage().reference().child("video.mov")
+
+            // Start the video storage process
+            storageReference.putFile(from: videoURL as URL, metadata: nil, completion: { (metadata, error) in
+                if error == nil {
+                    print("Successful video upload")
+                } else {
+                    print(error?.localizedDescription)
+                }
+            })
+
+          }
+                //Dismiss the controller after picking some media
+                dismiss(animated: true, completion: nil)
+        }
     
     @IBAction func playVideo(_ sender: UIButton) {
         guard let safeVideoURLString = self.videoURLString else { return }
