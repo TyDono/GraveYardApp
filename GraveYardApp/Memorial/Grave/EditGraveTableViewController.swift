@@ -376,7 +376,7 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
     }
     
     func convertVideo(toMPEG4FormatForVideo inputURL: URL, outputURL: URL, handler: @escaping (AVAssetExportSession) -> Void) { //converts video to mp4
-//        try! FileManager.default.removeItem(at: outputURL as URL) //there was no file detected to remove so this is commented out
+        try! FileManager.default.removeItem(at: outputURL as URL) //there was no file detected one time on the first try. 
         let asset = AVURLAsset(url: inputURL as URL, options: nil)
         let exportSession = AVAssetExportSession(asset: asset, presetName: AVAssetExportPresetHighestQuality)!
         exportSession.outputURL = outputURL
@@ -409,13 +409,13 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
         } catch {
             print(error)
         }
-        let storageRef = Storage.storage().reference().child("graveProfileVideos").child(name)
+        let storageRef = Storage.storage().reference().child("graveProfileVideos/\(name)")
         if let uploadData = data as Data? {
             storageRef.putData(uploadData, metadata: nil
                 , completion: { (metadata, error) in
                     if let error = error {
                         failure(error)
-                    }else{
+                    } else {
                         let strPic:String = (metadata?.path)!
                         success(strPic)
                     }
@@ -424,7 +424,15 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
     }
     
     func deleteGraveStoryVideo() {
-        
+        guard let safeVideoURLString = self.videoURLString else { return }
+        self.storage.reference().child("graveProfileVideos/\(safeVideoURLString)").delete { (err) in
+            if err == nil {
+                // no error
+            } else {
+                // this might be called since they might not have images to be deleted
+                print(err as Any)
+            }
+        }
     }
 
 //    func uploadVideoToFirebaseStorge() {
@@ -456,6 +464,7 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
             return
         } else {
             guard let safeVideoURL = self.videoURL else { return }
+            self.deleteGraveStoryVideo()
             self.uploadToFireBaseVideo(url: safeVideoURL, success: { (String) in
                 if let unwrappedCurrentImageDataCount = self.currentImageDataCount {
                     print("successfully uploaded video to Firebase Storage")
@@ -664,9 +673,9 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
         }
     }
     
-    @IBAction func playVideo(_ sender: UIButton) {
-        guard let safeVideoURLString = self.videoURLString else { return }
-        guard let videoPath = Bundle.main.path(forResource: safeVideoURLString, ofType: "mp4") else {
+    @IBAction func playVideo(_ sender: UIButton) { //doesnt work right
+        guard let safeVideoURLAsString = self.videoURL?.absoluteString else { return }
+        guard let videoPath = Bundle.main.path(forResource: safeVideoURLAsString, ofType: "mp4") else {
             debugPrint("video not found")
             return
         }
