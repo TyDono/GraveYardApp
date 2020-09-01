@@ -376,7 +376,7 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
     }
     
     func convertVideo(toMPEG4FormatForVideo inputURL: URL, outputURL: URL, handler: @escaping (AVAssetExportSession) -> Void) { //converts video to mp4
-        try! FileManager.default.removeItem(at: outputURL as URL) //there was no file detected one time on the first try. 
+        try! FileManager.default.removeItem(at: outputURL as URL) //there was no file detected one time on the first try.
         let asset = AVURLAsset(url: inputURL as URL, options: nil)
         let exportSession = AVAssetExportSession(asset: asset, presetName: AVAssetExportPresetHighestQuality)!
         exportSession.outputURL = outputURL
