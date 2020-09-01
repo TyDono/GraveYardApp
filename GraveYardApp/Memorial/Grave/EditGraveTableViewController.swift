@@ -64,6 +64,7 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
     var arrayOfStoryImageIDs: [String] = []
     var memorialCount: Int = 0
     var videoURLString: String?
+    var videoURL: URL?
     
     // MARK: - View Lifecycle
     
@@ -118,7 +119,8 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
             graveMainImage.image = selectedImage
             graveProfileImages.append(selectedImage)
             self.graveMainImage.reloadInputViews()
-        } else if let videoURL = info[UIImagePickerController.InfoKey(rawValue: UIImagePickerController.InfoKey.mediaURL.rawValue)] as? NSURL {
+        } else if let videoURL = info[UIImagePickerController.InfoKey.mediaURL] as? URL {
+            self.videoURL = videoURL
             print("file URL: ", videoURL)
         }
         dismiss(animated: true, completion: nil)
@@ -170,7 +172,7 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
         }
     }
     
-    func getGraveData() { // mak srue to change the sting back to a date here
+    func getGraveData() {
         dateFormatter.dateFormat = "yyyy-MM-dd"
         guard let safeCurrentGraveId = self.currentGraveId else { return }
         print(safeCurrentGraveId)
@@ -262,7 +264,7 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
     
     func uploadFirebaseImages(_ image: UIImage, completion: @escaping ((_ url: URL?) -> () )) {
         guard let imageStringId = self.imageString else { return }
-        guard let SafeCurrentGraveId = self.currentGraveId else { return }
+//        guard let SafeCurrentGraveId = self.currentGraveId else { return }
         let storageRef = Storage.storage().reference().child("graveProfileImages/\(imageStringId)")
         guard let imageData = image.jpegData(compressionQuality: 0.20) else { return }
         let metaData = StorageMetadata()
@@ -373,6 +375,79 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
         }
     }
     
+    func convertVideo(toMPEG4FormatForVideo inputURL: URL, outputURL: URL, handler: @escaping (AVAssetExportSession) -> Void) { //converts video to mp4
+//        try! FileManager.default.removeItem(at: outputURL as URL) //there was no file detected to remove so this is commented out
+        let asset = AVURLAsset(url: inputURL as URL, options: nil)
+        let exportSession = AVAssetExportSession(asset: asset, presetName: AVAssetExportPresetHighestQuality)!
+        exportSession.outputURL = outputURL
+        exportSession.outputFileType = .mp4
+        exportSession.exportAsynchronously(completionHandler: {
+            handler(exportSession)
+        })
+    }
+    
+    func uploadToFireBaseVideo(url: URL,
+                               success : @escaping (String) -> Void,
+                               failure : @escaping (Error) -> Void) {
+        
+        guard let safeVideoURL = self.videoURLString else { return }
+        let name = "\(safeVideoURL)"
+        let path = NSTemporaryDirectory() + name
+        let dispatchgroup = DispatchGroup()
+        dispatchgroup.enter()
+        let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        let outputurl = documentsURL.appendingPathComponent(name)
+        var ur = outputurl
+        self.convertVideo(toMPEG4FormatForVideo: url as URL, outputURL: outputurl) { (session) in
+            ur = session.outputURL!
+            dispatchgroup.leave()
+        }
+        dispatchgroup.wait()
+        let data = NSData(contentsOf: ur as URL)
+        do {
+            try data?.write(to: URL(fileURLWithPath: path), options: .atomic)
+        } catch {
+            print(error)
+        }
+        let storageRef = Storage.storage().reference().child("graveProfileVideos").child(name)
+        if let uploadData = data as Data? {
+            storageRef.putData(uploadData, metadata: nil
+                , completion: { (metadata, error) in
+                    if let error = error {
+                        failure(error)
+                    }else{
+                        let strPic:String = (metadata?.path)!
+                        success(strPic)
+                    }
+            })
+        }
+    }
+    
+    func deleteGraveStoryVideo() {
+        
+    }
+
+//    func uploadVideoToFirebaseStorge() {
+//        guard let safeVideoURL = self.videoURL else { return }
+////        if let videoURL == self.videoURL {
+//            print(safeVideoURL)
+//            let storageRef = Storage.storage().reference().child("graveProfileVideos/\(safeVideoURL)")
+//            storageRef.putFile(from: safeVideoURL, metadata: nil) { (metaData, error) in
+//                if error != nil {
+//                    print("failed to upload video file to firebase \(error)")
+//                    return
+//                }
+////                let size = metaData // this will get the size of the video for tracking purposes
+//                storageRef.downloadURL { (url, error) in
+//                    guard let downloadURL = url else {
+//                        print("an error has occured \(error)")
+//                        return
+//                    }
+//                }
+//            }
+////        }
+//    }
+            
     // MARK: - Actions
     
     @IBAction func saveGraveInfoTapped(_ sender: UIBarButtonItem) { //  MOST OF COMMENTED OUT CODE WILL BE RE-ADDED WHEN PREMIUM IS LIVE TO KEEP TRACK OF THEIR DATA USE AND TO LET THE USERS KNOW. ADD THIS TO NEWGRAVESTORYVIEWCONTROLLER WHEN PREMIUM IS LIVE
@@ -380,6 +455,14 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
             nameTextField.isError(baseColor: UIColor.red.cgColor, numberOfShakes: 3, revert: true)
             return
         } else {
+            guard let safeVideoURL = self.videoURL else { return }
+            self.uploadToFireBaseVideo(url: safeVideoURL, success: { (String) in
+                if let unwrappedCurrentImageDataCount = self.currentImageDataCount {
+                    print("successfully uploaded video to Firebase Storage")
+                }
+            }) { (Error) in
+                print("error \(Error)")
+            }
             //        guard let unwrappedGraveImage = graveMainImage.image else { return } // the uplaod takes 2 long and needs a delay before segue is called
             //        guard let currentDataUseCount = MyFirebase.currentDataUsage else { return }
             //        var checkDataCap: Int = 0
@@ -583,18 +666,29 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
     
     @IBAction func playVideo(_ sender: UIButton) {
         guard let safeVideoURLString = self.videoURLString else { return }
-        guard let url = URL(string: safeVideoURLString) else { return }
+        guard let videoPath = Bundle.main.path(forResource: safeVideoURLString, ofType: "mp4") else {
+            debugPrint("video not found")
+            return
+        }
+//        guard let url = URL(string: safeVideoURLString) else { return }
         // Create an AVPlayer, passing it the HTTP Live Streaming URL.
-        let player = AVPlayer(url: url)
+//        let player = AVPlayer(url: url)
+        
+        let player = AVPlayer(url: URL(fileURLWithPath: videoPath))
+               let playerController = AVPlayerViewController()
+               playerController.player = player
+               present(playerController, animated: true) {
+                   player.play()
+               }
 
         // Create a new AVPlayerViewController and pass it a reference to the player.
-        let controller = AVPlayerViewController()
-        controller.player = player
-
-        // Modally present the player and call the player's play() method when complete.
-        present(controller, animated: true) {
-            player.play()
-        }
+//        let controller = AVPlayerViewController()
+//        controller.player = player
+//
+//        // Modally present the player and call the player's play() method when complete.
+//        present(controller, animated: true) {
+//            player.play()
+//        }
     }
     
 }

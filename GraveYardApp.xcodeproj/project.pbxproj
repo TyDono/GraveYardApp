@@ -38,6 +38,7 @@
 		CBCE0E2F23FD14410077A4F1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CBCE0E2E23FD14410077A4F1 /* Assets.xcassets */; };
 		CBCE0E3123FD144F0077A4F1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CBCE0E3023FD144F0077A4F1 /* GoogleService-Info.plist */; };
 		CBCE0E3323FD14690077A4F1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CBCE0E3223FD14690077A4F1 /* LaunchScreen.storyboard */; };
+		CBF424A224FE1F970095AE96 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBF424A124FE1F960095AE96 /* PlayerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,6 +77,7 @@
 		CBCE0E2E23FD14410077A4F1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CBCE0E3023FD144F0077A4F1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CBCE0E3223FD14690077A4F1 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		CBF424A124FE1F960095AE96 /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
 		D2F44BC10CD98B45A7DA38E4 /* Pods-GraveYardApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GraveYardApp.release.xcconfig"; path = "Target Support Files/Pods-GraveYardApp/Pods-GraveYardApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -131,6 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				CBCE0E2023FD13AB0077A4F1 /* Grave.swift */,
+				CBF424A124FE1F960095AE96 /* PlayerView.swift */,
 				CBCE0E2A23FD14080077A4F1 /* GraveTableViewController.swift */,
 				CB881F992367B41E00615F2F /* EditGraveTableViewController.swift */,
 				CBCE0E2623FD13E80077A4F1 /* GraveProfileImage.swift */,
@@ -389,6 +392,7 @@
 				CBCE0E2D23FD14250077A4F1 /* StoryTableViewCell.swift in Sources */,
 				CBCE0E0F23FD13050077A4F1 /* AppDelegate.swift in Sources */,
 				CBCE0E0D23FD12D00077A4F1 /* SceneDelegate.swift in Sources */,
+				CBF424A224FE1F970095AE96 /* PlayerView.swift in Sources */,
 				CB3A388C2375293F00DA756D /* GraveStoryTableViewController.swift in Sources */,
 				CBCE0E0B23FD12D00077A4F1 /* SplashViewController.swift in Sources */,
 				CB398EFB23695D0600A515B9 /* GraveStoriesTableViewController.swift in Sources */,

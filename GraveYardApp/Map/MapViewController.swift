@@ -10,6 +10,8 @@ import UIKit
 import MapKit
 import FirebaseAuth
 import FirebaseFirestore
+import AVKit
+import AVFoundation
 
 class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UIGestureRecognizerDelegate {
     
@@ -426,6 +428,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             self.addMemorialView.alpha = 1.0
             self.addMemorialView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
         });
+        self.playVideo()
     }
     
     func removePopOverAnimate() {
@@ -456,6 +459,19 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "segueToGrave", let graveTVC = segue.destination as? GraveTableViewController {
             graveTVC.currentGraveId = MapViewController.shared.currentGraveId
+        }
+    }
+    
+    func playVideo() { // runs the tutroial video on how to make a memorial
+        guard let path = Bundle.main.path(forResource: "howToMakeAMemorialVideo", ofType:"m4v") else {
+            debugPrint("video not found")
+            return
+        }
+        let player = AVPlayer(url: URL(fileURLWithPath: path))
+        let playerController = AVPlayerViewController()
+        playerController.player = player
+        present(playerController, animated: true) {
+            player.play()
         }
     }
     
@@ -524,7 +540,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                 let birthSwitchIsOn: Bool = true
                 let deathSwitchIsOn: Bool = true
                 let publicIsTrue: Bool = true
-                let videoURL: String = UUID().uuidString + ".mov"
+                let videoURL: String = UUID().uuidString + ".mp4"
                 let arrayOfStoryImageIDs: [String] = [""]
                 guard let graveId: String = MapViewController.shared.currentGraveId else { return }
                 guard let graveLocationLatitude: String = MapViewController.shared.currentGraveLocationLatitude else { return }
