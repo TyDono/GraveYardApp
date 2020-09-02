@@ -50,6 +50,7 @@ class GraveTableViewController: UITableViewController {
     var currentSeason: String?
     var videoURLString: String?
     let storage = Storage.storage()
+    var storyCount: Int = 0
     
     // MARK: - View Lifecycle
     
@@ -138,6 +139,8 @@ class GraveTableViewController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "graveStoriesSegue", let graveStoriesTVC = segue.destination as? GraveStoriesTableViewController {
+            graveStoriesTVC.storyCount = self.storyCount
+            graveStoriesTVC.graveStories = currentGraveId
             graveStoriesTVC.graveStories = graveId
             graveStoriesTVC.creatorId = creatorId
         } else if segue.identifier == "editGraveSegue", let editGraveTVC = segue.destination as? EditGraveTableViewController {
@@ -167,6 +170,7 @@ class GraveTableViewController: UITableViewController {
                         let bio = document.data()["bio"] as? String,
                         let pinQuote = document.data()["pinQuote"] as? String,
                         let videoURL = document.data()["videoURL"] as? String,
+                        let storyCount = document.data()["storyCount"] as? Int,
                         let publicIsTrue = document.data()["publicIsTrue"] as? Bool {
 //                        let time = false
                         if creatorId != MapViewController.shared.currentAuthID && publicIsTrue == false {
@@ -220,6 +224,7 @@ class GraveTableViewController: UITableViewController {
                                     self.navigationItem.rightBarButtonItem?.title = "Report"
                                 }
                             }
+                            self.storyCount = storyCount
                             self.videoURLString = videoURL
                             self.checkForCreatorId()
                             self.getImages()// always call last

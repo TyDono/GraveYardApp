@@ -43,6 +43,7 @@ class GraveStoryTableViewController: UITableViewController {
     var storyImageId1: String? = "1"
     var storyImageId2: String? = "2"
     var storyImageId3: String? = "3"
+    var currentGraveId: String?
     
     // MARK: - View Lifecycle
     
@@ -134,6 +135,7 @@ class GraveStoryTableViewController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "editGraveStorySegue", let editGraveStoryTVC = segue.destination as? NewGraveStoryTableViewController {
+            editGraveStoryTVC.currentGraveId = self.currentGraveId
             editGraveStoryTVC.currentGraveStoryId = graveStoryId
             editGraveStoryTVC.graveStoryTitleValue = storyTitle.text
             editGraveStoryTVC.graveStoryBodyTextValue = storyBodyTextView.text

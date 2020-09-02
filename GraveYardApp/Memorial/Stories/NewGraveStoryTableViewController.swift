@@ -44,6 +44,8 @@ class NewGraveStoryTableViewController: UITableViewController, UIImagePickerCont
     var storyImageId5: String? = ""
     var storyImageStringArray: [String] = []
     var arrayOfStoryImageIDs: [String] = []
+    var storyCount: Int = 0
+    var currentGraveId: String?
     let newDataCount: Double? = 0.0
     let storage = Storage.storage()
     
@@ -240,6 +242,15 @@ class NewGraveStoryTableViewController: UITableViewController, UIImagePickerCont
         }
     }
     
+    func deleteOneFromStoryCount() {
+        guard let currentGrave = self.currentGraveId else { return }
+        self.storyCount -= 1
+        db.collection("grave").document(currentGrave).updateData([
+            "storyCount": self.storyCount
+        ]) { err in
+        }
+    }
+    
     // MARK: - Actions
     
     @IBAction func saveStoryBarButtonTapped(_ sender: UIBarButtonItem) {
@@ -281,6 +292,7 @@ class NewGraveStoryTableViewController: UITableViewController, UIImagePickerCont
             let userRef = self.db.collection("stories")
             userRef.document(self.currentGraveStoryId ?? "no StoryId detected").delete(){ err in
                 if err == nil {
+                    self.deleteOneFromStoryCount()
                     self.deletedStoryImages()
                     let alert1 = UIAlertController(title: "Success", message: "This Story and all of it's contents have been successfully deleted", preferredStyle: .alert)
                     alert1.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
