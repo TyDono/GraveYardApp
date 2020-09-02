@@ -50,6 +50,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
 //        self.mapView.removeAnnotations(self.mapView.annotations)
         setMapViewLocationAndUser()
         //chageTextColor()
+        self.recenterMapButton.layer.cornerRadius = 10
         addMemorialView.layer.cornerRadius = 10
         mapView.delegate = self
         self.navigationItem.rightBarButtonItem?.isEnabled = false
