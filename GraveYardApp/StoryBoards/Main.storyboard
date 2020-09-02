@@ -1508,7 +1508,7 @@
                                                 <constraint firstAttribute="width" constant="50" id="N4b-A6-HsE"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Story" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sAf-wn-5V9">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Story" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sAf-wn-5V9">
                                             <rect key="frame" x="96" y="11" width="263" height="92"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1518,7 +1518,7 @@
                                     <constraints>
                                         <constraint firstAttribute="bottom" secondItem="NZm-pp-kwA" secondAttribute="bottom" id="03r-C8-MQS"/>
                                         <constraint firstItem="NZm-pp-kwA" firstAttribute="top" secondItem="rdG-Rd-QgH" secondAttribute="top" id="HG8-ck-rE3"/>
-                                        <constraint firstItem="sAf-wn-5V9" firstAttribute="leading" secondItem="Niw-gf-gMO" secondAttribute="trailing" constant="8" id="IoB-vR-9f9"/>
+                                        <constraint firstItem="sAf-wn-5V9" firstAttribute="leading" secondItem="Niw-gf-gMO" secondAttribute="trailing" constant="30" id="IoB-vR-9f9"/>
                                         <constraint firstItem="sAf-wn-5V9" firstAttribute="trailing" secondItem="rdG-Rd-QgH" secondAttribute="trailingMargin" id="OY9-su-hfk"/>
                                         <constraint firstItem="sAf-wn-5V9" firstAttribute="top" secondItem="rdG-Rd-QgH" secondAttribute="topMargin" id="WeI-v0-29Z"/>
                                         <constraint firstAttribute="trailing" secondItem="NZm-pp-kwA" secondAttribute="trailing" id="cqA-FP-PGL"/>
@@ -1766,30 +1766,37 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cKZ-bK-L1I" customClass="GIDSignInButton">
-                                <rect key="frame" x="87" y="921" width="173" height="110"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rYB-Eg-Mts">
+                                <rect key="frame" x="82" y="613" width="212" height="38"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="38" id="hXG-zc-hdT"/>
+                                    <constraint firstAttribute="width" constant="212" id="yGL-EK-OMK"/>
+                                </constraints>
+                                <state key="normal" image="appleSigninButton"/>
+                                <connections>
+                                    <action selector="appleSigninButtonWasTapped:" destination="V3w-If-NiO" eventType="touchUpInside" id="jJy-BK-mhI"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cKZ-bK-L1I" customClass="GIDSignInButton">
+                                <rect key="frame" x="101" y="557" width="173" height="48"/>
+                                <color key="backgroundColor" systemColor="systemGray2Color" red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="dYk-TV-ifc"/>
+                                    <constraint firstAttribute="width" constant="173" id="rr5-aZ-iU2"/>
+                                </constraints>
                                 <connections>
                                     <action selector="googleSignIn:" destination="V3w-If-NiO" eventType="valueChanged" id="fFY-U4-IyV"/>
                                 </connections>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y5Q-i8-4bt" userLabel="signInWithApple">
-                                <rect key="frame" x="87" y="869" width="173" height="38"/>
-                                <state key="normal" image="appleSigninButton"/>
-                                <connections>
-                                    <action selector="appleSigninButtonWasTapped:" destination="V3w-If-NiO" eventType="touchUpInside" id="q7H-eM-pfJ"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="cKZ-bK-L1I" firstAttribute="leading" secondItem="qmL-If-WqM" secondAttribute="leading" constant="87" id="7qb-nv-08u"/>
-                            <constraint firstItem="qmL-If-WqM" firstAttribute="trailing" secondItem="Y5Q-i8-4bt" secondAttribute="trailing" constant="115" id="JS6-Ki-GoH"/>
-                            <constraint firstItem="qmL-If-WqM" firstAttribute="trailing" secondItem="cKZ-bK-L1I" secondAttribute="trailing" constant="115" id="LH2-Of-3iy"/>
-                            <constraint firstItem="Y5Q-i8-4bt" firstAttribute="leading" secondItem="qmL-If-WqM" secondAttribute="leading" constant="87" id="Seq-ZJ-OHF"/>
-                            <constraint firstItem="Y5Q-i8-4bt" firstAttribute="top" secondItem="qmL-If-WqM" secondAttribute="top" constant="825" id="r7t-Gs-gVL"/>
-                            <constraint firstItem="qmL-If-WqM" firstAttribute="bottom" secondItem="cKZ-bK-L1I" secondAttribute="bottom" constant="81" id="ssv-IZ-bFF"/>
-                            <constraint firstItem="cKZ-bK-L1I" firstAttribute="top" secondItem="Y5Q-i8-4bt" secondAttribute="bottom" constant="8" id="yws-Em-psO"/>
+                            <constraint firstItem="qmL-If-WqM" firstAttribute="trailing" secondItem="cKZ-bK-L1I" secondAttribute="trailing" constant="101" id="1b9-rt-mQH"/>
+                            <constraint firstItem="qmL-If-WqM" firstAttribute="bottom" secondItem="rYB-Eg-Mts" secondAttribute="bottom" constant="16" id="296-Rl-XAm"/>
+                            <constraint firstItem="rYB-Eg-Mts" firstAttribute="top" secondItem="cKZ-bK-L1I" secondAttribute="bottom" constant="8" id="Iez-Oz-Tr0"/>
+                            <constraint firstItem="qmL-If-WqM" firstAttribute="trailing" secondItem="rYB-Eg-Mts" secondAttribute="trailing" constant="81" id="TB4-of-EA8"/>
+                            <constraint firstItem="cKZ-bK-L1I" firstAttribute="leading" secondItem="qmL-If-WqM" secondAttribute="leading" constant="101" id="k23-7D-COD"/>
+                            <constraint firstItem="rYB-Eg-Mts" firstAttribute="leading" secondItem="qmL-If-WqM" secondAttribute="leading" constant="82" id="so4-Po-yPp"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="qmL-If-WqM"/>
                     </view>
@@ -1808,7 +1815,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eoN-ga-5yR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="8kA-df-0Ng" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1758.5185185185185" y="-142.22222222222223"/>
+            <point key="canvasLocation" x="1757.5999999999999" y="-142.57871064467767"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="qQm-FZ-b6Z">
@@ -1846,10 +1853,10 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="JUc-GY-fg1"/>
+        <segue reference="74B-mS-0pn"/>
         <segue reference="z4g-pH-uIZ"/>
         <segue reference="7DO-rd-4qB"/>
-        <segue reference="soh-re-d5z"/>
+        <segue reference="xN6-dc-fkE"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Page" width="617" height="500"/>
