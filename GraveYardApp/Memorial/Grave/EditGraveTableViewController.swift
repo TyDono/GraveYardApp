@@ -55,7 +55,7 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
     var currentGraveLocationLongitude: String?
     var currentGraveLocationLatitude: String?
     let storage = Storage.storage()
-    var currentImageDataCount: Int?
+    var currentImageDataCount: Double?
     var player = AVPlayer()
     var playerViewController = AVPlayerViewController()
     var birthDate: String = ""
@@ -65,6 +65,9 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
     var memorialCount: Int = 0
     var videoURLString: String?
     var videoURL: URL?
+    var videoDataSize: Double = 0.0
+    var oldVideoDataSize: Double = 0.0
+    var storyCount: Int = 0
     
     // MARK: - View Lifecycle
     
@@ -114,6 +117,27 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
         dismiss(animated: true, completion: nil)
     }
     
+    func fileSize(forURL url: Any) -> Double {
+        var fileURL: URL?
+        var fileSize: Double = 0.0
+        if (url is URL) || (url is String)
+        {
+            if (url is URL) {
+                fileURL = url as? URL
+            }
+            else {
+                fileURL = URL(fileURLWithPath: url as! String)
+            }
+            var fileSizeValue = 0.0
+            try? fileSizeValue = (fileURL?.resourceValues(forKeys: [URLResourceKey.fileSizeKey]).allValues.first?.value as! Double?)!
+            if fileSizeValue > 0.0 {
+                fileSize = (Double(fileSizeValue)) // / (1024 * 1024) goes in if i need the number smaler and readable
+//                fileSize = Double(round(10*fileSize)/10)// this is for if i need it to be a 2.3 smaller number
+            }
+        }
+        return fileSize
+    }
+    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let selectedImage = info[.originalImage] as? UIImage {
             graveMainImage.image = selectedImage
@@ -121,6 +145,13 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
             self.graveMainImage.reloadInputViews()
         } else if let videoURL = info[UIImagePickerController.InfoKey.mediaURL] as? URL {
             self.videoURL = videoURL
+            self.videoDataSize = self.fileSize(forURL: videoURL)
+            print(self.videoDataSize)
+            var currentDataUsage: Double = 0.0
+            currentDataUsage = MyFirebase.currentDataUsage! - self.oldVideoDataSize + self.videoDataSize
+            if currentDataUsage >= 500000.0 {
+                return
+            }
             print("file URL: ", videoURL)
         }
         dismiss(animated: true, completion: nil)
@@ -161,6 +192,7 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
     func updateUserData() {
         db = Firestore.firestore()
         guard let currentId = currentAuthID else { return }
+        MyFirebase.currentDataUsage = MyFirebase.currentDataUsage! - self.oldVideoDataSize + self.videoDataSize
         db.collection("userProfile").document(currentId).updateData([
             "dataCount": MyFirebase.currentDataUsage!
         ]) { err in
@@ -200,6 +232,7 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
                         let deathSwitchIsOn = document.data()["deathSwitchIsOn"] as? Bool,
                         let publicIsTrue = document.data()["publicIsTrue"] as? Bool,
                         let videoURL = document.data()["videoURL"] as? String,
+                        let storyCount = document.data()["storyCount"] as? Int,
                         let arrayOfStoryImageIDs = document.data()["arrayOfStoryImageIDs"] as? [String] {
                         
                         self.imageString = profileImageId
@@ -222,6 +255,7 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
                         self.deathSwitch.isOn = deathSwitchIsOn
                         self.publicIsTrueSwitch.isOn = publicIsTrue
                         self.videoURLString = videoURL
+                        self.storyCount = storyCount
                         self.arrayOfStoryImageIDs = arrayOfStoryImageIDs
                         self.getImages() //call this last
                     }
@@ -246,6 +280,20 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
         }
     }
     
+    func getVideos() {
+        if let videoString = self.videoURLString {
+            let storageRef = storage.reference()
+            let graveProfileVideo = storageRef.child("graveProfileVideos/\(videoString)")
+            graveProfileVideo.getData(maxSize: (100000000), completion:  { (data, err) in
+                guard let data = data else  { return }
+                self.videoDataSize = Double(data.count)
+                print(data)
+                print("pause")
+//                guard let video = (data: data) else { return }
+            })
+        }
+    }
+    
     func getImages() {
         if let imageStringId = self.imageString {
             let storageRef = storage.reference()
@@ -255,7 +303,7 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
                 guard let image = UIImage(data: data) else { return }
                 self.graveMainImage.image = image
                 guard let imageDataBytes = image.jpegData(compressionQuality: 0.20) else { return }
-                self.currentImageDataCount = imageDataBytes.count
+                self.currentImageDataCount = Double(imageDataBytes.count)
             })
         } else {
             return
@@ -316,19 +364,10 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
 //        print("SaveImageToFirebase has been saved!!!!!")
 //    }
     
-    struct PropertyKeys {
-        static let unwind = "unwindToGraveSegue"
-    }
-    
     func deleteGraveProfileImage() {
         let imageRef = self.storage.reference().child(self.imageString ?? "no image String found")
         imageRef.delete { err in
             if let error = err {
-//                let deleteImageAlert = UIAlertController(title: "Error", message: "Sorry, there was an error while trying to delete your Headstone Image. Please check your internet connection and try again.", preferredStyle: .alert)
-//                deleteImageAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
-                //                    deleteImageAlert.dismiss(animated: true, completion: nil)
-                //                }))
-                //                self.present(deleteImageAlert, animated: true, completion: nil)
                 print(error)
             } else {
                 // File deleted successfully
@@ -338,8 +377,7 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
     
     func deleteGraveStories() {
         let graveStoryRef = self.db.collection("stories")
-        
-        let getStories = graveStoryRef.whereField("graveId", isEqualTo: self.currentGraveId)
+        let getStories = graveStoryRef.whereField("graveId", isEqualTo: self.currentGraveId!)
         getStories.getDocuments { (snapshot, err) in
             if err != nil {
                 print(err as Any)
@@ -463,39 +501,26 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
             nameTextField.isError(baseColor: UIColor.red.cgColor, numberOfShakes: 3, revert: true)
             return
         } else {
-            guard let safeVideoURL = self.videoURL else { return }
-            self.deleteGraveStoryVideo()
-            self.uploadToFireBaseVideo(url: safeVideoURL, success: { (String) in
-                if let unwrappedCurrentImageDataCount = self.currentImageDataCount {
-                    print("successfully uploaded video to Firebase Storage")
+            if let safeVideoURL = self.videoURL {
+                self.uploadToFireBaseVideo(url: safeVideoURL, success: { (String) in
+                    if self.currentImageDataCount != nil {
+                        print("successfully uploaded video to Firebase Storage")
+                    }
+                }) { (Error) in
+                    print("error \(Error)")
                 }
-            }) { (Error) in
-                print("error \(Error)")
             }
             //        guard let unwrappedGraveImage = graveMainImage.image else { return } // the uplaod takes 2 long and needs a delay before segue is called
             //        guard let currentDataUseCount = MyFirebase.currentDataUsage else { return }
             //        var checkDataCap: Int = 0
             for image in graveProfileImages {
                 uploadFirebaseImages(image) { (url) in
-                    guard let imageDataBytes = image.jpegData(compressionQuality: 0.20) else { return }
-                    if let unwrappedCurrentImageDataCount = self.currentImageDataCount {
-                        //                    checkDataCap = currentDataUseCount - unwrappedCurrentImageDataCount + imageDataBytes.count
-                        //                    if checkDataCap > 5000 {
-                        //                        let alert = UIAlertController(title: "Over Limit!", message: "Saving this puts you over your alloted data use! Try deleting some photos to make room, or sign up for premium to expand your data cap for Remembrance.  current amount in use \(checkDataCap) / 5,000kb", preferredStyle: .alert)
-                        //                        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
-                        //                            alert.dismiss(animated: true, completion: nil)
-                        //                            return
-                        //                        }))
-                        //                        self.present(alert, animated: true, completion: nil)
-                        //                    } else {
-                        MyFirebase.currentDataUsage = MyFirebase.currentDataUsage! - unwrappedCurrentImageDataCount + imageDataBytes.count
+                    guard image.jpegData(compressionQuality: 0.20) != nil else { return }
+                    if self.currentImageDataCount != nil {
+                        print("image uploaded")
                         self.updateUserData()
-                        //                    }
                     }
                     guard url != nil else { return }
-                    //                self.saveImageToFirebase(graveImagesURL: url, completion: { success in
-                    //                    self.firebaseWrite(url: url.absoluteString)
-                    //                })
                 }
             }
             
@@ -524,6 +549,7 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
             guard let currentGraveLocationLongitude = self.currentGraveLocationLongitude  else { return }
             guard let currentVideoURLString = self.videoURLString else { return }
             let allGraveIdentifier: String = "tylerRoolz"
+            let storyCount = self.storyCount
             guard let pinQuote: String = self.pinQuoteTextField.text else { return }
             
             let grave = Grave(creatorId: creatorId,
@@ -544,6 +570,7 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
                               deathSwitchIsOn: self.deathSwitch.isOn,
                               publicIsTrue: self.publicIsTrueSwitch.isOn,
                               videoURL: currentVideoURLString,
+                              storyCount: storyCount,
                               arrayOfStoryImageIDs: arrayOfStoryImageIDs)
             
             let graveRef = self.db.collection("grave")
@@ -674,21 +701,22 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
     }
     
     @IBAction func playVideo(_ sender: UIButton) { //doesnt work right
-        guard let safeVideoURLAsString = self.videoURL?.absoluteString else { return }
-        guard let videoPath = Bundle.main.path(forResource: safeVideoURLAsString, ofType: "mp4") else {
-            debugPrint("video not found")
-            return
-        }
+        self.getVideos()
+//        guard let safeVideoURLAsString = self.videoURL?.absoluteString else { return }
+//        guard let videoPath = Bundle.main.path(forResource: safeVideoURLAsString, ofType: "mp4") else {
+//            debugPrint("video not found")
+//            return
+//        }
 //        guard let url = URL(string: safeVideoURLString) else { return }
         // Create an AVPlayer, passing it the HTTP Live Streaming URL.
 //        let player = AVPlayer(url: url)
         
-        let player = AVPlayer(url: URL(fileURLWithPath: videoPath))
-               let playerController = AVPlayerViewController()
-               playerController.player = player
-               present(playerController, animated: true) {
-                   player.play()
-               }
+//        let player = AVPlayer(url: URL(fileURLWithPath: videoPath))
+//               let playerController = AVPlayerViewController()
+//               playerController.player = player
+//               present(playerController, animated: true) {
+//                   player.play()
+//               }
 
         // Create a new AVPlayerViewController and pass it a reference to the player.
 //        let controller = AVPlayerViewController()

@@ -37,6 +37,7 @@ struct Grave {
     var deathSwitchIsOn: Bool
     var publicIsTrue: Bool
     var videoURL: String
+    var storyCount: Int
     var arrayOfStoryImageIDs: [String]
     // premium users, grave quote, grave node image
     // BURIAL LOCATION
@@ -65,6 +66,7 @@ struct Grave {
             "deathSwitchIsOn": deathSwitchIsOn,
             "publicIsTrue": publicIsTrue,
             "videoURL": videoURL,
+            "storyCount": storyCount,
             "arrayOfStoryImageIDs": arrayOfStoryImageIDs
         ]
     }
@@ -90,8 +92,9 @@ extension Grave: DocumentGraveSerializable {
             let deathSwitchIsOn = dictionary["deathSwitchIsOn"] as? Bool,
             let publicIsTrue = dictionary["publicIsTrue"] as? Bool,
             let videoURL = dictionary["videoURL"] as? String,
+            let storyCount = dictionary["storyCount"] as? Int,
             let arrayOfStoryImageIDs = dictionary["arrayOfStoryImageIDs"] as? [String] else {return nil}
-        self.init(creatorId: creatorId, graveId: graveId, profileImageId: profileImageId, name: name, birthDate: birthDate, birthLocation: birthLocation, deathDate: deathDate, deathLocation: deathLocation, familyStatus: familyStatus, bio: bio, graveLocationLatitude: graveLocationLatitude, graveLocationLongitude: graveLocationLongitude, allGraveIdentifier: allGraveIdentifier, pinQuote: pinQuote, birthSwitchIsOn: birthSwitchIsOn, deathSwitchIsOn: deathSwitchIsOn, publicIsTrue: publicIsTrue, videoURL: videoURL, arrayOfStoryImageIDs: arrayOfStoryImageIDs)
+        self.init(creatorId: creatorId, graveId: graveId, profileImageId: profileImageId, name: name, birthDate: birthDate, birthLocation: birthLocation, deathDate: deathDate, deathLocation: deathLocation, familyStatus: familyStatus, bio: bio, graveLocationLatitude: graveLocationLatitude, graveLocationLongitude: graveLocationLongitude, allGraveIdentifier: allGraveIdentifier, pinQuote: pinQuote, birthSwitchIsOn: birthSwitchIsOn, deathSwitchIsOn: deathSwitchIsOn, publicIsTrue: publicIsTrue, videoURL: videoURL, storyCount: storyCount, arrayOfStoryImageIDs: arrayOfStoryImageIDs)
     }
     
 }

@@ -113,9 +113,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     
     func updateUserMemorialCount() {
         guard let currentId = currentAuthID else { return }
-        self.memorialCount += 1
+        MyFirebase.memorialCount += 1
         db.collection("userProfile").document(currentId).updateData([
-            "memorialCount": self.memorialCount
+            "memorialCount": MyFirebase.memorialCount 
         ]) { err in
             if let err = err {
                 print("Error updating document: \(err)")
@@ -185,6 +185,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                     let deathSwitchIsOn = currentGrave["deathSwitchIsOn"] as? Bool,
                     let publicIsTrue = currentGrave["publicIsTrue"] as? Bool,
                     let videoURL = currentGrave["videoURL"] as? String,
+                    let storyCount = currentGrave["storyCount"] as? Int,
                     let arrayOfStoryImageIDs = currentGrave["arrayOfStoryImageIDs"] as? [String] {
                     
                     let registeredGrave = Grave(creatorId: creatorId,
@@ -205,6 +206,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                                                 deathSwitchIsOn: deathSwitchIsOn,
                                                 publicIsTrue: publicIsTrue,
                                                 videoURL: videoURL,
+                                                storyCount: storyCount,
                                                 arrayOfStoryImageIDs: arrayOfStoryImageIDs)
                     
                     registeredGraves.append(registeredGrave)
@@ -519,6 +521,19 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                 notSignInAlert.addAction(goToLogIn)
                 self.present(notSignInAlert, animated: true, completion: nil)
             } else {
+                let memorialCount = MyFirebase.memorialCount + 1
+                guard memorialCount < 4 else {
+                    let graveCreationFailAlert = UIAlertController(title: "To many Memorials", message: "Free users are only allowed 3 Memorials. To increase the amount, subscribe and get premium benefits.", preferredStyle: .alert)
+                    let dismiss = UIAlertAction(title: "OK", style: .default, handler: nil)
+                    graveCreationFailAlert.addAction(dismiss)
+                    self.present(graveCreationFailAlert, animated: true, completion: nil)
+                    for annotation in self.mapView.annotations {
+                        if annotation.title == "New Entry" {
+                            self.mapView.removeAnnotation(annotation)
+                        }
+                    }
+                    return
+                }
                 let id = self.currentAuthID!
                 MapViewController.shared.currentGraveId = UUID().uuidString
                 MapViewController.shared.currentGraveLocationLatitude = String(annotationLat)
@@ -543,6 +558,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                 let publicIsTrue: Bool = true
                 let videoURL: String = UUID().uuidString + ".mp4"
                 let arrayOfStoryImageIDs: [String] = [""]
+                let storyCount: Int = 0
                 guard let graveId: String = MapViewController.shared.currentGraveId else { return }
                 guard let graveLocationLatitude: String = MapViewController.shared.currentGraveLocationLatitude else { return }
                 guard let graveLocationLongitude: String = MapViewController.shared.currentGraveLocationLongitude else { return }
@@ -565,6 +581,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                                   deathSwitchIsOn: deathSwitchIsOn,
                                   publicIsTrue: publicIsTrue,
                                   videoURL: videoURL,
+                                  storyCount: storyCount,
                                   arrayOfStoryImageIDs: arrayOfStoryImageIDs)
                 
                 let graveRef = self.db.collection("grave")

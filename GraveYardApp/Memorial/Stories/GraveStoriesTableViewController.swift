@@ -30,6 +30,8 @@ class GraveStoriesTableViewController: UITableViewController {
     var storyImageId1: String? = ""
     var storyImageId2: String? = ""
     var storyImageId3: String? = ""
+    var storyImageId4: String? = ""
+    var storyImageId5: String? = ""
     
     // MARK: - View Lifecycle
     
@@ -90,10 +92,14 @@ class GraveStoriesTableViewController: UITableViewController {
         let storyImageId1: String = UUID().uuidString
         let storyImageId2: String = UUID().uuidString
         let storyImageId3: String = UUID().uuidString
+        let storyImageId4: String = UUID().uuidString
+        let storyImageId5: String = UUID().uuidString
         currentGraveStoryId = storyId
         self.storyImageId1 = storyImageId1
         self.storyImageId2 = storyImageId2
         self.storyImageId3 = storyImageId3
+        self.storyImageId4 = storyImageId4
+        self.storyImageId5 = storyImageId5
         
         let story = Story(creatorId: creatorId ?? "nul",
                           graveId: graveId,
@@ -103,7 +109,9 @@ class GraveStoriesTableViewController: UITableViewController {
                           storyImageArray: storyImageArray,
                           storyImageId1: storyImageId1,
                           storyImageId2: storyImageId2,
-                          storyImageId3: storyImageId3)
+                          storyImageId3: storyImageId3,
+                          storyImageId4: storyImageId4,
+                          storyImageId5: storyImageId5)
         
         let storyRef = self.db.collection("stories")
         storyRef.document(String(story.storyId)).setData(story.dictionary) { err in

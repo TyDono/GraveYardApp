@@ -19,7 +19,8 @@ class MyFirebase {
     // MARK: - Propeties
     
     static let shared = MyFirebase()
-    static var currentDataUsage: Int?
+    static var currentDataUsage: Double?
+    static var memorialCount: Int = 0
     
     var db = Firestore.firestore()
     var currentAuthID = Auth.auth().currentUser?.uid
@@ -80,7 +81,7 @@ class MyFirebase {
     func createData() {
         let currentUserId: String = self.userId
         let premiumStatus: Bool = false
-        let dataCount: Int = 0
+        let dataCount: Double = 0.0
         let memorialCount: Int = 0
         
         let user = UserProfile(currentUserAuthId: currentUserId,
@@ -107,8 +108,10 @@ class MyFirebase {
             } else {
                 for document in (snapshot?.documents)! {
                     if let premiumStatus = document.data()["premiumStatus"] as? Bool,
-                        let dataCount = document.data()["dataCount"] as? Int {
+                        let memorialCount = document.data()["memorialCount"] as? Int,
+                        let dataCount = document.data()["dataCount"] as? Double {
                         self.currentUserPremiumStatus = premiumStatus
+                        MyFirebase.memorialCount = memorialCount
                         MyFirebase.currentDataUsage = dataCount
                         
                     }

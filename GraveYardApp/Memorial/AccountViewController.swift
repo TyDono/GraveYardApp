@@ -19,7 +19,7 @@ class AccountViewController: UIViewController {
     
     var currentAuthID = Auth.auth().currentUser?.uid
     var db: Firestore!
-    var dataCount: Int = 0
+    var dataCount: Double = 0.0
     var summer: String = "summer"
     var winter: String = "winter"
     var fall: String = "fall"
@@ -48,13 +48,13 @@ class AccountViewController: UIViewController {
             } else {
                 for document in (snapshot?.documents)! {
                     if let dataCount = document.data()["dataCount"] as? Int {
-                        self.dataCount = dataCount
-                        if dataCount != 0 {
-                            let dividedDataCount: Int = self.dataCount/1000
+                        self.dataCount = Double(dataCount)
+                        if self.dataCount != 0.0 {
+                            let dividedDataCount: Double = self.dataCount/1000000.0
                             let stringDataCount: String = String(dividedDataCount)
-                            self.dataCountLabel.text = "\(stringDataCount) kb / 5,000 kb"
+                            self.dataCountLabel.text = "\(stringDataCount) mb / 5mb"
                         } else {
-                            self.dataCountLabel.text = "0 kb / 5,000 kb"
+                            self.dataCountLabel.text = "0mb / 5mb"
                         }
                     }
                 }

@@ -40,9 +40,11 @@ class NewGraveStoryTableViewController: UITableViewController, UIImagePickerCont
     var storyImageId1: String? = ""
     var storyImageId2: String? = ""
     var storyImageId3: String? = ""
+    var storyImageId4: String? = ""
+    var storyImageId5: String? = ""
     var storyImageStringArray: [String] = []
     var arrayOfStoryImageIDs: [String] = []
-    let newDataCount: Int? = 0
+    let newDataCount: Double? = 0.0
     let storage = Storage.storage()
     
     // MARK: - View Lifecycle
@@ -129,7 +131,9 @@ class NewGraveStoryTableViewController: UITableViewController, UIImagePickerCont
 //            let storyImageArray: [String]? = [String](),
             let storyImageId1: String = self.storyImageId1,
             let storyImageId2: String = self.storyImageId2,
-            let storyImageId3: String = self.storyImageId3 else { return }
+            let storyImageId3: String = self.storyImageId3,
+            let storyImageId4: String = self.storyImageId4,
+            let storyImageId5: String = self.storyImageId5 else { return }
         let storyImageArray = [String]()
         
         let story = Story(creatorId: creatorId,
@@ -140,7 +144,9 @@ class NewGraveStoryTableViewController: UITableViewController, UIImagePickerCont
                           storyImageArray: storyImageArray,
                           storyImageId1: storyImageId1,
                           storyImageId2: storyImageId2,
-                          storyImageId3: storyImageId3)
+                          storyImageId3: storyImageId3,
+                          storyImageId4: storyImageId4,
+                          storyImageId5: storyImageId5)
         
         let storyRef = self.db.collection("stories")
         storyRef.document(String(story.storyId)).updateData(story.dictionary){ err in
