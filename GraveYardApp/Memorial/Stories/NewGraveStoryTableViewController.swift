@@ -251,6 +251,12 @@ class NewGraveStoryTableViewController: UITableViewController, UIImagePickerCont
         }
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "unwindtoGraveStoriesSegue", let graveStoriesTVC = segue.destination as? GraveStoriesTableViewController {
+            graveStoriesTVC.storyCount = self.storyCount
+        }
+    }
+    
     // MARK: - Actions
     
     @IBAction func saveStoryBarButtonTapped(_ sender: UIBarButtonItem) {
