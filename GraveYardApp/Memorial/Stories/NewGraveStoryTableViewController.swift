@@ -44,7 +44,7 @@ class NewGraveStoryTableViewController: UITableViewController, UIImagePickerCont
     var storyImageId5: String? = ""
     var storyImageStringArray: [String] = []
     var arrayOfStoryImageIDs: [String] = []
-    var storyCount: Int = 0
+//    var storyCount: Int = 0
     var currentGraveId: String?
     let newDataCount: Double? = 0.0
     let storage = Storage.storage()
@@ -244,18 +244,18 @@ class NewGraveStoryTableViewController: UITableViewController, UIImagePickerCont
     
     func deleteOneFromStoryCount() {
         guard let currentGrave = self.currentGraveId else { return }
-        self.storyCount -= 1
+        GraveTableViewController.storyCount -= 1
         db.collection("grave").document(currentGrave).updateData([
-            "storyCount": self.storyCount
+            "storyCount": GraveTableViewController.storyCount
         ]) { err in
         }
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "unwindtoGraveStoriesSegue", let graveStoriesTVC = segue.destination as? GraveStoriesTableViewController {
-            graveStoriesTVC.storyCount = self.storyCount
-        }
-    }
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "unwindtoGraveStoriesSegue", let graveStoriesTVC = segue.destination as? GraveStoriesTableViewController {
+//            graveStoriesTVC.storyCount = self.storyCount
+//        }
+//    }
     
     // MARK: - Actions
     

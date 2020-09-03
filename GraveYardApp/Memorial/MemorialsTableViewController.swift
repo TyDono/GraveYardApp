@@ -69,19 +69,19 @@ class MemorialsTableViewController: UITableViewController {
         return graves?.count ?? 0
     }
     
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "memorialCell", for: indexPath) as? MemorialsTableViewCell else { return UITableViewCell() }
         
         cell.backgroundColor = UIColor.clear
-        cell.backgroundView = UIImageView.init(image: UIImage.init(named: "bookBlue"))
+        cell.backgroundView = UIImageView.init(image: UIImage.init(named: "bookRed"))
         
         if let memorials = graves {
             let story = memorials[indexPath.row]
             cell.cellTitle.text = "\(story.name)"
+            
             let maskLayer = CAShapeLayer()
             let bounds = cell.bounds
-            maskLayer.path = UIBezierPath(roundedRect: CGRect(x: 2, y: 7, width: bounds.width-4, height: bounds.height-4), cornerRadius: 5).cgPath
+            maskLayer.path = UIBezierPath(roundedRect: CGRect(x: 0, y: 7, width: bounds.width-4, height: bounds.height-4), cornerRadius: 5).cgPath
             cell.layer.mask = maskLayer
         }
         

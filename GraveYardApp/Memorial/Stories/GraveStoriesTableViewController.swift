@@ -33,7 +33,7 @@ class GraveStoriesTableViewController: UITableViewController {
     var storyImageId4: String? = ""
     var storyImageId5: String? = ""
     var currentGraveId: String?
-    var storyCount: Int = 0
+//    var storyCount: Int = 0
     
     // MARK: - View Lifecycle
     
@@ -87,16 +87,16 @@ class GraveStoriesTableViewController: UITableViewController {
     
     func createNewStory() {
         guard let currentGrave = self.currentGraveId else { return }
-        guard self.storyCount < 6 else {
+        guard GraveTableViewController.storyCount < 5 else {
             let graveCreationFailAert = UIAlertController(title: "To many Stories", message: "Free users are only allowed 5 stories per Memorial. Please subscribe to premium to increase the amount.", preferredStyle: .alert)
             let dismiss = UIAlertAction(title: "OK", style: .default, handler: nil)
             graveCreationFailAert.addAction(dismiss)
             self.present(graveCreationFailAert, animated: true, completion: nil)
             return
         }
-        self.storyCount += 1
+        GraveTableViewController.storyCount += 1
         db.collection("grave").document(currentGrave).updateData([
-            "storyCount": self.storyCount
+            "storyCount": GraveTableViewController.storyCount
         ]) { err in
             if let err = err {
                 print(err)
@@ -169,7 +169,7 @@ class GraveStoriesTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "storyCell", for: indexPath) as? StoryTableViewCell else { return UITableViewCell() }
         cell.backgroundColor = UIColor.clear
-        cell.backgroundView = UIImageView.init(image: UIImage.init(named: "bookBlue"))
+        cell.backgroundView = UIImageView.init(image: UIImage.init(named: "bookRed"))
         
         if let stories = stories {
             let story = stories[indexPath.row]

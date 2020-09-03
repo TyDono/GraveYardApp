@@ -38,6 +38,8 @@ class GraveTableViewController: UITableViewController {
     
     // MARK: - Propeties
     
+//    static let shared = GraveTableViewController()
+    
     var db: Firestore!
     var currentAuthID = Auth.auth().currentUser?.uid
     var currentUser: Grave?
@@ -50,7 +52,7 @@ class GraveTableViewController: UITableViewController {
     var currentSeason: String?
     var videoURLString: String?
     let storage = Storage.storage()
-    var storyCount: Int = 0
+    static var storyCount: Int = 0
     
     // MARK: - View Lifecycle
     
@@ -139,8 +141,8 @@ class GraveTableViewController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "graveStoriesSegue", let graveStoriesTVC = segue.destination as? GraveStoriesTableViewController {
-            graveStoriesTVC.storyCount = self.storyCount
-            graveStoriesTVC.graveStories = currentGraveId
+//            graveStoriesTVC.storyCount = GraveTableViewController.shared.storyCount
+            graveStoriesTVC.currentGraveId = currentGraveId
             graveStoriesTVC.graveStories = graveId
             graveStoriesTVC.creatorId = creatorId
         } else if segue.identifier == "editGraveSegue", let editGraveTVC = segue.destination as? EditGraveTableViewController {
@@ -224,7 +226,7 @@ class GraveTableViewController: UITableViewController {
                                     self.navigationItem.rightBarButtonItem?.title = "Report"
                                 }
                             }
-                            self.storyCount = storyCount
+                            GraveTableViewController.storyCount = storyCount
                             self.videoURLString = videoURL
                             self.checkForCreatorId()
                             self.getImages()// always call last

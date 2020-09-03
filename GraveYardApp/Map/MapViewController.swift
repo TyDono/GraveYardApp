@@ -115,7 +115,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         guard let currentId = currentAuthID else { return }
         MyFirebase.memorialCount += 1
         db.collection("userProfile").document(currentId).updateData([
-            "memorialCount": MyFirebase.memorialCount 
+            "memorialCount": MyFirebase.memorialCount
         ]) { err in
             if let err = err {
                 print("Error updating document: \(err)")
@@ -522,7 +522,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                 self.present(notSignInAlert, animated: true, completion: nil)
             } else {
                 let memorialCount = MyFirebase.memorialCount + 1
-                guard memorialCount < 4 else {
+                guard memorialCount < 3 else {
                     let graveCreationFailAlert = UIAlertController(title: "To many Memorials", message: "Free users are only allowed 3 Memorials. To increase the amount, subscribe and get premium benefits.", preferredStyle: .alert)
                     let dismiss = UIAlertAction(title: "OK", style: .default, handler: nil)
                     graveCreationFailAlert.addAction(dismiss)
