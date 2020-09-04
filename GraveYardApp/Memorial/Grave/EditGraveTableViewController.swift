@@ -65,6 +65,7 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
     var memorialCount: Int = 0
     var videoURLString: String?
     var videoURL: URL?
+    var videoURLFromFirebase: URL?
     var videoDataSize: Double = 0.0
     var oldVideoDataSize: Double = 0.0
     var storyCount: Int = 0
@@ -149,9 +150,9 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
             print(self.videoDataSize)
             var currentDataUsage: Double = 0.0
             currentDataUsage = MyFirebase.currentDataUsage! - self.oldVideoDataSize + self.videoDataSize
-            if currentDataUsage >= 500000.0 {
-                return
-            }
+//            if currentDataUsage <= 5000000.0 {
+//                return
+//            }
             print("file URL: ", videoURL)
         }
         dismiss(animated: true, completion: nil)
@@ -208,7 +209,6 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
         dateFormatter.dateFormat = "yyyy-MM-dd"
         guard let safeCurrentGraveId = self.currentGraveId else { return }
         print(safeCurrentGraveId)
-//        let defaultDate: Date? = self.dateFormatter.date(from: "1993-08-05") // this is nil atm
         let graveRef = self.db.collection("grave").whereField("graveId", isEqualTo: safeCurrentGraveId) // this should be the grave id that was tapped on
         graveRef.getDocuments { (snapshot, error) in
             if error != nil {
@@ -257,6 +257,7 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
                         self.videoURLString = videoURL
                         self.storyCount = storyCount
                         self.arrayOfStoryImageIDs = arrayOfStoryImageIDs
+                        self.getVideo()
                         self.getImages() //call this last
                     }
                 }
@@ -280,15 +281,21 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
         }
     }
     
-    func getVideos() {
+    func getVideo() {
         if let videoString = self.videoURLString {
             let storageRef = storage.reference()
             let graveProfileVideo = storageRef.child("graveProfileVideos/\(videoString)")
             graveProfileVideo.getData(maxSize: (100000000), completion:  { (data, err) in
                 guard let data = data else  { return }
+                graveProfileVideo.downloadURL { (url, err) in
+                    if let urlText = url {
+                        self.videoURLFromFirebase = urlText
+                    } else {
+                        print(err as Any)
+                    }
+                }
                 self.videoDataSize = Double(data.count)
                 print(data)
-//                guard let video = (data: data) else { return }
             })
         }
     }
@@ -311,7 +318,6 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
     
     func uploadFirebaseImages(_ image: UIImage, completion: @escaping ((_ url: URL?) -> () )) {
         guard let imageStringId = self.imageString else { return }
-//        guard let SafeCurrentGraveId = self.currentGraveId else { return }
         let storageRef = Storage.storage().reference().child("graveProfileImages/\(imageStringId)")
         guard let imageData = image.jpegData(compressionQuality: 0.20) else { return }
         let metaData = StorageMetadata()
@@ -328,48 +334,26 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
         }
     }
     
-//    private func firebaseWrite(url: String) {
-//        var ref: DocumentReference? = nil
-//        ref = db.collection("grave").addDocument(data: [
-//            "imageURL": url
-//        ]) { err in
-//            if let err = err {
-//                print("Error adding document: \(err)")
-//            } else {
-//                print("Document added with ID: \(ref!.documentID)")
-//            }
-//        }
-//
-//        db.collection("grave").getDocuments() { (querySnapshot, err) in
-//            if let err = err {
-//                print("Error getting documents: \(err)")
-//            } else {
-//                for document in querySnapshot!.documents {
-//                    print("\(document.documentID) => \(document.data())")
-//                }
-//            }
-//        }
-//    }
-    
-//    func saveImageToFirebase(graveImagesURL: URL, completion: @escaping((_ success: Bool) -> ())) { //not called
-//        guard let imageStringId = self.imageString else { return }
-//        let databaseRef = Firestore.firestore().document("graveProfileImages/\(imageStringId)")
-//        let userObjectImages = [
-//            "imageURL": graveImagesURL.absoluteString
-//        ] as [String:Any]
-//        databaseRef.setData(userObjectImages) { (error) in
-//            completion(error == nil)
-//        }
-//        print("SaveImageToFirebase has been saved!!!!!")
-//    }
-    
     func deleteGraveProfileImage() {
-        let imageRef = self.storage.reference().child(self.imageString ?? "no image String found")
+        guard let safeImageString = self.imageString else { return }
+        let imageRef = self.storage.reference().child("graveProfileImages/\(safeImageString)")
         imageRef.delete { err in
             if let error = err {
                 print(error)
             } else {
-                // File deleted successfully
+                print("files deleted")
+            }
+        }
+    }
+    
+    func deleteGraveProfileVideo() {
+        guard let safeVideoURLString = self.videoURLString else { return }
+        let imageRef = self.storage.reference().child("graveProfileVideos/\(safeVideoURLString)")
+        imageRef.delete { err in
+            if let error = err {
+                print(error)
+            } else {
+                print("files deleted")
             }
         }
     }
@@ -413,7 +397,7 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
     }
     
     func convertVideo(toMPEG4FormatForVideo inputURL: URL, outputURL: URL, handler: @escaping (AVAssetExportSession) -> Void) { //converts video to mp4
-        try! FileManager.default.removeItem(at: outputURL as URL) //there was no file detected one time on the first try.
+        try? FileManager.default.removeItem(at: outputURL as URL) //there was no file detected one time on the first try.
         let asset = AVURLAsset(url: inputURL as URL, options: nil)
         let exportSession = AVAssetExportSession(asset: asset, presetName: AVAssetExportPresetHighestQuality)!
         exportSession.outputURL = outputURL
@@ -470,6 +454,13 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
                 print(err as Any)
             }
         }
+    }
+    
+    func playURLVideo(url: URL) {
+        let player = AVPlayer(url: url)
+        let vc = AVPlayerViewController()
+        vc.player = player
+        self.present(vc, animated: true) { vc.player?.play() }
     }
 
 //    func uploadVideoToFirebaseStorge() {
@@ -643,6 +634,7 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
             let userRef = self.db.collection("stories")
             print(self.storyImageStringArray)
             self.deletedStoryImages()
+            self.deleteGraveProfileVideo()
             userRef.document(forcedUserId).delete() { err in //deletes stories, call story image delete before this
                 if err == nil {
                     let storyRef = self.db.collection("grave")
@@ -699,8 +691,9 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
         }
     }
     
-    @IBAction func playVideo(_ sender: UIButton) { //doesnt work right
-        self.getVideos()
+    @IBAction func playVideo(_ sender: UIButton) {
+        guard let safeVideoURLFromFirebase = self.videoURLFromFirebase else { return }
+        playURLVideo(url: safeVideoURLFromFirebase)
 //        guard let safeVideoURLAsString = self.videoURL?.absoluteString else { return }
 //        guard let videoPath = Bundle.main.path(forResource: safeVideoURLAsString, ofType: "mp4") else {
 //            debugPrint("video not found")

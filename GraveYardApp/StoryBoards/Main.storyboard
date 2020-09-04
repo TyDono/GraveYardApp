@@ -633,7 +633,7 @@
                                                 </imageView>
                                                 <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kWx-qc-kmu">
                                                     <rect key="frame" x="8" y="46" width="359" height="201"/>
-                                                    <state key="normal" title="Button"/>
+                                                    <state key="normal" title="upload video"/>
                                                     <connections>
                                                         <action selector="uploadVideoButtonWasTapped:" destination="akf-23-k3a" eventType="touchUpInside" id="Wrl-b3-1F0"/>
                                                     </connections>
@@ -1955,7 +1955,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="74B-mS-0pn"/>
+        <segue reference="JUc-GY-fg1"/>
         <segue reference="z4g-pH-uIZ"/>
         <segue reference="7DO-rd-4qB"/>
         <segue reference="soh-re-d5z"/>
