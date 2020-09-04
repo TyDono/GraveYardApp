@@ -288,7 +288,6 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
                 guard let data = data else  { return }
                 self.videoDataSize = Double(data.count)
                 print(data)
-                print("pause")
 //                guard let video = (data: data) else { return }
             })
         }

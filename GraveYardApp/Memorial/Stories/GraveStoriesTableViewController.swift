@@ -32,6 +32,7 @@ class GraveStoriesTableViewController: UITableViewController {
     var storyImageId3: String? = ""
     var storyImageId4: String? = ""
     var storyImageId5: String? = ""
+    var storyImageId6: String? = ""
     var currentGraveId: String?
 //    var storyCount: Int = 0
     
@@ -87,16 +88,16 @@ class GraveStoriesTableViewController: UITableViewController {
     
     func createNewStory() {
         guard let currentGrave = self.currentGraveId else { return }
-        guard GraveTableViewController.storyCount < 5 else {
+        guard GraveTableViewController.currentGraveStoryCount < 5 else {
             let graveCreationFailAert = UIAlertController(title: "To many Stories", message: "Free users are only allowed 5 stories per Memorial. Please subscribe to premium to increase the amount.", preferredStyle: .alert)
             let dismiss = UIAlertAction(title: "OK", style: .default, handler: nil)
             graveCreationFailAert.addAction(dismiss)
             self.present(graveCreationFailAert, animated: true, completion: nil)
             return
         }
-        GraveTableViewController.storyCount += 1
+        GraveTableViewController.currentGraveStoryCount += 1
         db.collection("grave").document(currentGrave).updateData([
-            "storyCount": GraveTableViewController.storyCount
+            "storyCount": GraveTableViewController.currentGraveStoryCount
         ]) { err in
             if let err = err {
                 print(err)
@@ -113,18 +114,20 @@ class GraveStoriesTableViewController: UITableViewController {
         let storyId: String = UUID().uuidString
         let storyBody: String = ""
         let storyTitle: String = ""
-        let storyImageArray: [String] = [String]()
         let storyImageId1: String = UUID().uuidString
         let storyImageId2: String = UUID().uuidString
         let storyImageId3: String = UUID().uuidString
         let storyImageId4: String = UUID().uuidString
         let storyImageId5: String = UUID().uuidString
+        let storyImageId6: String = UUID().uuidString
+        let storyImageArray: [String] = [storyImageId1, storyImageId2, storyImageId3, storyImageId4, storyImageId5, storyImageId6]
         currentGraveStoryId = storyId
         self.storyImageId1 = storyImageId1
         self.storyImageId2 = storyImageId2
         self.storyImageId3 = storyImageId3
         self.storyImageId4 = storyImageId4
         self.storyImageId5 = storyImageId5
+        self.storyImageId6 = storyImageId6
         
         let story = Story(creatorId: creatorId ?? "nul",
                           graveId: graveId,
@@ -136,7 +139,8 @@ class GraveStoriesTableViewController: UITableViewController {
                           storyImageId2: storyImageId2,
                           storyImageId3: storyImageId3,
                           storyImageId4: storyImageId4,
-                          storyImageId5: storyImageId5)
+                          storyImageId5: storyImageId5,
+                          storyImageId6: storyImageId6)
         
         let storyRef = self.db.collection("stories")
         storyRef.document(String(story.storyId)).setData(story.dictionary) { err in
@@ -189,6 +193,9 @@ class GraveStoriesTableViewController: UITableViewController {
             newGraveStoryTVC.storyImageId1 = storyImageId1
             newGraveStoryTVC.storyImageId2 = storyImageId2
             newGraveStoryTVC.storyImageId3 = storyImageId3
+            newGraveStoryTVC.storyImageId4 = storyImageId4
+            newGraveStoryTVC.storyImageId5 = storyImageId5
+            newGraveStoryTVC.storyImageId6 = storyImageId6
         } else if segue.identifier == "graveStorySegue", let graveStoryTVC = segue.destination as? GraveStoryTableViewController {
             if let row = self.tableView.indexPathForSelectedRow?.row, let story = stories?[row] {
                 graveStoryTVC.currentGraveId = self.currentGraveId
@@ -200,6 +207,9 @@ class GraveStoriesTableViewController: UITableViewController {
                 graveStoryTVC.storyImageId1 = story.storyImageId1
                 graveStoryTVC.storyImageId2 = story.storyImageId2
                 graveStoryTVC.storyImageId3 = story.storyImageId3
+                graveStoryTVC.storyImageId4 = story.storyImageId4
+                graveStoryTVC.storyImageId5 = story.storyImageId5
+                graveStoryTVC.storyImageId6 = story.storyImageId6
             }
         }
     }

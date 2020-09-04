@@ -20,6 +20,9 @@ class NewGraveStoryTableViewController: UITableViewController, UIImagePickerCont
     @IBOutlet weak var storyImage1: UIImageView!
     @IBOutlet weak var storyImage2: UIImageView!
     @IBOutlet weak var storyImage3: UIImageView!
+    @IBOutlet weak var storyImage4: UIImageView!
+    @IBOutlet weak var storyImage5: UIImageView!
+    @IBOutlet weak var storyImage6: UIImageView!
     @IBOutlet weak var storyTitleTextField: UITextField!
     @IBOutlet weak var storyBodyTextView: UITextView!
     
@@ -37,13 +40,17 @@ class NewGraveStoryTableViewController: UITableViewController, UIImagePickerCont
     var storyImages1 = [UIImage]()
     var storyImages2 = [UIImage]()
     var storyImages3 = [UIImage]()
+    var storyImages4 = [UIImage]()
+    var storyImages5 = [UIImage]()
+    var storyImages6 = [UIImage]()
     var storyImageId1: String? = ""
     var storyImageId2: String? = ""
     var storyImageId3: String? = ""
     var storyImageId4: String? = ""
     var storyImageId5: String? = ""
+    var storyImageId6: String? = ""
     var storyImageStringArray: [String] = []
-    var arrayOfStoryImageIDs: [String] = []
+    var arrayOfStoryImageIDs: [String] = [] // idk wtf this is here
 //    var storyCount: Int = 0
     var currentGraveId: String?
     let newDataCount: Double? = 0.0
@@ -59,9 +66,13 @@ class NewGraveStoryTableViewController: UITableViewController, UIImagePickerCont
         //chageTextColor()
         db = Firestore.firestore()
         
+//        getImages()
         getImage1()
         getImage2()
         getImage3()
+        getImage4()
+        getImage5()
+        getImage6()
     }
     
     // MARK: - Functions
@@ -95,7 +106,7 @@ class NewGraveStoryTableViewController: UITableViewController, UIImagePickerCont
     }
     
     func updateArrayOfStoryImageIDs() {
-        let arrayOfStoryImageIDs = self.arrayOfStoryImageIDs + self.storyImageStringArray
+        let arrayOfStoryImageIDs = self.arrayOfStoryImageIDs
         guard let currentGraveId = MapViewController.shared.currentGraveId else { return }
         self.db.collection("grave").document(currentGraveId).updateData([
             "arrayOfStoryImageIDs": arrayOfStoryImageIDs
@@ -135,7 +146,8 @@ class NewGraveStoryTableViewController: UITableViewController, UIImagePickerCont
             let storyImageId2: String = self.storyImageId2,
             let storyImageId3: String = self.storyImageId3,
             let storyImageId4: String = self.storyImageId4,
-            let storyImageId5: String = self.storyImageId5 else { return }
+            let storyImageId5: String = self.storyImageId5,
+            let storyImageId6: String = self.storyImageId6 else { return }
         let storyImageArray = [String]()
         
         let story = Story(creatorId: creatorId,
@@ -148,7 +160,8 @@ class NewGraveStoryTableViewController: UITableViewController, UIImagePickerCont
                           storyImageId2: storyImageId2,
                           storyImageId3: storyImageId3,
                           storyImageId4: storyImageId4,
-                          storyImageId5: storyImageId5)
+                          storyImageId5: storyImageId5,
+                          storyImageId6: storyImageId6)
         
         let storyRef = self.db.collection("stories")
         storyRef.document(String(story.storyId)).updateData(story.dictionary){ err in
@@ -176,6 +189,16 @@ class NewGraveStoryTableViewController: UITableViewController, UIImagePickerCont
             case 3:
                 storyImage3.image = selectedImage
                 storyImages3.append(selectedImage)
+            case 4:
+                storyImage4.image = selectedImage
+                storyImages4.append(selectedImage)
+            case 5:
+                storyImage5.image = selectedImage
+                storyImages5.append(selectedImage)
+            case 6:
+                storyImage6.image = selectedImage
+                storyImages6.append(selectedImage)
+                
             default:
                 print("")
             }
@@ -183,6 +206,9 @@ class NewGraveStoryTableViewController: UITableViewController, UIImagePickerCont
             self.storyImage1.reloadInputViews()
             self.storyImage2.reloadInputViews()
             self.storyImage3.reloadInputViews()
+            self.storyImage4.reloadInputViews()
+            self.storyImage5.reloadInputViews()
+            self.storyImage6.reloadInputViews()
         }
     }
     
@@ -200,16 +226,16 @@ class NewGraveStoryTableViewController: UITableViewController, UIImagePickerCont
 //        }
 //    }
     
-    func saveImageToFirebase(graveImagesURL: URL, completion: @escaping((_ success: Bool) -> ())) { // not being caled
-        let databaseRef = Firestore.firestore().document("storyImages/\(self.currentGraveStoryId ?? "no image")")
-        let userObjectImages = [
-            "imageURL": graveImagesURL.absoluteString
-        ] as [String:Any]
-        databaseRef.setData(userObjectImages) { (error) in
-            completion(error == nil)
-        }
-        print("SaveImageToFirebase has been saved!!!!!")
-    }
+//    func saveImageToFirebase(graveImagesURL: URL, completion: @escaping((_ success: Bool) -> ())) { // not being caled
+//        let databaseRef = Firestore.firestore().document("storyImages/\(self.currentGraveStoryId ?? "no image")")
+//        let userObjectImages = [
+//            "imageURL": graveImagesURL.absoluteString
+//        ] as [String:Any]
+//        databaseRef.setData(userObjectImages) { (error) in
+//            completion(error == nil)
+//        }
+//        print("SaveImageToFirebase has been saved!!!!!")
+//    }
     
 //    func uploadFirebaseImages(_ image: UIImage, completion: @escaping ((_ url: URL?) -> () )) {
 //        let storageRef = Storage.storage().reference().child("storyImages/\(self.storyImageId1 ?? "no image found")")
@@ -229,7 +255,14 @@ class NewGraveStoryTableViewController: UITableViewController, UIImagePickerCont
 //    }
     
     func deletedStoryImages() {
-        print(self.storyImageStringArray)
+        guard let storyImageId1 = self.storyImageId1,
+            let storyImageId2 = self.storyImageId2,
+            let storyImageId3 = self.storyImageId3,
+            let storyImageId4 = self.storyImageId4,
+            let storyImageId5 = self.storyImageId5,
+            let storyImageId6 = self.storyImageId6 else { return }
+        
+        self.storyImageStringArray = [storyImageId1, storyImageId2, storyImageId3, storyImageId4, storyImageId5, storyImageId6]
         for i in self.storyImageStringArray {
             self.storage.reference().child("storyImages/\(i)").delete { (err) in
                 if err == nil {
@@ -244,26 +277,34 @@ class NewGraveStoryTableViewController: UITableViewController, UIImagePickerCont
     
     func deleteOneFromStoryCount() {
         guard let currentGrave = self.currentGraveId else { return }
-        GraveTableViewController.storyCount -= 1
+        GraveTableViewController.currentGraveStoryCount -= 1
         db.collection("grave").document(currentGrave).updateData([
-            "storyCount": GraveTableViewController.storyCount
+            "storyCount": GraveTableViewController.currentGraveStoryCount
         ]) { err in
         }
     }
     
 //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 //        if segue.identifier == "unwindtoGraveStoriesSegue", let graveStoriesTVC = segue.destination as? GraveStoriesTableViewController {
-//            graveStoriesTVC.storyCount = self.storyCount
+//            graveStoriesTVC.storyCount = self.currentGraveStoryCount
 //        }
 //    }
     
     // MARK: - Actions
     
     @IBAction func saveStoryBarButtonTapped(_ sender: UIBarButtonItem) {
+//        for storyImage in storyImages {
+//
+//            print(storyImage)
+//            uploadFirebaseImage(storyImage) { (url) in
+//                print("\(url) uploaded successfully")
+//            }
+//        }
+        
         if storyImage1.image != nil {
             for image in storyImages1 {
                 uploadFirebaseImage1(image) { (url) in
-                    guard let url = url else { return }
+//                    guard let url = url else { return }
                     //                self.saveImageToFirebase(graveImagesURL: url, completion: { success in
                     //                    self.firebaseWrite(url: url.absoluteString)
                     //                })
@@ -274,15 +315,39 @@ class NewGraveStoryTableViewController: UITableViewController, UIImagePickerCont
         if storyImage2.image != nil {
             for image in storyImages2 {
                 uploadFirebaseImage2(image) { (url) in
-                    guard let url = url else { return }
+//                    guard let url = url else { return }
+                }
+            }
+        }
+
+        if storyImage3.image != nil {
+            for image in storyImages3 {
+                uploadFirebaseImage3(image) { (url) in
+//                    guard let url = url else { return }
                 }
             }
         }
         
-        if storyImage3.image != nil {
-            for image in storyImages3 {
-                uploadFirebaseImage3(image) { (url) in
-                    guard let url = url else { return }
+        if storyImage4.image != nil {
+            for image in storyImages4 {
+                uploadFirebaseImage4(image) { (url) in
+//                    guard let url = url else { return }
+                }
+            }
+        }
+        
+        if storyImage5.image != nil {
+            for image in storyImages5 {
+                uploadFirebaseImage5(image) { (url) in
+//                    guard let url = url else { return }
+                }
+            }
+        }
+        
+        if storyImage6.image != nil {
+            for image in storyImages6 {
+                uploadFirebaseImage6(image) { (url) in
+//                    guard let url = url else { return }
                 }
             }
         }
@@ -345,9 +410,65 @@ class NewGraveStoryTableViewController: UITableViewController, UIImagePickerCont
         present(imagePickerController, animated: true, completion: nil)
     }
     
+    @IBAction func storyImage4ButtonTapped(_ sender: UIButton) {
+        currentButtonTapped = 4
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        imagePickerController.sourceType = UIImagePickerController.SourceType.photoLibrary
+        present(imagePickerController, animated: true, completion: nil)
+    }
+    @IBAction func storyImage5ButtonTapped(_ sender: Any) {
+        currentButtonTapped = 5
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        imagePickerController.sourceType = UIImagePickerController.SourceType.photoLibrary
+        present(imagePickerController, animated: true, completion: nil)
+    }
+    @IBAction func storyImage6ButtonTapped(_ sender: UIButton) {
+        currentButtonTapped = 6
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        imagePickerController.sourceType = UIImagePickerController.SourceType.photoLibrary
+        present(imagePickerController, animated: true, completion: nil)
+    }
+    
 }
 
 extension NewGraveStoryTableViewController {
+    
+//    func getImages() {
+//        print(storyImageStringArray)
+//        for imageStringId in storyImageStringArray {
+//            let storageRef = storage.reference()
+//            let graveProfileImage = storageRef.child("storyImages/\(imageStringId)")
+//            graveProfileImage.getData(maxSize: (1024 * 1024), completion:  { (data, err) in
+//                guard let data = data else {return}
+//                guard let image = UIImage(data: data) else {return}
+//
+//                self.storyImage3.image = image
+//                self.imageLabel3.text = nil
+//            })
+//        }
+//    }
+    
+//    func uploadFirebaseImage(_ image: UIImage, completion: @escaping ((_ url: URL?) -> () )) { // now the only one needed test
+//        for imageStringId in storyImageStringArray {
+//            let storageRef = Storage.storage().reference().child("storyImages/\(imageStringId)")
+//            guard let imageData = image.jpegData(compressionQuality: 0.10) else { return }
+//            let metaData = StorageMetadata()
+//            metaData.contentType = "image/jpg"
+//            storageRef.putData(imageData, metadata: metaData) { (metaData, error) in
+//                if error == nil, metaData != nil {
+//                    print("got story images")
+//                    storageRef.downloadURL(completion: { (url, error) in
+//                        completion(url)
+//                    })
+//                } else {
+//                    completion(nil)
+//                }
+//            }
+//        }
+//    }
     
     func getImage1() {
         if let imageStringId = self.storyImageId1 {
@@ -365,7 +486,8 @@ extension NewGraveStoryTableViewController {
     }
     
     func uploadFirebaseImage1(_ image: UIImage, completion: @escaping ((_ url: URL?) -> () )) {
-        let storageRef = Storage.storage().reference().child("storyImages/\(self.storyImageId1 ?? "no image found")")
+        guard let storyImageId1 = self.storyImageId1 else { return }
+        let storageRef = Storage.storage().reference().child("storyImages/\(storyImageId1)")
         guard let imageData = image.jpegData(compressionQuality: 0.10) else { return }
         let metaData = StorageMetadata()
         metaData.contentType = "image/jpg"
@@ -397,13 +519,14 @@ extension NewGraveStoryTableViewController {
     }
     
     func uploadFirebaseImage2(_ image: UIImage, completion: @escaping ((_ url: URL?) -> () )) {
-        let storageRef = Storage.storage().reference().child("storyImages/\(self.storyImageId2 ?? "no image found")")
+        guard let storyImageId2 = self.storyImageId2 else { return }
+        let storageRef = Storage.storage().reference().child("storyImages/\(storyImageId2)")
         guard let imageData = image.jpegData(compressionQuality: 0.10) else { return }
         let metaData = StorageMetadata()
         metaData.contentType = "image/jpg"
         storageRef.putData(imageData, metadata: metaData) { (metaData, error) in
             if error == nil, metaData != nil {
-                print("got story images2")
+                print("got story images1")
                 storageRef.downloadURL(completion: { (url, error) in
                     completion(url)
                 })
@@ -429,13 +552,113 @@ extension NewGraveStoryTableViewController {
     }
     
     func uploadFirebaseImage3(_ image: UIImage, completion: @escaping ((_ url: URL?) -> () )) {
-        let storageRef = Storage.storage().reference().child("storyImages/\(self.storyImageId3 ?? "no image found")")
+        guard let storyImageId3 = self.storyImageId3 else { return }
+        let storageRef = Storage.storage().reference().child("storyImages/\(storyImageId3)")
         guard let imageData = image.jpegData(compressionQuality: 0.10) else { return }
         let metaData = StorageMetadata()
         metaData.contentType = "image/jpg"
         storageRef.putData(imageData, metadata: metaData) { (metaData, error) in
             if error == nil, metaData != nil {
                 print("got story images3")
+                storageRef.downloadURL(completion: { (url, error) in
+                    completion(url)
+                })
+            } else {
+                completion(nil)
+            }
+        }
+    }
+    
+    func getImage4() {
+        if let imageStringId = self.storyImageId4 {
+            let storageRef = storage.reference()
+            let graveProfileImage = storageRef.child("storyImages/\(imageStringId)")
+            graveProfileImage.getData(maxSize: (1024 * 1024), completion:  { (data, err) in
+                guard let data = data else {return}
+                guard let image = UIImage(data: data) else {return}
+                self.storyImage4.image = image
+//                self.imageLabel1.text = nil
+            })
+        } else {
+            return
+        }
+    }
+    
+    func uploadFirebaseImage4(_ image: UIImage, completion: @escaping ((_ url: URL?) -> () )) {
+        guard let storyImageId = self.storyImageId4 else { return }
+        let storageRef = Storage.storage().reference().child("storyImages/\(storyImageId)")
+        guard let imageData = image.jpegData(compressionQuality: 0.10) else { return }
+        let metaData = StorageMetadata()
+        metaData.contentType = "image/jpg"
+        storageRef.putData(imageData, metadata: metaData) { (metaData, error) in
+            if error == nil, metaData != nil {
+                print("got story images1")
+                storageRef.downloadURL(completion: { (url, error) in
+                    completion(url)
+                })
+            } else {
+                completion(nil)
+            }
+        }
+    }
+    
+    func getImage5() {
+        if let imageStringId = self.storyImageId5 {
+            let storageRef = storage.reference()
+            let graveProfileImage = storageRef.child("storyImages/\(imageStringId)")
+            graveProfileImage.getData(maxSize: (1024 * 1024), completion:  { (data, err) in
+                guard let data = data else {return}
+                guard let image = UIImage(data: data) else {return}
+                self.storyImage5.image = image
+//                self.imageLabel1.text = nil
+            })
+        } else {
+            return
+        }
+    }
+    
+    func uploadFirebaseImage5(_ image: UIImage, completion: @escaping ((_ url: URL?) -> () )) {
+        guard let storyImageId = self.storyImageId5 else { return }
+        let storageRef = Storage.storage().reference().child("storyImages/\(storyImageId)")
+        guard let imageData = image.jpegData(compressionQuality: 0.10) else { return }
+        let metaData = StorageMetadata()
+        metaData.contentType = "image/jpg"
+        storageRef.putData(imageData, metadata: metaData) { (metaData, error) in
+            if error == nil, metaData != nil {
+                print("got story images1")
+                storageRef.downloadURL(completion: { (url, error) in
+                    completion(url)
+                })
+            } else {
+                completion(nil)
+            }
+        }
+    }
+    
+    func getImage6() {
+        if let imageStringId = self.storyImageId6 {
+            let storageRef = storage.reference()
+            let graveProfileImage = storageRef.child("storyImages/\(imageStringId)")
+            graveProfileImage.getData(maxSize: (1024 * 1024), completion:  { (data, err) in
+                guard let data = data else {return}
+                guard let image = UIImage(data: data) else {return}
+                self.storyImage6.image = image
+//                self.imageLabel1.text = nil
+            })
+        } else {
+            return
+        }
+    }
+    
+    func uploadFirebaseImage6(_ image: UIImage, completion: @escaping ((_ url: URL?) -> () )) {
+        guard let storyImageId = self.storyImageId6 else { return }
+        let storageRef = Storage.storage().reference().child("storyImages/\(storyImageId)")
+        guard let imageData = image.jpegData(compressionQuality: 0.10) else { return }
+        let metaData = StorageMetadata()
+        metaData.contentType = "image/jpg"
+        storageRef.putData(imageData, metadata: metaData) { (metaData, error) in
+            if error == nil, metaData != nil {
+                print("got story images1")
                 storageRef.downloadURL(completion: { (url, error) in
                     completion(url)
                 })

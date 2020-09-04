@@ -38,7 +38,7 @@ class GraveTableViewController: UITableViewController {
     
     // MARK: - Propeties
     
-//    static let shared = GraveTableViewController()
+    static var currentGraveStoryCount: Int = 0
     
     var db: Firestore!
     var currentAuthID = Auth.auth().currentUser?.uid
@@ -52,7 +52,6 @@ class GraveTableViewController: UITableViewController {
     var currentSeason: String?
     var videoURLString: String?
     let storage = Storage.storage()
-    static var storyCount: Int = 0
     
     // MARK: - View Lifecycle
     
@@ -141,7 +140,6 @@ class GraveTableViewController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "graveStoriesSegue", let graveStoriesTVC = segue.destination as? GraveStoriesTableViewController {
-//            graveStoriesTVC.storyCount = GraveTableViewController.shared.storyCount
             graveStoriesTVC.currentGraveId = currentGraveId
             graveStoriesTVC.graveStories = graveId
             graveStoriesTVC.creatorId = creatorId
@@ -168,13 +166,12 @@ class GraveTableViewController: UITableViewController {
                         let birthLocation = document.data()["birthLocation"] as? String,
                         let deathDate = document.data()["deathDate"] as? String,
                         let deathLocation = document.data()["deathLocation"] as? String,
-                        let familyStatus = document.data()["familyStatus"] as? String,
+//                        let familyStatus = document.data()["familyStatus"] as? String,
                         let bio = document.data()["bio"] as? String,
                         let pinQuote = document.data()["pinQuote"] as? String,
                         let videoURL = document.data()["videoURL"] as? String,
                         let storyCount = document.data()["storyCount"] as? Int,
                         let publicIsTrue = document.data()["publicIsTrue"] as? Bool {
-//                        let time = false
                         if creatorId != MapViewController.shared.currentAuthID && publicIsTrue == false {
                             self.graveNavTitle.title = "PRIVATE"
                             self.midTopLabel.text = ""
@@ -226,7 +223,7 @@ class GraveTableViewController: UITableViewController {
                                     self.navigationItem.rightBarButtonItem?.title = "Report"
                                 }
                             }
-                            GraveTableViewController.storyCount = storyCount
+                            GraveTableViewController.currentGraveStoryCount = storyCount
                             self.videoURLString = videoURL
                             self.checkForCreatorId()
                             self.getImages()// always call last
