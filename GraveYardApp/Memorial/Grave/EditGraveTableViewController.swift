@@ -65,7 +65,6 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
     var memorialCount: Int = 0
     var videoURLString: String?
     var videoURL: URL?
-    var videoURLFromFirebase: URL?
     var videoDataSize: Double = 0.0
     var oldVideoDataSize: Double = 0.0
     var storyCount: Int = 0
@@ -118,11 +117,10 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
         dismiss(animated: true, completion: nil)
     }
     
-    func fileSize(forURL url: Any) -> Double {
+    func fileSize(forURL url: Any) -> Double {//takes in url and gets its size. returns file in mb size
         var fileURL: URL?
         var fileSize: Double = 0.0
-        if (url is URL) || (url is String)
-        {
+        if (url is URL) || (url is String) {
             if (url is URL) {
                 fileURL = url as? URL
             }
@@ -132,8 +130,8 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
             var fileSizeValue = 0.0
             try? fileSizeValue = (fileURL?.resourceValues(forKeys: [URLResourceKey.fileSizeKey]).allValues.first?.value as! Double?)!
             if fileSizeValue > 0.0 {
-                fileSize = (Double(fileSizeValue)) // / (1024 * 1024) goes in if i need the number smaler and readable
-//                fileSize = Double(round(10*fileSize)/10)// this is for if i need it to be a 2.3 smaller number
+                fileSize = (Double(fileSizeValue))/(1024 * 1024)
+                fileSize = Double(round(10*fileSize)/10)
             }
         }
         return fileSize
@@ -145,14 +143,19 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
             graveProfileImages.append(selectedImage)
             self.graveMainImage.reloadInputViews()
         } else if let videoURL = info[UIImagePickerController.InfoKey.mediaURL] as? URL {
-            self.videoURL = videoURL
             self.videoDataSize = self.fileSize(forURL: videoURL)
             print(self.videoDataSize)
-            var currentDataUsage: Double = 0.0
-            currentDataUsage = MyFirebase.currentDataUsage! - self.oldVideoDataSize + self.videoDataSize
-//            if currentDataUsage <= 5000000.0 {
-//                return
-//            }
+            if self.videoDataSize > 5.0 {
+               print("IT TO BIG OF A FILE")
+                dismiss(animated: true, completion: nil)
+                let alertFileToBig = UIAlertController(title: "Video Upload Failed!", message: "Each video uploaded can only be 5mb in size. Please choose a smaller video to upload. Thank you.", preferredStyle: .alert)
+                alertFileToBig.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
+                    alertFileToBig.dismiss(animated: true, completion: nil)
+                }))
+                self.present(alertFileToBig, animated: true, completion: nil)
+            } else {
+                self.videoURL = videoURL
+            }
             print("file URL: ", videoURL)
         }
         dismiss(animated: true, completion: nil)
@@ -190,20 +193,28 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
         }
     }
     
-    func updateUserData() {
-        db = Firestore.firestore()
-        guard let currentId = currentAuthID else { return }
-        MyFirebase.currentDataUsage = MyFirebase.currentDataUsage! - self.oldVideoDataSize + self.videoDataSize
-        db.collection("userProfile").document(currentId).updateData([
-            "dataCount": MyFirebase.currentDataUsage!
-        ]) { err in
-            if let err = err {
-                print("Error updating document: \(err)")
-            } else {
-                print("Document successfully updated")
-            }
-        }
-    }
+    //maybe used for a later date. no longer tracking data use of entire user.
+//    func updateUserData() {
+//        db = Firestore.firestore()
+//        guard let currentId = currentAuthID else { return }
+//        let newDataInUse = MyFirebase.currentDataUsage! - self.oldVideoDataSize + self.videoDataSize
+//        print(newDataInUse)
+//        if newDataInUse > 5.0 {
+//            print("\(newDataInUse) is to big")
+//            return
+//        } else {
+//            MyFirebase.currentDataUsage = newDataInUse
+//            db.collection("userProfile").document(currentId).updateData([
+//                "dataCount": MyFirebase.currentDataUsage!
+//            ]) { err in
+//                if let err = err {
+//                    print("Error updating document: \(err)")
+//                } else {
+//                    print("Document successfully updated")
+//                }
+//            }
+//        }
+//    }
     
     func getGraveData() {
         dateFormatter.dateFormat = "yyyy-MM-dd"
@@ -289,12 +300,14 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
                 guard let data = data else  { return }
                 graveProfileVideo.downloadURL { (url, err) in
                     if let urlText = url {
-                        self.videoURLFromFirebase = urlText
+                        self.videoURL = urlText
                     } else {
                         print(err as Any)
                     }
                 }
-                self.videoDataSize = Double(data.count)
+                var videoSize = Double(data.count)/(1024 * 1024)
+                videoSize =  Double(round(10*videoSize)/10)
+                self.videoDataSize = videoSize
                 print(data)
             })
         }
@@ -491,6 +504,7 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
             nameTextField.isError(baseColor: UIColor.red.cgColor, numberOfShakes: 3, revert: true)
             return
         } else {
+            //self.updateUserData()
             if let safeVideoURL = self.videoURL {
                 self.uploadToFireBaseVideo(url: safeVideoURL, success: { (String) in
                     if self.currentImageDataCount != nil {
@@ -508,7 +522,6 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
                     guard image.jpegData(compressionQuality: 0.20) != nil else { return }
                     if self.currentImageDataCount != nil {
                         print("image uploaded")
-                        self.updateUserData()
                     }
                     guard url != nil else { return }
                 }
@@ -681,7 +694,6 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
     }
     
     @IBAction func uploadVideoButtonWasTapped(_ sender: UIButton) {
-        // Configuration
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.photoLibrary) {
         let picker = UIImagePickerController()
         picker.delegate = self
@@ -692,8 +704,8 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
     }
     
     @IBAction func playVideo(_ sender: UIButton) {
-        guard let safeVideoURLFromFirebase = self.videoURLFromFirebase else { return }
-        playURLVideo(url: safeVideoURLFromFirebase)
+        guard let safeVideoURL = self.videoURL else { return }
+        playURLVideo(url: safeVideoURL)
 //        guard let safeVideoURLAsString = self.videoURL?.absoluteString else { return }
 //        guard let videoPath = Bundle.main.path(forResource: safeVideoURLAsString, ofType: "mp4") else {
 //            debugPrint("video not found")
