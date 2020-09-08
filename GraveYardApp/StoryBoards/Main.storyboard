@@ -372,6 +372,7 @@
                         <outlet property="rightBarButtonItem" destination="V6v-v6-hou" id="iyh-Gp-gFr"/>
                         <outlet property="storiesButton" destination="3VJ-Ys-YoO" id="kQy-eG-Hk9"/>
                         <outlet property="videoCell" destination="Ssi-kW-MnC" id="UnY-9n-Hd6"/>
+                        <outlet property="videoPreviewUIImage" destination="Lcd-yL-KHP" id="GZy-aN-2tW"/>
                         <segue destination="akf-23-k3a" kind="show" identifier="editGraveSegue" id="2Vk-lS-08E"/>
                         <segue destination="7fh-bd-Npt" kind="show" identifier="graveStoriesSegue" id="owM-5Y-txC"/>
                     </connections>
@@ -885,6 +886,7 @@
                         <outlet property="pinQuoteTextField" destination="ChQ-Yw-FRJ" id="KVj-gG-KqD"/>
                         <outlet property="publicIsTrueLabel" destination="Ch7-Rv-IBZ" id="vml-Sr-5Iz"/>
                         <outlet property="publicIsTrueSwitch" destination="z3e-Pl-7zY" id="mO7-E3-ef6"/>
+                        <outlet property="videoPreviewUIImage" destination="lzB-UD-esY" id="uTW-pa-IRu"/>
                         <segue destination="lrJ-Dg-sXL" kind="unwind" identifier="unwindToGraveSegue" unwindAction="unwindToGrave:" id="lx7-NK-AXl"/>
                         <segue destination="lrJ-Dg-sXL" kind="unwind" identifier="unwindToGraveSegue" unwindAction="unwindToGrave:" id="ApY-fG-L2p"/>
                         <segue destination="lrJ-Dg-sXL" kind="unwind" identifier="unwindtoGraveStory" unwindAction="unwindtoGraveStory:" id="h00-52-APK"/>

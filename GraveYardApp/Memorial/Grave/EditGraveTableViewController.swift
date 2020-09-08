@@ -19,6 +19,7 @@ import MobileCoreServices
 
 class EditGraveTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
+    @IBOutlet weak var videoPreviewUIImage: UIImageView!
     @IBOutlet weak var publicIsTrueSwitch: UISwitch!
     @IBOutlet weak var publicIsTrueLabel: UILabel!
     @IBOutlet weak var birthDateCell: UITableViewCell!
@@ -137,6 +138,16 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
         return fileSize
     }
     
+    func videoPreviewImage() {
+        guard let safeVideoURL = self.videoURL else { return }
+        AVAsset(url: safeVideoURL).generateThumbnail { [weak self] (image) in
+             DispatchQueue.main.async {
+                 guard let image = image else { return }
+                 self?.videoPreviewUIImage.image = image
+             }
+         }
+    }
+    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let selectedImage = info[.originalImage] as? UIImage {
             graveMainImage.image = selectedImage
@@ -155,6 +166,7 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
                 self.present(alertFileToBig, animated: true, completion: nil)
             } else {
                 self.videoURL = videoURL
+                self.videoPreviewImage()
             }
             print("file URL: ", videoURL)
         }
@@ -301,6 +313,7 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
                 graveProfileVideo.downloadURL { (url, err) in
                     if let urlText = url {
                         self.videoURL = urlText
+                        self.videoPreviewImage()
                     } else {
                         print(err as Any)
                     }

@@ -17,6 +17,7 @@ import AVFoundation
 
 class GraveTableViewController: UITableViewController {
     
+    @IBOutlet weak var videoPreviewUIImage: UIImageView!
     @IBOutlet weak var reportButton: UIButton!
     @IBOutlet weak var rightBarButtonItem: UIBarButtonItem!
     @IBOutlet weak var graveMainImage: UIImageView!
@@ -51,7 +52,7 @@ class GraveTableViewController: UITableViewController {
     var imageString: String?
     var currentSeason: String?
     var videoURLString: String?
-    var videoURLFromFirebase: URL?
+    var videoURL: URL?
     var currentGraveName: String = ""
     let storage = Storage.storage()
     
@@ -94,6 +95,16 @@ class GraveTableViewController: UITableViewController {
         if self.bioLabel.text == nil {
             self.bioCell.isHidden = true
         }
+    }
+    
+    func videoPreviewImage() {
+        guard let safeVideoURL = self.videoURL else { return }
+        AVAsset(url: safeVideoURL).generateThumbnail { [weak self] (image) in
+             DispatchQueue.main.async {
+                 guard let image = image else { return }
+                 self?.videoPreviewUIImage.image = image
+             }
+         }
     }
     
     func chageTextColor() {
@@ -260,7 +271,8 @@ class GraveTableViewController: UITableViewController {
 //                guard let data = data else  { return }
                 graveProfileVideo.downloadURL { (url, err) in
                     if let urlText = url {
-                        self.videoURLFromFirebase = urlText
+                        self.videoURL = urlText
+                        self.videoPreviewImage()
                     } else {
                         print(err as Any)
                     }
@@ -323,7 +335,7 @@ class GraveTableViewController: UITableViewController {
     }
     
     @IBAction func playVideo(_ sender: UIButton) {
-        guard let safeVideoURLFromFirebase = self.videoURLFromFirebase else  { return }
+        guard let safeVideoURLFromFirebase = self.videoURL else  { return }
         playURLVideo(url: safeVideoURLFromFirebase)
     }
     
