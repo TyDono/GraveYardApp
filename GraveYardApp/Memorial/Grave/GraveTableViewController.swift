@@ -52,6 +52,7 @@ class GraveTableViewController: UITableViewController {
     var currentSeason: String?
     var videoURLString: String?
     var videoURLFromFirebase: URL?
+    var currentGraveName: String = ""
     let storage = Storage.storage()
     
     // MARK: - View Lifecycle
@@ -144,6 +145,7 @@ class GraveTableViewController: UITableViewController {
             graveStoriesTVC.currentGraveId = currentGraveId
             graveStoriesTVC.graveStories = graveId
             graveStoriesTVC.creatorId = creatorId
+            graveStoriesTVC.currentGraveName = currentGraveName
         } else if segue.identifier == "editGraveSegue", let editGraveTVC = segue.destination as? EditGraveTableViewController {
             editGraveTVC.currentGraveId = currentGraveId
         }
@@ -224,6 +226,7 @@ class GraveTableViewController: UITableViewController {
                                 }
                             }
                             GraveTableViewController.currentGraveStoryCount = storyCount
+                            self.currentGraveName = name
                             self.videoURLString = videoURL
                             self.checkForCreatorId()
                             self.getVideo()

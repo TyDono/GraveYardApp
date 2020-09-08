@@ -897,7 +897,7 @@
             </objects>
             <point key="canvasLocation" x="3471.1999999999998" y="801.0494752623689"/>
         </scene>
-        <!--Memorials Table View Controller-->
+        <!--Your Memorials-->
         <scene sceneID="Dy1-2d-CbK">
             <objects>
                 <tableViewController id="SIl-1N-tic" customClass="MemorialsTableViewController" customModule="GraveYardApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -938,7 +938,7 @@
                             <outlet property="delegate" destination="SIl-1N-tic" id="0rn-rP-fP6"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="0LQ-P9-BzO"/>
+                    <navigationItem key="navigationItem" title="Your Memorials" id="0LQ-P9-BzO"/>
                     <connections>
                         <segue destination="df1-gm-beU" kind="show" identifier="graveSegue" id="soh-re-d5z"/>
                     </connections>
@@ -1652,6 +1652,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="StoriesNavTitle" destination="Ps3-jX-2ED" id="QMo-0c-auJ"/>
                         <outlet property="addStoryBarButton" destination="sBU-Qb-ECg" id="BbL-qc-CNo"/>
                         <segue destination="8GQ-fW-7kZ" kind="show" identifier="newGraveStorySegue" id="7DO-rd-4qB"/>
                         <segue destination="Deg-jX-e5u" kind="show" identifier="graveStorySegue" id="6H8-Bg-iUI"/>
@@ -1848,7 +1849,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="RNs-pX-eco"/>
                     </view>
-                    <navigationItem key="navigationItem" id="VrO-aj-I3s">
+                    <navigationItem key="navigationItem" title="Your Acount" id="VrO-aj-I3s">
                         <barButtonItem key="rightBarButtonItem" title="Premium" id="CaB-ng-TMl"/>
                     </navigationItem>
                     <connections>
@@ -1957,7 +1958,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="JUc-GY-fg1"/>
         <segue reference="z4g-pH-uIZ"/>
-        <segue reference="7DO-rd-4qB"/>
+        <segue reference="fpu-aT-yyc"/>
         <segue reference="soh-re-d5z"/>
     </inferredMetricsTieBreakers>
     <resources>

@@ -76,8 +76,8 @@ class MemorialsTableViewController: UITableViewController {
         cell.backgroundView = UIImageView.init(image: UIImage.init(named: "bookRed"))
         
         if let memorials = graves {
-            let story = memorials[indexPath.row]
-            cell.cellTitle.text = "\(story.name)"
+            let memorial = memorials[indexPath.row]
+            cell.cellTitle.text = "\(memorial.name)"
             
             let maskLayer = CAShapeLayer()
             let bounds = cell.bounds

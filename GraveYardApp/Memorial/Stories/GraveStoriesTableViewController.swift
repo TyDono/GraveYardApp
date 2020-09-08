@@ -13,6 +13,7 @@ import FirebaseAuth
 
 class GraveStoriesTableViewController: UITableViewController {
     
+    @IBOutlet weak var StoriesNavTitle: UINavigationItem!
     @IBOutlet weak var addStoryBarButton: UIBarButtonItem!
     
     // MARK: - Propeties
@@ -33,6 +34,7 @@ class GraveStoriesTableViewController: UITableViewController {
     var storyImageId4: String? = ""
     var storyImageId5: String? = ""
     var storyImageId6: String? = ""
+    var currentGraveName: String = ""
     var currentGraveId: String?
 //    var storyCount: Int = 0
     
@@ -44,6 +46,7 @@ class GraveStoriesTableViewController: UITableViewController {
         self.tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         db = Firestore.firestore()
 //        getGraveStories()
+        self.StoriesNavTitle.title = "\(currentGraveName) Stories"
         changeBackground()
         if currentAuthID != creatorId {
             self.navigationItem.rightBarButtonItem = nil

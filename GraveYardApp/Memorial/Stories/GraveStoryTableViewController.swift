@@ -68,6 +68,7 @@ class GraveStoryTableViewController: UITableViewController {
     }
     
     // MARK: - Functions
+    //every slide is around 414
     
     func changeImageLabelCounter() {
         switch storyImagesArray.count {
@@ -82,11 +83,11 @@ class GraveStoryTableViewController: UITableViewController {
             
         case 2:
             switch storyImagesScrollView.contentOffset.x {
-            case 0.0...112.0:
+            case -100.0...112.0:
                 self.imageCounterLabel.text = "1/2"
                 self.leftArrowButton.isHidden = true
                 self.rightArrowButton.isHidden = false
-            case 113.0...414.0:
+            case 113.0...514.0:
                 self.imageCounterLabel.text = "2/2"
                 self.rightArrowButton.isHidden = true
                 self.leftArrowButton.isHidden = false
@@ -95,19 +96,96 @@ class GraveStoryTableViewController: UITableViewController {
             }
         case 3:
             switch storyImagesScrollView.contentOffset.x {
-            case 0.0...112.0:
+            case -100.0...112.0:
                 self.imageCounterLabel.text = "1/3"
                 self.leftArrowButton.isHidden = true
                 self.rightArrowButton.isHidden = false
-            case 113.0...614.0: // 414 is centered in
+            case 113.0...614.0: // 414 is centered in 614 is half way out
                 self.imageCounterLabel.text = "2/3"
                 self.rightArrowButton.isHidden = false
                 self.leftArrowButton.isHidden = false
-            case 613.0...828.0:
+            case 613.0...928.0: //828 is centered in
                 self.imageCounterLabel.text = "3/3"
                 self.rightArrowButton.isHidden = true
                 self.leftArrowButton.isHidden = false
             default:
+                self.imageCounterLabel.text = ""
+            }
+        case 4:
+            switch storyImagesScrollView.contentOffset.x {
+            case -100.0...112.0:
+                self.imageCounterLabel.text = "1/4"
+                self.leftArrowButton.isHidden = true
+                self.rightArrowButton.isHidden = false
+            case 113.0...614.0: // 414 is centered in 614 is half way out
+                self.imageCounterLabel.text = "2/4"
+                self.rightArrowButton.isHidden = false
+                self.leftArrowButton.isHidden = false
+            case 613.0...928.0: //828 is centered in
+                self.imageCounterLabel.text = "3/4"
+                self.rightArrowButton.isHidden = false
+                self.leftArrowButton.isHidden = false
+            case 929.0...1452.0:
+                self.imageCounterLabel.text = "4/4"
+                self.rightArrowButton.isHidden = true
+                self.leftArrowButton.isHidden = false
+            default:
+                self.imageCounterLabel.text = ""
+            }
+        case 5:
+            switch storyImagesScrollView.contentOffset.x {
+            case -100.0...112.0:
+                self.imageCounterLabel.text = "1/5"
+                self.leftArrowButton.isHidden = true
+                self.rightArrowButton.isHidden = false
+            case 113.0...614.0: // 414 is centered in 614 is half way out
+                self.imageCounterLabel.text = "2/5"
+                self.rightArrowButton.isHidden = false
+                self.leftArrowButton.isHidden = false
+            case 613.0...928.0: //828 is centered in
+                self.imageCounterLabel.text = "3/5"
+                self.rightArrowButton.isHidden = false
+                self.leftArrowButton.isHidden = false
+            case 929.0...1352.0:
+                self.imageCounterLabel.text = "4/5"
+                self.rightArrowButton.isHidden = false
+                self.leftArrowButton.isHidden = false
+            case 1353.0...1876.0:
+                self.imageCounterLabel.text = "5/5"
+                self.rightArrowButton.isHidden = true
+                self.leftArrowButton.isHidden = false
+            default:
+                self.imageCounterLabel.text = ""
+                self.imageCounterLabel.text = ""
+            }
+        case 6:
+            switch storyImagesScrollView.contentOffset.x {
+            case -100.0...112.0:
+                self.imageCounterLabel.text = "1/6"
+                self.leftArrowButton.isHidden = true
+                self.rightArrowButton.isHidden = false
+            case 113.0...614.0: // 414 is centered in 614 is half way out
+                self.imageCounterLabel.text = "2/6"
+                self.rightArrowButton.isHidden = false
+                self.leftArrowButton.isHidden = false
+            case 613.0...928.0: //828 is centered in
+                self.imageCounterLabel.text = "3/6"
+                self.rightArrowButton.isHidden = false
+                self.leftArrowButton.isHidden = false
+            case 929.0...1352.0:
+                self.imageCounterLabel.text = "4/6"
+                self.rightArrowButton.isHidden = false
+                self.leftArrowButton.isHidden = false
+            case 1353.0...1776.0:
+                self.imageCounterLabel.text = "5/6"
+                self.rightArrowButton.isHidden = false
+                self.leftArrowButton.isHidden = false
+            case 1777.0...2300.0:
+                self.imageCounterLabel.text = "6/6"
+                self.rightArrowButton.isHidden = true
+                self.leftArrowButton.isHidden = false
+            default:
+                self.imageCounterLabel.text = ""
                 self.imageCounterLabel.text = ""
             }
         default:
