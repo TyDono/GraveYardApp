@@ -17,6 +17,7 @@ import AVFoundation
 
 class GraveTableViewController: UITableViewController {
     
+    @IBOutlet weak var playVideoButton: UIButton!
     @IBOutlet weak var videoPreviewUIImage: UIImageView!
     @IBOutlet weak var reportButton: UIButton!
     @IBOutlet weak var rightBarButtonItem: UIBarButtonItem!
@@ -67,6 +68,7 @@ class GraveTableViewController: UITableViewController {
         self.reportButton.layer.cornerRadius = 10
         pinQuoteLabel.font = pinQuoteLabel.font.italic
         self.storiesButton.layer.cornerRadius = 10
+        self.playVideoButton.layer.cornerRadius = 10
 //        changeBackground()
     }
     
@@ -335,6 +337,10 @@ class GraveTableViewController: UITableViewController {
     }
     
     @IBAction func playVideo(_ sender: UIButton) {
+        guard let safeVideoURLFromFirebase = self.videoURL else  { return }
+        playURLVideo(url: safeVideoURLFromFirebase)
+    }
+    @IBAction func videoImageButtonWasTapped(_ sender: Any) {
         guard let safeVideoURLFromFirebase = self.videoURL else  { return }
         playURLVideo(url: safeVideoURLFromFirebase)
     }

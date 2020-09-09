@@ -19,6 +19,7 @@ import MobileCoreServices
 
 class EditGraveTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
+    @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var videoPreviewUIImage: UIImageView!
     @IBOutlet weak var publicIsTrueSwitch: UISwitch!
     @IBOutlet weak var publicIsTrueLabel: UILabel!
@@ -79,6 +80,9 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
         getGraveData()
         //chageTextColor()
         self.deleteHeadstoneButton.layer.cornerRadius = 10
+        self.playButton.layer.cornerRadius = 10
+//        self.videoPreviewUIImage.contentMode = .scaleToFill
+//        self.videoPreviewUIImage.image = UIImage(named: "icons8-video-100")
         switchEnabler()
     }
     
@@ -144,6 +148,7 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
              DispatchQueue.main.async {
                  guard let image = image else { return }
                  self?.videoPreviewUIImage.image = image
+                self?.videoPreviewUIImage.contentMode = .scaleAspectFit
              }
          }
     }
@@ -708,14 +713,13 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
     
     @IBAction func uploadVideoButtonWasTapped(_ sender: UIButton) {
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.photoLibrary) {
-        let picker = UIImagePickerController()
-        picker.delegate = self
-        picker.allowsEditing = false
-        picker.mediaTypes = ["public.movie"]
-        present(picker, animated: true, completion: nil)
-        }
+         let picker = UIImagePickerController()
+         picker.delegate = self
+         picker.allowsEditing = false
+         picker.mediaTypes = ["public.movie"]
+         present(picker, animated: true, completion: nil)
+         }
     }
-    
     @IBAction func playVideo(_ sender: UIButton) {
         guard let safeVideoURL = self.videoURL else { return }
         playURLVideo(url: safeVideoURL)
