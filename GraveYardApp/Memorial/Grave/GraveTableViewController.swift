@@ -340,10 +340,6 @@ class GraveTableViewController: UITableViewController {
         guard let safeVideoURLFromFirebase = self.videoURL else  { return }
         playURLVideo(url: safeVideoURLFromFirebase)
     }
-    @IBAction func videoImageButtonWasTapped(_ sender: Any) {
-        guard let safeVideoURLFromFirebase = self.videoURL else  { return }
-        playURLVideo(url: safeVideoURLFromFirebase)
-    }
     
     @IBAction func unwindToGrave(_ sender: UIStoryboardSegue) {}
     
