@@ -19,6 +19,8 @@
 		CB697DF52440A8460035C07A /* AuthState.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB697DF42440A8460035C07A /* AuthState.swift */; };
 		CB8304C824B5CE9D0023F4EA /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8304C724B5CE9D0023F4EA /* AccountViewController.swift */; };
 		CB881F9A2367B41E00615F2F /* EditGraveTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB881F992367B41E00615F2F /* EditGraveTableViewController.swift */; };
+		CBBCBD46250A74F700326169 /* paperSound.wav in Resources */ = {isa = PBXBuildFile; fileRef = CBBCBD44250A74F600326169 /* paperSound.wav */; };
+		CBBCBD47250A74F700326169 /* paperBookSound.wav in Resources */ = {isa = PBXBuildFile; fileRef = CBBCBD45250A74F700326169 /* paperBookSound.wav */; };
 		CBCE0E0B23FD12D00077A4F1 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCE0E0823FD12D00077A4F1 /* SplashViewController.swift */; };
 		CBCE0E0D23FD12D00077A4F1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCE0E0A23FD12D00077A4F1 /* SceneDelegate.swift */; };
 		CBCE0E0F23FD13050077A4F1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCE0E0E23FD13050077A4F1 /* AppDelegate.swift */; };
@@ -58,6 +60,8 @@
 		CB697DF42440A8460035C07A /* AuthState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthState.swift; sourceTree = "<group>"; };
 		CB8304C724B5CE9D0023F4EA /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		CB881F992367B41E00615F2F /* EditGraveTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditGraveTableViewController.swift; sourceTree = "<group>"; };
+		CBBCBD44250A74F600326169 /* paperSound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = paperSound.wav; sourceTree = "<group>"; };
+		CBBCBD45250A74F700326169 /* paperBookSound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = paperBookSound.wav; sourceTree = "<group>"; };
 		CBCE0E0823FD12D00077A4F1 /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		CBCE0E0A23FD12D00077A4F1 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		CBCE0E0E23FD13050077A4F1 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -163,6 +167,7 @@
 		CB5AE18523512B14001BCCCE /* GraveYardApp */ = {
 			isa = PBXGroup;
 			children = (
+				CBBCBD43250A74D800326169 /* Sound Files */,
 				CBAC4EAD2370EA83006760A5 /* Delegates */,
 				CBAC4EAB2370E995006760A5 /* Firebase */,
 				CBAC4EA92370E949006760A5 /* Map */,
@@ -240,6 +245,15 @@
 			path = Delegates;
 			sourceTree = "<group>";
 		};
+		CBBCBD43250A74D800326169 /* Sound Files */ = {
+			isa = PBXGroup;
+			children = (
+				CBBCBD45250A74F700326169 /* paperBookSound.wav */,
+				CBBCBD44250A74F600326169 /* paperSound.wav */,
+			);
+			path = "Sound Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -301,9 +315,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CBBCBD46250A74F700326169 /* paperSound.wav in Resources */,
 				CB3A30E1235F9E4B00CF2CBB /* Main.storyboard in Resources */,
 				CBCE0E3123FD144F0077A4F1 /* GoogleService-Info.plist in Resources */,
 				CBCE0E3323FD14690077A4F1 /* LaunchScreen.storyboard in Resources */,
+				CBBCBD47250A74F700326169 /* paperBookSound.wav in Resources */,
 				CBCE0E2F23FD14410077A4F1 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

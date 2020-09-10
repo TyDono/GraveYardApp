@@ -276,8 +276,10 @@ class NewGraveStoryTableViewController: UITableViewController, UIImagePickerCont
     }
     
     func deleteOneFromStoryCount() {
-        guard let currentGrave = self.currentGraveId else { return }
+        guard let currentGrave = MapViewController.shared.currentGraveId else { return }
+        print(GraveTableViewController.currentGraveStoryCount)
         GraveTableViewController.currentGraveStoryCount -= 1
+        print(GraveTableViewController.currentGraveStoryCount)
         db.collection("grave").document(currentGrave).updateData([
             "storyCount": GraveTableViewController.currentGraveStoryCount
         ]) { err in

@@ -9,6 +9,7 @@
 import UIKit
 import FirebaseFirestore
 import FirebaseStorage
+import AVFoundation
 import FirebaseAuth
 
 class GraveStoriesTableViewController: UITableViewController {
@@ -36,6 +37,7 @@ class GraveStoriesTableViewController: UITableViewController {
     var storyImageId6: String? = ""
     var currentGraveName: String = ""
     var currentGraveId: String?
+    var bookSoundEffect: AVAudioPlayer?
 //    var storyCount: Int = 0
     
     // MARK: - View Lifecycle
@@ -61,6 +63,18 @@ class GraveStoriesTableViewController: UITableViewController {
         tableView.separatorColor = UIColor(0.0, 128.0, 128.0, 1.0)
         navigationItem.leftBarButtonItem?.tintColor = UIColor(0.0, 128.0, 128.0, 1.0)
         navigationItem.rightBarButtonItem?.tintColor = UIColor(0.0, 128.0, 128.0, 1.0)
+    }
+    
+    func playBookSoundFile() {
+        let path = Bundle.main.path(forResource: "paperBookSound.wav", ofType:nil)!
+        let url = URL(fileURLWithPath: path)
+
+        do {
+            bookSoundEffect = try AVAudioPlayer(contentsOf: url)
+            bookSoundEffect?.play()
+        } catch {
+            print("couldn't load file")
+        }
     }
     
     func getGraveStories() {
@@ -91,6 +105,7 @@ class GraveStoriesTableViewController: UITableViewController {
     
     func createNewStory() {
         guard let currentGrave = self.currentGraveId else { return }
+        print(GraveTableViewController.currentGraveStoryCount)
         guard GraveTableViewController.currentGraveStoryCount < 5 else {
             let graveCreationFailAert = UIAlertController(title: "To many Stories", message: "Free users are only allowed 5 stories per Memorial. Please subscribe to premium to increase the amount.", preferredStyle: .alert)
             let dismiss = UIAlertAction(title: "OK", style: .default, handler: nil)
@@ -199,6 +214,7 @@ class GraveStoriesTableViewController: UITableViewController {
             newGraveStoryTVC.storyImageId4 = storyImageId4
             newGraveStoryTVC.storyImageId5 = storyImageId5
             newGraveStoryTVC.storyImageId6 = storyImageId6
+            self.playBookSoundFile()
         } else if segue.identifier == "graveStorySegue", let graveStoryTVC = segue.destination as? GraveStoryTableViewController {
             if let row = self.tableView.indexPathForSelectedRow?.row, let story = stories?[row] {
                 graveStoryTVC.currentGraveId = self.currentGraveId
@@ -213,6 +229,7 @@ class GraveStoriesTableViewController: UITableViewController {
                 graveStoryTVC.storyImageId4 = story.storyImageId4
                 graveStoryTVC.storyImageId5 = story.storyImageId5
                 graveStoryTVC.storyImageId6 = story.storyImageId6
+                self.playBookSoundFile()
             }
         }
     }
@@ -225,7 +242,6 @@ class GraveStoriesTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         performSegue(withIdentifier: "graveStorySegue", sender: self)
     }
     

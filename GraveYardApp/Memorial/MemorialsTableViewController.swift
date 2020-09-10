@@ -10,6 +10,7 @@ import UIKit
 import FirebaseAuth
 import FirebaseCore
 import FirebaseFirestore
+import AVFoundation
 
 class MemorialsTableViewController: UITableViewController {
     
@@ -17,6 +18,7 @@ class MemorialsTableViewController: UITableViewController {
     var graveId: String?
     var graves: [Grave]?
     var db: Firestore!
+    var bookSoundEffect: AVAudioPlayer?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +33,18 @@ class MemorialsTableViewController: UITableViewController {
         backgroundImage.image = UIImage(named: "bookshelf")
         backgroundImage.contentMode = UIView.ContentMode.scaleToFill
         self.tableView.backgroundView = backgroundImage
+    }
+    
+    func playBookSoundFile() {
+        let path = Bundle.main.path(forResource: "paperBookSound.wav", ofType:nil)!
+        let url = URL(fileURLWithPath: path)
+
+        do {
+            bookSoundEffect = try AVAudioPlayer(contentsOf: url)
+            bookSoundEffect?.play()
+        } catch {
+            print("couldn't load file")
+        }
     }
     
     func getGraves() {
@@ -96,6 +110,7 @@ class MemorialsTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let row = self.tableView.indexPathForSelectedRow?.row, let grave = graves?[row] {
             if segue.identifier == "graveSegue", let graveTVC = segue.destination as? GraveTableViewController {
+                self.playBookSoundFile()
                 graveTVC.currentGraveId = grave.graveId
             }
         }
