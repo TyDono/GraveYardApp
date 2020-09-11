@@ -206,7 +206,6 @@ class NewGraveStoryTableViewController: UITableViewController, UIImagePickerCont
                 print("")
             }
             dismiss(animated: true, completion: nil)
-            self.loadImageLabels()
             self.storyImage1.reloadInputViews()
             self.storyImage2.reloadInputViews()
             self.storyImage3.reloadInputViews()
