@@ -82,7 +82,7 @@
                                                         <action selector="playVideo:" destination="df1-gm-beU" eventType="touchUpInside" id="ZYB-K2-ekj"/>
                                                     </connections>
                                                 </button>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CfY-t7-Hga">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CfY-t7-Hga">
                                                     <rect key="frame" x="20" y="19" width="374" height="229"/>
                                                     <gestureRecognizers/>
                                                 </imageView>
@@ -404,7 +404,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Pinned Message" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ChQ-Yw-FRJ">
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Quote" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ChQ-Yw-FRJ">
                                                     <rect key="frame" x="15" y="4" width="384" height="36"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
@@ -447,20 +447,20 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="355"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Video Intro" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s97-jL-Dge">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Short Video Intro" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s97-jL-Dge">
                                                     <rect key="frame" x="112" y="19" width="172" height="26.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap image to upload/change the video" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kLf-Xo-7mG">
-                                                    <rect key="frame" x="45" y="53.5" width="324" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap image to upload/change the video" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kLf-Xo-7mG">
+                                                    <rect key="frame" x="45" y="53.5" width="324" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="addVideo" translatesAutoresizingMaskIntoConstraints="NO" id="dMh-4O-yeh">
-                                                    <rect key="frame" x="20" y="82.5" width="374" height="219.5"/>
+                                                    <rect key="frame" x="20" y="82" width="374" height="220"/>
                                                     <gestureRecognizers/>
                                                 </imageView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YPX-5t-nUg">
@@ -475,7 +475,7 @@
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TpM-sm-sjZ">
-                                                    <rect key="frame" x="28" y="82.5" width="358" height="219.5"/>
+                                                    <rect key="frame" x="28" y="82" width="358" height="220"/>
                                                     <connections>
                                                         <action selector="uploadVideoButtonWasTapped:" destination="akf-23-k3a" eventType="touchUpInside" id="tSw-aX-uhu"/>
                                                     </connections>
@@ -503,18 +503,18 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="bioCell" rowHeight="240" id="1hn-WC-9qb">
-                                        <rect key="frame" x="0.0" y="760.66666793823242" width="414" height="240"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="bioCell" rowHeight="306" id="1hn-WC-9qb">
+                                        <rect key="frame" x="0.0" y="760.66666793823242" width="414" height="306"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="1hn-WC-9qb" id="2bQ-fI-E6e">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="240"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="306"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8XO-4o-Rxr">
-                                                    <rect key="frame" x="20" y="60" width="374" height="154"/>
+                                                    <rect key="frame" x="20" y="60" width="374" height="220"/>
                                                     <subviews>
                                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Enter text here" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="uJa-vq-QGj">
-                                                            <rect key="frame" x="0.0" y="0.0" width="374" height="154"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="374" height="220"/>
                                                             <color key="backgroundColor" systemColor="systemGray4Color" red="0.81960784310000001" green="0.81960784310000001" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -553,10 +553,10 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Begining Date/Location" id="MYG-F5-e0M">
+                            <tableViewSection headerTitle="Memorial or Birth Date/Location" id="MYG-F5-e0M">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="begining" id="aWY-3S-cNw">
-                                        <rect key="frame" x="0.0" y="1056.6666679382324" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="1122.6666679382324" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="aWY-3S-cNw" id="Phw-eu-Mo9">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
@@ -588,7 +588,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="IlB-7M-UUF">
-                                        <rect key="frame" x="0.0" y="1100.6666679382324" width="414" height="43.666667938232422"/>
+                                        <rect key="frame" x="0.0" y="1166.6666679382324" width="414" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="IlB-7M-UUF" id="Zq7-Eu-1Z9">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.666667938232422"/>
@@ -610,7 +610,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="xpo-cd-42m">
-                                        <rect key="frame" x="0.0" y="1144.3333358764648" width="414" height="43.666667938232422"/>
+                                        <rect key="frame" x="0.0" y="1210.3333358764648" width="414" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="xpo-cd-42m" id="anS-8b-uSH">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.666667938232422"/>
@@ -633,10 +633,10 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Ending Date/Location" id="10Y-Zq-9f3">
+                            <tableViewSection headerTitle="Memorial or Death Date/Location" id="10Y-Zq-9f3">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="k2y-jR-vdW">
-                                        <rect key="frame" x="0.0" y="1244.0000038146973" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="1310.0000038146973" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="k2y-jR-vdW" id="hUv-4D-0XI">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
@@ -668,7 +668,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="CyL-5m-frz">
-                                        <rect key="frame" x="0.0" y="1288.0000038146973" width="414" height="43.666667938232422"/>
+                                        <rect key="frame" x="0.0" y="1354.0000038146973" width="414" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="CyL-5m-frz" id="3F3-xL-Rgl">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.666667938232422"/>
@@ -690,7 +690,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="8eQ-LP-te5">
-                                        <rect key="frame" x="0.0" y="1331.6666717529297" width="414" height="43.666667938232422"/>
+                                        <rect key="frame" x="0.0" y="1397.6666717529297" width="414" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8eQ-LP-te5" id="NuW-1E-dKc">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.666667938232422"/>
@@ -716,7 +716,7 @@
                             <tableViewSection headerTitle="Delete Headstone" id="BIO-FY-0jp">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="Kpz-br-u9b">
-                                        <rect key="frame" x="0.0" y="1431.3333396911621" width="414" height="43.666667938232422"/>
+                                        <rect key="frame" x="0.0" y="1497.3333396911621" width="414" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Kpz-br-u9b" id="rQF-NQ-S4W">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.666667938232422"/>
@@ -784,7 +784,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="twe-qP-4gI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="lrJ-Dg-sXL" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3471.1999999999998" y="801.0494752623689"/>
+            <point key="canvasLocation" x="3471.0144927536235" y="800.89285714285711"/>
         </scene>
         <!--Your Memorials-->
         <scene sceneID="Dy1-2d-CbK">
@@ -1624,7 +1624,10 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TgG-vd-iv9">
                                         <rect key="frame" x="0.0" y="0.0" width="237" height="38.5"/>
-                                        <state key="normal" title="Your Memorials"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <state key="normal" title="Your Memorials">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
                                         <connections>
                                             <action selector="yourMemorialsButtonWasTapped:" destination="9X6-7Z-pCz" eventType="touchUpInside" id="tD5-Us-1EZ"/>
                                         </connections>
@@ -1678,7 +1681,9 @@
                         <outlet property="bookSideExpandButton" destination="SC6-Vp-Sq2" id="lAw-zK-2AD"/>
                         <outlet property="bookSideUIImageView" destination="JWA-Ic-Hmq" id="fhP-nP-P7d"/>
                         <outlet property="bookSideUIView" destination="Zx1-5A-lzB" id="JVQ-H5-AE0"/>
+                        <outlet property="howToMemorialPreviewImage" destination="ksM-Uc-EPm" id="D3X-UK-IYq"/>
                         <outlet property="mapView" destination="6MH-ve-unU" id="KFx-y7-2xf"/>
+                        <outlet property="playHowToMemorialVideoButton" destination="VEu-qr-h0s" id="vD3-Ph-5TI"/>
                         <outlet property="recenterMapButton" destination="W5U-iO-55T" id="yse-to-gs6"/>
                         <outlet property="signUp" destination="rQ8-Ij-DFF" id="ShX-Ox-C7m"/>
                         <outlet property="yourMemorialsButton" destination="TgG-vd-iv9" id="WU7-Ar-vQW"/>
@@ -1714,22 +1719,64 @@
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Long press on desired location to create a Memorial" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xQB-ay-AJ6">
+                            <rect key="frame" x="16" y="30" width="208" height="34"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ksM-Uc-EPm">
+                            <rect key="frame" x="16" y="72" width="208" height="218"/>
+                        </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2EK-63-wVZ">
+                            <rect key="frame" x="16" y="72" width="208" height="218"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="218" id="fWM-Vv-iM6"/>
+                            </constraints>
+                            <connections>
+                                <action selector="howToMemorialButtonWasTapped:" destination="9X6-7Z-pCz" eventType="touchUpInside" id="53M-e5-dic"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VEu-qr-h0s">
+                            <rect key="frame" x="66" y="302" width="108" height="30"/>
+                            <color key="backgroundColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <state key="normal" title="Play">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="playHowToVideoWasTapped:" destination="9X6-7Z-pCz" eventType="touchUpInside" id="PoS-NN-Ga6"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                     <constraints>
+                        <constraint firstItem="VEu-qr-h0s" firstAttribute="leading" secondItem="UXZ-y2-LVy" secondAttribute="leading" constant="66" id="1LN-O4-Yxa"/>
+                        <constraint firstItem="2EK-63-wVZ" firstAttribute="leading" secondItem="ksM-Uc-EPm" secondAttribute="leading" id="99C-gc-7mG"/>
+                        <constraint firstItem="ksM-Uc-EPm" firstAttribute="leading" secondItem="UXZ-y2-LVy" secondAttribute="leading" constant="16" id="9XX-ZF-xBb"/>
                         <constraint firstItem="gRN-tN-pqX" firstAttribute="leading" secondItem="u3G-HJ-4vP" secondAttribute="leading" constant="29" id="Bu5-IN-82v"/>
                         <constraint firstAttribute="trailing" secondItem="tFF-7D-uo5" secondAttribute="trailing" constant="200" id="Cen-pu-5el"/>
                         <constraint firstItem="tFF-7D-uo5" firstAttribute="top" secondItem="u3G-HJ-4vP" secondAttribute="top" id="ISi-HW-xoZ"/>
+                        <constraint firstItem="2EK-63-wVZ" firstAttribute="trailing" secondItem="ksM-Uc-EPm" secondAttribute="trailing" id="KiZ-0m-lBU"/>
+                        <constraint firstItem="ksM-Uc-EPm" firstAttribute="top" secondItem="xQB-ay-AJ6" secondAttribute="bottom" constant="8" id="Kum-Ns-sRj"/>
+                        <constraint firstItem="VEu-qr-h0s" firstAttribute="top" secondItem="ksM-Uc-EPm" secondAttribute="bottom" constant="12" id="Nab-Ih-4PM"/>
+                        <constraint firstItem="UXZ-y2-LVy" firstAttribute="bottom" secondItem="VEu-qr-h0s" secondAttribute="bottom" constant="20" id="NtR-Of-OYZ"/>
+                        <constraint firstItem="2EK-63-wVZ" firstAttribute="top" secondItem="u3G-HJ-4vP" secondAttribute="top" constant="72" id="Uyx-jc-Ic0"/>
+                        <constraint firstItem="UXZ-y2-LVy" firstAttribute="trailing" secondItem="xQB-ay-AJ6" secondAttribute="trailing" constant="16" id="WhP-rJ-DuF"/>
+                        <constraint firstItem="xQB-ay-AJ6" firstAttribute="leading" secondItem="UXZ-y2-LVy" secondAttribute="leading" constant="16" id="beQ-FK-omr"/>
                         <constraint firstItem="UXZ-y2-LVy" firstAttribute="bottom" secondItem="tFF-7D-uo5" secondAttribute="bottom" constant="330" id="c5D-lu-PUX"/>
                         <constraint firstItem="tFF-7D-uo5" firstAttribute="leading" secondItem="u3G-HJ-4vP" secondAttribute="leading" id="c8R-S9-ddF"/>
+                        <constraint firstItem="UXZ-y2-LVy" firstAttribute="trailing" secondItem="ksM-Uc-EPm" secondAttribute="trailing" constant="16" id="fuo-fw-cIj"/>
                         <constraint firstItem="gRN-tN-pqX" firstAttribute="top" secondItem="u3G-HJ-4vP" secondAttribute="top" id="geR-pZ-nUx"/>
+                        <constraint firstItem="xQB-ay-AJ6" firstAttribute="top" secondItem="tFF-7D-uo5" secondAttribute="bottom" constant="8" id="jaS-JF-gMj"/>
                         <constraint firstItem="UXZ-y2-LVy" firstAttribute="bottom" secondItem="gRN-tN-pqX" secondAttribute="bottom" constant="331" id="kiR-Ge-XG3"/>
                         <constraint firstAttribute="trailing" secondItem="gRN-tN-pqX" secondAttribute="trailing" constant="16" id="mTZ-tj-sXE"/>
+                        <constraint firstItem="2EK-63-wVZ" firstAttribute="centerY" secondItem="ksM-Uc-EPm" secondAttribute="centerY" id="wJT-vP-DEb"/>
+                        <constraint firstItem="UXZ-y2-LVy" firstAttribute="trailing" secondItem="VEu-qr-h0s" secondAttribute="trailing" constant="66" id="ynv-m3-4x5"/>
                     </constraints>
                     <viewLayoutGuide key="safeArea" id="UXZ-y2-LVy"/>
                 </view>
             </objects>
-            <point key="canvasLocation" x="3386.4000000000001" y="-142.57871064467767"/>
+            <point key="canvasLocation" x="3385.507246376812" y="-142.63392857142856"/>
         </scene>
         <!--Account Information-->
         <scene sceneID="SMl-v1-Kcm">
@@ -1872,7 +1919,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="JUc-GY-fg1"/>
+        <segue reference="74B-mS-0pn"/>
         <segue reference="z4g-pH-uIZ"/>
         <segue reference="fpu-aT-yyc"/>
         <segue reference="xN6-dc-fkE"/>

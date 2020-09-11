@@ -15,6 +15,8 @@ import AVFoundation
 
 class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UIGestureRecognizerDelegate {
     
+    @IBOutlet weak var playHowToMemorialVideoButton: UIButton!
+    @IBOutlet weak var howToMemorialPreviewImage: UIImageView!
     @IBOutlet weak var recenterMapButton: UIButton!
     @IBOutlet weak var signUp: UIBarButtonItem!
     @IBOutlet weak var mapView: MKMapView!
@@ -42,6 +44,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     var selectedAnnotation: GraveEntryAnnotation?
     var bookSideHasExpanded: Bool = false
     var memorialCount: Int = 0
+    var playerLayer: AVPlayer?
 
     // MARK: - View Lifecycle
     
@@ -52,6 +55,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         //chageTextColor()
         self.recenterMapButton.layer.cornerRadius = 10
         addMemorialView.layer.cornerRadius = 10
+        playHowToMemorialVideoButton.layer.cornerRadius = 10
         mapView.delegate = self
         self.navigationItem.rightBarButtonItem?.isEnabled = false
         self.navigationItem.rightBarButtonItem?.title = ""
@@ -90,6 +94,14 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         }
     }
     
+    func playHowToMemorial() {
+        let videoURL: URL = Bundle.main.url(forResource: "name of video here", withExtension: "mp4")!
+        let player = AVPlayer(url: videoURL)
+        let vc = AVPlayerViewController()
+        vc.player = player
+        self.present(vc, animated: true) { vc.player?.play() }
+    }
+    
     func getUserMemorialCount() {
         guard let safeCurrentAuthID = self.currentAuthID else { return }
         let userRef = self.db.collection("userProfile").whereField("currentUserAuthId", isEqualTo: safeCurrentAuthID)
@@ -101,7 +113,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                     if let memorialCount = document.data()["memorialCount"] as? Int {
                         self.memorialCount = memorialCount
                         if self.memorialCount == 0 {
-                            self.yourMemorialsButton.titleLabel?.text = "Create a Memorial"
+                            self.yourMemorialsButton.titleLabel?.text = "Create Memorials"
                         } else {
                             self.yourMemorialsButton.titleLabel?.text = "Your Memorials"
                         }
@@ -523,7 +535,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             } else {
                 let memorialCount = MyFirebase.memorialCount + 1
                 guard memorialCount < 3 else {
-                    let graveCreationFailAlert = UIAlertController(title: "To many Memorials", message: "Free users are only allowed 3 Memorials. To increase the amount, subscribe and get premium benefits.", preferredStyle: .alert)
+                    let graveCreationFailAlert = UIAlertController(title: "Too many Memorials", message: "Free users are only allowed 3 Memorials.", preferredStyle: .alert)
+//                    let graveCreationFailAlert = UIAlertController(title: "Too many Memorials", message: "Free users are only allowed 3 Memorials. To increase the amount, subscribe and get premium benefits.", preferredStyle: .alert)
                     let dismiss = UIAlertAction(title: "OK", style: .default, handler: nil)
                     graveCreationFailAlert.addAction(dismiss)
                     self.present(graveCreationFailAlert, animated: true, completion: nil)
@@ -699,6 +712,18 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         }
     }
     
+    @IBAction func howToMemorialButtonWasTapped(_ sender: UIButton) {
+        
+    }
+    
+    @IBAction func playHowToVideoWasTapped(_ sender: UIButton) {
+    }
+    
     @IBAction func unwindToMap(_ sender: UIStoryboardSegue) {}
+    
+}
+
+
+extension MapViewController {
     
 }
