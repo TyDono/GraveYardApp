@@ -17,6 +17,9 @@ class NewGraveStoryTableViewController: UITableViewController, UIImagePickerCont
     @IBOutlet weak var imageLabel1: UILabel!
     @IBOutlet weak var imageLabel2: UILabel!
     @IBOutlet weak var imageLabel3: UILabel!
+    @IBOutlet weak var imageLabel4: UILabel!
+    @IBOutlet weak var imageLabel5: UILabel!
+    @IBOutlet weak var imageLabel6: UILabel!
     @IBOutlet weak var storyImage1: UIImageView!
     @IBOutlet weak var storyImage2: UIImageView!
     @IBOutlet weak var storyImage3: UIImageView!
@@ -203,6 +206,7 @@ class NewGraveStoryTableViewController: UITableViewController, UIImagePickerCont
                 print("")
             }
             dismiss(animated: true, completion: nil)
+            self.loadImageLabels()
             self.storyImage1.reloadInputViews()
             self.storyImage2.reloadInputViews()
             self.storyImage3.reloadInputViews()
