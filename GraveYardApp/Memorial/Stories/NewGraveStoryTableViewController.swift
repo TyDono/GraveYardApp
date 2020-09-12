@@ -110,7 +110,7 @@ class NewGraveStoryTableViewController: UITableViewController, UIImagePickerCont
     
     func updateArrayOfStoryImageIDs() {
         let arrayOfStoryImageIDs = self.arrayOfStoryImageIDs
-        guard let currentGraveId = MapViewController.shared.currentGraveId else { return }
+        guard let currentGraveId = self.currentGraveId else { return }
         self.db.collection("grave").document(currentGraveId).updateData([
             "arrayOfStoryImageIDs": arrayOfStoryImageIDs
         ]) { err in
@@ -140,7 +140,7 @@ class NewGraveStoryTableViewController: UITableViewController, UIImagePickerCont
     
     func updateStoryData() {
         guard let creatorId: String = currentAuthID,
-            let graveId: String = MapViewController.shared.currentGraveId,
+            let graveId: String = self.currentGraveId,
             let storyId: String = currentGraveStoryId,
             let storyBodyText: String = storyBodyTextView.text,
             let storyTitle: String = storyTitleTextField.text,

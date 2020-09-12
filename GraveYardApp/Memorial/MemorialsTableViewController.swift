@@ -110,7 +110,8 @@ class MemorialsTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let row = self.tableView.indexPathForSelectedRow?.row, let grave = graves?[row] {
             if segue.identifier == "graveSegue", let graveTVC = segue.destination as? GraveTableViewController {
-                self.playBookSoundFile()
+//                self.playBookSoundFile()
+                graveTVC.graveId = grave.graveId
                 graveTVC.currentGraveId = grave.graveId
             }
         }

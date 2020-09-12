@@ -22,7 +22,6 @@ class GraveStoriesTableViewController: UITableViewController {
     var currentAuthID = Auth.auth().currentUser?.uid
     let storage = Storage.storage()
     var creatorId: String?
-    var graveId: String? = MapViewController.shared.currentGraveId
     var graveStories: String?
     var db: Firestore!
     var tableArray = [String]()
@@ -80,7 +79,7 @@ class GraveStoriesTableViewController: UITableViewController {
     func getGraveStories() {
         var stories = [Story]()
         guard let currentGraveCreatorId: String = creatorId else { return }
-        guard let currentGraveId: String = graveId else { return }
+        guard let currentGraveId: String = self.currentGraveId else { return }
         print(currentGraveCreatorId)
         db.collection("stories").whereField("graveId", isEqualTo: currentGraveId).getDocuments { (snapshot, error) in
                 if error != nil {
@@ -104,6 +103,7 @@ class GraveStoriesTableViewController: UITableViewController {
         }
     
     func createNewStory() {
+        print(currentGraveId)
         guard let currentGrave = self.currentGraveId else { return }
         print(GraveTableViewController.currentGraveStoryCount)
         guard GraveTableViewController.currentGraveStoryCount < 5 else {
@@ -113,22 +113,7 @@ class GraveStoriesTableViewController: UITableViewController {
             self.present(graveCreationFailAert, animated: true, completion: nil)
             return
         }
-        GraveTableViewController.currentGraveStoryCount += 1
-        db.collection("grave").document(currentGrave).updateData([
-            "storyCount": GraveTableViewController.currentGraveStoryCount
-        ]) { err in
-            if let err = err {
-                print(err)
-                let graveCreationFailAert = UIAlertController(title: "Failed to create a Story", message: "Your device failed to properly create a Story, Please check your wifi and try again", preferredStyle: .alert)
-                let dismiss = UIAlertAction(title: "OK", style: .default, handler: nil)
-                graveCreationFailAert.addAction(dismiss)
-                self.present(graveCreationFailAert, animated: true, completion: nil)
-                return
-            } else {
-                print("story count successfully updated")
-            }
-        }
-        guard let graveId: String = MapViewController.shared.currentGraveId else { return }
+        guard let graveId: String = self.currentGraveId else { return }
         let storyId: String = UUID().uuidString
         let storyBody: String = ""
         let storyTitle: String = ""
@@ -169,7 +154,22 @@ class GraveStoriesTableViewController: UITableViewController {
                 self.present(graveCreationFailAert, animated: true, completion: nil)
                 print(err)
             } else {
-                
+                GraveTableViewController.currentGraveStoryCount += 1
+                self.db.collection("grave").document(currentGrave).updateData([
+                    "storyCount": GraveTableViewController.currentGraveStoryCount
+                ]) { err in
+                    if let err = err {
+                        GraveTableViewController.currentGraveStoryCount -= 1
+                        print(err)
+                        let graveCreationFailAert = UIAlertController(title: "Failed to create a Story", message: "Your device failed to properly create a Story, Please check your wifi and try again", preferredStyle: .alert)
+                        let dismiss = UIAlertAction(title: "OK", style: .default, handler: nil)
+                        graveCreationFailAert.addAction(dismiss)
+                        self.present(graveCreationFailAert, animated: true, completion: nil)
+                        return
+                    } else {
+                        print("story count successfully updated")
+                    }
+                }
                 self.performSegue(withIdentifier: "newGraveStorySegue", sender: nil)
                 print("Added Data")
             }
@@ -207,6 +207,7 @@ class GraveStoriesTableViewController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "newGraveStorySegue", let newGraveStoryTVC = segue.destination as? NewGraveStoryTableViewController {
+            newGraveStoryTVC.currentGraveId = currentGraveId
             newGraveStoryTVC.currentGraveStoryId = currentGraveStoryId
             newGraveStoryTVC.storyImageId1 = storyImageId1
             newGraveStoryTVC.storyImageId2 = storyImageId2
@@ -214,7 +215,7 @@ class GraveStoriesTableViewController: UITableViewController {
             newGraveStoryTVC.storyImageId4 = storyImageId4
             newGraveStoryTVC.storyImageId5 = storyImageId5
             newGraveStoryTVC.storyImageId6 = storyImageId6
-            self.playBookSoundFile()
+//            self.playBookSoundFile()
         } else if segue.identifier == "graveStorySegue", let graveStoryTVC = segue.destination as? GraveStoryTableViewController {
             if let row = self.tableView.indexPathForSelectedRow?.row, let story = stories?[row] {
                 graveStoryTVC.currentGraveId = self.currentGraveId
@@ -229,7 +230,7 @@ class GraveStoriesTableViewController: UITableViewController {
                 graveStoryTVC.storyImageId4 = story.storyImageId4
                 graveStoryTVC.storyImageId5 = story.storyImageId5
                 graveStoryTVC.storyImageId6 = story.storyImageId6
-                self.playBookSoundFile()
+//                self.playBookSoundFile()
             }
         }
     }

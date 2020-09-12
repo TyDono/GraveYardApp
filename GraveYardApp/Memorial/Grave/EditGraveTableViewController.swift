@@ -107,6 +107,7 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
     func updateUserMemorialCount() {
         guard let currentId = currentAuthID else { return }
         self.memorialCount -= 1
+        MyFirebase.memorialCount -= 1
         db.collection("userProfile").document(currentId).updateData([
             "memorialCount": self.memorialCount
         ]) { err in
@@ -265,12 +266,15 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
                         
                         self.imageString = profileImageId
                         self.dateFormatter.dateFormat = "MM/dd/yyyy"
-                        guard let safeBirthDate = self.dateFormatter.date(from:birthDate) else { return }
-                        guard let safeDeathDate = self.dateFormatter.date(from:deathDate) else { return }
+                        if let safeBirthDate = self.dateFormatter.date(from:birthDate) {
+                            self.birthDatePicker.date = safeBirthDate
+                        }
+                        print(deathDate)
+                        if let safeDeathDate = self.dateFormatter.date(from:deathDate) {
+                            self.deathDatePicker.date = safeDeathDate
+                        }
                         self.nameTextField.text = name
-                        self.birthDatePicker.date = safeBirthDate
                         self.birthLocationTextField.text = birthLocation
-                        self.deathDatePicker.date = safeDeathDate
                         self.currentGraveId = graveId
                         self.deathLocationTextField.text = deathLocation
                         //self.familyStatusTextView.text = familyStatus
@@ -285,6 +289,7 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
                         self.videoURLString = videoURL
                         self.storyCount = storyCount
                         self.arrayOfStoryImageIDs = arrayOfStoryImageIDs
+                        self.switchEnabler()
                         self.getVideo()
                         self.getImages() //call this last
                     }

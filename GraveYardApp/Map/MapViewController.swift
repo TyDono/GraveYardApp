@@ -94,7 +94,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         }
     }
     
-    func playHowToMemorial() {
+    func playHowToMemorial() { // duo
         let videoURL: URL = Bundle.main.url(forResource: "name of video here", withExtension: "mp4")!
         let player = AVPlayer(url: videoURL)
         let vc = AVPlayerViewController()
@@ -103,6 +103,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     }
     
     func getUserMemorialCount() {
+        if self.currentAuthID == nil {
+            self.yourMemorialsButton.titleLabel?.text = "Create Memorials"
+        }
         guard let safeCurrentAuthID = self.currentAuthID else { return }
         let userRef = self.db.collection("userProfile").whereField("currentUserAuthId", isEqualTo: safeCurrentAuthID)
         userRef.getDocuments { (snapshot, error) in
@@ -115,7 +118,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                         if self.memorialCount == 0 {
                             self.yourMemorialsButton.titleLabel?.text = "Create Memorials"
                         } else {
-                            self.yourMemorialsButton.titleLabel?.text = "Your Memorials"
+                            self.yourMemorialsButton.titleLabel?.text = "Memorial Sites"
                         }
                     }
                 }
@@ -477,7 +480,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         }
     }
     
-    func playVideo() { // runs the tutroial video on how to make a memorial
+    func playVideo() { // duo of another same one dlelte one
         guard let path = Bundle.main.path(forResource: "howToMakeAMemorialVideo", ofType:"m4v") else {
             debugPrint("video not found")
             return
@@ -513,7 +516,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         let annotationLat = annotation.coordinate.latitude
         let annotationLong = annotation.coordinate.longitude
         
-        let newGraveAlert = UIAlertController(title: "New grave sight entry.", message: "Would you like to make a new entry at this location?", preferredStyle: .actionSheet)
+        let newGraveAlert = UIAlertController(title: "New Memorial sight entry.", message: "Would you like to make a new entry at this location?", preferredStyle: .actionSheet)
         newGraveAlert.addAction(UIAlertAction(title: "Create new entry", style: .default, handler: { action in
             print("Default Button Pressed")
             
@@ -523,7 +526,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                         self.mapView.removeAnnotation(annotation)
                     }
                 }
-                let notSignInAlert = UIAlertController(title: "You are not signed in", message: "You must sign in to create a grave  at this location", preferredStyle: .actionSheet)
+                let notSignInAlert = UIAlertController(title: "You are not signed in", message: "You must sign in to create a Memorial  at this location", preferredStyle: .actionSheet)
                 let dismiss = UIAlertAction(title: "Cancel", style: .default, handler: nil)
                 notSignInAlert.addAction(dismiss)
                 let goToLogIn = UIAlertAction(title: "Sign In", style: .default, handler: { _ in
@@ -534,8 +537,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                 self.present(notSignInAlert, animated: true, completion: nil)
             } else {
                 let memorialCount = MyFirebase.memorialCount + 1
-                guard memorialCount < 3 else {
-                    let graveCreationFailAlert = UIAlertController(title: "Too many Memorials", message: "Free users are only allowed 3 Memorials.", preferredStyle: .alert)
+                guard memorialCount < 6 else {
+                    let graveCreationFailAlert = UIAlertController(title: "Too many Memorials", message: "Free users are only allowed 5 Memorials.", preferredStyle: .alert)
 //                    let graveCreationFailAlert = UIAlertController(title: "Too many Memorials", message: "Free users are only allowed 3 Memorials. To increase the amount, subscribe and get premium benefits.", preferredStyle: .alert)
                     let dismiss = UIAlertAction(title: "OK", style: .default, handler: nil)
                     graveCreationFailAlert.addAction(dismiss)
@@ -611,7 +614,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                 }
                 graveRef.document(String(grave.graveId)).setData(grave.dictionary) { err in
                     if let err = err {
-                        let graveCreationFailAlert = UIAlertController(title: "Failed to create a Grave", message: "Your device failed to properly create a Grave on your desired tdestination, Please check your wifi and try again", preferredStyle: .alert)
+                        let graveCreationFailAlert = UIAlertController(title: "Failed to create a Memorial", message: "Your device failed to properly create a Memorial on your desired destination, Please check your wifi and try again", preferredStyle: .alert)
                         let dismiss = UIAlertAction(title: "OK", style: .default, handler: nil)
                         graveCreationFailAlert.addAction(dismiss)
                         self.present(graveCreationFailAlert, animated: true, completion: nil)
@@ -693,7 +696,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                            delay: 0.0,
                            options: .curveEaseInOut,
                            animations: {
-                            let moveRight = CGAffineTransform(translationX: 200, y: 0)
+                            let moveRight = CGAffineTransform(translationX: 250, y: 0)
                             self.bookSideUIView.transform = moveRight
             }) {
                 (_) in
