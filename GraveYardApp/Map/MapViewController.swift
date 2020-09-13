@@ -43,7 +43,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     var graveAnnotationCoordinates: String?
     var selectedAnnotation: GraveEntryAnnotation?
     var bookSideHasExpanded: Bool = false
-    var memorialCount: Int = 0
     var playerLayer: AVPlayer?
 
     // MARK: - View Lifecycle
@@ -57,6 +56,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         addMemorialView.layer.cornerRadius = 10
         playHowToMemorialVideoButton.layer.cornerRadius = 10
         mapView.delegate = self
+        getUserMemorialCount()
         self.navigationItem.rightBarButtonItem?.isEnabled = false
         self.navigationItem.rightBarButtonItem?.title = ""
 //        getGraveEntries { (graves) in
@@ -114,8 +114,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             } else {
                 for document in (snapshot?.documents)! {
                     if let memorialCount = document.data()["memorialCount"] as? Int {
-                        self.memorialCount = memorialCount
-                        if self.memorialCount == 0 {
+                        MyFirebase.memorialCount = memorialCount
+                        if MyFirebase.memorialCount == 0 {
                             self.yourMemorialsButton.titleLabel?.text = "Create Memorials"
                         } else {
                             self.yourMemorialsButton.titleLabel?.text = "Memorial Sites"
@@ -133,6 +133,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             "memorialCount": MyFirebase.memorialCount
         ]) { err in
             if let err = err {
+                MyFirebase.memorialCount -= 1
                 print("Error updating document: \(err)")
             } else {
                 print("Document successfully updated")
@@ -454,8 +455,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             self.addMemorialView.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
             self.addMemorialView.alpha = 0.0;
         }, completion:{(finished : Bool)  in
-            if (finished)
-            {
+            if (finished) {
                 self.addMemorialView.removeFromSuperview()
             }
         });
@@ -536,8 +536,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                 notSignInAlert.addAction(goToLogIn)
                 self.present(notSignInAlert, animated: true, completion: nil)
             } else {
-                let memorialCount = MyFirebase.memorialCount + 1
-                guard memorialCount < 6 else {
+                let memorialCount = MyFirebase.memorialCount
+                guard memorialCount < 5 else {
                     let graveCreationFailAlert = UIAlertController(title: "Too many Memorials", message: "Free users are only allowed 5 Memorials.", preferredStyle: .alert)
 //                    let graveCreationFailAlert = UIAlertController(title: "Too many Memorials", message: "Free users are only allowed 3 Memorials. To increase the amount, subscribe and get premium benefits.", preferredStyle: .alert)
                     let dismiss = UIAlertAction(title: "OK", style: .default, handler: nil)
@@ -680,7 +680,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     }
     
     @IBAction func yourMemorialsButtonWasTapped(_ sender: UIButton) {
-        if self.memorialCount == 0 {
+        if MyFirebase.memorialCount == 0 {
             self.view.addSubview(addMemorialView)
             showPopOverAnimate()
         } else {
@@ -720,6 +720,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     }
     
     @IBAction func playHowToVideoWasTapped(_ sender: UIButton) {
+        
     }
     
     @IBAction func unwindToMap(_ sender: UIStoryboardSegue) {}
