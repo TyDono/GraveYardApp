@@ -203,6 +203,16 @@ class GraveStoryTableViewController: UITableViewController {
         changeImageLabelCounter()
     }
     
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        var height: CGFloat
+        if indexPath.row == 1 {
+            height = 800.0
+        } else {
+            height = 312.0
+        }
+        return height
+    }
+    
     func setUpScrollView() {
         for i in 0..<storyImagesArray.count {
             let imageView = UIImageView()
@@ -242,21 +252,6 @@ class GraveStoryTableViewController: UITableViewController {
 //            editGraveStoryTVC.storyImageStringArray = [storyImageId1, storyImageId2, storyImageId3, storyImageId4, storyImageId5, storyImageId6]
         }
     }
-    
-//    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        var height: CGFloat
-//        if indexPath.row == 1 {
-//            height = 600
-//        } else {
-//            height = 317
-//        }
-//        if indexPath.row == 2 {
-//            height == 0
-//        } else {
-//
-//        }
-//        return height
-//    }
     
     func createReportData() {
         let userReportId: String = UUID().uuidString

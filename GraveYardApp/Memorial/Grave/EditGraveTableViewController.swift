@@ -19,6 +19,8 @@ import MobileCoreServices
 
 class EditGraveTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
+    @IBOutlet weak var birthDateLabel: UILabel!
+    @IBOutlet weak var deathDateLabel: UILabel!
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var videoPreviewUIImage: UIImageView!
     @IBOutlet weak var publicIsTrueSwitch: UISwitch!
@@ -70,6 +72,19 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
     var videoDataSize: Double = 0.0
     var oldVideoDataSize: Double = 0.0
     var storyCount: Int = 0
+    
+    let checkInDatePickerCellIndexPath = IndexPath(row: 2, section: 2)
+    let checkOutDatePickerCellIndexPath = IndexPath(row: 2, section: 3)
+    var isCheckInDatePickerShown: Bool = false {
+        didSet {
+            birthDatePicker.isHidden = !isCheckInDatePickerShown
+        }
+    }
+    var isCheckOutDatePickerShown: Bool = false {
+        didSet {
+            deathDatePicker.isHidden = !isCheckOutDatePickerShown
+        }
+    }
     
     // MARK: - View Lifecycle
     
@@ -211,6 +226,60 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
         }
     }
     
+//    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        switch (indexPath.section, indexPath.row) {
+//        case (checkInDatePickerCellIndexPath.section,
+//              checkInDatePickerCellIndexPath.row):
+//            if isCheckInDatePickerShown {
+//                return 216.0
+//            } else {
+//                return 0.0
+//            }
+//        case (checkOutDatePickerCellIndexPath.section,
+//              checkOutDatePickerCellIndexPath.row):
+//            if isCheckOutDatePickerShown {
+//                return 216.0
+//            } else {
+//                return 0.0
+//            }
+//        default: return 44.0
+//        }
+//    }
+//
+//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        tableView.deselectRow(at: indexPath, animated: true)
+//
+//        switch (indexPath.section, indexPath.row) {
+//        case (checkInDatePickerCellIndexPath.section,
+//        checkInDatePickerCellIndexPath.row - 1):
+//
+//            if isCheckInDatePickerShown {
+//                isCheckInDatePickerShown = false
+//            } else if isCheckOutDatePickerShown {
+//                isCheckOutDatePickerShown = false
+//                isCheckInDatePickerShown = true
+//            } else {
+//                isCheckInDatePickerShown = true
+//            }
+//            tableView.beginUpdates()
+//            tableView.endUpdates()
+//        case (checkOutDatePickerCellIndexPath.section,
+//        checkOutDatePickerCellIndexPath.row - 1):
+//            if isCheckOutDatePickerShown {
+//                isCheckOutDatePickerShown = false
+//            } else if isCheckInDatePickerShown {
+//                isCheckInDatePickerShown = false
+//                isCheckOutDatePickerShown = true
+//            } else {
+//                isCheckOutDatePickerShown = true
+//            }
+//            tableView.beginUpdates()
+//            tableView.endUpdates()
+//        default:
+//            break
+//        }
+//    }
+    
     //maybe used for a later date. no longer tracking data use of entire user.
 //    func updateUserData() {
 //        db = Firestore.firestore()
@@ -235,7 +304,7 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
 //    }
     
     func getGraveData() {
-        dateFormatter.dateFormat = "yyyy-MM-dd"
+        dateFormatter.dateStyle = .medium
         guard let safeCurrentGraveId = self.currentGraveId else { return }
         print(safeCurrentGraveId)
         let graveRef = self.db.collection("grave").whereField("graveId", isEqualTo: safeCurrentGraveId) // this should be the grave id that was tapped on
@@ -265,13 +334,15 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
                         let arrayOfStoryImageIDs = document.data()["arrayOfStoryImageIDs"] as? [String] {
                         
                         self.imageString = profileImageId
-                        self.dateFormatter.dateFormat = "MM/dd/yyyy"
+                        self.dateFormatter.dateStyle = .medium
                         if let safeBirthDate = self.dateFormatter.date(from:birthDate) {
                             self.birthDatePicker.date = safeBirthDate
+                            self.birthDateLabel.text = birthDate
                         }
                         print(deathDate)
                         if let safeDeathDate = self.dateFormatter.date(from:deathDate) {
                             self.deathDatePicker.date = safeDeathDate
+                            self.deathDateLabel.text = deathDate
                         }
                         self.nameTextField.text = name
                         self.birthLocationTextField.text = birthLocation
@@ -648,6 +719,12 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
         }
     }
     
+    @IBAction func birthDatePickerWasTapped(_ sender: UIDatePicker) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        birthDateLabel.text = dateFormatter.string(from: birthDatePicker.date)
+    }
+    
     @IBAction func deathSwitchWasTapped(_ sender: UISwitch) {
         if deathSwitch.isOn == true {
             deathLabel.text = "Enabled"
@@ -659,6 +736,13 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
             deathLocationCell.isHidden = true
         }
     }
+    
+    @IBAction func deathDatePickerWasTapped(_ sender: UIDatePicker) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        deathDateLabel.text = dateFormatter.string(from: deathDatePicker.date)
+    }
+    
     
     @IBAction func deleteGraveButtonTapped(_ sender: UIButton) {
         let alerController = UIAlertController(title: "WARNING!", message: "This will delete all of the information on this Memorial along with it's stories!", preferredStyle: .actionSheet)
@@ -688,7 +772,7 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
                                         }))
                                         self.present(alertSuccess, animated: true, completion: nil)
                                     } else {
-                                        print("\(error) no image to delete")
+                                        print("no image to delete \(error)")
                                         let alertSuccess = UIAlertController(title: "Success", message: "You have successfully deleted this Memorial and all of it's content", preferredStyle: .alert)
                                         alertSuccess.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
                                             alertSuccess.dismiss(animated: true, completion: nil)

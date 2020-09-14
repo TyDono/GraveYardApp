@@ -614,8 +614,42 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="3HS-Rp-jTz">
+                                        <rect key="frame" x="0.0" y="1166.6666679382324" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3HS-Rp-jTz" id="H6w-gT-po5">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uMs-He-Ddf">
+                                                    <rect key="frame" x="137" y="8" width="269" height="28"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Birth Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w5l-m5-dLk">
+                                                    <rect key="frame" x="8" y="8" width="121" height="28"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="121" id="8v9-yd-wI4"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="w5l-m5-dLk" firstAttribute="leading" secondItem="H6w-gT-po5" secondAttribute="leading" constant="8" id="5M4-0Y-AOv"/>
+                                                <constraint firstItem="uMs-He-Ddf" firstAttribute="top" secondItem="H6w-gT-po5" secondAttribute="top" constant="8" id="6c0-aV-e6B"/>
+                                                <constraint firstItem="uMs-He-Ddf" firstAttribute="leading" secondItem="w5l-m5-dLk" secondAttribute="trailing" constant="8" id="DYY-2Q-GDb"/>
+                                                <constraint firstItem="w5l-m5-dLk" firstAttribute="top" secondItem="H6w-gT-po5" secondAttribute="top" constant="8" id="dhP-6z-8Qq"/>
+                                                <constraint firstAttribute="bottom" secondItem="uMs-He-Ddf" secondAttribute="bottom" constant="8" id="ewp-U1-CaM"/>
+                                                <constraint firstAttribute="trailing" secondItem="uMs-He-Ddf" secondAttribute="trailing" constant="8" id="ffP-OC-a3Q"/>
+                                                <constraint firstAttribute="bottom" secondItem="w5l-m5-dLk" secondAttribute="bottom" constant="8" id="qOK-36-z19"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="IlB-7M-UUF">
-                                        <rect key="frame" x="0.0" y="1166.6666679382324" width="414" height="43.666667938232422"/>
+                                        <rect key="frame" x="0.0" y="1210.6666679382324" width="414" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="IlB-7M-UUF" id="Zq7-Eu-1Z9">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.666667938232422"/>
@@ -626,6 +660,9 @@
                                                     <date key="date" timeIntervalSinceReferenceDate="-233726387.67283797">
                                                         <!--1993-08-05 20:00:12 +0000-->
                                                     </date>
+                                                    <connections>
+                                                        <action selector="birthDatePickerWasTapped:" destination="akf-23-k3a" eventType="valueChanged" id="PzD-xk-52d"/>
+                                                    </connections>
                                                 </datePicker>
                                             </subviews>
                                             <constraints>
@@ -637,7 +674,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="xpo-cd-42m">
-                                        <rect key="frame" x="0.0" y="1210.3333358764648" width="414" height="43.666667938232422"/>
+                                        <rect key="frame" x="0.0" y="1254.3333358764648" width="414" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="xpo-cd-42m" id="anS-8b-uSH">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.666667938232422"/>
@@ -663,7 +700,7 @@
                             <tableViewSection headerTitle="Memorial or Death Date/Location" id="10Y-Zq-9f3">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="k2y-jR-vdW">
-                                        <rect key="frame" x="0.0" y="1310.0000038146973" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="1354.0000038146973" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="k2y-jR-vdW" id="hUv-4D-0XI">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
@@ -694,8 +731,42 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="zE1-TG-RNC">
+                                        <rect key="frame" x="0.0" y="1398.0000038146973" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zE1-TG-RNC" id="hvp-rL-xCv">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jcm-JS-bOT">
+                                                    <rect key="frame" x="137" y="8" width="269" height="28"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Death Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6nk-Xx-glv">
+                                                    <rect key="frame" x="8" y="8" width="121" height="28"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="121" id="ebe-ro-OSY"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="6nk-Xx-glv" firstAttribute="leading" secondItem="hvp-rL-xCv" secondAttribute="leading" constant="8" id="2cv-qx-7EG"/>
+                                                <constraint firstItem="6nk-Xx-glv" firstAttribute="top" secondItem="hvp-rL-xCv" secondAttribute="top" constant="8" id="85u-WQ-6FT"/>
+                                                <constraint firstItem="Jcm-JS-bOT" firstAttribute="top" secondItem="hvp-rL-xCv" secondAttribute="top" constant="8" id="cgR-so-ja1"/>
+                                                <constraint firstAttribute="bottom" secondItem="6nk-Xx-glv" secondAttribute="bottom" constant="8" id="cqC-WF-2QI"/>
+                                                <constraint firstAttribute="trailing" secondItem="Jcm-JS-bOT" secondAttribute="trailing" constant="8" id="gos-io-mlz"/>
+                                                <constraint firstAttribute="bottom" secondItem="Jcm-JS-bOT" secondAttribute="bottom" constant="8" id="pfm-pj-rfo"/>
+                                                <constraint firstItem="Jcm-JS-bOT" firstAttribute="leading" secondItem="6nk-Xx-glv" secondAttribute="trailing" constant="8" id="vlq-Kl-IQB"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="CyL-5m-frz">
-                                        <rect key="frame" x="0.0" y="1354.0000038146973" width="414" height="43.666667938232422"/>
+                                        <rect key="frame" x="0.0" y="1442.0000038146973" width="414" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="CyL-5m-frz" id="3F3-xL-Rgl">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.666667938232422"/>
@@ -706,6 +777,9 @@
                                                     <date key="date" timeIntervalSinceReferenceDate="-233726387.67283797">
                                                         <!--1993-08-05 20:00:12 +0000-->
                                                     </date>
+                                                    <connections>
+                                                        <action selector="deathDatePickerWasTapped:" destination="akf-23-k3a" eventType="valueChanged" id="DGF-NM-mJ6"/>
+                                                    </connections>
                                                 </datePicker>
                                             </subviews>
                                             <constraints>
@@ -717,7 +791,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="8eQ-LP-te5">
-                                        <rect key="frame" x="0.0" y="1397.6666717529297" width="414" height="43.666667938232422"/>
+                                        <rect key="frame" x="0.0" y="1485.6666717529297" width="414" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8eQ-LP-te5" id="NuW-1E-dKc">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.666667938232422"/>
@@ -743,7 +817,7 @@
                             <tableViewSection headerTitle="Delete Memorial" id="BIO-FY-0jp">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="Kpz-br-u9b">
-                                        <rect key="frame" x="0.0" y="1497.3333396911621" width="414" height="43.666667938232422"/>
+                                        <rect key="frame" x="0.0" y="1585.3333396911621" width="414" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Kpz-br-u9b" id="rQF-NQ-S4W">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.666667938232422"/>
@@ -782,12 +856,14 @@
                     <connections>
                         <outlet property="bioTextView" destination="uJa-vq-QGj" id="zut-4p-UQw"/>
                         <outlet property="birthDateCell" destination="IlB-7M-UUF" id="MUI-gx-L0q"/>
+                        <outlet property="birthDateLabel" destination="uMs-He-Ddf" id="sn7-A5-fUx"/>
                         <outlet property="birthDatePicker" destination="G4W-NT-Qpq" id="gob-ML-mrl"/>
                         <outlet property="birthLabel" destination="KKT-Ud-MaG" id="19y-gu-xZn"/>
                         <outlet property="birthLocationCell" destination="xpo-cd-42m" id="kc7-Wl-Hxh"/>
                         <outlet property="birthLocationTextField" destination="1z7-YR-Rng" id="wAx-L9-llU"/>
                         <outlet property="birthSwitch" destination="0e9-1k-fAC" id="MCj-az-2bs"/>
                         <outlet property="deathDateCell" destination="CyL-5m-frz" id="jcD-pO-aNE"/>
+                        <outlet property="deathDateLabel" destination="Jcm-JS-bOT" id="gxA-Of-0Tp"/>
                         <outlet property="deathDatePicker" destination="5UU-NF-NTR" id="oio-Fm-w6v"/>
                         <outlet property="deathLabel" destination="WHp-nc-xKk" id="3rw-d3-8Ce"/>
                         <outlet property="deathLocationCell" destination="8eQ-LP-te5" id="B8i-1V-aUe"/>
@@ -1941,10 +2017,10 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="74B-mS-0pn"/>
+        <segue reference="JUc-GY-fg1"/>
         <segue reference="v3p-eh-PGk"/>
         <segue reference="fpu-aT-yyc"/>
-        <segue reference="xN6-dc-fkE"/>
+        <segue reference="soh-re-d5z"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Page" width="617" height="500"/>

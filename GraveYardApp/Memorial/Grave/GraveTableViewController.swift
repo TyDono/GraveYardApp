@@ -64,7 +64,6 @@ class GraveTableViewController: UITableViewController {
         db = Firestore.firestore()
         self.reportPopOver.layer.cornerRadius = 10
         //chageTextColor()
-        checkForBioLabel()
         self.reportButton.layer.cornerRadius = 10
         pinQuoteLabel.font = pinQuoteLabel.font.italic
         self.storiesButton.layer.cornerRadius = 10
@@ -93,10 +92,6 @@ class GraveTableViewController: UITableViewController {
             rightBarButtonItem.title = "Report"
             storiesButton.setTitle("View Stories", for: .normal)
         }
-    }
-    
-    func checkForBioLabel() {
-
     }
     
     func videoPreviewImage() {
