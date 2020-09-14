@@ -88,10 +88,10 @@ class GraveTableViewController: UITableViewController {
     func checkForCreatorId() {
         if currentAuthID == creatorId {
             rightBarButtonItem.title = "Edit"
-            self.storiesButton.titleLabel?.text = "Create/View Stories"
+            storiesButton.setTitle("Create/View Stories", for: .normal)
         } else {
             rightBarButtonItem.title = "Report"
-//            self.storiesButton.titleLabel?.text = "View Stories"
+            storiesButton.setTitle("View Stories", for: .normal)
         }
     }
     

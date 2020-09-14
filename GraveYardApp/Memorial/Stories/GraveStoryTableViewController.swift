@@ -15,6 +15,9 @@ class GraveStoryTableViewController: UITableViewController {
     
     // MARK: - Outlets
     
+
+    @IBOutlet weak var textStoryCell: UITableViewCell!
+    @IBOutlet weak var imagesStoryCell: UITableViewCell!
     @IBOutlet weak var reportButton: UIButton!
     @IBOutlet weak var rightArrowButton: UIButton!
     @IBOutlet weak var leftArrowButton: UIButton!
@@ -71,8 +74,8 @@ class GraveStoryTableViewController: UITableViewController {
     }
     
     // MARK: - Functions
-    //every slide is around 414
     
+    //every slide is around 414
     func changeImageLabelCounter() {
         switch storyImagesArray.count {
         case 0:
@@ -239,6 +242,21 @@ class GraveStoryTableViewController: UITableViewController {
 //            editGraveStoryTVC.storyImageStringArray = [storyImageId1, storyImageId2, storyImageId3, storyImageId4, storyImageId5, storyImageId6]
         }
     }
+    
+//    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        var height: CGFloat
+//        if indexPath.row == 1 {
+//            height = 600
+//        } else {
+//            height = 317
+//        }
+//        if indexPath.row == 2 {
+//            height == 0
+//        } else {
+//
+//        }
+//        return height
+//    }
     
     func createReportData() {
         let userReportId: String = UUID().uuidString

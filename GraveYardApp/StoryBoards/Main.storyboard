@@ -33,7 +33,7 @@
                                                     <rect key="frame" x="11" y="293" width="392" height="30"/>
                                                     <color key="backgroundColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="21"/>
-                                                    <state key="normal" title="View Stories">
+                                                    <state key="normal">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </state>
                                                     <connections>
@@ -215,12 +215,12 @@
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="introTextCell" id="JDP-pt-KeW">
                                         <rect key="frame" x="0.0" y="795.00000011920929" width="414" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="JDP-pt-KeW" id="Rl5-Mj-YqV">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="JDP-pt-KeW" id="Rl5-Mj-YqV">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="23T-Gx-QzS">
-                                                    <rect key="frame" x="20" y="11" width="374" height="22"/>
+                                                    <rect key="frame" x="20" y="11" width="343" height="38"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="38" id="JY4-Q8-2W8"/>
                                                         <constraint firstAttribute="width" constant="343" id="jiM-8u-3iS"/>
@@ -874,7 +874,7 @@
                         <sections>
                             <tableViewSection id="7FB-cA-h9Z">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="317" id="UQg-BK-EWs">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="TextStoryViewCell" rowHeight="317" id="UQg-BK-EWs">
                                         <rect key="frame" x="0.0" y="28" width="414" height="317"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="UQg-BK-EWs" id="yAz-jY-Y1c">
@@ -916,7 +916,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="364" id="bBl-X2-GrS">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="ImagesStoryViewCell" rowHeight="364" id="bBl-X2-GrS">
                                         <rect key="frame" x="0.0" y="345" width="414" height="364"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bBl-X2-GrS" id="9Nw-yf-PFj">
@@ -1024,6 +1024,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="imageCounterLabel" destination="jMZ-gj-0u3" id="WoX-25-vzk"/>
+                        <outlet property="imagesStoryCell" destination="bBl-X2-GrS" id="LJb-M8-0vA"/>
                         <outlet property="leftArrowButton" destination="jhF-Yl-Yx7" id="JHV-LJ-6XG"/>
                         <outlet property="reportButton" destination="oYw-nw-F7c" id="qZz-3d-8W3"/>
                         <outlet property="reportCommentsTextView" destination="usB-Cu-u8F" id="Mfl-1u-zcx"/>
@@ -1033,6 +1034,7 @@
                         <outlet property="storyBodyTextView" destination="EJs-T9-0Fu" id="HWT-90-5eZ"/>
                         <outlet property="storyImagesScrollView" destination="wkN-1j-kTE" id="XbV-ID-jpo"/>
                         <outlet property="storyTitle" destination="0hO-6U-BGI" id="Ey8-1o-Ibf"/>
+                        <outlet property="textStoryCell" destination="UQg-BK-EWs" id="Bl0-Nc-9sY"/>
                         <segue destination="8GQ-fW-7kZ" kind="show" identifier="editGraveStorySegue" id="fpu-aT-yyc"/>
                     </connections>
                 </tableViewController>
