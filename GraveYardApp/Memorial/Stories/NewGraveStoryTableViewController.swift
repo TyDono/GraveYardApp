@@ -479,7 +479,7 @@ extension NewGraveStoryTableViewController {
         if let imageStringId = self.storyImageId1 {
             let storageRef = storage.reference()
             let graveProfileImage = storageRef.child("storyImages/\(imageStringId)")
-            graveProfileImage.getData(maxSize: (1024 * 1024), completion:  { (data, err) in
+            graveProfileImage.getData(maxSize: (5000000), completion:  { (data, err) in
                 guard let data = data else {return}
                 guard let image = UIImage(data: data) else {return}
                 self.storyImage1.image = image
@@ -512,7 +512,7 @@ extension NewGraveStoryTableViewController {
         if let imageStringId = self.storyImageId2 {
             let storageRef = storage.reference()
             let graveProfileImage = storageRef.child("storyImages/\(imageStringId)")
-            graveProfileImage.getData(maxSize: (1024 * 1024), completion:  { (data, err) in
+            graveProfileImage.getData(maxSize: (5000000), completion:  { (data, err) in
                 guard let data = data else {return}
                 guard let image = UIImage(data: data) else {return}
                 self.storyImage2.image = image
@@ -545,7 +545,7 @@ extension NewGraveStoryTableViewController {
         if let imageStringId = self.storyImageId3 {
             let storageRef = storage.reference()
             let graveProfileImage = storageRef.child("storyImages/\(imageStringId)")
-            graveProfileImage.getData(maxSize: (1024 * 1024), completion:  { (data, err) in
+            graveProfileImage.getData(maxSize: (5000000), completion:  { (data, err) in
                 guard let data = data else {return}
                 guard let image = UIImage(data: data) else {return}
                 self.storyImage3.image = image
@@ -578,7 +578,7 @@ extension NewGraveStoryTableViewController {
         if let imageStringId = self.storyImageId4 {
             let storageRef = storage.reference()
             let graveProfileImage = storageRef.child("storyImages/\(imageStringId)")
-            graveProfileImage.getData(maxSize: (1024 * 1024), completion:  { (data, err) in
+            graveProfileImage.getData(maxSize: (5000000), completion:  { (data, err) in
                 guard let data = data else {return}
                 guard let image = UIImage(data: data) else {return}
                 self.storyImage4.image = image
@@ -611,7 +611,7 @@ extension NewGraveStoryTableViewController {
         if let imageStringId = self.storyImageId5 {
             let storageRef = storage.reference()
             let graveProfileImage = storageRef.child("storyImages/\(imageStringId)")
-            graveProfileImage.getData(maxSize: (1024 * 1024), completion:  { (data, err) in
+            graveProfileImage.getData(maxSize: (5000000), completion:  { (data, err) in
                 guard let data = data else {return}
                 guard let image = UIImage(data: data) else {return}
                 self.storyImage5.image = image
@@ -644,7 +644,7 @@ extension NewGraveStoryTableViewController {
         if let imageStringId = self.storyImageId6 {
             let storageRef = storage.reference()
             let graveProfileImage = storageRef.child("storyImages/\(imageStringId)")
-            graveProfileImage.getData(maxSize: (1024 * 1024), completion:  { (data, err) in
+            graveProfileImage.getData(maxSize: (5000000), completion:  { (data, err) in
                 guard let data = data else {return}
                 guard let image = UIImage(data: data) else {return}
                 self.storyImage6.image = image

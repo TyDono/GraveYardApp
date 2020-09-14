@@ -91,14 +91,12 @@ class GraveTableViewController: UITableViewController {
             self.storiesButton.titleLabel?.text = "Create/View Stories"
         } else {
             rightBarButtonItem.title = "Report"
-            self.storiesButton.titleLabel?.text = "View Stories"
+//            self.storiesButton.titleLabel?.text = "View Stories"
         }
     }
     
     func checkForBioLabel() {
-        if self.bioLabel.text == nil {
-            self.bioCell.isHidden = true
-        }
+
     }
     
     func videoPreviewImage() {
@@ -230,6 +228,9 @@ class GraveTableViewController: UITableViewController {
                             }
 //                            self.familyStatusLabel.text = familyStatus
                             self.bioLabel.text = bio
+                            if self.bioLabel.text == nil {
+                                self.bioCell.isHidden = true
+                            }
                             if pinQuote == "" {
                                 self.pinQuoteLabel.text = ""
                             } else {
@@ -257,7 +258,7 @@ class GraveTableViewController: UITableViewController {
         if let imageStringId = self.imageString {
             let storageRef = storage.reference()
             let graveProfileImage = storageRef.child("graveProfileImages/\(imageStringId)")
-            graveProfileImage.getData(maxSize: (1024 * 1024), completion:  { (data, err) in
+            graveProfileImage.getData(maxSize: (5000000), completion:  { (data, err) in
                 guard let data = data else {return}
                 guard let image = UIImage(data: data) else {return}
                 self.graveMainImage.image = image

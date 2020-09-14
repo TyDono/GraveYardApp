@@ -318,7 +318,7 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
         if let videoString = self.videoURLString {
             let storageRef = storage.reference()
             let graveProfileVideo = storageRef.child("graveProfileVideos/\(videoString)")
-            graveProfileVideo.getData(maxSize: (100000000), completion:  { (data, err) in
+            graveProfileVideo.getData(maxSize: (1000000000), completion:  { (data, err) in
                 guard let data = data else  { return }
                 graveProfileVideo.downloadURL { (url, err) in
                     if let urlText = url {
@@ -340,11 +340,11 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
         if let imageStringId = self.imageString {
             let storageRef = storage.reference()
             let graveProfileImage = storageRef.child("graveProfileImages/\(imageStringId)")
-            graveProfileImage.getData(maxSize: (1024 * 1024), completion:  { (data, err) in
+            graveProfileImage.getData(maxSize: (5000000), completion:  { (data, err) in
                 guard let data = data else { return }
                 guard let image = UIImage(data: data) else { return }
                 self.graveMainImage.image = image
-                guard let imageDataBytes = image.jpegData(compressionQuality: 0.20) else { return }
+                guard let imageDataBytes = image.jpegData(compressionQuality: 0.05) else { return }
                 self.currentImageDataCount = Double(imageDataBytes.count)
             })
         } else {
@@ -355,7 +355,7 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
     func uploadFirebaseImages(_ image: UIImage, completion: @escaping ((_ url: URL?) -> () )) {
         guard let imageStringId = self.imageString else { return }
         let storageRef = Storage.storage().reference().child("graveProfileImages/\(imageStringId)")
-        guard let imageData = image.jpegData(compressionQuality: 0.20) else { return }
+        guard let imageData = image.jpegData(compressionQuality: 0.05) else { return }
         let metaData = StorageMetadata()
         metaData.contentType = "image/jpg"
         storageRef.putData(imageData, metadata: metaData) { (metaData, error) in
@@ -542,7 +542,7 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
             //        var checkDataCap: Int = 0
             for image in graveProfileImages {
                 uploadFirebaseImages(image) { (url) in
-                    guard image.jpegData(compressionQuality: 0.20) != nil else { return }
+                    guard image.jpegData(compressionQuality: 0.05) != nil else { return }
                     if self.currentImageDataCount != nil {
                         print("image uploaded")
                     }
