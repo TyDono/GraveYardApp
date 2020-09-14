@@ -537,8 +537,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                 self.present(notSignInAlert, animated: true, completion: nil)
             } else {
                 let memorialCount = MyFirebase.memorialCount
-                guard memorialCount < 5 else {
-                    let graveCreationFailAlert = UIAlertController(title: "Too many Memorials", message: "Free users are only allowed 5 Memorials.", preferredStyle: .alert)
+                guard memorialCount < 20 else {
+                    let graveCreationFailAlert = UIAlertController(title: "Too many Memorials", message: "You are only allowed 20 Memorials.", preferredStyle: .alert)
 //                    let graveCreationFailAlert = UIAlertController(title: "Too many Memorials", message: "Free users are only allowed 3 Memorials. To increase the amount, subscribe and get premium benefits.", preferredStyle: .alert)
                     let dismiss = UIAlertAction(title: "OK", style: .default, handler: nil)
                     graveCreationFailAlert.addAction(dismiss)

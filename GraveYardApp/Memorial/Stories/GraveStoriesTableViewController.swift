@@ -106,8 +106,8 @@ class GraveStoriesTableViewController: UITableViewController {
         print(currentGraveId)
         guard let currentGrave = self.currentGraveId else { return }
         print(GraveTableViewController.currentGraveStoryCount)
-        guard GraveTableViewController.currentGraveStoryCount < 5 else {
-            let graveCreationFailAert = UIAlertController(title: "To many Stories", message: "Free users are only allowed 5 stories per Memorial. Please subscribe to premium to increase the amount.", preferredStyle: .alert)
+        guard GraveTableViewController.currentGraveStoryCount < 10 else {
+            let graveCreationFailAert = UIAlertController(title: "Too many Stories", message: "You are only allowed 10 stories per Memorial.", preferredStyle: .alert)
             let dismiss = UIAlertAction(title: "OK", style: .default, handler: nil)
             graveCreationFailAert.addAction(dismiss)
             self.present(graveCreationFailAert, animated: true, completion: nil)
