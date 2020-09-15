@@ -242,6 +242,12 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
             } else {
                 return 0.0
             }
+        case (0, 0):
+            return 246
+        case (0, 4):
+            return 356
+        case (0, 5):
+            return 306
         default: return 44.0
         }
     }
