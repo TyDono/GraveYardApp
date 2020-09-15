@@ -38,7 +38,6 @@ class GraveStoryTableViewController: UITableViewController {
     let storage = Storage.storage()
     var graveStorytitleValue: String?
     var graveStoryBodyBioValue: String?
-    var storyImagesArray: [UIImage?] = []
     let screenHeight = UIScreen.main.bounds.height
     var storyUIImage1: UIImage?
     var storyUIImage2: UIImage?
@@ -46,6 +45,7 @@ class GraveStoryTableViewController: UITableViewController {
     var storyUIImage4: UIImage?
     var storyUIImage5: UIImage?
     var storyUIImage6: UIImage?
+    var storyImagesArray: [UIImage?] = []
     var storyImageId1: String? = "1"
     var storyImageId2: String? = "2"
     var storyImageId3: String? = "3"
@@ -67,7 +67,7 @@ class GraveStoryTableViewController: UITableViewController {
         checkForCreatorId()
         storyImagesScrollView.delegate = self
         self.reportButton.layer.cornerRadius = 10
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.31) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) {
             self.getImage1()
         }
         
@@ -203,16 +203,22 @@ class GraveStoryTableViewController: UITableViewController {
         changeImageLabelCounter()
     }
     
-    //constraints r working with this
-//    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        var height: CGFloat
-//        if indexPath.row == 1 {
-//            height = 800.0
-//        } else {
-//            height = 312.0
-//        }
-//        return height
-//    }
+    //count is 0 coz it gets it b4 we get any images
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        var height: CGFloat
+        print(storyImagesArray.count)
+        if self.storyImagesArray.count != 0 {
+            if indexPath.row == 0 {
+                height = 850.0
+            } else {
+                height = 0.0
+            }
+        } else {
+            height = 380
+        }
+        
+        return height
+    }
     
     func setUpScrollView() {
         for i in 0..<storyImagesArray.count {
@@ -351,8 +357,8 @@ extension GraveStoryTableViewController {
             let storageRef1 = storage.reference()
             let graveProfileImage = storageRef1.child("storyImages/\(imageStringId)")
             graveProfileImage.getData(maxSize: (5000000), completion:  { (data, err) in
-                guard let data = data else {return}
-                guard let image = UIImage(data: data) else {return}
+                guard let data = data else { return }
+                guard let image = UIImage(data: data) else { return }
                 //                self.storyImagesArray.append(image)
                 self.storyUIImage1 = image
                 //                self.storyImage1.image = image // images exists but storyimage1 is nil
@@ -361,6 +367,7 @@ extension GraveStoryTableViewController {
                 self.storyImagesArray.append(storyImage)
                 self.setUpScrollView()
                 self.getImage2()
+                self.tableView.reloadData()
             })
         } else {
             getImage2()
@@ -372,8 +379,8 @@ extension GraveStoryTableViewController {
             let storageRef = storage.reference()
             let graveProfileImage = storageRef.child("storyImages/\(imageStringId)")
             graveProfileImage.getData(maxSize: (5000000), completion:  { (data, err) in
-                guard let data = data else {return}
-                guard let image = UIImage(data: data) else {return}
+                guard let data = data else { return }
+                guard let image = UIImage(data: data) else { return }
                 print(imageStringId)
                 self.storyUIImage2 = image
                 guard let storyImage = self.storyUIImage2 else { return }
@@ -381,6 +388,7 @@ extension GraveStoryTableViewController {
                 self.setUpScrollView()
                 self.changeImageLabelCounter()
                 self.getImage3()
+                self.tableView.reloadData()
             })
         } else {
             self.getImage3()
@@ -392,14 +400,15 @@ extension GraveStoryTableViewController {
             let storageRef = storage.reference()
             let graveProfileImage = storageRef.child("storyImages/\(imageStringId)")
             graveProfileImage.getData(maxSize: (5000000), completion:  { (data, err) in
-                guard let data = data else {return}
-                guard let image = UIImage(data: data) else {return}
+                guard let data = data else { return }
+                guard let image = UIImage(data: data) else { return }
                 self.storyUIImage3 = image
                 guard let storyImage = self.storyUIImage3 else { return }
                 self.storyImagesArray.append(storyImage)
                 self.setUpScrollView()
                 self.changeImageLabelCounter()
                 self.getImage4()
+                self.tableView.reloadData()
             })
         } else {
             self.getImage4()
@@ -411,14 +420,15 @@ extension GraveStoryTableViewController {
             let storageRef = storage.reference()
             let graveProfileImage = storageRef.child("storyImages/\(imageStringId)")
             graveProfileImage.getData(maxSize: (5000000), completion:  { (data, err) in
-                guard let data = data else {return}
-                guard let image = UIImage(data: data) else {return}
+                guard let data = data else { return }
+                guard let image = UIImage(data: data) else { return }
                 self.storyUIImage4 = image
                 guard let storyImage = self.storyUIImage4 else { return }
                 self.storyImagesArray.append(storyImage)
                 self.setUpScrollView()
                 self.changeImageLabelCounter()
                 self.getImage5()
+                self.tableView.reloadData()
             })
         } else {
             self.getImage5()
@@ -430,7 +440,7 @@ extension GraveStoryTableViewController {
             let storageRef = storage.reference()
             let graveProfileImage = storageRef.child("storyImages/\(imageStringId)")
             graveProfileImage.getData(maxSize: (5000000), completion:  { (data, err) in
-                guard let data = data else {return}
+                guard let data = data else  { return }
                 guard let image = UIImage(data: data) else {return}
                 self.storyUIImage5 = image
                 guard let storyImage = self.storyUIImage5 else { return }
@@ -438,6 +448,7 @@ extension GraveStoryTableViewController {
                 self.setUpScrollView()
                 self.changeImageLabelCounter()
                 self.getImage6()
+                self.tableView.reloadData()
             })
         } else {
             self.getImage6()
@@ -449,13 +460,14 @@ extension GraveStoryTableViewController {
             let storageRef = storage.reference()
             let graveProfileImage = storageRef.child("storyImages/\(imageStringId)")
             graveProfileImage.getData(maxSize: (5000000), completion:  { (data, err) in
-                guard let data = data else {return}
-                guard let image = UIImage(data: data) else {return}
+                guard let data = data else { return }
+                guard let image = UIImage(data: data) else { return }
                 self.storyUIImage6 = image
                 guard let storyImage = self.storyUIImage6 else { return }
                 self.storyImagesArray.append(storyImage)
                 self.setUpScrollView()
                 self.changeImageLabelCounter()
+                self.tableView.reloadData()
             })
         } else {
             return
