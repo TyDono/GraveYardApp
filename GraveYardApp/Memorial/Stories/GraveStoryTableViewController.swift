@@ -206,17 +206,16 @@ class GraveStoryTableViewController: UITableViewController {
     //count is 0 coz it gets it b4 we get any images
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         var height: CGFloat
-        print(storyImagesArray.count)
-        if self.storyImagesArray.count != 0 {
+        if self.storyImagesArray.count == 0 {
             if indexPath.row == 0 {
-                height = 850.0
+                height = 800.0
             } else {
                 height = 0.0
             }
         } else {
-            height = 380
+            height = 340
         }
-        
+        print(height)
         return height
     }
     
@@ -353,7 +352,6 @@ extension GraveStoryTableViewController {
     //it's a mess :/  just placeholder for the tiem being due to time constraint
     func getImage1() {
         if let imageStringId = self.storyImageId1 {
-            print(imageStringId)
             let storageRef1 = storage.reference()
             let graveProfileImage = storageRef1.child("storyImages/\(imageStringId)")
             graveProfileImage.getData(maxSize: (5000000), completion:  { (data, err) in
@@ -381,7 +379,6 @@ extension GraveStoryTableViewController {
             graveProfileImage.getData(maxSize: (5000000), completion:  { (data, err) in
                 guard let data = data else { return }
                 guard let image = UIImage(data: data) else { return }
-                print(imageStringId)
                 self.storyUIImage2 = image
                 guard let storyImage = self.storyUIImage2 else { return }
                 self.storyImagesArray.append(storyImage)
