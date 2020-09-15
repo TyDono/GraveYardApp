@@ -555,9 +555,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                 MapViewController.shared.currentGraveLocationLatitude = String(annotationLat)
                 MapViewController.shared.currentGraveLocationLongitude = String(annotationLong)
                 let date = Date()
-                let format = DateFormatter()
-                format.dateFormat = "MM/dd/yyyy"
-                let formattedDate = format.string(from: date)
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateStyle = .medium
+                let formattedDate = dateFormatter.string(from: date)
                 let newGraveId = UUID().uuidString
                 let profileImageId: String = UUID().uuidString
                 let name: String = ""

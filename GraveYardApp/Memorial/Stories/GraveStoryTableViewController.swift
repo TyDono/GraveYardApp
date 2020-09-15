@@ -203,15 +203,16 @@ class GraveStoryTableViewController: UITableViewController {
         changeImageLabelCounter()
     }
     
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        var height: CGFloat
-        if indexPath.row == 1 {
-            height = 800.0
-        } else {
-            height = 312.0
-        }
-        return height
-    }
+    //constraints r working with this
+//    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        var height: CGFloat
+//        if indexPath.row == 1 {
+//            height = 800.0
+//        } else {
+//            height = 312.0
+//        }
+//        return height
+//    }
     
     func setUpScrollView() {
         for i in 0..<storyImagesArray.count {
