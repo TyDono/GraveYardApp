@@ -271,7 +271,7 @@ class NewGraveStoryTableViewController: UITableViewController, UIImagePickerCont
                 if err == nil {
                     // no error
                 } else {
-                    // this might be called since they might not have images to be deleted. also called if they dont have an image 2 or 3. it will still delete teh iamges that do exist.
+                    // this might be called since they might not have images to be deleted. also called if they dont have an image 2 or 3. it will still delete the images that do exist.
                     print(err as Any)
                 }
             }

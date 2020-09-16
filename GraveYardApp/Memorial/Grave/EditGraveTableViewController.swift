@@ -72,6 +72,8 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
     var videoDataSize: Double = 0.0
     var oldVideoDataSize: Double = 0.0
     var storyCount: Int = 0
+    var introVideoToBeCleared: Bool = false
+    var graveProfileImageToBeCleared: Bool = false
     
     let birthDatePickerCellIndexPath = IndexPath(row: 3, section: 1)
     let deathDatePickerCellIndexPath = IndexPath(row: 3, section: 2)
@@ -604,33 +606,59 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
             
     // MARK: - Actions
     
+    @IBAction func clearGraveProfileImageButonTapped(_ sender: UIButton) {
+        let clearedImage = UIImage(named: "icons8-add-image-90")
+        graveMainImage.image = clearedImage
+        graveProfileImageToBeCleared = true
+        self.tableView.reloadData()
+    }
+    
+    @IBAction func clearGraveIntroVideoButtonTapped(_ sender: UIButton) {
+        let clearedImage = UIImage(named: "addVideo")
+        videoPreviewUIImage.image = clearedImage
+        introVideoToBeCleared = true
+        self.tableView.reloadData()
+    }
+    
     @IBAction func saveGraveInfoTapped(_ sender: UIBarButtonItem) { //  MOST OF COMMENTED OUT CODE WILL BE RE-ADDED WHEN PREMIUM IS LIVE TO KEEP TRACK OF THEIR DATA USE AND TO LET THE USERS KNOW. ADD THIS TO NEWGRAVESTORYVIEWCONTROLLER WHEN PREMIUM IS LIVE
         if nameTextField.text == "" {
             nameTextField.isError(baseColor: UIColor.red.cgColor, numberOfShakes: 3, revert: true)
             return
         } else {
             //self.updateUserData()
-            if let safeVideoURL = self.videoURL {
-                self.uploadToFireBaseVideo(url: safeVideoURL, success: { (String) in
-                    if self.currentImageDataCount != nil {
-                        print("successfully uploaded video to Firebase Storage")
+            switch introVideoToBeCleared {
+            case false:
+                if let safeVideoURL = self.videoURL {
+                    self.uploadToFireBaseVideo(url: safeVideoURL, success: { (String) in
+                        if self.currentImageDataCount != nil {
+                            print("successfully uploaded video to Firebase Storage")
+                        }
+                    }) { (Error) in
+                        print("error \(Error)")
                     }
-                }) { (Error) in
-                    print("error \(Error)")
                 }
+            case true:
+                self.deleteGraveStoryVideo()
             }
+
             //        guard let unwrappedGraveImage = graveMainImage.image else { return } // the uplaod takes 2 long and needs a delay before segue is called
             //        guard let currentDataUseCount = MyFirebase.currentDataUsage else { return }
             //        var checkDataCap: Int = 0
-            for image in graveProfileImages {
-                uploadFirebaseImages(image) { (url) in
-                    guard image.jpegData(compressionQuality: 0.05) != nil else { return }
-                    if self.currentImageDataCount != nil {
-                        print("image uploaded")
+            switch graveProfileImageToBeCleared {
+            case false:
+                for image in graveProfileImages {
+                    uploadFirebaseImages(image) { (url) in
+                        guard image.jpegData(compressionQuality: 0.05) != nil else { return }
+                        if self.currentImageDataCount != nil {
+                            print("image uploaded")
+                        }
+                        guard url != nil else { return }
                     }
-                    guard url != nil else { return }
                 }
+            case true:
+                self.deleteGraveProfileImage()
             }
+
             
             let creatorId = currentAuthID!
             guard let graveId = self.currentGraveId  else { return } // this is the grave id that was tapped on
@@ -707,6 +735,7 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
         let imagePickerController = UIImagePickerController()
         imagePickerController.delegate = self
         imagePickerController.sourceType = UIImagePickerController.SourceType.photoLibrary
+        graveProfileImageToBeCleared = false
         present(imagePickerController, animated: true, completion: nil)
     }
     
@@ -813,12 +842,13 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
     
     @IBAction func uploadVideoButtonWasTapped(_ sender: UIButton) {
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.photoLibrary) {
-         let picker = UIImagePickerController()
-         picker.delegate = self
-         picker.allowsEditing = false
-         picker.mediaTypes = ["public.movie"]
-         present(picker, animated: true, completion: nil)
-         }
+            let picker = UIImagePickerController()
+            picker.delegate = self
+            picker.allowsEditing = false
+            picker.mediaTypes = ["public.movie"]
+            introVideoToBeCleared = false
+            present(picker, animated: true, completion: nil)
+        }
     }
     @IBAction func playVideo(_ sender: UIButton) {
         guard let safeVideoURL = self.videoURL else { return }
