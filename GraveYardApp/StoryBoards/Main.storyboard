@@ -388,7 +388,7 @@
                                                     </constraints>
                                                     <state key="normal" image="smallX"/>
                                                     <connections>
-                                                        <action selector="clearGraveProfileImageButonTapped:" destination="akf-23-k3a" eventType="touchUpInside" id="YE8-2z-ceA"/>
+                                                        <action selector="clearGraveProfileImageButtonTapped:" destination="akf-23-k3a" eventType="touchUpInside" id="YE8-2z-ceA"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -1329,6 +1329,9 @@
                                                         <constraint firstAttribute="height" constant="30" id="Loz-sM-9N0"/>
                                                     </constraints>
                                                     <state key="normal" image="smallX"/>
+                                                    <connections>
+                                                        <action selector="clearStoryImage1ButtonTapped:" destination="8GQ-fW-7kZ" eventType="touchUpInside" id="mNB-9k-wqM"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -1376,6 +1379,9 @@
                                                         <constraint firstAttribute="width" constant="36" id="rg4-0o-fj9"/>
                                                     </constraints>
                                                     <state key="normal" image="smallX"/>
+                                                    <connections>
+                                                        <action selector="clearStoryImage2ButtonTapped:" destination="8GQ-fW-7kZ" eventType="touchUpInside" id="NV8-gN-7yh"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -1423,6 +1429,9 @@
                                                         <constraint firstAttribute="height" constant="30" id="pFv-iz-ox8"/>
                                                     </constraints>
                                                     <state key="normal" image="smallX"/>
+                                                    <connections>
+                                                        <action selector="clearStoryImage3ButtonTapped:" destination="8GQ-fW-7kZ" eventType="touchUpInside" id="6GX-2i-3eC"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -1470,6 +1479,9 @@
                                                         <constraint firstAttribute="height" constant="30" id="zWC-57-06d"/>
                                                     </constraints>
                                                     <state key="normal" image="smallX"/>
+                                                    <connections>
+                                                        <action selector="clearStoryImage4ButtonTapped:" destination="8GQ-fW-7kZ" eventType="touchUpInside" id="oh5-5D-Qov"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -1517,6 +1529,9 @@
                                                         <constraint firstAttribute="width" constant="36" id="f8T-G2-rRl"/>
                                                     </constraints>
                                                     <state key="normal" image="smallX"/>
+                                                    <connections>
+                                                        <action selector="clearStoryImage5ButtonTapped:" destination="8GQ-fW-7kZ" eventType="touchUpInside" id="oFN-mn-6rs"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -1564,6 +1579,9 @@
                                                         <constraint firstAttribute="width" constant="36" id="b10-7A-NCc"/>
                                                     </constraints>
                                                     <state key="normal" image="smallX"/>
+                                                    <connections>
+                                                        <action selector="clearStoryImage6ButtonTapped:" destination="8GQ-fW-7kZ" eventType="touchUpInside" id="arV-Ul-wEh"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>

@@ -606,8 +606,8 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
             
     // MARK: - Actions
     
-    @IBAction func clearGraveProfileImageButonTapped(_ sender: UIButton) {
-        let clearedImage = UIImage(named: "icons8-add-image-90")
+    @IBAction func clearGraveProfileImageButtonTapped(_ sender: UIButton) {
+        let clearedImage = UIImage(named: "tyler_mountain")
         graveMainImage.image = clearedImage
         graveProfileImageToBeCleared = true
         self.tableView.reloadData()

@@ -257,6 +257,16 @@ class NewGraveStoryTableViewController: UITableViewController, UIImagePickerCont
 //        }
 //    }
     
+    func deleteSelectStopryImage(imageName: String) {
+        self.storage.reference().child("storyImages/\(imageName)").delete { (err) in
+            if err == nil {
+                //no error
+            } else {
+                print(err)
+            }
+        }
+    }
+    
     func deletedStoryImages() {
         guard let storyImageId1 = self.storyImageId1,
             let storyImageId2 = self.storyImageId2,
@@ -298,6 +308,7 @@ class NewGraveStoryTableViewController: UITableViewController, UIImagePickerCont
     // MARK: - Actions
     
     @IBAction func saveStoryBarButtonTapped(_ sender: UIBarButtonItem) {
+        let clearedImage = UIImage(named: "tyler_mountain")
 //        for storyImage in storyImages {
 //
 //            print(storyImage)
@@ -307,6 +318,10 @@ class NewGraveStoryTableViewController: UITableViewController, UIImagePickerCont
 //        }
         
         if storyImage1.image != nil {
+            if storyImage1.image == clearedImage {
+                guard let safeStoryImageId = self.storyImageId1 else { return }
+                deleteSelectStopryImage(imageName: safeStoryImageId)
+            }
             for image in storyImages1 {
                 uploadFirebaseImage1(image) { (url) in
 //                    guard let url = url else { return }
@@ -316,8 +331,11 @@ class NewGraveStoryTableViewController: UITableViewController, UIImagePickerCont
                 }
             }
         }
-        
         if storyImage2.image != nil {
+            if storyImage2.image == clearedImage {
+                guard let safeStoryImageId = self.storyImageId2 else { return }
+                deleteSelectStopryImage(imageName: safeStoryImageId)
+            }
             for image in storyImages2 {
                 uploadFirebaseImage2(image) { (url) in
 //                    guard let url = url else { return }
@@ -326,6 +344,10 @@ class NewGraveStoryTableViewController: UITableViewController, UIImagePickerCont
         }
 
         if storyImage3.image != nil {
+            if storyImage3.image == clearedImage {
+                guard let safeStoryImageId = self.storyImageId3 else { return }
+                deleteSelectStopryImage(imageName: safeStoryImageId)
+            }
             for image in storyImages3 {
                 uploadFirebaseImage3(image) { (url) in
 //                    guard let url = url else { return }
@@ -334,6 +356,10 @@ class NewGraveStoryTableViewController: UITableViewController, UIImagePickerCont
         }
         
         if storyImage4.image != nil {
+            if storyImage4.image == clearedImage {
+                guard let safeStoryImageId = self.storyImageId4 else { return }
+                deleteSelectStopryImage(imageName: safeStoryImageId)
+            }
             for image in storyImages4 {
                 uploadFirebaseImage4(image) { (url) in
 //                    guard let url = url else { return }
@@ -342,6 +368,10 @@ class NewGraveStoryTableViewController: UITableViewController, UIImagePickerCont
         }
         
         if storyImage5.image != nil {
+            if storyImage5.image == clearedImage {
+                guard let safeStoryImageId = self.storyImageId5 else { return }
+                deleteSelectStopryImage(imageName: safeStoryImageId)
+            }
             for image in storyImages5 {
                 uploadFirebaseImage5(image) { (url) in
 //                    guard let url = url else { return }
@@ -350,6 +380,10 @@ class NewGraveStoryTableViewController: UITableViewController, UIImagePickerCont
         }
         
         if storyImage6.image != nil {
+            if storyImage6.image == clearedImage {
+                guard let safeStoryImageId = self.storyImageId6 else { return }
+                deleteSelectStopryImage(imageName: safeStoryImageId)
+            }
             for image in storyImages6 {
                 uploadFirebaseImage6(image) { (url) in
 //                    guard let url = url else { return }
@@ -437,6 +471,42 @@ class NewGraveStoryTableViewController: UITableViewController, UIImagePickerCont
         present(imagePickerController, animated: true, completion: nil)
     }
     
+    @IBAction func clearStoryImage1ButtonTapped(_ sender: UIButton) {
+        let clearedImage = UIImage(named: "tyler_mountain")
+        storyImage1.image = clearedImage
+        self.tableView.reloadData()
+    }
+    
+    @IBAction func clearStoryImage2ButtonTapped(_ sender: UIButton) {
+        let clearedImage = UIImage(named: "tyler_mountain")
+        storyImage2.image = clearedImage
+        self.tableView.reloadData()
+    }
+    
+    @IBAction func clearStoryImage3ButtonTapped(_ sender: UIButton) {
+        let clearedImage = UIImage(named: "tyler_mountain")
+        storyImage3.image = clearedImage
+        self.tableView.reloadData()
+    }
+    
+    @IBAction func clearStoryImage4ButtonTapped(_ sender: UIButton) {
+        let clearedImage = UIImage(named: "tyler_mountain")
+        storyImage4.image = clearedImage
+        self.tableView.reloadData()
+    }
+    
+    @IBAction func clearStoryImage5ButtonTapped(_ sender: UIButton) {
+        let clearedImage = UIImage(named: "tyler_mountain")
+        storyImage5.image = clearedImage
+        self.tableView.reloadData()
+    }
+    
+    @IBAction func clearStoryImage6ButtonTapped(_ sender: UIButton) {
+        let clearedImage = UIImage(named: "tyler_mountain")
+        storyImage6.image = clearedImage
+        self.tableView.reloadData()
+    }
+    
 }
 
 extension NewGraveStoryTableViewController {
@@ -480,8 +550,8 @@ extension NewGraveStoryTableViewController {
             let storageRef = storage.reference()
             let graveProfileImage = storageRef.child("storyImages/\(imageStringId)")
             graveProfileImage.getData(maxSize: (5000000), completion:  { (data, err) in
-                guard let data = data else {return}
-                guard let image = UIImage(data: data) else {return}
+                guard let data = data else { return }
+                guard let image = UIImage(data: data) else { return }
                 self.storyImage1.image = image
 //                self.imageLabel1.text = nil
             })
@@ -513,8 +583,8 @@ extension NewGraveStoryTableViewController {
             let storageRef = storage.reference()
             let graveProfileImage = storageRef.child("storyImages/\(imageStringId)")
             graveProfileImage.getData(maxSize: (5000000), completion:  { (data, err) in
-                guard let data = data else {return}
-                guard let image = UIImage(data: data) else {return}
+                guard let data = data else { return }
+                guard let image = UIImage(data: data) else { return }
                 self.storyImage2.image = image
 //                self.imageLabel2.text = nil
             })
@@ -546,8 +616,8 @@ extension NewGraveStoryTableViewController {
             let storageRef = storage.reference()
             let graveProfileImage = storageRef.child("storyImages/\(imageStringId)")
             graveProfileImage.getData(maxSize: (5000000), completion:  { (data, err) in
-                guard let data = data else {return}
-                guard let image = UIImage(data: data) else {return}
+                guard let data = data else { return }
+                guard let image = UIImage(data: data) else { return }
                 self.storyImage3.image = image
 //                self.imageLabel3.text = nil
             })
@@ -579,8 +649,8 @@ extension NewGraveStoryTableViewController {
             let storageRef = storage.reference()
             let graveProfileImage = storageRef.child("storyImages/\(imageStringId)")
             graveProfileImage.getData(maxSize: (5000000), completion:  { (data, err) in
-                guard let data = data else {return}
-                guard let image = UIImage(data: data) else {return}
+                guard let data = data else { return }
+                guard let image = UIImage(data: data) else { return }
                 self.storyImage4.image = image
 //                self.imageLabel1.text = nil
             })
@@ -612,8 +682,8 @@ extension NewGraveStoryTableViewController {
             let storageRef = storage.reference()
             let graveProfileImage = storageRef.child("storyImages/\(imageStringId)")
             graveProfileImage.getData(maxSize: (5000000), completion:  { (data, err) in
-                guard let data = data else {return}
-                guard let image = UIImage(data: data) else {return}
+                guard let data = data else { return }
+                guard let image = UIImage(data: data) else { return }
                 self.storyImage5.image = image
 //                self.imageLabel1.text = nil
             })
@@ -645,8 +715,8 @@ extension NewGraveStoryTableViewController {
             let storageRef = storage.reference()
             let graveProfileImage = storageRef.child("storyImages/\(imageStringId)")
             graveProfileImage.getData(maxSize: (5000000), completion:  { (data, err) in
-                guard let data = data else {return}
-                guard let image = UIImage(data: data) else {return}
+                guard let data = data else { return }
+                guard let image = UIImage(data: data) else { return }
                 self.storyImage6.image = image
 //                self.imageLabel1.text = nil
             })
