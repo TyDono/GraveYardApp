@@ -483,7 +483,7 @@ extension NewGraveStoryTableViewController {
                 guard let data = data else {return}
                 guard let image = UIImage(data: data) else {return}
                 self.storyImage1.image = image
-                self.imageLabel1.text = nil
+//                self.imageLabel1.text = nil
             })
         } else {
             return
@@ -516,7 +516,7 @@ extension NewGraveStoryTableViewController {
                 guard let data = data else {return}
                 guard let image = UIImage(data: data) else {return}
                 self.storyImage2.image = image
-                self.imageLabel2.text = nil
+//                self.imageLabel2.text = nil
             })
         } else {
             return
@@ -549,7 +549,7 @@ extension NewGraveStoryTableViewController {
                 guard let data = data else {return}
                 guard let image = UIImage(data: data) else {return}
                 self.storyImage3.image = image
-                self.imageLabel3.text = nil
+//                self.imageLabel3.text = nil
             })
         } else {
             return

@@ -1,11 +1,11 @@
 {
   "images" : [
     {
-      "filename" : "summer.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "smallX.png",
       "idiom" : "universal",
       "scale" : "2x"
     },

@@ -254,8 +254,12 @@ class GraveTableViewController: UITableViewController {
             let storageRef = storage.reference()
             let graveProfileImage = storageRef.child("graveProfileImages/\(imageStringId)")
             graveProfileImage.getData(maxSize: (5000000), completion:  { (data, err) in
-                guard let data = data else {return}
-                guard let image = UIImage(data: data) else {return}
+                guard let data = data else {
+                    let clearedImage = UIImage(named: "default-avatar")
+                    self.graveMainImage.image = clearedImage
+                    return
+                }
+                guard let image = UIImage(data: data) else { return }
                 self.graveMainImage.image = image
             })
         } else {
