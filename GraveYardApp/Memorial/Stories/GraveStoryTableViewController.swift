@@ -16,6 +16,7 @@ class GraveStoryTableViewController: UITableViewController {
     // MARK: - Outlets
     
 
+    @IBOutlet weak var justOneImageOnly: UIImageView!
     @IBOutlet weak var textStoryCell: UITableViewCell!
     @IBOutlet weak var imagesStoryCell: UITableViewCell!
     @IBOutlet weak var reportButton: UIButton!
@@ -67,6 +68,7 @@ class GraveStoryTableViewController: UITableViewController {
         checkForCreatorId()
         storyImagesScrollView.delegate = self
         self.reportButton.layer.cornerRadius = 10
+        justOneImageOnly.isHidden == true
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) {
             self.getImage1()
         }
@@ -219,16 +221,21 @@ class GraveStoryTableViewController: UITableViewController {
         return height
     }
     
+    func JustOneImage() {
+        justOneImageOnly.isHidden = false
+        self.justOneImageOnly.image = storyUIImage1
+    }
+    
     func setUpScrollView() {
-        for i in 0..<storyImagesArray.count {
-            let imageView = UIImageView()
-            imageView.image = storyImagesArray[i]
-            let xPosition = self.view.frame.width * CGFloat(i)
-            imageView.frame = CGRect(x: xPosition, y: 0, width: self.storyImagesScrollView.frame.width, height: self.storyImagesScrollView.frame.height)
-            imageView.contentMode = .scaleAspectFit
-            storyImagesScrollView.contentSize.width = storyImagesScrollView.frame.width * CGFloat(i + 1)
-            storyImagesScrollView.addSubview(imageView)
-        }
+            for i in 0..<storyImagesArray.count {
+                let imageView = UIImageView()
+                imageView.image = storyImagesArray[i]
+                let xPosition = self.view.frame.width * CGFloat(i)
+                imageView.frame = CGRect(x: xPosition, y: 0, width: self.storyImagesScrollView.frame.width, height: self.storyImagesScrollView.frame.height)
+                imageView.contentMode = .scaleAspectFit
+                storyImagesScrollView.contentSize.width = storyImagesScrollView.frame.width * CGFloat(i + 1)
+                storyImagesScrollView.addSubview(imageView)
+            }
     }
     
     func chageTextColor() {
@@ -356,13 +363,17 @@ extension GraveStoryTableViewController {
             let graveProfileImage = storageRef1.child("storyImages/\(imageStringId)")
             graveProfileImage.getData(maxSize: (5000000), completion:  { (data, err) in
                 guard let data = data else { return }
-                guard let image = UIImage(data: data) else { return }
+                guard let image = UIImage(data: data) else {
+                    self.getImage2()
+                    return
+                }
                 //                self.storyImagesArray.append(image)
                 self.storyUIImage1 = image
                 //                self.storyImage1.image = image // images exists but storyimage1 is nil
                 guard let storyImage = self.storyUIImage1 else { return }
                 //                guard let storyImage: UIImage = self.storyImage1 else { return }
                 self.storyImagesArray.append(storyImage)
+                self.JustOneImage()
                 self.setUpScrollView()
                 self.getImage2()
                 self.tableView.reloadData()
@@ -378,12 +389,16 @@ extension GraveStoryTableViewController {
             let graveProfileImage = storageRef.child("storyImages/\(imageStringId)")
             graveProfileImage.getData(maxSize: (5000000), completion:  { (data, err) in
                 guard let data = data else { return }
-                guard let image = UIImage(data: data) else { return }
+                guard let image = UIImage(data: data) else {
+                    self.getImage3()
+                    return
+                }
                 self.storyUIImage2 = image
                 guard let storyImage = self.storyUIImage2 else { return }
                 self.storyImagesArray.append(storyImage)
                 self.setUpScrollView()
                 self.changeImageLabelCounter()
+                self.justOneImageOnly.isHidden = true
                 self.getImage3()
                 self.tableView.reloadData()
             })
@@ -397,7 +412,10 @@ extension GraveStoryTableViewController {
             let storageRef = storage.reference()
             let graveProfileImage = storageRef.child("storyImages/\(imageStringId)")
             graveProfileImage.getData(maxSize: (5000000), completion:  { (data, err) in
-                guard let data = data else { return }
+                guard let data = data else {
+                    self.getImage4()
+                    return
+                }
                 guard let image = UIImage(data: data) else { return }
                 self.storyUIImage3 = image
                 guard let storyImage = self.storyUIImage3 else { return }
@@ -417,7 +435,10 @@ extension GraveStoryTableViewController {
             let storageRef = storage.reference()
             let graveProfileImage = storageRef.child("storyImages/\(imageStringId)")
             graveProfileImage.getData(maxSize: (5000000), completion:  { (data, err) in
-                guard let data = data else { return }
+                guard let data = data else {
+                    self.getImage5()
+                    return
+                }
                 guard let image = UIImage(data: data) else { return }
                 self.storyUIImage4 = image
                 guard let storyImage = self.storyUIImage4 else { return }
@@ -437,7 +458,10 @@ extension GraveStoryTableViewController {
             let storageRef = storage.reference()
             let graveProfileImage = storageRef.child("storyImages/\(imageStringId)")
             graveProfileImage.getData(maxSize: (5000000), completion:  { (data, err) in
-                guard let data = data else  { return }
+                guard let data = data else {
+                    self.getImage5()
+                    return
+                }
                 guard let image = UIImage(data: data) else {return}
                 self.storyUIImage5 = image
                 guard let storyImage = self.storyUIImage5 else { return }

@@ -1033,6 +1033,9 @@
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D88-RR-YuN">
                                                             <rect key="frame" x="0.0" y="0.0" width="414" height="301"/>
                                                             <subviews>
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="KFj-eo-EIy">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="301"/>
+                                                                </imageView>
                                                                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wkN-1j-kTE">
                                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="301"/>
                                                                     <subviews>
@@ -1054,8 +1057,12 @@
                                                             </subviews>
                                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                             <constraints>
+                                                                <constraint firstAttribute="bottom" secondItem="KFj-eo-EIy" secondAttribute="bottom" id="5kA-Jo-Ji1"/>
                                                                 <constraint firstItem="wkN-1j-kTE" firstAttribute="top" secondItem="D88-RR-YuN" secondAttribute="top" id="AaZ-yL-Wcc"/>
                                                                 <constraint firstItem="wkN-1j-kTE" firstAttribute="centerX" secondItem="D88-RR-YuN" secondAttribute="centerX" id="IcG-SN-zpz"/>
+                                                                <constraint firstItem="KFj-eo-EIy" firstAttribute="leading" secondItem="D88-RR-YuN" secondAttribute="leading" id="KxF-gQ-d1M"/>
+                                                                <constraint firstItem="KFj-eo-EIy" firstAttribute="top" secondItem="D88-RR-YuN" secondAttribute="top" id="pvc-5N-TFO"/>
+                                                                <constraint firstAttribute="trailing" secondItem="KFj-eo-EIy" secondAttribute="trailing" id="uVn-ZU-FiC"/>
                                                                 <constraint firstItem="wkN-1j-kTE" firstAttribute="leading" secondItem="D88-RR-YuN" secondAttribute="leading" id="vcc-MO-XyG"/>
                                                                 <constraint firstItem="wkN-1j-kTE" firstAttribute="centerY" secondItem="D88-RR-YuN" secondAttribute="centerY" id="wRg-90-ejC"/>
                                                             </constraints>
@@ -1130,6 +1137,7 @@
                     <connections>
                         <outlet property="imageCounterLabel" destination="jMZ-gj-0u3" id="WoX-25-vzk"/>
                         <outlet property="imagesStoryCell" destination="bBl-X2-GrS" id="LJb-M8-0vA"/>
+                        <outlet property="justOneImageOnly" destination="KFj-eo-EIy" id="wXu-MO-joC"/>
                         <outlet property="leftArrowButton" destination="jhF-Yl-Yx7" id="JHV-LJ-6XG"/>
                         <outlet property="reportButton" destination="oYw-nw-F7c" id="qZz-3d-8W3"/>
                         <outlet property="reportCommentsTextView" destination="usB-Cu-u8F" id="Mfl-1u-zcx"/>
