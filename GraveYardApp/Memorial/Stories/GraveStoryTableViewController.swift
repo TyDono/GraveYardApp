@@ -68,7 +68,7 @@ class GraveStoryTableViewController: UITableViewController {
         checkForCreatorId()
         storyImagesScrollView.delegate = self
         self.reportButton.layer.cornerRadius = 10
-        justOneImageOnly.isHidden == true
+        justOneImageOnly.isHidden = true
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) {
             self.getImage1()
         }
@@ -227,15 +227,15 @@ class GraveStoryTableViewController: UITableViewController {
     }
     
     func setUpScrollView() {
-            for i in 0..<storyImagesArray.count {
-                let imageView = UIImageView()
-                imageView.image = storyImagesArray[i]
-                let xPosition = self.view.frame.width * CGFloat(i)
-                imageView.frame = CGRect(x: xPosition, y: 0, width: self.storyImagesScrollView.frame.width, height: self.storyImagesScrollView.frame.height)
-                imageView.contentMode = .scaleAspectFit
-                storyImagesScrollView.contentSize.width = storyImagesScrollView.frame.width * CGFloat(i + 1)
-                storyImagesScrollView.addSubview(imageView)
-            }
+        for i in 0..<storyImagesArray.count {
+            let imageView = UIImageView()
+            imageView.image = storyImagesArray[i]
+            let xPosition = self.view.frame.width * CGFloat(i)
+            imageView.frame = CGRect(x: xPosition, y: 0, width: self.storyImagesScrollView.frame.width, height: self.storyImagesScrollView.frame.height)
+            imageView.contentMode = .scaleAspectFit
+            storyImagesScrollView.contentSize.width = storyImagesScrollView.frame.width * CGFloat(i + 1)
+            storyImagesScrollView.addSubview(imageView)
+        }
     }
     
     func chageTextColor() {
