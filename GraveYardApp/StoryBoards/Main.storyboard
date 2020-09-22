@@ -2053,11 +2053,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cKZ-bK-L1I" customClass="GIDSignInButton">
-                                <rect key="frame" x="121" y="808" width="173" height="62"/>
+                                <rect key="frame" x="120" y="808" width="173" height="62"/>
                                 <color key="backgroundColor" systemColor="systemGray2Color"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="62" id="4GS-Jq-dtu"/>
-                                    <constraint firstAttribute="width" constant="173" id="GWK-os-aUl"/>
+                                    <constraint firstAttribute="height" constant="62" id="UcP-IQ-kRw"/>
+                                    <constraint firstAttribute="width" constant="173" id="d58-1K-h0b"/>
                                 </constraints>
                                 <connections>
                                     <action selector="googleSignIn:" destination="V3w-If-NiO" eventType="valueChanged" id="fFY-U4-IyV"/>
@@ -2078,12 +2078,12 @@
                         <viewLayoutGuide key="safeArea" id="qmL-If-WqM"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="qmL-If-WqM" firstAttribute="trailing" secondItem="cKZ-bK-L1I" secondAttribute="trailing" constant="120" id="9xq-nh-kgV"/>
+                            <constraint firstItem="cKZ-bK-L1I" firstAttribute="centerY" secondItem="hhe-VD-6ou" secondAttribute="centerY" constant="391" id="FGj-d6-bo3"/>
+                            <constraint firstItem="cKZ-bK-L1I" firstAttribute="centerX" secondItem="rYB-Eg-Mts" secondAttribute="centerX" id="GFp-2u-rcJ"/>
+                            <constraint firstItem="cKZ-bK-L1I" firstAttribute="top" secondItem="rYB-Eg-Mts" secondAttribute="bottom" constant="8" id="Na4-JJ-fxL"/>
                             <constraint firstAttribute="trailingMargin" secondItem="rYB-Eg-Mts" secondAttribute="trailing" constant="82" id="Uic-AH-8qm"/>
-                            <constraint firstItem="cKZ-bK-L1I" firstAttribute="bottom" secondItem="qmL-If-WqM" secondAttribute="bottom" constant="8" id="spo-L5-1bC"/>
+                            <constraint firstAttribute="bottom" secondItem="cKZ-bK-L1I" secondAttribute="bottom" constant="26" id="rOU-O0-uej"/>
                             <constraint firstItem="rYB-Eg-Mts" firstAttribute="leading" secondItem="qmL-If-WqM" secondAttribute="leading" constant="101" id="wHp-ME-P9K"/>
-                            <constraint firstItem="cKZ-bK-L1I" firstAttribute="top" secondItem="rYB-Eg-Mts" secondAttribute="bottom" constant="8" id="wuL-np-hEk"/>
-                            <constraint firstItem="cKZ-bK-L1I" firstAttribute="top" secondItem="rYB-Eg-Mts" secondAttribute="bottom" constant="8" symbolic="YES" id="y9S-M3-thd"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="rxj-8M-V1F">
