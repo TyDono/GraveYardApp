@@ -2053,21 +2053,21 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cKZ-bK-L1I" customClass="GIDSignInButton">
-                                <rect key="frame" x="120" y="808" width="173" height="62"/>
+                                <rect key="frame" x="120.5" y="808" width="173" height="62"/>
                                 <color key="backgroundColor" systemColor="systemGray2Color"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="62" id="UcP-IQ-kRw"/>
-                                    <constraint firstAttribute="width" constant="173" id="d58-1K-h0b"/>
+                                    <constraint firstAttribute="height" constant="62" id="HQA-0C-tAA"/>
+                                    <constraint firstAttribute="width" constant="173" id="s75-X3-4Gw"/>
                                 </constraints>
                                 <connections>
                                     <action selector="googleSignIn:" destination="V3w-If-NiO" eventType="valueChanged" id="fFY-U4-IyV"/>
                                 </connections>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rYB-Eg-Mts">
-                                <rect key="frame" x="101" y="762" width="211" height="38"/>
+                                <rect key="frame" x="101" y="762" width="212" height="38"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="211" id="dKW-IT-LwY"/>
-                                    <constraint firstAttribute="height" constant="38" id="j3P-uw-FxR"/>
+                                    <constraint firstAttribute="width" constant="212" id="6UO-DD-yVq"/>
+                                    <constraint firstAttribute="height" constant="38" id="hgb-H5-jTw"/>
                                 </constraints>
                                 <state key="normal" image="appleSigninButton"/>
                                 <connections>
@@ -2078,12 +2078,10 @@
                         <viewLayoutGuide key="safeArea" id="qmL-If-WqM"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="cKZ-bK-L1I" firstAttribute="centerY" secondItem="hhe-VD-6ou" secondAttribute="centerY" constant="391" id="FGj-d6-bo3"/>
-                            <constraint firstItem="cKZ-bK-L1I" firstAttribute="centerX" secondItem="rYB-Eg-Mts" secondAttribute="centerX" id="GFp-2u-rcJ"/>
-                            <constraint firstItem="cKZ-bK-L1I" firstAttribute="top" secondItem="rYB-Eg-Mts" secondAttribute="bottom" constant="8" id="Na4-JJ-fxL"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="rYB-Eg-Mts" secondAttribute="trailing" constant="82" id="Uic-AH-8qm"/>
-                            <constraint firstAttribute="bottom" secondItem="cKZ-bK-L1I" secondAttribute="bottom" constant="26" id="rOU-O0-uej"/>
-                            <constraint firstItem="rYB-Eg-Mts" firstAttribute="leading" secondItem="qmL-If-WqM" secondAttribute="leading" constant="101" id="wHp-ME-P9K"/>
+                            <constraint firstItem="cKZ-bK-L1I" firstAttribute="centerX" secondItem="hhe-VD-6ou" secondAttribute="centerX" id="Gx4-HK-e4h"/>
+                            <constraint firstItem="rYB-Eg-Mts" firstAttribute="centerX" secondItem="hhe-VD-6ou" secondAttribute="centerX" id="Ohi-5w-eUn"/>
+                            <constraint firstItem="cKZ-bK-L1I" firstAttribute="top" secondItem="rYB-Eg-Mts" secondAttribute="bottom" constant="8" symbolic="YES" id="bTW-mc-nA5"/>
+                            <constraint firstAttribute="bottom" secondItem="cKZ-bK-L1I" secondAttribute="bottom" constant="26" id="zaK-sd-5Y7"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="rxj-8M-V1F">
@@ -2101,7 +2099,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eoN-ga-5yR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="8kA-df-0Ng" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1757.5999999999999" y="-142.57871064467767"/>
+            <point key="canvasLocation" x="1756.521739130435" y="-142.63392857142856"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="qQm-FZ-b6Z">
@@ -2140,9 +2138,9 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="JUc-GY-fg1"/>
-        <segue reference="v3p-eh-PGk"/>
+        <segue reference="z4g-pH-uIZ"/>
         <segue reference="fpu-aT-yyc"/>
-        <segue reference="soh-re-d5z"/>
+        <segue reference="xN6-dc-fkE"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Page" width="617" height="500"/>
