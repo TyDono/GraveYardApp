@@ -66,7 +66,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        getUserMemorialCount()
         self.mapView.removeAnnotations(self.mapView.annotations)
         getGraveEntries { (graves) in
             self.graves = graves
@@ -104,7 +103,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     
     func getUserMemorialCount() {
         if self.currentAuthID == nil {
-            self.yourMemorialsButton.titleLabel?.text = "Create Memorials"
+            self.yourMemorialsButton.setTitle("Create Memorials", for: .normal)
         }
         guard let safeCurrentAuthID = self.currentAuthID else { return }
         let userRef = self.db.collection("userProfile").whereField("currentUserAuthId", isEqualTo: safeCurrentAuthID)
@@ -115,10 +114,11 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                 for document in (snapshot?.documents)! {
                     if let memorialCount = document.data()["memorialCount"] as? Int {
                         MyFirebase.memorialCount = memorialCount
-                        if MyFirebase.memorialCount == 0 {
-                            self.yourMemorialsButton.titleLabel?.text = "Create Memorials"
-                        } else {
-                            self.yourMemorialsButton.titleLabel?.text = "Memorial Sites"
+                        switch MyFirebase.memorialCount {
+                        case 0:
+                            self.yourMemorialsButton.setTitle("Create Memorials", for: .normal)
+                        default:
+                            self.yourMemorialsButton.setTitle("Memorial Sites", for: .normal)
                         }
                     }
                 }

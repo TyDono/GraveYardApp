@@ -1845,7 +1845,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TgG-vd-iv9">
                                         <rect key="frame" x="0.0" y="0.0" width="237" height="38.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <state key="normal" title="Your Memorial Sites">
+                                        <state key="normal">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
@@ -2137,7 +2137,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="JUc-GY-fg1"/>
+        <segue reference="74B-mS-0pn"/>
         <segue reference="z4g-pH-uIZ"/>
         <segue reference="fpu-aT-yyc"/>
         <segue reference="xN6-dc-fkE"/>

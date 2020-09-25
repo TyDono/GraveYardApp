@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3362CB87928C29254756C0AE /* Pods_GraveYardApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 348ED5F5413457F6CE84F925 /* Pods_GraveYardApp.framework */; };
+		4B0DDBB897B5089E7934A0B0 /* Pods_GraveYardApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B1A0ACCB90810C926060354 /* Pods_GraveYardApp.framework */; };
 		CB398EFB23695D0600A515B9 /* GraveStoriesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB398EFA23695D0600A515B9 /* GraveStoriesTableViewController.swift */; };
 		CB3A1AA524F4475500BACC73 /* MemorialsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3A1AA424F4475500BACC73 /* MemorialsTableViewController.swift */; };
 		CB3A1AA724F447DC00BACC73 /* MemorialsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3A1AA624F447DC00BACC73 /* MemorialsTableViewCell.swift */; };
@@ -44,8 +44,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		348ED5F5413457F6CE84F925 /* Pods_GraveYardApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GraveYardApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		A4F7843C66B0D74E07A3E170 /* Pods-GraveYardApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GraveYardApp.debug.xcconfig"; path = "Target Support Files/Pods-GraveYardApp/Pods-GraveYardApp.debug.xcconfig"; sourceTree = "<group>"; };
+		3ED24DD6CAA05B5F1EC9CD74 /* Pods-GraveYardApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GraveYardApp.debug.xcconfig"; path = "Target Support Files/Pods-GraveYardApp/Pods-GraveYardApp.debug.xcconfig"; sourceTree = "<group>"; };
+		4ACDFA15791B3A39694EE154 /* Pods-GraveYardApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GraveYardApp.release.xcconfig"; path = "Target Support Files/Pods-GraveYardApp/Pods-GraveYardApp.release.xcconfig"; sourceTree = "<group>"; };
+		5B1A0ACCB90810C926060354 /* Pods_GraveYardApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GraveYardApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB398EFA23695D0600A515B9 /* GraveStoriesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraveStoriesTableViewController.swift; sourceTree = "<group>"; };
 		CB3A1AA424F4475500BACC73 /* MemorialsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemorialsTableViewController.swift; sourceTree = "<group>"; };
 		CB3A1AA624F447DC00BACC73 /* MemorialsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemorialsTableViewCell.swift; sourceTree = "<group>"; };
@@ -82,7 +83,6 @@
 		CBCE0E3023FD144F0077A4F1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CBCE0E3223FD14690077A4F1 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CBF424A124FE1F960095AE96 /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
-		D2F44BC10CD98B45A7DA38E4 /* Pods-GraveYardApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GraveYardApp.release.xcconfig"; path = "Target Support Files/Pods-GraveYardApp/Pods-GraveYardApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,28 +90,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3362CB87928C29254756C0AE /* Pods_GraveYardApp.framework in Frameworks */,
+				4B0DDBB897B5089E7934A0B0 /* Pods_GraveYardApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1D9EAB64215B5264537096B9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5B1A0ACCB90810C926060354 /* Pods_GraveYardApp.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		4C60F0685EEE03CC36F49DF4 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				A4F7843C66B0D74E07A3E170 /* Pods-GraveYardApp.debug.xcconfig */,
-				D2F44BC10CD98B45A7DA38E4 /* Pods-GraveYardApp.release.xcconfig */,
+				3ED24DD6CAA05B5F1EC9CD74 /* Pods-GraveYardApp.debug.xcconfig */,
+				4ACDFA15791B3A39694EE154 /* Pods-GraveYardApp.release.xcconfig */,
 			);
 			path = Pods;
-			sourceTree = "<group>";
-		};
-		556FC4C18708FF8952DB61B2 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				348ED5F5413457F6CE84F925 /* Pods_GraveYardApp.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		CB06FB02237F223500611C62 /* Recovered References */ = {
@@ -152,7 +152,7 @@
 				CB5AE18423512B14001BCCCE /* Products */,
 				4C60F0685EEE03CC36F49DF4 /* Pods */,
 				CB06FB02237F223500611C62 /* Recovered References */,
-				556FC4C18708FF8952DB61B2 /* Frameworks */,
+				1D9EAB64215B5264537096B9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -261,12 +261,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CB5AE19723512B16001BCCCE /* Build configuration list for PBXNativeTarget "GraveYardApp" */;
 			buildPhases = (
-				0068BAFC5377E7C670959088 /* [CP] Check Pods Manifest.lock */,
+				168E25EC4ABD6DD99E8E5337 /* [CP] Check Pods Manifest.lock */,
 				CB5AE17F23512B14001BCCCE /* Sources */,
 				CB5AE18023512B14001BCCCE /* Frameworks */,
 				CB5AE18123512B14001BCCCE /* Resources */,
-				99824BCC112EFC859FAAA932 /* [CP] Embed Pods Frameworks */,
-				3CB7326D29822F29034E1C33 /* [CP] Copy Pods Resources */,
+				995ACD94D2232BF0223495B8 /* [CP] Embed Pods Frameworks */,
+				1DABCBBF1629FC012A9078D7 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -328,7 +328,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0068BAFC5377E7C670959088 /* [CP] Check Pods Manifest.lock */ = {
+		168E25EC4ABD6DD99E8E5337 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -350,7 +350,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		3CB7326D29822F29034E1C33 /* [CP] Copy Pods Resources */ = {
+		1DABCBBF1629FC012A9078D7 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -367,7 +367,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GraveYardApp/Pods-GraveYardApp-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		99824BCC112EFC859FAAA932 /* [CP] Embed Pods Frameworks */ = {
+		995ACD94D2232BF0223495B8 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -541,7 +541,7 @@
 		};
 		CB5AE19823512B16001BCCCE /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A4F7843C66B0D74E07A3E170 /* Pods-GraveYardApp.debug.xcconfig */;
+			baseConfigurationReference = 3ED24DD6CAA05B5F1EC9CD74 /* Pods-GraveYardApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = GraveYardApp/GraveYardApp.entitlements;
@@ -564,7 +564,7 @@
 		};
 		CB5AE19923512B16001BCCCE /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D2F44BC10CD98B45A7DA38E4 /* Pods-GraveYardApp.release.xcconfig */;
+			baseConfigurationReference = 4ACDFA15791B3A39694EE154 /* Pods-GraveYardApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = GraveYardApp/GraveYardApp.entitlements;
