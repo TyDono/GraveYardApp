@@ -80,7 +80,7 @@ class MyFirebase {
     
     func createData() {
         let currentUserId: String = self.userId
-        let premiumStatus: Bool = false
+        let premiumStatus: Int = 0
         let dataCount: Double = 0.0
         let memorialCount: Int = 0
         

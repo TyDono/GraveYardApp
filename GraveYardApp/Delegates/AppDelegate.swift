@@ -28,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let splashVC = storyboard.instantiateViewController(withIdentifier: "map")
         window?.rootViewController = splashVC
-        let storage = Storage.storage()
+//        let storage = Storage.storage()
         
         //check for currnt login token
         MyFirebase.shared.addUserListender(loggedIn: false)
