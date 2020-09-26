@@ -148,6 +148,29 @@ class GraveTableViewController: UITableViewController {
         }
     }
     
+//    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        tableView.rowHeight = UITableView.automaticDimension
+////        switch (indexPath.section, indexPath.row) {
+////        case (0, 0):
+////            return 334
+////        case (0, 1):
+////            if self.videoURL == nil {
+////                return 0
+////            } else {
+////                return 293
+////            }
+////        case (0, 2):
+////            return 140
+////        case (0, 3):
+////            return 0
+////        case (0, 4):
+////            return UITableView.automaticDimension
+////        case (_, _):
+////            return 0
+////        }
+//        return tableView.rowHeight
+//    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "graveStoriesSegue", let graveStoriesTVC = segue.destination as? GraveStoriesTableViewController {
             graveStoriesTVC.currentGraveId = currentGraveId

@@ -485,10 +485,11 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
             if err != nil {
                 print(err as Any)
             } else {
-                for document in (snapshot?.documents)! {
+                //success
+//                for document in (snapshot?.documents)! {
                     //                    if let creatorId = document.data()["creatorId"] as? String,
                     //                        let profileImageId = document.data()["profileImageId"] as? String,
-                }
+//                }
             }
             
         }
