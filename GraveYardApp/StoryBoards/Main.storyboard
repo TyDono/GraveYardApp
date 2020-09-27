@@ -11,7 +11,7 @@
         <!--Grave Table View Controller-->
         <scene sceneID="7jP-VP-8HO">
             <objects>
-                <tableViewController id="df1-gm-beU" customClass="GraveTableViewController" customModule="GraveYardApp" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="df1-gm-beU" customClass="GraveTableViewController" customModule="Remembrances" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="cRZ-oX-fVD">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -358,7 +358,7 @@
         <!--Edit Grave Table View Controller-->
         <scene sceneID="R9d-cl-TEQ">
             <objects>
-                <tableViewController id="akf-23-k3a" customClass="EditGraveTableViewController" customModule="GraveYardApp" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="akf-23-k3a" customClass="EditGraveTableViewController" customModule="Remembrances" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="X14-7r-Nic">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -922,14 +922,14 @@
         <!--Your Memorials-->
         <scene sceneID="Dy1-2d-CbK">
             <objects>
-                <tableViewController id="SIl-1N-tic" customClass="MemorialsTableViewController" customModule="GraveYardApp" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="SIl-1N-tic" customClass="MemorialsTableViewController" customModule="Remembrances" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Te8-0v-rdw">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <color key="separatorColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="memorialCell" rowHeight="82" id="sQc-DD-k88" customClass="MemorialsTableViewCell" customModule="GraveYardApp" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="memorialCell" rowHeight="82" id="sQc-DD-k88" customClass="MemorialsTableViewCell" customModule="Remembrances" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="82"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="sQc-DD-k88" id="NQH-un-bxU">
@@ -972,7 +972,7 @@
         <!--Grave Story Table View Controller-->
         <scene sceneID="3mN-1B-43e">
             <objects>
-                <tableViewController id="Deg-jX-e5u" customClass="GraveStoryTableViewController" customModule="GraveYardApp" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="Deg-jX-e5u" customClass="GraveStoryTableViewController" customModule="Remembrances" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="VBc-MQ-Azj">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1224,7 +1224,7 @@
         <!--New Grave Story Table View Controller-->
         <scene sceneID="23l-6f-ENa">
             <objects>
-                <tableViewController id="8GQ-fW-7kZ" customClass="NewGraveStoryTableViewController" customModule="GraveYardApp" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="8GQ-fW-7kZ" customClass="NewGraveStoryTableViewController" customModule="Remembrances" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="ch9-li-11T">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1726,13 +1726,13 @@
         <!--Grave Stories Table View Controller-->
         <scene sceneID="IwN-v8-ITM">
             <objects>
-                <tableViewController id="7fh-bd-Npt" customClass="GraveStoriesTableViewController" customModule="GraveYardApp" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="7fh-bd-Npt" customClass="GraveStoriesTableViewController" customModule="Remembrances" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="US7-Vv-q5Z">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="storyCell" rowHeight="114" id="C2P-6y-1XP" customClass="StoryTableViewCell" customModule="GraveYardApp" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="storyCell" rowHeight="114" id="C2P-6y-1XP" customClass="StoryTableViewCell" customModule="Remembrances" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="114"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="C2P-6y-1XP" id="rdG-Rd-QgH">
@@ -1804,7 +1804,7 @@
         <!--Map View Controller-->
         <scene sceneID="zpC-mi-WYN">
             <objects>
-                <viewController storyboardIdentifier="map" id="9X6-7Z-pCz" customClass="MapViewController" customModule="GraveYardApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="map" id="9X6-7Z-pCz" customClass="MapViewController" customModule="Remembrances" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="FOT-J4-Seo">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2003,7 +2003,7 @@
         <!--Account Information-->
         <scene sceneID="SMl-v1-Kcm">
             <objects>
-                <viewController title="Account Information" id="SzX-iF-Ewd" customClass="AccountViewController" customModule="GraveYardApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Account Information" id="SzX-iF-Ewd" customClass="AccountViewController" customModule="Remembrances" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="LWv-MD-5gs">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2049,7 +2049,7 @@
         <!--Sign In View Controller-->
         <scene sceneID="eey-YM-mnw">
             <objects>
-                <viewController storyboardIdentifier="signIn" id="V3w-If-NiO" customClass="SignInViewController" customModule="GraveYardApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="signIn" id="V3w-If-NiO" customClass="SignInViewController" customModule="Remembrances" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hhe-VD-6ou">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

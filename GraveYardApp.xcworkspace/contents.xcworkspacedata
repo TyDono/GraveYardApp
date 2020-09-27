@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:GraveYardApp.xcodeproj">
+      location = "group:/Users/tydon/Desktop/GraveyardAppDevelopment/GraveYardApp/Remembrances.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">

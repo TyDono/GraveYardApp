@@ -40,6 +40,8 @@
 		CBCE0E2F23FD14410077A4F1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CBCE0E2E23FD14410077A4F1 /* Assets.xcassets */; };
 		CBCE0E3123FD144F0077A4F1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CBCE0E3023FD144F0077A4F1 /* GoogleService-Info.plist */; };
 		CBCE0E3323FD14690077A4F1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CBCE0E3223FD14690077A4F1 /* LaunchScreen.storyboard */; };
+		CBDA104F251FF3A900586653 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBDA104E251FF3A900586653 /* StoreKit.framework */; };
+		CBDA1057251FFB7600586653 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBDA1056251FFB7600586653 /* MapKit.framework */; };
 		CBF424A224FE1F970095AE96 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBF424A124FE1F960095AE96 /* PlayerView.swift */; };
 /* End PBXBuildFile section */
 
@@ -54,7 +56,7 @@
 		CB3A3889237528E400DA756D /* NewGraveStoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGraveStoryTableViewController.swift; sourceTree = "<group>"; };
 		CB3A388B2375293F00DA756D /* GraveStoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraveStoryTableViewController.swift; sourceTree = "<group>"; };
 		CB4895A324DC95A000055688 /* GraveYardApp.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = GraveYardApp.entitlements; sourceTree = "<group>"; };
-		CB5AE18323512B14001BCCCE /* GraveYardApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GraveYardApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CB5AE18323512B14001BCCCE /* Remembrances.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Remembrances.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB5AE19423512B16001BCCCE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CB5BAAE0247DBA8C00350553 /* PaymentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentsViewController.swift; sourceTree = "<group>"; };
 		CB697DF22440A82F0035C07A /* SignInWithAppleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithAppleManager.swift; sourceTree = "<group>"; };
@@ -82,6 +84,8 @@
 		CBCE0E2E23FD14410077A4F1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CBCE0E3023FD144F0077A4F1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CBCE0E3223FD14690077A4F1 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		CBDA104E251FF3A900586653 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		CBDA1056251FFB7600586653 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		CBF424A124FE1F960095AE96 /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -91,6 +95,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				4B0DDBB897B5089E7934A0B0 /* Pods_GraveYardApp.framework in Frameworks */,
+				CBDA1057251FFB7600586653 /* MapKit.framework in Frameworks */,
+				CBDA104F251FF3A900586653 /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -100,6 +106,8 @@
 		1D9EAB64215B5264537096B9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CBDA1056251FFB7600586653 /* MapKit.framework */,
+				CBDA104E251FF3A900586653 /* StoreKit.framework */,
 				5B1A0ACCB90810C926060354 /* Pods_GraveYardApp.framework */,
 			);
 			name = Frameworks;
@@ -159,7 +167,7 @@
 		CB5AE18423512B14001BCCCE /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				CB5AE18323512B14001BCCCE /* GraveYardApp.app */,
+				CB5AE18323512B14001BCCCE /* Remembrances.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -257,9 +265,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		CB5AE18223512B14001BCCCE /* GraveYardApp */ = {
+		CB5AE18223512B14001BCCCE /* Remembrances */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CB5AE19723512B16001BCCCE /* Build configuration list for PBXNativeTarget "GraveYardApp" */;
+			buildConfigurationList = CB5AE19723512B16001BCCCE /* Build configuration list for PBXNativeTarget "Remembrances" */;
 			buildPhases = (
 				168E25EC4ABD6DD99E8E5337 /* [CP] Check Pods Manifest.lock */,
 				CB5AE17F23512B14001BCCCE /* Sources */,
@@ -272,9 +280,9 @@
 			);
 			dependencies = (
 			);
-			name = GraveYardApp;
+			name = Remembrances;
 			productName = GraveYardApp;
-			productReference = CB5AE18323512B14001BCCCE /* GraveYardApp.app */;
+			productReference = CB5AE18323512B14001BCCCE /* Remembrances.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -293,7 +301,7 @@
 					};
 				};
 			};
-			buildConfigurationList = CB5AE17E23512B14001BCCCE /* Build configuration list for PBXProject "GraveYardApp" */;
+			buildConfigurationList = CB5AE17E23512B14001BCCCE /* Build configuration list for PBXProject "Remembrances" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -306,7 +314,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				CB5AE18223512B14001BCCCE /* GraveYardApp */,
+				CB5AE18223512B14001BCCCE /* Remembrances */,
 			);
 		};
 /* End PBXProject section */
@@ -549,15 +557,15 @@
 				CODE_SIGN_ENTITLEMENTS = GraveYardApp/GraveYardApp.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = D6AZ3B5HRK;
 				INFOPLIST_FILE = GraveYardApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.04;
-				PRODUCT_BUNDLE_IDENTIFIER = TyDon.GraveYardApp;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = TyDon.RemembrancesApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -573,7 +581,7 @@
 				CODE_SIGN_ENTITLEMENTS = GraveYardApp/GraveYardApp.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = D6AZ3B5HRK;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				INFOPLIST_FILE = GraveYardApp/Info.plist;
@@ -581,8 +589,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.04;
-				PRODUCT_BUNDLE_IDENTIFIER = TyDon.GraveYardApp;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = TyDon.RemembrancesApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -593,23 +601,23 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		CB5AE17E23512B14001BCCCE /* Build configuration list for PBXProject "GraveYardApp" */ = {
+		CB5AE17E23512B14001BCCCE /* Build configuration list for PBXProject "Remembrances" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CB5AE19523512B16001BCCCE /* Debug */,
 				CB5AE19623512B16001BCCCE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
+			defaultConfigurationName = Release;
 		};
-		CB5AE19723512B16001BCCCE /* Build configuration list for PBXNativeTarget "GraveYardApp" */ = {
+		CB5AE19723512B16001BCCCE /* Build configuration list for PBXNativeTarget "Remembrances" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CB5AE19823512B16001BCCCE /* Debug */,
 				CB5AE19923512B16001BCCCE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
