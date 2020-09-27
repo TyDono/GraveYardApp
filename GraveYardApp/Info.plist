@@ -2,8 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>To share photos from the camera library</string>
+	<key>NSCameraUsageDescription</key>
+	<string>To share taken photos from your device</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string></string>
 	<key>CFBundleDisplayName</key>
@@ -42,6 +42,8 @@
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Your location is requested in order to locate nearby Memorials.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>To share photos from the camera library</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
