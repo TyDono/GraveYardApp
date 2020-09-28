@@ -30,7 +30,7 @@ class GraveTableViewController: UITableViewController {
     @IBOutlet weak var deathLocationLabel: UILabel!
     @IBOutlet weak var midTopLabel: UILabel!
     @IBOutlet weak var midBotLabel: UILabel!
-    @IBOutlet weak var bioLabel: UILabel!
+    @IBOutlet weak var introTextBioTextView: UITextView!
     @IBOutlet weak var graveNavTitle: UINavigationItem!
     @IBOutlet weak var pinQuoteLabel: UILabel!
     @IBOutlet var reportPopOver: UIView!
@@ -149,28 +149,28 @@ class GraveTableViewController: UITableViewController {
         }
     }
     
-//    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        tableView.rowHeight = UITableView.automaticDimension
-////        switch (indexPath.section, indexPath.row) {
-////        case (0, 0):
-////            return 334
-////        case (0, 1):
-////            if self.videoURL == nil {
-////                return 0
-////            } else {
-////                return 293
-////            }
-////        case (0, 2):
-////            return 140
-////        case (0, 3):
-////            return 0
-////        case (0, 4):
-////            return UITableView.automaticDimension
-////        case (_, _):
-////            return 0
-////        }
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        tableView.rowHeight = UITableView.automaticDimension
+        switch (indexPath.section, indexPath.row) {
+        case (0, 0):
+            return 334
+        case (0, 1):
+            if self.videoURL == nil {
+                return 0
+            } else {
+                return 293
+            }
+        case (0, 2):
+            return 140
+        case (0, 3):
+            return 0
+        case (0, 4):
+            return 400 // UITableView.automaticDimension
+        case (_, _):
+            return 0
+        }
 //        return tableView.rowHeight
-//    }
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "graveStoriesSegue", let graveStoriesTVC = segue.destination as? GraveStoriesTableViewController {
@@ -246,8 +246,8 @@ class GraveTableViewController: UITableViewController {
                                 self.midBotLabel.text = birthLocation
                             }
 //                            self.familyStatusLabel.text = familyStatus
-                            self.bioLabel.text = bio
-                            if self.bioLabel.text == nil {
+                            self.introTextBioTextView.text = bio
+                            if self.introTextBioTextView.text == nil {
                                 self.bioCell.isHidden = true
                             }
                             if pinQuote == "" {

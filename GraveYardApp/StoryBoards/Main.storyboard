@@ -213,29 +213,26 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="introTextCell" id="JDP-pt-KeW">
-                                        <rect key="frame" x="0.0" y="795.00000011920929" width="414" height="60"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="introTextCell" rowHeight="500" id="JDP-pt-KeW">
+                                        <rect key="frame" x="0.0" y="795.00000011920929" width="414" height="500"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="JDP-pt-KeW" id="Rl5-Mj-YqV">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="JDP-pt-KeW" id="Rl5-Mj-YqV">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="500"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="23T-Gx-QzS">
-                                                    <rect key="frame" x="20" y="11" width="343" height="38"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="38" id="JY4-Q8-2W8"/>
-                                                        <constraint firstAttribute="width" constant="343" id="jiM-8u-3iS"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="lp4-rj-sgR">
+                                                    <rect key="frame" x="20" y="11" width="374" height="478"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    <color key="textColor" systemColor="labelColor"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                </textView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="23T-Gx-QzS" firstAttribute="trailing" secondItem="Rl5-Mj-YqV" secondAttribute="trailingMargin" id="3LL-0p-OuG"/>
-                                                <constraint firstItem="23T-Gx-QzS" firstAttribute="top" secondItem="Rl5-Mj-YqV" secondAttribute="topMargin" id="7wF-Et-Qe7"/>
-                                                <constraint firstItem="23T-Gx-QzS" firstAttribute="leading" secondItem="Rl5-Mj-YqV" secondAttribute="leadingMargin" id="FDr-UZ-7iN"/>
-                                                <constraint firstItem="23T-Gx-QzS" firstAttribute="bottom" secondItem="Rl5-Mj-YqV" secondAttribute="bottomMargin" id="WRg-tq-Gta"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="lp4-rj-sgR" secondAttribute="trailing" id="Ad1-mn-PBw"/>
+                                                <constraint firstItem="lp4-rj-sgR" firstAttribute="leading" secondItem="Rl5-Mj-YqV" secondAttribute="leadingMargin" id="Ih1-u7-VFM"/>
+                                                <constraint firstItem="lp4-rj-sgR" firstAttribute="top" secondItem="Rl5-Mj-YqV" secondAttribute="topMargin" id="eYd-gf-GLf"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="lp4-rj-sgR" secondAttribute="bottom" id="mLy-uB-zsE"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -262,13 +259,13 @@
                     </navigationItem>
                     <connections>
                         <outlet property="bioCell" destination="6Pf-U6-0Ak" id="6nT-qf-KfT"/>
-                        <outlet property="bioLabel" destination="23T-Gx-QzS" id="ga7-hi-lfD"/>
                         <outlet property="birthDateLabel" destination="lTz-1D-y5x" id="g0i-Tv-53x"/>
                         <outlet property="birthLocationLabel" destination="8Vi-Rm-bAH" id="wPd-wt-GXu"/>
                         <outlet property="deathDateLabel" destination="oHf-mX-vRe" id="l4y-rl-owC"/>
                         <outlet property="deathLocationLabel" destination="vMO-e7-FhQ" id="okw-va-4Iw"/>
                         <outlet property="graveMainImage" destination="rzf-gV-0fs" id="SHs-It-Q4d"/>
                         <outlet property="graveNavTitle" destination="5l7-Vp-38m" id="HhH-J4-c4W"/>
+                        <outlet property="introTextBioTextView" destination="lp4-rj-sgR" id="qhe-4C-KgP"/>
                         <outlet property="midBotLabel" destination="i5P-CV-hKM" id="kOV-gF-YDs"/>
                         <outlet property="midTopLabel" destination="uUs-ob-bYh" id="bwd-PT-WVQ"/>
                         <outlet property="pinQuoteLabel" destination="AQw-xL-FrS" id="FoW-cU-e8p"/>
