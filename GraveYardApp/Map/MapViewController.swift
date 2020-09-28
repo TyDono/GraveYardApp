@@ -376,9 +376,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         //lock on location, disabled go let user view around more
-        let locValue: CLLocationCoordinate2D = manager.location!.coordinate
+//        let locValue: CLLocationCoordinate2D = manager.location!.coordinate
         //print("The user location coordinates are \(locValue.latitude) \(locValue.longitude)") // this is getting spam called!!!!!
-        let userLocation = locations.last
+//        let userLocation = locations.last
 //        let viewRegion = MKCoordinateRegion(center: (userLocation?.coordinate)!, latitudinalMeters: 600, longitudinalMeters: 600)
 //        mapView.setRegion(viewRegion, animated: true)
     }
@@ -448,7 +448,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             self.addMemorialView.alpha = 1.0
             self.addMemorialView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
         });
-        self.playVideo()
+//        self.playVideo()
     }
     
     func removePopOverAnimate() {
@@ -482,7 +482,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     }
     
     func playVideo() { // duo of another same one dlelte one
-        guard let path = Bundle.main.path(forResource: "howToMakeAMemorialVideo", ofType:"m4v") else {
+        guard let path = Bundle.main.path(forResource: "memorialMakerInto", ofType:"mp4") else {
             debugPrint("video not found")
             return
         }
@@ -657,6 +657,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                 self.userId = ""
                 try! Auth.auth().signOut()
                 self.currentAuthID = nil
+                MyFirebase.memorialCount = 0
                 self.checkForUserId()
             })
             locationAlert.addAction(goToSettingsAction)
@@ -722,7 +723,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     }
     
     @IBAction func playHowToVideoWasTapped(_ sender: UIButton) {
-        
+        self.playVideo()
     }
     
     @IBAction func unwindToMap(_ sender: UIStoryboardSegue) {}

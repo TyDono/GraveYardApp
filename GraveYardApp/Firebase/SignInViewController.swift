@@ -140,7 +140,7 @@ class SignInViewController: UIViewController, GIDSignInDelegate, WKUIDelegate {
         }
     }
     
-    // MARK: - Apple
+    // MARK: - Apple Sign In
     
     // makes the nonce
     private func randomNonceString(length: Int = 32) -> String {
@@ -327,7 +327,7 @@ extension SignInViewController: ASAuthorizationControllerDelegate {
 //            alert.dismiss(animated: true, completion: nil)
 //        }))
 //        self.present(alert, animated: true, completion: nil)
-//        return
+        return
     }
 }
 

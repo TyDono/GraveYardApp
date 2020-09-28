@@ -98,8 +98,9 @@ class GraveTableViewController: UITableViewController {
         guard let safeVideoURL = self.videoURL else { return }
         AVAsset(url: safeVideoURL).generateThumbnail { [weak self] (image) in
              DispatchQueue.main.async {
-                 guard let image = image else { return }
-                 self?.videoPreviewUIImage.image = image
+                guard let image = image else { return }
+                self?.videoPreviewUIImage.image = image
+                self!.tableView.reloadData()
              }
          }
     }
@@ -284,6 +285,7 @@ class GraveTableViewController: UITableViewController {
                 }
                 guard let image = UIImage(data: data) else { return }
                 self.graveMainImage.image = image
+                self.tableView.reloadData()
             })
         } else {
             return

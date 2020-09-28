@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		9747E155CD811601E2371760 /* Pods_Remembrances.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8E1FD119F31E488CE0801B2 /* Pods_Remembrances.framework */; };
 		CB226F3825205A1E00BB0F51 /* credentials.plist in Resources */ = {isa = PBXBuildFile; fileRef = CB226F3725205A1D00BB0F51 /* credentials.plist */; };
-		CB226F402521792F00BB0F51 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CB226F3F2521792F00BB0F51 /* GoogleService-Info.plist */; };
+		CB226F4425218C0100BB0F51 /* memorialMakerInto.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CB226F4325218C0100BB0F51 /* memorialMakerInto.mp4 */; };
 		CB398EFB23695D0600A515B9 /* GraveStoriesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB398EFA23695D0600A515B9 /* GraveStoriesTableViewController.swift */; };
 		CB3A1AA524F4475500BACC73 /* MemorialsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3A1AA424F4475500BACC73 /* MemorialsTableViewController.swift */; };
 		CB3A1AA724F447DC00BACC73 /* MemorialsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3A1AA624F447DC00BACC73 /* MemorialsTableViewCell.swift */; };
@@ -21,6 +21,7 @@
 		CB697DF52440A8460035C07A /* AuthState.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB697DF42440A8460035C07A /* AuthState.swift */; };
 		CB8304C824B5CE9D0023F4EA /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8304C724B5CE9D0023F4EA /* AccountViewController.swift */; };
 		CB881F9A2367B41E00615F2F /* EditGraveTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB881F992367B41E00615F2F /* EditGraveTableViewController.swift */; };
+		CBBC7B0F2522933500BE6697 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CBBC7B0E2522933400BE6697 /* GoogleService-Info.plist */; };
 		CBBCBD46250A74F700326169 /* paperSound.wav in Resources */ = {isa = PBXBuildFile; fileRef = CBBCBD44250A74F600326169 /* paperSound.wav */; };
 		CBBCBD47250A74F700326169 /* paperBookSound.wav in Resources */ = {isa = PBXBuildFile; fileRef = CBBCBD45250A74F700326169 /* paperBookSound.wav */; };
 		CBCE0E0B23FD12D00077A4F1 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCE0E0823FD12D00077A4F1 /* SplashViewController.swift */; };
@@ -50,7 +51,7 @@
 		B9A192F86FE06CF551DE5AE2 /* Pods-Remembrances.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Remembrances.release.xcconfig"; path = "Target Support Files/Pods-Remembrances/Pods-Remembrances.release.xcconfig"; sourceTree = "<group>"; };
 		BED0BAD667BF7EC98F7A2CDA /* Pods-Remembrances.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Remembrances.debug.xcconfig"; path = "Target Support Files/Pods-Remembrances/Pods-Remembrances.debug.xcconfig"; sourceTree = "<group>"; };
 		CB226F3725205A1D00BB0F51 /* credentials.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = credentials.plist; sourceTree = "<group>"; };
-		CB226F3F2521792F00BB0F51 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		CB226F4325218C0100BB0F51 /* memorialMakerInto.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = memorialMakerInto.mp4; sourceTree = "<group>"; };
 		CB398EFA23695D0600A515B9 /* GraveStoriesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraveStoriesTableViewController.swift; sourceTree = "<group>"; };
 		CB3A1AA424F4475500BACC73 /* MemorialsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemorialsTableViewController.swift; sourceTree = "<group>"; };
 		CB3A1AA624F447DC00BACC73 /* MemorialsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemorialsTableViewCell.swift; sourceTree = "<group>"; };
@@ -65,6 +66,7 @@
 		CB697DF42440A8460035C07A /* AuthState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthState.swift; sourceTree = "<group>"; };
 		CB8304C724B5CE9D0023F4EA /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		CB881F992367B41E00615F2F /* EditGraveTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditGraveTableViewController.swift; sourceTree = "<group>"; };
+		CBBC7B0E2522933400BE6697 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CBBCBD44250A74F600326169 /* paperSound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = paperSound.wav; sourceTree = "<group>"; };
 		CBBCBD45250A74F700326169 /* paperBookSound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = paperBookSound.wav; sourceTree = "<group>"; };
 		CBCE0E0823FD12D00077A4F1 /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
@@ -131,6 +133,14 @@
 			name = "Recovered References";
 			sourceTree = "<group>";
 		};
+		CB226F4225218BEA00BB0F51 /* Video Files */ = {
+			isa = PBXGroup;
+			children = (
+				CB226F4325218C0100BB0F51 /* memorialMakerInto.mp4 */,
+			);
+			path = "Video Files";
+			sourceTree = "<group>";
+		};
 		CB4895A424DE097D00055688 /* Stories */ = {
 			isa = PBXGroup;
 			children = (
@@ -177,6 +187,7 @@
 		CB5AE18523512B14001BCCCE /* GraveYardApp */ = {
 			isa = PBXGroup;
 			children = (
+				CB226F4225218BEA00BB0F51 /* Video Files */,
 				CBBCBD43250A74D800326169 /* Sound Files */,
 				CBAC4EAD2370EA83006760A5 /* Delegates */,
 				CBAC4EAB2370E995006760A5 /* Firebase */,
@@ -188,7 +199,7 @@
 				CB5AE19423512B16001BCCCE /* Info.plist */,
 				CB226F3725205A1D00BB0F51 /* credentials.plist */,
 				CB4895A324DC95A000055688 /* GraveYardApp.entitlements */,
-				CB226F3F2521792F00BB0F51 /* GoogleService-Info.plist */,
+				CBBC7B0E2522933400BE6697 /* GoogleService-Info.plist */,
 			);
 			path = GraveYardApp;
 			sourceTree = "<group>";
@@ -328,12 +339,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				CBBCBD46250A74F700326169 /* paperSound.wav in Resources */,
+				CBBC7B0F2522933500BE6697 /* GoogleService-Info.plist in Resources */,
 				CB3A30E1235F9E4B00CF2CBB /* Main.storyboard in Resources */,
 				CBCE0E3323FD14690077A4F1 /* LaunchScreen.storyboard in Resources */,
 				CBBCBD47250A74F700326169 /* paperBookSound.wav in Resources */,
+				CB226F4425218C0100BB0F51 /* memorialMakerInto.mp4 in Resources */,
 				CB226F3825205A1E00BB0F51 /* credentials.plist in Resources */,
 				CBCE0E2F23FD14410077A4F1 /* Assets.xcassets in Resources */,
-				CB226F402521792F00BB0F51 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -568,7 +580,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.05;
+				MARKETING_VERSION = 1.07;
 				PRODUCT_BUNDLE_IDENTIFIER = TyDon.RemembrancesApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -593,7 +605,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.05;
+				MARKETING_VERSION = 1.07;
 				PRODUCT_BUNDLE_IDENTIFIER = TyDon.RemembrancesApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
