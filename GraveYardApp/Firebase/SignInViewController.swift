@@ -13,16 +13,18 @@ import FirebaseFirestore
 import Firebase
 import AuthenticationServices
 import CryptoKit
+import WebKit
 
 protocol SignInViewControllerDelegate {
     func didFinishAuth()
 }
 
-class SignInViewController: UIViewController, GIDSignInUIDelegate {
+class SignInViewController: UIViewController, GIDSignInDelegate, WKUIDelegate {
     
     // MARK: - Outlets
     
     @IBOutlet weak var signInWithappleButton: UIButton!
+//    @IBOutlet weak var WKWebView: WKWebView!
     
     // MARK: - Propeties
     
@@ -42,11 +44,24 @@ class SignInViewController: UIViewController, GIDSignInUIDelegate {
     
     // MARK: - View Lifecycle
     
+    
+//    override func loadView() {
+//        let webConfiguration = WKWebViewConfiguration()
+//        webConfiguration.applicationNameForUserAgent = "Version/8.0.2 Safari/600.2.5"
+//        WKWebView = WebKit.WKWebView(frame: .zero, configuration: webConfiguration)
+//        WKWebView.uiDelegate = self
+//        view = WKWebView
+//
+//    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         //chageTextColor()
         getCurrentSeason()
-        GIDSignIn.sharedInstance()?.uiDelegate = self
+        GIDSignIn.sharedInstance()?.presentingViewController = self
+//        GIDSignIn.sharedInstance().signIn()
+//        GIDSignIn.sharedInstance()?.restorePreviousSignIn()
+//        GIDSignIn.sharedInstance()?.uiDelegate = self
         db = Firestore.firestore()
         changeBackground()
         Auth.auth().addStateDidChangeListener() { auth, user in
@@ -107,6 +122,22 @@ class SignInViewController: UIViewController, GIDSignInUIDelegate {
     
     func whiteStatusBar() -> UIStatusBarStyle{
         return UIStatusBarStyle.lightContent
+    }
+    
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        if let error = error {
+            print("\(error.localizedDescription)")
+            return
+        } else {
+            guard let authentication = user.authentication else { return }
+            let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken, accessToken: authentication.accessToken)
+            Auth.auth().signIn(with: credential) { (result, error) in
+                if error == nil {
+                } else {
+                    print(error?.localizedDescription)
+                }
+            }
+        }
     }
     
     // MARK: - Apple
@@ -181,6 +212,11 @@ class SignInViewController: UIViewController, GIDSignInUIDelegate {
     
     // MARK: - Actions
     
+    @IBAction func googleSignInButtonWasTapped(_ sender: UIButton) {
+        GIDSignIn.sharedInstance()?.delegate = self
+        GIDSignIn.sharedInstance()?.signIn()
+    }
+    
     @IBAction func appleSigninButtonWasTapped(_ sender: UIButton) {
         if #available(iOS 13.0, *) {
             let request = ASAuthorizationAppleIDProvider().createRequest()
@@ -198,9 +234,10 @@ class SignInViewController: UIViewController, GIDSignInUIDelegate {
         
     }
     
-    @IBAction func googleSignIn(_ sender: Any) {}
+    @IBOutlet weak var signInButton: GIDSignInButton!
     
     @IBAction func logout(_ sender: UIBarButtonItem) {
+        GIDSignIn.sharedInstance().signOut()
         self.userId = ""
         try! Auth.auth().signOut()
     }

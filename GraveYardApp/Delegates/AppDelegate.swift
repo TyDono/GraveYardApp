@@ -32,8 +32,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         
         //check for currnt login token
         MyFirebase.shared.addUserListender(loggedIn: false)
-        GIDSignIn.sharedInstance()?.clientID = "924369462499-e451ovm1fiupuc3lonhhdl3lhis4r7iq.apps.googleusercontent.com"
-        GIDSignIn.sharedInstance()?.delegate = self
+        GIDSignIn.sharedInstance().clientID = "924369462499-no217ai8nlbo4ddb1tt864s6ad54imd5.apps.googleusercontent.com" //FirebaseApp.app()?.options.clientID
+        GIDSignIn.sharedInstance().delegate = self
         let audioSession = AVAudioSession.sharedInstance()
         do {
             try audioSession.setCategory(.playback, mode: .moviePlayback)
@@ -45,8 +45,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     }
     
     //open url
+    @available(iOS 9.0, *)
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-        return GIDSignIn.sharedInstance().handle(url, sourceApplication:options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String, annotation: [:])
+        GIDSignIn.sharedInstance().handle(url)
+        return true
+    }
+    
+    func application(_ application: UIApplication,open url: URL, sourceApplication: String?, annotation: Any) -> Bool  {
+      return GIDSignIn.sharedInstance().handle(url)
     }
     
     //signin handler

@@ -2054,17 +2054,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cKZ-bK-L1I" customClass="GIDSignInButton">
-                                <rect key="frame" x="120.5" y="808" width="173" height="62"/>
-                                <color key="backgroundColor" systemColor="systemGray2Color"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="62" id="HQA-0C-tAA"/>
-                                    <constraint firstAttribute="width" constant="173" id="s75-X3-4Gw"/>
-                                </constraints>
-                                <connections>
-                                    <action selector="googleSignIn:" destination="V3w-If-NiO" eventType="valueChanged" id="fFY-U4-IyV"/>
-                                </connections>
-                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rYB-Eg-Mts">
                                 <rect key="frame" x="101" y="762" width="212" height="38"/>
                                 <constraints>
@@ -2076,14 +2065,25 @@
                                     <action selector="appleSigninButtonWasTapped:" destination="V3w-If-NiO" eventType="touchUpInside" id="jJy-BK-mhI"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qeX-aR-GWf">
+                                <rect key="frame" x="111.5" y="808" width="191" height="65"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="65" id="524-1N-oj0"/>
+                                    <constraint firstAttribute="width" constant="191" id="Png-xh-gyy"/>
+                                </constraints>
+                                <state key="normal" image="btn_google_signin_light_normal"/>
+                                <connections>
+                                    <action selector="googleSignInButtonWasTapped:" destination="V3w-If-NiO" eventType="touchUpInside" id="sUy-PZ-ytG"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="qmL-If-WqM"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="cKZ-bK-L1I" firstAttribute="centerX" secondItem="hhe-VD-6ou" secondAttribute="centerX" id="Gx4-HK-e4h"/>
+                            <constraint firstItem="qeX-aR-GWf" firstAttribute="top" secondItem="rYB-Eg-Mts" secondAttribute="bottom" constant="8" symbolic="YES" id="3Ua-XT-k5c"/>
+                            <constraint firstItem="qeX-aR-GWf" firstAttribute="centerX" secondItem="hhe-VD-6ou" secondAttribute="centerX" id="5hh-Zq-gsi"/>
                             <constraint firstItem="rYB-Eg-Mts" firstAttribute="centerX" secondItem="hhe-VD-6ou" secondAttribute="centerX" id="Ohi-5w-eUn"/>
-                            <constraint firstItem="cKZ-bK-L1I" firstAttribute="top" secondItem="rYB-Eg-Mts" secondAttribute="bottom" constant="8" symbolic="YES" id="bTW-mc-nA5"/>
-                            <constraint firstAttribute="bottom" secondItem="cKZ-bK-L1I" secondAttribute="bottom" constant="26" id="zaK-sd-5Y7"/>
+                            <constraint firstAttribute="bottom" secondItem="qeX-aR-GWf" secondAttribute="bottom" constant="23" id="nnW-ms-h4d"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="rxj-8M-V1F">
@@ -2094,6 +2094,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="signInWithappleButton" destination="rYB-Eg-Mts" id="9m4-SH-vo9"/>
                         <segue destination="8kA-df-0Ng" kind="unwind" identifier="unwindToMapSegue" unwindAction="unwindToMap:" id="Hwf-XN-Rmp"/>
                         <segue destination="9X6-7Z-pCz" kind="show" identifier="segueToMap" id="z4g-pH-uIZ"/>
                     </connections>
@@ -2141,14 +2142,15 @@
     <inferredMetricsTieBreakers>
         <segue reference="JUc-GY-fg1"/>
         <segue reference="z4g-pH-uIZ"/>
-        <segue reference="7DO-rd-4qB"/>
-        <segue reference="xN6-dc-fkE"/>
+        <segue reference="fpu-aT-yyc"/>
+        <segue reference="soh-re-d5z"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Page" width="617" height="500"/>
         <image name="addVideo" width="410" height="410"/>
         <image name="appleSigninButton" width="212" height="38"/>
         <image name="bookBlue" width="161" height="38.5"/>
+        <image name="btn_google_signin_light_normal" width="191" height="46"/>
         <image name="default-avatar" width="116.5" height="116"/>
         <image name="icons8-back-100" width="50" height="50"/>
         <image name="icons8-forward-100" width="50" height="50"/>
@@ -2180,9 +2182,6 @@
         </systemColor>
         <systemColor name="systemBlueColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemGray2Color">
-            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray4Color">
             <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

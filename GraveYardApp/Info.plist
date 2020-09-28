@@ -2,8 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSCameraUsageDescription</key>
-	<string>To share taken photos from your device</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string></string>
 	<key>CFBundleDisplayName</key>
@@ -23,11 +21,19 @@
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
+			<key>CFBundleIdentifier</key>
+			<string></string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+			<key>CFBundleURLSchemes</key>
+			<array/>
+		</dict>
+		<dict>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.googleusercontent.apps.924369462499-e451ovm1fiupuc3lonhhdl3lhis4r7iq</string>
+				<string>com.googleusercontent.apps.924369462499-no217ai8nlbo4ddb1tt864s6ad54imd5</string>
 			</array>
 		</dict>
 	</array>
@@ -35,11 +41,15 @@
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>MKDirectionsApplicationSupportedModes</key>
+	<array/>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>To share taken photos from your device</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Your location is requested in order to locate nearby Memorials.</string>
 	<key>NSPhotoLibraryUsageDescription</key>

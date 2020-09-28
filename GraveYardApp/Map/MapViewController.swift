@@ -12,6 +12,7 @@ import FirebaseAuth
 import FirebaseFirestore
 import AVKit
 import AVFoundation
+import GoogleSignIn
 
 class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UIGestureRecognizerDelegate {
     
@@ -651,6 +652,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             
             let goToSettingsAction = UIAlertAction(title: "Log Out", style: .default, handler: { _ in
                 self.moveBookSidetoLeft()
+                GIDSignIn.sharedInstance().signOut()
                 self.currentUser = nil
                 self.userId = ""
                 try! Auth.auth().signOut()

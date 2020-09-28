@@ -1,15 +1,15 @@
 # Uncomment the next line to define a global platform for your project
 # platform :ios, '9.0'
 
-target 'GraveYardApp' do
+target 'Remembrances' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
 
-  # Pods for GraveYardApp
+  # Pods for Remembrances
 
 pod 'Firebase/Core'
 pod 'Firebase/Auth'
-pod 'GoogleSignIn', '< 5.0.0'
+pod 'GoogleSignIn'
 pod 'Firebase/Firestore'
 pod 'Firebase/Storage'
 
