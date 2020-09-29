@@ -58,12 +58,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         playHowToMemorialVideoButton.layer.cornerRadius = 10
         mapView.delegate = self
         getUserMemorialCount()
-        self.navigationItem.rightBarButtonItem?.isEnabled = false
-        self.navigationItem.rightBarButtonItem?.title = ""
-//        getGraveEntries { (graves) in
-//            self.graves = graves
-//            self.dropGraveEntryPins()
-//        }
+//        self.navigationItem.rightBarButtonItem?.isEnabled = false
+        self.navigationItem.rightBarButtonItem?.title = "Premium"
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -667,11 +663,10 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     
     @IBAction func AccountSideBarButtonItemTapped(_ sender: UIBarButtonItem) {
         
-        let freePremiumAlert = UIAlertController(title: "Free Premium!", message: "To celebrate the release of Remembrances, We have given all users access to Premium for the first month! This inlcudes access to more Memorials, stories, image uploads, access to video uploads, private Memorials, and more!", preferredStyle: .actionSheet)
+        let freePremiumAlert = UIAlertController(title: "Free Premium!", message: "To celebrate the release of Remembrances, We have given all users access to Premium for the first month! This inlcudes access to more Memorials, stories, image uploads, access to video uploads, and more customization options!", preferredStyle: .actionSheet)
         let dismiss = UIAlertAction(title: "OK", style: .default, handler: nil)
         freePremiumAlert.addAction(dismiss)
         self.moveBookSidetoLeft()
-        self.performSegue(withIdentifier: "unwindToSignIn", sender: nil)
         self.present(freePremiumAlert, animated: true, completion: nil)
     
         //re-enstate this after a month of release
