@@ -666,20 +666,29 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     }
     
     @IBAction func AccountSideBarButtonItemTapped(_ sender: UIBarButtonItem) {
-        if currentAuthID != nil {
-            self.moveBookSidetoLeft()
-            performSegue(withIdentifier: "segueToPayments", sender: nil)
-        } else {
-            let notSignInAlert = UIAlertController(title: "You are not signed in", message: "You must be signed in to check account information", preferredStyle: .actionSheet)
-            let dismiss = UIAlertAction(title: "Cancel", style: .default, handler: nil)
-            notSignInAlert.addAction(dismiss)
-            let goToLogIn = UIAlertAction(title: "Sign In", style: .default, handler: { _ in
-                self.moveBookSidetoLeft()
-                self.performSegue(withIdentifier: "unwindToSignIn", sender: nil)
-            })
-            notSignInAlert.addAction(goToLogIn)
-            self.present(notSignInAlert, animated: true, completion: nil)
-        }
+        
+        let freePremiumAlert = UIAlertController(title: "Free Premium!", message: "To celebrate the release of Remembrances, We have given all users access to Premium for the first month! This inlcudes access to more Memorials, stories, image uploads, access to video uploads, private Memorials, and more!", preferredStyle: .actionSheet)
+        let dismiss = UIAlertAction(title: "OK", style: .default, handler: nil)
+        freePremiumAlert.addAction(dismiss)
+        self.moveBookSidetoLeft()
+        self.performSegue(withIdentifier: "unwindToSignIn", sender: nil)
+        self.present(freePremiumAlert, animated: true, completion: nil)
+    
+        //re-enstate this after a month of release
+//        if currentAuthID != nil {
+//            self.moveBookSidetoLeft()
+//            performSegue(withIdentifier: "segueToPayments", sender: nil)
+//        } else {
+//            let notSignInAlert = UIAlertController(title: "You are not signed in", message: "You must be signed in to check account information", preferredStyle: .actionSheet)
+//            let dismiss = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+//            notSignInAlert.addAction(dismiss)
+//            let goToLogIn = UIAlertAction(title: "Sign In", style: .default, handler: { _ in
+//                self.moveBookSidetoLeft()
+//                self.performSegue(withIdentifier: "unwindToSignIn", sender: nil)
+//            })
+//            notSignInAlert.addAction(goToLogIn)
+//            self.present(notSignInAlert, animated: true, completion: nil)
+//        }
     }
     
     @IBAction func yourMemorialsButtonWasTapped(_ sender: UIButton) {

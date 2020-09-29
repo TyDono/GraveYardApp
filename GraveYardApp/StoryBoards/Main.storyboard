@@ -1798,10 +1798,10 @@
             </objects>
             <point key="canvasLocation" x="1730.4000000000001" y="1307.8817733990149"/>
         </scene>
-        <!--Map View Controller-->
+        <!--Free Premium!-->
         <scene sceneID="zpC-mi-WYN">
             <objects>
-                <viewController storyboardIdentifier="map" id="9X6-7Z-pCz" customClass="MapViewController" customModule="Remembrances" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="map" title="Free Premium!" id="9X6-7Z-pCz" customClass="MapViewController" customModule="Remembrances" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="FOT-J4-Seo">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1889,7 +1889,7 @@
                                 <action selector="SignInTapped:" destination="9X6-7Z-pCz" id="aaI-mx-CVZ"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Account" id="RFS-BO-bmg">
+                        <barButtonItem key="rightBarButtonItem" title="Premium" id="RFS-BO-bmg">
                             <connections>
                                 <action selector="AccountSideBarButtonItemTapped:" destination="9X6-7Z-pCz" id="qNB-En-KcA"/>
                             </connections>
@@ -2054,10 +2054,10 @@
             </objects>
             <point key="canvasLocation" x="4311.1999999999998" y="-141.67916041979012"/>
         </scene>
-        <!--Sign In View Controller-->
+        <!--Free Premium!-->
         <scene sceneID="eey-YM-mnw">
             <objects>
-                <viewController storyboardIdentifier="signIn" id="V3w-If-NiO" customClass="SignInViewController" customModule="Remembrances" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="signIn" title="Free Premium!" id="V3w-If-NiO" customClass="SignInViewController" customModule="Remembrances" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hhe-VD-6ou">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
