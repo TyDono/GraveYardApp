@@ -182,7 +182,11 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
             if self.videoDataSize > 5.0 {
                print("IT TO BIG OF A FILE")
                 dismiss(animated: true, completion: nil)
-                let alertFileToBig = UIAlertController(title: "Video Upload Failed!", message: "Each video uploaded can only be 5mb in size. Please choose a smaller video to upload. Thank you.", preferredStyle: .alert)
+                var alertStyle = UIAlertController.Style.alert
+                if (UIDevice.current.userInterfaceIdiom == .pad) {
+                    alertStyle = UIAlertController.Style.alert
+                }
+                let alertFileToBig = UIAlertController(title: "Video Upload Failed!", message: "Each video uploaded can only be 5mb in size. Please choose a smaller video to upload. Thank you.", preferredStyle: alertStyle)
                 alertFileToBig.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
                     alertFileToBig.dismiss(animated: true, completion: nil)
                 }))
@@ -713,14 +717,22 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
             let graveRef = self.db.collection("grave")
             graveRef.document(String(grave.graveId)).updateData(grave.dictionary){ err in
                 if let err = err {
-                    let alertFailure = UIAlertController(title: "Not Saved", message: "Sorry, there was an error while trying to save your Grave. Please try again.", preferredStyle: .alert)
+                    var alertStyle = UIAlertController.Style.alert
+                    if (UIDevice.current.userInterfaceIdiom == .pad) {
+                        alertStyle = UIAlertController.Style.alert
+                    }
+                    let alertFailure = UIAlertController(title: "Not Saved", message: "Sorry, there was an error while trying to save your Grave. Please try again.", preferredStyle: alertStyle)
                     alertFailure.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
                         alertFailure.dismiss(animated: true, completion: nil)
                     }))
                     self.present(alertFailure, animated: true, completion: nil)
                     print(err)
                 } else {
-                    let alertSuccess = UIAlertController(title: "Memorial Saved!", message: "You have successfully save your Memorial data", preferredStyle: .alert)
+                    var alertStyle = UIAlertController.Style.alert
+                    if (UIDevice.current.userInterfaceIdiom == .pad) {
+                      alertStyle = UIAlertController.Style.alert
+                    }
+                    let alertSuccess = UIAlertController(title: "Memorial Saved!", message: "You have successfully save your Memorial data", preferredStyle: alertStyle)
                     alertSuccess.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
                         alertSuccess.dismiss(animated: true, completion: nil)
                         self.performSegue(withIdentifier: "unwindToGraveSegue", sender: nil)
@@ -786,12 +798,17 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
     
     
     @IBAction func deleteGraveButtonTapped(_ sender: UIButton) {
-        let alerController = UIAlertController(title: "WARNING!", message: "This will delete all of the information on this Memorial along with it's stories!", preferredStyle: .actionSheet)
+        
+        var alertStyle = UIAlertController.Style.alert
+        if (UIDevice.current.userInterfaceIdiom == .pad) {
+          alertStyle = UIAlertController.Style.alert
+        }
+        let alerController = UIAlertController(title: "WARNING!", message: "This will delete all of the information on this Memorial along with it's stories!", preferredStyle: alertStyle)
         let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         alerController.addAction(cancel)
         let delete = UIAlertAction(title: "DELETE", style: .destructive) { _ in
             let forcedUserId = self.currentAuthID!
-            let forcedGraveId = self.currentGraveId!
+            let forcedGraveId = MapViewController.shared.currentGraveId!
             let userRef = self.db.collection("stories")
             print(self.storyImageStringArray)
             self.deletedStoryImages()
@@ -806,7 +823,7 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
                                 let storageImageRef = self.storage.reference().child("graveProfileImages/\(safeImageString)")
                                 storageImageRef.delete { (error) in //deletes grave image
                                     if error == nil {
-                                        let alertSuccess = UIAlertController(title: "Success", message: "You have successfully deleted this Memorial and all of it's content", preferredStyle: .alert)
+                                        let alertSuccess = UIAlertController(title: "Success", message: "You have successfully deleted this Memorial and all of it's content", preferredStyle: alertStyle)
                                         alertSuccess.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
                                             alertSuccess.dismiss(animated: true, completion: nil)
                                             self.performSegue(withIdentifier: "unwindToMap", sender: nil)
@@ -814,7 +831,7 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
                                         self.present(alertSuccess, animated: true, completion: nil)
                                     } else {
                                         print("no image to delete \(error)")
-                                        let alertSuccess = UIAlertController(title: "Success", message: "You have successfully deleted this Memorial and all of it's content", preferredStyle: .alert)
+                                        let alertSuccess = UIAlertController(title: "Success", message: "You have successfully deleted this Memorial and all of it's content", preferredStyle: alertStyle)
                                         alertSuccess.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
                                             alertSuccess.dismiss(animated: true, completion: nil)
                                             self.performSegue(withIdentifier: "unwindToMap", sender: nil)
@@ -826,7 +843,7 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
                         }
                     }
                 } else {
-                    let alertFailure = UIAlertController(title: "ERROR", message: "Sorry, there was an error while trying to delete this Memorial's stories, please check your internet connection  and try again", preferredStyle: .alert)
+                    let alertFailure = UIAlertController(title: "ERROR", message: "Sorry, there was an error while trying to delete this Memorial's stories, please check your internet connection  and try again", preferredStyle: alertStyle)
                     alertFailure.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
                         alertFailure.dismiss(animated: true, completion: nil)
                     }))

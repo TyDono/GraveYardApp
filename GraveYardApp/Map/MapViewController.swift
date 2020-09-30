@@ -100,7 +100,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     
     func getUserMemorialCount() {
         if self.currentAuthID == nil {
-            self.yourMemorialsButton.setTitle("Create Memorials", for: .normal)
+            self.yourMemorialsButton.setTitle("How to Create Memorials", for: .normal)
         }
         guard let safeCurrentAuthID = self.currentAuthID else { return }
         let userRef = self.db.collection("userProfile").whereField("currentUserAuthId", isEqualTo: safeCurrentAuthID)
@@ -113,9 +113,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                         MyFirebase.memorialCount = memorialCount
                         switch MyFirebase.memorialCount {
                         case 0:
-                            self.yourMemorialsButton.setTitle("Create Memorials", for: .normal)
+                            self.yourMemorialsButton.setTitle("How to Create Memorials", for: .normal)
                         default:
-                            self.yourMemorialsButton.setTitle("Memorial Sites", for: .normal)
+                            self.yourMemorialsButton.setTitle("Your Memorial Sites", for: .normal)
                         }
                     }
                 }
@@ -513,7 +513,11 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         let annotationLat = annotation.coordinate.latitude
         let annotationLong = annotation.coordinate.longitude
         
-        let newGraveAlert = UIAlertController(title: "New Memorial sight entry.", message: "Would you like to make a new entry at this location?", preferredStyle: .actionSheet)
+        var alertStyle = UIAlertController.Style.alert
+        if (UIDevice.current.userInterfaceIdiom == .pad) {
+          alertStyle = UIAlertController.Style.alert
+        }
+        let newGraveAlert = UIAlertController(title: "New Memorial sight entry.", message: "Would you like to make a new entry at this location?", preferredStyle: alertStyle)
         newGraveAlert.addAction(UIAlertAction(title: "Create new entry", style: .default, handler: { action in
             print("Default Button Pressed")
             
@@ -523,7 +527,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                         self.mapView.removeAnnotation(annotation)
                     }
                 }
-                let notSignInAlert = UIAlertController(title: "You are not signed in", message: "You must sign in to create a Memorial  at this location", preferredStyle: .actionSheet)
+                let notSignInAlert = UIAlertController(title: "You are not signed in", message: "You must sign in to create a Memorial  at this location", preferredStyle: alertStyle)
                 let dismiss = UIAlertAction(title: "Cancel", style: .default, handler: nil)
                 notSignInAlert.addAction(dismiss)
                 let goToLogIn = UIAlertAction(title: "Sign In", style: .default, handler: { _ in
@@ -535,7 +539,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             } else {
                 let memorialCount = MyFirebase.memorialCount
                 guard memorialCount < 20 else {
-                    let graveCreationFailAlert = UIAlertController(title: "Too many Memorials", message: "You are only allowed 20 Memorials.", preferredStyle: .alert)
+                    let graveCreationFailAlert = UIAlertController(title: "Too many Memorials", message: "You are only allowed 20 Memorials.", preferredStyle: alertStyle)
 //                    let graveCreationFailAlert = UIAlertController(title: "Too many Memorials", message: "Free users are only allowed 3 Memorials. To increase the amount, subscribe and get premium benefits.", preferredStyle: .alert)
                     let dismiss = UIAlertAction(title: "OK", style: .default, handler: nil)
                     graveCreationFailAlert.addAction(dismiss)
@@ -611,7 +615,11 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                 }
                 graveRef.document(String(grave.graveId)).setData(grave.dictionary) { err in
                     if let err = err {
-                        let graveCreationFailAlert = UIAlertController(title: "Failed to create a Memorial", message: "Your device failed to properly create a Memorial on your desired destination, Please check your wifi and try again", preferredStyle: .alert)
+                        var alertStyle = UIAlertController.Style.actionSheet
+                        if (UIDevice.current.userInterfaceIdiom == .pad) {
+                          alertStyle = UIAlertController.Style.alert
+                        }
+                        let graveCreationFailAlert = UIAlertController(title: "Failed to create a Memorial", message: "Your device failed to properly create a Memorial on your desired destination, Please check your wifi and try again", preferredStyle: alertStyle)
                         let dismiss = UIAlertAction(title: "OK", style: .default, handler: nil)
                         graveCreationFailAlert.addAction(dismiss)
                         self.present(graveCreationFailAlert, animated: true, completion: nil)
@@ -641,7 +649,11 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
            self.moveBookSidetoLeft()
             performSegue(withIdentifier: "unwindToSignIn", sender: self)
         } else {
-            let locationAlert = UIAlertController(title: "Log Out", message: "Are you sure you want to log out?", preferredStyle: .actionSheet)
+            var alertStyle = UIAlertController.Style.actionSheet
+            if (UIDevice.current.userInterfaceIdiom == .pad) {
+              alertStyle = UIAlertController.Style.alert
+            }
+            let locationAlert = UIAlertController(title: "Log Out", message: "Are you sure you want to log out?", preferredStyle: alertStyle)
             
             let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
             locationAlert.addAction(cancelAction)
@@ -662,8 +674,11 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     }
     
     @IBAction func AccountSideBarButtonItemTapped(_ sender: UIBarButtonItem) {
-        
-        let freePremiumAlert = UIAlertController(title: "Free Premium!", message: "To celebrate the release of Remembrances, We have given all users access to Premium for the first month! This inlcudes access to more Memorials, stories, image uploads, access to video uploads, and more customization options!", preferredStyle: .actionSheet)
+        var alertStyle = UIAlertController.Style.actionSheet
+        if (UIDevice.current.userInterfaceIdiom == .pad) {
+          alertStyle = UIAlertController.Style.alert
+        }
+        let freePremiumAlert = UIAlertController(title: "Free Premium!", message: "To celebrate the release of Remembrances, We have given all users access to Premium for the first month! This inlcudes access to more Memorials, stories, image uploads, access to video uploads, and more customization options!", preferredStyle: alertStyle)
         let dismiss = UIAlertAction(title: "OK", style: .default, handler: nil)
         freePremiumAlert.addAction(dismiss)
         self.moveBookSidetoLeft()

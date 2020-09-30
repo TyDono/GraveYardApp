@@ -116,13 +116,21 @@ class NewGraveStoryTableViewController: UITableViewController, UIImagePickerCont
         ]) { err in
             if let err = err {
                 print("Error updating document: \(err)")
-                let alert1 = UIAlertController(title: "Not Saved", message: "Sorry, there was an error while trying to save your Story. Please try again.", preferredStyle: .alert)
+                var alertStyle = UIAlertController.Style.alert
+                if (UIDevice.current.userInterfaceIdiom == .pad) {
+                    alertStyle = UIAlertController.Style.alert
+                }
+                let alert1 = UIAlertController(title: "Not Saved", message: "Sorry, there was an error while trying to save your Story. Please try again.", preferredStyle: alertStyle)
                 alert1.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
                     alert1.dismiss(animated: true, completion: nil)
                 }))
                 self.present(alert1, animated: true, completion: nil)
             } else {
-                let alert2 = UIAlertController(title: "Saved", message: "You have successfully saved \(self.storyTitleTextField.text ?? "this story")", preferredStyle: .alert)
+                var alertStyle = UIAlertController.Style.alert
+                if (UIDevice.current.userInterfaceIdiom == .pad) {
+                    alertStyle = UIAlertController.Style.alert
+                }
+                let alert2 = UIAlertController(title: "Saved", message: "You have successfully saved \(self.storyTitleTextField.text ?? "this story")", preferredStyle: alertStyle)
                 alert2.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
                     alert2.dismiss(animated: true, completion: nil)
                     self.performSegue(withIdentifier: "unwindtoGraveStoriesSegue", sender: nil)
@@ -393,10 +401,14 @@ class NewGraveStoryTableViewController: UITableViewController, UIImagePickerCont
         updateStoryData()
     }
     
-    @IBAction func deleteStoryButtonTapped(_ sender: UIButton) {
-        let alerController = UIAlertController(title: "WARNING!", message: "This will delete all of the information on this Story!", preferredStyle: .actionSheet)
+    @IBAction func deleteStoryButtonTapped(_ sender: Any) {
+        var alertStyle = UIAlertController.Style.alert
+        if (UIDevice.current.userInterfaceIdiom == .pad) {
+            alertStyle = UIAlertController.Style.alert
+        }
+        let alertController = UIAlertController(title: "WARNING!", message: "This will delete all of the information on this Story!", preferredStyle: alertStyle)
         let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        alerController.addAction(cancel)
+        alertController.addAction(cancel)
         let delete = UIAlertAction(title: "DELETE", style: .destructive) { _ in
             
             let userRef = self.db.collection("stories")
@@ -404,24 +416,41 @@ class NewGraveStoryTableViewController: UITableViewController, UIImagePickerCont
                 if err == nil {
                     self.deleteOneFromStoryCount()
                     self.deletedStoryImages()
-                    let alert1 = UIAlertController(title: "Success", message: "This Story and all of it's contents have been successfully deleted", preferredStyle: .alert)
+                    var alertStyle = UIAlertController.Style.alert
+                    if (UIDevice.current.userInterfaceIdiom == .pad) {
+                        alertStyle = UIAlertController.Style.alert
+                    }
+                    let alert1 = UIAlertController(title: "Success", message: "This Story and all of it's contents have been successfully deleted", preferredStyle: alertStyle)
                     alert1.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
                         alert1.dismiss(animated: true, completion: nil)
                         self.performSegue(withIdentifier: "unwindtoGraveStoriesSegue", sender: nil)
                     }))
+                    if let popoverController = alert1.popoverPresentationController {
+                      popoverController.barButtonItem = sender as? UIBarButtonItem
+                    }
                     self.present(alert1, animated: true, completion: nil)
                 } else {
-                    let alert2 = UIAlertController(title: "ERROR", message: "Sorry, there was an error while trying to delete this story, please check your internet connection and try again", preferredStyle: .alert)
+                    var alertStyle = UIAlertController.Style.alert
+                    if (UIDevice.current.userInterfaceIdiom == .pad) {
+                        alertStyle = UIAlertController.Style.alert
+                    }
+                    let alert2 = UIAlertController(title: "ERROR", message: "Sorry, there was an error while trying to delete this story, please check your internet connection and try again", preferredStyle: alertStyle)
                     alert2.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
                         alert2.dismiss(animated: true, completion: nil)
                     }))
+                    if let popoverController = alert2.popoverPresentationController {
+                      popoverController.barButtonItem = sender as? UIBarButtonItem
+                    }
                     self.present(alert2, animated: true, completion: nil)
                     print("document not deleted, ERROR")
                 }
             }
         }
-        alerController.addAction(delete)
-        self.present(alerController, animated: true) {
+        alertController.addAction(delete)
+        if let popoverController = alertController.popoverPresentationController {
+          popoverController.barButtonItem = sender as? UIBarButtonItem
+        }
+        self.present(alertController, animated: true) {
         }
     }
     

@@ -107,7 +107,11 @@ class GraveStoriesTableViewController: UITableViewController {
         guard let currentGrave = self.currentGraveId else { return }
         print(GraveTableViewController.currentGraveStoryCount)
         guard GraveTableViewController.currentGraveStoryCount < 15 else {
-            let graveCreationFailAert = UIAlertController(title: "Too many Stories", message: "You are only allowed 15 stories per Memorial.", preferredStyle: .alert)
+            var alertStyle = UIAlertController.Style.alert
+            if (UIDevice.current.userInterfaceIdiom == .pad) {
+                alertStyle = UIAlertController.Style.alert
+            }
+            let graveCreationFailAert = UIAlertController(title: "Too many Stories", message: "You are only allowed 15 stories per Memorial.", preferredStyle: alertStyle)
             let dismiss = UIAlertAction(title: "OK", style: .default, handler: nil)
             graveCreationFailAert.addAction(dismiss)
             self.present(graveCreationFailAert, animated: true, completion: nil)
@@ -148,7 +152,11 @@ class GraveStoriesTableViewController: UITableViewController {
         let storyRef = self.db.collection("stories")
         storyRef.document(String(story.storyId)).setData(story.dictionary) { err in
             if let err = err {
-                let graveCreationFailAert = UIAlertController(title: "Failed to create a Story", message: "Your device failed to properly create a Story, Please check your wifi and try again", preferredStyle: .alert)
+                var alertStyle = UIAlertController.Style.alert
+                if (UIDevice.current.userInterfaceIdiom == .pad) {
+                    alertStyle = UIAlertController.Style.alert
+                }
+                let graveCreationFailAert = UIAlertController(title: "Failed to create a Story", message: "Your device failed to properly create a Story, Please check your wifi and try again", preferredStyle: alertStyle)
                 let dismiss = UIAlertAction(title: "OK", style: .default, handler: nil)
                 graveCreationFailAert.addAction(dismiss)
                 self.present(graveCreationFailAert, animated: true, completion: nil)
@@ -161,7 +169,11 @@ class GraveStoriesTableViewController: UITableViewController {
                     if let err = err {
                         GraveTableViewController.currentGraveStoryCount -= 1
                         print(err)
-                        let graveCreationFailAert = UIAlertController(title: "Failed to create a Story", message: "Your device failed to properly create a Story, Please check your wifi and try again", preferredStyle: .alert)
+                        var alertStyle = UIAlertController.Style.alert
+                        if (UIDevice.current.userInterfaceIdiom == .pad) {
+                            alertStyle = UIAlertController.Style.alert
+                        }
+                        let graveCreationFailAert = UIAlertController(title: "Failed to create a Story", message: "Your device failed to properly create a Story, Please check your wifi and try again", preferredStyle: alertStyle)
                         let dismiss = UIAlertAction(title: "OK", style: .default, handler: nil)
                         graveCreationFailAert.addAction(dismiss)
                         self.present(graveCreationFailAert, animated: true, completion: nil)

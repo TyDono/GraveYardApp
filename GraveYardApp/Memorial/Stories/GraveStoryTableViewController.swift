@@ -327,7 +327,6 @@ class GraveStoryTableViewController: UITableViewController {
     }
     
     override func scrollViewDidScroll(_ storyImagesScrollView: UIScrollView) {
-        print(storyImagesScrollView.contentOffset.x)
         changeImageLabelCounter()
     }
     
@@ -343,7 +342,6 @@ class GraveStoryTableViewController: UITableViewController {
         } else {
             height = 340
         }
-        print(height)
         return height
     }
     
@@ -395,7 +393,11 @@ class GraveStoryTableViewController: UITableViewController {
     func createReportData() {
         let userReportId: String = UUID().uuidString
         guard let currentAuthID = self.currentAuthID else {
-            let reportGraveFailAlert = UIAlertController(title: "Failed to report", message: "You must be sign in to send a report", preferredStyle: .alert)
+            var alertStyle = UIAlertController.Style.alert
+            if (UIDevice.current.userInterfaceIdiom == .pad) {
+                alertStyle = UIAlertController.Style.alert
+            }
+            let reportGraveFailAlert = UIAlertController(title: "Failed to report", message: "You must be sign in to send a report", preferredStyle: alertStyle)
             let dismiss = UIAlertAction(title: "OK", style: .default, handler: nil)
             reportGraveFailAlert.addAction(dismiss)
             self.present(reportGraveFailAlert, animated: true, completion: nil)
@@ -405,13 +407,21 @@ class GraveStoryTableViewController: UITableViewController {
         let userReportRef = self.db.collection("userReports")
         userReportRef.document(userReportId).setData(userReport.dictionary) { err in
             if let err = err {
-                let reportGraveFailAlert = UIAlertController(title: "Failed to report", message: "Your device failed to send the report. Please make sure you are logged in with an internet connection.", preferredStyle: .alert)
+                var alertStyle = UIAlertController.Style.alert
+                if (UIDevice.current.userInterfaceIdiom == .pad) {
+                    alertStyle = UIAlertController.Style.alert
+                }
+                let reportGraveFailAlert = UIAlertController(title: "Failed to report", message: "Your device failed to send the report. Please make sure you are logged in with an internet connection.", preferredStyle: alertStyle)
                 let dismiss = UIAlertAction(title: "OK", style: .default, handler: nil)
                 reportGraveFailAlert.addAction(dismiss)
                 self.present(reportGraveFailAlert, animated: true, completion: nil)
                 print(err)
             } else {
-                let graveReportAlertSucceed = UIAlertController(title: "Thank you!", message: "Your report has been received, thank you for your help.", preferredStyle: .alert)
+                var alertStyle = UIAlertController.Style.alert
+                if (UIDevice.current.userInterfaceIdiom == .pad) {
+                    alertStyle = UIAlertController.Style.alert
+                }
+                let graveReportAlertSucceed = UIAlertController(title: "Thank you!", message: "Your report has been received, thank you for your help.", preferredStyle: alertStyle)
                 let dismiss = UIAlertAction(title: "OK", style: .default, handler: nil)
                 graveReportAlertSucceed.addAction(dismiss)
                 self.removeReportPopOverAnimate()
