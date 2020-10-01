@@ -82,6 +82,7 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
             birthDatePicker.isHidden = !isDeathDatePickerShown
         }
     }
+    
     var isCheckOutDatePickerShown: Bool = false {
         didSet {
             deathDatePicker.isHidden = !isCheckOutDatePickerShown

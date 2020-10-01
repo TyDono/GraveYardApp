@@ -42,7 +42,6 @@
 		CBCE0E2D23FD14250077A4F1 /* StoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCE0E2C23FD14250077A4F1 /* StoryTableViewCell.swift */; };
 		CBCE0E2F23FD14410077A4F1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CBCE0E2E23FD14410077A4F1 /* Assets.xcassets */; };
 		CBCE0E3323FD14690077A4F1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CBCE0E3223FD14690077A4F1 /* LaunchScreen.storyboard */; };
-		CBDA104F251FF3A900586653 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBDA104E251FF3A900586653 /* StoreKit.framework */; };
 		CBDA1057251FFB7600586653 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBDA1056251FFB7600586653 /* MapKit.framework */; };
 		CBF424A224FE1F970095AE96 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBF424A124FE1F960095AE96 /* PlayerView.swift */; };
 /* End PBXBuildFile section */
@@ -87,7 +86,6 @@
 		CBCE0E2C23FD14250077A4F1 /* StoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryTableViewCell.swift; sourceTree = "<group>"; };
 		CBCE0E2E23FD14410077A4F1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CBCE0E3223FD14690077A4F1 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
-		CBDA104E251FF3A900586653 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		CBDA1056251FFB7600586653 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		CBF424A124FE1F960095AE96 /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
 		F8E1FD119F31E488CE0801B2 /* Pods_Remembrances.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Remembrances.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -99,7 +97,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				CBDA1057251FFB7600586653 /* MapKit.framework in Frameworks */,
-				CBDA104F251FF3A900586653 /* StoreKit.framework in Frameworks */,
 				9747E155CD811601E2371760 /* Pods_Remembrances.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -111,7 +108,6 @@
 			isa = PBXGroup;
 			children = (
 				CBDA1056251FFB7600586653 /* MapKit.framework */,
-				CBDA104E251FF3A900586653 /* StoreKit.framework */,
 				F8E1FD119F31E488CE0801B2 /* Pods_Remembrances.framework */,
 			);
 			name = Frameworks;
@@ -580,7 +576,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.08;
+				MARKETING_VERSION = 1.09;
 				PRODUCT_BUNDLE_IDENTIFIER = TyDon.RemembrancesApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -605,7 +601,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.08;
+				MARKETING_VERSION = 1.09;
 				PRODUCT_BUNDLE_IDENTIFIER = TyDon.RemembrancesApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
