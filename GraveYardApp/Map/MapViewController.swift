@@ -58,8 +58,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         playHowToMemorialVideoButton.layer.cornerRadius = 10
         mapView.delegate = self
         getUserMemorialCount()
-//        self.navigationItem.rightBarButtonItem?.isEnabled = false
-        self.navigationItem.rightBarButtonItem?.title = "Premium"
+        self.navigationItem.rightBarButtonItem?.isEnabled = false
+        self.navigationItem.rightBarButtonItem?.title = ""
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -538,8 +538,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                 self.present(notSignInAlert, animated: true, completion: nil)
             } else {
                 let memorialCount = MyFirebase.memorialCount
-                guard memorialCount < 20 else {
-                    let graveCreationFailAlert = UIAlertController(title: "Too many Memorials", message: "You are only allowed 20 Memorials.", preferredStyle: alertStyle)
+                guard memorialCount < 15 else {
+                    let graveCreationFailAlert = UIAlertController(title: "Too many Memorials", message: "You are only allowed 15 Memorials.", preferredStyle: alertStyle)
 //                    let graveCreationFailAlert = UIAlertController(title: "Too many Memorials", message: "Free users are only allowed 3 Memorials. To increase the amount, subscribe and get premium benefits.", preferredStyle: .alert)
                     let dismiss = UIAlertAction(title: "OK", style: .default, handler: nil)
                     graveCreationFailAlert.addAction(dismiss)
