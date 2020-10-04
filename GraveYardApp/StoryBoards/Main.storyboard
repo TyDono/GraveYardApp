@@ -1829,7 +1829,7 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zx1-5A-lzB">
-                                <rect key="frame" x="-261" y="112" width="337" height="38.5"/>
+                                <rect key="frame" x="-273" y="765" width="337" height="38.5"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bookBlue" translatesAutoresizingMaskIntoConstraints="NO" id="JWA-Ic-Hmq">
                                         <rect key="frame" x="0.0" y="0.0" width="337" height="38.5"/>
@@ -1869,14 +1869,19 @@
                                     <constraint firstItem="SC6-Vp-Sq2" firstAttribute="leading" secondItem="TgG-vd-iv9" secondAttribute="trailing" id="vM9-0r-3a9"/>
                                 </constraints>
                             </view>
+                            <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3a5-IP-Tch">
+                                <rect key="frame" x="0.0" y="88" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Abc-m9-DRn"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="6MH-ve-unU" firstAttribute="leading" secondItem="Abc-m9-DRn" secondAttribute="leading" id="71F-Fp-uIZ"/>
                             <constraint firstItem="W5U-iO-55T" firstAttribute="leading" secondItem="Abc-m9-DRn" secondAttribute="leading" constant="20" id="KaD-hK-OX8"/>
-                            <constraint firstItem="Zx1-5A-lzB" firstAttribute="top" secondItem="Abc-m9-DRn" secondAttribute="top" constant="24" id="N9H-Cw-d3h"/>
-                            <constraint firstItem="Zx1-5A-lzB" firstAttribute="leading" secondItem="FOT-J4-Seo" secondAttribute="leading" constant="-261" id="TdR-Ni-56C"/>
+                            <constraint firstItem="Zx1-5A-lzB" firstAttribute="top" secondItem="Abc-m9-DRn" secondAttribute="top" constant="677" id="N9H-Cw-d3h"/>
+                            <constraint firstItem="Zx1-5A-lzB" firstAttribute="leading" secondItem="FOT-J4-Seo" secondAttribute="leading" constant="-273" id="TdR-Ni-56C"/>
                             <constraint firstItem="6MH-ve-unU" firstAttribute="top" secondItem="Abc-m9-DRn" secondAttribute="top" id="WwJ-dk-9KL"/>
                             <constraint firstItem="Abc-m9-DRn" firstAttribute="bottom" secondItem="W5U-iO-55T" secondAttribute="bottom" constant="20" id="hQi-Qy-eoU"/>
                             <constraint firstItem="6MH-ve-unU" firstAttribute="trailing" secondItem="Abc-m9-DRn" secondAttribute="trailing" id="hoX-c6-dMm"/>
@@ -1901,6 +1906,7 @@
                         <outlet property="bookSideUIImageView" destination="JWA-Ic-Hmq" id="fhP-nP-P7d"/>
                         <outlet property="bookSideUIView" destination="Zx1-5A-lzB" id="JVQ-H5-AE0"/>
                         <outlet property="howToMemorialPreviewImage" destination="ksM-Uc-EPm" id="D3X-UK-IYq"/>
+                        <outlet property="locationSearchBar" destination="3a5-IP-Tch" id="HYd-FM-r8A"/>
                         <outlet property="mapView" destination="6MH-ve-unU" id="KFx-y7-2xf"/>
                         <outlet property="playHowToMemorialVideoButton" destination="VEu-qr-h0s" id="vD3-Ph-5TI"/>
                         <outlet property="recenterMapButton" destination="W5U-iO-55T" id="yse-to-gs6"/>

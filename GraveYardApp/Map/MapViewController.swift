@@ -16,6 +16,7 @@ import GoogleSignIn
 
 class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UIGestureRecognizerDelegate {
     
+    @IBOutlet weak var locationSearchBar: UISearchBar!
     @IBOutlet weak var playHowToMemorialVideoButton: UIButton!
     @IBOutlet weak var howToMemorialPreviewImage: UIImageView!
     @IBOutlet weak var recenterMapButton: UIButton!
