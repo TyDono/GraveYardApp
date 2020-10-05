@@ -82,11 +82,19 @@ class MyFirebase {
         let currentUserId: String = self.userId
         let premiumStatus: Int = 0
         let dataCount: Double = 0.0
+        let userName: String = ""
+        let friendList: Array<String> = [""]
+        let friendRequests: Array<String> = [""]
+        let blockedList: Array<String> = [""]
         let memorialCount: Int = 0
         
         let user = UserProfile(currentUserAuthId: currentUserId,
                                premiumStatus: premiumStatus,
                                dataCount: dataCount,
+                               userName: userName,
+                               friendList: friendList,
+                               friendRequests: friendRequests,
+                               blockedList: blockedList,
                                memorialCount: memorialCount)
         
         let userRef = self.db.collection("userProfile")

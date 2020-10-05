@@ -14,7 +14,7 @@ import AVKit
 import AVFoundation
 import GoogleSignIn
 
-class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UIGestureRecognizerDelegate {
+class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UIGestureRecognizerDelegate, UISearchBarDelegate {
     
     @IBOutlet weak var locationSearchBar: UISearchBar!
     @IBOutlet weak var playHowToMemorialVideoButton: UIButton!
@@ -30,7 +30,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     
     // MARK: - Propeties
     
+    private var mapChangedFromUserInteraction = false
     static let shared = MapViewController()
+    var resultSearchController: UISearchController? = nil
     var currentAuthID = Auth.auth().currentUser?.uid
     var userId: String = ""
     var currentUser: User?
@@ -73,10 +75,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     }
     
     // MARK: - Functions
-    
-    func reloadMapView() {
-        mapView.reloadInputViews()
-    }
     
     func chageTextColor() {
         navigationItem.leftBarButtonItem?.tintColor = UIColor(0.0, 128.0, 128.0, 1.0)
@@ -370,46 +368,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         mapView.userTrackingMode = .follow
         mapView.isUserInteractionEnabled = true
     }
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        //lock on location, disabled go let user view around more
-//        let locValue: CLLocationCoordinate2D = manager.location!.coordinate
-        //print("The user location coordinates are \(locValue.latitude) \(locValue.longitude)") // this is getting spam called!!!!!
-//        let userLocation = locations.last
-//        let viewRegion = MKCoordinateRegion(center: (userLocation?.coordinate)!, latitudinalMeters: 600, longitudinalMeters: 600)
-//        mapView.setRegion(viewRegion, animated: true)
-    }
-    
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "segueToGrave", let GraveTVC = segue.destination as? GraveTableViewController {
-////            GraveTVC.creatorId = creatorId ?? "nul"
-////            GraveTVC.currentGraveId = currentGraveId ?? "nul"
-//        }
-//    }
-    
-    //    func presentAlertController() {
-    //        let newGraveAlert = UIAlertController(title: "New grave sight entry.", message: "Would you like to make a new entry at this location?", preferredStyle: .actionSheet)
-    //        newGraveAlert.addAction(UIAlertAction(title: "Create new entry.", style: .default, handler: { action in
-    //            print("Default Button Pressed")
-    //
-    //            //TYLER'S prepareForSegue
-    //            self.createData()
-    //
-    //        }))
-    //        newGraveAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { action in
-    //            print("Cancel Button Pressed")
-    //
-    //            for annotation in self.mapView.annotations {
-    //                if annotation.title == "New Entry" {
-    //                    self.mapView.removeAnnotation(annotation)
-    //                }
-    //            }
-    //
-    //        }))
-    //        self.present(newGraveAlert, animated: true)
-    //    }
-    
-    private var mapChangedFromUserInteraction = false
 
     private func mapViewRegionDidChangeFromUserInteraction() -> Bool {
         let view = self.mapView.subviews[0]
@@ -752,5 +710,45 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
 
 
 extension MapViewController {
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if locations.first != nil {
+            print("location: \(locations.first)")
+        }
+        //lock on location, disabled go let user view around more
+//        let locValue: CLLocationCoordinate2D = manager.location!.coordinate
+        //print("The user location coordinates are \(locValue.latitude) \(locValue.longitude)") // this is getting spam called!!!!!
+//        let userLocation = locations.last
+//        let viewRegion = MKCoordinateRegion(center: (userLocation?.coordinate)!, latitudinalMeters: 600, longitudinalMeters: 600)
+//        mapView.setRegion(viewRegion, animated: true)
+    }
+    
+    private func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+        if status == .authorizedWhenInUse {
+            locationManager.requestLocation()
+        }
+    }
+    
+    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+        print("error:: (error)")
+    }
+    
+    func updateSearchResults(_ searchBar: UISearchBar) {
+        
+        searchBar.resignFirstResponder()
+        dismiss(animated: true, completion: nil)
+        
+        let searchRequest = MKLocalSearch.Request()
+        searchRequest.naturalLanguageQuery = searchBar.text
+        
+        let activeSearch = MKLocalSearch(request: searchRequest)
+        activeSearch.start { (response, err) in
+            if response == nil {
+                print("ERROR: \(err)")
+            } else {
+                
+            }
+        }
+    }
     
 }

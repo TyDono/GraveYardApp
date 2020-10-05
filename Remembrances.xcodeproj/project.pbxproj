@@ -22,6 +22,7 @@
 		CB8304C824B5CE9D0023F4EA /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8304C724B5CE9D0023F4EA /* AccountViewController.swift */; };
 		CB881F9A2367B41E00615F2F /* EditGraveTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB881F992367B41E00615F2F /* EditGraveTableViewController.swift */; };
 		CBBC7B0F2522933500BE6697 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CBBC7B0E2522933400BE6697 /* GoogleService-Info.plist */; };
+		CBBC7B1F252B054800BE6697 /* LocationSearchTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBC7B1E252B054800BE6697 /* LocationSearchTableView.swift */; };
 		CBBCBD46250A74F700326169 /* paperSound.wav in Resources */ = {isa = PBXBuildFile; fileRef = CBBCBD44250A74F600326169 /* paperSound.wav */; };
 		CBBCBD47250A74F700326169 /* paperBookSound.wav in Resources */ = {isa = PBXBuildFile; fileRef = CBBCBD45250A74F700326169 /* paperBookSound.wav */; };
 		CBCE0E0B23FD12D00077A4F1 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCE0E0823FD12D00077A4F1 /* SplashViewController.swift */; };
@@ -66,6 +67,7 @@
 		CB8304C724B5CE9D0023F4EA /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		CB881F992367B41E00615F2F /* EditGraveTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditGraveTableViewController.swift; sourceTree = "<group>"; };
 		CBBC7B0E2522933400BE6697 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		CBBC7B1E252B054800BE6697 /* LocationSearchTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchTableView.swift; sourceTree = "<group>"; };
 		CBBCBD44250A74F600326169 /* paperSound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = paperSound.wav; sourceTree = "<group>"; };
 		CBBCBD45250A74F700326169 /* paperBookSound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = paperBookSound.wav; sourceTree = "<group>"; };
 		CBCE0E0823FD12D00077A4F1 /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
@@ -227,6 +229,7 @@
 			isa = PBXGroup;
 			children = (
 				CBCE0E1823FD13460077A4F1 /* MapViewController.swift */,
+				CBBC7B1E252B054800BE6697 /* LocationSearchTableView.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -437,6 +440,7 @@
 				CBCE0E1523FD13300077A4F1 /* GlobalExtension.swift in Sources */,
 				CB3A1AA724F447DC00BACC73 /* MemorialsTableViewCell.swift in Sources */,
 				CBCE0E1D23FD13910077A4F1 /* CustomAnnotation.swift in Sources */,
+				CBBC7B1F252B054800BE6697 /* LocationSearchTableView.swift in Sources */,
 				CBCE0E2523FD13CC0077A4F1 /* UserProfile.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -576,7 +580,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.10;
+				MARKETING_VERSION = 1.11;
 				PRODUCT_BUNDLE_IDENTIFIER = TyDon.RemembrancesApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -601,7 +605,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.10;
+				MARKETING_VERSION = 1.11;
 				PRODUCT_BUNDLE_IDENTIFIER = TyDon.RemembrancesApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
