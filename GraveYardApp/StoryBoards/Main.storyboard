@@ -1880,7 +1880,7 @@
                                     <constraint firstAttribute="height" constant="46" id="58m-2t-5qw"/>
                                     <constraint firstAttribute="width" constant="46" id="TH2-9Q-sfP"/>
                                 </constraints>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title="FR"/>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Abc-m9-DRn"/>
@@ -1904,7 +1904,7 @@
                                 <action selector="SignInTapped:" destination="9X6-7Z-pCz" id="aaI-mx-CVZ"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Premium" id="RFS-BO-bmg">
+                        <barButtonItem key="rightBarButtonItem" title="Account" id="RFS-BO-bmg">
                             <connections>
                                 <action selector="AccountSideBarButtonItemTapped:" destination="9X6-7Z-pCz" id="qNB-En-KcA"/>
                             </connections>
@@ -1924,7 +1924,7 @@
                         <outlet property="yourMemorialsButton" destination="TgG-vd-iv9" id="WU7-Ar-vQW"/>
                         <segue destination="df1-gm-beU" kind="show" identifier="segueToGrave" id="xN6-dc-fkE"/>
                         <segue destination="wtE-vq-OyN" kind="unwind" identifier="unwindToSignIn" unwindAction="unwindToSignIn:" id="xDe-gH-4KU"/>
-                        <segue destination="SzX-iF-Ewd" kind="show" identifier="segueToPayments" id="74B-mS-0pn"/>
+                        <segue destination="SzX-iF-Ewd" kind="show" identifier="segueToAccount" id="74B-mS-0pn"/>
                         <segue destination="SIl-1N-tic" kind="show" identifier="viewOwnMemorialsSegue" id="d6O-X3-50S"/>
                     </connections>
                 </viewController>
@@ -2032,31 +2032,29 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Premium user status" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2R6-M4-lIf">
-                                <rect key="frame" x="24" y="149" width="366" height="190"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="751" fixedFrame="YES" text="Premium user status" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2R6-M4-lIf">
+                                <rect key="frame" x="24" y="149" width="366" height="70"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Data Cap Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zZm-8k-Mx8">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Data Cap Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zZm-8k-Mx8">
                                 <rect key="frame" x="16" y="117" width="382" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lfs-U7-lc1">
+                                <rect key="frame" x="24" y="227" width="366" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="RNs-pX-eco"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="RNs-pX-eco" firstAttribute="trailing" secondItem="2R6-M4-lIf" secondAttribute="trailing" constant="24" id="AeZ-7P-AZm"/>
-                            <constraint firstItem="2R6-M4-lIf" firstAttribute="leading" secondItem="RNs-pX-eco" secondAttribute="leading" constant="24" id="D2S-0t-leR"/>
-                            <constraint firstItem="RNs-pX-eco" firstAttribute="bottom" secondItem="2R6-M4-lIf" secondAttribute="bottom" constant="523" id="Eh8-Ly-qIF"/>
-                            <constraint firstItem="zZm-8k-Mx8" firstAttribute="top" secondItem="RNs-pX-eco" secondAttribute="top" constant="29" id="GgT-U8-rY3"/>
-                            <constraint firstItem="RNs-pX-eco" firstAttribute="trailing" secondItem="zZm-8k-Mx8" secondAttribute="trailing" constant="16" id="LF1-tW-9DN"/>
-                            <constraint firstItem="zZm-8k-Mx8" firstAttribute="leading" secondItem="RNs-pX-eco" secondAttribute="leading" constant="16" id="a2O-vY-CFB"/>
-                            <constraint firstItem="2R6-M4-lIf" firstAttribute="top" secondItem="zZm-8k-Mx8" secondAttribute="bottom" constant="8" id="mxt-Qo-0rz"/>
-                            <constraint firstItem="2R6-M4-lIf" firstAttribute="top" secondItem="zZm-8k-Mx8" secondAttribute="bottom" constant="8" id="xHJ-aD-0O9"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Your Acount" id="VrO-aj-I3s">
                         <barButtonItem key="rightBarButtonItem" title="Premium" id="CaB-ng-TMl"/>
@@ -2064,11 +2062,12 @@
                     <connections>
                         <outlet property="dataCountLabel" destination="zZm-8k-Mx8" id="TB4-iY-TW1"/>
                         <outlet property="premiumStatusLabel" destination="2R6-M4-lIf" id="jkL-1S-5B8"/>
+                        <outlet property="userNameTextField" destination="lfs-U7-lc1" id="rzt-bX-vEz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Ur-vo-Eqm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4311.1999999999998" y="-141.67916041979012"/>
+            <point key="canvasLocation" x="4310.144927536232" y="-141.96428571428569"/>
         </scene>
         <!--Sign In-->
         <scene sceneID="eey-YM-mnw">

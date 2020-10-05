@@ -14,6 +14,7 @@ class AccountViewController: UIViewController {
 
     @IBOutlet weak var dataCountLabel: UILabel!
     @IBOutlet weak var premiumStatusLabel: UILabel!
+    @IBOutlet weak var userNameTextField: UITextField!
     
     // MARK: - Propeties
     
@@ -32,8 +33,8 @@ class AccountViewController: UIViewController {
         super.viewDidLoad()
         db = Firestore.firestore()
         getUserData() //re-instate this when premium is out!!!!!!
-        self.premiumStatusLabel.text = "Premium accounts comming soon!"
-        self.dataCountLabel.text = "Limited time Only!!! Unlimited Data!!!"
+//        self.premiumStatusLabel.text = "Premium accounts comming soon!"
+//        self.dataCountLabel.text = "Limited time Only!!! Unlimited Data!!!"
         getCurrentSeason()
         changeBackground()
         
@@ -47,8 +48,27 @@ class AccountViewController: UIViewController {
                 print(error as Any)
             } else {
                 for document in (snapshot?.documents)! {
-                    if let dataCount = document.data()["dataCount"] as? Int {
+                    if let dataCount = document.data()["dataCount"] as? Int,
+                       let premiumStatus = document.data()["premiumStatus"] as? Int,
+                       let userName = document.data()["userName"] as? String,
+                       let friendList = document.data()["friendList"] as? Array<String>,
+                       let friendRequests = document.data()["friendRequests"] as? Array<String>,
+                       let blockedList = document.data()["blockedList"] as? Array<String> {
                         self.dataCount = Double(dataCount)
+                        switch premiumStatus {
+                        case 0:
+                            self.premiumStatusLabel.text = "You are not currently subscribed to Remembrances Premium"
+                        case 1:
+                            self.premiumStatusLabel.text = "Your current subsciption is Tier 1"
+                        case 2:
+                            self.premiumStatusLabel.text = "Your current subsciption is Tier 2"
+                        case 3:
+                            self.premiumStatusLabel.text = "Your current subsciption is Tier 3"
+                        default:
+                            self.premiumStatusLabel.text = ""
+                        }
+                        self.userNameTextField.text = userName
+                        
                         if self.dataCount != 0.0 {
                             let dividedDataCount: Double = self.dataCount/1000000.0
                             let stringDataCount: String = String(dividedDataCount)

@@ -37,6 +37,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     var userId: String = ""
     var currentUser: User?
     var locationManager = CLLocationManager()
+    var regionInMeters: Double = 10000.0
     var db = Firestore.firestore()
     var currentGraveId: String?
     var creatorId: String?
@@ -53,6 +54,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.locationManager.distanceFilter = 90000.0;
 //        self.mapView.removeAnnotations(self.mapView.annotations)
         setMapViewLocationAndUser()
         //chageTextColor()
@@ -61,8 +63,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         playHowToMemorialVideoButton.layer.cornerRadius = 10
         mapView.delegate = self
         getUserMemorialCount()
-        self.navigationItem.rightBarButtonItem?.isEnabled = false
-        self.navigationItem.rightBarButtonItem?.title = ""
+//        self.navigationItem.rightBarButtonItem?.isEnabled = false
+        self.navigationItem.rightBarButtonItem?.title = "Account"
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -476,7 +478,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         if (UIDevice.current.userInterfaceIdiom == .pad) {
           alertStyle = UIAlertController.Style.alert
         }
-        let newGraveAlert = UIAlertController(title: "New Memorial sight entry.", message: "Would you like to make a new entry at this location?", preferredStyle: alertStyle)
+        let newGraveAlert = UIAlertController(title: "New Memorial", message: "Would you like to make a new entry at this location?", preferredStyle: alertStyle)
         newGraveAlert.addAction(UIAlertAction(title: "Create new entry", style: .default, handler: { action in
             print("Default Button Pressed")
             
@@ -633,31 +635,21 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     }
     
     @IBAction func AccountSideBarButtonItemTapped(_ sender: UIBarButtonItem) {
-        var alertStyle = UIAlertController.Style.actionSheet
-        if (UIDevice.current.userInterfaceIdiom == .pad) {
-          alertStyle = UIAlertController.Style.alert
-        }
-        let freePremiumAlert = UIAlertController(title: "Free Premium!", message: "To celebrate the release of Remembrances, We have given all users access to Premium for the first month! This inlcudes access to more Memorials, stories, image uploads, access to video uploads, and more customization options!", preferredStyle: alertStyle)
-        let dismiss = UIAlertAction(title: "OK", style: .default, handler: nil)
-        freePremiumAlert.addAction(dismiss)
-        self.moveBookSidetoLeft()
-        self.present(freePremiumAlert, animated: true, completion: nil)
     
-        //re-enstate this after a month of release
-//        if currentAuthID != nil {
-//            self.moveBookSidetoLeft()
-//            performSegue(withIdentifier: "segueToPayments", sender: nil)
-//        } else {
-//            let notSignInAlert = UIAlertController(title: "You are not signed in", message: "You must be signed in to check account information", preferredStyle: .actionSheet)
-//            let dismiss = UIAlertAction(title: "Cancel", style: .default, handler: nil)
-//            notSignInAlert.addAction(dismiss)
-//            let goToLogIn = UIAlertAction(title: "Sign In", style: .default, handler: { _ in
-//                self.moveBookSidetoLeft()
-//                self.performSegue(withIdentifier: "unwindToSignIn", sender: nil)
-//            })
-//            notSignInAlert.addAction(goToLogIn)
-//            self.present(notSignInAlert, animated: true, completion: nil)
-//        }
+        if currentAuthID != nil {
+            self.moveBookSidetoLeft()
+            performSegue(withIdentifier: "segueToAccount", sender: nil)
+        } else {
+            let notSignInAlert = UIAlertController(title: "You are not signed in", message: "You must be signed in to check account information", preferredStyle: .actionSheet)
+            let dismiss = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+            notSignInAlert.addAction(dismiss)
+            let goToLogIn = UIAlertAction(title: "Sign In", style: .default, handler: { _ in
+                self.moveBookSidetoLeft()
+                self.performSegue(withIdentifier: "unwindToSignIn", sender: nil)
+            })
+            notSignInAlert.addAction(goToLogIn)
+            self.present(notSignInAlert, animated: true, completion: nil)
+        }
     }
     
     @IBAction func yourMemorialsButtonWasTapped(_ sender: UIButton) {
@@ -712,9 +704,12 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
 extension MapViewController {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if locations.first != nil {
-            print("location: \(locations.first)")
-        }
+        
+//        guard let location = locations.last else { return }
+//        let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+//        let region = MKCoordinateRegion.init(center: center, latitudinalMeters: regionInMeters, longitudinalMeters: regionInMeters)
+//        mapView.setRegion(region, animated: true)
+        
         //lock on location, disabled go let user view around more
 //        let locValue: CLLocationCoordinate2D = manager.location!.coordinate
         //print("The user location coordinates are \(locValue.latitude) \(locValue.longitude)") // this is getting spam called!!!!!
