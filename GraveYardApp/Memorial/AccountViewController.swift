@@ -18,6 +18,9 @@ class AccountViewController: UIViewController {
     
     // MARK: - Propeties
     
+    var friendList: [String]?
+    var friendRequests: [String]?
+    var blockedList: [String]?
     var currentAuthID = Auth.auth().currentUser?.uid
     var db: Firestore!
     var dataCount: Double = 0.0
@@ -68,14 +71,17 @@ class AccountViewController: UIViewController {
                             self.premiumStatusLabel.text = ""
                         }
                         self.userNameTextField.text = userName
+                        self.friendList = friendList
+                        self.friendRequests = friendRequests
+                        self.blockedList = blockedList
                         
-                        if self.dataCount != 0.0 {
-                            let dividedDataCount: Double = self.dataCount/1000000.0
-                            let stringDataCount: String = String(dividedDataCount)
-                            self.dataCountLabel.text = "\(stringDataCount) mb / 5mb"
-                        } else {
-                            self.dataCountLabel.text = "0mb / 5mb"
-                        }
+//                        if self.dataCount != 0.0 {
+//                            let dividedDataCount: Double = self.dataCount/1000000.0
+//                            let stringDataCount: String = String(dividedDataCount)
+//                            self.dataCountLabel.text = "\(stringDataCount) mb / 5mb"
+//                        } else {
+//                            self.dataCountLabel.text = "0mb / 5mb"
+//                        }
                     }
                 }
             }
@@ -84,11 +90,28 @@ class AccountViewController: UIViewController {
     
     func updateUserData() {
         db = Firestore.firestore()
+        guard let userName = self.userNameTextField.text else {
+            userNameTextField.isError(baseColor: UIColor.red.cgColor, numberOfShakes: 3, revert: true)
+            return
+        }
         guard let currentId = currentAuthID else { return }
         db.collection("userProfile").document(currentId).updateData([
-            "dataCount": MyFirebase.currentDataUsage!
+            "dataCount": MyFirebase.currentDataUsage!,
+            "userName": userName,
+            "friendList": self.friendList ?? "",
+            "friendRequests": self.friendRequests ?? "",
+            "blockedList": self.blockedList ?? ""
         ]) { err in
             if let err = err {
+                var alertStyle = UIAlertController.Style.alert
+                if (UIDevice.current.userInterfaceIdiom == .pad) {
+                    alertStyle = UIAlertController.Style.alert
+                }
+                let alertFailure = UIAlertController(title: "Account Not Saved", message: "Sorry, there was an error while trying to save your Accounte. Please try again.", preferredStyle: alertStyle)
+                alertFailure.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
+                    alertFailure.dismiss(animated: true, completion: nil)
+                }))
+                self.present(alertFailure, animated: true, completion: nil)
                 print("Error updating document: \(err)")
             } else {
                 print("Document successfully updated")
@@ -137,5 +160,10 @@ class AccountViewController: UIViewController {
         backgroundImage.contentMode = UIView.ContentMode.scaleToFill
         self.view.insertSubview(backgroundImage, at: 0)
     }
+    
+    @IBAction func saveAccountBarButtonTapped(_ sender: UIBarButtonItem) {
+        self.updateUserData()
+    }
+    
 
 }

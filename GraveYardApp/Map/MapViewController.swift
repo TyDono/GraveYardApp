@@ -54,7 +54,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.locationManager.distanceFilter = 90000.0;
+//        self.locationManager.distanceFilter = 90000.0;
 //        self.mapView.removeAnnotations(self.mapView.annotations)
         setMapViewLocationAndUser()
         //chageTextColor()

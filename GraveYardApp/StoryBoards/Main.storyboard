@@ -2057,7 +2057,11 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" title="Your Acount" id="VrO-aj-I3s">
-                        <barButtonItem key="rightBarButtonItem" title="Premium" id="CaB-ng-TMl"/>
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="CaB-ng-TMl">
+                            <connections>
+                                <action selector="saveAccountBarButtonTapped:" destination="SzX-iF-Ewd" id="glu-y5-2Er"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="dataCountLabel" destination="zZm-8k-Mx8" id="TB4-iY-TW1"/>
