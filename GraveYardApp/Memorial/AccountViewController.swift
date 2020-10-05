@@ -114,6 +114,15 @@ class AccountViewController: UIViewController {
                 self.present(alertFailure, animated: true, completion: nil)
                 print("Error updating document: \(err)")
             } else {
+                var alertStyle = UIAlertController.Style.alert
+                if (UIDevice.current.userInterfaceIdiom == .pad) {
+                    alertStyle = UIAlertController.Style.alert
+                }
+                let alertFailure = UIAlertController(title: "Account Saved!", message: "", preferredStyle: alertStyle)
+                alertFailure.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
+                    alertFailure.dismiss(animated: true, completion: nil)
+                }))
+                self.present(alertFailure, animated: true, completion: nil)
                 print("Document successfully updated")
             }
         }

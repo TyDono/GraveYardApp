@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9747E155CD811601E2371760 /* Pods_Remembrances.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8E1FD119F31E488CE0801B2 /* Pods_Remembrances.framework */; };
 		CB226F3825205A1E00BB0F51 /* credentials.plist in Resources */ = {isa = PBXBuildFile; fileRef = CB226F3725205A1D00BB0F51 /* credentials.plist */; };
 		CB226F4425218C0100BB0F51 /* memorialMakerInto.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CB226F4325218C0100BB0F51 /* memorialMakerInto.mp4 */; };
 		CB398EFB23695D0600A515B9 /* GraveStoriesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB398EFA23695D0600A515B9 /* GraveStoriesTableViewController.swift */; };
@@ -45,11 +44,11 @@
 		CBCE0E3323FD14690077A4F1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CBCE0E3223FD14690077A4F1 /* LaunchScreen.storyboard */; };
 		CBDA1057251FFB7600586653 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBDA1056251FFB7600586653 /* MapKit.framework */; };
 		CBF424A224FE1F970095AE96 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBF424A124FE1F960095AE96 /* PlayerView.swift */; };
+		E8F91882986EE15D6ED608DC /* Pods_Remembrances.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F04760C3626E91F924036536 /* Pods_Remembrances.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		B9A192F86FE06CF551DE5AE2 /* Pods-Remembrances.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Remembrances.release.xcconfig"; path = "Target Support Files/Pods-Remembrances/Pods-Remembrances.release.xcconfig"; sourceTree = "<group>"; };
-		BED0BAD667BF7EC98F7A2CDA /* Pods-Remembrances.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Remembrances.debug.xcconfig"; path = "Target Support Files/Pods-Remembrances/Pods-Remembrances.debug.xcconfig"; sourceTree = "<group>"; };
+		A2D8D1588AF5480F1F26C7B4 /* Pods-Remembrances.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Remembrances.debug.xcconfig"; path = "Target Support Files/Pods-Remembrances/Pods-Remembrances.debug.xcconfig"; sourceTree = "<group>"; };
 		CB226F3725205A1D00BB0F51 /* credentials.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = credentials.plist; sourceTree = "<group>"; };
 		CB226F4325218C0100BB0F51 /* memorialMakerInto.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = memorialMakerInto.mp4; sourceTree = "<group>"; };
 		CB398EFA23695D0600A515B9 /* GraveStoriesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraveStoriesTableViewController.swift; sourceTree = "<group>"; };
@@ -90,7 +89,8 @@
 		CBCE0E3223FD14690077A4F1 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CBDA1056251FFB7600586653 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		CBF424A124FE1F960095AE96 /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
-		F8E1FD119F31E488CE0801B2 /* Pods_Remembrances.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Remembrances.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F04760C3626E91F924036536 /* Pods_Remembrances.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Remembrances.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F6FAC73F2981E74145F8CE0E /* Pods-Remembrances.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Remembrances.release.xcconfig"; path = "Target Support Files/Pods-Remembrances/Pods-Remembrances.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,7 +99,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CBDA1057251FFB7600586653 /* MapKit.framework in Frameworks */,
-				9747E155CD811601E2371760 /* Pods_Remembrances.framework in Frameworks */,
+				E8F91882986EE15D6ED608DC /* Pods_Remembrances.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -110,7 +110,7 @@
 			isa = PBXGroup;
 			children = (
 				CBDA1056251FFB7600586653 /* MapKit.framework */,
-				F8E1FD119F31E488CE0801B2 /* Pods_Remembrances.framework */,
+				F04760C3626E91F924036536 /* Pods_Remembrances.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -118,8 +118,8 @@
 		4C60F0685EEE03CC36F49DF4 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				BED0BAD667BF7EC98F7A2CDA /* Pods-Remembrances.debug.xcconfig */,
-				B9A192F86FE06CF551DE5AE2 /* Pods-Remembrances.release.xcconfig */,
+				A2D8D1588AF5480F1F26C7B4 /* Pods-Remembrances.debug.xcconfig */,
+				F6FAC73F2981E74145F8CE0E /* Pods-Remembrances.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -282,12 +282,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CB5AE19723512B16001BCCCE /* Build configuration list for PBXNativeTarget "Remembrances" */;
 			buildPhases = (
-				11C3984C28B6B5C895706A55 /* [CP] Check Pods Manifest.lock */,
+				BCBAEC423F2E1C1864C2A60C /* [CP] Check Pods Manifest.lock */,
 				CB5AE17F23512B14001BCCCE /* Sources */,
 				CB5AE18023512B14001BCCCE /* Frameworks */,
 				CB5AE18123512B14001BCCCE /* Resources */,
-				9A6D26E21C4B3425202E2A4F /* [CP] Embed Pods Frameworks */,
-				A6E43D2A408B55C7A08F467D /* [CP] Copy Pods Resources */,
+				7A2063780254D366F8F34C5C /* [CP] Embed Pods Frameworks */,
+				0D9FEAE5C50A3AA7663B5246 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -351,7 +351,41 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		11C3984C28B6B5C895706A55 /* [CP] Check Pods Manifest.lock */ = {
+		0D9FEAE5C50A3AA7663B5246 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Remembrances/Pods-Remembrances-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Remembrances/Pods-Remembrances-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Remembrances/Pods-Remembrances-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7A2063780254D366F8F34C5C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Remembrances/Pods-Remembrances-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Remembrances/Pods-Remembrances-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Remembrances/Pods-Remembrances-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BCBAEC423F2E1C1864C2A60C /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -371,40 +405,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		9A6D26E21C4B3425202E2A4F /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Remembrances/Pods-Remembrances-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Remembrances/Pods-Remembrances-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Remembrances/Pods-Remembrances-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		A6E43D2A408B55C7A08F467D /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Remembrances/Pods-Remembrances-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Remembrances/Pods-Remembrances-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Remembrances/Pods-Remembrances-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -567,7 +567,7 @@
 		};
 		CB5AE19823512B16001BCCCE /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BED0BAD667BF7EC98F7A2CDA /* Pods-Remembrances.debug.xcconfig */;
+			baseConfigurationReference = A2D8D1588AF5480F1F26C7B4 /* Pods-Remembrances.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = GraveYardApp/GraveYardApp.entitlements;
@@ -591,7 +591,7 @@
 		};
 		CB5AE19923512B16001BCCCE /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B9A192F86FE06CF551DE5AE2 /* Pods-Remembrances.release.xcconfig */;
+			baseConfigurationReference = F6FAC73F2981E74145F8CE0E /* Pods-Remembrances.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = GraveYardApp/GraveYardApp.entitlements;
