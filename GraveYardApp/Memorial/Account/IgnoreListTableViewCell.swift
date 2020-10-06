@@ -8,7 +8,13 @@
 
 import UIKit
 
-class BlockedListTableViewCell: UITableViewCell {
+class IgnoreListTableViewCell: UITableViewCell {
+    
+    // MARK: - Outlets
+    
+    @IBOutlet weak var ignoreNameLabel: UILabel!
+    
+    // MARK: - Propeties
 
     override func awakeFromNib() {
         super.awakeFromNib()

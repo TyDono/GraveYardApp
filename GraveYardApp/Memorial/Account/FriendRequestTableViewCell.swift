@@ -9,6 +9,12 @@
 import UIKit
 
 class FriendRequestTableViewCell: UITableViewCell {
+    
+    // MARK: - Outlets
+    
+    @IBOutlet weak var friendRequestNameLabel: UILabel!
+    
+    // MARK: - Propeties
 
     override func awakeFromNib() {
         super.awakeFromNib()

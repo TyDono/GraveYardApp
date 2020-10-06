@@ -1924,8 +1924,8 @@
                         <outlet property="yourMemorialsButton" destination="TgG-vd-iv9" id="WU7-Ar-vQW"/>
                         <segue destination="df1-gm-beU" kind="show" identifier="segueToGrave" id="xN6-dc-fkE"/>
                         <segue destination="wtE-vq-OyN" kind="unwind" identifier="unwindToSignIn" unwindAction="unwindToSignIn:" id="xDe-gH-4KU"/>
-                        <segue destination="SzX-iF-Ewd" kind="show" identifier="segueToAccount" id="74B-mS-0pn"/>
                         <segue destination="SIl-1N-tic" kind="show" identifier="viewOwnMemorialsSegue" id="d6O-X3-50S"/>
+                        <segue destination="Nog-QY-RX1" kind="show" identifier="segueToAccount" id="fgU-hg-V48"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9D0-qq-1KH" sceneMemberID="firstResponder"/>
@@ -2027,106 +2027,35 @@
         <!--Account Information-->
         <scene sceneID="SMl-v1-Kcm">
             <objects>
-                <viewController title="Account Information" id="SzX-iF-Ewd" customClass="AccountViewController" customModule="Remembrances" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Account Information" id="SzX-iF-Ewd" customClass="PremiumViewController" customModule="Remembrances" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="LWv-MD-5gs">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="751" fixedFrame="YES" text="Premium user status" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2R6-M4-lIf">
-                                <rect key="frame" x="24" y="149" width="366" height="70"/>
+                                <rect key="frame" x="20" y="88" width="374" height="70"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Data Cap Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zZm-8k-Mx8">
-                                <rect key="frame" x="16" y="117" width="382" height="24"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lfs-U7-lc1">
-                                <rect key="frame" x="24" y="227" width="366" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="N8n-0I-3HA">
-                                <rect key="frame" x="0.0" y="269" width="414" height="175"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FriendsListCell" id="KRK-MH-XqR">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="KRK-MH-XqR" id="ecr-N9-17u">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label is here yah" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3sx-A2-Cp1">
-                                                    <rect key="frame" x="20" y="11" width="374" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ef1-5s-9Z7">
-                                <rect key="frame" x="0.0" y="474" width="414" height="175"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FriendsListCell2" id="ge1-RO-S07">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ge1-RO-S07" id="qDb-n6-Az3">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="aw yah its her as well pog" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jxy-sn-ZjU">
-                                                    <rect key="frame" x="20" y="11" width="374" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="RNs-pX-eco"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Your Acount" id="VrO-aj-I3s">
-                        <barButtonItem key="rightBarButtonItem" title="Save" id="CaB-ng-TMl">
-                            <connections>
-                                <action selector="saveAccountBarButtonTapped:" destination="SzX-iF-Ewd" id="glu-y5-2Er"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="VrO-aj-I3s"/>
                     <connections>
-                        <outlet property="dataCountLabel" destination="zZm-8k-Mx8" id="TB4-iY-TW1"/>
                         <outlet property="premiumStatusLabel" destination="2R6-M4-lIf" id="jkL-1S-5B8"/>
-                        <outlet property="tableViewFriendsList" destination="Ef1-5s-9Z7" id="DFk-nQ-TB2"/>
-                        <outlet property="tableViewLists" destination="N8n-0I-3HA" id="JXL-ey-uiR"/>
-                        <outlet property="userNameTextField" destination="lfs-U7-lc1" id="rzt-bX-vEz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Ur-vo-Eqm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4310.144927536232" y="-141.96428571428569"/>
+            <point key="canvasLocation" x="5137.68115942029" y="-135.26785714285714"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Account Table View Controller-->
         <scene sceneID="Oaz-Tb-fpw">
             <objects>
-                <tableViewController id="Nog-QY-RX1" sceneMemberID="viewController">
+                <tableViewController id="Nog-QY-RX1" customClass="AccountTableViewController" customModule="Remembrances" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="gVa-ac-Xa5">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2165,6 +2094,7 @@
                                             <subviews>
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="User Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ETG-8c-iw0">
                                                     <rect key="frame" x="20" y="39.5" width="374" height="42.5"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
@@ -2225,13 +2155,25 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     <prototypes>
-                                                        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FriendsListCell" id="hCQ-iL-nFC">
+                                                        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FriendsListCell" id="hCQ-iL-nFC" customClass="FriendsListTableViewCell" customModule="Remembrances" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hCQ-iL-nFC" id="ifv-Zc-gbN">
                                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
+                                                                <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Friend's Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HUZ-xY-wNZ">
+                                                                        <rect key="frame" x="20" y="11" width="374" height="21"/>
+                                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                </subviews>
                                                             </tableViewCellContentView>
+                                                            <connections>
+                                                                <outlet property="friendNameLabel" destination="HUZ-xY-wNZ" id="duC-WC-edd"/>
+                                                            </connections>
                                                         </tableViewCell>
                                                     </prototypes>
                                                 </tableView>
@@ -2276,13 +2218,25 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     <prototypes>
-                                                        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FriendRequestCell" id="huP-gh-ws0">
+                                                        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FriendRequestCell" id="huP-gh-ws0" customClass="FriendRequestTableViewCell" customModule="Remembrances" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="huP-gh-ws0" id="ouF-LZ-NkC">
                                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
+                                                                <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Friend Request's Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pFo-qo-CCe">
+                                                                        <rect key="frame" x="20" y="11" width="374" height="21"/>
+                                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                </subviews>
                                                             </tableViewCellContentView>
+                                                            <connections>
+                                                                <outlet property="friendRequestNameLabel" destination="pFo-qo-CCe" id="gmJ-hR-WaJ"/>
+                                                            </connections>
                                                         </tableViewCell>
                                                     </prototypes>
                                                 </tableView>
@@ -2291,7 +2245,7 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Blocked List" id="EQZ-xc-xt8">
+                            <tableViewSection headerTitle="Ignore List" id="EQZ-xc-xt8">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="59" id="UH5-1U-vn8">
                                         <rect key="frame" x="0.0" y="1137" width="414" height="59"/>
@@ -2327,13 +2281,25 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     <prototypes>
-                                                        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="BlockedListCell" id="8Vn-nK-dwS">
+                                                        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="IgnoreListCell" id="8Vn-nK-dwS" customClass="IgnoreListTableViewCell" customModule="Remembrances" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8Vn-nK-dwS" id="qi3-N8-32v">
                                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
+                                                                <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Ingore Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pcc-iI-YKR">
+                                                                        <rect key="frame" x="20" y="11" width="374" height="21"/>
+                                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                </subviews>
                                                             </tableViewCellContentView>
+                                                            <connections>
+                                                                <outlet property="ignoreNameLabel" destination="pcc-iI-YKR" id="JrD-zM-JjI"/>
+                                                            </connections>
                                                         </tableViewCell>
                                                     </prototypes>
                                                 </tableView>
@@ -2348,10 +2314,25 @@
                             <outlet property="delegate" destination="Nog-QY-RX1" id="nog-2u-NgK"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="lNL-3Q-TMc">
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="Z0v-cf-Slf">
+                            <connections>
+                                <action selector="saveAccountBarButtonTapped:" destination="Nog-QY-RX1" id="tR4-GF-sQZ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="premiumStatusLabel" destination="Sxr-Ps-t7S" id="SsG-qA-OoI"/>
+                        <outlet property="tableViewFriendIgnoreListList" destination="HiE-9w-8B4" id="Kmd-MO-OTJ"/>
+                        <outlet property="tableViewFriendRequestList" destination="ZJu-Zq-gqJ" id="iiT-ym-84v"/>
+                        <outlet property="tableViewFriendsLists" destination="3aI-In-pTI" id="YVq-GS-5Mt"/>
+                        <outlet property="tableViewMain" destination="gVa-ac-Xa5" id="IRx-qA-hKo"/>
+                        <outlet property="userNameTextField" destination="ETG-8c-iw0" id="5ol-lo-9GG"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zfj-Oz-3Ic" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5066.666666666667" y="-142.63392857142856"/>
+            <point key="canvasLocation" x="4207.2463768115949" y="-143.30357142857142"/>
         </scene>
         <!--Sign In-->
         <scene sceneID="eey-YM-mnw">
@@ -2447,7 +2428,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="74B-mS-0pn"/>
         <segue reference="z4g-pH-uIZ"/>
         <segue reference="7DO-rd-4qB"/>
         <segue reference="xN6-dc-fkE"/>

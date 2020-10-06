@@ -14,8 +14,10 @@ class AccountTableViewController: UITableViewController {
     
     // MARK: - Outlets
     
-    @IBOutlet weak var tableViewLists: UITableView!
-    @IBOutlet weak var tableViewFriendsList: UITableView!
+    @IBOutlet var tableViewMain: UITableView!
+    @IBOutlet weak var tableViewFriendsLists: UITableView!
+    @IBOutlet weak var tableViewFriendRequestList: UITableView!
+    @IBOutlet weak var tableViewFriendIgnoreListList: UITableView!
     @IBOutlet weak var dataCountLabel: UILabel!
     @IBOutlet weak var premiumStatusLabel: UILabel!
     @IBOutlet weak var userNameTextField: UITextField!
@@ -23,8 +25,8 @@ class AccountTableViewController: UITableViewController {
     // MARK: - Propeties
     
     var friendList: [String]?
-    var friendRequests: [String]?
-    var blockedList: [String]?
+    var friendRequestsList: [String]?
+    var ignoreList: [String]?
     var currentAuthID = Auth.auth().currentUser?.uid
     var db: Firestore!
     var dataCount: Double = 0.0
@@ -49,26 +51,53 @@ class AccountTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        
+        switch tableView {
+        case tableViewFriendsLists:
+            return self.friendList?.count ?? 0
+        case tableViewFriendRequestList:
+            return self.friendRequestsList?.count ?? 0
+        case tableViewFriendIgnoreListList:
+            return self.ignoreList?.count ?? 0
+        default:
+            return 2
+        }
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         switch tableView {
-        case tableViewLists:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "FriendsListCell", for: indexPath) as? AccountTableViewCell else { return UITableViewCell() }
+        case tableViewFriendsLists:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "FriendsListCell", for: indexPath) as? FriendsListTableViewCell else { return UITableViewCell() }
+            
+            if let friends = friendList {
+                let friend = friends[indexPath.row]
+                cell.friendNameLabel.text = "\(friend)"
+            }
+            
             return cell
-        case tableViewFriendsList:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "FriendsListCell2", for: indexPath) as? FriendsListTableViewCell else { return UITableViewCell() }
+        case tableViewFriendRequestList:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "FriendRequestCell", for: indexPath) as? FriendRequestTableViewCell else { return UITableViewCell() }
+            if let friendRequests = friendRequestsList {
+                let friendRequest = friendRequests[indexPath.row]
+                cell.friendRequestNameLabel.text = "\(friendRequest)"
+            }
+            return cell
+        case tableViewFriendIgnoreListList:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "IgnoreListCell", for: indexPath) as? IgnoreListTableViewCell else { return UITableViewCell() }
+            if let ingores = ignoreList {
+                let ignore = ingores[indexPath.row]
+                cell.ignoreNameLabel.text = "\(ignore)"
+            }
             return cell
         default:
             return UITableViewCell()
         }
     }
     
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
-    }
+//    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return 100
+//    }
 
     /*
     // Override to support editing the table view.
@@ -113,8 +142,8 @@ class AccountTableViewController: UITableViewController {
                         }
                         self.userNameTextField.text = userName
                         self.friendList = friendList
-                        self.friendRequests = friendRequests
-                        self.blockedList = blockedList
+                        self.friendRequestsList = friendRequests
+                        self.ignoreList = blockedList
                         
 //                        if self.dataCount != 0.0 {
 //                            let dividedDataCount: Double = self.dataCount/1000000.0
@@ -140,8 +169,8 @@ class AccountTableViewController: UITableViewController {
             "dataCount": MyFirebase.currentDataUsage!,
             "userName": userName,
             "friendList": self.friendList ?? "",
-            "friendRequests": self.friendRequests ?? "",
-            "blockedList": self.blockedList ?? ""
+            "friendRequests": self.friendRequestsList ?? "",
+            "blockedList": self.ignoreList ?? ""
         ]) { err in
             if let err = err {
                 var alertStyle = UIAlertController.Style.alert
@@ -213,4 +242,7 @@ class AccountTableViewController: UITableViewController {
     
     // MARK: - Actions
 
+    @IBAction func saveAccountBarButtonTapped(_ sender: UIBarButtonItem) {
+        self.updateUserData()
+    }
 }

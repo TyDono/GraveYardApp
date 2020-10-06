@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		CB19C286252C7F2B009DB081 /* FriendsListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB19C285252C7F2B009DB081 /* FriendsListTableViewCell.swift */; };
 		CB19C289252C82CA009DB081 /* FriendRequestTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB19C288252C82CA009DB081 /* FriendRequestTableViewCell.swift */; };
-		CB19C28C252C82D8009DB081 /* BlockedListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB19C28B252C82D8009DB081 /* BlockedListTableViewCell.swift */; };
+		CB19C28C252C82D8009DB081 /* IgnoreListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB19C28B252C82D8009DB081 /* IgnoreListTableViewCell.swift */; };
 		CB19C28F252C82F1009DB081 /* AccountTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB19C28E252C82F1009DB081 /* AccountTableViewController.swift */; };
 		CB226F3825205A1E00BB0F51 /* credentials.plist in Resources */ = {isa = PBXBuildFile; fileRef = CB226F3725205A1D00BB0F51 /* credentials.plist */; };
 		CB226F4425218C0100BB0F51 /* memorialMakerInto.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CB226F4325218C0100BB0F51 /* memorialMakerInto.mp4 */; };
@@ -22,7 +22,7 @@
 		CB5BAAE1247DBA8C00350553 /* PaymentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5BAAE0247DBA8C00350553 /* PaymentsViewController.swift */; };
 		CB697DF32440A82F0035C07A /* SignInWithAppleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB697DF22440A82F0035C07A /* SignInWithAppleManager.swift */; };
 		CB697DF52440A8460035C07A /* AuthState.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB697DF42440A8460035C07A /* AuthState.swift */; };
-		CB8304C824B5CE9D0023F4EA /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8304C724B5CE9D0023F4EA /* AccountViewController.swift */; };
+		CB8304C824B5CE9D0023F4EA /* PremiumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8304C724B5CE9D0023F4EA /* PremiumViewController.swift */; };
 		CB881F9A2367B41E00615F2F /* EditGraveTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB881F992367B41E00615F2F /* EditGraveTableViewController.swift */; };
 		CBA44AC4252C733F0096D438 /* AccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA44AC3252C733F0096D438 /* AccountTableViewCell.swift */; };
 		CBBC7B0F2522933500BE6697 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CBBC7B0E2522933400BE6697 /* GoogleService-Info.plist */; };
@@ -56,7 +56,7 @@
 		A2D8D1588AF5480F1F26C7B4 /* Pods-Remembrances.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Remembrances.debug.xcconfig"; path = "Target Support Files/Pods-Remembrances/Pods-Remembrances.debug.xcconfig"; sourceTree = "<group>"; };
 		CB19C285252C7F2B009DB081 /* FriendsListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsListTableViewCell.swift; sourceTree = "<group>"; };
 		CB19C288252C82CA009DB081 /* FriendRequestTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendRequestTableViewCell.swift; sourceTree = "<group>"; };
-		CB19C28B252C82D8009DB081 /* BlockedListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockedListTableViewCell.swift; sourceTree = "<group>"; };
+		CB19C28B252C82D8009DB081 /* IgnoreListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IgnoreListTableViewCell.swift; sourceTree = "<group>"; };
 		CB19C28E252C82F1009DB081 /* AccountTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTableViewController.swift; sourceTree = "<group>"; };
 		CB226F3725205A1D00BB0F51 /* credentials.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = credentials.plist; sourceTree = "<group>"; };
 		CB226F4325218C0100BB0F51 /* memorialMakerInto.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = memorialMakerInto.mp4; sourceTree = "<group>"; };
@@ -72,7 +72,7 @@
 		CB5BAAE0247DBA8C00350553 /* PaymentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentsViewController.swift; sourceTree = "<group>"; };
 		CB697DF22440A82F0035C07A /* SignInWithAppleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithAppleManager.swift; sourceTree = "<group>"; };
 		CB697DF42440A8460035C07A /* AuthState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthState.swift; sourceTree = "<group>"; };
-		CB8304C724B5CE9D0023F4EA /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
+		CB8304C724B5CE9D0023F4EA /* PremiumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumViewController.swift; sourceTree = "<group>"; };
 		CB881F992367B41E00615F2F /* EditGraveTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditGraveTableViewController.swift; sourceTree = "<group>"; };
 		CBA44AC3252C733F0096D438 /* AccountTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTableViewCell.swift; sourceTree = "<group>"; };
 		CBBC7B0E2522933400BE6697 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -226,8 +226,8 @@
 				CB19C28E252C82F1009DB081 /* AccountTableViewController.swift */,
 				CB19C285252C7F2B009DB081 /* FriendsListTableViewCell.swift */,
 				CB19C288252C82CA009DB081 /* FriendRequestTableViewCell.swift */,
-				CB19C28B252C82D8009DB081 /* BlockedListTableViewCell.swift */,
-				CB8304C724B5CE9D0023F4EA /* AccountViewController.swift */,
+				CB19C28B252C82D8009DB081 /* IgnoreListTableViewCell.swift */,
+				CB8304C724B5CE9D0023F4EA /* PremiumViewController.swift */,
 				CBA44AC3252C733F0096D438 /* AccountTableViewCell.swift */,
 			);
 			path = Account;
@@ -439,7 +439,7 @@
 			files = (
 				CB697DF32440A82F0035C07A /* SignInWithAppleManager.swift in Sources */,
 				CBCE0E2123FD13AC0077A4F1 /* Grave.swift in Sources */,
-				CB8304C824B5CE9D0023F4EA /* AccountViewController.swift in Sources */,
+				CB8304C824B5CE9D0023F4EA /* PremiumViewController.swift in Sources */,
 				CBCE0E1423FD13300077A4F1 /* SignInViewController.swift in Sources */,
 				CBCE0E2923FD13F40077A4F1 /* UserReport.swift in Sources */,
 				CB3A388A237528E400DA756D /* NewGraveStoryTableViewController.swift in Sources */,
@@ -449,7 +449,7 @@
 				CBCE0E1923FD13460077A4F1 /* MapViewController.swift in Sources */,
 				CBCE0E2323FD13BE0077A4F1 /* Story.swift in Sources */,
 				CBCE0E2B23FD14080077A4F1 /* GraveTableViewController.swift in Sources */,
-				CB19C28C252C82D8009DB081 /* BlockedListTableViewCell.swift in Sources */,
+				CB19C28C252C82D8009DB081 /* IgnoreListTableViewCell.swift in Sources */,
 				CB3A1AA524F4475500BACC73 /* MemorialsTableViewController.swift in Sources */,
 				CB19C28F252C82F1009DB081 /* AccountTableViewController.swift in Sources */,
 				CBCE0E1723FD13300077A4F1 /* GIDSignInExtension.swift in Sources */,

@@ -9,7 +9,13 @@
 import UIKit
 
 class FriendsListTableViewCell: UITableViewCell {
+    
+    // MARK: - Outlets
 
+    @IBOutlet weak var friendNameLabel: UILabel!
+    
+    // MARK: - Propeties
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
