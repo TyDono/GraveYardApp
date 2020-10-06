@@ -10,8 +10,9 @@ import UIKit
 import FirebaseAuth
 import FirebaseFirestore
 
-class AccountViewController: UIViewController {
+class AccountViewController: UIViewController, UITableViewDelegate,  UITableViewDataSource {
 
+    @IBOutlet weak var tableViewLists: UITableView!
     @IBOutlet weak var dataCountLabel: UILabel!
     @IBOutlet weak var premiumStatusLabel: UILabel!
     @IBOutlet weak var userNameTextField: UITextField!
@@ -41,6 +42,33 @@ class AccountViewController: UIViewController {
         getCurrentSeason()
         changeBackground()
         
+        tableViewLists.delegate = self
+        tableViewLists.dataSource = self
+        
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let returnCell = UITableViewCell()
+        
+        switch tableView {
+        case tableViewLists:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "memorialCell", for: indexPath) as? MemorialsTableViewCell
+            return cell
+        default:
+            return UITableViewCell()
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
     }
     
     func getUserData() {
@@ -169,6 +197,8 @@ class AccountViewController: UIViewController {
         backgroundImage.contentMode = UIView.ContentMode.scaleToFill
         self.view.insertSubview(backgroundImage, at: 0)
     }
+    
+    // MARK: - Actions
     
     @IBAction func saveAccountBarButtonTapped(_ sender: UIBarButtonItem) {
         self.updateUserData()

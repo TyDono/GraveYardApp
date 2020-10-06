@@ -20,6 +20,7 @@
 		CB697DF52440A8460035C07A /* AuthState.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB697DF42440A8460035C07A /* AuthState.swift */; };
 		CB8304C824B5CE9D0023F4EA /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8304C724B5CE9D0023F4EA /* AccountViewController.swift */; };
 		CB881F9A2367B41E00615F2F /* EditGraveTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB881F992367B41E00615F2F /* EditGraveTableViewController.swift */; };
+		CBA44AC4252C733F0096D438 /* AccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA44AC3252C733F0096D438 /* AccountTableViewCell.swift */; };
 		CBBC7B0F2522933500BE6697 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CBBC7B0E2522933400BE6697 /* GoogleService-Info.plist */; };
 		CBBC7B1F252B054800BE6697 /* LocationSearchTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBC7B1E252B054800BE6697 /* LocationSearchTableView.swift */; };
 		CBBCBD46250A74F700326169 /* paperSound.wav in Resources */ = {isa = PBXBuildFile; fileRef = CBBCBD44250A74F600326169 /* paperSound.wav */; };
@@ -65,6 +66,7 @@
 		CB697DF42440A8460035C07A /* AuthState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthState.swift; sourceTree = "<group>"; };
 		CB8304C724B5CE9D0023F4EA /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		CB881F992367B41E00615F2F /* EditGraveTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditGraveTableViewController.swift; sourceTree = "<group>"; };
+		CBA44AC3252C733F0096D438 /* AccountTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTableViewCell.swift; sourceTree = "<group>"; };
 		CBBC7B0E2522933400BE6697 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CBBC7B1E252B054800BE6697 /* LocationSearchTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchTableView.swift; sourceTree = "<group>"; };
 		CBBCBD44250A74F600326169 /* paperSound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = paperSound.wav; sourceTree = "<group>"; };
@@ -210,6 +212,15 @@
 			path = Subscriptions;
 			sourceTree = "<group>";
 		};
+		CBA44AC2252C73230096D438 /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				CB8304C724B5CE9D0023F4EA /* AccountViewController.swift */,
+				CBA44AC3252C733F0096D438 /* AccountTableViewCell.swift */,
+			);
+			path = Account;
+			sourceTree = "<group>";
+		};
 		CBAC4EA82370E88E006760A5 /* Memorial */ = {
 			isa = PBXGroup;
 			children = (
@@ -218,7 +229,7 @@
 				CBCE0E1C23FD13910077A4F1 /* CustomAnnotation.swift */,
 				CBCE0E2823FD13F40077A4F1 /* UserReport.swift */,
 				CBCE0E2423FD13CB0077A4F1 /* UserProfile.swift */,
-				CB8304C724B5CE9D0023F4EA /* AccountViewController.swift */,
+				CBA44AC2252C73230096D438 /* Account */,
 				CB4895A524DE09BE00055688 /* Grave */,
 				CB4895A424DE097D00055688 /* Stories */,
 			);
@@ -438,6 +449,7 @@
 				CB398EFB23695D0600A515B9 /* GraveStoriesTableViewController.swift in Sources */,
 				CBCE0E1623FD13300077A4F1 /* MyFirebase.swift in Sources */,
 				CBCE0E1523FD13300077A4F1 /* GlobalExtension.swift in Sources */,
+				CBA44AC4252C733F0096D438 /* AccountTableViewCell.swift in Sources */,
 				CB3A1AA724F447DC00BACC73 /* MemorialsTableViewCell.swift in Sources */,
 				CBCE0E1D23FD13910077A4F1 /* CustomAnnotation.swift in Sources */,
 				CBBC7B1F252B054800BE6697 /* LocationSearchTableView.swift in Sources */,
