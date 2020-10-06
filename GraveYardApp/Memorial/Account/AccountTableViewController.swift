@@ -1,8 +1,8 @@
 //
-//  AccountViewController.swift
-//  GraveYardApp
+//  AccountTableViewController.swift
+//  Remembrances
 //
-//  Created by Tyler Donohue on 7/8/20.
+//  Created by Tyler Donohue on 10/6/20.
 //  Copyright © 2020 Tyler Donohue. All rights reserved.
 //
 
@@ -10,8 +10,10 @@ import UIKit
 import FirebaseAuth
 import FirebaseFirestore
 
-class AccountViewController: UIViewController, UITableViewDelegate,  UITableViewDataSource {
-
+class AccountTableViewController: UITableViewController {
+    
+    // MARK: - Outlets
+    
     @IBOutlet weak var tableViewLists: UITableView!
     @IBOutlet weak var tableViewFriendsList: UITableView!
     @IBOutlet weak var dataCountLabel: UILabel!
@@ -31,32 +33,26 @@ class AccountViewController: UIViewController, UITableViewDelegate,  UITableView
     var fall: String = "fall"
     var spring: String = "spring"
     var currentSeason: String?
-    
-    // MARK: - View Lifecycle
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         db = Firestore.firestore()
-        getUserData() //re-instate this when premium is out!!!!!!
-//        self.premiumStatusLabel.text = "Premium accounts comming soon!"
-//        self.dataCountLabel.text = "Limited time Only!!! Unlimited Data!!!"
+        //getUserData() //We don't need user data atm. 
         getCurrentSeason()
         changeBackground()
-        
-        tableViewLists.delegate = self
-        tableViewLists.dataSource = self
-        
     }
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
+
+    // MARK: - Table view data source
+
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         switch tableView {
         case tableViewLists:
@@ -70,9 +66,23 @@ class AccountViewController: UIViewController, UITableViewDelegate,  UITableView
         }
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
     }
+
+    /*
+    // Override to support editing the table view.
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            // Delete the row from the data source
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        } else if editingStyle == .insert {
+            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+        }    
+    }
+    */
+    
+    // MARK: - Functions
     
     func getUserData() {
         guard let currentUserAuthID: String = self.currentAuthID else { return }
@@ -202,10 +212,5 @@ class AccountViewController: UIViewController, UITableViewDelegate,  UITableView
     }
     
     // MARK: - Actions
-    
-    @IBAction func saveAccountBarButtonTapped(_ sender: UIBarButtonItem) {
-        self.updateUserData()
-    }
-    
 
 }
