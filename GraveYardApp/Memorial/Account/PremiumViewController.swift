@@ -31,7 +31,7 @@ class PremiumViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         db = Firestore.firestore()
-        //getUserData()// not rly used atm
+        getUserData()
 //        self.premiumStatusLabel.text = "Premium accounts comming soon!"
 //        self.dataCountLabel.text = "Limited time Only!!! Unlimited Data!!!"
         getCurrentSeason()

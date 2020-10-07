@@ -41,7 +41,7 @@ class AccountTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         db = Firestore.firestore()
-        //getUserData() //We don't need user data atm.
+        getUserData()
         changeBackground()
     }
 
