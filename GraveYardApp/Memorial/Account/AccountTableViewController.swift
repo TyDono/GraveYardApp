@@ -24,31 +24,32 @@ class AccountTableViewController: UITableViewController {
     
     // MARK: - Propeties
     
+    var friendUIDList: [String]?
     var friendList: [String]?
+    
+    var friendRequestsUIDList: [String]?
     var friendRequestsList: [String]?
+    
+    var ignoreUIDList: [String]?
     var ignoreList: [String]?
+    
     var currentAuthID = Auth.auth().currentUser?.uid
     var db: Firestore!
     var dataCount: Double = 0.0
-    var summer: String = "summer"
-    var winter: String = "winter"
-    var fall: String = "fall"
-    var spring: String = "spring"
     var currentSeason: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         db = Firestore.firestore()
-        //getUserData() //We don't need user data atm. 
-        getCurrentSeason()
+        //getUserData() //We don't need user data atm.
         changeBackground()
     }
 
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
+//    override func numberOfSections(in tableView: UITableView) -> Int {
+//        return 1
+//    }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
@@ -67,15 +68,15 @@ class AccountTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         switch tableView {
+        
         case tableViewFriendsLists:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "FriendsListCell", for: indexPath) as? FriendsListTableViewCell else { return UITableViewCell() }
-            
             if let friends = friendList {
                 let friend = friends[indexPath.row]
                 cell.friendNameLabel.text = "\(friend)"
             }
-            
             return cell
+            
         case tableViewFriendRequestList:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "FriendRequestCell", for: indexPath) as? FriendRequestTableViewCell else { return UITableViewCell() }
             if let friendRequests = friendRequestsList {
@@ -83,6 +84,7 @@ class AccountTableViewController: UITableViewController {
                 cell.friendRequestNameLabel.text = "\(friendRequest)"
             }
             return cell
+            
         case tableViewFriendIgnoreListList:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "IgnoreListCell", for: indexPath) as? IgnoreListTableViewCell else { return UITableViewCell() }
             if let ingores = ignoreList {
@@ -90,6 +92,10 @@ class AccountTableViewController: UITableViewController {
                 cell.ignoreNameLabel.text = "\(ignore)"
             }
             return cell
+        case tableViewMain:
+//            guard let cell = tableView.dequeueReusableCell(withIdentifier: "PremiumStatusCell", for: indexPath) as? AccountTableViewCell else { return UITableViewCell() }
+            return UITableViewCell()
+            
         default:
             return UITableViewCell()
         }
@@ -141,9 +147,12 @@ class AccountTableViewController: UITableViewController {
                             self.premiumStatusLabel.text = ""
                         }
                         self.userNameTextField.text = userName
-                        self.friendList = friendList
-                        self.friendRequestsList = friendRequests
-                        self.ignoreList = blockedList
+                        self.friendUIDList = friendList
+                        self.friendRequestsUIDList = friendRequests
+                        self.ignoreUIDList = blockedList
+                        self.getFriendUserName()
+                        self.getFriendRequestUserName()
+                        self.getIgnoreUserName()
                         
 //                        if self.dataCount != 0.0 {
 //                            let dividedDataCount: Double = self.dataCount/1000000.0
@@ -152,6 +161,60 @@ class AccountTableViewController: UITableViewController {
 //                        } else {
 //                            self.dataCountLabel.text = "0mb / 5mb"
 //                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    func getFriendUserName() {
+        guard let SafeFriendUIDList = self.friendUIDList else { return }
+        for userName in SafeFriendUIDList  {
+            let userRef = self.db.collection("userProfile").whereField("userName", isEqualTo: userName)
+            userRef.getDocuments { (snapshot, error) in
+                if error != nil {
+                    print(error as Any)
+                } else {
+                    for document in (snapshot?.documents)! {
+                        if let userName = document.data()["userName"] as? String {
+                            self.friendList?.append(userName)
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    func getFriendRequestUserName() {
+        guard let SafeFriendRequestUIDList = self.friendRequestsUIDList else { return }
+        for userName in SafeFriendRequestUIDList  {
+            let userRef = self.db.collection("userProfile").whereField("userName", isEqualTo: userName)
+            userRef.getDocuments { (snapshot, error) in
+                if error != nil {
+                    print(error as Any)
+                } else {
+                    for document in (snapshot?.documents)! {
+                        if let userName = document.data()["userName"] as? String {
+                            self.friendRequestsUIDList?.append(userName)
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    func getIgnoreUserName() {
+        guard let SafeIgnoreUIDList = self.ignoreUIDList else { return }
+        for userName in SafeIgnoreUIDList  {
+            let userRef = self.db.collection("userProfile").whereField("userName", isEqualTo: userName)
+            userRef.getDocuments { (snapshot, error) in
+                if error != nil {
+                    print(error as Any)
+                } else {
+                    for document in (snapshot?.documents)! {
+                        if let userName = document.data()["userName"] as? String {
+                            self.ignoreList?.append(userName)
+                        }
                     }
                 }
             }
@@ -198,46 +261,13 @@ class AccountTableViewController: UITableViewController {
         }
     }
     
-    func getCurrentSeason() {
-        let date = Date()
-        let format = DateFormatter()
-        format.dateFormat = "MM"
-        let formattedDate = format.string(from: date)
-        switch formattedDate {
-        case "01":
-            self.currentSeason = self.winter
-        case "02":
-            self.currentSeason = self.winter
-        case "03":
-            self.currentSeason = self.spring
-        case "04":
-            self.currentSeason = self.spring
-        case "05":
-            self.currentSeason = self.spring
-        case "06":
-            self.currentSeason = self.summer
-        case "07":
-            self.currentSeason = self.summer
-        case "08":
-            self.currentSeason = self.summer
-        case "09":
-            self.currentSeason = self.fall
-        case "10":
-            self.currentSeason = self.fall
-        case "11":
-            self.currentSeason = self.fall
-        case "12":
-            self.currentSeason = self.winter
-        default:
-            self.currentSeason = self.summer
-        }
-    }
-    
     func changeBackground() {
         let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
-        backgroundImage.image = UIImage(named: currentSeason ?? "summer")
+        backgroundImage.image = UIImage(named: "bookshelf")
         backgroundImage.contentMode = UIView.ContentMode.scaleToFill
-        self.view.insertSubview(backgroundImage, at: 0)
+        self.tableViewFriendsLists.backgroundView = backgroundImage
+        self.tableViewFriendRequestList.backgroundView = backgroundImage
+        self.tableViewFriendIgnoreListList.backgroundView = backgroundImage
     }
     
     // MARK: - Actions
