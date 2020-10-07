@@ -25,13 +25,13 @@ class AccountTableViewController: UITableViewController {
     // MARK: - Propeties
     
     var friendUIDList: [String]?
-    var friendList: [String]?
+    var friendNameList: [String]?
     
     var friendRequestsUIDList: [String]?
-    var friendRequestsList: [String]?
+    var friendNameRequestsList: [String]?
     
     var ignoreUIDList: [String]?
-    var ignoreList: [String]?
+    var ignoreNameList: [String]?
     
     var currentAuthID = Auth.auth().currentUser?.uid
     var db: Firestore!
@@ -52,14 +52,13 @@ class AccountTableViewController: UITableViewController {
 //    }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         switch tableView {
         case tableViewFriendsLists:
-            return self.friendList?.count ?? 0
+            return self.friendNameList?.count ?? 0
         case tableViewFriendRequestList:
-            return self.friendRequestsList?.count ?? 0
+            return self.friendNameRequestsList?.count ?? 0
         case tableViewFriendIgnoreListList:
-            return self.ignoreList?.count ?? 0
+            return self.ignoreNameList?.count ?? 0
         default:
             return 2
         }
@@ -71,7 +70,7 @@ class AccountTableViewController: UITableViewController {
         
         case tableViewFriendsLists:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "FriendsListCell", for: indexPath) as? FriendsListTableViewCell else { return UITableViewCell() }
-            if let friends = friendList {
+            if let friends = friendNameList {
                 let friend = friends[indexPath.row]
                 cell.friendNameLabel.text = "\(friend)"
             }
@@ -79,7 +78,7 @@ class AccountTableViewController: UITableViewController {
             
         case tableViewFriendRequestList:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "FriendRequestCell", for: indexPath) as? FriendRequestTableViewCell else { return UITableViewCell() }
-            if let friendRequests = friendRequestsList {
+            if let friendRequests = friendNameRequestsList {
                 let friendRequest = friendRequests[indexPath.row]
                 cell.friendRequestNameLabel.text = "\(friendRequest)"
             }
@@ -87,7 +86,7 @@ class AccountTableViewController: UITableViewController {
             
         case tableViewFriendIgnoreListList:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "IgnoreListCell", for: indexPath) as? IgnoreListTableViewCell else { return UITableViewCell() }
-            if let ingores = ignoreList {
+            if let ingores = ignoreNameList {
                 let ignore = ingores[indexPath.row]
                 cell.ignoreNameLabel.text = "\(ignore)"
             }
@@ -127,13 +126,12 @@ class AccountTableViewController: UITableViewController {
                 print(error as Any)
             } else {
                 for document in (snapshot?.documents)! {
-                    if let dataCount = document.data()["dataCount"] as? Int,
-                       let premiumStatus = document.data()["premiumStatus"] as? Int,
+                    if let premiumStatus = document.data()["premiumStatus"] as? Int,
                        let userName = document.data()["userName"] as? String,
                        let friendList = document.data()["friendList"] as? Array<String>,
                        let friendRequests = document.data()["friendRequests"] as? Array<String>,
                        let blockedList = document.data()["blockedList"] as? Array<String> {
-                        self.dataCount = Double(dataCount)
+                        //self.dataCount = Double(dataCount)
                         switch premiumStatus {
                         case 0:
                             self.premiumStatusLabel.text = "You are not currently subscribed to Remembrances Premium"
@@ -168,16 +166,19 @@ class AccountTableViewController: UITableViewController {
     }
     
     func getFriendUserName() {
+        print(self.friendUIDList)
         guard let SafeFriendUIDList = self.friendUIDList else { return }
         for userName in SafeFriendUIDList  {
-            let userRef = self.db.collection("userProfile").whereField("userName", isEqualTo: userName)
+            let userRef = self.db.collection("userProfile").whereField("currentUserAuthId", isEqualTo: userName)
             userRef.getDocuments { (snapshot, error) in
                 if error != nil {
                     print(error as Any)
                 } else {
                     for document in (snapshot?.documents)! {
                         if let userName = document.data()["userName"] as? String {
-                            self.friendList?.append(userName)
+                            self.friendNameList?.append(userName)
+                            print(self.friendNameList)
+                            self.tableView.reloadData()
                         }
                     }
                 }
@@ -188,14 +189,15 @@ class AccountTableViewController: UITableViewController {
     func getFriendRequestUserName() {
         guard let SafeFriendRequestUIDList = self.friendRequestsUIDList else { return }
         for userName in SafeFriendRequestUIDList  {
-            let userRef = self.db.collection("userProfile").whereField("userName", isEqualTo: userName)
+            let userRef = self.db.collection("userProfile").whereField("currentUserAuthId", isEqualTo: userName)
             userRef.getDocuments { (snapshot, error) in
                 if error != nil {
                     print(error as Any)
                 } else {
                     for document in (snapshot?.documents)! {
                         if let userName = document.data()["userName"] as? String {
-                            self.friendRequestsUIDList?.append(userName)
+                            self.friendNameRequestsList?.append(userName)
+                            self.tableView.reloadData()
                         }
                     }
                 }
@@ -206,14 +208,15 @@ class AccountTableViewController: UITableViewController {
     func getIgnoreUserName() {
         guard let SafeIgnoreUIDList = self.ignoreUIDList else { return }
         for userName in SafeIgnoreUIDList  {
-            let userRef = self.db.collection("userProfile").whereField("userName", isEqualTo: userName)
+            let userRef = self.db.collection("userProfile").whereField("currentUserAuthId", isEqualTo: userName)
             userRef.getDocuments { (snapshot, error) in
                 if error != nil {
                     print(error as Any)
                 } else {
                     for document in (snapshot?.documents)! {
                         if let userName = document.data()["userName"] as? String {
-                            self.ignoreList?.append(userName)
+                            self.ignoreNameList?.append(userName)
+                            self.tableView.reloadData()
                         }
                     }
                 }
@@ -231,9 +234,9 @@ class AccountTableViewController: UITableViewController {
         db.collection("userProfile").document(currentId).updateData([
             "dataCount": MyFirebase.currentDataUsage!,
             "userName": userName,
-            "friendList": self.friendList ?? "",
-            "friendRequests": self.friendRequestsList ?? "",
-            "blockedList": self.ignoreList ?? ""
+            "friendList": self.friendNameList ?? "",
+            "friendRequests": self.friendNameRequestsList ?? "",
+            "blockedList": self.ignoreNameList ?? ""
         ]) { err in
             if let err = err {
                 var alertStyle = UIAlertController.Style.alert

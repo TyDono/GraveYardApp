@@ -223,6 +223,7 @@
 		CBA44AC2252C73230096D438 /* Account */ = {
 			isa = PBXGroup;
 			children = (
+				CBCE0E2423FD13CB0077A4F1 /* UserProfile.swift */,
 				CB19C28E252C82F1009DB081 /* AccountTableViewController.swift */,
 				CB19C285252C7F2B009DB081 /* FriendsListTableViewCell.swift */,
 				CB19C288252C82CA009DB081 /* FriendRequestTableViewCell.swift */,
@@ -240,7 +241,6 @@
 				CB3A1AA624F447DC00BACC73 /* MemorialsTableViewCell.swift */,
 				CBCE0E1C23FD13910077A4F1 /* CustomAnnotation.swift */,
 				CBCE0E2823FD13F40077A4F1 /* UserReport.swift */,
-				CBCE0E2423FD13CB0077A4F1 /* UserProfile.swift */,
 				CBA44AC2252C73230096D438 /* Account */,
 				CB4895A524DE09BE00055688 /* Grave */,
 				CB4895A424DE097D00055688 /* Stories */,
@@ -652,7 +652,7 @@
 				CB5AE19623512B16001BCCCE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		CB5AE19723512B16001BCCCE /* Build configuration list for PBXNativeTarget "Remembrances" */ = {
 			isa = XCConfigurationList;
@@ -661,7 +661,7 @@
 				CB5AE19923512B16001BCCCE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};
