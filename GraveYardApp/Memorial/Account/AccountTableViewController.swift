@@ -24,14 +24,14 @@ class AccountTableViewController: UITableViewController {
     
     // MARK: - Propeties
     
-    var friendUIDList: [String]?
-    var friendNameList: [String]?
+    var friendUIDList: [String]? = []
+    var friendNameList: [String]? = []
     
-    var friendRequestsUIDList: [String]?
-    var friendNameRequestsList: [String]?
+    var friendRequestsUIDList: [String]? = []
+    var friendNameRequestsList: [String]? = []
     
-    var ignoreUIDList: [String]?
-    var ignoreNameList: [String]?
+    var ignoreUIDList: [String]? = []
+    var ignoreNameList: [String]? = []
     
     var currentAuthID = Auth.auth().currentUser?.uid
     var db: Firestore!
@@ -70,6 +70,8 @@ class AccountTableViewController: UITableViewController {
         
         case tableViewFriendsLists:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "FriendsListCell", for: indexPath) as? FriendsListTableViewCell else { return UITableViewCell() }
+            cell.backgroundColor = UIColor.clear
+            cell.backgroundView = UIImageView.init(image: UIImage.init(named: "bookRed"))
             if let friends = friendNameList {
                 let friend = friends[indexPath.row]
                 cell.friendNameLabel.text = "\(friend)"
@@ -78,6 +80,8 @@ class AccountTableViewController: UITableViewController {
             
         case tableViewFriendRequestList:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "FriendRequestCell", for: indexPath) as? FriendRequestTableViewCell else { return UITableViewCell() }
+            cell.backgroundColor = UIColor.clear
+            cell.backgroundView = UIImageView.init(image: UIImage.init(named: "bookRed"))
             if let friendRequests = friendNameRequestsList {
                 let friendRequest = friendRequests[indexPath.row]
                 cell.friendRequestNameLabel.text = "\(friendRequest)"
@@ -86,6 +90,8 @@ class AccountTableViewController: UITableViewController {
             
         case tableViewFriendIgnoreListList:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "IgnoreListCell", for: indexPath) as? IgnoreListTableViewCell else { return UITableViewCell() }
+            cell.backgroundColor = UIColor.clear
+            cell.backgroundView = UIImageView.init(image: UIImage.init(named: "bookRed"))
             if let ingores = ignoreNameList {
                 let ignore = ingores[indexPath.row]
                 cell.ignoreNameLabel.text = "\(ignore)"
@@ -176,9 +182,10 @@ class AccountTableViewController: UITableViewController {
                 } else {
                     for document in (snapshot?.documents)! {
                         if let userName = document.data()["userName"] as? String {
+                            print(userName)
                             self.friendNameList?.append(userName)
                             print(self.friendNameList)
-                            self.tableView.reloadData()
+                            self.tableViewFriendsLists.reloadData()
                         }
                     }
                 }
@@ -197,7 +204,7 @@ class AccountTableViewController: UITableViewController {
                     for document in (snapshot?.documents)! {
                         if let userName = document.data()["userName"] as? String {
                             self.friendNameRequestsList?.append(userName)
-                            self.tableView.reloadData()
+                            self.tableViewFriendRequestList.reloadData()
                         }
                     }
                 }
@@ -216,7 +223,7 @@ class AccountTableViewController: UITableViewController {
                     for document in (snapshot?.documents)! {
                         if let userName = document.data()["userName"] as? String {
                             self.ignoreNameList?.append(userName)
-                            self.tableView.reloadData()
+                            self.tableViewFriendIgnoreListList.reloadData()
                         }
                     }
                 }
@@ -234,8 +241,8 @@ class AccountTableViewController: UITableViewController {
         db.collection("userProfile").document(currentId).updateData([
             "dataCount": MyFirebase.currentDataUsage!,
             "userName": userName,
-            "friendList": self.friendNameList ?? "",
-            "friendRequests": self.friendNameRequestsList ?? "",
+            "friendList": self.friendNameList ?? "" ,
+            "friendRequests": self.friendNameRequestsList ?? "" ,
             "blockedList": self.ignoreNameList ?? ""
         ]) { err in
             if let err = err {
