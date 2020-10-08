@@ -75,6 +75,11 @@ class AccountTableViewController: UITableViewController {
             if let friends = friendNameList {
                 let friend = friends[indexPath.row]
                 cell.friendNameLabel.text = "\(friend)"
+                
+                let maskLayer = CAShapeLayer()
+                let bounds = cell.bounds
+                maskLayer.path = UIBezierPath(roundedRect: CGRect(x: 0, y: 7, width: bounds.width-4, height: bounds.height-4), cornerRadius: 5).cgPath
+                cell.layer.mask = maskLayer
             }
             return cell
             
@@ -85,6 +90,11 @@ class AccountTableViewController: UITableViewController {
             if let friendRequests = friendNameRequestsList {
                 let friendRequest = friendRequests[indexPath.row]
                 cell.friendRequestNameLabel.text = "\(friendRequest)"
+                
+                let maskLayer = CAShapeLayer()
+                let bounds = cell.bounds
+                maskLayer.path = UIBezierPath(roundedRect: CGRect(x: 0, y: 7, width: bounds.width-4, height: bounds.height-4), cornerRadius: 5).cgPath
+                cell.layer.mask = maskLayer
             }
             return cell
             
@@ -95,6 +105,11 @@ class AccountTableViewController: UITableViewController {
             if let ingores = ignoreNameList {
                 let ignore = ingores[indexPath.row]
                 cell.ignoreNameLabel.text = "\(ignore)"
+                
+                let maskLayer = CAShapeLayer()
+                let bounds = cell.bounds
+                maskLayer.path = UIBezierPath(roundedRect: CGRect(x: 0, y: 7, width: bounds.width-4, height: bounds.height-4), cornerRadius: 5).cgPath
+                cell.layer.mask = maskLayer
             }
             return cell
         case tableViewMain:
