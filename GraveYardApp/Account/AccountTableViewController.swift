@@ -127,8 +127,63 @@ class AccountTableViewController: UITableViewController {
             }
             return cell
         default:
-            return UITableViewCell()
-//            return super.tableView(tableView, cellForRowAt: indexPath)
+//            return UITableViewCell()
+            return super.tableView(tableView, cellForRowAt: indexPath)
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "segueToFriendsMemorials", let memorialsTVC = segue.destination as? MemorialsTableViewController {
+            if let row = self.tableView.indexPathForSelectedRow?.row, let friendMemorial = friendUIDList?[row] {
+                memorialsTVC.currentAuthId = friendMemorial
+            }
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch tableView {
+        case tableViewFriendsLists:
+            performSegue(withIdentifier: "segueToFriendsMemorials", sender: nil)
+        case tableViewFriendRequestList:
+            var alertStyle = UIAlertController.Style.alert
+            if (UIDevice.current.userInterfaceIdiom == .pad) {
+              alertStyle = UIAlertController.Style.alert
+            }
+            let friendRequestAlert = UIAlertController(title: "Add this user to your Friends List?", message: "This will allow them to see all the memorials you have made and your private Memorials", preferredStyle: alertStyle)
+            let dismiss = UIAlertAction(title: "Decline", style: .default, handler: nil)
+            if let row = self.tableView.indexPathForSelectedRow?.row, let friendId = self.friendRequestsUIDList?[row] {
+                self.friendRequestsUIDList = self.friendRequestsUIDList?.filter(){$0 != friendId}
+                self.tableViewFriendRequestList.reloadData()
+            }
+            friendRequestAlert.addAction(dismiss)
+            let goToLogIn = UIAlertAction(title: "Accept", style: .default, handler: { _ in
+                if let row = self.tableView.indexPathForSelectedRow?.row, let friendRequestId = self.friendRequestsUIDList?[row] {
+                    self.friendRequestsUIDList = self.friendRequestsUIDList?.filter(){$0 != friendRequestId}
+                    self.friendUIDList?.append(friendRequestId)
+                    self.tableViewFriendsLists.reloadData()
+                    self.tableViewFriendRequestList.reloadData()
+                }
+            })
+            friendRequestAlert.addAction(goToLogIn)
+            self.present(friendRequestAlert, animated: true, completion: nil)
+        case tableViewFriendIgnoreListList:
+            var alertStyle = UIAlertController.Style.alert
+            if (UIDevice.current.userInterfaceIdiom == .pad) {
+              alertStyle = UIAlertController.Style.alert
+            }
+            let removeIgnoreAlert = UIAlertController(title: "Unblock this user?", message: "This will allow the user to once again send you friend requests", preferredStyle: alertStyle)
+            let dismiss = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+            removeIgnoreAlert.addAction(dismiss)
+            let goToLogIn = UIAlertAction(title: "Unblock", style: .default, handler: { _ in
+                if let row = self.tableView.indexPathForSelectedRow?.row, let blockedUserId = self.ignoreUIDList?[row] {
+                    self.ignoreUIDList = self.ignoreUIDList?.filter(){$0 != blockedUserId }
+                    self.tableViewFriendRequestList.reloadData()
+                }
+            })
+            removeIgnoreAlert.addAction(goToLogIn)
+            self.present(removeIgnoreAlert, animated: true, completion: nil)
+        default:
+            return
         }
     }
     
