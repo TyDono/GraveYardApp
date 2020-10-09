@@ -151,14 +151,16 @@ class AccountTableViewController: UITableViewController {
             }
             let friendRequestAlert = UIAlertController(title: "Add this user to your Friends List?", message: "This will allow them to see all the memorials you have made and your private Memorials", preferredStyle: alertStyle)
             let dismiss = UIAlertAction(title: "Decline", style: .default, handler: nil)
-            if let row = self.tableView.indexPathForSelectedRow?.row, let friendId = self.friendRequestsUIDList?[row] {
+            if let row = self.tableView.indexPathForSelectedRow?.row, let friendId = self.friendRequestsUIDList?[row], let friendRequestUserName = self.friendNameRequestsList?[row] {
                 self.friendRequestsUIDList = self.friendRequestsUIDList?.filter(){$0 != friendId}
+                self.friendNameRequestsList = self.friendNameRequestsList?.filter(){$0 != friendRequestUserName}
                 self.tableViewFriendRequestList.reloadData()
             }
             friendRequestAlert.addAction(dismiss)
             let goToLogIn = UIAlertAction(title: "Accept", style: .default, handler: { _ in
-                if let row = self.tableView.indexPathForSelectedRow?.row, let friendRequestId = self.friendRequestsUIDList?[row] {
+                if let row = self.tableView.indexPathForSelectedRow?.row, let friendRequestId = self.friendRequestsUIDList?[row], let friendRequestUserName = self.friendNameRequestsList?[row] {
                     self.friendRequestsUIDList = self.friendRequestsUIDList?.filter(){$0 != friendRequestId}
+                    self.friendNameRequestsList = self.friendNameRequestsList?.filter(){$0 != friendRequestUserName}
                     self.friendUIDList?.append(friendRequestId)
                     self.tableViewFriendsLists.reloadData()
                     self.tableViewFriendRequestList.reloadData()
@@ -175,8 +177,9 @@ class AccountTableViewController: UITableViewController {
             let dismiss = UIAlertAction(title: "Cancel", style: .default, handler: nil)
             removeIgnoreAlert.addAction(dismiss)
             let goToLogIn = UIAlertAction(title: "Unblock", style: .default, handler: { _ in
-                if let row = self.tableView.indexPathForSelectedRow?.row, let blockedUserId = self.ignoreUIDList?[row] {
+                if let row = self.tableView.indexPathForSelectedRow?.row, let blockedUserId = self.ignoreUIDList?[row], let blockedUserName = self.ignoreNameList?[row] {
                     self.ignoreUIDList = self.ignoreUIDList?.filter(){$0 != blockedUserId }
+                    self.ignoreNameList = self.ignoreNameList?.filter(){$0 != blockedUserName }
                     self.tableViewFriendRequestList.reloadData()
                 }
             })
