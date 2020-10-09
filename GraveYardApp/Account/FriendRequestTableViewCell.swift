@@ -1,5 +1,5 @@
 //
-//  FriendsListTableViewCell.swift
+//  FriendRequestTableViewCell.swift
 //  Remembrances
 //
 //  Created by Tyler Donohue on 10/6/20.
@@ -8,14 +8,16 @@
 
 import UIKit
 
-class FriendsListTableViewCell: UITableViewCell {
+class FriendRequestTableViewCell: UITableViewCell {
     
     // MARK: - Outlets
-
-    @IBOutlet weak var friendNameLabel: UILabel!
+    
+    @IBOutlet weak var friendRequestNameLabel: UILabel!
+    
+    var friendRequestId: String?
     
     // MARK: - Propeties
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

@@ -14,7 +14,6 @@ class AccountTableViewController: UITableViewController {
     
     // MARK: - Outlets
     
-    @IBOutlet var tableViewMain: UITableView!
     @IBOutlet weak var tableViewFriendsLists: UITableView!
     @IBOutlet weak var tableViewFriendRequestList: UITableView!
     @IBOutlet weak var tableViewFriendIgnoreListList: UITableView!
@@ -66,8 +65,9 @@ class AccountTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        switch tableView {
         
+        
+        switch tableView {
         case tableViewFriendsLists:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "FriendsListCell", for: indexPath) as? FriendsListTableViewCell else { return UITableViewCell() }
             cell.backgroundColor = UIColor.clear
@@ -81,6 +81,10 @@ class AccountTableViewController: UITableViewController {
                 maskLayer.path = UIBezierPath(roundedRect: CGRect(x: 0, y: 7, width: bounds.width-4, height: bounds.height-4), cornerRadius: 5).cgPath
                 cell.layer.mask = maskLayer
             }
+            if let friendsId = friendUIDList {
+                let friendId = friendsId[indexPath.row]
+                cell.friendId = friendId
+            }
             return cell
             
         case tableViewFriendRequestList:
@@ -90,6 +94,11 @@ class AccountTableViewController: UITableViewController {
             if let friendRequests = friendNameRequestsList {
                 let friendRequest = friendRequests[indexPath.row]
                 cell.friendRequestNameLabel.text = "\(friendRequest)"
+                
+                if let friendsRequestsId = friendRequestsUIDList {
+                    let friendRequestId = friendsRequestsId[indexPath.row]
+                    cell.friendRequestId = friendRequestId
+                }
                 
                 let maskLayer = CAShapeLayer()
                 let bounds = cell.bounds
@@ -106,18 +115,20 @@ class AccountTableViewController: UITableViewController {
                 let ignore = ingores[indexPath.row]
                 cell.ignoreNameLabel.text = "\(ignore)"
                 
+                if let ignoresId = ignoreUIDList {
+                    let ignoreId = ignoresId[indexPath.row]
+                    cell.ignoreId = ignoreId
+                }
+                
                 let maskLayer = CAShapeLayer()
                 let bounds = cell.bounds
                 maskLayer.path = UIBezierPath(roundedRect: CGRect(x: 0, y: 7, width: bounds.width-4, height: bounds.height-4), cornerRadius: 5).cgPath
                 cell.layer.mask = maskLayer
             }
             return cell
-        case tableViewMain:
-//            guard let cell = tableView.dequeueReusableCell(withIdentifier: "PremiumStatusCell", for: indexPath) as? AccountTableViewCell else { return UITableViewCell() }
-            return UITableViewCell()
-            
         default:
             return UITableViewCell()
+//            return super.tableView(tableView, cellForRowAt: indexPath)
         }
     }
     

@@ -1,5 +1,5 @@
 //
-//  FriendRequestTableViewCell.swift
+//  BlockedListTableViewCell.swift
 //  Remembrances
 //
 //  Created by Tyler Donohue on 10/6/20.
@@ -8,11 +8,13 @@
 
 import UIKit
 
-class FriendRequestTableViewCell: UITableViewCell {
+class IgnoreListTableViewCell: UITableViewCell {
     
     // MARK: - Outlets
     
-    @IBOutlet weak var friendRequestNameLabel: UILabel!
+    @IBOutlet weak var ignoreNameLabel: UILabel!
+    
+    var ignoreId: String?
     
     // MARK: - Propeties
 

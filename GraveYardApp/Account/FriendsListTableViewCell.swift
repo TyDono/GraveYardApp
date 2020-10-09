@@ -1,5 +1,5 @@
 //
-//  BlockedListTableViewCell.swift
+//  FriendsListTableViewCell.swift
 //  Remembrances
 //
 //  Created by Tyler Donohue on 10/6/20.
@@ -8,14 +8,16 @@
 
 import UIKit
 
-class IgnoreListTableViewCell: UITableViewCell {
+class FriendsListTableViewCell: UITableViewCell {
     
     // MARK: - Outlets
-    
-    @IBOutlet weak var ignoreNameLabel: UILabel!
+
+    @IBOutlet weak var friendNameLabel: UILabel!
     
     // MARK: - Propeties
-
+    
+    var friendId: String?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
