@@ -36,10 +36,12 @@ class AccountTableViewController: UITableViewController {
     var db: Firestore!
     var dataCount: Double = 0.0
     var currentSeason: String?
+    var premiumStatus: String = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
         db = Firestore.firestore()
+        self.registerStaticCells()
         getUserData()
         changeBackground()
     }
@@ -127,12 +129,14 @@ class AccountTableViewController: UITableViewController {
             }
             return cell
         default:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "customStaticCell", for: indexPath) as? CustomStaticTableViewCell else { return UITableViewCell() }
+//            self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "PremiumStatusCell")
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "premiumStatusCell", for: indexPath) as? PremiumStatusStaticTableViewCell else { return UITableViewCell() }
             switch cell.reuseIdentifier {
-            case "PremiumStatusCell":
+            case "premiumStatusCell":
+                cell.premiumStatusLabel.text = self.premiumStatus
                 return cell
             case "userNameCell":
-                
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: "userNameCell", for: indexPath) as? UserNameStaticTableViewCell else { return UITableViewCell() }
                 return cell
             case "friendsListExpanderCell":
                 return cell
@@ -230,6 +234,14 @@ class AccountTableViewController: UITableViewController {
     
     // MARK: - Functions
     
+    private func registerStaticCells() {
+        let premiumCell = UINib(nibName: "PremiumStatusStaticTableViewCell", bundle: nil)
+        self.tableView.register(premiumCell, forCellReuseIdentifier: "premiumStatusCell")
+        
+        let userNameCell = UINib(nibName: "UserNameStaticTableViewCell", bundle: nil)
+        self.tableView.register(userNameCell, forCellReuseIdentifier: "userNameCell")
+    }
+    
     func getUserData() {
         guard let currentUserAuthID: String = self.currentAuthID else { return }
         let userRef = self.db.collection("userProfile").whereField("currentUserAuthId", isEqualTo: currentUserAuthID)
@@ -246,15 +258,15 @@ class AccountTableViewController: UITableViewController {
                         //self.dataCount = Double(dataCount)
                         switch premiumStatus {
                         case 0:
-                            self.premiumStatusLabel.text = "You are not currently subscribed to Remembrances Premium"
+                            self.premiumStatus = "You are not currently subscribed to Remembrances Premium"
                         case 1:
-                            self.premiumStatusLabel.text = "Your current subsciption is Tier 1"
+                            self.premiumStatus = "Your current subsciption is Tier 1"
                         case 2:
-                            self.premiumStatusLabel.text = "Your current subsciption is Tier 2"
+                            self.premiumStatus = "Your current subsciption is Tier 2"
                         case 3:
-                            self.premiumStatusLabel.text = "Your current subsciption is Tier 3"
+                            self.premiumStatus = "Your current subsciption is Tier 3"
                         default:
-                            self.premiumStatusLabel.text = ""
+                            self.premiumStatus = ""
                         }
                         self.userNameTextField.text = userName
                         self.friendUIDList = friendList
@@ -263,6 +275,7 @@ class AccountTableViewController: UITableViewController {
                         self.getFriendUserName()
                         self.getFriendRequestUserName()
                         self.getIgnoreUserName()
+                        self.tableView.reloadData()
                         
 //                        if self.dataCount != 0.0 {
 //                            let dividedDataCount: Double = self.dataCount/1000000.0

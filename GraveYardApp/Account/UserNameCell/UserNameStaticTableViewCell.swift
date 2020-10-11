@@ -1,14 +1,14 @@
 //
-//  CustomStaticTableViewCell.swift
+//  UserNameTableViewCell.swift
 //  Remembrances
 //
-//  Created by Tyler Donohue on 10/10/20.
+//  Created by Tyler Donohue on 10/11/20.
 //  Copyright © 2020 Tyler Donohue. All rights reserved.
 //
 
 import UIKit
 
-class CustomStaticTableViewCell: UITableViewCell {
+class UserNameStaticTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -20,5 +20,5 @@ class CustomStaticTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
+    
 }

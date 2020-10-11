@@ -19,6 +19,10 @@
 		CB3A30E1235F9E4B00CF2CBB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB3A30E0235F9E4B00CF2CBB /* Main.storyboard */; };
 		CB3A388A237528E400DA756D /* NewGraveStoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3A3889237528E400DA756D /* NewGraveStoryTableViewController.swift */; };
 		CB3A388C2375293F00DA756D /* GraveStoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3A388B2375293F00DA756D /* GraveStoryTableViewController.swift */; };
+		CB53597B2532DAD70048B201 /* PremiumStatusStaticTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5359792532DAD70048B201 /* PremiumStatusStaticTableViewCell.swift */; };
+		CB53597C2532DAD70048B201 /* PremiumStatusStaticTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB53597A2532DAD70048B201 /* PremiumStatusStaticTableViewCell.xib */; };
+		CB5359852532E2D70048B201 /* UserNameStaticTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5359832532E2D70048B201 /* UserNameStaticTableViewCell.swift */; };
+		CB5359862532E2D70048B201 /* UserNameStaticTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB5359842532E2D70048B201 /* UserNameStaticTableViewCell.xib */; };
 		CB5BAAE1247DBA8C00350553 /* PaymentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5BAAE0247DBA8C00350553 /* PaymentsViewController.swift */; };
 		CB697DF32440A82F0035C07A /* SignInWithAppleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB697DF22440A82F0035C07A /* SignInWithAppleManager.swift */; };
 		CB697DF52440A8460035C07A /* AuthState.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB697DF42440A8460035C07A /* AuthState.swift */; };
@@ -48,7 +52,6 @@
 		CBCE0E2F23FD14410077A4F1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CBCE0E2E23FD14410077A4F1 /* Assets.xcassets */; };
 		CBCE0E3323FD14690077A4F1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CBCE0E3223FD14690077A4F1 /* LaunchScreen.storyboard */; };
 		CBDA1057251FFB7600586653 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBDA1056251FFB7600586653 /* MapKit.framework */; };
-		CBEAC1992532A36A00AFEA29 /* CustomStaticTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBEAC1982532A36A00AFEA29 /* CustomStaticTableViewCell.swift */; };
 		CBF424A224FE1F970095AE96 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBF424A124FE1F960095AE96 /* PlayerView.swift */; };
 		E8F91882986EE15D6ED608DC /* Pods_Remembrances.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F04760C3626E91F924036536 /* Pods_Remembrances.framework */; };
 /* End PBXBuildFile section */
@@ -68,6 +71,10 @@
 		CB3A3889237528E400DA756D /* NewGraveStoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGraveStoryTableViewController.swift; sourceTree = "<group>"; };
 		CB3A388B2375293F00DA756D /* GraveStoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraveStoryTableViewController.swift; sourceTree = "<group>"; };
 		CB4895A324DC95A000055688 /* GraveYardApp.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = GraveYardApp.entitlements; sourceTree = "<group>"; };
+		CB5359792532DAD70048B201 /* PremiumStatusStaticTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumStatusStaticTableViewCell.swift; sourceTree = "<group>"; };
+		CB53597A2532DAD70048B201 /* PremiumStatusStaticTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PremiumStatusStaticTableViewCell.xib; sourceTree = "<group>"; };
+		CB5359832532E2D70048B201 /* UserNameStaticTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNameStaticTableViewCell.swift; sourceTree = "<group>"; };
+		CB5359842532E2D70048B201 /* UserNameStaticTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserNameStaticTableViewCell.xib; sourceTree = "<group>"; };
 		CB5AE18323512B14001BCCCE /* Remembrances.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Remembrances.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB5AE19423512B16001BCCCE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CB5BAAE0247DBA8C00350553 /* PaymentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentsViewController.swift; sourceTree = "<group>"; };
@@ -99,7 +106,6 @@
 		CBCE0E2E23FD14410077A4F1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CBCE0E3223FD14690077A4F1 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CBDA1056251FFB7600586653 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		CBEAC1982532A36A00AFEA29 /* CustomStaticTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomStaticTableViewCell.swift; sourceTree = "<group>"; };
 		CBF424A124FE1F960095AE96 /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
 		F04760C3626E91F924036536 /* Pods_Remembrances.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Remembrances.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6FAC73F2981E74145F8CE0E /* Pods-Remembrances.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Remembrances.release.xcconfig"; path = "Target Support Files/Pods-Remembrances/Pods-Remembrances.release.xcconfig"; sourceTree = "<group>"; };
@@ -175,6 +181,34 @@
 			path = Grave;
 			sourceTree = "<group>";
 		};
+		CB53597F2532E04A0048B201 /* PremiumStatusStaticCell */ = {
+			isa = PBXGroup;
+			children = (
+				CB5359792532DAD70048B201 /* PremiumStatusStaticTableViewCell.swift */,
+				CB53597A2532DAD70048B201 /* PremiumStatusStaticTableViewCell.xib */,
+			);
+			path = PremiumStatusStaticCell;
+			sourceTree = "<group>";
+		};
+		CB5359802532E0810048B201 /* DynamicAccountCells */ = {
+			isa = PBXGroup;
+			children = (
+				CB19C285252C7F2B009DB081 /* FriendsListTableViewCell.swift */,
+				CB19C288252C82CA009DB081 /* FriendRequestTableViewCell.swift */,
+				CB19C28B252C82D8009DB081 /* IgnoreListTableViewCell.swift */,
+			);
+			path = DynamicAccountCells;
+			sourceTree = "<group>";
+		};
+		CB5359822532E2960048B201 /* UserNameCell */ = {
+			isa = PBXGroup;
+			children = (
+				CB5359832532E2D70048B201 /* UserNameStaticTableViewCell.swift */,
+				CB5359842532E2D70048B201 /* UserNameStaticTableViewCell.xib */,
+			);
+			path = UserNameCell;
+			sourceTree = "<group>";
+		};
 		CB5AE17A23512B14001BCCCE = {
 			isa = PBXGroup;
 			children = (
@@ -228,10 +262,9 @@
 			children = (
 				CBCE0E2423FD13CB0077A4F1 /* UserProfile.swift */,
 				CB19C28E252C82F1009DB081 /* AccountTableViewController.swift */,
-				CBEAC1982532A36A00AFEA29 /* CustomStaticTableViewCell.swift */,
-				CB19C285252C7F2B009DB081 /* FriendsListTableViewCell.swift */,
-				CB19C288252C82CA009DB081 /* FriendRequestTableViewCell.swift */,
-				CB19C28B252C82D8009DB081 /* IgnoreListTableViewCell.swift */,
+				CB53597F2532E04A0048B201 /* PremiumStatusStaticCell */,
+				CB5359822532E2960048B201 /* UserNameCell */,
+				CB5359802532E0810048B201 /* DynamicAccountCells */,
 				CB8304C724B5CE9D0023F4EA /* PremiumViewController.swift */,
 				CBA44AC3252C733F0096D438 /* AccountTableViewCell.swift */,
 			);
@@ -370,7 +403,9 @@
 				CBBCBD47250A74F700326169 /* paperBookSound.wav in Resources */,
 				CB226F4425218C0100BB0F51 /* memorialMakerInto.mp4 in Resources */,
 				CB226F3825205A1E00BB0F51 /* credentials.plist in Resources */,
+				CB5359862532E2D70048B201 /* UserNameStaticTableViewCell.xib in Resources */,
 				CBCE0E2F23FD14410077A4F1 /* Assets.xcassets in Resources */,
+				CB53597C2532DAD70048B201 /* PremiumStatusStaticTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -450,7 +485,7 @@
 				CB697DF52440A8460035C07A /* AuthState.swift in Sources */,
 				CBCE0E2723FD13E80077A4F1 /* GraveProfileImage.swift in Sources */,
 				CBCE0E1923FD13460077A4F1 /* MapViewController.swift in Sources */,
-				CBEAC1992532A36A00AFEA29 /* CustomStaticTableViewCell.swift in Sources */,
+				CB53597B2532DAD70048B201 /* PremiumStatusStaticTableViewCell.swift in Sources */,
 				CBCE0E2323FD13BE0077A4F1 /* Story.swift in Sources */,
 				CBCE0E2B23FD14080077A4F1 /* GraveTableViewController.swift in Sources */,
 				CB19C28C252C82D8009DB081 /* IgnoreListTableViewCell.swift in Sources */,
@@ -470,6 +505,7 @@
 				CBCE0E1623FD13300077A4F1 /* MyFirebase.swift in Sources */,
 				CBCE0E1523FD13300077A4F1 /* GlobalExtension.swift in Sources */,
 				CBA44AC4252C733F0096D438 /* AccountTableViewCell.swift in Sources */,
+				CB5359852532E2D70048B201 /* UserNameStaticTableViewCell.swift in Sources */,
 				CB3A1AA724F447DC00BACC73 /* MemorialsTableViewCell.swift in Sources */,
 				CBCE0E1D23FD13910077A4F1 /* CustomAnnotation.swift in Sources */,
 				CBBC7B1F252B054800BE6697 /* LocationSearchTableView.swift in Sources */,
