@@ -23,6 +23,10 @@
 		CB53597C2532DAD70048B201 /* PremiumStatusStaticTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB53597A2532DAD70048B201 /* PremiumStatusStaticTableViewCell.xib */; };
 		CB5359852532E2D70048B201 /* UserNameStaticTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5359832532E2D70048B201 /* UserNameStaticTableViewCell.swift */; };
 		CB5359862532E2D70048B201 /* UserNameStaticTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB5359842532E2D70048B201 /* UserNameStaticTableViewCell.xib */; };
+		CB53598E25330BCB0048B201 /* FriendListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB53598C25330BCB0048B201 /* FriendListTableViewCell.swift */; };
+		CB53598F25330BCB0048B201 /* FriendListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB53598D25330BCB0048B201 /* FriendListTableViewCell.xib */; };
+		CB53599725330C5F0048B201 /* FriendListExpanderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB53599525330C5F0048B201 /* FriendListExpanderTableViewCell.swift */; };
+		CB53599825330C5F0048B201 /* FriendListExpanderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB53599625330C5F0048B201 /* FriendListExpanderTableViewCell.xib */; };
 		CB5BAAE1247DBA8C00350553 /* PaymentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5BAAE0247DBA8C00350553 /* PaymentsViewController.swift */; };
 		CB697DF32440A82F0035C07A /* SignInWithAppleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB697DF22440A82F0035C07A /* SignInWithAppleManager.swift */; };
 		CB697DF52440A8460035C07A /* AuthState.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB697DF42440A8460035C07A /* AuthState.swift */; };
@@ -75,6 +79,10 @@
 		CB53597A2532DAD70048B201 /* PremiumStatusStaticTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PremiumStatusStaticTableViewCell.xib; sourceTree = "<group>"; };
 		CB5359832532E2D70048B201 /* UserNameStaticTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNameStaticTableViewCell.swift; sourceTree = "<group>"; };
 		CB5359842532E2D70048B201 /* UserNameStaticTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserNameStaticTableViewCell.xib; sourceTree = "<group>"; };
+		CB53598C25330BCB0048B201 /* FriendListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListTableViewCell.swift; sourceTree = "<group>"; };
+		CB53598D25330BCB0048B201 /* FriendListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendListTableViewCell.xib; sourceTree = "<group>"; };
+		CB53599525330C5F0048B201 /* FriendListExpanderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListExpanderTableViewCell.swift; sourceTree = "<group>"; };
+		CB53599625330C5F0048B201 /* FriendListExpanderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendListExpanderTableViewCell.xib; sourceTree = "<group>"; };
 		CB5AE18323512B14001BCCCE /* Remembrances.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Remembrances.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB5AE19423512B16001BCCCE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CB5BAAE0247DBA8C00350553 /* PaymentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentsViewController.swift; sourceTree = "<group>"; };
@@ -209,6 +217,17 @@
 			path = UserNameCell;
 			sourceTree = "<group>";
 		};
+		CB53598B25330B960048B201 /* FriendsListCell */ = {
+			isa = PBXGroup;
+			children = (
+				CB53599525330C5F0048B201 /* FriendListExpanderTableViewCell.swift */,
+				CB53599625330C5F0048B201 /* FriendListExpanderTableViewCell.xib */,
+				CB53598C25330BCB0048B201 /* FriendListTableViewCell.swift */,
+				CB53598D25330BCB0048B201 /* FriendListTableViewCell.xib */,
+			);
+			path = FriendsListCell;
+			sourceTree = "<group>";
+		};
 		CB5AE17A23512B14001BCCCE = {
 			isa = PBXGroup;
 			children = (
@@ -264,6 +283,7 @@
 				CB19C28E252C82F1009DB081 /* AccountTableViewController.swift */,
 				CB53597F2532E04A0048B201 /* PremiumStatusStaticCell */,
 				CB5359822532E2960048B201 /* UserNameCell */,
+				CB53598B25330B960048B201 /* FriendsListCell */,
 				CB5359802532E0810048B201 /* DynamicAccountCells */,
 				CB8304C724B5CE9D0023F4EA /* PremiumViewController.swift */,
 				CBA44AC3252C733F0096D438 /* AccountTableViewCell.swift */,
@@ -398,12 +418,14 @@
 			files = (
 				CBBCBD46250A74F700326169 /* paperSound.wav in Resources */,
 				CBBC7B0F2522933500BE6697 /* GoogleService-Info.plist in Resources */,
+				CB53599825330C5F0048B201 /* FriendListExpanderTableViewCell.xib in Resources */,
 				CB3A30E1235F9E4B00CF2CBB /* Main.storyboard in Resources */,
 				CBCE0E3323FD14690077A4F1 /* LaunchScreen.storyboard in Resources */,
 				CBBCBD47250A74F700326169 /* paperBookSound.wav in Resources */,
 				CB226F4425218C0100BB0F51 /* memorialMakerInto.mp4 in Resources */,
 				CB226F3825205A1E00BB0F51 /* credentials.plist in Resources */,
 				CB5359862532E2D70048B201 /* UserNameStaticTableViewCell.xib in Resources */,
+				CB53598F25330BCB0048B201 /* FriendListTableViewCell.xib in Resources */,
 				CBCE0E2F23FD14410077A4F1 /* Assets.xcassets in Resources */,
 				CB53597C2532DAD70048B201 /* PremiumStatusStaticTableViewCell.xib in Resources */,
 			);
@@ -482,6 +504,7 @@
 				CBCE0E2923FD13F40077A4F1 /* UserReport.swift in Sources */,
 				CB3A388A237528E400DA756D /* NewGraveStoryTableViewController.swift in Sources */,
 				CB881F9A2367B41E00615F2F /* EditGraveTableViewController.swift in Sources */,
+				CB53598E25330BCB0048B201 /* FriendListTableViewCell.swift in Sources */,
 				CB697DF52440A8460035C07A /* AuthState.swift in Sources */,
 				CBCE0E2723FD13E80077A4F1 /* GraveProfileImage.swift in Sources */,
 				CBCE0E1923FD13460077A4F1 /* MapViewController.swift in Sources */,
@@ -490,6 +513,7 @@
 				CBCE0E2B23FD14080077A4F1 /* GraveTableViewController.swift in Sources */,
 				CB19C28C252C82D8009DB081 /* IgnoreListTableViewCell.swift in Sources */,
 				CB3A1AA524F4475500BACC73 /* MemorialsTableViewController.swift in Sources */,
+				CB53599725330C5F0048B201 /* FriendListExpanderTableViewCell.swift in Sources */,
 				CB19C28F252C82F1009DB081 /* AccountTableViewController.swift in Sources */,
 				CBCE0E1723FD13300077A4F1 /* GIDSignInExtension.swift in Sources */,
 				CB5BAAE1247DBA8C00350553 /* PaymentsViewController.swift in Sources */,

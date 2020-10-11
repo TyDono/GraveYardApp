@@ -37,6 +37,7 @@ class AccountTableViewController: UITableViewController {
     var dataCount: Double = 0.0
     var currentSeason: String?
     var premiumStatus: String = ""
+    var userName: String = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,7 +68,26 @@ class AccountTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        
+        switch (indexPath.section, indexPath.row) {
+        case (0,0):
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "premiumStatusCell", for: indexPath) as? PremiumStatusStaticTableViewCell else { return UITableViewCell() }
+            cell.premiumStatusLabel.text = self.premiumStatus
+            return cell
+        case (0,1):
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "userNameCell", for: indexPath) as? UserNameStaticTableViewCell else { return UITableViewCell() }
+            cell.userNameTextField.text = self.userName
+            return cell
+        case (1,0):
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "friendListExpanderCell", for: indexPath) as? FriendListExpanderTableViewCell else { return UITableViewCell() }
+            cell.friendListLabel.text = "Expander Friend List"
+            return cell
+        case (1,1):
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "friendListCell", for: indexPath) as? FriendListTableViewCell else { return UITableViewCell() }
+            
+            return cell
+        default:
+            return UITableViewCell()
+        }
         
         switch tableView {
         case tableViewFriendsLists:
@@ -129,7 +149,6 @@ class AccountTableViewController: UITableViewController {
             }
             return cell
         default:
-//            self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "PremiumStatusCell")
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "premiumStatusCell", for: indexPath) as? PremiumStatusStaticTableViewCell else { return UITableViewCell() }
             switch cell.reuseIdentifier {
             case "premiumStatusCell":
@@ -140,14 +159,14 @@ class AccountTableViewController: UITableViewController {
                 return cell
             case "friendsListExpanderCell":
                 return cell
-            case "FriendsListCell":
+            case "friendsListCell":
                 return cell
-                
+
             case "friendRequestExpanderCell":
                 return cell
             case "FriendRequestCell":
                 return cell
-                
+
             case "ignoreExpanderCell":
                 return cell
             case "ignoreListCell":
@@ -240,6 +259,12 @@ class AccountTableViewController: UITableViewController {
         
         let userNameCell = UINib(nibName: "UserNameStaticTableViewCell", bundle: nil)
         self.tableView.register(userNameCell, forCellReuseIdentifier: "userNameCell")
+        
+        let friendListExpanderCell = UINib(nibName: "FriendListExpanderTableViewCell", bundle: nil)
+        self.tableView.register(friendListExpanderCell, forCellReuseIdentifier: "friendListExpanderCell")
+        
+        let friendListCell = UINib(nibName: "FriendListTableViewCell", bundle: nil)
+        self.tableView.register(friendListCell, forCellReuseIdentifier: "friendListCell")
     }
     
     func getUserData() {
@@ -268,7 +293,7 @@ class AccountTableViewController: UITableViewController {
                         default:
                             self.premiumStatus = ""
                         }
-                        self.userNameTextField.text = userName
+                        self.userName = userName
                         self.friendUIDList = friendList
                         self.friendRequestsUIDList = friendRequests
                         self.ignoreUIDList = blockedList

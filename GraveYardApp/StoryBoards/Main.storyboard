@@ -2142,7 +2142,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="customStaticCell" rowHeight="343" id="qsx-r0-UAU" customClass="PremiumStatusStaticTableViewCell" customModule="Remembrances" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="friendListCell" rowHeight="343" id="qsx-r0-UAU" customClass="FriendListTableViewCell" customModule="Remembrances" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="311" width="414" height="343"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qsx-r0-UAU" id="rn2-oB-kcD">

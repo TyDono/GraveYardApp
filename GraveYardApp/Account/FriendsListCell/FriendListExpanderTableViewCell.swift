@@ -1,5 +1,5 @@
 //
-//  UserNameTableViewCell.swift
+//  FriendsListExpanderTableViewCell.swift
 //  Remembrances
 //
 //  Created by Tyler Donohue on 10/11/20.
@@ -8,9 +8,9 @@
 
 import UIKit
 
-class UserNameStaticTableViewCell: UITableViewCell {
+class FriendListExpanderTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var userNameTextField: UITextField!
+    @IBOutlet weak var friendListLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
