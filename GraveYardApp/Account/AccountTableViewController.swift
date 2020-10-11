@@ -127,8 +127,30 @@ class AccountTableViewController: UITableViewController {
             }
             return cell
         default:
-//            return UITableViewCell()
-            return super.tableView(tableView, cellForRowAt: indexPath)
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "customStaticCell", for: indexPath) as? CustomStaticTableViewCell else { return UITableViewCell() }
+            switch cell.reuseIdentifier {
+            case "PremiumStatusCell":
+                return cell
+            case "userNameCell":
+                
+                return cell
+            case "friendsListExpanderCell":
+                return cell
+            case "FriendsListCell":
+                return cell
+                
+            case "friendRequestExpanderCell":
+                return cell
+            case "FriendRequestCell":
+                return cell
+                
+            case "ignoreExpanderCell":
+                return cell
+            case "ignoreListCell":
+                return cell
+            default:
+                return UITableViewCell()
+            }
         }
     }
     

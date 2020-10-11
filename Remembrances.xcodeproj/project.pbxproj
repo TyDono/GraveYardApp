@@ -48,6 +48,7 @@
 		CBCE0E2F23FD14410077A4F1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CBCE0E2E23FD14410077A4F1 /* Assets.xcassets */; };
 		CBCE0E3323FD14690077A4F1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CBCE0E3223FD14690077A4F1 /* LaunchScreen.storyboard */; };
 		CBDA1057251FFB7600586653 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBDA1056251FFB7600586653 /* MapKit.framework */; };
+		CBEAC1992532A36A00AFEA29 /* CustomStaticTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBEAC1982532A36A00AFEA29 /* CustomStaticTableViewCell.swift */; };
 		CBF424A224FE1F970095AE96 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBF424A124FE1F960095AE96 /* PlayerView.swift */; };
 		E8F91882986EE15D6ED608DC /* Pods_Remembrances.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F04760C3626E91F924036536 /* Pods_Remembrances.framework */; };
 /* End PBXBuildFile section */
@@ -98,6 +99,7 @@
 		CBCE0E2E23FD14410077A4F1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CBCE0E3223FD14690077A4F1 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CBDA1056251FFB7600586653 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		CBEAC1982532A36A00AFEA29 /* CustomStaticTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomStaticTableViewCell.swift; sourceTree = "<group>"; };
 		CBF424A124FE1F960095AE96 /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
 		F04760C3626E91F924036536 /* Pods_Remembrances.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Remembrances.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6FAC73F2981E74145F8CE0E /* Pods-Remembrances.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Remembrances.release.xcconfig"; path = "Target Support Files/Pods-Remembrances/Pods-Remembrances.release.xcconfig"; sourceTree = "<group>"; };
@@ -226,6 +228,7 @@
 			children = (
 				CBCE0E2423FD13CB0077A4F1 /* UserProfile.swift */,
 				CB19C28E252C82F1009DB081 /* AccountTableViewController.swift */,
+				CBEAC1982532A36A00AFEA29 /* CustomStaticTableViewCell.swift */,
 				CB19C285252C7F2B009DB081 /* FriendsListTableViewCell.swift */,
 				CB19C288252C82CA009DB081 /* FriendRequestTableViewCell.swift */,
 				CB19C28B252C82D8009DB081 /* IgnoreListTableViewCell.swift */,
@@ -447,6 +450,7 @@
 				CB697DF52440A8460035C07A /* AuthState.swift in Sources */,
 				CBCE0E2723FD13E80077A4F1 /* GraveProfileImage.swift in Sources */,
 				CBCE0E1923FD13460077A4F1 /* MapViewController.swift in Sources */,
+				CBEAC1992532A36A00AFEA29 /* CustomStaticTableViewCell.swift in Sources */,
 				CBCE0E2323FD13BE0077A4F1 /* Story.swift in Sources */,
 				CBCE0E2B23FD14080077A4F1 /* GraveTableViewController.swift in Sources */,
 				CB19C28C252C82D8009DB081 /* IgnoreListTableViewCell.swift in Sources */,
