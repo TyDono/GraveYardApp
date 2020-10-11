@@ -46,6 +46,10 @@ class AccountTableViewController: UITableViewController {
         getUserData()
         changeBackground()
     }
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return super.numberOfSections(in: tableView) - 1
+    }
 
     // MARK: - Table view data source
 
@@ -62,7 +66,7 @@ class AccountTableViewController: UITableViewController {
         case tableViewFriendIgnoreListList:
             return self.ignoreNameList?.count ?? 0
         default:
-            return 2
+            return 3
         }
     }
     
@@ -77,13 +81,13 @@ class AccountTableViewController: UITableViewController {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "userNameCell", for: indexPath) as? UserNameStaticTableViewCell else { return UITableViewCell() }
             cell.userNameTextField.text = self.userName
             return cell
-        case (1,0):
+        case (0,2):
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "friendListExpanderCell", for: indexPath) as? FriendListExpanderTableViewCell else { return UITableViewCell() }
             cell.friendListLabel.text = "Expander Friend List"
             return cell
-        case (1,1):
+        case (1,0):
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "friendListCell", for: indexPath) as? FriendListTableViewCell else { return UITableViewCell() }
-            
+
             return cell
         default:
             return UITableViewCell()
@@ -91,7 +95,7 @@ class AccountTableViewController: UITableViewController {
         
         switch tableView {
         case tableViewFriendsLists:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "FriendsListCell", for: indexPath) as? FriendsListTableViewCell else { return UITableViewCell() }
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "friendListDynamicCell", for: indexPath) as? FriendListDynamicTableViewCell else { return UITableViewCell() }
             cell.backgroundColor = UIColor.clear
             cell.backgroundView = UIImageView.init(image: UIImage.init(named: "bookRed"))
             if let friends = friendNameList {
@@ -263,8 +267,8 @@ class AccountTableViewController: UITableViewController {
         let friendListExpanderCell = UINib(nibName: "FriendListExpanderTableViewCell", bundle: nil)
         self.tableView.register(friendListExpanderCell, forCellReuseIdentifier: "friendListExpanderCell")
         
-        let friendListCell = UINib(nibName: "FriendListTableViewCell", bundle: nil)
-        self.tableView.register(friendListCell, forCellReuseIdentifier: "friendListCell")
+//        let friendListCell = UINib(nibName: "FriendListTableViewCell", bundle: nil)
+//        self.tableView.register(friendListCell, forCellReuseIdentifier: "friendListCell")
     }
     
     func getUserData() {

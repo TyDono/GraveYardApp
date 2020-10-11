@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CB19C286252C7F2B009DB081 /* FriendsListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB19C285252C7F2B009DB081 /* FriendsListTableViewCell.swift */; };
 		CB19C289252C82CA009DB081 /* FriendRequestTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB19C288252C82CA009DB081 /* FriendRequestTableViewCell.swift */; };
 		CB19C28C252C82D8009DB081 /* IgnoreListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB19C28B252C82D8009DB081 /* IgnoreListTableViewCell.swift */; };
 		CB19C28F252C82F1009DB081 /* AccountTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB19C28E252C82F1009DB081 /* AccountTableViewController.swift */; };
@@ -56,13 +55,13 @@
 		CBCE0E2F23FD14410077A4F1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CBCE0E2E23FD14410077A4F1 /* Assets.xcassets */; };
 		CBCE0E3323FD14690077A4F1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CBCE0E3223FD14690077A4F1 /* LaunchScreen.storyboard */; };
 		CBDA1057251FFB7600586653 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBDA1056251FFB7600586653 /* MapKit.framework */; };
+		CBDAE672253362AB004084F3 /* FriendListDynamicTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDAE671253362AB004084F3 /* FriendListDynamicTableViewCell.swift */; };
 		CBF424A224FE1F970095AE96 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBF424A124FE1F960095AE96 /* PlayerView.swift */; };
 		E8F91882986EE15D6ED608DC /* Pods_Remembrances.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F04760C3626E91F924036536 /* Pods_Remembrances.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		A2D8D1588AF5480F1F26C7B4 /* Pods-Remembrances.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Remembrances.debug.xcconfig"; path = "Target Support Files/Pods-Remembrances/Pods-Remembrances.debug.xcconfig"; sourceTree = "<group>"; };
-		CB19C285252C7F2B009DB081 /* FriendsListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsListTableViewCell.swift; sourceTree = "<group>"; };
 		CB19C288252C82CA009DB081 /* FriendRequestTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendRequestTableViewCell.swift; sourceTree = "<group>"; };
 		CB19C28B252C82D8009DB081 /* IgnoreListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IgnoreListTableViewCell.swift; sourceTree = "<group>"; };
 		CB19C28E252C82F1009DB081 /* AccountTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTableViewController.swift; sourceTree = "<group>"; };
@@ -114,6 +113,7 @@
 		CBCE0E2E23FD14410077A4F1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CBCE0E3223FD14690077A4F1 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CBDA1056251FFB7600586653 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		CBDAE671253362AB004084F3 /* FriendListDynamicTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListDynamicTableViewCell.swift; sourceTree = "<group>"; };
 		CBF424A124FE1F960095AE96 /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
 		F04760C3626E91F924036536 /* Pods_Remembrances.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Remembrances.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6FAC73F2981E74145F8CE0E /* Pods-Remembrances.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Remembrances.release.xcconfig"; path = "Target Support Files/Pods-Remembrances/Pods-Remembrances.release.xcconfig"; sourceTree = "<group>"; };
@@ -201,7 +201,6 @@
 		CB5359802532E0810048B201 /* DynamicAccountCells */ = {
 			isa = PBXGroup;
 			children = (
-				CB19C285252C7F2B009DB081 /* FriendsListTableViewCell.swift */,
 				CB19C288252C82CA009DB081 /* FriendRequestTableViewCell.swift */,
 				CB19C28B252C82D8009DB081 /* IgnoreListTableViewCell.swift */,
 			);
@@ -328,6 +327,7 @@
 			isa = PBXGroup;
 			children = (
 				CB3A30E0235F9E4B00CF2CBB /* Main.storyboard */,
+				CBDAE671253362AB004084F3 /* FriendListDynamicTableViewCell.swift */,
 				CBCE0E3223FD14690077A4F1 /* LaunchScreen.storyboard */,
 			);
 			path = StoryBoards;
@@ -504,6 +504,7 @@
 				CBCE0E2923FD13F40077A4F1 /* UserReport.swift in Sources */,
 				CB3A388A237528E400DA756D /* NewGraveStoryTableViewController.swift in Sources */,
 				CB881F9A2367B41E00615F2F /* EditGraveTableViewController.swift in Sources */,
+				CBDAE672253362AB004084F3 /* FriendListDynamicTableViewCell.swift in Sources */,
 				CB53598E25330BCB0048B201 /* FriendListTableViewCell.swift in Sources */,
 				CB697DF52440A8460035C07A /* AuthState.swift in Sources */,
 				CBCE0E2723FD13E80077A4F1 /* GraveProfileImage.swift in Sources */,
@@ -524,7 +525,6 @@
 				CB3A388C2375293F00DA756D /* GraveStoryTableViewController.swift in Sources */,
 				CB19C289252C82CA009DB081 /* FriendRequestTableViewCell.swift in Sources */,
 				CBCE0E0B23FD12D00077A4F1 /* SplashViewController.swift in Sources */,
-				CB19C286252C7F2B009DB081 /* FriendsListTableViewCell.swift in Sources */,
 				CB398EFB23695D0600A515B9 /* GraveStoriesTableViewController.swift in Sources */,
 				CBCE0E1623FD13300077A4F1 /* MyFirebase.swift in Sources */,
 				CBCE0E1523FD13300077A4F1 /* GlobalExtension.swift in Sources */,

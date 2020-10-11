@@ -1,23 +1,20 @@
 //
-//  FriendsListTableViewCell.swift
+//  FriendListDynamicTableViewCell.swift
 //  Remembrances
 //
-//  Created by Tyler Donohue on 10/6/20.
+//  Created by Tyler Donohue on 10/11/20.
 //  Copyright © 2020 Tyler Donohue. All rights reserved.
 //
 
 import UIKit
 
-class FriendsListTableViewCell: UITableViewCell {
+class FriendListDynamicTableViewCell: UITableViewCell {
     
-    // MARK: - Outlets
-
     @IBOutlet weak var friendNameLabel: UILabel!
-    
-    // MARK: - Propeties
+    @IBOutlet weak var removeFriendButton: UIButton!
     
     var friendId: String?
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -29,4 +26,7 @@ class FriendsListTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+    @IBAction func removeFriendButonWasTapped(_ sender: Any) {
+    }
+    
 }

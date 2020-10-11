@@ -10,6 +10,9 @@ import UIKit
 
 class FriendListTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var friendNameLabel: UILabel!
+    @IBOutlet weak var removeFriendButton: UIButton!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -21,4 +24,6 @@ class FriendListTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    @IBAction func removeFriendButtonWasTapped(_ sender: UIButton) {
+    }
 }
