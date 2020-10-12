@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1DB0DF6D95DF8DDB0407F3AF /* Pods_Remembrances.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19EF069844BC87FCDC4CF41F /* Pods_Remembrances.framework */; };
 		CB19C289252C82CA009DB081 /* FriendRequestTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB19C288252C82CA009DB081 /* FriendRequestTableViewCell.swift */; };
 		CB19C28C252C82D8009DB081 /* IgnoreListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB19C28B252C82D8009DB081 /* IgnoreListTableViewCell.swift */; };
 		CB19C28F252C82F1009DB081 /* AccountTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB19C28E252C82F1009DB081 /* AccountTableViewController.swift */; };
@@ -50,11 +51,12 @@
 		CBDA1057251FFB7600586653 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBDA1056251FFB7600586653 /* MapKit.framework */; };
 		CBDAE672253362AB004084F3 /* FriendListDynamicTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDAE671253362AB004084F3 /* FriendListDynamicTableViewCell.swift */; };
 		CBF424A224FE1F970095AE96 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBF424A124FE1F960095AE96 /* PlayerView.swift */; };
-		E8F91882986EE15D6ED608DC /* Pods_Remembrances.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F04760C3626E91F924036536 /* Pods_Remembrances.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		A2D8D1588AF5480F1F26C7B4 /* Pods-Remembrances.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Remembrances.debug.xcconfig"; path = "Target Support Files/Pods-Remembrances/Pods-Remembrances.debug.xcconfig"; sourceTree = "<group>"; };
+		19EF069844BC87FCDC4CF41F /* Pods_Remembrances.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Remembrances.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8A8A2072E2B85820EEC42A2D /* Pods-Remembrances.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Remembrances.debug.xcconfig"; path = "Target Support Files/Pods-Remembrances/Pods-Remembrances.debug.xcconfig"; sourceTree = "<group>"; };
+		93A3150A7CABD6E7C47691FA /* Pods-Remembrances.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Remembrances.release.xcconfig"; path = "Target Support Files/Pods-Remembrances/Pods-Remembrances.release.xcconfig"; sourceTree = "<group>"; };
 		CB19C288252C82CA009DB081 /* FriendRequestTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendRequestTableViewCell.swift; sourceTree = "<group>"; };
 		CB19C28B252C82D8009DB081 /* IgnoreListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IgnoreListTableViewCell.swift; sourceTree = "<group>"; };
 		CB19C28E252C82F1009DB081 /* AccountTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTableViewController.swift; sourceTree = "<group>"; };
@@ -101,8 +103,6 @@
 		CBDA1056251FFB7600586653 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		CBDAE671253362AB004084F3 /* FriendListDynamicTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListDynamicTableViewCell.swift; sourceTree = "<group>"; };
 		CBF424A124FE1F960095AE96 /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
-		F04760C3626E91F924036536 /* Pods_Remembrances.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Remembrances.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F6FAC73F2981E74145F8CE0E /* Pods-Remembrances.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Remembrances.release.xcconfig"; path = "Target Support Files/Pods-Remembrances/Pods-Remembrances.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,7 +111,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CBDA1057251FFB7600586653 /* MapKit.framework in Frameworks */,
-				E8F91882986EE15D6ED608DC /* Pods_Remembrances.framework in Frameworks */,
+				1DB0DF6D95DF8DDB0407F3AF /* Pods_Remembrances.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -122,7 +122,7 @@
 			isa = PBXGroup;
 			children = (
 				CBDA1056251FFB7600586653 /* MapKit.framework */,
-				F04760C3626E91F924036536 /* Pods_Remembrances.framework */,
+				19EF069844BC87FCDC4CF41F /* Pods_Remembrances.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -130,8 +130,8 @@
 		4C60F0685EEE03CC36F49DF4 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				A2D8D1588AF5480F1F26C7B4 /* Pods-Remembrances.debug.xcconfig */,
-				F6FAC73F2981E74145F8CE0E /* Pods-Remembrances.release.xcconfig */,
+				8A8A2072E2B85820EEC42A2D /* Pods-Remembrances.debug.xcconfig */,
+				93A3150A7CABD6E7C47691FA /* Pods-Remembrances.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -178,6 +178,7 @@
 		CB5359802532E0810048B201 /* DynamicAccountCells */ = {
 			isa = PBXGroup;
 			children = (
+				CBDAE671253362AB004084F3 /* FriendListDynamicTableViewCell.swift */,
 				CB19C288252C82CA009DB081 /* FriendRequestTableViewCell.swift */,
 				CB19C28B252C82D8009DB081 /* IgnoreListTableViewCell.swift */,
 			);
@@ -290,7 +291,6 @@
 			isa = PBXGroup;
 			children = (
 				CB3A30E0235F9E4B00CF2CBB /* Main.storyboard */,
-				CBDAE671253362AB004084F3 /* FriendListDynamicTableViewCell.swift */,
 				CBCE0E3223FD14690077A4F1 /* LaunchScreen.storyboard */,
 			);
 			path = StoryBoards;
@@ -324,12 +324,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CB5AE19723512B16001BCCCE /* Build configuration list for PBXNativeTarget "Remembrances" */;
 			buildPhases = (
-				BCBAEC423F2E1C1864C2A60C /* [CP] Check Pods Manifest.lock */,
+				CE27CB23870DBD79771FCA05 /* [CP] Check Pods Manifest.lock */,
 				CB5AE17F23512B14001BCCCE /* Sources */,
 				CB5AE18023512B14001BCCCE /* Frameworks */,
 				CB5AE18123512B14001BCCCE /* Resources */,
-				7A2063780254D366F8F34C5C /* [CP] Embed Pods Frameworks */,
-				0D9FEAE5C50A3AA7663B5246 /* [CP] Copy Pods Resources */,
+				BD7CB5C7CBB32027D29B8E11 /* [CP] Embed Pods Frameworks */,
+				2B29026956E255813CCFC615 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -393,7 +393,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0D9FEAE5C50A3AA7663B5246 /* [CP] Copy Pods Resources */ = {
+		2B29026956E255813CCFC615 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -410,7 +410,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Remembrances/Pods-Remembrances-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		7A2063780254D366F8F34C5C /* [CP] Embed Pods Frameworks */ = {
+		BD7CB5C7CBB32027D29B8E11 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -427,7 +427,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Remembrances/Pods-Remembrances-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		BCBAEC423F2E1C1864C2A60C /* [CP] Check Pods Manifest.lock */ = {
+		CE27CB23870DBD79771FCA05 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -615,7 +615,7 @@
 		};
 		CB5AE19823512B16001BCCCE /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A2D8D1588AF5480F1F26C7B4 /* Pods-Remembrances.debug.xcconfig */;
+			baseConfigurationReference = 8A8A2072E2B85820EEC42A2D /* Pods-Remembrances.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = GraveYardApp/GraveYardApp.entitlements;
@@ -639,7 +639,7 @@
 		};
 		CB5AE19923512B16001BCCCE /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F6FAC73F2981E74145F8CE0E /* Pods-Remembrances.release.xcconfig */;
+			baseConfigurationReference = 93A3150A7CABD6E7C47691FA /* Pods-Remembrances.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = GraveYardApp/GraveYardApp.entitlements;

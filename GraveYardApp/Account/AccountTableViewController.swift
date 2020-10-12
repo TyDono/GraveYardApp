@@ -14,6 +14,9 @@ class AccountTableViewController: UITableViewController {
     
     // MARK: - Outlets
     
+    @IBOutlet weak var friendListExpanderLabel: UILabel!
+    @IBOutlet weak var friendRequestExpanderLabel: UILabel!
+    @IBOutlet weak var ignoreListExpanderLabel: UILabel!
     @IBOutlet weak var tableViewFriendsLists: UITableView!
     @IBOutlet weak var tableViewFriendRequestList: UITableView!
     @IBOutlet weak var tableViewFriendIgnoreListList: UITableView!
@@ -63,7 +66,8 @@ class AccountTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch tableView {
         case tableViewFriendsLists:
-            return self.friendNameList?.count ?? 0
+            return 10
+//            return self.friendNameList?.count ?? 0
         case tableViewFriendRequestList:
             return self.friendNameRequestsList?.count ?? 0
         case tableViewFriendIgnoreListList:
@@ -232,8 +236,10 @@ class AccountTableViewController: UITableViewController {
             case (1,1):
                 switch friendListIsExpanded {
                 case false:
+                    friendListExpanderLabel.text = "Open Friend List"
                     friendListIsExpanded = true
                 case true:
+                    friendListExpanderLabel.text = "Close Friend List"
                     friendListIsExpanded = false
                 }
                 tableView.beginUpdates()
@@ -241,8 +247,10 @@ class AccountTableViewController: UITableViewController {
             case (2,1):
                 switch friendRequestListIsExpanded {
                 case false:
+                    friendRequestExpanderLabel.text = "Open Friend Requests"
                     friendRequestListIsExpanded = true
                 case true:
+                    friendRequestExpanderLabel.text = "Close Friend Requests"
                     friendRequestListIsExpanded = false
                 }
                 tableView.beginUpdates()
@@ -250,8 +258,10 @@ class AccountTableViewController: UITableViewController {
             case (3,1):
                 switch ignoreListIsExpanded {
                 case false:
+                    ignoreListExpanderLabel.text = "Open Ignore List"
                     ignoreListIsExpanded = true
                 case true:
+                    ignoreListExpanderLabel.text = "Close Ignore List"
                     ignoreListIsExpanded = false
                 }
                 tableView.beginUpdates()
