@@ -38,19 +38,22 @@ class AccountTableViewController: UITableViewController {
     var currentSeason: String?
     var premiumStatus: String = ""
     var userName: String = ""
+    var friendListIsExpanded: Bool = false
+    var friendRequestListIsExpanded: Bool = false
+    var ignoreListIsExpanded: Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
         db = Firestore.firestore()
-        self.registerStaticCells()
         getUserData()
         changeBackground()
+        tableViewFriendsLists.isScrollEnabled = true
     }
 
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return super.numberOfSections(in: tableView) - 1
+        return super.numberOfSections(in: tableView)
     }
 
 //    override func numberOfSections(in tableView: UITableView) -> Int {
@@ -66,145 +69,103 @@ class AccountTableViewController: UITableViewController {
         case tableViewFriendIgnoreListList:
             return self.ignoreNameList?.count ?? 0
         default:
-            return 2
+            return 3
         }
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
+        //add oen cel to each static and the 0,0 will be hidden,. so that i can then return the dyanic with the switch made below
         switch (indexPath.section, indexPath.row) {
         case (0,0):
-            return super.tableView(tableView, cellForRowAt: indexPath)
-//            guard let cell = tableView.dequeueReusableCell(withIdentifier: "premiumStatusCell", for: indexPath) as? PremiumStatusStaticTableViewCell else { return UITableViewCell() }
-//            cell.premiumStatusLabel.text = self.premiumStatus
-//            return cell
+            switch tableView {
+            case tableViewFriendsLists:
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: "friendListDynamicCell", for: indexPath) as? FriendListDynamicTableViewCell else { return UITableViewCell() }
+                cell.backgroundColor = UIColor.clear
+                cell.backgroundView = UIImageView.init(image: UIImage.init(named: "bookRed"))
+                print(friendNameList?.count)
+                if let friends = friendNameList {
+                    let friend = friends[indexPath.row]
+                    cell.friendNameLabel.text = "\(friend)"
+                    
+                    let maskLayer = CAShapeLayer()
+                    let bounds = cell.bounds
+                    maskLayer.path = UIBezierPath(roundedRect: CGRect(x: 0, y: 7, width: bounds.width-4, height: bounds.height-4), cornerRadius: 5).cgPath
+                    cell.layer.mask = maskLayer
+                }
+                if let friendsId = friendUIDList {
+                    let friendId = friendsId[indexPath.row]
+                    cell.friendId = friendId
+                }
+                return cell
+                
+            case tableViewFriendRequestList:
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: "FriendRequestCell", for: indexPath) as? FriendRequestTableViewCell else { return UITableViewCell() }
+                cell.backgroundColor = UIColor.clear
+                cell.backgroundView = UIImageView.init(image: UIImage.init(named: "bookRed"))
+                if let friendRequests = friendNameRequestsList {
+                    let friendRequest = friendRequests[indexPath.row]
+                    cell.friendRequestNameLabel.text = "\(friendRequest)"
+                    
+                    if let friendsRequestsId = friendRequestsUIDList {
+                        let friendRequestId = friendsRequestsId[indexPath.row]
+                        cell.friendRequestId = friendRequestId
+                    }
+                    
+                    let maskLayer = CAShapeLayer()
+                    let bounds = cell.bounds
+                    maskLayer.path = UIBezierPath(roundedRect: CGRect(x: 0, y: 7, width: bounds.width-4, height: bounds.height-4), cornerRadius: 5).cgPath
+                    cell.layer.mask = maskLayer
+                }
+                return cell
+                
+            case tableViewFriendIgnoreListList:
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: "IgnoreListCell", for: indexPath) as? IgnoreListTableViewCell else { return UITableViewCell() }
+                cell.backgroundColor = UIColor.clear
+                cell.backgroundView = UIImageView.init(image: UIImage.init(named: "bookRed"))
+                if let ingores = ignoreNameList {
+                    let ignore = ingores[indexPath.row]
+                    cell.ignoreNameLabel.text = "\(ignore)"
+                    
+                    if let ignoresId = ignoreUIDList {
+                        let ignoreId = ignoresId[indexPath.row]
+                        cell.ignoreId = ignoreId
+                    }
+                    
+                    let maskLayer = CAShapeLayer()
+                    let bounds = cell.bounds
+                    maskLayer.path = UIBezierPath(roundedRect: CGRect(x: 0, y: 7, width: bounds.width-4, height: bounds.height-4), cornerRadius: 5).cgPath
+                    cell.layer.mask = maskLayer
+                }
+                return cell
+            default:
+                return UITableViewCell()
+            }
         case (0,1):
             return super.tableView(tableView, cellForRowAt: indexPath)
-//            guard let cell = tableView.dequeueReusableCell(withIdentifier: "userNameCell", for: indexPath) as? UserNameStaticTableViewCell else { return UITableViewCell() }
-//            cell.userNameTextField.text = self.userName
-//            return cell
+        case (0,2):
+            return super.tableView(tableView, cellForRowAt: indexPath)
         case (1,0):
             return super.tableView(tableView, cellForRowAt: indexPath)
-//            guard let cell = tableView.dequeueReusableCell(withIdentifier: "friendListExpanderCell", for: indexPath) as? FriendListExpanderTableViewCell else { return UITableViewCell() }
-//            cell.friendListLabel.text = "Expander Friend List"
-//            return cell
         case (1,1):
             return super.tableView(tableView, cellForRowAt: indexPath)
-//            guard let cell = tableView.dequeueReusableCell(withIdentifier: "friendListCell", for: indexPath) as? FriendListTableViewCell else { return UITableViewCell() }
-
-//            return cell
+        case (1,2):
+            return super.tableView(tableView, cellForRowAt: indexPath)
+        case (2,0):
+            return super.tableView(tableView, cellForRowAt: indexPath)
+        case (2,1):
+            return super.tableView(tableView, cellForRowAt: indexPath)
+//        case (2,2):
+//            return super.tableView(tableView, cellForRowAt: indexPath)
+        case (3,0):
+            return super.tableView(tableView, cellForRowAt: indexPath)
+        case (3,1):
+            return super.tableView(tableView, cellForRowAt: indexPath)
+//        case (3,2):
+//            return super.tableView(tableView, cellForRowAt: indexPath)
         default:
             return UITableViewCell()
         }
         
-        switch tableView {
-        case tableViewFriendsLists:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "friendListDynamicCell", for: indexPath) as? FriendListDynamicTableViewCell else { return UITableViewCell() }
-            cell.backgroundColor = UIColor.clear
-            cell.backgroundView = UIImageView.init(image: UIImage.init(named: "bookRed"))
-            if let friends = friendNameList {
-                let friend = friends[indexPath.row]
-                cell.friendNameLabel.text = "\(friend)"
-                
-                let maskLayer = CAShapeLayer()
-                let bounds = cell.bounds
-                maskLayer.path = UIBezierPath(roundedRect: CGRect(x: 0, y: 7, width: bounds.width-4, height: bounds.height-4), cornerRadius: 5).cgPath
-                cell.layer.mask = maskLayer
-            }
-            if let friendsId = friendUIDList {
-                let friendId = friendsId[indexPath.row]
-                cell.friendId = friendId
-            }
-            return cell
-            
-        case tableViewFriendRequestList:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "FriendRequestCell", for: indexPath) as? FriendRequestTableViewCell else { return UITableViewCell() }
-            cell.backgroundColor = UIColor.clear
-            cell.backgroundView = UIImageView.init(image: UIImage.init(named: "bookRed"))
-            if let friendRequests = friendNameRequestsList {
-                let friendRequest = friendRequests[indexPath.row]
-                cell.friendRequestNameLabel.text = "\(friendRequest)"
-                
-                if let friendsRequestsId = friendRequestsUIDList {
-                    let friendRequestId = friendsRequestsId[indexPath.row]
-                    cell.friendRequestId = friendRequestId
-                }
-                
-                let maskLayer = CAShapeLayer()
-                let bounds = cell.bounds
-                maskLayer.path = UIBezierPath(roundedRect: CGRect(x: 0, y: 7, width: bounds.width-4, height: bounds.height-4), cornerRadius: 5).cgPath
-                cell.layer.mask = maskLayer
-            }
-            return cell
-            
-        case tableViewFriendIgnoreListList:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "IgnoreListCell", for: indexPath) as? IgnoreListTableViewCell else { return UITableViewCell() }
-            cell.backgroundColor = UIColor.clear
-            cell.backgroundView = UIImageView.init(image: UIImage.init(named: "bookRed"))
-            if let ingores = ignoreNameList {
-                let ignore = ingores[indexPath.row]
-                cell.ignoreNameLabel.text = "\(ignore)"
-                
-                if let ignoresId = ignoreUIDList {
-                    let ignoreId = ignoresId[indexPath.row]
-                    cell.ignoreId = ignoreId
-                }
-                
-                let maskLayer = CAShapeLayer()
-                let bounds = cell.bounds
-                maskLayer.path = UIBezierPath(roundedRect: CGRect(x: 0, y: 7, width: bounds.width-4, height: bounds.height-4), cornerRadius: 5).cgPath
-                cell.layer.mask = maskLayer
-            }
-            return cell
-        default:
-            /*
-            switch (indexPath.section, indexPath.row) {
-            case (0,0):
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: "premiumStatusCell", for: indexPath) as? PremiumStatusStaticTableViewCell else { return UITableViewCell() }
-                cell.premiumStatusLabel.text = self.premiumStatus
-                return cell
-            case (0,1):
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: "userNameCell", for: indexPath) as? UserNameStaticTableViewCell else { return UITableViewCell() }
-                cell.userNameTextField.text = self.userName
-                return cell
-            case (0,2):
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: "friendListExpanderCell", for: indexPath) as? FriendListExpanderTableViewCell else { return UITableViewCell() }
-                cell.friendListLabel.text = "Expander Friend List"
-                return cell
-            case (1,0):
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: "friendListCell", for: indexPath) as? FriendListTableViewCell else { return UITableViewCell() }
-    
-                return cell
-            default:
-                return UITableViewCell()
-            }
-            */
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "premiumStatusCell", for: indexPath) as? PremiumStatusStaticTableViewCell else { return UITableViewCell() }
-            switch cell.reuseIdentifier {
-            case "premiumStatusCell":
-                cell.premiumStatusLabel.text = self.premiumStatus
-                return cell
-            case "userNameCell":
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: "userNameCell", for: indexPath) as? UserNameStaticTableViewCell else { return UITableViewCell() }
-                return cell
-            case "friendsListExpanderCell":
-                return cell
-            case "friendsListCell":
-                return cell
-
-            case "friendRequestExpanderCell":
-                return cell
-            case "FriendRequestCell":
-                return cell
-
-            case "ignoreExpanderCell":
-                return cell
-            case "ignoreListCell":
-                return cell
-            default:
-                return UITableViewCell()
-            }
-        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -216,6 +177,9 @@ class AccountTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+
+        
         switch tableView {
         case tableViewFriendsLists:
             performSegue(withIdentifier: "segueToFriendsMemorials", sender: nil)
@@ -229,6 +193,7 @@ class AccountTableViewController: UITableViewController {
             if let row = self.tableView.indexPathForSelectedRow?.row, let friendId = self.friendRequestsUIDList?[row], let friendRequestUserName = self.friendNameRequestsList?[row] {
                 self.friendRequestsUIDList = self.friendRequestsUIDList?.filter(){$0 != friendId}
                 self.friendNameRequestsList = self.friendNameRequestsList?.filter(){$0 != friendRequestUserName}
+                self.tableView.reloadData()
                 self.tableViewFriendRequestList.reloadData()
             }
             friendRequestAlert.addAction(dismiss)
@@ -237,6 +202,7 @@ class AccountTableViewController: UITableViewController {
                     self.friendRequestsUIDList = self.friendRequestsUIDList?.filter(){$0 != friendRequestId}
                     self.friendNameRequestsList = self.friendNameRequestsList?.filter(){$0 != friendRequestUserName}
                     self.friendUIDList?.append(friendRequestId)
+                    self.tableView.reloadData()
                     self.tableViewFriendsLists.reloadData()
                     self.tableViewFriendRequestList.reloadData()
                 }
@@ -255,19 +221,92 @@ class AccountTableViewController: UITableViewController {
                 if let row = self.tableView.indexPathForSelectedRow?.row, let blockedUserId = self.ignoreUIDList?[row], let blockedUserName = self.ignoreNameList?[row] {
                     self.ignoreUIDList = self.ignoreUIDList?.filter(){$0 != blockedUserId }
                     self.ignoreNameList = self.ignoreNameList?.filter(){$0 != blockedUserName }
+                    self.tableView.reloadData()
                     self.tableViewFriendRequestList.reloadData()
                 }
             })
             removeIgnoreAlert.addAction(goToLogIn)
             self.present(removeIgnoreAlert, animated: true, completion: nil)
         default:
-            return
+            switch (indexPath.section, indexPath.row) {
+            case (1,1):
+                switch friendListIsExpanded {
+                case false:
+                    friendListIsExpanded = true
+                case true:
+                    friendListIsExpanded = false
+                }
+                tableView.beginUpdates()
+                tableView.endUpdates()
+            case (2,1):
+                switch friendRequestListIsExpanded {
+                case false:
+                    friendRequestListIsExpanded = true
+                case true:
+                    friendRequestListIsExpanded = false
+                }
+                tableView.beginUpdates()
+                tableView.endUpdates()
+            case (3,1):
+                switch ignoreListIsExpanded {
+                case false:
+                    ignoreListIsExpanded = true
+                case true:
+                    ignoreListIsExpanded = false
+                }
+                tableView.beginUpdates()
+                tableView.endUpdates()
+            default:
+                return
+            }
         }
     }
     
-//    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return 100
-//    }
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        switch (indexPath.section, indexPath.row) {
+        case (0,0):
+            return 0
+        case (0,1):
+            return 75
+        case (0, 2):
+            return 93
+        case (1,0):
+            return 0
+        case (1,1):
+            return 60
+        case (1,2):
+            switch friendListIsExpanded {
+            case true:
+                return 345
+            case false:
+                return 0
+            }
+        case (2,0):
+            return 0
+        case (2,1):
+            return 60
+        case (2,2):
+            switch friendRequestListIsExpanded {
+            case true:
+                return 345
+            case false:
+                return 0
+            }
+        case (3,0):
+            return 0
+        case (3,1):
+            return 60
+        case(3,2):
+            switch ignoreListIsExpanded {
+            case true:
+                return 345
+            case false:
+                return 0
+            }
+        default:
+            return 100
+        }
+    }
 
     /*
     // Override to support editing the table view.
@@ -282,20 +321,6 @@ class AccountTableViewController: UITableViewController {
     */
     
     // MARK: - Functions
-    
-    private func registerStaticCells() {
-        let premiumCell = UINib(nibName: "PremiumStatusStaticTableViewCell", bundle: nil)
-        self.tableView.register(premiumCell, forCellReuseIdentifier: "premiumStatusCell")
-        
-        let userNameCell = UINib(nibName: "UserNameStaticTableViewCell", bundle: nil)
-        self.tableView.register(userNameCell, forCellReuseIdentifier: "userNameCell")
-        
-        let friendListExpanderCell = UINib(nibName: "FriendListExpanderTableViewCell", bundle: nil)
-        self.tableView.register(friendListExpanderCell, forCellReuseIdentifier: "friendListExpanderCell")
-        
-//        let friendListCell = UINib(nibName: "FriendListTableViewCell", bundle: nil)
-//        self.tableView.register(friendListCell, forCellReuseIdentifier: "friendListCell")
-    }
     
     func getUserData() {
         guard let currentUserAuthID: String = self.currentAuthID else { return }
@@ -313,17 +338,17 @@ class AccountTableViewController: UITableViewController {
                         //self.dataCount = Double(dataCount)
                         switch premiumStatus {
                         case 0:
-                            self.premiumStatus = "You are not currently subscribed to Remembrances Premium"
+                            self.premiumStatusLabel.text = "You are not currently subscribed to Remembrances Premium"
                         case 1:
-                            self.premiumStatus = "Your current subsciption is Tier 1"
+                            self.premiumStatusLabel.text = "Your current subsciption is Tier 1"
                         case 2:
-                            self.premiumStatus = "Your current subsciption is Tier 2"
+                            self.premiumStatusLabel.text = "Your current subsciption is Tier 2"
                         case 3:
-                            self.premiumStatus = "Your current subsciption is Tier 3"
+                            self.premiumStatusLabel.text = "Your current subsciption is Tier 3"
                         default:
-                            self.premiumStatus = ""
+                            self.premiumStatusLabel.text = ""
                         }
-                        self.userName = userName
+                        self.userNameTextField.text = userName
                         self.friendUIDList = friendList
                         self.friendRequestsUIDList = friendRequests
                         self.ignoreUIDList = blockedList
@@ -359,6 +384,7 @@ class AccountTableViewController: UITableViewController {
                             print(userName)
                             self.friendNameList?.append(userName)
                             print(self.friendNameList)
+                            self.tableView.reloadData()
                             self.tableViewFriendsLists.reloadData()
                         }
                     }
@@ -378,6 +404,7 @@ class AccountTableViewController: UITableViewController {
                     for document in (snapshot?.documents)! {
                         if let userName = document.data()["userName"] as? String {
                             self.friendNameRequestsList?.append(userName)
+                            self.tableView.reloadData()
                             self.tableViewFriendRequestList.reloadData()
                         }
                     }
@@ -397,6 +424,7 @@ class AccountTableViewController: UITableViewController {
                     for document in (snapshot?.documents)! {
                         if let userName = document.data()["userName"] as? String {
                             self.ignoreNameList?.append(userName)
+                            self.tableView.reloadData()
                             self.tableViewFriendIgnoreListList.reloadData()
                         }
                     }
