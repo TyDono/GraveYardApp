@@ -185,13 +185,6 @@
 			path = DynamicAccountCells;
 			sourceTree = "<group>";
 		};
-		CB53598B25330B960048B201 /* FriendsListCell */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = FriendsListCell;
-			sourceTree = "<group>";
-		};
 		CB5AE17A23512B14001BCCCE = {
 			isa = PBXGroup;
 			children = (
@@ -246,7 +239,6 @@
 				CBCE0E2423FD13CB0077A4F1 /* UserProfile.swift */,
 				CB19C28E252C82F1009DB081 /* AccountTableViewController.swift */,
 				CB53598C25330BCB0048B201 /* FriendListTableViewCell.swift */,
-				CB53598B25330B960048B201 /* FriendsListCell */,
 				CB5359802532E0810048B201 /* DynamicAccountCells */,
 				CB8304C724B5CE9D0023F4EA /* PremiumViewController.swift */,
 				CBA44AC3252C733F0096D438 /* AccountTableViewCell.swift */,

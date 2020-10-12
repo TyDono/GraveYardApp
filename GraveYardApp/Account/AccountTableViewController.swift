@@ -287,9 +287,9 @@ class AccountTableViewController: UITableViewController {
         case (1,2):
             switch friendListIsExpanded {
             case true:
-                return 345
-            case false:
                 return 0
+            case false:
+                return 345
             }
         case (2,0):
             return 0
@@ -298,9 +298,9 @@ class AccountTableViewController: UITableViewController {
         case (2,2):
             switch friendRequestListIsExpanded {
             case true:
-                return 345
-            case false:
                 return 0
+            case false:
+                return 345
             }
         case (3,0):
             return 0
@@ -309,9 +309,9 @@ class AccountTableViewController: UITableViewController {
         case(3,2):
             switch ignoreListIsExpanded {
             case true:
-                return 345
-            case false:
                 return 0
+            case false:
+                return 345
             }
         default:
             return 100
