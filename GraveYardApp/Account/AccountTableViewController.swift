@@ -46,12 +46,12 @@ class AccountTableViewController: UITableViewController {
         getUserData()
         changeBackground()
     }
+
+    // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return super.numberOfSections(in: tableView) - 1
     }
-
-    // MARK: - Table view data source
 
 //    override func numberOfSections(in tableView: UITableView) -> Int {
 //        return 1
@@ -66,7 +66,7 @@ class AccountTableViewController: UITableViewController {
         case tableViewFriendIgnoreListList:
             return self.ignoreNameList?.count ?? 0
         default:
-            return 3
+            return 2
         }
     }
     
@@ -74,21 +74,25 @@ class AccountTableViewController: UITableViewController {
         
         switch (indexPath.section, indexPath.row) {
         case (0,0):
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "premiumStatusCell", for: indexPath) as? PremiumStatusStaticTableViewCell else { return UITableViewCell() }
-            cell.premiumStatusLabel.text = self.premiumStatus
-            return cell
+            return super.tableView(tableView, cellForRowAt: indexPath)
+//            guard let cell = tableView.dequeueReusableCell(withIdentifier: "premiumStatusCell", for: indexPath) as? PremiumStatusStaticTableViewCell else { return UITableViewCell() }
+//            cell.premiumStatusLabel.text = self.premiumStatus
+//            return cell
         case (0,1):
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "userNameCell", for: indexPath) as? UserNameStaticTableViewCell else { return UITableViewCell() }
-            cell.userNameTextField.text = self.userName
-            return cell
-        case (0,2):
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "friendListExpanderCell", for: indexPath) as? FriendListExpanderTableViewCell else { return UITableViewCell() }
-            cell.friendListLabel.text = "Expander Friend List"
-            return cell
+            return super.tableView(tableView, cellForRowAt: indexPath)
+//            guard let cell = tableView.dequeueReusableCell(withIdentifier: "userNameCell", for: indexPath) as? UserNameStaticTableViewCell else { return UITableViewCell() }
+//            cell.userNameTextField.text = self.userName
+//            return cell
         case (1,0):
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "friendListCell", for: indexPath) as? FriendListTableViewCell else { return UITableViewCell() }
+            return super.tableView(tableView, cellForRowAt: indexPath)
+//            guard let cell = tableView.dequeueReusableCell(withIdentifier: "friendListExpanderCell", for: indexPath) as? FriendListExpanderTableViewCell else { return UITableViewCell() }
+//            cell.friendListLabel.text = "Expander Friend List"
+//            return cell
+        case (1,1):
+            return super.tableView(tableView, cellForRowAt: indexPath)
+//            guard let cell = tableView.dequeueReusableCell(withIdentifier: "friendListCell", for: indexPath) as? FriendListTableViewCell else { return UITableViewCell() }
 
-            return cell
+//            return cell
         default:
             return UITableViewCell()
         }
@@ -153,6 +157,28 @@ class AccountTableViewController: UITableViewController {
             }
             return cell
         default:
+            /*
+            switch (indexPath.section, indexPath.row) {
+            case (0,0):
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: "premiumStatusCell", for: indexPath) as? PremiumStatusStaticTableViewCell else { return UITableViewCell() }
+                cell.premiumStatusLabel.text = self.premiumStatus
+                return cell
+            case (0,1):
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: "userNameCell", for: indexPath) as? UserNameStaticTableViewCell else { return UITableViewCell() }
+                cell.userNameTextField.text = self.userName
+                return cell
+            case (0,2):
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: "friendListExpanderCell", for: indexPath) as? FriendListExpanderTableViewCell else { return UITableViewCell() }
+                cell.friendListLabel.text = "Expander Friend List"
+                return cell
+            case (1,0):
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: "friendListCell", for: indexPath) as? FriendListTableViewCell else { return UITableViewCell() }
+    
+                return cell
+            default:
+                return UITableViewCell()
+            }
+            */
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "premiumStatusCell", for: indexPath) as? PremiumStatusStaticTableViewCell else { return UITableViewCell() }
             switch cell.reuseIdentifier {
             case "premiumStatusCell":
