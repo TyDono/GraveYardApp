@@ -48,6 +48,12 @@ class AccountTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         db = Firestore.firestore()
+        tableViewFriendsLists.delegate = self
+        tableViewFriendsLists.dataSource = self
+        tableViewFriendRequestList.delegate = self
+        tableViewFriendRequestList.dataSource = self
+        tableViewFriendIgnoreListList.delegate = self
+        tableViewFriendIgnoreListList.dataSource = self
         getUserData()
         changeBackground()
         tableViewFriendsLists.isScrollEnabled = true
@@ -66,8 +72,7 @@ class AccountTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch tableView {
         case tableViewFriendsLists:
-            return 10
-//            return self.friendNameList?.count ?? 0
+            return self.friendNameList?.count ?? 0
         case tableViewFriendRequestList:
             return self.friendNameRequestsList?.count ?? 0
         case tableViewFriendIgnoreListList:
