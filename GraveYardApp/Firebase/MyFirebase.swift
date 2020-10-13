@@ -85,7 +85,7 @@ class MyFirebase {
         let userName: String = ""
         let friendList: Array<String> = [""]
         let friendRequests: Array<String> = [""]
-        let blockedList: Array<String> = [""]
+        let ignoredList: Array<String> = [""]
         let memorialCount: Int = 0
         
         let user = UserProfile(currentUserAuthId: currentUserId,
@@ -94,7 +94,7 @@ class MyFirebase {
                                userName: userName,
                                friendList: friendList,
                                friendRequests: friendRequests,
-                               blockedList: blockedList,
+                               ignoredList: ignoredList,
                                memorialCount: memorialCount)
         
         let userRef = self.db.collection("userProfile")

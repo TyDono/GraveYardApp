@@ -25,7 +25,7 @@ struct UserProfile {
     var userName: String
     var friendList: Array<String>
     var friendRequests: Array<String>
-    var blockedList: Array<String>
+    var ignoredList: Array<String>
     var memorialCount: Int
     
     var dictionary: [String: Any] {
@@ -36,7 +36,7 @@ struct UserProfile {
             "userName": userName,
             "friendList": friendList,
             "friendRequests": friendRequests,
-            "blockedList": blockedList,
+            "ignoredList": ignoredList,
             "memorialCount": memorialCount
         ]
     }
@@ -50,8 +50,8 @@ extension UserProfile: DocumentSerializableUser {
             let userName = dictionary["userName"] as? String,
             let friendList = dictionary["friendList"] as? Array<String>,
             let friendRequests = dictionary["friendRequests"] as? Array<String>,
-            let blockedList = dictionary["blockedList"] as? Array<String>,
+            let ignoredList = dictionary["ignoredList"] as? Array<String>,
             let memorialCount = dictionary["memorialCount"] as? Int else { return nil }
-        self.init(currentUserAuthId: currentUserAuthId, premiumStatus: premiumStatus, dataCount: dataCount, userName: userName, friendList: friendList, friendRequests: friendRequests, blockedList: blockedList, memorialCount: memorialCount)
+        self.init(currentUserAuthId: currentUserAuthId, premiumStatus: premiumStatus, dataCount: dataCount, userName: userName, friendList: friendList, friendRequests: friendRequests, ignoredList: ignoredList, memorialCount: memorialCount)
     }
 }

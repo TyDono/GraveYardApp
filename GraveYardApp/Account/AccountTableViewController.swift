@@ -41,9 +41,9 @@ class AccountTableViewController: UITableViewController {
     var currentSeason: String?
     var premiumStatus: String = ""
     var userName: String = ""
-    var friendListIsExpanded: Bool = true
-    var friendRequestListIsExpanded: Bool = false
-    var ignoreListIsExpanded: Bool = false
+    var friendListIsExpanded: Bool = true //change these 3 to false before ending debugging
+    var friendRequestListIsExpanded: Bool = true
+    var ignoreListIsExpanded: Bool = true
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -83,7 +83,7 @@ class AccountTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        //add oen cel to each static and the 0,0 will be hidden,. so that i can then return the dyanic with the switch made below
+        
         switch (indexPath.section, indexPath.row) {
         case (0,0):
             switch tableView {
@@ -163,8 +163,8 @@ class AccountTableViewController: UITableViewController {
             return super.tableView(tableView, cellForRowAt: indexPath)
         case (2,1):
             return super.tableView(tableView, cellForRowAt: indexPath)
-//        case (2,2):
-//            return super.tableView(tableView, cellForRowAt: indexPath)
+        case (2,2):
+            return super.tableView(tableView, cellForRowAt: indexPath)
         case (3,0):
             return super.tableView(tableView, cellForRowAt: indexPath)
         case (3,1):
@@ -186,8 +186,6 @@ class AccountTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-
         
         switch tableView {
         case tableViewFriendsLists:
@@ -280,7 +278,16 @@ class AccountTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch (indexPath.section, indexPath.row) {
         case (0,0):
-            return 0
+            switch tableView {
+            case tableViewFriendsLists:
+                return 75
+            case tableViewFriendRequestList:
+                return 75
+            case tableViewFriendIgnoreListList:
+                return 75
+            default:
+                return 0
+            }
         case (0,1):
             return 75
         case (0, 2):
@@ -349,11 +356,11 @@ class AccountTableViewController: UITableViewController {
                        let userName = document.data()["userName"] as? String,
                        let friendList = document.data()["friendList"] as? Array<String>,
                        let friendRequests = document.data()["friendRequests"] as? Array<String>,
-                       let blockedList = document.data()["blockedList"] as? Array<String> {
+                       let ignoredList = document.data()["ignoredList"] as? Array<String> {
                         //self.dataCount = Double(dataCount)
                         switch premiumStatus {
                         case 0:
-                            self.premiumStatusLabel.text = "You are not currently subscribed to Remembrances Premium"
+                            self.premiumStatusLabel.text = "You are not currently subscribed to Remembrance's Premium"
                         case 1:
                             self.premiumStatusLabel.text = "Your current subsciption is Tier 1"
                         case 2:
@@ -366,7 +373,7 @@ class AccountTableViewController: UITableViewController {
                         self.userNameTextField.text = userName
                         self.friendUIDList = friendList
                         self.friendRequestsUIDList = friendRequests
-                        self.ignoreUIDList = blockedList
+                        self.ignoreUIDList = ignoredList
                         self.getFriendUserName()
                         self.getFriendRequestUserName()
                         self.getIgnoreUserName()
@@ -460,7 +467,7 @@ class AccountTableViewController: UITableViewController {
             "userName": userName,
             "friendList": self.friendNameList ?? "" ,
             "friendRequests": self.friendNameRequestsList ?? "" ,
-            "blockedList": self.ignoreNameList ?? ""
+            "ignoredList": self.ignoreNameList ?? ""
         ]) { err in
             if let err = err {
                 var alertStyle = UIAlertController.Style.alert

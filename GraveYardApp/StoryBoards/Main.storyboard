@@ -2242,36 +2242,36 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="friendRequestListStaticCell" rowHeight="343" id="sVK-W5-aTn">
-                                        <rect key="frame" x="0.0" y="772.00000035762787" width="414" height="343"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="friendRequestListStaticCell" rowHeight="345" id="w0q-8z-uV9">
+                                        <rect key="frame" x="0.0" y="772.00000035762787" width="414" height="345"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="sVK-W5-aTn" id="Nul-aD-7k1">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="343"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="w0q-8z-uV9" id="oY0-h2-hql">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="345"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ZJu-Zq-gqJ">
+                                                <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="NL9-0c-2F0">
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="343"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     <prototypes>
-                                                        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="FriendRequestCell" rowHeight="49" id="huP-gh-ws0" customClass="FriendRequestTableViewCell" customModule="Remembrances" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="28" width="414" height="49"/>
+                                                        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="FriendRequestCell" rowHeight="77" id="4Ea-AZ-SvZ" customClass="FriendRequestTableViewCell" customModule="Remembrances" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="28" width="414" height="77"/>
                                                             <autoresizingMask key="autoresizingMask"/>
-                                                            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="huP-gh-ws0" id="ouF-LZ-NkC">
-                                                                <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                                                            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4Ea-AZ-SvZ" id="DUj-MI-VZG">
+                                                                <rect key="frame" x="0.0" y="0.0" width="414" height="77"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Friend Request's Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pFo-qo-CCe">
-                                                                        <rect key="frame" x="20" y="11" width="374" height="21"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Friend Request Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Oe-5q-nb9">
+                                                                        <rect key="frame" x="20" y="11" width="374" height="55"/>
                                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                 </subviews>
                                                             </tableViewCellContentView>
                                                             <connections>
-                                                                <outlet property="friendRequestNameLabel" destination="pFo-qo-CCe" id="gmJ-hR-WaJ"/>
+                                                                <outlet property="friendRequestNameLabel" destination="1Oe-5q-nb9" id="eiA-gh-LOf"/>
                                                             </connections>
                                                         </tableViewCell>
                                                     </prototypes>
@@ -2284,7 +2284,7 @@
                             <tableViewSection id="EQZ-xc-xt8">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="hiddenFirstCell" rowHeight="0.0" id="kg1-GX-0zO">
-                                        <rect key="frame" x="0.0" y="1171.0000003576279" width="414" height="0.0"/>
+                                        <rect key="frame" x="0.0" y="1173.0000003576279" width="414" height="1.1920928955078125e-07"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kg1-GX-0zO" id="FXb-kU-QEv">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="0.0"/>
@@ -2292,7 +2292,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="ignoreListExpanderCell" rowHeight="59" id="UH5-1U-vn8">
-                                        <rect key="frame" x="0.0" y="1171.0000004768372" width="414" height="59"/>
+                                        <rect key="frame" x="0.0" y="1173.0000004768372" width="414" height="59"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="UH5-1U-vn8" id="h4q-8Y-XKh">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="59"/>
@@ -2314,7 +2314,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="ignoreListStaticCell" rowHeight="343" id="7Ah-sd-CbE">
-                                        <rect key="frame" x="0.0" y="1230.0000004768372" width="414" height="343"/>
+                                        <rect key="frame" x="0.0" y="1232.0000004768372" width="414" height="343"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7Ah-sd-CbE" id="ZMh-iT-HWM">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="343"/>
@@ -2371,7 +2371,7 @@
                         <outlet property="ignoreListExpanderLabel" destination="UnI-kZ-arP" id="hC9-qX-jxq"/>
                         <outlet property="premiumStatusLabel" destination="Sxr-Ps-t7S" id="SsG-qA-OoI"/>
                         <outlet property="tableViewFriendIgnoreListList" destination="HiE-9w-8B4" id="Kmd-MO-OTJ"/>
-                        <outlet property="tableViewFriendRequestList" destination="ZJu-Zq-gqJ" id="iiT-ym-84v"/>
+                        <outlet property="tableViewFriendRequestList" destination="NL9-0c-2F0" id="h5Q-xi-vOQ"/>
                         <outlet property="tableViewFriendsLists" destination="3aI-In-pTI" id="YVq-GS-5Mt"/>
                         <outlet property="userNameTextField" destination="ETG-8c-iw0" id="5ol-lo-9GG"/>
                         <segue destination="SIl-1N-tic" kind="show" identifier="segueToFriendsMemorials" id="d0c-Z0-mkc"/>
