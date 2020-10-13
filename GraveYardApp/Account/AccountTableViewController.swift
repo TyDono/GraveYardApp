@@ -41,7 +41,7 @@ class AccountTableViewController: UITableViewController {
     var currentSeason: String?
     var premiumStatus: String = ""
     var userName: String = ""
-    var friendListIsExpanded: Bool = false
+    var friendListIsExpanded: Bool = true
     var friendRequestListIsExpanded: Bool = false
     var ignoreListIsExpanded: Bool = false
 
@@ -241,10 +241,10 @@ class AccountTableViewController: UITableViewController {
             case (1,1):
                 switch friendListIsExpanded {
                 case false:
-                    friendListExpanderLabel.text = "Open Friend List"
+                    friendListExpanderLabel.text = "Close Friend List"
                     friendListIsExpanded = true
                 case true:
-                    friendListExpanderLabel.text = "Close Friend List"
+                    friendListExpanderLabel.text = "Open Friend List"
                     friendListIsExpanded = false
                 }
                 tableView.beginUpdates()
@@ -252,10 +252,10 @@ class AccountTableViewController: UITableViewController {
             case (2,1):
                 switch friendRequestListIsExpanded {
                 case false:
-                    friendRequestExpanderLabel.text = "Open Friend Requests"
+                    friendRequestExpanderLabel.text = "Close Friend Requests"
                     friendRequestListIsExpanded = true
                 case true:
-                    friendRequestExpanderLabel.text = "Close Friend Requests"
+                    friendRequestExpanderLabel.text = "Open Friend Requests"
                     friendRequestListIsExpanded = false
                 }
                 tableView.beginUpdates()
@@ -263,10 +263,10 @@ class AccountTableViewController: UITableViewController {
             case (3,1):
                 switch ignoreListIsExpanded {
                 case false:
-                    ignoreListExpanderLabel.text = "Open Ignore List"
+                    ignoreListExpanderLabel.text = "Close Ignore List"
                     ignoreListIsExpanded = true
                 case true:
-                    ignoreListExpanderLabel.text = "Close Ignore List"
+                    ignoreListExpanderLabel.text = "Open Ignore List"
                     ignoreListIsExpanded = false
                 }
                 tableView.beginUpdates()
@@ -292,9 +292,9 @@ class AccountTableViewController: UITableViewController {
         case (1,2):
             switch friendListIsExpanded {
             case true:
-                return 0
-            case false:
                 return 345
+            case false:
+                return 0
             }
         case (2,0):
             return 0
@@ -303,9 +303,9 @@ class AccountTableViewController: UITableViewController {
         case (2,2):
             switch friendRequestListIsExpanded {
             case true:
-                return 0
-            case false:
                 return 345
+            case false:
+                return 0
             }
         case (3,0):
             return 0
@@ -314,9 +314,9 @@ class AccountTableViewController: UITableViewController {
         case(3,2):
             switch ignoreListIsExpanded {
             case true:
-                return 0
-            case false:
                 return 345
+            case false:
+                return 0
             }
         default:
             return 100
