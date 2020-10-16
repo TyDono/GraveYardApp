@@ -158,7 +158,7 @@ class AccountTableViewController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "segueToFriendsMemorials", let memorialsTVC = segue.destination as? MemorialsTableViewController {
-            if let row = self.tableView.indexPathForSelectedRow?.row, let friendMemorial = friendUIDList?[row] {
+            if let row = self.tableViewFriendsLists.indexPathForSelectedRow?.row, let friendMemorial = friendUIDList?[row] {
                 memorialsTVC.currentAuthId = friendMemorial
             }
         }
