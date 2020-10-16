@@ -10,8 +10,8 @@ import UIKit
 
 class FriendListTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var friendNameLabel: UILabel!
-    @IBOutlet weak var removeFriendButton: UIButton!
+//    @IBOutlet weak var friendNameLabel: UILabel!
+//    @IBOutlet weak var removeFriendButton: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()

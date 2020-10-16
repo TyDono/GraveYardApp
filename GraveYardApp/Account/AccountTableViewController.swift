@@ -14,12 +14,13 @@ class AccountTableViewController: UITableViewController {
     
     // MARK: - Outlets
     
+    @IBOutlet var tableViewMain: UITableView!
     @IBOutlet weak var friendListExpanderLabel: UILabel!
     @IBOutlet weak var friendRequestExpanderLabel: UILabel!
     @IBOutlet weak var ignoreListExpanderLabel: UILabel!
     @IBOutlet weak var tableViewFriendsLists: UITableView!
     @IBOutlet weak var tableViewFriendRequestList: UITableView!
-    @IBOutlet weak var tableViewFriendIgnoreListList: UITableView!
+    @IBOutlet weak var tableViewIgnoreList: UITableView!
     @IBOutlet weak var dataCountLabel: UILabel!
     @IBOutlet weak var premiumStatusLabel: UILabel!
     @IBOutlet weak var userNameTextField: UITextField!
@@ -50,10 +51,13 @@ class AccountTableViewController: UITableViewController {
         db = Firestore.firestore()
         tableViewFriendsLists.delegate = self
         tableViewFriendsLists.dataSource = self
+//        tableViewFriendsLists.register(UITableViewCell.self, forCellReuseIdentifier: "friendListDynamicCell")
         tableViewFriendRequestList.delegate = self
         tableViewFriendRequestList.dataSource = self
-        tableViewFriendIgnoreListList.delegate = self
-        tableViewFriendIgnoreListList.dataSource = self
+//        tableViewFriendRequestList.register(UITableViewCell.self, forCellReuseIdentifier: "FriendRequestCell")
+        tableViewIgnoreList.delegate = self
+        tableViewIgnoreList.dataSource = self
+//        tableViewIgnoreList.register(UITableViewCell.self, forCellReuseIdentifier: "IgnoreListCell")
         getUserData()
         changeBackground()
         tableViewFriendsLists.isScrollEnabled = true
@@ -75,10 +79,10 @@ class AccountTableViewController: UITableViewController {
             return self.friendNameList?.count ?? 0
         case tableViewFriendRequestList:
             return self.friendNameRequestsList?.count ?? 0
-        case tableViewFriendIgnoreListList:
+        case tableViewIgnoreList:
             return self.ignoreNameList?.count ?? 0
         default:
-            return 3
+            return super.tableView(tableView, numberOfRowsInSection: section)
         }
     }
     
@@ -88,6 +92,7 @@ class AccountTableViewController: UITableViewController {
         case (0,0):
             switch tableView {
             case tableViewFriendsLists:
+//                let cell: FriendListDynamicTableViewCell = self.tableViewFriendsLists.dequeueReusableCell(withIdentifier: "friendListDynamicCell", for: indexPath) as! FriendListDynamicTableViewCell
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: "friendListDynamicCell", for: indexPath) as? FriendListDynamicTableViewCell else { return UITableViewCell() }
                 cell.backgroundColor = UIColor.clear
                 cell.backgroundView = UIImageView.init(image: UIImage.init(named: "bookRed"))
@@ -127,7 +132,7 @@ class AccountTableViewController: UITableViewController {
                 }
                 return cell
                 
-            case tableViewFriendIgnoreListList:
+            case tableViewIgnoreList:
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: "IgnoreListCell", for: indexPath) as? IgnoreListTableViewCell else { return UITableViewCell() }
                 cell.backgroundColor = UIColor.clear
                 cell.backgroundView = UIImageView.init(image: UIImage.init(named: "bookRed"))
@@ -165,6 +170,8 @@ class AccountTableViewController: UITableViewController {
             return super.tableView(tableView, cellForRowAt: indexPath)
         case (2,2):
             return super.tableView(tableView, cellForRowAt: indexPath)
+//            let cell: UITableViewCell = self.tableView.dequeueReusableCell(withIdentifier: "FriendListTableViewCell", for: indexPath)
+//            return cell
         case (3,0):
             return super.tableView(tableView, cellForRowAt: indexPath)
         case (3,1):
@@ -175,6 +182,10 @@ class AccountTableViewController: UITableViewController {
             return UITableViewCell()
         }
         
+    }
+    
+    override func tableView(_ tableView: UITableView, indentationLevelForRowAt indexPath: IndexPath) -> Int {
+        return 0
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -216,7 +227,7 @@ class AccountTableViewController: UITableViewController {
             })
             friendRequestAlert.addAction(goToLogIn)
             self.present(friendRequestAlert, animated: true, completion: nil)
-        case tableViewFriendIgnoreListList:
+        case tableViewIgnoreList:
             var alertStyle = UIAlertController.Style.alert
             if (UIDevice.current.userInterfaceIdiom == .pad) {
               alertStyle = UIAlertController.Style.alert
@@ -283,7 +294,7 @@ class AccountTableViewController: UITableViewController {
                 return 75
             case tableViewFriendRequestList:
                 return 75
-            case tableViewFriendIgnoreListList:
+            case tableViewIgnoreList:
                 return 75
             default:
                 return 0
@@ -447,7 +458,7 @@ class AccountTableViewController: UITableViewController {
                         if let userName = document.data()["userName"] as? String {
                             self.ignoreNameList?.append(userName)
                             self.tableView.reloadData()
-                            self.tableViewFriendIgnoreListList.reloadData()
+                            self.tableViewIgnoreList.reloadData()
                         }
                     }
                 }
@@ -501,7 +512,7 @@ class AccountTableViewController: UITableViewController {
         backgroundImage.contentMode = UIView.ContentMode.scaleToFill
         self.tableViewFriendsLists.backgroundView = backgroundImage
         self.tableViewFriendRequestList.backgroundView = backgroundImage
-        self.tableViewFriendIgnoreListList.backgroundView = backgroundImage
+        self.tableViewIgnoreList.backgroundView = backgroundImage
     }
     
     // MARK: - Actions
@@ -510,3 +521,32 @@ class AccountTableViewController: UITableViewController {
         self.updateUserData()
     }
 }
+
+
+//class FriendListTableView: AccountTableViewController {
+//    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        friendNameList?.count ?? 0
+//    }
+//
+//    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        guard let cell = tableView.dequeueReusableCell(withIdentifier: "FriendRequestCell", for: indexPath) as? FriendRequestTableViewCell else { return UITableViewCell() }
+//        cell.backgroundColor = UIColor.clear
+//        cell.backgroundView = UIImageView.init(image: UIImage.init(named: "bookRed"))
+//        if let friendRequests = friendNameRequestsList {
+//            let friendRequest = friendRequests[indexPath.row]
+//            cell.friendRequestNameLabel.text = "\(friendRequest)"
+//
+//            if let friendsRequestsId = friendRequestsUIDList {
+//                let friendRequestId = friendsRequestsId[indexPath.row]
+//                cell.friendRequestId = friendRequestId
+//            }
+//
+//            let maskLayer = CAShapeLayer()
+//            let bounds = cell.bounds
+//            maskLayer.path = UIBezierPath(roundedRect: CGRect(x: 0, y: 7, width: bounds.width-4, height: bounds.height-4), cornerRadius: 5).cgPath
+//            cell.layer.mask = maskLayer
+//        }
+//        return cell
+//    }
+//
+//}

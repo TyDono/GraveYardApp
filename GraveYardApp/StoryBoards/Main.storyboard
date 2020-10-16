@@ -1925,7 +1925,7 @@
                         <segue destination="df1-gm-beU" kind="show" identifier="segueToGrave" id="xN6-dc-fkE"/>
                         <segue destination="wtE-vq-OyN" kind="unwind" identifier="unwindToSignIn" unwindAction="unwindToSignIn:" id="xDe-gH-4KU"/>
                         <segue destination="SIl-1N-tic" kind="show" identifier="viewOwnMemorialsSegue" id="d6O-X3-50S"/>
-                        <segue destination="Nog-QY-RX1" kind="show" identifier="segueToAccount" id="DOI-tZ-NHh"/>
+                        <segue destination="Nog-QY-RX1" kind="show" identifier="segueToAccount" id="ko7-kn-Yf3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9D0-qq-1KH" sceneMemberID="firstResponder"/>
@@ -2166,7 +2166,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3aI-In-pTI">
-                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="343"/>
+                                                    <rect key="frame" x="0.0" y="0.9999997615814209" width="414" height="343"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     <prototypes>
@@ -2242,7 +2242,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="friendRequestListStaticCell" rowHeight="345" id="w0q-8z-uV9">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="FriendRequestListTableViewCell" rowHeight="345" id="w0q-8z-uV9">
                                         <rect key="frame" x="0.0" y="772.00000035762787" width="414" height="345"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="w0q-8z-uV9" id="oY0-h2-hql">
@@ -2250,7 +2250,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="NL9-0c-2F0">
-                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="343"/>
+                                                    <rect key="frame" x="0.0" y="0.99999964237213135" width="414" height="343"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     <prototypes>
@@ -2370,16 +2370,17 @@
                         <outlet property="friendRequestExpanderLabel" destination="cDh-tU-WiM" id="2hx-wH-kWq"/>
                         <outlet property="ignoreListExpanderLabel" destination="UnI-kZ-arP" id="hC9-qX-jxq"/>
                         <outlet property="premiumStatusLabel" destination="Sxr-Ps-t7S" id="SsG-qA-OoI"/>
-                        <outlet property="tableViewFriendIgnoreListList" destination="HiE-9w-8B4" id="Kmd-MO-OTJ"/>
                         <outlet property="tableViewFriendRequestList" destination="NL9-0c-2F0" id="h5Q-xi-vOQ"/>
                         <outlet property="tableViewFriendsLists" destination="3aI-In-pTI" id="YVq-GS-5Mt"/>
+                        <outlet property="tableViewIgnoreList" destination="HiE-9w-8B4" id="Kmd-MO-OTJ"/>
+                        <outlet property="tableViewMain" destination="gVa-ac-Xa5" id="hUI-7e-Ah2"/>
                         <outlet property="userNameTextField" destination="ETG-8c-iw0" id="5ol-lo-9GG"/>
                         <segue destination="SIl-1N-tic" kind="show" identifier="segueToFriendsMemorials" id="d0c-Z0-mkc"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zfj-Oz-3Ic" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4207.2463768115949" y="-143.30357142857142"/>
+            <point key="canvasLocation" x="4464" y="-358"/>
         </scene>
         <!--Sign In-->
         <scene sceneID="eey-YM-mnw">
@@ -2461,7 +2462,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="z4g-pH-uIZ"/>
         <segue reference="7DO-rd-4qB"/>
-        <segue reference="d0c-Z0-mkc"/>
+        <segue reference="d6O-X3-50S"/>
         <segue reference="xN6-dc-fkE"/>
     </inferredMetricsTieBreakers>
     <resources>
