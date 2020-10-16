@@ -2284,7 +2284,7 @@
                             <tableViewSection id="EQZ-xc-xt8">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="hiddenFirstCell" rowHeight="0.0" id="kg1-GX-0zO">
-                                        <rect key="frame" x="0.0" y="1173.0000003576279" width="414" height="1.1920928955078125e-07"/>
+                                        <rect key="frame" x="0.0" y="1173.0000003576279" width="414" height="0.0"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kg1-GX-0zO" id="FXb-kU-QEv">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="0.0"/>
@@ -2462,7 +2462,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="z4g-pH-uIZ"/>
         <segue reference="7DO-rd-4qB"/>
-        <segue reference="d6O-X3-50S"/>
+        <segue reference="d0c-Z0-mkc"/>
         <segue reference="xN6-dc-fkE"/>
     </inferredMetricsTieBreakers>
     <resources>

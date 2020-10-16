@@ -42,25 +42,21 @@ class AccountTableViewController: UITableViewController {
     var currentSeason: String?
     var premiumStatus: String = ""
     var userName: String = ""
-    var friendListIsExpanded: Bool = true //change these 3 to false before ending debugging
-    var friendRequestListIsExpanded: Bool = true
-    var ignoreListIsExpanded: Bool = true
+    var friendListIsExpanded: Bool = false
+    var friendRequestListIsExpanded: Bool = false
+    var ignoreListIsExpanded: Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        db = Firestore.firestore()
         tableViewFriendsLists.delegate = self
         tableViewFriendsLists.dataSource = self
-//        tableViewFriendsLists.register(UITableViewCell.self, forCellReuseIdentifier: "friendListDynamicCell")
         tableViewFriendRequestList.delegate = self
         tableViewFriendRequestList.dataSource = self
-//        tableViewFriendRequestList.register(UITableViewCell.self, forCellReuseIdentifier: "FriendRequestCell")
         tableViewIgnoreList.delegate = self
         tableViewIgnoreList.dataSource = self
-//        tableViewIgnoreList.register(UITableViewCell.self, forCellReuseIdentifier: "IgnoreListCell")
+        db = Firestore.firestore()
         getUserData()
-        changeBackground()
-        tableViewFriendsLists.isScrollEnabled = true
+//        changeBackground()
     }
 
     // MARK: - Table view data source
@@ -88,8 +84,7 @@ class AccountTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        switch (indexPath.section, indexPath.row) {
-        case (0,0):
+
             switch tableView {
             case tableViewFriendsLists:
 //                let cell: FriendListDynamicTableViewCell = self.tableViewFriendsLists.dequeueReusableCell(withIdentifier: "friendListDynamicCell", for: indexPath) as! FriendListDynamicTableViewCell
@@ -152,35 +147,9 @@ class AccountTableViewController: UITableViewController {
                 }
                 return cell
             default:
-                return UITableViewCell()
+                return super.tableView(tableView, cellForRowAt: indexPath)
             }
-        case (0,1):
-            return super.tableView(tableView, cellForRowAt: indexPath)
-        case (0,2):
-            return super.tableView(tableView, cellForRowAt: indexPath)
-        case (1,0):
-            return super.tableView(tableView, cellForRowAt: indexPath)
-        case (1,1):
-            return super.tableView(tableView, cellForRowAt: indexPath)
-        case (1,2):
-            return super.tableView(tableView, cellForRowAt: indexPath)
-        case (2,0):
-            return super.tableView(tableView, cellForRowAt: indexPath)
-        case (2,1):
-            return super.tableView(tableView, cellForRowAt: indexPath)
-        case (2,2):
-            return super.tableView(tableView, cellForRowAt: indexPath)
-//            let cell: UITableViewCell = self.tableView.dequeueReusableCell(withIdentifier: "FriendListTableViewCell", for: indexPath)
-//            return cell
-        case (3,0):
-            return super.tableView(tableView, cellForRowAt: indexPath)
-        case (3,1):
-            return super.tableView(tableView, cellForRowAt: indexPath)
-//        case (3,2):
-//            return super.tableView(tableView, cellForRowAt: indexPath)
-        default:
-            return UITableViewCell()
-        }
+
         
     }
     
