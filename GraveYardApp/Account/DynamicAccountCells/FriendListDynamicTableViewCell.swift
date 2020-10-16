@@ -17,6 +17,7 @@ class FriendListDynamicTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        removeFriendButton.layer.cornerRadius = 10
         // Initialization code
     }
 

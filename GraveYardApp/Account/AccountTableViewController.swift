@@ -89,9 +89,8 @@ class AccountTableViewController: UITableViewController {
             case tableViewFriendsLists:
 //                let cell: FriendListDynamicTableViewCell = self.tableViewFriendsLists.dequeueReusableCell(withIdentifier: "friendListDynamicCell", for: indexPath) as! FriendListDynamicTableViewCell
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: "friendListDynamicCell", for: indexPath) as? FriendListDynamicTableViewCell else { return UITableViewCell() }
-                cell.backgroundColor = UIColor.clear
-                cell.backgroundView = UIImageView.init(image: UIImage.init(named: "bookRed"))
-                print(friendNameList?.count)
+//                cell.backgroundColor = UIColor.clear
+//                cell.backgroundView = UIImageView.init(image: UIImage.init(named: "bookRed"))
                 if let friends = friendNameList {
                     let friend = friends[indexPath.row]
                     cell.friendNameLabel.text = "\(friend)"
@@ -109,8 +108,8 @@ class AccountTableViewController: UITableViewController {
                 
             case tableViewFriendRequestList:
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: "FriendRequestCell", for: indexPath) as? FriendRequestTableViewCell else { return UITableViewCell() }
-                cell.backgroundColor = UIColor.clear
-                cell.backgroundView = UIImageView.init(image: UIImage.init(named: "bookRed"))
+//                cell.backgroundColor = UIColor.clear
+//                cell.backgroundView = UIImageView.init(image: UIImage.init(named: "bookRed"))
                 if let friendRequests = friendNameRequestsList {
                     let friendRequest = friendRequests[indexPath.row]
                     cell.friendRequestNameLabel.text = "\(friendRequest)"
@@ -129,8 +128,8 @@ class AccountTableViewController: UITableViewController {
                 
             case tableViewIgnoreList:
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: "IgnoreListCell", for: indexPath) as? IgnoreListTableViewCell else { return UITableViewCell() }
-                cell.backgroundColor = UIColor.clear
-                cell.backgroundView = UIImageView.init(image: UIImage.init(named: "bookRed"))
+//                cell.backgroundColor = UIColor.clear
+//                cell.backgroundView = UIImageView.init(image: UIImage.init(named: "bookRed"))
                 if let ingores = ignoreNameList {
                     let ignore = ingores[indexPath.row]
                     cell.ignoreNameLabel.text = "\(ignore)"
