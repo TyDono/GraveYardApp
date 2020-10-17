@@ -45,6 +45,7 @@ class AccountTableViewController: UITableViewController {
     var friendListIsExpanded: Bool = false
     var friendRequestListIsExpanded: Bool = false
     var ignoreListIsExpanded: Bool = false
+    var removedFriends: Array<String>? // when you removed a friend this var wil be used to make srue they also have your removed
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -434,6 +435,34 @@ class AccountTableViewController: UITableViewController {
         }
     }
     
+    func removeFriend() {
+        guard let removedFriends = self.removedFriends else { return }
+        guard let currentAuthID = self.currentAuthID else { return }
+        for removedFriend in removedFriends {
+            let userRef = db.collection("userProfile").whereField("currentUserAuthId", isEqualTo: removedFriend)
+            userRef.getDocuments { (snapshot, err) in
+                if err != nil {
+                    print(err as Any)
+                } else {
+                    for documentt in (snapshot?.documents)! {
+                        if let friendList = documentt.data()["friendList"] as? Array<String> {
+                            let newFriendList = friendList.filter(){$0 != currentAuthID }
+                            self.db.collection("userProfile").document(removedFriend).updateData([
+                                "friendList": newFriendList
+                            ]) { err in
+                                if let err = err {
+                                    print(err)
+                                } else {
+                                    //friend has forced you to remove him ;-;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
     func updateUserData() {
         db = Firestore.firestore()
         guard let userName = self.userNameTextField.text else {
@@ -460,6 +489,7 @@ class AccountTableViewController: UITableViewController {
                 self.present(alertFailure, animated: true, completion: nil)
                 print("Error updating document: \(err)")
             } else {
+                self.removeFriend()
                 var alertStyle = UIAlertController.Style.alert
                 if (UIDevice.current.userInterfaceIdiom == .pad) {
                     alertStyle = UIAlertController.Style.alert
