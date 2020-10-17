@@ -175,26 +175,35 @@ class AccountTableViewController: UITableViewController {
             if (UIDevice.current.userInterfaceIdiom == .pad) {
               alertStyle = UIAlertController.Style.alert
             }
-            let friendRequestAlert = UIAlertController(title: "Add this user to your Friends List?", message: "This will allow them to see all the memorials you have made and your private Memorials", preferredStyle: alertStyle)
+            let friendRequestAlert = UIAlertController(title: "Add this user to your Friends List?", message: "This will allow them to see all the memorials you have made and your private Memorials.", preferredStyle: alertStyle)
             let dismiss = UIAlertAction(title: "Decline", style: .default, handler: nil)
             if let row = self.tableViewFriendRequestList.indexPathForSelectedRow?.row, let friendId = self.friendRequestsUIDList?[row], let friendRequestUserName = self.friendNameRequestsList?[row] {
                 self.friendRequestsUIDList = self.friendRequestsUIDList?.filter(){$0 != friendId}
                 self.friendNameRequestsList = self.friendNameRequestsList?.filter(){$0 != friendRequestUserName}
-                self.tableView.reloadData()
-                self.tableViewFriendRequestList.reloadData()
+                self.tableView.beginUpdates()
+                self.tableView.endUpdates()
             }
             friendRequestAlert.addAction(dismiss)
-            let goToLogIn = UIAlertAction(title: "Accept", style: .default, handler: { _ in
+            let acceptFriendRequest = UIAlertAction(title: "Accept", style: .default, handler: { _ in
                 if let row = self.tableViewFriendRequestList.indexPathForSelectedRow?.row, let friendRequestId = self.friendRequestsUIDList?[row], let friendRequestUserName = self.friendNameRequestsList?[row] {
                     self.friendRequestsUIDList = self.friendRequestsUIDList?.filter(){$0 != friendRequestId}
                     self.friendNameRequestsList = self.friendNameRequestsList?.filter(){$0 != friendRequestUserName}
                     self.friendUIDList?.append(friendRequestId)
-                    self.tableView.reloadData()
-                    self.tableViewFriendsLists.reloadData()
-                    self.tableViewFriendRequestList.reloadData()
+                    self.tableView.beginUpdates()
+                    self.tableView.endUpdates()
                 }
             })
-            friendRequestAlert.addAction(goToLogIn)
+            friendRequestAlert.addAction(acceptFriendRequest)
+            let IgnoreUser = UIAlertAction(title: "Block", style: .default, handler: { _ in
+                if let row = self.tableViewFriendRequestList.indexPathForSelectedRow?.row, let friendRequestId = self.friendRequestsUIDList?[row], let friendRequestUserName = self.friendNameRequestsList?[row] {
+                    self.friendRequestsUIDList = self.friendRequestsUIDList?.filter(){$0 != friendRequestId}
+                    self.friendNameRequestsList = self.friendNameRequestsList?.filter(){$0 != friendRequestUserName}
+                    self.ignoreUIDList?.append(friendRequestId)
+                    self.tableView.beginUpdates()
+                    self.tableView.endUpdates()
+                }
+            })
+            friendRequestAlert.addAction(IgnoreUser)
             self.present(friendRequestAlert, animated: true, completion: nil)
         case tableViewIgnoreList:
             var alertStyle = UIAlertController.Style.alert
@@ -208,8 +217,8 @@ class AccountTableViewController: UITableViewController {
                 if let row = self.tableViewIgnoreList.indexPathForSelectedRow?.row, let blockedUserId = self.ignoreUIDList?[row], let blockedUserName = self.ignoreNameList?[row] {
                     self.ignoreUIDList = self.ignoreUIDList?.filter(){$0 != blockedUserId }
                     self.ignoreNameList = self.ignoreNameList?.filter(){$0 != blockedUserName }
-                    self.tableView.reloadData()
-                    self.tableViewFriendRequestList.reloadData()
+                    self.tableView.beginUpdates()
+                    self.tableView.endUpdates()
                 }
             })
             removeIgnoreAlert.addAction(goToLogIn)
@@ -269,7 +278,7 @@ class AccountTableViewController: UITableViewController {
                 return 0
             }
         case (0,1):
-            return 75
+            return 0 //75 un comment when premium is released
         case (0, 2):
             return 93
         case (1,0):
@@ -499,6 +508,8 @@ class AccountTableViewController: UITableViewController {
                     alertFailure.dismiss(animated: true, completion: nil)
                 }))
                 self.present(alertFailure, animated: true, completion: nil)
+                self.tableView.beginUpdates()
+                self.tableView.endUpdates()
                 print("Document successfully updated")
             }
         }

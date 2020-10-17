@@ -16,6 +16,7 @@ import GoogleSignIn
 
 class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UIGestureRecognizerDelegate, UISearchBarDelegate {
     
+    @IBOutlet weak var friendRequestNotificationButton: UIButton!
     @IBOutlet weak var locationSearchBar: UISearchBar!
     @IBOutlet weak var playHowToMemorialVideoButton: UIButton!
     @IBOutlet weak var howToMemorialPreviewImage: UIImageView!
@@ -49,6 +50,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     var selectedAnnotation: GraveEntryAnnotation?
     var bookSideHasExpanded: Bool = false
     var playerLayer: AVPlayer?
+    var friendRequests: Array<String>?
 
     // MARK: - View Lifecycle
     
@@ -62,7 +64,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         addMemorialView.layer.cornerRadius = 10
         playHowToMemorialVideoButton.layer.cornerRadius = 10
         mapView.delegate = self
-        getUserMemorialCount()
+        friendRequestNotificationButton.isHidden = true
+        getUserData()
 //        self.navigationItem.rightBarButtonItem?.isEnabled = false
         self.navigationItem.rightBarButtonItem?.title = "Account"
     }
@@ -100,9 +103,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     }
     
     func getUserMemorialCount() {
-        if self.currentAuthID == nil {
-            self.yourMemorialsButton.setTitle("How to Create Memorials", for: .normal)
-        }
+
         guard let safeCurrentAuthID = self.currentAuthID else { return }
         let userRef = self.db.collection("userProfile").whereField("currentUserAuthId", isEqualTo: safeCurrentAuthID)
         userRef.getDocuments { (snapshot, error) in
@@ -451,6 +452,37 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         }
     }
     
+    func getUserData() {
+        if self.currentAuthID == nil {
+            self.yourMemorialsButton.setTitle("How to Create Memorials", for: .normal)
+        }
+        guard let currentUserAuthID: String = self.currentAuthID else { return }
+        let userRef = self.db.collection("userProfile").whereField("currentUserAuthId", isEqualTo: currentUserAuthID)
+        userRef.getDocuments { (snapshot, error) in
+            if error != nil {
+                print(error as Any)
+            } else {
+                for document in (snapshot?.documents)! {
+                    if let premiumStatus = document.data()["premiumStatus"] as? Int,
+                       let friendRequests = document.data()["friendRequests"] as? Array<String>,
+                       let memorialCount = document.data()["memorialCount"] as? Int {
+                        MyFirebase.memorialCount = memorialCount
+                        self.friendRequests = friendRequests
+                        if friendRequests == nil {
+                            self.friendRequestNotificationButton.isHidden = false
+                        }
+                        switch MyFirebase.memorialCount {
+                        case 0:
+                            self.yourMemorialsButton.setTitle("How to Create Memorials", for: .normal)
+                        default:
+                            self.yourMemorialsButton.setTitle("Your Memorial Sites", for: .normal)
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
     // MARK: - Actions
     
     @IBAction func recenterButtonTapped(_ sender: Any) {
@@ -697,6 +729,10 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     }
     
     @IBAction func unwindToMap(_ sender: UIStoryboardSegue) {}
+    
+    @IBAction func friendRequestNotificationButtonWasTapped(_ sender: UIButton) {
+        performSegue(withIdentifier: "segueToAccount", sender: nil)
+    }
     
 }
 
