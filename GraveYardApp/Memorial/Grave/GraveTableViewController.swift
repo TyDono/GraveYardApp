@@ -17,6 +17,7 @@ import AVFoundation
 
 class GraveTableViewController: UITableViewController {
     
+    @IBOutlet weak var addFriendButton: UIButton!
     @IBOutlet weak var playVideoButton: UIButton!
     @IBOutlet weak var videoPreviewUIImage: UIImageView!
     @IBOutlet weak var reportButton: UIButton!
@@ -55,6 +56,8 @@ class GraveTableViewController: UITableViewController {
     var videoURLString: String?
     var videoURL: URL?
     var currentGraveName: String = ""
+    var currentMemorialFriendList: Array<String>?
+    var friendStatus: String?
     let storage = Storage.storage()
     
     // MARK: - View Lifecycle
@@ -63,11 +66,13 @@ class GraveTableViewController: UITableViewController {
         super.viewDidLoad()
         db = Firestore.firestore()
         self.reportPopOver.layer.cornerRadius = 10
+        self.addFriendButton.layer.cornerRadius = 10
         //chageTextColor()
         self.reportButton.layer.cornerRadius = 10
         pinQuoteLabel.font = pinQuoteLabel.font.italic
         self.storiesButton.layer.cornerRadius = 10
         self.playVideoButton.layer.cornerRadius = 10
+        addFriendButton.isHidden = false
 //        changeBackground()
     }
     
@@ -179,6 +184,8 @@ class GraveTableViewController: UITableViewController {
             return 0
         case (0, 4):
             return 400 // UITableView.automaticDimension
+        case (0, 5):
+            return 85
         case (_, _):
             return 0
         }
@@ -219,14 +226,7 @@ class GraveTableViewController: UITableViewController {
                         let videoURL = document.data()["videoURL"] as? String,
                         let storyCount = document.data()["storyCount"] as? Int,
                         let publicIsTrue = document.data()["publicIsTrue"] as? Bool {
-                        if creatorId != MapViewController.shared.currentAuthID && publicIsTrue == false {
-                            self.graveNavTitle.title = "PRIVATE"
-                            self.midTopLabel.text = ""
-                            self.midBotLabel.text = ""
-                            self.birthDateLabel.text = ""
-                            self.birthLocationLabel.text = ""
-                            return
-                        } else {
+                        if creatorId == MapViewController.shared.currentAuthID && publicIsTrue == false || ((self.currentMemorialFriendList?.contains(self.currentAuthID ?? "" )) != nil) && publicIsTrue == false || publicIsTrue == true {
                             self.currentGraveId = graveId
                             self.imageString = profileImageId
                             let nameHeadstone = "\(name)"
@@ -278,7 +278,15 @@ class GraveTableViewController: UITableViewController {
                             self.videoURLString = videoURL
                             self.checkForCreatorId()
                             self.getVideo()
+                            self.getMemorialOwnerData()
                             self.getImages()// always call last
+                        } else {
+                            self.graveNavTitle.title = "PRIVATE"
+                            self.midTopLabel.text = ""
+                            self.midBotLabel.text = ""
+                            self.birthDateLabel.text = ""
+                            self.birthLocationLabel.text = ""
+                            return
                         }
                     }
                 }
@@ -352,6 +360,31 @@ class GraveTableViewController: UITableViewController {
         self.present(vc, animated: true) { vc.player?.play() }
     }
     
+    func getMemorialOwnerData() {
+        guard let safeCurrentMemorialOwnerId = self.creatorId else { return }
+        print(safeCurrentMemorialOwnerId)
+        let userRef = self.db.collection("userProfile").whereField("currentUserAuthId", isEqualTo: safeCurrentMemorialOwnerId)
+        userRef.getDocuments { (snapshot, error) in
+            if error != nil {
+                print(error as Any)
+            } else {
+                for document in (snapshot?.documents)! {
+                    if let userName = document.data()["userName"] as? String,
+                       let currentMemorialFriendList = document.data()["friendList"] as? Array<String>,
+                       let currentMemorialFriendRequests = document.data()["friendRequests"] as? Array<String>,
+                       let currentMemroialIgnoreList = document.data()["ignoredList"] as? Array<String> {
+                        self.currentMemorialFriendList = currentMemorialFriendList
+                        print(self.currentMemorialFriendList)
+                        if currentMemorialFriendList.contains(safeCurrentMemorialOwnerId) || currentMemorialFriendRequests.contains(safeCurrentMemorialOwnerId) || currentMemroialIgnoreList.contains(safeCurrentMemorialOwnerId) || self.currentAuthID == userName {
+                            self.addFriendButton.isHidden = true
+                        }
+                        self.tableView.reloadData()
+                    }
+                }
+            }
+        }
+    }
+    
     // MARK: - Actions
     
     @IBAction func editGraveBarButtonTapped(_ sender: UIBarButtonItem) {
@@ -379,6 +412,46 @@ class GraveTableViewController: UITableViewController {
     @IBAction func playVideo(_ sender: UIButton) {
         guard let safeVideoURLFromFirebase = self.videoURL else  { return }
         playURLVideo(url: safeVideoURLFromFirebase)
+    }
+    
+    @IBAction func addFriendButtonTapped(_ sender: Any) {
+        guard let safeCurrentAuthID = self.currentAuthID else { return }
+        guard let creatorId = self.creatorId else { return }
+        self.currentMemorialFriendList?.append(safeCurrentAuthID)
+        guard let safeCurrentMemorialFriendRequestList = self.currentMemorialFriendList else { return }
+        print(safeCurrentMemorialFriendRequestList)
+//        print(self.currentMemorialFriendList)
+        var alertStyle = UIAlertController.Style.alert
+        if (UIDevice.current.userInterfaceIdiom == .pad) {
+            alertStyle = UIAlertController.Style.alert
+        }
+        let addFriendAlert = UIAlertController(title: "Add Friend", message: "Would you like to send a friend request? This will allow you both to view eachothers private Memorials.", preferredStyle: alertStyle)
+        let dismiss = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+        addFriendAlert.addAction(dismiss)
+        let sendRequest = UIAlertAction(title: "Send Request", style: .default, handler: { _ in
+
+            self.db.collection("userProfile").document(creatorId).updateData([
+                "friendRequests": safeCurrentMemorialFriendRequestList
+            ]) { err in
+                if let err = err {
+                    let alertFailure = UIAlertController(title: "Error", message: "Sorry, there was an error while trying to send your friend request. Please try again.", preferredStyle: alertStyle)
+                    alertFailure.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
+                        alertFailure.dismiss(animated: true, completion: nil)
+                    }))
+                    self.present(alertFailure, animated: true, completion: nil)
+                    print(err)
+                } else {
+                    let alertSuccess = UIAlertController(title: "Request Sent", message: "You must wait for them to accept in order to add them to your friend's list", preferredStyle: alertStyle)
+                    alertSuccess.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
+                        alertSuccess.dismiss(animated: true, completion: nil)
+                    }))
+                    self.present(alertSuccess, animated: true, completion: nil)
+                }
+            }
+        })
+        addFriendAlert.addAction(sendRequest)
+        self.present(addFriendAlert, animated: true, completion: nil)
+        
     }
     
     @IBAction func unwindToGrave(_ sender: UIStoryboardSegue) {}
