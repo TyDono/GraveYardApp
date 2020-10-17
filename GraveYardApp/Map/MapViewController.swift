@@ -468,7 +468,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                        let memorialCount = document.data()["memorialCount"] as? Int {
                         MyFirebase.memorialCount = memorialCount
                         self.friendRequests = friendRequests
-                        if friendRequests == nil {
+                        if friendRequests.count < 1 {
                             self.friendRequestNotificationButton.isHidden = false
                         }
                         switch MyFirebase.memorialCount {
