@@ -444,9 +444,9 @@ class AccountTableViewController: UITableViewController {
         db.collection("userProfile").document(currentId).updateData([
             "dataCount": MyFirebase.currentDataUsage!,
             "userName": userName,
-            "friendList": self.friendNameList ?? "" ,
-            "friendRequests": self.friendNameRequestsList ?? "" ,
-            "ignoredList": self.ignoreNameList ?? ""
+            "friendList": self.friendUIDList ?? "" ,
+            "friendRequests": self.friendRequestsUIDList ?? "" ,
+            "ignoredList": self.ignoreUIDList ?? ""
         ]) { err in
             if let err = err {
                 var alertStyle = UIAlertController.Style.alert

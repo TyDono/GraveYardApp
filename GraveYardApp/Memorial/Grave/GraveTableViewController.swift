@@ -58,6 +58,7 @@ class GraveTableViewController: UITableViewController {
     var currentGraveName: String = ""
     var currentMemorialFriendList: Array<String>?
     var friendStatus: String?
+    var creatorUserName: String?
     let storage = Storage.storage()
     
     // MARK: - View Lifecycle
@@ -183,8 +184,14 @@ class GraveTableViewController: UITableViewController {
         case (0, 3):
             return 0
         case (0, 4):
-            return 400 // UITableView.automaticDimension
+            if self.introTextBioTextView.text == "" {
+                return 0
+            }
+            return 350 // UITableView.automaticDimension
         case (0, 5):
+            if creatorUserName == currentAuthID {
+                return 0
+            }
             return 85
         case (_, _):
             return 0
@@ -378,6 +385,7 @@ class GraveTableViewController: UITableViewController {
                         if currentMemorialFriendList.contains(safeCurrentMemorialOwnerId) || currentMemorialFriendRequests.contains(safeCurrentMemorialOwnerId) || currentMemroialIgnoreList.contains(safeCurrentMemorialOwnerId) || self.currentAuthID == userName {
                             self.addFriendButton.isHidden = true
                         }
+                        self.creatorUserName = userName
                         self.tableView.reloadData()
                     }
                 }
