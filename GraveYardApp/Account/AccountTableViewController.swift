@@ -47,7 +47,7 @@ class AccountTableViewController: UITableViewController {
     var friendRequestListIsExpanded: Bool = false
     var ignoreListIsExpanded: Bool = false
     var removedFriends: Array<String>? // when you removed a friend this var wil be used to make srue they also have your removed
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableViewFriendsLists.delegate = self
@@ -59,18 +59,18 @@ class AccountTableViewController: UITableViewController {
         db = Firestore.firestore()
         userNameTextField.setBottomBorderOnlyWith(color: UIColor.gray.cgColor)
         getUserData()
-//        changeBackground()
+        //        changeBackground()
     }
-
+    
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return super.numberOfSections(in: tableView)
     }
-
-//    override func numberOfSections(in tableView: UITableView) -> Int {
-//        return 1
-//    }
+    
+    //    override func numberOfSections(in tableView: UITableView) -> Int {
+    //        return 1
+    //    }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch tableView {
@@ -86,11 +86,13 @@ class AccountTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-            switch tableView {
-            case tableViewFriendsLists:
+        switch tableView {
+        case tableViewFriendsLists:
+            switch indexPath.section {
+            case 0:
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: "friendListDynamicCell", for: indexPath) as? FriendListDynamicTableViewCell else { return UITableViewCell() }
-//                cell.backgroundColor = UIColor.clear
-//                cell.backgroundView = UIImageView.init(image: UIImage.init(named: "bookRed"))
+                //                cell.backgroundColor = UIColor.clear
+                //                cell.backgroundView = UIImageView.init(image: UIImage.init(named: "bookRed"))
                 if let friends = friendNameList, let friendsId = friendUIDList {
                     let friend = friends[indexPath.row]
                     cell.friendNameLabel.text = "\(friend)"
@@ -103,11 +105,16 @@ class AccountTableViewController: UITableViewController {
                     cell.layer.mask = maskLayer
                 }
                 return cell
-                
-            case tableViewFriendRequestList:
+            default:
+                return UITableViewCell()
+            }
+            
+        case tableViewFriendRequestList:
+            switch indexPath.section {
+            case 0:
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: "FriendRequestCell", for: indexPath) as? FriendRequestTableViewCell else { return UITableViewCell() }
-//                cell.backgroundColor = UIColor.clear
-//                cell.backgroundView = UIImageView.init(image: UIImage.init(named: "bookRed"))
+                //                cell.backgroundColor = UIColor.clear
+                //                cell.backgroundView = UIImageView.init(image: UIImage.init(named: "bookRed"))
                 if let friendRequests = friendNameRequestsList, let friendsRequestsId = friendRequestsUIDList {
                     let friendRequestName = friendRequests[indexPath.row]
                     cell.friendRequestNameLabel.text = "\(friendRequestName)"
@@ -120,11 +127,16 @@ class AccountTableViewController: UITableViewController {
                     cell.layer.mask = maskLayer
                 }
                 return cell
-                
-            case tableViewIgnoreList:
+            default:
+                return UITableViewCell()
+            }
+            
+        case tableViewIgnoreList:
+            switch indexPath.section {
+            case 0:
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: "IgnoreListCell", for: indexPath) as? IgnoreListTableViewCell else { return UITableViewCell() }
-//                cell.backgroundColor = UIColor.clear
-//                cell.backgroundView = UIImageView.init(image: UIImage.init(named: "bookRed"))
+                //                cell.backgroundColor = UIColor.clear
+                //                cell.backgroundView = UIImageView.init(image: UIImage.init(named: "bookRed"))
                 if let ingores = ignoreNameList, let ignoresId = ignoreUIDList {
                     let ignore = ingores[indexPath.row]
                     cell.ignoreNameLabel.text = "\(ignore)"
@@ -138,10 +150,12 @@ class AccountTableViewController: UITableViewController {
                 }
                 return cell
             default:
-                return super.tableView(tableView, cellForRowAt: indexPath)
+                return UITableViewCell()
             }
-
-        
+            
+        default:
+            return super.tableView(tableView, cellForRowAt: indexPath)
+        }
     }
     
     override func tableView(_ tableView: UITableView, indentationLevelForRowAt indexPath: IndexPath) -> Int {
