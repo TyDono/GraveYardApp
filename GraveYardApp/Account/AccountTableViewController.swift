@@ -223,6 +223,7 @@ class AccountTableViewController: UITableViewController {
                 if let row = self.tableViewIgnoreList.indexPathForSelectedRow?.row, let blockedUserId = self.ignoreUIDList?[row], let blockedUserName = self.ignoreNameList?[row] {
                     self.ignoreUIDList = self.ignoreUIDList?.filter(){$0 != blockedUserId }
                     self.ignoreNameList = self.ignoreNameList?.filter(){$0 != blockedUserName }
+                    print(self.ignoreUIDList)
                     tableView.reloadData()
                 }
             })
@@ -494,11 +495,12 @@ class AccountTableViewController: UITableViewController {
                 if (UIDevice.current.userInterfaceIdiom == .pad) {
                     alertStyle = UIAlertController.Style.alert
                 }
-                let alertFailure = UIAlertController(title: "Account Saved!", message: "", preferredStyle: alertStyle)
-                alertFailure.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
-                    alertFailure.dismiss(animated: true, completion: nil)
+                let alertAccountSaved = UIAlertController(title: "Account Saved!", message: "", preferredStyle: alertStyle)
+                alertAccountSaved.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
+                    self.performSegue(withIdentifier: "unwindToMap", sender: nil)
+                    alertAccountSaved.dismiss(animated: true, completion: nil)
                 }))
-                self.present(alertFailure, animated: true, completion: nil)
+                self.present(alertAccountSaved, animated: true, completion: nil)
                 self.tableView.beginUpdates()
                 self.tableView.endUpdates()
                 print("Document successfully updated")
@@ -520,6 +522,9 @@ class AccountTableViewController: UITableViewController {
     @IBAction func saveAccountBarButtonTapped(_ sender: UIBarButtonItem) {
         self.updateUserData()
     }
+    
+    @IBAction func unwindToMap(_ sender: UIStoryboardSegue) {}
+    
 }
 
 

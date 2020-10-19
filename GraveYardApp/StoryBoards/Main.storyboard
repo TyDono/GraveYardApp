@@ -2413,9 +2413,11 @@
                         <outlet property="tableViewMain" destination="gVa-ac-Xa5" id="hUI-7e-Ah2"/>
                         <outlet property="userNameTextField" destination="ETG-8c-iw0" id="5ol-lo-9GG"/>
                         <segue destination="SIl-1N-tic" kind="show" identifier="segueToFriendsMemorials" id="d0c-Z0-mkc"/>
+                        <segue destination="Bv0-FX-mKt" kind="unwind" identifier="unwindToMap" unwindAction="unwindToMap:" id="VId-Gb-DY4"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zfj-Oz-3Ic" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="Bv0-FX-mKt" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="4462.3188405797109" y="-358.25892857142856"/>
         </scene>
