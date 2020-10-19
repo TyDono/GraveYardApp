@@ -57,6 +57,7 @@ class AccountTableViewController: UITableViewController {
         tableViewIgnoreList.delegate = self
         tableViewIgnoreList.dataSource = self
         db = Firestore.firestore()
+        userNameTextField.setBottomBorderOnlyWith(color: UIColor.gray.cgColor)
         getUserData()
 //        changeBackground()
     }
@@ -274,7 +275,16 @@ class AccountTableViewController: UITableViewController {
                 return 0
             }
         case (0,1):
-            return 75
+            switch tableView {
+            case tableViewFriendsLists:
+                return 75
+            case tableViewFriendRequestList:
+                return 75
+            case tableViewIgnoreList:
+                return 75
+            default:
+                return 95
+            }
         case (0, 2):
             return 75
         case (1,0):
@@ -467,13 +477,14 @@ class AccountTableViewController: UITableViewController {
     
     func updateUserData() {
         db = Firestore.firestore()
-        guard let userName = self.userNameTextField.text else {
-            userNameTextField.isError(baseColor: UIColor.red.cgColor, numberOfShakes: 3, revert: true)
+        guard let userName = self.userNameTextField.text else { return }
+        if userName == "" {
+            userNameTextField.isError(baseColor: UIColor.gray.cgColor, numberOfShakes: 3, revert: true)
             return
         }
         guard let currentId = currentAuthID else { return }
         db.collection("userProfile").document(currentId).updateData([
-            "dataCount": MyFirebase.currentDataUsage!,
+//            "dataCount": MyFirebase.currentDataUsage!,
             "userName": userName,
             "friendList": self.friendUIDList ?? "" ,
             "friendRequests": self.friendRequestsUIDList ?? "" ,
@@ -491,6 +502,7 @@ class AccountTableViewController: UITableViewController {
                 self.present(alertFailure, animated: true, completion: nil)
                 print("Error updating document: \(err)")
             } else {
+                MyFirebase.currentUserName = userName
                 self.removeFriend()
                 var alertStyle = UIAlertController.Style.alert
                 if (UIDevice.current.userInterfaceIdiom == .pad) {

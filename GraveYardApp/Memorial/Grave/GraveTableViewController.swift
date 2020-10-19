@@ -423,21 +423,32 @@ class GraveTableViewController: UITableViewController {
     }
     
     @IBAction func addFriendButtonTapped(_ sender: Any) {
+        var alertStyle = UIAlertController.Style.alert
+        if (UIDevice.current.userInterfaceIdiom == .pad) {
+            alertStyle = UIAlertController.Style.alert
+        }
+        guard MyFirebase.currentUserName != nil else {
+            let noUserNameAlert = UIAlertController(title: "Error", message: "You must have a name in order to send a friend request. Please go to your Account and register your name.", preferredStyle: alertStyle)
+            let dismiss = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+            noUserNameAlert.addAction(dismiss)
+            
+            let segueToAccount = UIAlertAction(title: "OK", style: .default, handler: { _ in
+                self.performSegue(withIdentifier: "segueToAccountFromMemorial", sender: nil)
+            })
+            noUserNameAlert.addAction(segueToAccount)
+            self.present(noUserNameAlert, animated: true, completion: nil)
+            return
+        }
         guard let safeCurrentAuthID = self.currentAuthID else { return }
         guard let creatorId = self.creatorId else { return }
         self.currentMemorialFriendList?.append(safeCurrentAuthID)
         guard let safeCurrentMemorialFriendRequestList = self.currentMemorialFriendList else { return }
         print(safeCurrentMemorialFriendRequestList)
 //        print(self.currentMemorialFriendList)
-        var alertStyle = UIAlertController.Style.alert
-        if (UIDevice.current.userInterfaceIdiom == .pad) {
-            alertStyle = UIAlertController.Style.alert
-        }
         let addFriendAlert = UIAlertController(title: "Add Friend", message: "Would you like to send a friend request? This will allow you both to view eachothers private Memorials.", preferredStyle: alertStyle)
         let dismiss = UIAlertAction(title: "Cancel", style: .default, handler: nil)
         addFriendAlert.addAction(dismiss)
         let sendRequest = UIAlertAction(title: "Send Request", style: .default, handler: { _ in
-
             self.db.collection("userProfile").document(creatorId).updateData([
                 "friendRequests": safeCurrentMemorialFriendRequestList
             ]) { err in

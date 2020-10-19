@@ -70,6 +70,15 @@ extension UITextField {
         shake.toValue = NSValue(cgPoint: CGPoint(x: self.center.x + 10, y: self.center.y))
         self.layer.add(shake, forKey: "position")
     }
+    
+    func setBottomBorderOnlyWith(color: CGColor) {
+        self.borderStyle = .none
+        self.layer.masksToBounds = false
+        self.layer.shadowColor = color
+        self.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
+        self.layer.shadowOpacity = 1.0
+        self.layer.shadowRadius = 0.0
+    }
 }
 
 extension AVAsset {

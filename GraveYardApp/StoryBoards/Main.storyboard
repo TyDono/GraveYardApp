@@ -310,6 +310,7 @@
                         <outlet property="videoPreviewUIImage" destination="CfY-t7-Hga" id="Fy1-VS-TWF"/>
                         <segue destination="akf-23-k3a" kind="show" identifier="editGraveSegue" id="2Vk-lS-08E"/>
                         <segue destination="7fh-bd-Npt" kind="show" identifier="graveStoriesSegue" id="owM-5Y-txC"/>
+                        <segue destination="Nog-QY-RX1" kind="show" identifier="segueToAccountFromMemorial" id="t2x-xr-4ij"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eSG-v4-EBi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -2142,7 +2143,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="93"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="User Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ETG-8c-iw0">
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="User Name*" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ETG-8c-iw0">
                                                     <rect key="frame" x="20" y="39.5" width="374" height="42.5"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -2528,10 +2529,10 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="6b9-RO-6yt"/>
+        <segue reference="t2x-xr-4ij"/>
         <segue reference="z4g-pH-uIZ"/>
         <segue reference="7DO-rd-4qB"/>
-        <segue reference="d6O-X3-50S"/>
+        <segue reference="d0c-Z0-mkc"/>
         <segue reference="xN6-dc-fkE"/>
     </inferredMetricsTieBreakers>
     <resources>

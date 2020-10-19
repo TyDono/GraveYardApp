@@ -99,6 +99,7 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
         //chageTextColor()
         self.deleteHeadstoneButton.layer.cornerRadius = 10
         self.playButton.layer.cornerRadius = 10
+        nameTextField.setBottomBorderOnlyWith(color: UIColor.gray.cgColor)
 //        self.videoPreviewUIImage.contentMode = .scaleToFill
 //        self.videoPreviewUIImage.image = UIImage(named: "icons8-video-100")
         switchEnabler()
@@ -628,7 +629,7 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
     
     @IBAction func saveGraveInfoTapped(_ sender: UIBarButtonItem) { //  MOST OF COMMENTED OUT CODE WILL BE RE-ADDED WHEN PREMIUM IS LIVE TO KEEP TRACK OF THEIR DATA USE AND TO LET THE USERS KNOW. ADD THIS TO NEWGRAVESTORYVIEWCONTROLLER WHEN PREMIUM IS LIVE
         if nameTextField.text == "" {
-            nameTextField.isError(baseColor: UIColor.red.cgColor, numberOfShakes: 3, revert: true)
+            nameTextField.isError(baseColor: UIColor.gray.cgColor, numberOfShakes: 3, revert: true)
             return
         } else {
             //self.updateUserData()

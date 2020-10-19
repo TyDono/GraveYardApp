@@ -19,7 +19,8 @@ class MyFirebase {
     // MARK: - Propeties
     
     static let shared = MyFirebase()
-    static var currentDataUsage: Double?
+//    static var currentDataUsage: Double?
+    static var currentUserName: String?
     static var memorialCount: Int = 0
     
     var db = Firestore.firestore()
@@ -102,7 +103,7 @@ class MyFirebase {
             if let err = err {
                 print(err)
             } else {
-                MyFirebase.currentDataUsage = dataCount
+//                MyFirebase.currentDataUsage = dataCount
                 print("Added Data")
             }
         }
@@ -117,10 +118,12 @@ class MyFirebase {
                 for document in (snapshot?.documents)! {
                     if let premiumStatus = document.data()["premiumStatus"] as? Bool,
                         let memorialCount = document.data()["memorialCount"] as? Int,
-                        let dataCount = document.data()["dataCount"] as? Double {
+                        let dataCount = document.data()["dataCount"] as? Double,
+                        let userName = document.data()["userName"] as? String {
                         self.currentUserPremiumStatus = premiumStatus
                         MyFirebase.memorialCount = memorialCount
-                        MyFirebase.currentDataUsage = dataCount
+//                        MyFirebase.currentDataUsage = dataCount
+                        MyFirebase.currentUserName = userName
                         
                     }
                 }
