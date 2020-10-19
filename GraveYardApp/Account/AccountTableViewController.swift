@@ -88,22 +88,19 @@ class AccountTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
             switch tableView {
             case tableViewFriendsLists:
-//                let cell: FriendListDynamicTableViewCell = self.tableViewFriendsLists.dequeueReusableCell(withIdentifier: "friendListDynamicCell", for: indexPath) as! FriendListDynamicTableViewCell
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: "friendListDynamicCell", for: indexPath) as? FriendListDynamicTableViewCell else { return UITableViewCell() }
 //                cell.backgroundColor = UIColor.clear
 //                cell.backgroundView = UIImageView.init(image: UIImage.init(named: "bookRed"))
-                if let friends = friendNameList {
+                if let friends = friendNameList, let friendsId = friendUIDList {
                     let friend = friends[indexPath.row]
                     cell.friendNameLabel.text = "\(friend)"
+                    let friendId = friendsId[indexPath.row]
+                    cell.friendId = friendId
                     
                     let maskLayer = CAShapeLayer()
                     let bounds = cell.bounds
                     maskLayer.path = UIBezierPath(roundedRect: CGRect(x: 0, y: 7, width: bounds.width-4, height: bounds.height-4), cornerRadius: 5).cgPath
                     cell.layer.mask = maskLayer
-                }
-                if let friendsId = friendUIDList {
-                    let friendId = friendsId[indexPath.row]
-                    cell.friendId = friendId
                 }
                 return cell
                 
@@ -128,14 +125,11 @@ class AccountTableViewController: UITableViewController {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: "IgnoreListCell", for: indexPath) as? IgnoreListTableViewCell else { return UITableViewCell() }
 //                cell.backgroundColor = UIColor.clear
 //                cell.backgroundView = UIImageView.init(image: UIImage.init(named: "bookRed"))
-                if let ingores = ignoreNameList {
+                if let ingores = ignoreNameList, let ignoresId = ignoreUIDList {
                     let ignore = ingores[indexPath.row]
                     cell.ignoreNameLabel.text = "\(ignore)"
-                    
-                    if let ignoresId = ignoreUIDList {
-                        let ignoreId = ignoresId[indexPath.row]
-                        cell.ignoreId = ignoreId
-                    }
+                    let ignoreId = ignoresId[indexPath.row]
+                    cell.ignoreId = ignoreId
                     
                     let maskLayer = CAShapeLayer()
                     let bounds = cell.bounds

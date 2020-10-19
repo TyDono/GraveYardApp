@@ -58,6 +58,37 @@ class GraveStoriesTableViewController: UITableViewController {
         getGraveStories()
     }
     
+    // MARK: - Table view data source
+
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        // #warning Incomplete implementation, return the number of sections
+        return 1
+    }
+
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // #warning Incomplete implementation, return the number of rows
+        return stories?.count ?? 0
+    }
+
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "storyCell", for: indexPath) as? StoryTableViewCell else { return UITableViewCell() }
+        cell.backgroundColor = UIColor.clear
+        cell.backgroundView = UIImageView.init(image: UIImage.init(named: "bookRed"))
+        
+        if let stories = stories {
+            let story = stories[indexPath.row]
+            cell.storyCellTitle.text = "\(story.storyTitle)"
+            cell.cellStoryText = "\(story.storyBodyText)"
+            let maskLayer = CAShapeLayer()
+            let bounds = cell.bounds
+            maskLayer.path = UIBezierPath(roundedRect: CGRect(x: 2, y: 7, width: bounds.width-4, height: bounds.height-4), cornerRadius: 5).cgPath
+            cell.layer.mask = maskLayer
+        }
+        return cell
+    }
+    
+    // MARK: - Functions
+    
     func chageTextColor() {
         tableView.separatorColor = UIColor(0.0, 128.0, 128.0, 1.0)
         navigationItem.leftBarButtonItem?.tintColor = UIColor(0.0, 128.0, 128.0, 1.0)
@@ -186,35 +217,6 @@ class GraveStoriesTableViewController: UITableViewController {
                 print("Added Data")
             }
         }
-    }
-
-    // MARK: - Table view data source
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return stories?.count ?? 0
-    }
-
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "storyCell", for: indexPath) as? StoryTableViewCell else { return UITableViewCell() }
-        cell.backgroundColor = UIColor.clear
-        cell.backgroundView = UIImageView.init(image: UIImage.init(named: "bookRed"))
-        
-        if let stories = stories {
-            let story = stories[indexPath.row]
-            cell.storyCellTitle.text = "\(story.storyTitle)"
-            cell.cellStoryText = "\(story.storyBodyText)"
-            let maskLayer = CAShapeLayer()
-            let bounds = cell.bounds
-            maskLayer.path = UIBezierPath(roundedRect: CGRect(x: 2, y: 7, width: bounds.width-4, height: bounds.height-4), cornerRadius: 5).cgPath
-            cell.layer.mask = maskLayer
-        }
-        return cell
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
