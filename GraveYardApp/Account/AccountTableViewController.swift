@@ -65,15 +65,10 @@ class AccountTableViewController: UITableViewController {
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        switch tableView {
-        case tableViewFriendList:
-            return 1
-        case tableViewFriendRequestList:
-            return 1
-        case tableViewIgnoreList:
-            return 1
-        default:
+        if tableView == tableViewMain {
             return super.numberOfSections(in: tableView)
+        } else {
+            return 1
         }
     }
     
@@ -180,7 +175,6 @@ class AccountTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         switch tableView {
         case tableViewFriendList:
             performSegue(withIdentifier: "segueToFriendsMemorials", sender: nil)
@@ -190,31 +184,29 @@ class AccountTableViewController: UITableViewController {
               alertStyle = UIAlertController.Style.alert
             }
             let friendRequestAlert = UIAlertController(title: "Add this user to your Friends List?", message: "This will allow them to see all the memorials you have made and your private Memorials.", preferredStyle: alertStyle)
-            let dismiss = UIAlertAction(title: "Decline", style: .default, handler: nil)
-            if let row = self.tableViewFriendRequestList.indexPathForSelectedRow?.row, let friendId = self.friendRequestsUIDList?[row], let friendRequestUserName = self.friendNameRequestsList?[row] {
-                self.friendRequestsUIDList = self.friendRequestsUIDList?.filter(){$0 != friendId}
-                self.friendNameRequestsList = self.friendNameRequestsList?.filter(){$0 != friendRequestUserName}
-                self.tableView.beginUpdates()
-                self.tableView.endUpdates()
-            }
-            friendRequestAlert.addAction(dismiss)
             let acceptFriendRequest = UIAlertAction(title: "Accept", style: .default, handler: { _ in
                 if let row = self.tableViewFriendRequestList.indexPathForSelectedRow?.row, let friendRequestId = self.friendRequestsUIDList?[row], let friendRequestUserName = self.friendNameRequestsList?[row] {
                     self.friendRequestsUIDList = self.friendRequestsUIDList?.filter(){$0 != friendRequestId}
                     self.friendNameRequestsList = self.friendNameRequestsList?.filter(){$0 != friendRequestUserName}
                     self.friendUIDList?.append(friendRequestId)
-                    self.tableView.beginUpdates()
-                    self.tableView.endUpdates()
+                    tableView.reloadData()
                 }
             })
             friendRequestAlert.addAction(acceptFriendRequest)
+            let dismiss = UIAlertAction(title: "Decline", style: .default, handler: { _ in
+                if let row = self.tableViewFriendRequestList.indexPathForSelectedRow?.row, let friendId = self.friendRequestsUIDList?[row], let friendRequestUserName = self.friendNameRequestsList?[row] {
+                    self.friendRequestsUIDList = self.friendRequestsUIDList?.filter(){$0 != friendId}
+                    self.friendNameRequestsList = self.friendNameRequestsList?.filter(){$0 != friendRequestUserName}
+                    tableView.reloadData()
+                }
+            })
+            friendRequestAlert.addAction(dismiss)
             let IgnoreUser = UIAlertAction(title: "Block", style: .default, handler: { _ in
                 if let row = self.tableViewFriendRequestList.indexPathForSelectedRow?.row, let friendRequestId = self.friendRequestsUIDList?[row], let friendRequestUserName = self.friendNameRequestsList?[row] {
                     self.friendRequestsUIDList = self.friendRequestsUIDList?.filter(){$0 != friendRequestId}
                     self.friendNameRequestsList = self.friendNameRequestsList?.filter(){$0 != friendRequestUserName}
                     self.ignoreUIDList?.append(friendRequestId)
-                    self.tableView.beginUpdates()
-                    self.tableView.endUpdates()
+                    tableView.reloadData()
                 }
             })
             friendRequestAlert.addAction(IgnoreUser)
@@ -231,15 +223,14 @@ class AccountTableViewController: UITableViewController {
                 if let row = self.tableViewIgnoreList.indexPathForSelectedRow?.row, let blockedUserId = self.ignoreUIDList?[row], let blockedUserName = self.ignoreNameList?[row] {
                     self.ignoreUIDList = self.ignoreUIDList?.filter(){$0 != blockedUserId }
                     self.ignoreNameList = self.ignoreNameList?.filter(){$0 != blockedUserName }
-                    self.tableView.beginUpdates()
-                    self.tableView.endUpdates()
+                    tableView.reloadData()
                 }
             })
             removeIgnoreAlert.addAction(goToLogIn)
             self.present(removeIgnoreAlert, animated: true, completion: nil)
         default:
             switch (indexPath.section, indexPath.row) {
-            case (1,1):
+            case (1,0):
                 switch friendListIsExpanded {
                 case false:
                     friendListExpanderLabel.text = "Close Friend List"
@@ -250,7 +241,7 @@ class AccountTableViewController: UITableViewController {
                 }
                 tableView.beginUpdates()
                 tableView.endUpdates()
-            case (2,1):
+            case (2,0):
                 switch friendRequestListIsExpanded {
                 case false:
                     friendRequestExpanderLabel.text = "Close Friend Requests"
@@ -261,7 +252,7 @@ class AccountTableViewController: UITableViewController {
                 }
                 tableView.beginUpdates()
                 tableView.endUpdates()
-            case (3,1):
+            case (3,0):
                 switch ignoreListIsExpanded {
                 case false:
                     ignoreListExpanderLabel.text = "Close Ignore List"
@@ -281,34 +272,16 @@ class AccountTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch (indexPath.section, indexPath.row) {
         case (0,0):
-            switch tableView {
-            case tableViewFriendList:
-                return 75
-            case tableViewFriendRequestList:
-                return 75
-            case tableViewIgnoreList:
-                return 75
-            default:
-                return 0
-            }
-        case (0,1):
-            switch tableView {
-            case tableViewFriendList:
-                return 75
-            case tableViewFriendRequestList:
-                return 75
-            case tableViewIgnoreList:
-                return 75
-            default:
-                return 95
-            }
-        case (0, 2):
             return 75
+        case (0,1):
+            if tableView == tableViewMain {
+                return 95
+            } else {
+                return 75
+            }
         case (1,0):
-            return 0
-        case (1,1):
             return 60
-        case (1,2):
+        case (1,1):
             switch friendListIsExpanded {
             case true:
                 return 345
@@ -316,10 +289,8 @@ class AccountTableViewController: UITableViewController {
                 return 0
             }
         case (2,0):
-            return 0
-        case (2,1):
             return 60
-        case (2,2):
+        case (2,1):
             switch friendRequestListIsExpanded {
             case true:
                 return 345
@@ -327,10 +298,8 @@ class AccountTableViewController: UITableViewController {
                 return 0
             }
         case (3,0):
-            return 0
-        case (3,1):
             return 60
-        case(3,2):
+        case (3,1):
             switch ignoreListIsExpanded {
             case true:
                 return 345
