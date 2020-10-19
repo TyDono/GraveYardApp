@@ -19,7 +19,7 @@ class AccountTableViewController: UITableViewController {
     @IBOutlet weak var friendListExpanderLabel: UILabel!
     @IBOutlet weak var friendRequestExpanderLabel: UILabel!
     @IBOutlet weak var ignoreListExpanderLabel: UILabel!
-    @IBOutlet weak var tableViewFriendsLists: UITableView!
+    @IBOutlet weak var tableViewFriendList: UITableView!
     @IBOutlet weak var tableViewFriendRequestList: UITableView!
     @IBOutlet weak var tableViewIgnoreList: UITableView!
     @IBOutlet weak var dataCountLabel: UILabel!
@@ -50,8 +50,8 @@ class AccountTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableViewFriendsLists.delegate = self
-        tableViewFriendsLists.dataSource = self
+        tableViewFriendList.delegate = self
+        tableViewFriendList.dataSource = self
         tableViewFriendRequestList.delegate = self
         tableViewFriendRequestList.dataSource = self
         tableViewIgnoreList.delegate = self
@@ -65,7 +65,16 @@ class AccountTableViewController: UITableViewController {
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return super.numberOfSections(in: tableView)
+        switch tableView {
+        case tableViewFriendList:
+            return 1
+        case tableViewFriendRequestList:
+            return 1
+        case tableViewIgnoreList:
+            return 1
+        default:
+            return super.numberOfSections(in: tableView)
+        }
     }
     
     //    override func numberOfSections(in tableView: UITableView) -> Int {
@@ -74,7 +83,7 @@ class AccountTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch tableView {
-        case tableViewFriendsLists:
+        case tableViewFriendList:
             return self.friendNameList?.count ?? 0
         case tableViewFriendRequestList:
             return self.friendNameRequestsList?.count ?? 0
@@ -87,7 +96,7 @@ class AccountTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch tableView {
-        case tableViewFriendsLists:
+        case tableViewFriendList:
             switch indexPath.section {
             case 0:
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: "friendListDynamicCell", for: indexPath) as? FriendListDynamicTableViewCell else { return UITableViewCell() }
@@ -164,7 +173,7 @@ class AccountTableViewController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "segueToFriendsMemorials", let memorialsTVC = segue.destination as? MemorialsTableViewController {
-            if let row = self.tableViewFriendsLists.indexPathForSelectedRow?.row, let friendMemorial = friendUIDList?[row] {
+            if let row = self.tableViewFriendList.indexPathForSelectedRow?.row, let friendMemorial = friendUIDList?[row] {
                 memorialsTVC.currentAuthId = friendMemorial
             }
         }
@@ -173,7 +182,7 @@ class AccountTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         switch tableView {
-        case tableViewFriendsLists:
+        case tableViewFriendList:
             performSegue(withIdentifier: "segueToFriendsMemorials", sender: nil)
         case tableViewFriendRequestList:
             var alertStyle = UIAlertController.Style.alert
@@ -273,7 +282,7 @@ class AccountTableViewController: UITableViewController {
         switch (indexPath.section, indexPath.row) {
         case (0,0):
             switch tableView {
-            case tableViewFriendsLists:
+            case tableViewFriendList:
                 return 75
             case tableViewFriendRequestList:
                 return 75
@@ -284,7 +293,7 @@ class AccountTableViewController: UITableViewController {
             }
         case (0,1):
             switch tableView {
-            case tableViewFriendsLists:
+            case tableViewFriendList:
                 return 75
             case tableViewFriendRequestList:
                 return 75
@@ -409,7 +418,7 @@ class AccountTableViewController: UITableViewController {
                             print(userName)
                             self.friendNameList?.append(userName)
                             print(self.friendNameList)
-                            self.tableViewFriendsLists.reloadData()
+                            self.tableViewFriendList.reloadData()
                         }
                     }
                 }
@@ -532,7 +541,7 @@ class AccountTableViewController: UITableViewController {
         let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
         backgroundImage.image = UIImage(named: "bookshelf")
         backgroundImage.contentMode = UIView.ContentMode.scaleToFill
-        self.tableViewFriendsLists.backgroundView = backgroundImage
+        self.tableViewFriendList.backgroundView = backgroundImage
         self.tableViewFriendRequestList.backgroundView = backgroundImage
         self.tableViewIgnoreList.backgroundView = backgroundImage
     }

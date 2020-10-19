@@ -2439,8 +2439,8 @@
                         <outlet property="friendRequestExpanderLabel" destination="cDh-tU-WiM" id="2hx-wH-kWq"/>
                         <outlet property="ignoreListExpanderLabel" destination="UnI-kZ-arP" id="hC9-qX-jxq"/>
                         <outlet property="premiumStatusLabel" destination="Sxr-Ps-t7S" id="SsG-qA-OoI"/>
+                        <outlet property="tableViewFriendList" destination="3aI-In-pTI" id="YVq-GS-5Mt"/>
                         <outlet property="tableViewFriendRequestList" destination="NL9-0c-2F0" id="h5Q-xi-vOQ"/>
-                        <outlet property="tableViewFriendsLists" destination="3aI-In-pTI" id="YVq-GS-5Mt"/>
                         <outlet property="tableViewIgnoreList" destination="HiE-9w-8B4" id="Kmd-MO-OTJ"/>
                         <outlet property="tableViewMain" destination="gVa-ac-Xa5" id="hUI-7e-Ah2"/>
                         <outlet property="userNameTextField" destination="ETG-8c-iw0" id="5ol-lo-9GG"/>
