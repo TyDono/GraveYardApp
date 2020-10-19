@@ -15,6 +15,7 @@ class AccountTableViewController: UITableViewController {
     // MARK: - Outlets
     
     @IBOutlet var tableViewMain: UITableView!
+
     @IBOutlet weak var friendListExpanderLabel: UILabel!
     @IBOutlet weak var friendRequestExpanderLabel: UILabel!
     @IBOutlet weak var ignoreListExpanderLabel: UILabel!
@@ -84,8 +85,6 @@ class AccountTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-
             switch tableView {
             case tableViewFriendsLists:
 //                let cell: FriendListDynamicTableViewCell = self.tableViewFriendsLists.dequeueReusableCell(withIdentifier: "friendListDynamicCell", for: indexPath) as! FriendListDynamicTableViewCell
@@ -111,14 +110,11 @@ class AccountTableViewController: UITableViewController {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: "FriendRequestCell", for: indexPath) as? FriendRequestTableViewCell else { return UITableViewCell() }
 //                cell.backgroundColor = UIColor.clear
 //                cell.backgroundView = UIImageView.init(image: UIImage.init(named: "bookRed"))
-                if let friendRequests = friendNameRequestsList {
-                    let friendRequest = friendRequests[indexPath.row]
-                    cell.friendRequestNameLabel.text = "\(friendRequest)"
-                    
-                    if let friendsRequestsId = friendRequestsUIDList {
-                        let friendRequestId = friendsRequestsId[indexPath.row]
-                        cell.friendRequestId = friendRequestId
-                    }
+                if let friendRequests = friendNameRequestsList, let friendsRequestsId = friendRequestsUIDList {
+                    let friendRequestName = friendRequests[indexPath.row]
+                    cell.friendRequestNameLabel.text = "\(friendRequestName)"
+                    let friendRequestId = friendsRequestsId[indexPath.row]
+                    cell.friendRequestId = friendRequestId
                     
                     let maskLayer = CAShapeLayer()
                     let bounds = cell.bounds
@@ -278,9 +274,9 @@ class AccountTableViewController: UITableViewController {
                 return 0
             }
         case (0,1):
-            return 0 //75 un comment when premium is released
+            return 75
         case (0, 2):
-            return 93
+            return 75
         case (1,0):
             return 0
         case (1,1):
@@ -315,7 +311,7 @@ class AccountTableViewController: UITableViewController {
                 return 0
             }
         default:
-            return 100
+            return 75
         }
     }
 
@@ -395,7 +391,6 @@ class AccountTableViewController: UITableViewController {
                             print(userName)
                             self.friendNameList?.append(userName)
                             print(self.friendNameList)
-                            self.tableView.reloadData()
                             self.tableViewFriendsLists.reloadData()
                         }
                     }
@@ -415,7 +410,6 @@ class AccountTableViewController: UITableViewController {
                     for document in (snapshot?.documents)! {
                         if let userName = document.data()["userName"] as? String {
                             self.friendNameRequestsList?.append(userName)
-                            self.tableView.reloadData()
                             self.tableViewFriendRequestList.reloadData()
                         }
                     }
@@ -435,7 +429,6 @@ class AccountTableViewController: UITableViewController {
                     for document in (snapshot?.documents)! {
                         if let userName = document.data()["userName"] as? String {
                             self.ignoreNameList?.append(userName)
-                            self.tableView.reloadData()
                             self.tableViewIgnoreList.reloadData()
                         }
                     }

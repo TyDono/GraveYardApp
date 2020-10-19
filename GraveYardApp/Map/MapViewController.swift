@@ -64,6 +64,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         addMemorialView.layer.cornerRadius = 10
         playHowToMemorialVideoButton.layer.cornerRadius = 10
         mapView.delegate = self
+        friendRequestNotificationButton.layer.cornerRadius = 22
         friendRequestNotificationButton.isHidden = true
         getUserData()
 //        self.navigationItem.rightBarButtonItem?.isEnabled = false
@@ -436,6 +437,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "segueToGrave", let graveTVC = segue.destination as? GraveTableViewController {
             graveTVC.currentGraveId = MapViewController.shared.currentGraveId
+        } else if segue.identifier == "segueToFriendRequest", let accountTVC = segue.destination as? AccountTableViewController {
+            accountTVC.friendListIsExpanded = true
         }
     }
     
@@ -468,7 +471,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                        let memorialCount = document.data()["memorialCount"] as? Int {
                         MyFirebase.memorialCount = memorialCount
                         self.friendRequests = friendRequests
-                        if friendRequests.count < 1 {
+                        print(friendRequests.count)
+                        if friendRequests.count > 0 {
                             self.friendRequestNotificationButton.isHidden = false
                         }
                         switch MyFirebase.memorialCount {
@@ -731,7 +735,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     @IBAction func unwindToMap(_ sender: UIStoryboardSegue) {}
     
     @IBAction func friendRequestNotificationButtonWasTapped(_ sender: UIButton) {
-        performSegue(withIdentifier: "segueToAccount", sender: nil)
+        performSegue(withIdentifier: "segueToFriendRequest", sender: nil)
     }
     
 }

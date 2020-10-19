@@ -240,14 +240,17 @@
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="85" id="RSU-xd-heE">
                                         <rect key="frame" x="0.0" y="1195.0000001192093" width="414" height="85"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="RSU-xd-heE" id="WZA-Du-iDe">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="RSU-xd-heE" id="WZA-Du-iDe">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="85"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="awC-Og-EMc">
-                                                    <rect key="frame" x="280" y="11" width="114" height="65"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="awC-Og-EMc">
+                                                    <rect key="frame" x="280" y="8" width="114" height="65"/>
                                                     <color key="backgroundColor" systemColor="linkColor"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="114" id="OFj-9b-AV8"/>
+                                                        <constraint firstAttribute="height" constant="65" id="aYo-ze-AVg"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <state key="normal" title="Add Friend">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -257,6 +260,11 @@
                                                     </connections>
                                                 </button>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="awC-Og-EMc" secondAttribute="bottom" constant="8" id="9bT-Ab-KYG"/>
+                                                <constraint firstItem="awC-Og-EMc" firstAttribute="top" secondItem="WZA-Du-iDe" secondAttribute="top" constant="8" id="aqv-Xl-X1x"/>
+                                                <constraint firstAttribute="trailing" secondItem="awC-Og-EMc" secondAttribute="trailing" constant="20" symbolic="YES" id="rgQ-5j-TLc"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -1857,12 +1865,16 @@
                             </searchBar>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bsd-aO-ZVt">
                                 <rect key="frame" x="348" y="801" width="46" height="46"/>
+                                <color key="backgroundColor" systemColor="linkColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="46" id="58m-2t-5qw"/>
                                     <constraint firstAttribute="width" constant="46" id="TH2-9Q-sfP"/>
                                 </constraints>
-                                <state key="normal" title="FR"/>
+                                <state key="normal" title="FR">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <connections>
+                                    <action selector="friendRequestButton:" destination="wtE-vq-OyN" eventType="touchUpInside" id="Dss-fb-d3Z"/>
                                     <action selector="friendRequestNotificationButtonWasTapped:" destination="9X6-7Z-pCz" eventType="touchUpInside" id="pLZ-Gg-PfV"/>
                                 </connections>
                             </button>
@@ -1899,11 +1911,13 @@
                                     <constraint firstItem="TgG-vd-iv9" firstAttribute="leading" secondItem="Zx1-5A-lzB" secondAttribute="leading" id="Kpu-o4-w0A"/>
                                     <constraint firstAttribute="width" constant="337" id="KyJ-gO-JnA"/>
                                     <constraint firstAttribute="trailing" secondItem="JWA-Ic-Hmq" secondAttribute="trailing" id="MNm-U6-E2T"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="337" id="RmJ-hs-c7C"/>
                                     <constraint firstItem="JWA-Ic-Hmq" firstAttribute="leading" secondItem="Zx1-5A-lzB" secondAttribute="leading" id="S0X-me-cCx"/>
                                     <constraint firstAttribute="bottom" secondItem="JWA-Ic-Hmq" secondAttribute="bottom" id="aYF-iN-axQ"/>
                                     <constraint firstAttribute="trailing" secondItem="SC6-Vp-Sq2" secondAttribute="trailing" id="bqc-lW-fWe"/>
                                     <constraint firstAttribute="bottom" secondItem="TgG-vd-iv9" secondAttribute="bottom" id="gRU-8B-NTb"/>
                                     <constraint firstItem="SC6-Vp-Sq2" firstAttribute="leading" secondItem="TgG-vd-iv9" secondAttribute="trailing" id="vM9-0r-3a9"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="38.5" id="xuG-5x-4Yp"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -1954,6 +1968,7 @@
                         <segue destination="wtE-vq-OyN" kind="unwind" identifier="unwindToSignIn" unwindAction="unwindToSignIn:" id="xDe-gH-4KU"/>
                         <segue destination="SIl-1N-tic" kind="show" identifier="viewOwnMemorialsSegue" id="d6O-X3-50S"/>
                         <segue destination="Nog-QY-RX1" kind="show" identifier="segueToAccount" id="ko7-kn-Yf3"/>
+                        <segue destination="Nog-QY-RX1" kind="show" identifier="segueToFriendRequest" id="6b9-RO-6yt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9D0-qq-1KH" sceneMemberID="firstResponder"/>
@@ -2513,6 +2528,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="6b9-RO-6yt"/>
         <segue reference="z4g-pH-uIZ"/>
         <segue reference="7DO-rd-4qB"/>
         <segue reference="d6O-X3-50S"/>
