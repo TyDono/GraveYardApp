@@ -56,7 +56,9 @@ class GraveTableViewController: UITableViewController {
     var videoURLString: String?
     var videoURL: URL?
     var currentGraveName: String = ""
-    var currentMemorialFriendList: Array<String>?
+    var memorialFriendIdList: Array<String>?
+    var memorialFriendIdRequests: Array<String>?
+    var memorialFriendNameRequests: Array<String>?
     var friendStatus: String?
     var creatorUserName: String?
     let storage = Storage.storage()
@@ -233,7 +235,7 @@ class GraveTableViewController: UITableViewController {
                         let videoURL = document.data()["videoURL"] as? String,
                         let storyCount = document.data()["storyCount"] as? Int,
                         let publicIsTrue = document.data()["publicIsTrue"] as? Bool {
-                        if creatorId == MapViewController.shared.currentAuthID && publicIsTrue == false || ((self.currentMemorialFriendList?.contains(self.currentAuthID ?? "" )) != nil) && publicIsTrue == false || publicIsTrue == true {
+                        if creatorId == MapViewController.shared.currentAuthID && publicIsTrue == false || ((self.memorialFriendIdList?.contains(self.currentAuthID ?? "" )) != nil) && publicIsTrue == false || publicIsTrue == true {
                             self.currentGraveId = graveId
                             self.imageString = profileImageId
                             let nameHeadstone = "\(name)"
@@ -377,12 +379,17 @@ class GraveTableViewController: UITableViewController {
             } else {
                 for document in (snapshot?.documents)! {
                     if let userName = document.data()["userName"] as? String,
-                       let currentMemorialFriendList = document.data()["friendList"] as? Array<String>,
-                       let currentMemorialFriendRequests = document.data()["friendRequests"] as? Array<String>,
-                       let currentMemroialIgnoreList = document.data()["ignoredList"] as? Array<String> {
-                        self.currentMemorialFriendList = currentMemorialFriendList
-                        print(self.currentMemorialFriendList)
-                        if currentMemorialFriendList.contains(safeCurrentMemorialOwnerId) || currentMemorialFriendRequests.contains(safeCurrentMemorialOwnerId) || currentMemroialIgnoreList.contains(safeCurrentMemorialOwnerId) || self.currentAuthID == userName {
+                       let memorialFriendIdList = document.data()["friendIdList"] as? Array<String>,
+//                       let memorialFriendNameList = document.data()["friendNameList"] as? Array<String>,
+                       let memorialFriendIdRequests = document.data()["friendIdRequests"] as? Array<String>,
+                       let memorialFriendNameRequests = document.data()["friendNameRequests"] as? Array<String>,
+                       let memroialIgnoredIdList = document.data()["ignoredIdList"] as? Array<String> {
+//                       let memorialIgnoredNameList = document.data()["ignoredNameList"] as? Array<String> {
+                        self.memorialFriendIdList = memorialFriendIdList
+                        self.memorialFriendIdRequests = memorialFriendIdRequests
+                        self.memorialFriendNameRequests = memorialFriendNameRequests
+                        print(self.memorialFriendIdList)
+                        if memorialFriendIdList.contains(safeCurrentMemorialOwnerId) || memorialFriendIdRequests.contains(safeCurrentMemorialOwnerId) || memroialIgnoredIdList.contains(safeCurrentMemorialOwnerId) || self.currentAuthID == userName {
                             self.addFriendButton.isHidden = true
                         }
                         self.creatorUserName = userName
@@ -441,16 +448,20 @@ class GraveTableViewController: UITableViewController {
         }
         guard let safeCurrentAuthID = self.currentAuthID else { return }
         guard let creatorId = self.creatorId else { return }
-        self.currentMemorialFriendList?.append(safeCurrentAuthID)
-        guard let safeCurrentMemorialFriendRequestList = self.currentMemorialFriendList else { return }
-        print(safeCurrentMemorialFriendRequestList)
+        self.memorialFriendIdRequests?.append(safeCurrentAuthID)
+        self.memorialFriendNameRequests?.append(MyFirebase.currentUserName ?? "No Name")
+        
+        guard let safeCurrentMemorialFriendNameRequestList = self.memorialFriendNameRequests else { return }
+        guard let safeCurrentMemorialFriendIdRequestList = self.memorialFriendIdRequests else { return }
+        print(safeCurrentMemorialFriendIdRequestList)
 //        print(self.currentMemorialFriendList)
         let addFriendAlert = UIAlertController(title: "Add Friend", message: "Would you like to send a friend request? This will allow you both to view eachothers private Memorials.", preferredStyle: alertStyle)
         let dismiss = UIAlertAction(title: "Cancel", style: .default, handler: nil)
         addFriendAlert.addAction(dismiss)
         let sendRequest = UIAlertAction(title: "Send Request", style: .default, handler: { _ in
             self.db.collection("userProfile").document(creatorId).updateData([
-                "friendRequests": safeCurrentMemorialFriendRequestList
+                "friendIdRequests": safeCurrentMemorialFriendIdRequestList,
+                "friendNameRequests": safeCurrentMemorialFriendNameRequestList
             ]) { err in
                 if let err = err {
                     let alertFailure = UIAlertController(title: "Error", message: "Sorry, there was an error while trying to send your friend request. Please try again.", preferredStyle: alertStyle)
