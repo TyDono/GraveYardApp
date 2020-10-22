@@ -82,6 +82,7 @@ class AccountTableViewController: UITableViewController {
         case tableViewFriendList:
             return self.friendNameList?.count ?? 0
         case tableViewFriendRequestList:
+            print(friendNameRequestList?.count)
             return self.friendNameRequestList?.count ?? 0
         case tableViewIgnoreList:
             return self.ignoreNameList?.count ?? 0
@@ -185,6 +186,7 @@ class AccountTableViewController: UITableViewController {
                     self.friendRequestsIdList = self.friendRequestsIdList?.filter() { $0 != friendRequestId }
                     self.friendNameRequestList = self.friendNameRequestList?.filter() { $0 != friendRequestUserName }
                     self.friendIdList?.append(friendRequestId)
+                    self.friendNameList?.append(friendRequestUserName)
                     tableView.reloadData()
                     self.tableViewFriendList.reloadData()
                 }
@@ -203,6 +205,7 @@ class AccountTableViewController: UITableViewController {
                     self.friendRequestsIdList = self.friendRequestsIdList?.filter() { $0 != friendRequestId }
                     self.friendNameRequestList = self.friendNameRequestList?.filter() { $0 != friendRequestUserName }
                     self.ignoreIdList?.append(friendRequestId)
+                    self.ignoreNameList?.append(friendRequestUserName)
                     tableView.reloadData()
                     self.tableViewIgnoreList.reloadData()
                 }
@@ -363,6 +366,9 @@ class AccountTableViewController: UITableViewController {
 //                        self.getFriendUserName()
 //                        self.getFriendRequestUserName()
 //                        self.getIgnoreUserName()
+                        self.tableViewFriendList.reloadData()
+                        self.tableViewFriendRequestList.reloadData()
+                        self.tableViewIgnoreList.reloadData()
                         self.tableView.reloadData()
                         
 //                        if self.dataCount != 0.0 {
