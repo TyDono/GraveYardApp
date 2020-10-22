@@ -86,26 +86,26 @@ class MyFirebase {
         let userName: String = ""
         let friendIdList: Array<String> = [""]
         let friendNameList: Array<String> = [""]
-        let friendIdRequests: Array<String> = [""]
-        let friendNameRequest: Array<String> = [""]
+        let friendIdRequestList: Array<String> = [""]
+        let friendNameRequestList: Array<String> = [""]
         let ignoredIdList: Array<String> = [""]
         let ignoredNameList: Array<String> = [""]
         let memorialCount: Int = 0
         
-        let user = UserProfile(currentUserAuthId: currentUserId,
+        let user = UserProfile(userAuthId: currentUserId,
                                premiumStatus: premiumStatus,
                                dataCount: dataCount,
                                userName: userName,
                                friendIdList: friendIdList,
                                friendNameList: friendNameList,
-                               friendIdRequests: friendIdRequests,
-                               friendNameRequest: friendNameRequest,
+                               friendIdRequestList: friendIdRequestList,
+                               friendNameRequestList: friendNameRequestList,
                                ignoredIdList: ignoredIdList,
                                ignoredNameList: ignoredNameList,
                                memorialCount: memorialCount)
         
         let userRef = self.db.collection("userProfile")
-        userRef.document(user.currentUserAuthId).setData(user.dictionary) { err in
+        userRef.document(user.userAuthId).setData(user.dictionary) { err in
             if let err = err {
                 print(err)
             } else {
@@ -116,7 +116,7 @@ class MyFirebase {
     }
     
     func getCurrentUserData() {
-        let graveRef = self.db.collection("userProfile").whereField("currentUserAuthId", isEqualTo: self.userId) //change this to the grave id that was tapped, NOT THE USER ID. THE USER ID IS FOR DIF STUFF. use String(arc4random_uniform(99999999)) to generate the grave Id when created
+        let graveRef = self.db.collection("userProfile").whereField("userAuthId", isEqualTo: self.userId) //change this to the grave id that was tapped, NOT THE USER ID. THE USER ID IS FOR DIF STUFF. use String(arc4random_uniform(99999999)) to generate the grave Id when created
         graveRef.getDocuments { (snapshot, error) in
             if error != nil {
                 print(error as Any)

@@ -109,8 +109,8 @@ class GraveStoriesTableViewController: UITableViewController {
     
     func getGraveStories() {
         var stories = [Story]()
-        guard let currentGraveCreatorId: String = creatorId else { return }
-        guard let currentGraveId: String = self.currentGraveId else { return }
+        guard let currentGraveCreatorId: String = creatorId,
+        let currentGraveId: String = self.currentGraveId else { return }
         print(currentGraveCreatorId)
         db.collection("stories").whereField("graveId", isEqualTo: currentGraveId).getDocuments { (snapshot, error) in
                 if error != nil {
@@ -135,9 +135,8 @@ class GraveStoriesTableViewController: UITableViewController {
     
     func createNewStory() {
         print(currentGraveId)
-        guard let currentGrave = self.currentGraveId else { return }
-        print(GraveTableViewController.currentGraveStoryCount)
-        guard GraveTableViewController.currentGraveStoryCount < 10 else {
+        guard let currentGrave = self.currentGraveId,
+        GraveTableViewController.currentGraveStoryCount < 10 else {
             var alertStyle = UIAlertController.Style.alert
             if (UIDevice.current.userInterfaceIdiom == .pad) {
                 alertStyle = UIAlertController.Style.alert

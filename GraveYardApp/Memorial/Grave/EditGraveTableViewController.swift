@@ -109,7 +109,7 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
     
     func getUserMemorialCount() {
         guard let safeCurrentAuthID = self.currentAuthID else { return }
-        let userRef = self.db.collection("userProfile").whereField("currentUserAuthId", isEqualTo: safeCurrentAuthID)
+        let userRef = self.db.collection("userProfile").whereField("userAuthId", isEqualTo: safeCurrentAuthID)
         userRef.getDocuments { (snapshot, error) in
             if error != nil {
                 print(error as Any)
@@ -431,8 +431,8 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
             let storageRef = storage.reference()
             let graveProfileImage = storageRef.child("graveProfileImages/\(imageStringId)")
             graveProfileImage.getData(maxSize: (5000000), completion:  { (data, err) in
-                guard let data = data else { return }
-                guard let image = UIImage(data: data) else { return }
+                guard let data = data,
+                let image = UIImage(data: data) else { return }
                 self.graveMainImage.image = image
                 guard let imageDataBytes = image.jpegData(compressionQuality: 0.05) else { return }
                 self.currentImageDataCount = Double(imageDataBytes.count)

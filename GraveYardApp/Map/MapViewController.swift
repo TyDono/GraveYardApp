@@ -106,7 +106,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     func getUserMemorialCount() {
 
         guard let safeCurrentAuthID = self.currentAuthID else { return }
-        let userRef = self.db.collection("userProfile").whereField("currentUserAuthId", isEqualTo: safeCurrentAuthID)
+        let userRef = self.db.collection("userProfile").whereField("userAuthId", isEqualTo: safeCurrentAuthID)
         userRef.getDocuments { (snapshot, error) in
             if error != nil {
                 print(error as Any)
@@ -460,7 +460,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             self.yourMemorialsButton.setTitle("How to Create Memorials", for: .normal)
         }
         guard let currentUserAuthID: String = self.currentAuthID else { return }
-        let userRef = self.db.collection("userProfile").whereField("currentUserAuthId", isEqualTo: currentUserAuthID)
+        let userRef = self.db.collection("userProfile").whereField("userAuthId", isEqualTo: currentUserAuthID)
         userRef.getDocuments { (snapshot, error) in
             if error != nil {
                 print(error as Any)

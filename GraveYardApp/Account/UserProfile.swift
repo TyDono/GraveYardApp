@@ -19,28 +19,28 @@ protocol DocumentSerializableUser {
 }
 
 struct UserProfile {
-    var currentUserAuthId: String
+    var userAuthId: String
     var premiumStatus: Int
     var dataCount: Double
     var userName: String
     var friendIdList: Array<String>
     var friendNameList: Array<String>
-    var friendIdRequests: Array<String>
-    var friendNameRequest: Array<String>
+    var friendIdRequestList: Array<String>
+    var friendNameRequestList: Array<String>
     var ignoredIdList: Array<String>
     var ignoredNameList: Array<String>
     var memorialCount: Int
     
     var dictionary: [String: Any] {
         return [
-            "currentUserAuthId": currentUserAuthId,
+            "userAuthId": userAuthId,
             "premiumStatus": premiumStatus,
             "dataCount": dataCount,
-            "userIdName": userName,
-            "friendList": friendIdList,
+            "userName": userName,
+            "friendIdList": friendIdList,
             "friendNameList": friendNameList,
-            "friendIdRequests": friendIdRequests,
-            "friendNameRequest": friendNameRequest,
+            "friendIdRequestList": friendIdRequestList,
+            "friendNameRequestList": friendNameRequestList,
             "ignoredIdList": ignoredIdList,
             "ignoredNameList": ignoredNameList,
             "memorialCount": memorialCount
@@ -50,17 +50,17 @@ struct UserProfile {
 
 extension UserProfile: DocumentSerializableUser {
     init?(dictionary: [String: Any]) {
-        guard let currentUserAuthId = dictionary["currentUserAuthId"] as? String,
+        guard let userAuthId = dictionary["userAuthId"] as? String,
             let premiumStatus = dictionary["premiumStatus"] as? Int,
             let dataCount = dictionary["dataCount"] as? Double,
             let userName = dictionary["userName"] as? String,
             let friendIdList = dictionary["friendIdList"] as? Array<String>,
             let friendNameList = dictionary["friendNameList"] as? Array<String>,
-            let friendIdRequests = dictionary["friendIdRequests"] as? Array<String>,
-            let friendNameRequest = dictionary["friendNameRequest"] as? Array<String>,
+            let friendIdRequestList = dictionary["friendIdRequestList"] as? Array<String>,
+            let friendNameRequestList = dictionary["friendNameRequestList"] as? Array<String>,
             let ignoredIdList = dictionary["ignoredIdList"] as? Array<String>,
             let ignoredNameList = dictionary["ignoredNameList"] as? Array<String>,
             let memorialCount = dictionary["memorialCount"] as? Int else { return nil }
-        self.init(currentUserAuthId: currentUserAuthId, premiumStatus: premiumStatus, dataCount: dataCount, userName: userName, friendIdList: friendIdList, friendNameList: friendNameList, friendIdRequests: friendIdRequests, friendNameRequest: friendNameRequest, ignoredIdList: ignoredIdList, ignoredNameList: ignoredNameList, memorialCount: memorialCount)
+        self.init(userAuthId: userAuthId, premiumStatus: premiumStatus, dataCount: dataCount, userName: userName, friendIdList: friendIdList, friendNameList: friendNameList, friendIdRequestList: friendIdRequestList, friendNameRequestList: friendNameRequestList, ignoredIdList: ignoredIdList, ignoredNameList: ignoredNameList, memorialCount: memorialCount)
     }
 }

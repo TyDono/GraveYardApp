@@ -32,7 +32,7 @@ class AccountTableViewController: UITableViewController {
     var friendNameList: [String]? = []
     
     var friendRequestsIdList: [String]? = []
-    var friendNameRequests: [String]? = []
+    var friendNameRequestList: [String]? = []
     
     var ignoreIdList: [String]? = []
     var ignoreNameList: [String]? = []
@@ -82,7 +82,7 @@ class AccountTableViewController: UITableViewController {
         case tableViewFriendList:
             return self.friendNameList?.count ?? 0
         case tableViewFriendRequestList:
-            return self.friendNameRequests?.count ?? 0
+            return self.friendNameRequestList?.count ?? 0
         case tableViewIgnoreList:
             return self.ignoreNameList?.count ?? 0
         default:
@@ -123,7 +123,7 @@ class AccountTableViewController: UITableViewController {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: "FriendRequestCell", for: indexPath) as? FriendRequestTableViewCell else { return UITableViewCell() }
                 //                cell.backgroundColor = UIColor.clear
                 //                cell.backgroundView = UIImageView.init(image: UIImage.init(named: "bookRed"))
-                if let friendRequests = friendNameRequests, let friendsRequestsId = friendRequestsIdList {
+                if let friendRequests = friendNameRequestList, let friendsRequestsId = friendRequestsIdList {
                     let friendRequestName = friendRequests[indexPath.row]
                     cell.friendRequestNameLabel.text = "\(friendRequestName)"
                     let friendRequestId = friendsRequestsId[indexPath.row]
@@ -181,9 +181,9 @@ class AccountTableViewController: UITableViewController {
             }
             let friendRequestAlert = UIAlertController(title: "Add this user to your Friends List?", message: "This will allow them to see all the memorials you have made and your private Memorials.", preferredStyle: alertStyle)
             let acceptFriendRequest = UIAlertAction(title: "Accept", style: .default, handler: { _ in
-                if let row = self.tableViewFriendRequestList.indexPathForSelectedRow?.row, let friendRequestId = self.friendRequestsIdList?[row], let friendRequestUserName = self.friendNameRequests?[row] {
+                if let row = self.tableViewFriendRequestList.indexPathForSelectedRow?.row, let friendRequestId = self.friendRequestsIdList?[row], let friendRequestUserName = self.friendNameRequestList?[row] {
                     self.friendRequestsIdList = self.friendRequestsIdList?.filter() { $0 != friendRequestId }
-                    self.friendNameRequests = self.friendNameRequests?.filter() { $0 != friendRequestUserName }
+                    self.friendNameRequestList = self.friendNameRequestList?.filter() { $0 != friendRequestUserName }
                     self.friendIdList?.append(friendRequestId)
                     tableView.reloadData()
                     self.tableViewFriendList.reloadData()
@@ -191,17 +191,17 @@ class AccountTableViewController: UITableViewController {
             })
             friendRequestAlert.addAction(acceptFriendRequest)
             let dismiss = UIAlertAction(title: "Decline", style: .default, handler: { _ in
-                if let row = self.tableViewFriendRequestList.indexPathForSelectedRow?.row, let friendId = self.friendRequestsIdList?[row], let friendRequestUserName = self.friendNameRequests?[row] {
+                if let row = self.tableViewFriendRequestList.indexPathForSelectedRow?.row, let friendId = self.friendRequestsIdList?[row], let friendRequestUserName = self.friendNameRequestList?[row] {
                     self.friendRequestsIdList = self.friendRequestsIdList?.filter() { $0 != friendId }
-                    self.friendNameRequests = self.friendNameRequests?.filter() { $0 != friendRequestUserName }
+                    self.friendNameRequestList = self.friendNameRequestList?.filter() { $0 != friendRequestUserName }
                     tableView.reloadData()
                 }
             })
             friendRequestAlert.addAction(dismiss)
             let IgnoreUser = UIAlertAction(title: "Block", style: .default, handler: { _ in
-                if let row = self.tableViewFriendRequestList.indexPathForSelectedRow?.row, let friendRequestId = self.friendRequestsIdList?[row], let friendRequestUserName = self.friendNameRequests?[row] {
+                if let row = self.tableViewFriendRequestList.indexPathForSelectedRow?.row, let friendRequestId = self.friendRequestsIdList?[row], let friendRequestUserName = self.friendNameRequestList?[row] {
                     self.friendRequestsIdList = self.friendRequestsIdList?.filter() { $0 != friendRequestId }
-                    self.friendNameRequests = self.friendNameRequests?.filter() { $0 != friendRequestUserName }
+                    self.friendNameRequestList = self.friendNameRequestList?.filter() { $0 != friendRequestUserName }
                     self.ignoreIdList?.append(friendRequestId)
                     tableView.reloadData()
                     self.tableViewIgnoreList.reloadData()
@@ -326,7 +326,7 @@ class AccountTableViewController: UITableViewController {
     
     func getUserData() {
         guard let currentUserAuthID: String = self.currentAuthID else { return }
-        let userRef = self.db.collection("userProfile").whereField("currentUserAuthId", isEqualTo: currentUserAuthID)
+        let userRef = self.db.collection("userProfile").whereField("userAuthId", isEqualTo: currentUserAuthID)
         userRef.getDocuments { (snapshot, error) in
             if error != nil {
                 print(error as Any)
@@ -334,11 +334,11 @@ class AccountTableViewController: UITableViewController {
                 for document in (snapshot?.documents)! {
                     if let premiumStatus = document.data()["premiumStatus"] as? Int,
                        let userName = document.data()["userName"] as? String,
-                       let friendIdList = document.data()["friendList"] as? Array<String>,
+                       let friendIdList = document.data()["friendIdList"] as? Array<String>,
                        let friendNameList = document.data()["friendNameList"] as? Array<String>,
-                       let friendIdRequests = document.data()["friendRequests"] as? Array<String>,
-                       let friendNameRequests = document.data()["friendNameRequests"] as? Array<String>,
-                       let ignoredIdList = document.data()["ignoredList"] as? Array<String>,
+                       let friendIdRequests = document.data()["friendIdRequestList"] as? Array<String>,
+                       let friendNameRequests = document.data()["friendNameRequestList"] as? Array<String>,
+                       let ignoredIdList = document.data()["ignoredIdList"] as? Array<String>,
                        let ignoredNameList = document.data()["ignoredNameList"] as? Array<String> {
                         //self.dataCount = Double(dataCount)
                         switch premiumStatus {
@@ -357,7 +357,7 @@ class AccountTableViewController: UITableViewController {
                         self.friendIdList = friendIdList
                         self.friendNameList = friendNameList
                         self.friendRequestsIdList = friendIdRequests
-                        self.friendNameRequests = friendNameRequests
+                        self.friendNameRequestList = friendNameRequests
                         self.ignoreIdList = ignoredIdList
                         self.ignoreNameList = ignoredNameList
 //                        self.getFriendUserName()
@@ -382,7 +382,7 @@ class AccountTableViewController: UITableViewController {
         print(self.friendIdList)
         guard let safeFriendUIDList = self.friendIdList else { return }
         for userName in safeFriendUIDList {
-            let userRef = self.db.collection("userProfile").whereField("currentUserAuthId", isEqualTo: userName)
+            let userRef = self.db.collection("userProfile").whereField("userAuthId", isEqualTo: userName)
             userRef.getDocuments { (snapshot, error) in
                 if error != nil {
                     print(error as Any)
@@ -404,14 +404,14 @@ class AccountTableViewController: UITableViewController {
     func getFriendRequestUserName() {
         guard let SafeFriendRequestUIDList = self.friendRequestsIdList else { return }
         for userName in SafeFriendRequestUIDList  {
-            let userRef = self.db.collection("userProfile").whereField("currentUserAuthId", isEqualTo: userName)
+            let userRef = self.db.collection("userProfile").whereField("userAuthId", isEqualTo: userName)
             userRef.getDocuments { (snapshot, error) in
                 if error != nil {
                     print(error as Any)
                 } else {
                     for document in (snapshot?.documents)! {
                         if let userName = document.data()["userName"] as? String {
-                            self.friendNameRequests?.append(userName)
+                            self.friendNameRequestList?.append(userName)
                             self.tableViewFriendRequestList.reloadData()
                         }
                     }
@@ -423,7 +423,7 @@ class AccountTableViewController: UITableViewController {
     func getIgnoreUserName() { // OLD CODE
         guard let SafeIgnoreUIDList = self.ignoreIdList else { return }
         for userName in SafeIgnoreUIDList  {
-            let userRef = self.db.collection("userProfile").whereField("currentUserAuthId", isEqualTo: userName)
+            let userRef = self.db.collection("userProfile").whereField("userAuthId", isEqualTo: userName)
             userRef.getDocuments { (snapshot, error) in
                 if error != nil {
                     print(error as Any)
@@ -440,10 +440,10 @@ class AccountTableViewController: UITableViewController {
     }
     
     func removeFriend() {
-        guard let removedFriends = self.toBeRemovedFriendIdList else { return }
-        guard let currentAuthID = self.currentAuthID else { return }
+        guard let removedFriends = self.toBeRemovedFriendIdList,
+        let currentAuthID = self.currentAuthID else { return }
         for removedFriend in removedFriends {
-            let userRef = db.collection("userProfile").whereField("currentUserAuthId", isEqualTo: removedFriend)
+            let userRef = db.collection("userProfile").whereField("userAuthId", isEqualTo: removedFriend)
             userRef.getDocuments { (snapshot, err) in
                 if err != nil {
                     print(err as Any)
@@ -474,13 +474,24 @@ class AccountTableViewController: UITableViewController {
             userNameTextField.isError(baseColor: UIColor.gray.cgColor, numberOfShakes: 3, revert: true)
             return
         }
+        
+        guard let friendIdList = self.friendIdList,
+              let friendNameList = self.friendNameList,
+              let friendNameRequestList = self.friendNameRequestList,
+              let friendRequestsIdList = self.friendRequestsIdList,
+              let ignoreIdList = self.ignoreIdList,
+              let ignoreNameList = self.ignoreNameList else { return }
+        
         guard let currentId = currentAuthID else { return }
-        db.collection("userProfile").document(currentId).updateData([
+        db.collection("userProfile").document(currentId).updateData([ //.updateData([
 //            "dataCount": MyFirebase.currentDataUsage!,
             "userName": userName,
-            "friendList": self.friendIdList ?? "" ,
-            "friendRequests": self.friendRequestsIdList ?? "" ,
-            "ignoredList": self.ignoreIdList ?? ""
+            "friendIdList": friendIdList,
+            "friendNameList": friendNameList,
+            "friendIdRequestList": friendRequestsIdList,
+            "friendNameRequestList": friendNameRequestList,
+            "ignoredIdList": ignoreIdList,
+            "ignoreNameList": ignoreNameList
         ]) { err in
             if let err = err {
                 var alertStyle = UIAlertController.Style.alert

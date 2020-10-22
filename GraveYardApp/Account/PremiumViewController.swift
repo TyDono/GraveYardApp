@@ -41,7 +41,7 @@ class PremiumViewController: UIViewController {
     
     func getUserData() {
         guard let currentUserAuthID: String = self.currentAuthID else { return }
-        let userRef = self.db.collection("userProfile").whereField("currentUserAuthId", isEqualTo: currentUserAuthID)
+        let userRef = self.db.collection("userProfile").whereField("userAuthId", isEqualTo: currentUserAuthID)
         userRef.getDocuments { (snapshot, error) in
             if error != nil {
                 print(error as Any)
