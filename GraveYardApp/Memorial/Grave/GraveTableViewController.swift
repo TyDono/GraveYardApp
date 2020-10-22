@@ -381,7 +381,7 @@ class GraveTableViewController: UITableViewController {
                        let memorialFriendIdList = document.data()["friendIdList"] as? Array<String>,
 //                       let memorialFriendNameList = document.data()["friendNameList"] as? Array<String>,
                        let memorialFriendIdRequests = document.data()["friendIdRequestList"] as? Array<String>,
-                       let memorialFriendNameRequests = document.data()["friendNameRequests"] as? Array<String>,
+                       let memorialFriendNameRequests = document.data()["friendNameRequestList"] as? Array<String>,
                        let memorialIgnoredIdList = document.data()["ignoredIdList"] as? Array<String> {
 //                       let memorialIgnoredNameList = document.data()["ignoredNameList"] as? Array<String> {
                         self.memorialFriendIdList = memorialFriendIdList
