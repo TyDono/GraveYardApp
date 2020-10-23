@@ -319,29 +319,27 @@ class AccountTableViewController: UITableViewController {
 
     
     // Override to support editing the table view.
-//    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-//        if tableView == self.tableViewFriendList {
-//            if editingStyle == .delete {
-//                // Delete the row from the data source
-//                if let row = self.tableViewFriendList.indexPathForSelectedRow?.row,
-//                   let friendIdList = self.friendIdList?[row],
-//                   let friendNameList = self.friendNameList?[row] {
-//                    
-//                    self.friendIdList = self.friendIdList?.filter() { $0 != friendIdList }
-//                    self.friendNameList = self.friendNameList?.filter() { $0 != friendNameList }
-//                    self.tableView.reloadData()
-//                    self.tableViewFriendList.reloadData()
-//                    
-//                    tableView.deleteRows(at: [indexPath], with: .fade)
-//                }
-//            }
-//        } else {
-//            return
-//        }
-//        //else if editingStyle == .insert {
-//        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-////    }
-//    }
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if tableView == self.tableViewFriendList {
+            if editingStyle == .delete {
+                // Delete the row from the data source
+                
+                
+                self.friendIdList?.remove(at: indexPath.row)
+                self.friendNameList?.remove(at: indexPath.row)
+                
+//                self.friendIdList = self.friendIdList?.filter() { $0 != friendId }
+//                self.friendNameList = self.friendNameList?.filter() { $0 != friendName }
+//                self.toBeRemovedFriendIdList?.append(friendName)
+                
+                tableView.deleteRows(at: [indexPath], with: .fade)
+            } else {
+                return
+            }
+        }
+        //else if editingStyle == .insert {
+        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+    }
     
     
     // MARK: - Functions
@@ -426,7 +424,7 @@ class AccountTableViewController: UITableViewController {
         }
     }
     
-    func getFriendRequestUserName() {
+    func getFriendRequestUserName() { // OLD CODE
         guard let SafeFriendRequestUIDList = self.friendRequestsIdList else { return }
         for userName in SafeFriendRequestUIDList  {
             let userRef = self.db.collection("userProfile").whereField("userAuthId", isEqualTo: userName)
@@ -464,7 +462,7 @@ class AccountTableViewController: UITableViewController {
         }
     }
     
-    func removeFriend() {
+    func removeFriend() { // if it fails then just call it when it it removes one on case it messes the order up
         guard let removedFriends = self.toBeRemovedFriendIdList,
         let currentAuthID = self.currentAuthID,
         let indexOfCurrentAuthId = removedFriends.firstIndex(of: currentAuthID) else { return }
