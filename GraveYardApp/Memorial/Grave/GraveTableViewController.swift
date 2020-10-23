@@ -432,7 +432,7 @@ class GraveTableViewController: UITableViewController {
         if (UIDevice.current.userInterfaceIdiom == .pad) {
             alertStyle = UIAlertController.Style.alert
         }
-        guard MyFirebase.currentUserName != nil else {
+        guard MyFirebase.currentUserName != "" else {
             let noUserNameAlert = UIAlertController(title: "Error", message: "You must have a name in order to send a friend request. Please go to your Account and register your name.", preferredStyle: alertStyle)
             let dismiss = UIAlertAction(title: "Cancel", style: .default, handler: nil)
             noUserNameAlert.addAction(dismiss)

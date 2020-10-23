@@ -274,7 +274,11 @@ class AccountTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch (indexPath.section, indexPath.row) {
         case (0,0):
-            return 75
+            if tableView == tableViewMain {
+                return 75
+            } else {
+                return 0
+            }
         case (0,1):
             if tableView == tableViewMain {
                 return 95
@@ -313,17 +317,32 @@ class AccountTableViewController: UITableViewController {
         }
     }
 
-    /*
+    
     // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
+//    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+//        if tableView == self.tableViewFriendList {
+//            if editingStyle == .delete {
+//                // Delete the row from the data source
+//                if let row = self.tableViewFriendList.indexPathForSelectedRow?.row,
+//                   let friendIdList = self.friendIdList?[row],
+//                   let friendNameList = self.friendNameList?[row] {
+//                    
+//                    self.friendIdList = self.friendIdList?.filter() { $0 != friendIdList }
+//                    self.friendNameList = self.friendNameList?.filter() { $0 != friendNameList }
+//                    self.tableView.reloadData()
+//                    self.tableViewFriendList.reloadData()
+//                    
+//                    tableView.deleteRows(at: [indexPath], with: .fade)
+//                }
+//            }
+//        } else {
+//            return
+//        }
+//        //else if editingStyle == .insert {
+//        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+////    }
+//    }
+    
     
     // MARK: - Functions
     
@@ -447,7 +466,8 @@ class AccountTableViewController: UITableViewController {
     
     func removeFriend() {
         guard let removedFriends = self.toBeRemovedFriendIdList,
-        let currentAuthID = self.currentAuthID else { return }
+        let currentAuthID = self.currentAuthID,
+        let indexOfCurrentAuthId = removedFriends.firstIndex(of: currentAuthID) else { return }
         for removedFriend in removedFriends {
             let userRef = db.collection("userProfile").whereField("userAuthId", isEqualTo: removedFriend)
             userRef.getDocuments { (snapshot, err) in
@@ -455,10 +475,13 @@ class AccountTableViewController: UITableViewController {
                     print(err as Any)
                 } else {
                     for documentt in (snapshot?.documents)! {
-                        if let friendList = documentt.data()["friendList"] as? Array<String> {
-                            let newFriendList = friendList.filter(){$0 != currentAuthID }
+                        if let friendIdList = documentt.data()["friendIdList"] as? Array<String>,
+                           var friendNameList = documentt.data()["friendNameList"] as? Array<String> {
+                            let newFriendIdList = friendIdList.filter(){$0 != currentAuthID }
+                            let newFriendNameList = friendNameList.remove(at: indexOfCurrentAuthId)
                             self.db.collection("userProfile").document(removedFriend).updateData([
-                                "friendList": newFriendList
+                                "friendIdList": newFriendIdList,
+                                "friendNameList": newFriendNameList
                             ]) { err in
                                 if let err = err {
                                     print(err)
