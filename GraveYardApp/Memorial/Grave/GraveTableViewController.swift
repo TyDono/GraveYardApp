@@ -369,9 +369,9 @@ class GraveTableViewController: UITableViewController {
     }
     
     func getMemorialOwnerData() {
-        guard let safeCurrentMemorialOwnerId = self.creatorId else { return }
-        print(safeCurrentMemorialOwnerId)
-        let userRef = self.db.collection("userProfile").whereField("userAuthId", isEqualTo: safeCurrentMemorialOwnerId)
+        guard let safeCurrentAuthId = self.currentAuthID else { return }
+        print(safeCurrentAuthId)
+        let userRef = self.db.collection("userProfile").whereField("userAuthId", isEqualTo: safeCurrentAuthId)
         userRef.getDocuments { (snapshot, error) in
             if error != nil {
                 print(error as Any)
@@ -388,7 +388,7 @@ class GraveTableViewController: UITableViewController {
                         self.memorialFriendIdRequests = memorialFriendIdRequests
                         self.memorialFriendNameRequests = memorialFriendNameRequests
                         print(self.memorialFriendIdList as Any)
-                        if memorialFriendIdList.contains(safeCurrentMemorialOwnerId) || memorialFriendIdRequests.contains(safeCurrentMemorialOwnerId) || memorialIgnoredIdList.contains(safeCurrentMemorialOwnerId) || self.currentAuthID == userAuthId {
+                        if memorialFriendIdList.contains(safeCurrentAuthId) || memorialFriendIdRequests.contains(safeCurrentAuthId) || memorialIgnoredIdList.contains(safeCurrentAuthId) || safeCurrentAuthId == userAuthId {
                             self.addFriendButton.isHidden = true
                         }
                         self.tableView.reloadData()
