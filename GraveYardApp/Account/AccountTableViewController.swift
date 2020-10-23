@@ -323,15 +323,10 @@ class AccountTableViewController: UITableViewController {
         if tableView == self.tableViewFriendList {
             if editingStyle == .delete {
                 // Delete the row from the data source
-                
-                
+                guard let toBeRemovedFriendId = self.friendIdList?.remove(at: indexPath.row) else { return }
                 self.friendIdList?.remove(at: indexPath.row)
                 self.friendNameList?.remove(at: indexPath.row)
-                
-//                self.friendIdList = self.friendIdList?.filter() { $0 != friendId }
-//                self.friendNameList = self.friendNameList?.filter() { $0 != friendName }
-//                self.toBeRemovedFriendIdList?.append(friendName)
-                
+                self.toBeRemovedFriendIdList?.append(toBeRemovedFriendId)
                 tableView.deleteRows(at: [indexPath], with: .fade)
             } else {
                 return
