@@ -46,8 +46,10 @@ class AccountTableViewController: UITableViewController {
     var friendListIsExpanded: Bool = false
     var friendRequestListIsExpanded: Bool = false
     var ignoreListIsExpanded: Bool = false
-    var toBeRemovedFriendIdList: Array<String>? // when you removed a friend this var wil be used to make sure they also have your removed
-    var toBeRemovedFriendNameList: Array<String>?
+    var toBeRemovedFriendIdList: [String]? = [] // when you removed a friend this var wil be used to make sure they also have your removed
+    var toBeRemovedFriendNameList: [String]? = []
+    var friendIdListToBeAdded: [String]? = []
+    var friendNameListToBeAdded: [String]? = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -186,7 +188,10 @@ class AccountTableViewController: UITableViewController {
                     self.friendRequestsIdList = self.friendRequestsIdList?.filter() { $0 != friendRequestId }
                     self.friendNameRequestList = self.friendNameRequestList?.filter() { $0 != friendRequestUserName }
                     self.friendIdList?.append(friendRequestId)
+                    print(self.friendIdList)
                     self.friendNameList?.append(friendRequestUserName)
+                    self.friendIdListToBeAdded?.append(friendRequestId)
+                    print(self.friendIdListToBeAdded)
                     tableView.reloadData()
                     self.tableViewFriendList.reloadData()
                 }
@@ -324,7 +329,9 @@ class AccountTableViewController: UITableViewController {
             if editingStyle == .delete {
                 // Delete the row from the data source
                 guard let toBeRemovedFriendId = self.friendIdList?.remove(at: indexPath.row) else { return }
-                self.friendIdList?.remove(at: indexPath.row)
+                print(toBeRemovedFriendId)
+                print(friendIdList?.count)
+//                self.friendIdList?.remove(at: indexPath.row)
                 self.friendNameList?.remove(at: indexPath.row)
                 self.toBeRemovedFriendIdList?.append(toBeRemovedFriendId)
                 tableView.deleteRows(at: [indexPath], with: .fade)
@@ -397,7 +404,6 @@ class AccountTableViewController: UITableViewController {
     }
     
     func getFriendUserName() { // OLD CODE
-        print(self.friendIdList)
         guard let safeFriendUIDList = self.friendIdList else { return }
         for userName in safeFriendUIDList {
             let userRef = self.db.collection("userProfile").whereField("userAuthId", isEqualTo: userName)
@@ -410,7 +416,6 @@ class AccountTableViewController: UITableViewController {
                         if let userName = document.data()["userName"] as? String {
                             print(userName)
                             self.friendNameList?.append(userName)
-                            print(self.friendNameList)
                             self.tableViewFriendList.reloadData()
                         }
                     }
@@ -457,7 +462,42 @@ class AccountTableViewController: UITableViewController {
         }
     }
     
-    func removeFriend() { // if it fails then just call it when it it removes one on case it messes the order up
+    func addFriends() {
+        guard let friendIdListToBeAdded = self.friendIdListToBeAdded,
+              let userName = self.userNameTextField.text,
+              let currentAuthId = self.currentAuthID else { return }
+        for friendId in friendIdListToBeAdded {
+            let userRef = db.collection("userProfile").whereField("userAuthId",  isEqualTo: friendId)
+            userRef.getDocuments { (snapshot, err) in
+                if err != nil {
+                    print(err as Any)
+                } else {
+                    for document in (snapshot?.documents)! {
+                        guard var friendIdList = document.data()["friendIdList"] as? Array<String>,
+                              var friendNameList = document.data()["friendNameList"] as? Array<String> else { return }
+                        friendIdList.append(currentAuthId)
+                        let newFriendIdList = friendIdList
+                        friendNameList.append(userName)
+                        let newFriendNameList = friendNameList
+                        self.db.collection("userProfile").document(friendId).updateData([
+                            "friendIdList": newFriendIdList,
+                            "friendNameList": newFriendNameList
+                        ]) { err in
+                            if let err = err {
+                                print(err)
+                            } else {
+                                //you are now on their friend list! ^_^
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    func removeFriends() { // if it fails then just call it when it it removes one on case it messes the order up
+        print(toBeRemovedFriendIdList)
+        print(self.currentAuthID)
         guard let removedFriends = self.toBeRemovedFriendIdList,
         let currentAuthID = self.currentAuthID,
         let indexOfCurrentAuthId = removedFriends.firstIndex(of: currentAuthID) else { return }
@@ -528,7 +568,8 @@ class AccountTableViewController: UITableViewController {
                 print("Error updating document: \(err)")
             } else {
                 MyFirebase.currentUserName = userName
-                self.removeFriend()
+                self.removeFriends()
+                self.addFriends()
                 var alertStyle = UIAlertController.Style.alert
                 if (UIDevice.current.userInterfaceIdiom == .pad) {
                     alertStyle = UIAlertController.Style.alert

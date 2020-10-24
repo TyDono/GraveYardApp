@@ -370,8 +370,9 @@ class GraveTableViewController: UITableViewController {
     
     func getMemorialOwnerData() {
         guard let safeCurrentAuthId = self.currentAuthID else { return }
+        guard let safeCreatorId = self.creatorId else { return }
         print(safeCurrentAuthId)
-        let userRef = self.db.collection("userProfile").whereField("userAuthId", isEqualTo: safeCurrentAuthId)
+        let userRef = self.db.collection("userProfile").whereField("userAuthId", isEqualTo: safeCreatorId)
         userRef.getDocuments { (snapshot, error) in
             if error != nil {
                 print(error as Any)
