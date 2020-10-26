@@ -64,6 +64,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         addMemorialView.layer.cornerRadius = 10
         playHowToMemorialVideoButton.layer.cornerRadius = 10
         mapView.delegate = self
+        getUserMemorialCount()
         friendRequestNotificationButton.layer.cornerRadius = 22
         friendRequestNotificationButton.isHidden = true
         getUserData()
