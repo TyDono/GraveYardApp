@@ -508,13 +508,12 @@ class AccountTableViewController: UITableViewController {
                         if let friendIdList = document.data()["friendIdList"] as? Array<String>,
                            var friendNameList = document.data()["friendNameList"] as? Array<String> {
                             guard let indexOfCurrentAuthId = friendIdList.firstIndex(of: currentAuthID ) else { return }
-                            print(indexOfCurrentAuthId)
                             let newFriendIdList = friendIdList.filter(){$0 != currentAuthID }
-                            let newFriendNameList = friendNameList.remove(at: indexOfCurrentAuthId)
+                            friendNameList.remove(at: indexOfCurrentAuthId)
                             
                             self.db.collection("userProfile").document(removedFriend).updateData([
                                 "friendIdList": newFriendIdList,
-                                "friendNameList": newFriendNameList
+                                "friendNameList": friendNameList
                             ]) { err in
                                 if let err = err {
                                     print(err)
