@@ -226,7 +226,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                                                 arrayOfStoryImageIDs: arrayOfStoryImageIDs)
                     
                     registeredGraves.append(registeredGrave)
-                    print(registeredGraves)
+//                    print(registeredGraves)
                 }
             }
             completion(registeredGraves)

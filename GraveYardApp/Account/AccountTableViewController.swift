@@ -496,22 +496,22 @@ class AccountTableViewController: UITableViewController {
     }
     
     func removeFriends() { // if it fails then just call it when it it removes one on case it messes the order up
-        print(toBeRemovedFriendIdList)
-        print(self.currentAuthID)
         guard let removedFriends = self.toBeRemovedFriendIdList,
-        let currentAuthID = self.currentAuthID,
-        let indexOfCurrentAuthId = removedFriends.firstIndex(of: currentAuthID) else { return }
+              let currentAuthID = self.currentAuthID  else { return }
         for removedFriend in removedFriends {
             let userRef = db.collection("userProfile").whereField("userAuthId", isEqualTo: removedFriend)
             userRef.getDocuments { (snapshot, err) in
                 if err != nil {
                     print(err as Any)
                 } else {
-                    for documentt in (snapshot?.documents)! {
-                        if let friendIdList = documentt.data()["friendIdList"] as? Array<String>,
-                           var friendNameList = documentt.data()["friendNameList"] as? Array<String> {
+                    for document in (snapshot?.documents)! {
+                        if let friendIdList = document.data()["friendIdList"] as? Array<String>,
+                           var friendNameList = document.data()["friendNameList"] as? Array<String> {
+                            guard let indexOfCurrentAuthId = friendIdList.firstIndex(of: currentAuthID ) else { return }
+                            print(indexOfCurrentAuthId)
                             let newFriendIdList = friendIdList.filter(){$0 != currentAuthID }
                             let newFriendNameList = friendNameList.remove(at: indexOfCurrentAuthId)
+                            
                             self.db.collection("userProfile").document(removedFriend).updateData([
                                 "friendIdList": newFriendIdList,
                                 "friendNameList": newFriendNameList
