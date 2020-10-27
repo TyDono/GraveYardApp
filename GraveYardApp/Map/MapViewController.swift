@@ -63,12 +63,13 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         self.recenterMapButton.layer.cornerRadius = 10
         addMemorialView.layer.cornerRadius = 10
         playHowToMemorialVideoButton.layer.cornerRadius = 10
-        mapView.delegate = self
-        getUserMemorialCount()
         friendRequestNotificationButton.layer.cornerRadius = 22
-        friendRequestNotificationButton.isHidden = true
+        mapView.delegate = self
+        locationSearchBar.delegate = self
+//        UISearchController
+        getUserMemorialCount()
         getUserData()
-//        self.navigationItem.rightBarButtonItem?.isEnabled = false
+        friendRequestNotificationButton.isHidden = true
         self.navigationItem.rightBarButtonItem?.title = "Account"
     }
     
@@ -78,7 +79,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             self.graves = graves
             self.dropGraveEntryPins()
          }
-        checkForUserId()// make sure this gets calld everytime u reload from sign in
+        checkForUserId() // make sure this gets calld everytime u reload from sign in
     }
     
     // MARK: - Functions
@@ -468,13 +469,15 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             } else {
                 for document in (snapshot?.documents)! {
                     if let premiumStatus = document.data()["premiumStatus"] as? Int,
-                       let friendRequests = document.data()["friendRequests"] as? Array<String>,
+                       let friendRequests = document.data()["friendIdRequestList"] as? Array<String>,
                        let memorialCount = document.data()["memorialCount"] as? Int {
                         MyFirebase.memorialCount = memorialCount
                         self.friendRequests = friendRequests
                         print(friendRequests.count)
-                        if friendRequests.count > 0 {
+                        if friendRequests.count > 1 {
                             self.friendRequestNotificationButton.isHidden = false
+                        } else {
+                            self.friendRequestNotificationButton.isHidden = true
                         }
                         switch MyFirebase.memorialCount {
                         case 0:
@@ -785,6 +788,10 @@ extension MapViewController {
                 
             }
         }
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
     }
     
 }

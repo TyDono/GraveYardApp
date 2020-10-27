@@ -1860,7 +1860,7 @@
                                     <action selector="recenterButtonTapped:" destination="9X6-7Z-pCz" eventType="touchUpInside" id="8Rr-ai-ajw"/>
                                 </connections>
                             </button>
-                            <searchBar hidden="YES" contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="3a5-IP-Tch">
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="3a5-IP-Tch">
                                 <rect key="frame" x="0.0" y="76" width="414" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
@@ -1880,7 +1880,7 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zx1-5A-lzB">
-                                <rect key="frame" x="-273" y="169" width="337" height="38.5"/>
+                                <rect key="frame" x="-249" y="164" width="337" height="38.5"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bookBlue" translatesAutoresizingMaskIntoConstraints="NO" id="JWA-Ic-Hmq">
                                         <rect key="frame" x="0.0" y="0.0" width="337" height="38.5"/>
@@ -1926,11 +1926,14 @@
                         <viewLayoutGuide key="safeArea" id="Abc-m9-DRn"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="Zx1-5A-lzB" firstAttribute="leading" secondItem="FOT-J4-Seo" secondAttribute="leading" constant="-273" id="0e6-Lk-sNo"/>
+                            <constraint firstItem="Zx1-5A-lzB" firstAttribute="leading" secondItem="FOT-J4-Seo" secondAttribute="leading" constant="-249" id="0e6-Lk-sNo"/>
+                            <constraint firstItem="3a5-IP-Tch" firstAttribute="leading" secondItem="Abc-m9-DRn" secondAttribute="leading" id="1kX-At-qMj"/>
+                            <constraint firstItem="3a5-IP-Tch" firstAttribute="top" secondItem="FOT-J4-Seo" secondAttribute="top" constant="76" id="5gi-qb-dZQ"/>
                             <constraint firstItem="6MH-ve-unU" firstAttribute="leading" secondItem="Abc-m9-DRn" secondAttribute="leading" id="71F-Fp-uIZ"/>
+                            <constraint firstItem="3a5-IP-Tch" firstAttribute="trailing" secondItem="Abc-m9-DRn" secondAttribute="trailing" id="7WC-Ed-no8"/>
                             <constraint firstItem="W5U-iO-55T" firstAttribute="leading" secondItem="Abc-m9-DRn" secondAttribute="leading" constant="20" id="KaD-hK-OX8"/>
                             <constraint firstItem="3a5-IP-Tch" firstAttribute="leading" secondItem="Abc-m9-DRn" secondAttribute="leading" id="PK3-E9-RIv"/>
-                            <constraint firstItem="Zx1-5A-lzB" firstAttribute="top" secondItem="3a5-IP-Tch" secondAttribute="bottom" constant="37" id="RSr-gw-f3I"/>
+                            <constraint firstItem="Zx1-5A-lzB" firstAttribute="top" secondItem="3a5-IP-Tch" secondAttribute="bottom" constant="32" id="RSr-gw-f3I"/>
                             <constraint firstItem="Abc-m9-DRn" firstAttribute="trailing" secondItem="Bsd-aO-ZVt" secondAttribute="trailing" constant="20" id="VwY-yG-GfE"/>
                             <constraint firstItem="6MH-ve-unU" firstAttribute="top" secondItem="Abc-m9-DRn" secondAttribute="top" id="WwJ-dk-9KL"/>
                             <constraint firstItem="Abc-m9-DRn" firstAttribute="bottom" secondItem="Bsd-aO-ZVt" secondAttribute="bottom" constant="15" id="c2p-uh-yR1"/>
@@ -1938,7 +1941,7 @@
                             <constraint firstItem="6MH-ve-unU" firstAttribute="trailing" secondItem="Abc-m9-DRn" secondAttribute="trailing" id="hoX-c6-dMm"/>
                             <constraint firstItem="3a5-IP-Tch" firstAttribute="top" secondItem="FOT-J4-Seo" secondAttribute="top" constant="76" id="r5H-dm-965"/>
                             <constraint firstItem="3a5-IP-Tch" firstAttribute="trailing" secondItem="Abc-m9-DRn" secondAttribute="trailing" id="rc0-Gq-Mgo"/>
-                            <constraint firstItem="Abc-m9-DRn" firstAttribute="trailing" secondItem="Zx1-5A-lzB" secondAttribute="trailing" constant="350" id="s1Q-Ai-LBb"/>
+                            <constraint firstItem="Abc-m9-DRn" firstAttribute="trailing" secondItem="Zx1-5A-lzB" secondAttribute="trailing" constant="326" id="s1Q-Ai-LBb"/>
                             <constraint firstItem="6MH-ve-unU" firstAttribute="bottom" secondItem="Abc-m9-DRn" secondAttribute="bottom" id="u5v-ji-bRW"/>
                         </constraints>
                     </view>
