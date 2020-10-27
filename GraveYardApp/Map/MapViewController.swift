@@ -69,6 +69,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
 //        UISearchController
         getUserMemorialCount()
         getUserData()
+        animateFriendRequestNotificationButton()
         friendRequestNotificationButton.isHidden = true
         self.navigationItem.rightBarButtonItem?.title = "Account"
     }
@@ -489,6 +490,10 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                 }
             }
         }
+    }
+    
+    func animateFriendRequestNotificationButton() {
+        self.friendRequestNotificationButton.pulsate()
     }
     
     // MARK: - Actions
