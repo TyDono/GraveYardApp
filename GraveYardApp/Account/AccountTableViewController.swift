@@ -347,7 +347,6 @@ class AccountTableViewController: UITableViewController {
     
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        
         switch tableView {
         case tableViewFriendList:
             if editingStyle == .delete {
@@ -419,65 +418,6 @@ class AccountTableViewController: UITableViewController {
 //                        } else {
 //                            self.dataCountLabel.text = "0mb / 5mb"
 //                        }
-                    }
-                }
-            }
-        }
-    }
-    
-    func getFriendUserName() { // OLD CODE
-        guard let safeFriendUIDList = self.friendIdList else { return }
-        for userName in safeFriendUIDList {
-            let userRef = self.db.collection("userProfile").whereField("userAuthId", isEqualTo: userName)
-            userRef.getDocuments { (snapshot, error) in
-                if error != nil {
-                    print(error as Any)
-                } else {
-                    for document in (snapshot?.documents)! {
-                        print(document.data())
-                        if let userName = document.data()["userName"] as? String {
-                            print(userName)
-                            self.friendNameList?.append(userName)
-                            self.tableViewFriendList.reloadData()
-                        }
-                    }
-                }
-            }
-        }
-    }
-    
-    func getFriendRequestUserName() { // OLD CODE
-        guard let SafeFriendRequestUIDList = self.friendRequestsIdList else { return }
-        for userName in SafeFriendRequestUIDList  {
-            let userRef = self.db.collection("userProfile").whereField("userAuthId", isEqualTo: userName)
-            userRef.getDocuments { (snapshot, error) in
-                if error != nil {
-                    print(error as Any)
-                } else {
-                    for document in (snapshot?.documents)! {
-                        if let userName = document.data()["userName"] as? String {
-                            self.friendNameRequestList?.append(userName)
-                            self.tableViewFriendRequestList.reloadData()
-                        }
-                    }
-                }
-            }
-        }
-    }
-    
-    func getIgnoreUserName() { // OLD CODE
-        guard let SafeIgnoreUIDList = self.ignoreIdList else { return }
-        for userName in SafeIgnoreUIDList  {
-            let userRef = self.db.collection("userProfile").whereField("userAuthId", isEqualTo: userName)
-            userRef.getDocuments { (snapshot, error) in
-                if error != nil {
-                    print(error as Any)
-                } else {
-                    for document in (snapshot?.documents)! {
-                        if let userName = document.data()["userName"] as? String {
-                            self.ignoreNameList?.append(userName)
-                            self.tableViewIgnoreList.reloadData()
-                        }
                     }
                 }
             }

@@ -60,6 +60,7 @@ class GraveTableViewController: UITableViewController {
     var memorialFriendIdRequests: Array<String>?
     var memorialFriendNameRequests: Array<String>?
     var friendStatus: String?
+    var isFriendRequestCellButtonExpanded: Bool = true
     let storage = Storage.storage()
     
     // MARK: - View Lifecycle
@@ -191,6 +192,9 @@ class GraveTableViewController: UITableViewController {
             return 350 // UITableView.automaticDimension
         case (0, 5):
             if creatorId == currentAuthID {
+                return 0
+            }
+            if isFriendRequestCellButtonExpanded == false {
                 return 0
             }
             return 85
@@ -391,6 +395,9 @@ class GraveTableViewController: UITableViewController {
                         print(self.memorialFriendIdList as Any)
                         if memorialFriendIdList.contains(safeCurrentAuthId) || memorialFriendIdRequests.contains(safeCurrentAuthId) || memorialIgnoredIdList.contains(safeCurrentAuthId) || safeCurrentAuthId == userAuthId {
                             self.addFriendButton.isHidden = true
+                            self.isFriendRequestCellButtonExpanded = false
+                            self.tableView.beginUpdates()
+                            self.tableView.endUpdates()
                         }
                         self.tableView.reloadData()
                     }
@@ -470,9 +477,12 @@ class GraveTableViewController: UITableViewController {
                     self.present(alertFailure, animated: true, completion: nil)
                     print(err)
                 } else {
+                    self.addFriendButton.isHidden = true
+                    self.isFriendRequestCellButtonExpanded = false
+                    self.tableView.beginUpdates()
+                    self.tableView.endUpdates()
                     let alertSuccess = UIAlertController(title: "Request Sent", message: "You must wait for them to accept in order to add them to your friend's list", preferredStyle: alertStyle)
                     alertSuccess.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
-                        self.addFriendButton.isHidden = true
                         alertSuccess.dismiss(animated: true, completion: nil)
                     }))
                     self.present(alertSuccess, animated: true, completion: nil)
