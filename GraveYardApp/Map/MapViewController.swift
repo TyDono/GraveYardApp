@@ -742,10 +742,22 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     }
     
     @IBAction func unwindToMap(_ sender: UIStoryboardSegue) {
-        if self.friendRequests?.count ?? 0 > 1 {
-            self.friendRequestNotificationButton.isHidden = false
-        } else {
-            self.friendRequestNotificationButton.isHidden = true
+        guard let currentUserAuthID: String = self.currentAuthID else { return }
+        let userRef = self.db.collection("userProfile").whereField("userAuthId", isEqualTo: currentUserAuthID)
+        userRef.getDocuments { (snapshot, error) in
+            if error != nil {
+                print(error as Any)
+            } else {
+                for document in (snapshot?.documents)! {
+                    guard let friendRequestList = document.data()["friendIdRequestList"] as? Array<String> else { return }
+                    
+                    if friendRequestList.count > 1 {
+                        self.friendRequestNotificationButton.isHidden = false
+                    } else {
+                        self.friendRequestNotificationButton.isHidden = true
+                    }
+                }
+            }
         }
     }
     
