@@ -472,6 +472,7 @@ class GraveTableViewController: UITableViewController {
                 } else {
                     let alertSuccess = UIAlertController(title: "Request Sent", message: "You must wait for them to accept in order to add them to your friend's list", preferredStyle: alertStyle)
                     alertSuccess.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
+                        self.addFriendButton.isHidden = true
                         alertSuccess.dismiss(animated: true, completion: nil)
                     }))
                     self.present(alertSuccess, animated: true, completion: nil)
