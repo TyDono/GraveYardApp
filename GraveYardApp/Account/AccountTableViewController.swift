@@ -102,13 +102,30 @@ class AccountTableViewController: UITableViewController {
                 //                cell.backgroundColor = UIColor.clear
                 //                cell.backgroundView = UIImageView.init(image: UIImage.init(named: "bookRed"))
                 if let friends = friendNameList, let friendsId = friendIdList {
-
+                    
                     let friendId = friendsId[indexPath.row]
-                    print(friendId)
                     cell.friendId = friendId
                     let friendName = friends[indexPath.row]
-                    print(friendName)
                     cell.friendNameLabel.text = "\(friendName)"
+                    
+                    cell.removeFriendButtonAction = { [unowned self] in
+                        var alertStyle = UIAlertController.Style.alert
+                        if (UIDevice.current.userInterfaceIdiom == .pad) {
+                            alertStyle = UIAlertController.Style.alert
+                        }
+                        
+                        let removeFriendAlert = UIAlertController(title: "Remove Friend", message: "Would you like to remove \(friendName) from your Friend List?", preferredStyle: alertStyle)
+                        let dismiss = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+                        removeFriendAlert.addAction(dismiss)
+                        let okAction = UIAlertAction(title: "Yes", style: .default, handler: { _ in
+                            guard let toBeRemovedFriendId = self.friendIdList?.remove(at: indexPath.row) else { return }
+                            self.friendNameList?.remove(at: indexPath.row)
+                            self.toBeRemovedFriendIdList?.append(toBeRemovedFriendId)
+                            tableView.deleteRows(at: [indexPath], with: .fade)
+                        })
+                        removeFriendAlert.addAction(okAction)
+                        self.present(removeFriendAlert, animated: true, completion: nil)
+                    }
                     
                     let maskLayer = CAShapeLayer()
                     let bounds = cell.bounds
@@ -169,6 +186,13 @@ class AccountTableViewController: UITableViewController {
         }
     }
     
+//    override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+//        guard let toBeRemovedFriendId = self.friendIdList?.remove(at: indexPath.row) else { return }
+//        self.friendNameList?.remove(at: indexPath.row)
+//        self.toBeRemovedFriendIdList?.append(toBeRemovedFriendId)
+//        tableView.deleteRows(at: [indexPath], with: .fade)
+//    }
+    
     override func tableView(_ tableView: UITableView, indentationLevelForRowAt indexPath: IndexPath) -> Int {
         return 0
     }
@@ -188,10 +212,8 @@ class AccountTableViewController: UITableViewController {
                     self.friendRequestsIdList = self.friendRequestsIdList?.filter() { $0 != friendRequestId }
                     self.friendNameRequestList = self.friendNameRequestList?.filter() { $0 != friendRequestUserName }
                     self.friendIdList?.append(friendRequestId)
-                    print(self.friendIdList)
                     self.friendNameList?.append(friendRequestUserName)
                     self.friendIdListToBeAdded?.append(friendRequestId)
-                    print(self.friendIdListToBeAdded)
                     tableView.reloadData()
                     self.tableViewFriendList.reloadData()
                 }
@@ -325,24 +347,24 @@ class AccountTableViewController: UITableViewController {
     
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if tableView == self.tableViewFriendList {
+        
+        switch tableView {
+        case tableViewFriendList:
             if editingStyle == .delete {
                 // Delete the row from the data source
                 guard let toBeRemovedFriendId = self.friendIdList?.remove(at: indexPath.row) else { return }
-                print(toBeRemovedFriendId)
-                print(friendIdList?.count)
-//                self.friendIdList?.remove(at: indexPath.row)
                 self.friendNameList?.remove(at: indexPath.row)
                 self.toBeRemovedFriendIdList?.append(toBeRemovedFriendId)
                 tableView.deleteRows(at: [indexPath], with: .fade)
             } else {
                 return
             }
+        default:
+            return
         }
         //else if editingStyle == .insert {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }
-    
     
     // MARK: - Functions
     

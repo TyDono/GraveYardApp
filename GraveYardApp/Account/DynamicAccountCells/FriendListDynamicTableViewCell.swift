@@ -14,11 +14,12 @@ class FriendListDynamicTableViewCell: UITableViewCell {
     @IBOutlet weak var removeFriendButton: UIButton!
     
     var friendId: String?
+    var removeFriendButtonAction : (() -> ())?
 
     override func awakeFromNib() {
         super.awakeFromNib()
         removeFriendButton.layer.cornerRadius = 10
-        // Initialization code
+        self.removeFriendButton.addTarget(self, action: #selector(removeFriendButonWasTapped(_:)), for: .touchUpInside)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -28,6 +29,7 @@ class FriendListDynamicTableViewCell: UITableViewCell {
     }
 
     @IBAction func removeFriendButonWasTapped(_ sender: Any) {
+        removeFriendButtonAction?()
     }
     
 }

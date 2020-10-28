@@ -63,7 +63,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         self.recenterMapButton.layer.cornerRadius = 10
         addMemorialView.layer.cornerRadius = 10
         playHowToMemorialVideoButton.layer.cornerRadius = 10
-        friendRequestNotificationButton.layer.cornerRadius = 22
+        friendRequestNotificationButton.layer.cornerRadius = 29
         mapView.delegate = self
         locationSearchBar.delegate = self
 //        UISearchController
@@ -441,7 +441,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         if segue.identifier == "segueToGrave", let graveTVC = segue.destination as? GraveTableViewController {
             graveTVC.currentGraveId = MapViewController.shared.currentGraveId
         } else if segue.identifier == "segueToFriendRequest", let accountTVC = segue.destination as? AccountTableViewController {
-            accountTVC.friendListIsExpanded = true
+            accountTVC.friendRequestListIsExpanded = true
         }
     }
     
@@ -741,7 +741,13 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         self.playVideo()
     }
     
-    @IBAction func unwindToMap(_ sender: UIStoryboardSegue) {}
+    @IBAction func unwindToMap(_ sender: UIStoryboardSegue) {
+        if self.friendRequests?.count ?? 0 > 1 {
+            self.friendRequestNotificationButton.isHidden = false
+        } else {
+            self.friendRequestNotificationButton.isHidden = true
+        }
+    }
     
     @IBAction func friendRequestNotificationButtonWasTapped(_ sender: UIButton) {
         performSegue(withIdentifier: "segueToFriendRequest", sender: nil)
