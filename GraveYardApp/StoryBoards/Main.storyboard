@@ -2359,21 +2359,24 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2L3-27-ZzT">
-                                                    <rect key="frame" x="301" y="11" width="51" height="38"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="noPeople" translatesAutoresizingMaskIntoConstraints="NO" id="2L3-27-ZzT">
+                                                    <rect key="frame" x="301" y="-6" width="77" height="71"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="71" id="WVD-Qm-gkU"/>
+                                                        <constraint firstAttribute="width" constant="77" id="fuJ-aD-SYE"/>
+                                                    </constraints>
                                                 </imageView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="UnI-kZ-arP" firstAttribute="top" secondItem="h4q-8Y-XKh" secondAttribute="topMargin" id="Aj3-3D-lCw"/>
                                                 <constraint firstItem="UnI-kZ-arP" firstAttribute="bottom" secondItem="h4q-8Y-XKh" secondAttribute="bottomMargin" id="R4o-Ze-VNY"/>
-                                                <constraint firstAttribute="bottom" secondItem="2L3-27-ZzT" secondAttribute="bottom" constant="10" id="ejC-fJ-Fp2"/>
                                                 <constraint firstItem="UnI-kZ-arP" firstAttribute="leading" secondItem="h4q-8Y-XKh" secondAttribute="leadingMargin" constant="101" id="ghp-SU-Opc"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="2L3-27-ZzT" secondAttribute="trailing" constant="42" id="icO-wB-pph"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="UnI-kZ-arP" secondAttribute="trailing" constant="101" id="nov-m2-iJr"/>
+                                                <constraint firstItem="2L3-27-ZzT" firstAttribute="leading" secondItem="UnI-kZ-arP" secondAttribute="trailing" constant="8" symbolic="YES" id="pVh-ee-fzD"/>
                                                 <constraint firstItem="UnI-kZ-arP" firstAttribute="centerY" secondItem="h4q-8Y-XKh" secondAttribute="centerY" id="qea-0u-QL1"/>
-                                                <constraint firstItem="2L3-27-ZzT" firstAttribute="top" secondItem="h4q-8Y-XKh" secondAttribute="top" constant="11" id="sIQ-w1-DMY"/>
                                                 <constraint firstItem="UnI-kZ-arP" firstAttribute="centerX" secondItem="h4q-8Y-XKh" secondAttribute="centerX" id="ulu-w2-6Hb"/>
-                                                <constraint firstItem="2L3-27-ZzT" firstAttribute="leading" secondItem="UnI-kZ-arP" secondAttribute="trailing" constant="8" symbolic="YES" id="zgK-l4-SBc"/>
+                                                <constraint firstItem="2L3-27-ZzT" firstAttribute="top" secondItem="h4q-8Y-XKh" secondAttribute="top" constant="-6" id="vML-C1-UaK"/>
+                                                <constraint firstAttribute="bottom" secondItem="2L3-27-ZzT" secondAttribute="bottom" constant="-6" id="xKi-nj-NGH"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -2555,6 +2558,7 @@
         <image name="icons8-journal-30" width="15" height="15"/>
         <image name="icons8-man-raising-hand-icon-100" width="50" height="50"/>
         <image name="icons8-team-96" width="48" height="48"/>
+        <image name="noPeople" width="250" height="250"/>
         <image name="paperImage" width="362" height="241.5"/>
         <image name="smallX" width="375" height="296.5"/>
         <image name="tyler_mountain" width="207.5" height="122.5"/>
