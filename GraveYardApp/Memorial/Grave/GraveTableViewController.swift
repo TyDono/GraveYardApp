@@ -68,6 +68,7 @@ class GraveTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         db = Firestore.firestore()
+        getGraveData()
         self.reportPopOver.layer.cornerRadius = 10
         self.addFriendButton.layer.cornerRadius = 10
         //chageTextColor()
@@ -77,10 +78,6 @@ class GraveTableViewController: UITableViewController {
         self.playVideoButton.layer.cornerRadius = 10
         addFriendButton.isHidden = false
 //        changeBackground()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        getGraveData()
     }
     
     // MARK: - Functions
@@ -494,6 +491,8 @@ class GraveTableViewController: UITableViewController {
         
     }
     
-    @IBAction func unwindToGrave(_ sender: UIStoryboardSegue) {}
+    @IBAction func unwindToGrave(_ sender: UIStoryboardSegue) {
+        self.getGraveData()
+    }
     
 }

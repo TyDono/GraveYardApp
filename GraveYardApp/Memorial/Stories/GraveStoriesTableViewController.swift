@@ -54,10 +54,6 @@ class GraveStoriesTableViewController: UITableViewController {
         }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        getGraveStories()
-    }
-    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -265,6 +261,8 @@ class GraveStoriesTableViewController: UITableViewController {
         createNewStory()
     }
     
-    @IBAction func unwindtoGraveStories(_ sender: UIStoryboardSegue) {}
+    @IBAction func unwindtoGraveStories(_ sender: UIStoryboardSegue) {
+        self.getGraveStories()
+    }
     
 }
