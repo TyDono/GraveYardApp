@@ -774,6 +774,10 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         performSegue(withIdentifier: "segueToFriendRequest", sender: nil)
     }
     
+    @IBAction func searchBarWasTapped(_ sender: Any) {
+    
+    }
+    
 }
 
 
@@ -824,6 +828,45 @@ extension MapViewController {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+//        UIApplication.shared.beginIgnoringInteractionEvents() depricated
+        let activityIdicator = UIActivityIndicatorView()
+        activityIdicator.style = UIActivityIndicatorView.Style.medium
+        activityIdicator.center = self.view.center
+        activityIdicator.hidesWhenStopped = true
+        activityIdicator.startAnimating()
+        self.view.addSubview(activityIdicator)
+        searchBar.resignFirstResponder()
+        dismiss(animated: true, completion: nil)
+        
+        let searchRequest = MKLocalSearch.Request()
+        searchRequest.naturalLanguageQuery = searchBar.text
+        
+        let activeSearch = MKLocalSearch(request: searchRequest)
+        activeSearch.start { (respose, err) in
+            activityIdicator.stopAnimating()
+            
+            if respose == nil {
+                print(err as Any)
+            } else {
+//                let annotations = self.mapView.annotations
+//                self.mapView.removeAnnotation(annotations as! MKAnnotation) SIGBART
+                guard let latitude = respose?.boundingRegion.center.latitude else { return }
+                guard let longitude = respose?.boundingRegion.center.longitude else { return }
+                
+                let annotation = MKPointAnnotation()
+                annotation.title = searchBar.text
+                annotation.coordinate = CLLocationCoordinate2DMake(latitude, longitude)
+//                self.mapView.addAnnotation(annotation) // I don't need to make one
+                
+                let coordinate: CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude, longitude)
+                let span = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
+                let region = MKCoordinateRegion(center: coordinate, span: span)
+                self.mapView.setRegion(region, animated: true)
+            }
+        }
     }
     
 }
