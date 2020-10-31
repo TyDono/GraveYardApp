@@ -492,7 +492,7 @@ class GraveStoryTableViewController: UITableViewController {
 }
 
 extension GraveStoryTableViewController {
-    //it's a mess :/  just placeholder for the tiem being due to time constraint
+    //it's a mess :/  just placeholder for the time being due to time constraint and a fo rloop doesnt brin them back in the order needed
     func getImage1() {
         if let imageStringId = self.storyImageId1 {
             let storageRef1 = storage.reference()
