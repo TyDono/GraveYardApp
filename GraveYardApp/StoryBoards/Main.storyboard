@@ -1918,7 +1918,7 @@
                                     <constraint firstItem="JWA-Ic-Hmq" firstAttribute="bottom" secondItem="TgG-vd-iv9" secondAttribute="bottom" id="z0G-L5-lvF"/>
                                 </constraints>
                             </view>
-                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="3a5-IP-Tch">
+                            <searchBar contentMode="redraw" placeholder="Search for Locations" translatesAutoresizingMaskIntoConstraints="NO" id="3a5-IP-Tch">
                                 <rect key="frame" x="0.0" y="88" width="414" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>

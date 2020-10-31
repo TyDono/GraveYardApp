@@ -72,6 +72,11 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         animateFriendRequestNotificationButton()
         friendRequestNotificationButton.isHidden = true
         self.navigationItem.rightBarButtonItem?.title = "Account"
+        
+        
+//        let locationSearchTable = storyboard!.instantiateViewControllerWithIdentifier("LocationSearchTable") as! LocationSearchTable
+//        resultSearchController = UISearchController(searchResultsController: locationSearchTable)
+//        resultSearchController?.searchResultsUpdater = locationSearchTable
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -443,6 +448,10 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         } else if segue.identifier == "segueToFriendRequest", let accountTVC = segue.destination as? AccountTableViewController {
             accountTVC.friendRequestListIsExpanded = true
         }
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
     }
     
     func playVideo() { // duo of another same one dlelte one
