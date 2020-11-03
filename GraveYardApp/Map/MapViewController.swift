@@ -16,6 +16,7 @@ import GoogleSignIn
 
 class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UIGestureRecognizerDelegate, UISearchBarDelegate {
     
+    @IBOutlet weak var locationSearchTableView: UITableView!
     @IBOutlet weak var friendRequestNotificationButton: UIButton!
     @IBOutlet weak var locationSearchBar: UISearchBar!
     @IBOutlet weak var playHowToMemorialVideoButton: UIButton!
@@ -64,6 +65,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         addMemorialView.layer.cornerRadius = 10
         playHowToMemorialVideoButton.layer.cornerRadius = 10
         friendRequestNotificationButton.layer.cornerRadius = 29
+        locationSearchTableView.isHidden = true
         mapView.delegate = self
         locationSearchBar.delegate = self
 //        UISearchController
@@ -827,7 +829,14 @@ extension MapViewController {
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        
+        if searchText.isEmpty {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                self.locationSearchTableView.isHidden = true
+                searchBar.resignFirstResponder()
+            }
+        } else {
+            self.locationSearchTableView.isHidden = false
+        }
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {

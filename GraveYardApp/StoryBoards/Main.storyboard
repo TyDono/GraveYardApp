@@ -1918,6 +1918,37 @@
                                     <constraint firstItem="JWA-Ic-Hmq" firstAttribute="bottom" secondItem="TgG-vd-iv9" secondAttribute="bottom" id="z0G-L5-lvF"/>
                                 </constraints>
                             </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="sL6-W9-co5">
+                                <rect key="frame" x="0.0" y="144" width="414" height="718"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="gmU-e4-aZc" customClass="LocationSearchTableViewCell" customModule="Remembrances" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gmU-e4-aZc" id="1zB-fn-X6U">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wEV-W8-OOS">
+                                                    <rect key="frame" x="20" y="11" width="374" height="21.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="wEV-W8-OOS" firstAttribute="leading" secondItem="1zB-fn-X6U" secondAttribute="leadingMargin" id="LGi-ga-a9L"/>
+                                                <constraint firstItem="wEV-W8-OOS" firstAttribute="top" secondItem="1zB-fn-X6U" secondAttribute="topMargin" id="SGO-El-YOQ"/>
+                                                <constraint firstItem="wEV-W8-OOS" firstAttribute="trailing" secondItem="1zB-fn-X6U" secondAttribute="trailingMargin" id="f7T-LF-SaO"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="wEV-W8-OOS" secondAttribute="bottom" id="n7j-Ym-xzb"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="locationSearchLabel" destination="wEV-W8-OOS" id="D2b-MZ-F2P"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
                             <searchBar contentMode="redraw" placeholder="Search for Locations" translatesAutoresizingMaskIntoConstraints="NO" id="3a5-IP-Tch">
                                 <rect key="frame" x="0.0" y="88" width="414" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -1929,8 +1960,11 @@
                             <constraint firstItem="Zx1-5A-lzB" firstAttribute="leading" secondItem="FOT-J4-Seo" secondAttribute="leading" constant="-249" id="0e6-Lk-sNo"/>
                             <constraint firstItem="3a5-IP-Tch" firstAttribute="leading" secondItem="Abc-m9-DRn" secondAttribute="leading" id="5Ca-5W-IBj"/>
                             <constraint firstItem="6MH-ve-unU" firstAttribute="leading" secondItem="Abc-m9-DRn" secondAttribute="leading" id="71F-Fp-uIZ"/>
+                            <constraint firstItem="sL6-W9-co5" firstAttribute="top" secondItem="3a5-IP-Tch" secondAttribute="bottom" id="8sN-Oi-9Lz"/>
+                            <constraint firstItem="sL6-W9-co5" firstAttribute="trailing" secondItem="Abc-m9-DRn" secondAttribute="trailing" id="Fej-bJ-xwI"/>
                             <constraint firstItem="W5U-iO-55T" firstAttribute="leading" secondItem="Abc-m9-DRn" secondAttribute="leading" constant="20" id="KaD-hK-OX8"/>
                             <constraint firstItem="3a5-IP-Tch" firstAttribute="trailing" secondItem="Abc-m9-DRn" secondAttribute="trailing" id="S3J-X3-lRU"/>
+                            <constraint firstItem="sL6-W9-co5" firstAttribute="bottom" secondItem="Abc-m9-DRn" secondAttribute="bottom" id="UnM-pS-Yhx"/>
                             <constraint firstItem="Abc-m9-DRn" firstAttribute="trailing" secondItem="Bsd-aO-ZVt" secondAttribute="trailing" constant="21" id="VwY-yG-GfE"/>
                             <constraint firstItem="6MH-ve-unU" firstAttribute="top" secondItem="Abc-m9-DRn" secondAttribute="top" id="WwJ-dk-9KL"/>
                             <constraint firstItem="Zx1-5A-lzB" firstAttribute="top" secondItem="3a5-IP-Tch" secondAttribute="bottom" constant="20" id="Ya1-Za-kHT"/>
@@ -1941,6 +1975,7 @@
                             <constraint firstItem="3a5-IP-Tch" firstAttribute="centerX" secondItem="FOT-J4-Seo" secondAttribute="centerX" id="kmC-W9-vvA"/>
                             <constraint firstItem="Abc-m9-DRn" firstAttribute="trailing" secondItem="Zx1-5A-lzB" secondAttribute="trailing" constant="326" id="s1Q-Ai-LBb"/>
                             <constraint firstItem="6MH-ve-unU" firstAttribute="bottom" secondItem="Abc-m9-DRn" secondAttribute="bottom" id="u5v-ji-bRW"/>
+                            <constraint firstItem="sL6-W9-co5" firstAttribute="leading" secondItem="Abc-m9-DRn" secondAttribute="leading" id="x1C-iK-Wqv"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="3eL-az-WuV">
@@ -1963,6 +1998,7 @@
                         <outlet property="friendRequestNotificationButton" destination="Bsd-aO-ZVt" id="nfN-H7-dda"/>
                         <outlet property="howToMemorialPreviewImage" destination="ksM-Uc-EPm" id="D3X-UK-IYq"/>
                         <outlet property="locationSearchBar" destination="3a5-IP-Tch" id="HYd-FM-r8A"/>
+                        <outlet property="locationSearchTableView" destination="sL6-W9-co5" id="0wF-DG-78b"/>
                         <outlet property="mapView" destination="6MH-ve-unU" id="KFx-y7-2xf"/>
                         <outlet property="playHowToMemorialVideoButton" destination="VEu-qr-h0s" id="vD3-Ph-5TI"/>
                         <outlet property="recenterMapButton" destination="W5U-iO-55T" id="yse-to-gs6"/>

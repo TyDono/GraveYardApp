@@ -28,6 +28,7 @@
 		CBBC7B1F252B054800BE6697 /* LocationSearchTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBC7B1E252B054800BE6697 /* LocationSearchTableView.swift */; };
 		CBBCBD46250A74F700326169 /* paperSound.wav in Resources */ = {isa = PBXBuildFile; fileRef = CBBCBD44250A74F600326169 /* paperSound.wav */; };
 		CBBCBD47250A74F700326169 /* paperBookSound.wav in Resources */ = {isa = PBXBuildFile; fileRef = CBBCBD45250A74F700326169 /* paperBookSound.wav */; };
+		CBC5B0C925513C9E00534803 /* LocationSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC5B0C825513C9E00534803 /* LocationSearchTableViewCell.swift */; };
 		CBCE0E0B23FD12D00077A4F1 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCE0E0823FD12D00077A4F1 /* SplashViewController.swift */; };
 		CBCE0E0D23FD12D00077A4F1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCE0E0A23FD12D00077A4F1 /* SceneDelegate.swift */; };
 		CBCE0E0F23FD13050077A4F1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCE0E0E23FD13050077A4F1 /* AppDelegate.swift */; };
@@ -78,6 +79,7 @@
 		CBBC7B1E252B054800BE6697 /* LocationSearchTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchTableView.swift; sourceTree = "<group>"; };
 		CBBCBD44250A74F600326169 /* paperSound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = paperSound.wav; sourceTree = "<group>"; };
 		CBBCBD45250A74F700326169 /* paperBookSound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = paperBookSound.wav; sourceTree = "<group>"; };
+		CBC5B0C825513C9E00534803 /* LocationSearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchTableViewCell.swift; sourceTree = "<group>"; };
 		CBCE0E0823FD12D00077A4F1 /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		CBCE0E0A23FD12D00077A4F1 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		CBCE0E0E23FD13050077A4F1 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -257,6 +259,7 @@
 			isa = PBXGroup;
 			children = (
 				CBCE0E1823FD13460077A4F1 /* MapViewController.swift */,
+				CBC5B0C825513C9E00534803 /* LocationSearchTableViewCell.swift */,
 				CBBC7B1E252B054800BE6697 /* LocationSearchTableView.swift */,
 			);
 			path = Map;
@@ -453,6 +456,7 @@
 				CB697DF52440A8460035C07A /* AuthState.swift in Sources */,
 				CBCE0E2723FD13E80077A4F1 /* GraveProfileImage.swift in Sources */,
 				CBCE0E1923FD13460077A4F1 /* MapViewController.swift in Sources */,
+				CBC5B0C925513C9E00534803 /* LocationSearchTableViewCell.swift in Sources */,
 				CBCE0E2323FD13BE0077A4F1 /* Story.swift in Sources */,
 				CBCE0E2B23FD14080077A4F1 /* GraveTableViewController.swift in Sources */,
 				CB19C28C252C82D8009DB081 /* IgnoreListTableViewCell.swift in Sources */,
