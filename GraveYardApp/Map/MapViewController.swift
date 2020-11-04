@@ -819,12 +819,12 @@ extension MapViewController {
             }
         } else {
             self.locationSearchTableView.isHidden = false
-            let activityIdicator = UIActivityIndicatorView()
-            activityIdicator.style = UIActivityIndicatorView.Style.medium
-            activityIdicator.center = self.view.center
-            activityIdicator.hidesWhenStopped = true
-            activityIdicator.startAnimating()
-            self.view.addSubview(activityIdicator)
+//            let activityIdicator = UIActivityIndicatorView()
+//            activityIdicator.style = UIActivityIndicatorView.Style.medium
+//            activityIdicator.center = self.view.center
+//            activityIdicator.hidesWhenStopped = true
+//            activityIdicator.startAnimating()
+//            self.view.addSubview(activityIdicator)
 //            searchBar.resignFirstResponder()
 //            dismiss(animated: true, completion: nil)
             
@@ -859,14 +859,14 @@ extension MapViewController {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
 //        UIApplication.shared.beginIgnoringInteractionEvents() depricated
-        let activityIdicator = UIActivityIndicatorView()
-        activityIdicator.style = UIActivityIndicatorView.Style.medium
-        activityIdicator.center = self.view.center
-        activityIdicator.hidesWhenStopped = true
-        activityIdicator.startAnimating()
-        self.view.addSubview(activityIdicator)
-        searchBar.resignFirstResponder()
-        dismiss(animated: true, completion: nil)
+//        let activityIdicator = UIActivityIndicatorView()
+//        activityIdicator.style = UIActivityIndicatorView.Style.medium
+//        activityIdicator.center = self.view.center
+//        activityIdicator.hidesWhenStopped = true
+//        activityIdicator.startAnimating()
+//        self.view.addSubview(activityIdicator)
+//        searchBar.resignFirstResponder()
+//        dismiss(animated: true, completion: nil)
 
         let searchRequest = MKLocalSearch.Request()
         searchRequest.region = mapView.region
