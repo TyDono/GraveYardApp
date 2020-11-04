@@ -14,7 +14,7 @@ import AVKit
 import AVFoundation
 import GoogleSignIn
 
-class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UIGestureRecognizerDelegate, UISearchBarDelegate {
+class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UIGestureRecognizerDelegate, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var locationSearchTableView: UITableView!
     @IBOutlet weak var friendRequestNotificationButton: UIButton!
@@ -52,6 +52,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     var bookSideHasExpanded: Bool = false
     var playerLayer: AVPlayer?
     var friendRequests: Array<String>?
+    var matchingItems: [MKMapItem] = []
+//    var mapViewVar: MKMapView? = nil
+//    var handleMapSearchDelegate: HandleMapSearch? = nil
 
     // MARK: - View Lifecycle
     
@@ -60,6 +63,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
 //        self.locationManager.distanceFilter = 90000.0;
 //        self.mapView.removeAnnotations(self.mapView.annotations)
         setMapViewLocationAndUser()
+        getUserMemorialCount()
+        getUserData()
+        animateFriendRequestNotificationButton()
         //chageTextColor()
         self.recenterMapButton.layer.cornerRadius = 10
         addMemorialView.layer.cornerRadius = 10
@@ -68,11 +74,10 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         locationSearchTableView.isHidden = true
         mapView.delegate = self
         locationSearchBar.delegate = self
-//        UISearchController
-        getUserMemorialCount()
-        getUserData()
-        animateFriendRequestNotificationButton()
+        locationSearchTableView.delegate = self
+        locationSearchTableView.dataSource = self
         friendRequestNotificationButton.isHidden = true
+//        locationSearchTable.handleMapSearchDelegate = self
         self.navigationItem.rightBarButtonItem?.title = "Account"
         
         
@@ -90,7 +95,58 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         checkForUserId() // make sure this gets calld everytime u reload from sign in
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "segueToGrave", let graveTVC = segue.destination as? GraveTableViewController {
+            graveTVC.currentGraveId = MapViewController.shared.currentGraveId
+        } else if segue.identifier == "segueToFriendRequest", let accountTVC = segue.destination as? AccountTableViewController {
+            accountTVC.friendRequestListIsExpanded = true
+        }
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return matchingItems.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "locationSearchCell", for: indexPath) as? LocationSearchTableViewCell else { return UITableViewCell() }
+        let selectedItem = matchingItems[indexPath.row].placemark
+        cell.locationSearchLabel?.text = selectedItem.name
+//        cell.locationSearchLabel?.text = ""
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedItem = matchingItems[indexPath.row].placemark
+        locationSearchBar.text = selectedItem.title
+        dismiss(animated: true, completion: nil)
+    }
+    
+//    func tableView(tableView: UITableView, didSelectRowAt indexPath: NSIndexPath) {
+//        let selectedItem = matchingItems[indexPath.row].placemark
+//        dismiss(animated: true, completion: nil)
+//    }
+    
     // MARK: - Functions
+    
+//    func updateSearchResultsForSearchController(searchController: UISearchController) {
+//        guard let mapView = mapView,
+//            let searchBarText = searchController.searchBar.text else { return }
+//        let request = MKLocalSearch.Request()
+//        request.naturalLanguageQuery = searchBarText
+//        request.region = mapView.region
+//        let search = MKLocalSearch(request: request)
+//        search.start { response, _ in
+//            guard let response = response else {
+//                return
+//            }
+//            self.matchingItems = response.mapItems
+//            self.locationSearchTableView.reloadData()
+//        }
+//    }
     
     func chageTextColor() {
         navigationItem.leftBarButtonItem?.tintColor = UIColor(0.0, 128.0, 128.0, 1.0)
@@ -241,95 +297,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             }
             completion(registeredGraves)
         }
-//        var graveArray = [Grave]()
-//        db.collection("stories").whereField("allGraveIdentifier", isEqualTo: "tylerRoolz" ).getDocuments { (snapshot, error) in
-//            if error != nil {
-//                print(Error.self)
-//            } else {
-//                guard let snapshot = snapshot else {
-//                    print("could not unrwap snapshot")
-//                    return
-//                }
-//                for document in (snapshot.documents) {
-//                    //do an if let statement for every value in the grave object and then set it to the check out the tableview
-//                    guard let name = document.data()["name"] as? String,
-//                        let birthDate = document.data()["birthDate"] as? String,
-//                        let deathDate = document.data()["deathDate"] as? String else {
-//                            print("name, birthDate, or deathDate is not working")
-//                            return }
-//
-//
-//                    if let graveResult = document.data() as? [String: Any], let graveStories = Grave.init(dictionary: graveResult) {
-//                        graveArray.append(graveStories)
-////                    }
-//                }
-//                self.graves = graveArray
-//                print("This is working")
-//                print(self.graves)
-////                DispatchQueue.main.async {
-////
-//                }
-//            }
-//        }
     }
-    
-    //    func createData() {
-    //
-    //        // IDEA, image of a folder, image that tells them what it is. is is a text doc is it pics? is ait a video? is it multiple? when u make a story ONE VC.
-    //        // when the id are made, a check to search for ids of the same must be made. if they are the same, rinse and repeat.
-    //        if currentAuthID == nil {
-    //            let notSignInAlert = UIAlertController(title: "You are not signed in", message: "You must sign in to create a grave location", preferredStyle: .alert)
-    //            let dismiss = UIAlertAction(title: "OK", style: .default, handler: nil)
-    //            notSignInAlert.addAction(dismiss)
-    //            self.present(notSignInAlert, animated: true, completion: nil)
-    //        } else {
-    //        let id = currentAuthID!
-    //        let graveId = UUID().uuidString
-    //        let newGraveId = UUID().uuidString
-    //        let name: String = ""
-    //        let birthDate: String = ""
-    //        let birthLocation: String = ""
-    //        let deathDate: String = ""
-    //        let deathLocation: String = ""
-    //        let marriageStatus: String = ""
-    //        let bio: String = ""
-    //
-    //        var grave = Grave(creatorId: id,
-    //                          graveId: graveId,
-    //                          name: name,
-    //                          birthDate: birthDate,
-    //                          birthLocation: birthLocation,
-    //                          deathDate: deathDate,
-    //                          deathLocation: deathLocation,
-    //                          marriageStatus: marriageStatus,
-    //                          bio: bio)
-    //
-    //        let graveRef = self.db.collection("grave")
-    //        graveRef.whereField("graveId", isEqualTo: grave.graveId).getDocuments { (snapshot, error) in
-    //            if error != nil {
-    //                print(Error.self)
-    //            } else {
-    //                if snapshot?.description == grave.graveId {
-    //                    grave.graveId = newGraveId
-    //                } else {
-    //                    print("no dupli")
-    //                }
-    //            }
-    //        }
-    //        graveRef.document(String(grave.graveId)).setData(grave.dictionary) { err in
-    //            if let err = err {
-    //                let graveCreationFailAert = UIAlertController(title: "Failed to create a Grave", message: "Your device failed to properly create a Grave on your desired destination, Please check your wifi and try again", preferredStyle: .alert)
-    //                let dismiss = UIAlertAction(title: "OK", style: .default, handler: nil)
-    //                graveCreationFailAert.addAction(dismiss)
-    //                self.present(graveCreationFailAert, animated: true, completion: nil)
-    //                print(err)
-    //            } else {
-    //                self.performSegue(withIdentifier: "segueToGrave", sender: nil)
-    //                print("Added Data")
-    //            }
-    //        }
-    //        }
-    //    }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         if annotation is MKUserLocation {
@@ -442,18 +410,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         }) {
             (_) in
         }
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "segueToGrave", let graveTVC = segue.destination as? GraveTableViewController {
-            graveTVC.currentGraveId = MapViewController.shared.currentGraveId
-        } else if segue.identifier == "segueToFriendRequest", let accountTVC = segue.destination as? AccountTableViewController {
-            accountTVC.friendRequestListIsExpanded = true
-        }
-    }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        view.endEditing(true)
     }
     
     func playVideo() { // duo of another same one dlelte one
@@ -810,23 +766,50 @@ extension MapViewController {
         print("error:: (error)")
     }
     
-    func updateSearchResults(_ searchBar: UISearchBar) {
-        
-        searchBar.resignFirstResponder()
-        dismiss(animated: true, completion: nil)
-        
-        let searchRequest = MKLocalSearch.Request()
-        searchRequest.naturalLanguageQuery = searchBar.text
-        
-        let activeSearch = MKLocalSearch(request: searchRequest)
-        activeSearch.start { (response, err) in
-            if response == nil {
-                print("ERROR: \(err)")
-            } else {
-                
-            }
-        }
-    }
+//    func parseAddress(selectedItem:MKPlacemark) -> String {
+//        // put a space between "4" and "Melrose Place"
+//        let firstSpace = (selectedItem.subThoroughfare != nil && selectedItem.thoroughfare != nil) ? " " : ""
+//        // put a comma between street and city/state
+//        let comma = (selectedItem.subThoroughfare != nil || selectedItem.thoroughfare != nil) && (selectedItem.subAdministrativeArea != nil || selectedItem.administrativeArea != nil) ? ", " : ""
+//        // put a space between "Washington" and "DC"
+//        let secondSpace = (selectedItem.subAdministrativeArea != nil && selectedItem.administrativeArea != nil) ? " " : ""
+//        let addressLine = String(
+//            format:"%@%@%@%@%@%@%@",
+//            // street number
+//            selectedItem.subThoroughfare ?? "",
+//            firstSpace,
+//            // street name
+//            selectedItem.thoroughfare ?? "",
+//            comma,
+//            // city
+//            selectedItem.locality ?? "",
+//            secondSpace,
+//            // state
+//            selectedItem.administrativeArea ?? ""
+//        )
+//        return addressLine
+//    }
+    
+//    func updateSearchResults(_ searchBar: UISearchBar) {
+//
+//        searchBar.resignFirstResponder()
+//        dismiss(animated: true, completion: nil)
+//
+//        let searchRequest = MKLocalSearch.Request()
+//        searchRequest.region = mapView.region
+//        searchRequest.naturalLanguageQuery = searchBar.text
+//
+//        let activeSearch = MKLocalSearch(request: searchRequest)
+//        activeSearch.start { (response, err) in
+//            if err != nil {
+//                print("ERROR: \(err)")
+//            } else {
+//                guard let response = response else { return }
+//                self.matchingItems = response.mapItems
+//                self.locationSearchTableView.reloadData()
+//            }
+//        }
+//    }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText.isEmpty {
@@ -836,6 +819,41 @@ extension MapViewController {
             }
         } else {
             self.locationSearchTableView.isHidden = false
+            let activityIdicator = UIActivityIndicatorView()
+            activityIdicator.style = UIActivityIndicatorView.Style.medium
+            activityIdicator.center = self.view.center
+            activityIdicator.hidesWhenStopped = true
+            activityIdicator.startAnimating()
+            self.view.addSubview(activityIdicator)
+//            searchBar.resignFirstResponder()
+//            dismiss(animated: true, completion: nil)
+            
+            let searchRequest = MKLocalSearch.Request()
+            searchRequest.region = mapView.region
+            searchRequest.naturalLanguageQuery = searchBar.text
+            
+            let activeSearch = MKLocalSearch(request: searchRequest)
+            activeSearch.start { (response, err) in
+                if err != nil {
+                    print("ERROR: \(String(describing: err))")
+                } else {
+                    guard let response = response else { return }
+                    self.matchingItems = response.mapItems
+                    self.locationSearchTableView.reloadData()
+//                     let latitude = response.boundingRegion.center.latitude
+//                     let longitude = response.boundingRegion.center.longitude
+//
+//                    let annotation = MKPointAnnotation()
+//                    annotation.title = searchBar.text
+//                    annotation.coordinate = CLLocationCoordinate2DMake(latitude, longitude)
+//    //                self.mapView.addAnnotation(annotation) // I don't need to make one
+//
+//                    let coordinate: CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude, longitude)
+//                    let span = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
+//                    let region = MKCoordinateRegion(center: coordinate, span: span)
+//                    self.mapView.setRegion(region, animated: true)
+                }
+            }
         }
     }
     
@@ -849,31 +867,32 @@ extension MapViewController {
         self.view.addSubview(activityIdicator)
         searchBar.resignFirstResponder()
         dismiss(animated: true, completion: nil)
-        
+
         let searchRequest = MKLocalSearch.Request()
+        searchRequest.region = mapView.region
         searchRequest.naturalLanguageQuery = searchBar.text
-        
+
         let activeSearch = MKLocalSearch(request: searchRequest)
-        activeSearch.start { (respose, err) in
-            activityIdicator.stopAnimating()
-            
-            if respose == nil {
-                print(err as Any)
+        activeSearch.start { (response, err) in
+            if err != nil {
+                print("ERROR: \(String(describing: err))")
             } else {
-//                let annotations = self.mapView.annotations
-//                self.mapView.removeAnnotation(annotations as! MKAnnotation) SIGBART
-                guard let latitude = respose?.boundingRegion.center.latitude else { return }
-                guard let longitude = respose?.boundingRegion.center.longitude else { return }
-                
-                let annotation = MKPointAnnotation()
-                annotation.title = searchBar.text
-                annotation.coordinate = CLLocationCoordinate2DMake(latitude, longitude)
-//                self.mapView.addAnnotation(annotation) // I don't need to make one
-                
+                guard let response = response else { return }
+                self.matchingItems = response.mapItems
+//                self.locationSearchTableView.reloadData()
+                 let latitude = response.boundingRegion.center.latitude
+                 let longitude = response.boundingRegion.center.longitude
+
+//                let annotation = MKPointAnnotation() // I don't need annotations for this
+//                annotation.title = searchBar.text
+//                annotation.coordinate = CLLocationCoordinate2DMake(latitude, longitude)
+//                self.mapView.addAnnotation(annotation)
+
                 let coordinate: CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude, longitude)
                 let span = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
                 let region = MKCoordinateRegion(center: coordinate, span: span)
                 self.mapView.setRegion(region, animated: true)
+                self.locationSearchTableView.isHidden = true
             }
         }
     }
