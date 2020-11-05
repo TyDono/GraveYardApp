@@ -2220,7 +2220,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icons8-team-96" translatesAutoresizingMaskIntoConstraints="NO" id="yoQ-gy-Ff1">
-                                                    <rect key="frame" x="294" y="2" width="48" height="82"/>
+                                                    <rect key="frame" x="301" y="2" width="48" height="82"/>
                                                 </imageView>
                                             </subviews>
                                             <constraints>
@@ -2230,7 +2230,7 @@
                                                 <constraint firstItem="fRj-1i-hO1" firstAttribute="top" secondItem="mS4-4z-iv3" secondAttribute="top" constant="-13" id="bZt-Xv-iql"/>
                                                 <constraint firstAttribute="bottom" secondItem="yoQ-gy-Ff1" secondAttribute="bottom" constant="3" id="bjv-2w-DD0"/>
                                                 <constraint firstItem="8rW-nN-sdc" firstAttribute="centerX" secondItem="mS4-4z-iv3" secondAttribute="centerX" id="dUX-ug-9Sq"/>
-                                                <constraint firstAttribute="trailing" secondItem="yoQ-gy-Ff1" secondAttribute="trailing" constant="72" id="hMx-zz-Xr8"/>
+                                                <constraint firstAttribute="trailing" secondItem="yoQ-gy-Ff1" secondAttribute="trailing" constant="65" id="hMx-zz-Xr8"/>
                                                 <constraint firstItem="yoQ-gy-Ff1" firstAttribute="top" secondItem="mS4-4z-iv3" secondAttribute="top" constant="2" id="iaR-Yj-QAw"/>
                                                 <constraint firstAttribute="trailing" secondItem="fRj-1i-hO1" secondAttribute="trailing" id="j2B-FX-Pbg"/>
                                             </constraints>
@@ -2598,16 +2598,16 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="6b9-RO-6yt"/>
+        <segue reference="t2x-xr-4ij"/>
         <segue reference="z4g-pH-uIZ"/>
         <segue reference="7DO-rd-4qB"/>
         <segue reference="d0c-Z0-mkc"/>
         <segue reference="xN6-dc-fkE"/>
     </inferredMetricsTieBreakers>
     <resources>
-        <image name="BookbarFriendos" width="415" height="75"/>
-        <image name="BookbarPersonIcon" width="415" height="75"/>
-        <image name="BookbarSlashCircle" width="415" height="75"/>
+        <image name="BookbarFriendos" width="207.5" height="37.5"/>
+        <image name="BookbarPersonIcon" width="207.5" height="37.5"/>
+        <image name="BookbarSlashCircle" width="207.5" height="37.5"/>
         <image name="Page" width="617" height="500"/>
         <image name="addVideo" width="410" height="410"/>
         <image name="appleSigninButton" width="212" height="38"/>

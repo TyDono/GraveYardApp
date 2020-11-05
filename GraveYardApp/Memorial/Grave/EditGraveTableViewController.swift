@@ -99,6 +99,7 @@ class EditGraveTableViewController: UITableViewController, UIImagePickerControll
         //chageTextColor()
         self.deleteHeadstoneButton.layer.cornerRadius = 10
         self.playButton.layer.cornerRadius = 10
+        nameTextField.font = nameTextField.font?.bold
         nameTextField.setBottomBorderOnlyWith(color: UIColor.gray.cgColor)
 //        self.videoPreviewUIImage.contentMode = .scaleToFill
 //        self.videoPreviewUIImage.image = UIImage(named: "icons8-video-100")

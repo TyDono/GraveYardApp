@@ -59,6 +59,10 @@ class AccountTableViewController: UITableViewController {
         tableViewFriendRequestList.dataSource = self
         tableViewIgnoreList.delegate = self
         tableViewIgnoreList.dataSource = self
+        friendListExpanderLabel.font = friendListExpanderLabel.font.bold
+        friendRequestExpanderLabel.font = friendRequestExpanderLabel.font.bold
+        ignoreListExpanderLabel.font = ignoreListExpanderLabel.font.bold
+        userNameTextField.font = userNameTextField.font?.bold
         db = Firestore.firestore()
         userNameTextField.setBottomBorderOnlyWith(color: UIColor.gray.cgColor)
         getUserData()

@@ -69,6 +69,7 @@ class GraveStoryTableViewController: UITableViewController {
         storyImagesScrollView.delegate = self
         self.reportButton.layer.cornerRadius = 10
         justOneImageOnly.isHidden = true
+        storyTitle.font = storyTitle.font.bold
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) {
             self.getImage1()
         }

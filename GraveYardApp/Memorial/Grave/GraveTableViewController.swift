@@ -89,6 +89,14 @@ class GraveTableViewController: UITableViewController {
         }
     }
     
+    func multiLineTitleView() {
+        let titleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 44))
+        titleLabel.font = titleLabel.font.bold
+        titleLabel.numberOfLines = 3
+        titleLabel.textAlignment = .center
+        self.graveNavTitle.titleView = titleLabel
+    }
+    
     func checkForCreatorId() {
         if currentAuthID == creatorId {
             rightBarButtonItem.title = "Edit"
@@ -239,7 +247,12 @@ class GraveTableViewController: UITableViewController {
                             self.currentGraveId = graveId
                             self.imageString = profileImageId
                             let nameHeadstone = "\(name)"
-                            self.graveNavTitle.title = nameHeadstone.uppercased()
+                            let titleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 44))
+                            titleLabel.font = titleLabel.font.bold
+                            titleLabel.numberOfLines = 3
+                            titleLabel.textAlignment = .center
+                            titleLabel.text = nameHeadstone.uppercased()
+                            self.graveNavTitle.titleView = titleLabel
                             self.creatorId = creatorId
                             if birthDate != "" {
                                 self.midTopLabel.text = ""
