@@ -302,7 +302,7 @@ class AccountTableViewController: UITableViewController {
         switch (indexPath.section, indexPath.row) {
         case (0,0):
             if tableView == tableViewMain {
-                return 75
+                return 0 //change to 75 when premium is instated
             } else {
                 return 0
             }
@@ -313,7 +313,7 @@ class AccountTableViewController: UITableViewController {
                 return 75
             }
         case (1,0):
-            return 60
+            return 80
         case (1,1):
             switch friendListIsExpanded {
             case true:
@@ -322,7 +322,7 @@ class AccountTableViewController: UITableViewController {
                 return 0
             }
         case (2,0):
-            return 60
+            return 80
         case (2,1):
             switch friendRequestListIsExpanded {
             case true:
@@ -331,7 +331,7 @@ class AccountTableViewController: UITableViewController {
                 return 0
             }
         case (3,0):
-            return 60
+            return 80
         case (3,1):
             switch ignoreListIsExpanded {
             case true:
@@ -345,25 +345,26 @@ class AccountTableViewController: UITableViewController {
     }
 
     
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        switch tableView {
-        case tableViewFriendList:
-            if editingStyle == .delete {
-                // Delete the row from the data source
-                guard let toBeRemovedFriendId = self.friendIdList?.remove(at: indexPath.row) else { return }
-                self.friendNameList?.remove(at: indexPath.row)
-                self.toBeRemovedFriendIdList?.append(toBeRemovedFriendId)
-                tableView.deleteRows(at: [indexPath], with: .fade)
-            } else {
-                return
-            }
-        default:
-            return
-        }
-        //else if editingStyle == .insert {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }
+    // Override to support editing the table view. //
+    // not needed and for future updates would be just annoying
+//    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+//        switch tableView {
+//        case tableViewFriendList:
+//            if editingStyle == .delete {
+//                // Delete the row from the data source
+//                guard let toBeRemovedFriendId = self.friendIdList?.remove(at: indexPath.row) else { return }
+//                self.friendNameList?.remove(at: indexPath.row)
+//                self.toBeRemovedFriendIdList?.append(toBeRemovedFriendId)
+//                tableView.deleteRows(at: [indexPath], with: .fade)
+//            } else {
+//                return
+//            }
+//        default:
+//            return
+//        }
+//        //else if editingStyle == .insert {
+//        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+//    }
     
     // MARK: - Functions
     

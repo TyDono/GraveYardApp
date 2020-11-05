@@ -840,18 +840,6 @@ extension MapViewController {
                     guard let response = response else { return }
                     self.matchingItems = response.mapItems
                     self.locationSearchTableView.reloadData()
-//                     let latitude = response.boundingRegion.center.latitude
-//                     let longitude = response.boundingRegion.center.longitude
-//
-//                    let annotation = MKPointAnnotation()
-//                    annotation.title = searchBar.text
-//                    annotation.coordinate = CLLocationCoordinate2DMake(latitude, longitude)
-//    //                self.mapView.addAnnotation(annotation) // I don't need to make one
-//
-//                    let coordinate: CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude, longitude)
-//                    let span = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
-//                    let region = MKCoordinateRegion(center: coordinate, span: span)
-//                    self.mapView.setRegion(region, animated: true)
                 }
             }
         }
