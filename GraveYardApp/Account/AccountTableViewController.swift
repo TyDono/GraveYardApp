@@ -99,8 +99,8 @@ class AccountTableViewController: UITableViewController {
             switch indexPath.section {
             case 0:
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: "friendListDynamicCell", for: indexPath) as? FriendListDynamicTableViewCell else { return UITableViewCell() }
-                //                cell.backgroundColor = UIColor.clear
-                //                cell.backgroundView = UIImageView.init(image: UIImage.init(named: "bookRed"))
+//                cell.backgroundColor = UIColor.clear
+//                cell.backgroundView = UIImageView.init(image: UIImage.init(named: "BookbarPersonIcon"))
                 if let friends = friendNameList, let friendsId = friendIdList {
                     
                     let friendId = friendsId[indexPath.row]
@@ -141,8 +141,8 @@ class AccountTableViewController: UITableViewController {
             switch indexPath.section {
             case 0:
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: "FriendRequestCell", for: indexPath) as? FriendRequestTableViewCell else { return UITableViewCell() }
-                //                cell.backgroundColor = UIColor.clear
-                //                cell.backgroundView = UIImageView.init(image: UIImage.init(named: "bookRed"))
+//                cell.backgroundColor = UIColor.clear
+//                cell.backgroundView = UIImageView.init(image: UIImage.init(named: "BookbarPersonIcon"))
                 if let friendRequests = friendNameRequestList, let friendsRequestsId = friendRequestsIdList {
                     let friendRequestName = friendRequests[indexPath.row]
                     cell.friendRequestNameLabel.text = "\(friendRequestName)"
@@ -163,8 +163,8 @@ class AccountTableViewController: UITableViewController {
             switch indexPath.section {
             case 0:
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: "IgnoreListCell", for: indexPath) as? IgnoreListTableViewCell else { return UITableViewCell() }
-                //                cell.backgroundColor = UIColor.clear
-                //                cell.backgroundView = UIImageView.init(image: UIImage.init(named: "bookRed"))
+//                cell.backgroundColor = UIColor.clear
+//                cell.backgroundView = UIImageView.init(image: UIImage.init(named: "BookbarSlashCircle"))
                 if let ingores = ignoreNameList, let ignoresId = ignoreIdList {
                     let ignore = ingores[indexPath.row]
                     cell.ignoreNameLabel.text = "\(ignore)"
@@ -313,7 +313,7 @@ class AccountTableViewController: UITableViewController {
                 return 75
             }
         case (1,0):
-            return 80
+            return 87
         case (1,1):
             switch friendListIsExpanded {
             case true:
@@ -322,7 +322,7 @@ class AccountTableViewController: UITableViewController {
                 return 0
             }
         case (2,0):
-            return 80
+            return 87
         case (2,1):
             switch friendRequestListIsExpanded {
             case true:
@@ -331,7 +331,7 @@ class AccountTableViewController: UITableViewController {
                 return 0
             }
         case (3,0):
-            return 80
+            return 87
         case (3,1):
             switch ignoreListIsExpanded {
             case true:
