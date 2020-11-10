@@ -47,7 +47,7 @@ class GraveStoriesTableViewController: UITableViewController {
         self.tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         db = Firestore.firestore()
         print(currentGraveId)
-//        getGraveStories()
+        getGraveStories()
         let titleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 44))
         titleLabel.font = titleLabel.font.bold
         titleLabel.numberOfLines = 3
