@@ -46,8 +46,14 @@ class GraveStoriesTableViewController: UITableViewController {
         //chageTextColor()
         self.tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         db = Firestore.firestore()
+        print(currentGraveId)
 //        getGraveStories()
-        self.StoriesNavTitle.title = "\(currentGraveName) Stories"
+        let titleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 44))
+        titleLabel.font = titleLabel.font.bold
+        titleLabel.numberOfLines = 3
+        titleLabel.textAlignment = .center
+        titleLabel.text = "\(currentGraveName.uppercased()) STORIES"
+        self.StoriesNavTitle.titleView = titleLabel
         changeBackground()
         if currentAuthID != creatorId {
             self.navigationItem.rightBarButtonItem = nil
@@ -107,6 +113,7 @@ class GraveStoriesTableViewController: UITableViewController {
         var stories = [Story]()
         guard let currentGraveCreatorId: String = creatorId,
         let currentGraveId: String = self.currentGraveId else { return }
+        print(currentGraveId)
         print(currentGraveCreatorId)
         db.collection("stories").whereField("graveId", isEqualTo: currentGraveId).getDocuments { (snapshot, error) in
                 if error != nil {
