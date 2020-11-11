@@ -403,7 +403,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tyler_mountain" translatesAutoresizingMaskIntoConstraints="NO" id="A0e-uE-pgk">
-                                                    <rect key="frame" x="10" y="-17" width="394" height="252"/>
+                                                    <rect key="frame" x="10" y="-17" width="394" height="302"/>
                                                 </imageView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9d1-Rx-hhC">
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="246"/>
@@ -430,7 +430,7 @@
                                                 <constraint firstItem="9d1-Rx-hhC" firstAttribute="top" secondItem="LbH-tm-d9a" secondAttribute="top" id="Kjv-jk-H8o"/>
                                                 <constraint firstItem="J2f-nQ-G2U" firstAttribute="top" secondItem="LbH-tm-d9a" secondAttribute="top" id="c9I-iY-Ls8"/>
                                                 <constraint firstItem="A0e-uE-pgk" firstAttribute="leading" secondItem="LbH-tm-d9a" secondAttribute="leadingMargin" constant="-10" id="cOg-Mi-ny1"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="A0e-uE-pgk" secondAttribute="bottom" id="gzM-Kn-hQX"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="A0e-uE-pgk" secondAttribute="bottom" constant="-50" id="gzM-Kn-hQX"/>
                                                 <constraint firstAttribute="bottom" secondItem="9d1-Rx-hhC" secondAttribute="bottom" id="hCd-l6-Nz8"/>
                                                 <constraint firstItem="J2f-nQ-G2U" firstAttribute="leading" secondItem="LbH-tm-d9a" secondAttribute="leading" constant="10" id="mXf-Hj-oqu"/>
                                                 <constraint firstAttribute="trailing" secondItem="9d1-Rx-hhC" secondAttribute="trailing" id="onf-AK-zBm"/>
@@ -1923,14 +1923,14 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="locationSearchCell" id="gmU-e4-aZc" customClass="LocationSearchTableViewCell" customModule="Remembrances" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="43"/>
+                                        <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gmU-e4-aZc" id="1zB-fn-X6U">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wEV-W8-OOS">
-                                                    <rect key="frame" x="20" y="11" width="374" height="21"/>
+                                                    <rect key="frame" x="20" y="11" width="374" height="21.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>

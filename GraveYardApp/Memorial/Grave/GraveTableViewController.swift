@@ -184,7 +184,7 @@ class GraveTableViewController: UITableViewController {
             if self.videoURL == nil {
                 return 0
             } else {
-                return 293
+                return 300
             }
         case (0, 2):
             return 140

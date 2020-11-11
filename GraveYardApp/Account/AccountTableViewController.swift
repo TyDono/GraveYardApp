@@ -314,10 +314,10 @@ class AccountTableViewController: UITableViewController {
             if tableView == tableViewMain {
                 return 95
             } else {
-                return 75
+                return 95
             }
         case (1,0):
-            return 87
+            return 95
         case (1,1):
             switch friendListIsExpanded {
             case true:
@@ -326,7 +326,7 @@ class AccountTableViewController: UITableViewController {
                 return 0
             }
         case (2,0):
-            return 87
+            return 95
         case (2,1):
             switch friendRequestListIsExpanded {
             case true:
@@ -335,7 +335,7 @@ class AccountTableViewController: UITableViewController {
                 return 0
             }
         case (3,0):
-            return 87
+            return 95
         case (3,1):
             switch ignoreListIsExpanded {
             case true:
@@ -344,7 +344,7 @@ class AccountTableViewController: UITableViewController {
                 return 0
             }
         default:
-            return 75
+            return 95
         }
     }
 
