@@ -31,7 +31,7 @@
                                                     <rect key="frame" x="11" y="-15" width="392" height="266"/>
                                                 </imageView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3VJ-Ys-YoO">
-                                                    <rect key="frame" x="11" y="293" width="392" height="30"/>
+                                                    <rect key="frame" x="11" y="293" width="392" height="34"/>
                                                     <color key="backgroundColor" systemColor="linkColor"/>
                                                     <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="21"/>
                                                     <state key="normal">
@@ -56,7 +56,7 @@
                                                 <constraint firstItem="rzf-gV-0fs" firstAttribute="centerY" secondItem="NHG-3k-PSM" secondAttribute="centerY" constant="-49" id="IKh-cb-n2g"/>
                                                 <constraint firstItem="3VJ-Ys-YoO" firstAttribute="top" secondItem="rzf-gV-0fs" secondAttribute="bottom" constant="42" id="KqP-VP-UbH"/>
                                                 <constraint firstItem="rzf-gV-0fs" firstAttribute="centerX" secondItem="NHG-3k-PSM" secondAttribute="centerX" id="Qj9-6V-XTg"/>
-                                                <constraint firstAttribute="bottom" secondItem="3VJ-Ys-YoO" secondAttribute="bottom" constant="11" id="Tdo-Pz-2Kd"/>
+                                                <constraint firstAttribute="bottom" secondItem="3VJ-Ys-YoO" secondAttribute="bottom" constant="7" id="Tdo-Pz-2Kd"/>
                                                 <constraint firstItem="AQw-xL-FrS" firstAttribute="leading" secondItem="NHG-3k-PSM" secondAttribute="leadingMargin" id="Uo2-YB-D1S"/>
                                                 <constraint firstItem="rzf-gV-0fs" firstAttribute="leading" secondItem="NHG-3k-PSM" secondAttribute="leadingMargin" constant="-9" id="fzf-59-l0E"/>
                                                 <constraint firstItem="3VJ-Ys-YoO" firstAttribute="top" secondItem="AQw-xL-FrS" secondAttribute="bottom" constant="8" id="uFf-2a-JFY"/>
@@ -237,19 +237,19 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="85" id="RSU-xd-heE">
-                                        <rect key="frame" x="0.0" y="1195.0000001192093" width="414" height="85"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="58" id="RSU-xd-heE">
+                                        <rect key="frame" x="0.0" y="1195.0000001192093" width="414" height="58"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="RSU-xd-heE" id="WZA-Du-iDe">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="85"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="RSU-xd-heE" id="WZA-Du-iDe">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="58"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="awC-Og-EMc">
-                                                    <rect key="frame" x="280" y="8" width="114" height="65"/>
+                                                    <rect key="frame" x="266" y="13" width="128" height="34"/>
                                                     <color key="backgroundColor" systemColor="linkColor"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="114" id="OFj-9b-AV8"/>
-                                                        <constraint firstAttribute="height" constant="65" id="aYo-ze-AVg"/>
+                                                        <constraint firstAttribute="width" constant="128" id="OFj-9b-AV8"/>
+                                                        <constraint firstAttribute="height" constant="34" id="aYo-ze-AVg"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <state key="normal" title="Add Friend">
@@ -261,8 +261,8 @@
                                                 </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="awC-Og-EMc" secondAttribute="bottom" constant="8" id="9bT-Ab-KYG"/>
-                                                <constraint firstItem="awC-Og-EMc" firstAttribute="top" secondItem="WZA-Du-iDe" secondAttribute="top" constant="8" id="aqv-Xl-X1x"/>
+                                                <constraint firstAttribute="bottom" secondItem="awC-Og-EMc" secondAttribute="bottom" constant="11" id="9bT-Ab-KYG"/>
+                                                <constraint firstItem="awC-Og-EMc" firstAttribute="top" secondItem="WZA-Du-iDe" secondAttribute="top" constant="13" id="aqv-Xl-X1x"/>
                                                 <constraint firstAttribute="trailing" secondItem="awC-Og-EMc" secondAttribute="trailing" constant="20" symbolic="YES" id="rgQ-5j-TLc"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -709,7 +709,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Birth Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w5l-m5-dLk">
-                                                    <rect key="frame" x="8" y="8" width="121" height="28"/>
+                                                    <rect key="frame" x="20" y="8" width="121" height="28"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="121" id="8v9-yd-wI4"/>
                                                     </constraints>
@@ -719,9 +719,9 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="w5l-m5-dLk" firstAttribute="leading" secondItem="H6w-gT-po5" secondAttribute="leading" constant="8" id="5M4-0Y-AOv"/>
+                                                <constraint firstItem="w5l-m5-dLk" firstAttribute="leading" secondItem="H6w-gT-po5" secondAttribute="leading" constant="20" id="5M4-0Y-AOv"/>
                                                 <constraint firstItem="uMs-He-Ddf" firstAttribute="top" secondItem="H6w-gT-po5" secondAttribute="top" constant="8" id="6c0-aV-e6B"/>
-                                                <constraint firstItem="uMs-He-Ddf" firstAttribute="leading" secondItem="w5l-m5-dLk" secondAttribute="trailing" constant="8" id="DYY-2Q-GDb"/>
+                                                <constraint firstItem="uMs-He-Ddf" firstAttribute="leading" secondItem="w5l-m5-dLk" secondAttribute="trailing" constant="-4" id="DYY-2Q-GDb"/>
                                                 <constraint firstItem="w5l-m5-dLk" firstAttribute="top" secondItem="H6w-gT-po5" secondAttribute="top" constant="8" id="dhP-6z-8Qq"/>
                                                 <constraint firstAttribute="bottom" secondItem="uMs-He-Ddf" secondAttribute="bottom" constant="8" id="ewp-U1-CaM"/>
                                                 <constraint firstAttribute="trailing" secondItem="uMs-He-Ddf" secondAttribute="trailing" constant="8" id="ffP-OC-a3Q"/>
@@ -826,7 +826,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Death Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6nk-Xx-glv">
-                                                    <rect key="frame" x="8" y="8" width="121" height="28"/>
+                                                    <rect key="frame" x="20" y="8" width="121" height="28"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="121" id="ebe-ro-OSY"/>
                                                     </constraints>
@@ -836,13 +836,13 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="6nk-Xx-glv" firstAttribute="leading" secondItem="hvp-rL-xCv" secondAttribute="leading" constant="8" id="2cv-qx-7EG"/>
+                                                <constraint firstItem="6nk-Xx-glv" firstAttribute="leading" secondItem="hvp-rL-xCv" secondAttribute="leading" constant="20" id="2cv-qx-7EG"/>
                                                 <constraint firstItem="6nk-Xx-glv" firstAttribute="top" secondItem="hvp-rL-xCv" secondAttribute="top" constant="8" id="85u-WQ-6FT"/>
                                                 <constraint firstItem="Jcm-JS-bOT" firstAttribute="top" secondItem="hvp-rL-xCv" secondAttribute="top" constant="8" id="cgR-so-ja1"/>
                                                 <constraint firstAttribute="bottom" secondItem="6nk-Xx-glv" secondAttribute="bottom" constant="8" id="cqC-WF-2QI"/>
                                                 <constraint firstAttribute="trailing" secondItem="Jcm-JS-bOT" secondAttribute="trailing" constant="8" id="gos-io-mlz"/>
                                                 <constraint firstAttribute="bottom" secondItem="Jcm-JS-bOT" secondAttribute="bottom" constant="8" id="pfm-pj-rfo"/>
-                                                <constraint firstItem="Jcm-JS-bOT" firstAttribute="leading" secondItem="6nk-Xx-glv" secondAttribute="trailing" constant="8" id="vlq-Kl-IQB"/>
+                                                <constraint firstItem="Jcm-JS-bOT" firstAttribute="leading" secondItem="6nk-Xx-glv" secondAttribute="trailing" constant="-4" id="vlq-Kl-IQB"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
