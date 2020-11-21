@@ -317,8 +317,8 @@
 				CB5AE17F23512B14001BCCCE /* Sources */,
 				CB5AE18023512B14001BCCCE /* Frameworks */,
 				CB5AE18123512B14001BCCCE /* Resources */,
-				F086D82D3023C38A7477416D /* [CP] Embed Pods Frameworks */,
-				82050A0D6B3EC59F1690B702 /* [CP] Copy Pods Resources */,
+				5C0529B76A6771DE841B25DF /* [CP] Embed Pods Frameworks */,
+				FB3B731A569331A8BB8D32BE /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -382,6 +382,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		5C0529B76A6771DE841B25DF /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Remembrances/Pods-Remembrances-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Remembrances/Pods-Remembrances-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Remembrances/Pods-Remembrances-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		7A572E3D1924465D6F6BF63D /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -404,7 +421,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		82050A0D6B3EC59F1690B702 /* [CP] Copy Pods Resources */ = {
+		FB3B731A569331A8BB8D32BE /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -419,23 +436,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Remembrances/Pods-Remembrances-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F086D82D3023C38A7477416D /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Remembrances/Pods-Remembrances-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Remembrances/Pods-Remembrances-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Remembrances/Pods-Remembrances-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
