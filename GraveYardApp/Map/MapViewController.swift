@@ -633,7 +633,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             
             let goToSettingsAction = UIAlertAction(title: "Log Out", style: .default, handler: { _ in
                 self.moveBookSidetoLeft()
-                GIDSignIn.sharedInstance().signOut()
+                GIDSignIn.sharedInstance.signOut()
                 self.currentUser = nil
                 self.userId = ""
                 try! Auth.auth().signOut()

@@ -19,7 +19,7 @@ protocol SignInViewControllerDelegate {
     func didFinishAuth()
 }
 
-class SignInViewController: UIViewController, GIDSignInDelegate, WKUIDelegate {
+class SignInViewController: UIViewController, WKUIDelegate {
     
     // MARK: - Outlets
     
@@ -58,7 +58,7 @@ class SignInViewController: UIViewController, GIDSignInDelegate, WKUIDelegate {
         super.viewDidLoad()
         //chageTextColor()
         getCurrentSeason()
-        GIDSignIn.sharedInstance()?.presentingViewController = self
+//        GIDSignIn.sharedInstance()?.presentingViewController = self
 //        GIDSignIn.sharedInstance().signIn()
 //        GIDSignIn.sharedInstance()?.restorePreviousSignIn()
 //        GIDSignIn.sharedInstance()?.uiDelegate = self
@@ -125,18 +125,28 @@ class SignInViewController: UIViewController, GIDSignInDelegate, WKUIDelegate {
     }
     
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
-        if let error = error {
-            print("\(error.localizedDescription)")
+        guard let clientID = FirebaseApp.app()?.options.clientID else { return }
+
+        // Create Google Sign In configuration object.
+        let config = GIDConfiguration(clientID: clientID)
+        GIDSignIn.sharedInstance.configuration = config
+
+        // Start the sign in flow!
+        GIDSignIn.sharedInstance.signIn(withPresenting: self) { [unowned self] result, error in
+          guard error == nil else {
             return
-        } else {
-            guard let authentication = user.authentication else { return }
-            let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken, accessToken: authentication.accessToken)
-            Auth.auth().signIn(with: credential) { (result, error) in
-                if error == nil {
-                } else {
-                    print(error?.localizedDescription)
-                }
-            }
+          }
+
+          guard let user = result?.user,
+            let idToken = user.idToken?.tokenString
+          else {
+            return
+          }
+
+          let credential = GoogleAuthProvider.credential(withIDToken: idToken,
+                                                         accessToken: user.accessToken.tokenString)
+
+          // ...
         }
     }
     
@@ -213,8 +223,29 @@ class SignInViewController: UIViewController, GIDSignInDelegate, WKUIDelegate {
     // MARK: - Actions
     
     @IBAction func googleSignInButtonWasTapped(_ sender: UIButton) {
-        GIDSignIn.sharedInstance()?.delegate = self
-        GIDSignIn.sharedInstance()?.signIn()
+        guard let clientID = FirebaseApp.app()?.options.clientID else { return }
+
+        // Create Google Sign In configuration object.
+        let config = GIDConfiguration(clientID: clientID)
+        GIDSignIn.sharedInstance.configuration = config
+
+        // Start the sign in flow!
+        GIDSignIn.sharedInstance.signIn(withPresenting: self) { [unowned self] result, error in
+          guard error == nil else {
+            return
+          }
+
+          guard let user = result?.user,
+            let idToken = user.idToken?.tokenString
+          else {
+            return
+          }
+
+          let credential = GoogleAuthProvider.credential(withIDToken: idToken,
+                                                         accessToken: user.accessToken.tokenString)
+
+          // ...
+        }
     }
     
     @IBAction func appleSigninButtonWasTapped(_ sender: UIButton) {
@@ -237,7 +268,7 @@ class SignInViewController: UIViewController, GIDSignInDelegate, WKUIDelegate {
     @IBOutlet weak var signInButton: GIDSignInButton!
     
     @IBAction func logout(_ sender: UIBarButtonItem) {
-        GIDSignIn.sharedInstance().signOut()
+        GIDSignIn.sharedInstance.signOut()
         self.userId = ""
         try! Auth.auth().signOut()
     }

@@ -149,9 +149,14 @@ class MyFirebase {
     }
     
     func logOut() {
-        try! Auth.auth().signOut()
+        let firebaseAuth = Auth.auth()
+        do {
+          try firebaseAuth.signOut()
+        } catch let signOutError as NSError {
+          print("Error signing out: %@", signOutError)
+        }
         self.currentAuthID = nil
-        GIDSignIn.sharedInstance()?.signIn()
+//        GIDSignIn.sharedInstance.signIn()
     }
     
 }

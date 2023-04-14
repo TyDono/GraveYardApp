@@ -15,7 +15,7 @@ import AVKit
 import AVFoundation
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     let userDefault = UserDefaults()
@@ -32,8 +32,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         
         //check for currnt login token
         MyFirebase.shared.addUserListender(loggedIn: false)
-        GIDSignIn.sharedInstance().clientID = "924369462499-no217ai8nlbo4ddb1tt864s6ad54imd5.apps.googleusercontent.com" //FirebaseApp.app()?.options.clientID
-        GIDSignIn.sharedInstance().delegate = self
+//        GIDSignIn.sharedInstance().clientID = "924369462499-no217ai8nlbo4ddb1tt864s6ad54imd5.apps.googleusercontent.com" //FirebaseApp.app()?.options.clientID
+//        GIDSignIn.sharedInstance().delegate = self
         let audioSession = AVAudioSession.sharedInstance()
         do {
             try audioSession.setCategory(.playback, mode: .moviePlayback)
@@ -47,31 +47,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     //open url
     @available(iOS 9.0, *)
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-        GIDSignIn.sharedInstance().handle(url)
+        GIDSignIn.sharedInstance.handle(url)
         return true
     }
-    
-    func application(_ application: UIApplication,open url: URL, sourceApplication: String?, annotation: Any) -> Bool  {
-      return GIDSignIn.sharedInstance().handle(url)
-    }
+
     
     //signin handler
-    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!,
-              withError error: Error!) {
-        if let error = error {
-            print("\(error.localizedDescription)")
-            return
-        } else {
-            guard let authentication = user.authentication else { return }
-            let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken, accessToken: authentication.accessToken)
-            Auth.auth().signIn(with: credential) { (result, error) in
-                if error == nil {
-                } else {
-                    print(error?.localizedDescription)
-                }
-            }
-        }
-    }
+//    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!,
+//              withError error: Error!) {
+//        if let error = error {
+//            print("\(error.localizedDescription)")
+//            return
+//        } else {
+//            guard let authentication = user.authentication else { return }
+//            let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken, accessToken: authentication.accessToken)
+//            Auth.auth().signIn(with: credential) { (result, error) in
+//                if error == nil {
+//                } else {
+//                    print(error?.localizedDescription)
+//                }
+//            }
+//        }
+//    }
     
     //dissconect handler
     func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
