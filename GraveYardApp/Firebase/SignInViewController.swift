@@ -146,7 +146,7 @@ class SignInViewController: UIViewController, WKUIDelegate {
           let credential = GoogleAuthProvider.credential(withIDToken: idToken,
                                                          accessToken: user.accessToken.tokenString)
 
-          // ...
+
         }
     }
     
@@ -244,7 +244,13 @@ class SignInViewController: UIViewController, WKUIDelegate {
           let credential = GoogleAuthProvider.credential(withIDToken: idToken,
                                                          accessToken: user.accessToken.tokenString)
 
-          // ...
+            Auth.auth().signIn(with: credential) { (result, error) in
+                if error == nil {
+                    print("signed in from google!")
+                } else {
+                    print(error?.localizedDescription)
+                }
+            }
         }
     }
     
