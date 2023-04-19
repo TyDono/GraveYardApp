@@ -30,7 +30,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     @IBOutlet weak var bookSideUIView: UIView!
     @IBOutlet weak var bookSideUIImageView: UIImageView!
     
-    // MARK: - Propeties
+    // MARK: - Properties
     
     private var mapChangedFromUserInteraction = false
     static let shared = MapViewController()
@@ -86,13 +86,18 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
 //        resultSearchController?.searchResultsUpdater = locationSearchTable
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
+        yourMemorialBookAppears()
         self.mapView.removeAnnotations(self.mapView.annotations)
         getGraveEntries { (graves) in
             self.graves = graves
             self.dropGraveEntryPins()
          }
         checkForUserId() // make sure this gets calld everytime u reload from sign in
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        yourMemorialBookDisappears()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -148,6 +153,16 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
 //        }
 //    }
     
+    func yourMemorialBookDisappears() {
+        UIView.animate(withDuration: 0.5, animations: {
+            self.bookSideExpandButton.transform = CGAffineTransform(scaleX: 0.0, y: 0.0)
+        })
+    }
+    
+    func yourMemorialBookAppears() {
+        
+    }
+    
     func chageTextColor() {
         navigationItem.leftBarButtonItem?.tintColor = UIColor(0.0, 128.0, 128.0, 1.0)
         navigationItem.rightBarButtonItem?.tintColor = UIColor(0.0, 128.0, 128.0, 1.0)
@@ -182,9 +197,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                         MyFirebase.memorialCount = memorialCount
                         switch MyFirebase.memorialCount {
                         case 0:
-                            self.yourMemorialsButton.setTitle("How to Create Memorials", for: .normal)
+                            self.yourMemorialsButton.setTitle("Memorials", for: .normal)
                         default:
-                            self.yourMemorialsButton.setTitle("Your Memorial Sites", for: .normal)
+                            self.yourMemorialsButton.setTitle("Memorials", for: .normal)
                         }
                     }
                 }
@@ -399,17 +414,35 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         });
     }
     
-    func moveBookSidetoLeft() {
-        self.bookSideHasExpanded = false
-        UIView.animate(withDuration: 0.4,
-                       delay: 0.0,
-                       options: .curveEaseInOut,
-                       animations: {
-                        let moveLeft = CGAffineTransform(translationX: 0, y: 0)
-                        self.bookSideUIView.transform = moveLeft
-        }) {
-            (_) in
-        }
+    @objc func moveBookSidetoLeft() {
+//        self.bookSideHasExpanded.toggle()
+//        if bookSideHasExpanded == false {
+//            let offset: CGFloat = 256
+//            let newX = min(bookSideUIView.frame.origin.x + offset, UIScreen.main.bounds.width - bookSideUIView.frame.width)
+//            UIView.animate(withDuration: 0.5, animations: {
+//                self.bookSideUIView.frame.origin.x = newX
+//            })
+//        } else {
+//            let offset: CGFloat = 40
+//            let newX = min(bookSideUIView.frame.origin.x + offset, UIScreen.main.bounds.width - bookSideUIView.frame.width)
+//            UIView.animate(withDuration: 0.5, animations: {
+//                self.bookSideUIView.frame.origin.x = newX
+//            })
+//        }
+        
+//        UIView.animate(withDuration: 0.5, animations: {
+//            self.bookSideUIView.frame = CGRect(x: UIScreen.main.bounds.width - self.bookSideUIView.frame.width, y: 0, width: self.bookSideUIView.frame.width, height: self.bookSideUIView.frame.height)
+//        })
+        
+//        UIView.animate(withDuration: 0.4,
+//                       delay: 0.0,
+//                       options: .curveEaseInOut,
+//                       animations: {
+//                        let moveLeft = CGAffineTransform(translationX: 0, y: 0)
+//                        self.bookSideUIView.transform = moveLeft
+//        }) {
+//            (_) in
+//        }
     }
     
     func playVideo() { // duo of another same one dlelte one
@@ -427,7 +460,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     
     func getUserData() {
         if self.currentAuthID == nil {
-            self.yourMemorialsButton.setTitle("How to Create Memorials", for: .normal)
+            self.yourMemorialsButton.setTitle("Memorials", for: .normal)
+            self.yourMemorialsButton.titleLabel?.font = .systemFont(ofSize: 11)
         }
         guard let currentUserAuthID: String = self.currentAuthID else { return }
         let userRef = self.db.collection("userProfile").whereField("userAuthId", isEqualTo: currentUserAuthID)
@@ -449,9 +483,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                         }
                         switch MyFirebase.memorialCount {
                         case 0:
-                            self.yourMemorialsButton.setTitle("How to Create Memorials", for: .normal)
+                            self.yourMemorialsButton.setTitle("Memorials", for: .normal)
                         default:
-                            self.yourMemorialsButton.setTitle("Your Memorial Sites", for: .normal)
+                            self.yourMemorialsButton.setTitle("Memorial", for: .normal)
                         }
                     }
                 }
@@ -675,29 +709,29 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     }
     
     @IBAction func bookSideExpandButtonWasTapped(_ sender: UIButton) {
-        if self.bookSideHasExpanded == false {
-            self.bookSideHasExpanded = true
-            UIView.animate(withDuration: 0.4,
-                           delay: 0.0,
-                           options: .curveEaseInOut,
-                           animations: {
-                            let moveRight = CGAffineTransform(translationX: 250, y: 0)
-                            self.bookSideUIView.transform = moveRight
-            }) {
-                (_) in
-            }
-        } else if self.bookSideHasExpanded == true {
-            self.bookSideHasExpanded = false
-            UIView.animate(withDuration: 0.4,
-                           delay: 0.0,
-                           options: .curveEaseInOut,
-                           animations: {
-                            let moveLeft = CGAffineTransform(translationX: 0, y: 0)
-                            self.bookSideUIView.transform = moveLeft
-            }) {
-                (_) in
-            }
-        }
+//        if self.bookSideHasExpanded == false {
+//            self.bookSideHasExpanded = true
+//            UIView.animate(withDuration: 0.4,
+//                           delay: 0.0,
+//                           options: .curveEaseInOut,
+//                           animations: {
+//                            let moveRight = CGAffineTransform(translationX: 250, y: 0)
+//                            self.bookSideUIView.transform = moveRight
+//            }) {
+//                (_) in
+//            }
+//        } else if self.bookSideHasExpanded == true {
+//            self.bookSideHasExpanded = false
+//            UIView.animate(withDuration: 0.4,
+//                           delay: 0.0,
+//                           options: .curveEaseInOut,
+//                           animations: {
+//                            let moveLeft = CGAffineTransform(translationX: 0, y: 0)
+//                            self.bookSideUIView.transform = moveLeft
+//            }) {
+//                (_) in
+//            }
+//        }
     }
     
     @IBAction func howToMemorialButtonWasTapped(_ sender: UIButton) {
