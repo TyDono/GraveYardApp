@@ -93,7 +93,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             self.graves = graves
             self.dropGraveEntryPins()
          }
-        checkForUserId() // make sure this gets calld everytime u reload from sign in
+        checkForUserId() // make sure this gets called every time you reload from sign in
     }
     
     override func viewWillDisappear(_ animated: Bool) {
