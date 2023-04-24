@@ -432,7 +432,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         });
     }
     
-    @objc func moveBookSidetoLeft() {
+    @objc func moveBookSidetoLeft() { //remove later
 //        self.bookSideHasExpanded.toggle()
 //        if bookSideHasExpanded == false {
 //            let offset: CGFloat = 256
