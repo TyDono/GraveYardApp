@@ -34,6 +34,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     
     private var mapChangedFromUserInteraction = false
     static let shared = MapViewController()
+    var selectedPin:MKPlacemark? = nil
     var resultSearchController: UISearchController? = nil
     var currentAuthID = Auth.auth().currentUser?.uid
     var userId: String = ""
@@ -63,7 +64,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
 //        self.locationManager.distanceFilter = 90000.0;
 //        self.mapView.removeAnnotations(self.mapView.annotations)
         setMapViewLocationAndUser()
-        getUserMemorialCount()
+//        getUserMemorialCount()
         getUserData()
         animateFriendRequestNotificationButton()
         //chageTextColor()
@@ -125,9 +126,18 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedItem = matchingItems[indexPath.row].placemark
-        locationSearchBar.text = selectedItem.title
-        dismiss(animated: true, completion: nil)
+//        let selectedItem = matchingItems[indexPath.row].placemark
+//        locationSearchBar.text = selectedItem.title
+//        dismiss(animated: true, completion: nil)
+        
+        let selectedItem = matchingItems[indexPath.row]
+        mapView.removeAnnotations(mapView.annotations)
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = selectedItem.placemark.coordinate
+        annotation.title = selectedItem.name
+        mapView.addAnnotation(annotation)
+        mapView.setCenter(selectedItem.placemark.coordinate, animated: true)
+//        searchBar.resignFirstResponder()
     }
     
 //    func tableView(tableView: UITableView, didSelectRowAt indexPath: NSIndexPath) {
@@ -197,7 +207,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                         MyFirebase.memorialCount = memorialCount
                         switch MyFirebase.memorialCount {
                         case 0:
-                            self.yourMemorialsButton.setTitle("Memorials", for: .normal)
+                            self.yourMemorialsButton.setTitle("How to", for: .normal)
                         default:
                             self.yourMemorialsButton.setTitle("Memorials", for: .normal)
                         }
@@ -313,6 +323,12 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             completion(registeredGraves)
         }
     }
+
+//func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+//    guard annotation is MKPointAnnotation else {
+//        return nil
+//    }
+//    let identifier
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         if annotation is MKUserLocation {
@@ -460,8 +476,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     
     func getUserData() {
         if self.currentAuthID == nil {
-            self.yourMemorialsButton.setTitle("Memorials", for: .normal)
-            self.yourMemorialsButton.titleLabel?.font = .systemFont(ofSize: 11)
+            self.yourMemorialsButton.setTitle("How to", for: .normal)
+//            self.yourMemorialsButton.titleLabel?.font = .systemFont(ofSize: 11)
         }
         guard let currentUserAuthID: String = self.currentAuthID else { return }
         let userRef = self.db.collection("userProfile").whereField("userAuthId", isEqualTo: currentUserAuthID)
@@ -483,9 +499,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                         }
                         switch MyFirebase.memorialCount {
                         case 0:
-                            self.yourMemorialsButton.setTitle("Memorials", for: .normal)
+                            self.yourMemorialsButton.setTitle("How to", for: .normal)
                         default:
-                            self.yourMemorialsButton.setTitle("Memorial", for: .normal)
+                            self.yourMemorialsButton.setTitle("Memorials", for: .normal)
                         }
                     }
                 }

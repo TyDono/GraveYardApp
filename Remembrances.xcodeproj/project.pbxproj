@@ -291,8 +291,8 @@
 			isa = PBXGroup;
 			children = (
 				CBCE0E1823FD13460077A4F1 /* MapViewController.swift */,
-				CBC5B0C825513C9E00534803 /* LocationSearchTableViewCell.swift */,
 				CBBC7B1E252B054800BE6697 /* LocationSearchTableView.swift */,
+				CBC5B0C825513C9E00534803 /* LocationSearchTableViewCell.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
