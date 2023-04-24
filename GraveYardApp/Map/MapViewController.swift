@@ -365,13 +365,15 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     }
     
     func setMapViewLocationAndUser() {
-        if CLLocationManager.locationServicesEnabled() {
-            self.locationManager.requestWhenInUseAuthorization()
-            locationManager.delegate = self
-            locationManager.desiredAccuracy = kCLLocationAccuracyBest
-            locationManager.startUpdatingLocation()
-//            locationManager.stopUpdatingLocation()
-            self.mapView.showsUserLocation = true
+        DispatchQueue.global(qos: .background).async {
+            if CLLocationManager.locationServicesEnabled() {
+                self.locationManager.requestWhenInUseAuthorization()
+                self.locationManager.delegate = self
+                self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
+                self.locationManager.startUpdatingLocation()
+                //            locationManager.stopUpdatingLocation()
+                self.mapView.showsUserLocation = true
+            }
         }
         mapView.showsScale = true
         mapView.mapType = .standard
