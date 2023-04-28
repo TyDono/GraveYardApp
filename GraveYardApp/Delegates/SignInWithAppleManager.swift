@@ -13,7 +13,7 @@ struct SignInWithAppleManager {
 
     static let userIdentifierKey = "userIdentifier"
 
-    @available(iOS 13.0, *)
+//    @available(iOS 13.0, *)
     static func checkUserAuth(completion: @escaping (AuthState) -> ()) {
         guard let userIdentifier = UserDefaults.standard.object(forKey: userIdentifierKey) as? String else {
             print("User identifier does not exist")

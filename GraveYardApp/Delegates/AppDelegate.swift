@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let splashVC = storyboard.instantiateViewController(withIdentifier: "map")
+        let splashVC = storyboard.instantiateViewController(withIdentifier: "splash")
         window?.rootViewController = splashVC
 //        let storage = Storage.storage()
         
@@ -45,7 +45,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     //open url
-    @available(iOS 9.0, *)
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
         GIDSignIn.sharedInstance.handle(url)
         return true

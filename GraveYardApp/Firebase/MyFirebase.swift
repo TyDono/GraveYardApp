@@ -47,7 +47,7 @@ class MyFirebase {
                 print("You Are Currently Logged Out")
                 DispatchQueue.main.asyncAfter(deadline: .now()) {
                     if loggedIn == true {
-                        //moveToMap()
+                        moveToMap()
                     } else {
                         //moveToMap()
                     }

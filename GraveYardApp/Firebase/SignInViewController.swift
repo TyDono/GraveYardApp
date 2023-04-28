@@ -186,7 +186,7 @@ class SignInViewController: UIViewController, WKUIDelegate {
     }
     
     // Unhashed nonce.
-    @available(iOS 13, *)
+//    @available(iOS 13, *)
     func startSignInWithAppleFlow() {
         let nonce = randomNonceString()
         currentNonce = nonce
@@ -201,7 +201,7 @@ class SignInViewController: UIViewController, WKUIDelegate {
         authorizationController.performRequests()
     }
     
-    @available(iOS 13, *)
+//    @available(iOS 13, *)
     private func sha256(_ input: String) -> String {
       let inputData = Data(input.utf8)
       let hashedData = SHA256.hash(data: inputData)
@@ -255,7 +255,7 @@ class SignInViewController: UIViewController, WKUIDelegate {
     }
     
     @IBAction func appleSigninButtonWasTapped(_ sender: UIButton) {
-        if #available(iOS 13.0, *) {
+//        if #available(iOS 13.0, *) {
             let request = ASAuthorizationAppleIDProvider().createRequest()
             request.requestedScopes = [.fullName, .email]
             let controller = ASAuthorizationController(authorizationRequests: [request])
@@ -263,7 +263,7 @@ class SignInViewController: UIViewController, WKUIDelegate {
             controller.presentationContextProvider = self
             controller.performRequests()
             startSignInWithAppleFlow()
-        }
+//        }
 
     }
     
@@ -283,7 +283,7 @@ class SignInViewController: UIViewController, WKUIDelegate {
     
 }
 
-@available(iOS 13.0, *)
+//@available(iOS 13.0, *)
 extension SignInViewController: ASAuthorizationControllerDelegate {
     
     private func registerNewAccount(credential: ASAuthorizationAppleIDCredential) {
@@ -368,7 +368,7 @@ extension SignInViewController: ASAuthorizationControllerDelegate {
     }
 }
 
-@available(iOS 13.0, *)
+//@available(iOS 13.0, *)
 extension SignInViewController: ASAuthorizationControllerPresentationContextProviding {
     func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
         return self.view.window!
